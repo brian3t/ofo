@@ -1,0 +1,62 @@
+<div class="block-user-products">
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{MY_PRODUCTS_MSG}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr class="headerbg"> 
+		<td class="blockTD">
+
+		<table border="0" cellspacing="1" width="100%" class="padding6px"><!-- begin sorters -->
+		<tr class="middlebg" align="center">
+			<td>{sorter_id}</td>
+			<td>{sorter_title}</td>
+			<td>{sorter_price}</td>
+			<td>{sorter_qty}</td>
+			<td>{STATUS_MSG}</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr><!-- end sorters --><!-- BEGIN records -->
+		<tr class="usualbg" valign="top" align="center">
+			<td>{item_id}</td>
+			<td align="left">&nbsp;{item_name}</td>
+			<td align="right">&nbsp;{price}&nbsp;</td>
+			<td>&nbsp;{quantity}&nbsp;</td>
+			<td>&nbsp;{status}&nbsp;</td>
+			<td>&nbsp;<a href="{user_product_href}?item_id={item_id}">{EDIT_PRODUCT_MSG}</a>&nbsp;</td>
+			<td><!-- begin options_block -->
+				&nbsp;<a href="{user_product_options_href}?item_id={item_id}">{OPTIONS_AND_COMPONENTS_MSG}</a>&nbsp;<!-- end options_block -->
+			</td>
+		</tr><!-- END records --><!-- BEGIN no_records -->
+		<tr class="usualbg">
+			<td colspan="7">&nbsp;{NO_PRODUCTS_MSG}</td>
+		</tr><!-- END no_records -->
+		<tr class="middlebg">
+			<td colspan="7">
+				<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td><a href="{user_product_href}">{ADD_NEW_MSG}</a></td>
+					<!-- begin navigator_block -->
+					<td align="right">&nbsp;{navigator}&nbsp;</td>
+					<!-- end navigator_block -->
+				</tr>
+				</table>
+			</td>
+		</tr>
+		</table>	
+
+	</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+</div>

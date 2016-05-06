@@ -1,0 +1,33 @@
+<div class="block-manufacturers">
+	<form action="{products_href}" name="manufacturers" method="GET">
+		<input type="hidden" name="category_id" value="{category_id}">
+		<h2>{MANUFACTURERS_TITLE}</h2>
+		<ul class="manufacturers">
+			<!-- begin manufacturers_list -->
+			<!-- BEGIN manufacturers -->
+			<li>
+				<!-- begin image -->
+				<a href="{manufacturer_href}"><img src="{src}" {width} {height} hspace="5" border="0" alt="{alt}" align="left"></a>
+				<!-- end image -->
+				<a href="{manufacturer_href}">{manufacturer_name}</a> ({manufacturer_products})
+				<!-- begin desc -->
+				{desc_text}
+				<!-- end desc -->
+			</li>
+			<!-- END manufacturers -->
+			<!-- end manufacturers_list -->
+		</ul>
+		<!-- begin manufacturers_select -->
+		<select class="field" name="manf">
+			<option value="">
+			<!-- begin manufacturers_options -->
+			<option {manufacturer_selected} value="{manufacturer_id}">{manufacturer_name} ({manufacturer_products})
+			<!-- end manufacturers_options -->
+		</select>
+		<span class="submit">
+		<input class="submit" type="submit" value="{GO_BUTTON}">
+		</span>
+		<!-- end manufacturers_select -->
+	</form>
+	<div class="clear"></div>
+</div>

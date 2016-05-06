@@ -1,0 +1,463 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{ADMINISTRATION_MSG} :: {FINAL_CHECKOUT_SETTINGS_MSG}</title>
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script type="text/javascript" src="../js/admin.js"></script>
+<script language="JavaScript">
+<!--
+	function openWindow(pagename)
+	{
+		var popupWin = window.open (pagename + "?cc=1", 'popup', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');
+		popupWin.focus();
+	}
+//-->
+</script>
+</head>
+<body class="mainbg">
+
+{admin_header}
+
+<form action="{admin_order_final_href}" name="record" method="POST">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="breadcrumb"> 
+
+	<table width="100%" cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_payment_systems_href}">{PAYMENT_SYSTEMS_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_payment_system_href}?payment_id={payment_id}">{payment_name}</a>&nbsp;&gt;&nbsp;<b>{FINAL_CHECKOUT_MSG} {SETTINGS_MSG}</b>
+		</td>
+		<!-- begin sitelist -->
+		<td class="usual" align="right">
+			{SELECT_SITE_MSG}&nbsp;
+			<select name="param_site_id" onchange="reloadSite(this.form)"><!-- begin param_site_id -->
+				<option {param_site_id_selected} value="{param_site_id_value}">{param_site_id_description}<!-- end param_site_id -->
+			</select>		
+		</td>
+		<!-- end sitelist -->
+	</tr>
+	</table>
+
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{FINAL_CHECKOUT_SETTINGS_MSG}</legend>
+
+<table border="0" cellpadding="6" cellspacing="1" width="100%">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="rp" value="{rp}">
+<input type="hidden" name="payment_id" value="{payment_id}">
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{VALIDATION_PARAMETERS_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+	  &nbsp;{ADDITIONAL_VALIDATION_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="is_validation" {is_validation} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+	  &nbsp;{VALIDATION_SCRIPT_MSG}
+	</td>
+	<td>
+		<input type="text" class="field" name="validation_php_lib" value="{validation_php_lib}" size="70"> &nbsp;
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SUCCESS_STATUS_MSG}
+	</td>
+	<td>
+		<select name="success_status_id"><!-- begin success_status_id -->
+			<option {success_status_id_selected} value="{success_status_id_value}">{success_status_id_description}<!-- end success_status_id -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PENDING_STATUS_MSG} <span class="comment">(if applicable)</span>
+	</td>
+	<td>
+		<select name="pending_status_id"><!-- begin pending_status_id -->
+			<option {pending_status_id_selected} value="{pending_status_id_value}">{pending_status_id_description}<!-- end pending_status_id -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{FAILURE_STATUS_MSG}
+	</td>
+	<td>
+		<select name="failure_status_id"><!-- begin failure_status_id -->
+			<option {failure_status_id_selected} value="{failure_status_id_value}">{failure_status_id_description}<!-- end failure_status_id -->
+		</select>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{FINAL_MESSAGES_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;{ON_SUCCSESS_MESSAGE_MSG}
+	</td>
+	<td>
+		<textarea name="success_message" cols="80" rows="8">{success_message}</textarea>
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;{PENDING_MSG} {MESSAGE_MSG}
+	</td>
+	<td>
+		<textarea name="pending_message" cols="80" rows="5">{pending_message}</textarea>
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;{ON_FAILURE_MESSAGE_MSG}
+	</td>
+	<td>
+		<textarea name="failure_message" cols="80" rows="5">{failure_message}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{EMAIL_NOTIFICATION_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SEND_NOTIFICATION_ADMIN_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="admin_notification" {admin_notification} value="1"> {ON_SUCCESS_MSG}
+		<input type="checkbox" name="admin_pending_notify" {admin_pending_notify} value="1"> {ON_PENDING_MSG}
+		<input type="checkbox" name="admin_failure_notify" {admin_failure_notify} value="1"> {ON_FAILURE_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;Enable PGP encryption<br>
+		&nbsp;(<a href="{admin_global_settings_href}?tab=pgp">{CLICK_HERE_MSG}</a> to specify global PGP encryption parameters)
+	</td>
+	<td colspan="4">
+		<input type="checkbox" name="admin_notification_pgp" {admin_notification_pgp} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_TO_MSG}</b>
+		<div class="small">
+		&nbsp;(<a href="javascript:openWindow('{admin_email_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_FILEDS_NOTE})
+		</div>
+	</td>
+	<td>
+		<input class="field" type="text" name="admin_email" value="{admin_email}" size="80" maxlength="255">
+		<div class="small">({EG_MSG} <b>sales@yoursite.com</b>)</div>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_FROM_MSG}</b>
+	</td>
+	<td>
+		<input class="field" type="text" name="admin_mail_from" value="{admin_mail_from}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_CC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="cc_emails" value="{cc_emails}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_BCC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="admin_mail_bcc" value="{admin_mail_bcc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_REPLY_TO_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="admin_mail_reply_to" value="{admin_mail_reply_to}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_RETURN_PATH_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="admin_mail_return_path" value="{admin_mail_return_path}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ATTACHMENTS_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="admin_mail_pdf_invoice" {admin_mail_pdf_invoice} value="1"> PDF Invoice
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_SUBJECT_MSG}</b>
+	</td>
+	<td>
+		<input class="field" type="text" name="admin_subject" value="{admin_subject}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_MESSAGE_TYPE_MSG}</b>
+	</td>
+	<td><!-- begin admin_message_type -->
+		<input type="radio" name="admin_message_type" {admin_message_type_checked} value="{admin_message_type_value}">{admin_message_type_description}<!-- end admin_message_type -->
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}?payment_id={payment_id}&final=1')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_SETTINGS_NOTE} 
+		<br>&nbsp;&nbsp;{LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td>
+		<textarea name="admin_message" cols="80" rows="10">{admin_message}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{EMAIL_NOTIFICATION_USER_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		Send this notification only if an individual product notification isn't activated
+	</td>
+	<td>
+		<input type="checkbox" name="product_individual_notification" {product_individual_notification} value="1"> 
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		{SEND_NOTIFICATION_TO_CLIENT_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="user_notification" {user_notification} value="1"> {ON_SUCCESS_MSG}
+		<input type="checkbox" name="user_pending_notify" {user_pending_notify} value="1"> {ON_PENDING_MSG}
+		<input type="checkbox" name="user_failure_notify" {user_failure_notify} value="1"> {ON_FAILURE_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_FROM_MSG}</b>
+		<div class="small">
+		&nbsp;(<a href="javascript:openWindow('{admin_email_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_FILEDS_NOTE})
+		</div>
+	</td>
+	<td>
+		<input class="field" type="text" name="user_mail_from" value="{user_mail_from}" size="80" maxlength="255">
+		<div class="small">({EG_MSG} <b>sales@yoursite.com</b>)</div>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_CC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="user_mail_cc" value="{user_mail_cc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_BCC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="user_mail_bcc" value="{user_mail_bcc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_REPLY_TO_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="user_mail_reply_to" value="{user_mail_reply_to}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_RETURN_PATH_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="user_mail_return_path" value="{user_mail_return_path}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ATTACHMENTS_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="user_mail_pdf_invoice" {user_mail_pdf_invoice} value="1"> PDF Invoice
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_SUBJECT_MSG}</b>
+	</td>
+	<td>
+		<input class="field" type="text" name="user_subject" value="{user_subject}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_MESSAGE_TYPE_MSG}</b>
+	</td>
+	<td><!-- begin user_message_type -->
+		<input type="radio" name="user_message_type" {user_message_type_checked} value="{user_message_type_value}">{user_message_type_description}<!-- end user_message_type -->
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}?payment_id={payment_id}&final=1')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_SETTINGS_NOTE} 
+		<br>&nbsp;&nbsp;{LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td>
+		<textarea name="user_message" cols="80" rows="10">{user_message}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="5">
+		&nbsp;<b>{SMS_NOTIFICATION_ADMIN_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SMS_SEND_ADMIN_MSF}
+	</td>
+	<td colspan="4">
+		<input type="checkbox" name="admin_sms_success" {admin_sms_success} value="1"> {ON_SUCCESS_MSG}
+		<input type="checkbox" name="admin_sms_pending" {admin_sms_pending} value="1"> {ON_PENDING_MSG}
+		<input type="checkbox" name="admin_sms_failure" {admin_sms_failure} value="1"> {ON_FAILURE_MSG}
+		<br>
+		&nbsp;({SMS_NOTIFICATION_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{SMS_RECIPIENT_MSG}</b> ({SMS_RECIPIENT_ADMIN_DESC}) 
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="admin_sms_recipient" value="{admin_sms_recipient}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{SMS_ORIGINATOR_MSG}</b>
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="admin_sms_originator" value="{admin_sms_originator}" size="80" maxlength="16">
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{SMS_MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}?payment_id={payment_id}&final=1')">{CLICK_HERE_MSG}</a> {LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td colspan="4">
+		<textarea name="admin_sms_message" cols="80" rows="3">{admin_sms_message}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="5">
+		&nbsp;<b>{USER_SMS_NOTIFICATION_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SEND_SMS_NOTIFICATION_USER_MSG}
+	</td>
+	<td colspan="4">
+		<input type="checkbox" name="user_sms_success" {user_sms_success} value="1"> {ON_SUCCESS_MSG}
+		<input type="checkbox" name="user_sms_pending" {user_sms_pending} value="1"> {ON_PENDING_MSG}
+		<input type="checkbox" name="user_sms_failure" {user_sms_failure} value="1"> {ON_FAILURE_MSG}
+		<br>
+		&nbsp;({SMS_NOTIFICATION_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{SMS_RECIPIENT_MSG}</b> ('{CELL_PHONE_FIELD}' {FIELD_USED_IF_EMPTY_MSG})
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="user_sms_recipient" value="{user_sms_recipient}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{SMS_ORIGINATOR_MSG}</b>
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="user_sms_originator" value="{user_sms_originator}" size="80" maxlength="16">
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{SMS_MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}?payment_id={payment_id}&final=1')">{CLICK_HERE_MSG}</a> {LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td colspan="4">
+		<textarea name="user_sms_message" cols="80" rows="3">{user_sms_message}</textarea>
+	</td>
+</tr>
+
+<tr class="middle">
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</form>
+
+</fieldset>
+
+
+{admin_footer}
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {OPINION_POLLS_MSG} ::..</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5" align="center">
+<tr><td align="center">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<b>{OPINION_POLLS_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<td>
+<fieldset>
+<legend>{OPINION_POLLS_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+
+<table border="0" cellpadding="6" cellspacing="1" width="100%"><!-- begin sorters -->
+<tr class="middle"align="center">
+	<td>
+		{sorter_poll_id}
+	</td>
+	<td>
+		{sorter_question}
+	</td>
+	<td>
+		{sorter_is_active}
+	</td>
+	<td>
+		{sorter_date_added}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- end sorters --><!-- BEGIN records -->
+<tr class="usual" align="center">
+	<td>
+		{poll_id}
+	</td>
+	<td align="left">
+		&nbsp;{question}&nbsp;
+	</td>
+	<td>
+		{is_active}
+	</td>
+	<td>
+		{poll_date}
+	</td>
+	<td>
+		<a href="{admin_poll_href}?poll_id={poll_id}">{EDIT_POLL_MSG}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="5">
+		&nbsp;{NO_RECORDS}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="5">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+		<tr class="middle">
+			<td>
+				&nbsp;<a href="{admin_poll_href}">{NEW_POLL_MSG}</a>&nbsp;
+			</td><!-- begin navigator_block -->
+			<td align="right">
+				&nbsp;{navigator}&nbsp;
+			</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>	
+
+	</td>
+</tr>
+</table>
+</fieldset>
+</td>
+</tr></table>
+
+
+{admin_footer}
+</body>
+</html>

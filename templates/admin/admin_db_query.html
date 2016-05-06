@@ -1,0 +1,142 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {RUN_SQL_QUERY_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<style type="text/css">
+<!--
+div.query {
+	height: 300px; 
+	width: 870px; 
+	overflow: auto; 
+}
+table.query {
+	border-top: 1px solid #000;
+	border-left: 1px solid #000;
+}
+table.query th {
+	border-bottom: 1px solid #000;
+	border-right: 1px solid #000;
+	background-color: #ddd;
+}
+table.query td {
+	border-bottom: 1px solid #000;
+	border-right: 1px solid #000;
+	background-color: #fff;
+}
+//-->
+</style>
+<script language="JavaScript">
+<!--
+var queries = new Array();<!-- begin queries -->
+queries[{query_id}] = "{recent_query}";<!-- end queries -->
+var maxQueryId = queries.length - 1;
+var queryId = {current_query_id};
+
+function moveQuery(step)
+{
+	if (queries.length == 0) {
+		// there is no data for recent queries
+		document.query.next.disabled = true;
+		document.query.prev.disabled = true;
+		return;
+	}
+	queryId += step;
+	if (queryId < 0) {
+		queryId = 0;
+	} else if (isNaN(queryId) || queryId > maxQueryId) {
+		queryId = maxQueryId;
+	}
+	var sqlQuery = queries[queryId];
+	document.query.sql_query.value = sqlQuery;
+	document.query.prev.disabled = false;
+	document.query.next.disabled = false;
+	if (queryId == maxQueryId) {
+		document.query.next.disabled = true;
+	} else if (queryId == 0) {
+		document.query.prev.disabled = true;
+	}
+}
+
+function queryResultsHeight()
+{
+	var queryDivObj = document.getElementById("queryDiv");
+	var queryTableObj = document.getElementById("queryTable");
+	if (queryDivObj && queryTableObj) {
+		var tableHeight = queryTableObj.offsetHeight;
+		if (tableHeight < 300) {
+			queryDivObj.style.height = tableHeight + 25;
+		}
+	}
+
+}
+//-->
+</script>
+</head>
+
+<body class="commonbg" onLoad="queryResultsHeight();">
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header">
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_dump_href}">{DATABASE_MANAGEMENT_MSG}</a>&nbsp;&gt;&nbsp;<b>{RUN_SQL_QUERY_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{RUN_SQL_QUERY_MSG}</legend>
+<table width="100%" border="0" cellspacing="0" cellpadding="5"><!-- begin errors_block -->
+<tr>
+	<td><div class="error">{errors_list}</div></td>
+</tr><!-- end errors_block -->
+<tr>
+	<td width="890">
+		<form action="{admin_db_query_href}" name="query" method="POST">
+		<input type="hidden" name="operation" value="run">
+		<textarea rows="10" cols="140" name="sql_query" style="width: 100%">{sql_query}</textarea>
+		<table cellspacing="0" cellpadding="0" border="0" width="100%">
+		<tr>
+			<td><input class="submit" type="submit" name="run" value="{RUN_SQL_QUERY_MSG}"></td>
+			<td align="right">
+				<input class="submit" type="button" name="prev" value="{PREV_PAGE_MSG}" {prev_disabled} onClick="moveQuery(-1);" onDblClick="moveQuery(-1);">
+				<input class="submit" type="button" name="next" value="{NEXT_PAGE_MSG}" disabled onClick="moveQuery(1);" onDblClick="moveQuery(1);">
+			</td>
+		</tr>
+		</table>
+		</form>
+	</td>
+</tr><!-- begin query_result -->
+<tr>
+	<td width="890">
+		<div class="message">{PROCESSING_TIME_MSG}: {execution_time}</div>
+		<!-- begin query_info_block -->
+		<div class="message">{query_info}</div><!-- end query_info_block -->
+		
+
+		<!-- begin query_data -->
+		<div id="queryDiv" class="query">
+		<table id="queryTable" cellspacing="0" cellpadding="2" class="query">
+		<tr><!-- begin titles -->
+			<th>{column_title}</th><!-- end titles -->
+		</tr><!-- begin rows -->
+		<tr><!-- begin cols -->
+			<td>{column_value}</td><!-- end cols -->
+		</tr><!-- end rows -->
+		</table>
+		</div>
+		<!-- end query_data -->
+
+	</td>
+</tr><!-- end query_result -->
+</table>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

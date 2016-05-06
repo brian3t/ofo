@@ -1,0 +1,97 @@
+<div class="block-login-advanced">
+	<div class="titleTopCenter">
+	<h1>{LOGIN_TITLE}</h1>
+	</div>
+	<form action="{user_login_href}" name="record" method="POST">
+		<input type="hidden" name="operation" value="{operation}">
+		<input type="hidden" name="return_page" value="{return_page}">
+		<!-- BEGIN login_form -->
+		<table width="100%" border="0" cellspacing="2" cellpadding="0">
+			<tr>
+				<td width="50%" valign="top"><table align="center" width="100%" cellspacing="1" class="padding6px">
+						<!-- begin new_user_block -->
+						<tr>
+							<td colspan="2" align="center" class="middlebg"><b><font size="3">{NEW_USER_MSG}?</font></b></td>
+						</tr>
+						<tr class="usualbg">
+							<td colspan="2" align="center"><!-- begin user_types -->
+								<br>
+								<a href="{user_profile_url}">{SIGN_UP_MSG} ({user_type_name})</a><br>
+								<!-- end user_types -->
+								<br></td>
+						</tr>
+						<!-- end new_user_block -->
+					</table></td>
+				<td width="50%" valign="top"><table align="center" width="100%" cellspacing="1" class="padding6px">
+						<tr>
+							<td colspan="2" align="center" class="middlebg"><b><font size="3">{EXISTS_USER_MSG}</font></b></td>
+						</tr>
+						<tr>
+							<td colspan="2" align="center" class="usualbg">{ENTER_LOGIN_MSG}</td>
+						</tr>
+						<!-- BEGIN errors -->
+						<tr class="usualbg">
+							<td colspan="2" align="center"><div class="errorbg"> {errors_list} </div></td>
+						</tr>
+						<!-- END errors -->
+						<tr class="usualbg">
+							<td align="right" width="44%">{LOGIN_FIELD} {login_desc}</td>
+							<td width="56%"><input class="text" type="text" name="login" value="{login}" size="20" maxlength="64"></td>
+						</tr>
+						<tr class="usualbg">
+							<td align="right">{PASSWORD_FIELD}</td>
+							<td><input class="text" type="password" name="password" value="" size="20" maxlength="32"></td>
+						</tr>
+						<tr class="usualbg">
+							<td></td>
+							<td><label>
+									<input type="checkbox" {remember_me} name="remember_me" value="1">
+									{REMEMBER_LOGIN_MSG}</label></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><span class="submit">
+								<input class="button" type="submit" value="{SIGN_IN_BUTTON}" onCLick="document.record.operation.value='login'">
+								</span></td>
+						</tr>
+						<tr class="usualbg">
+							<td></td>
+							<td>&nbsp;<a href="{forgot_password_href}">{FORGOT_PASSWORD_MSG}</a></td>
+						</tr>
+					</table></td>
+			</tr>
+		</table>
+		<!-- END login_form -->
+		<!-- BEGIN logout_form -->
+		<table align="center" width="100%" cellspacing="1" class="padding6px">
+			<!-- BEGIN errors -->
+			<tr class="usualbg">
+				<td colspan="2" align="center"><div class="errorbg"> {errors_list} </div></td>
+			</tr>
+			<!-- END errors -->
+			<tr class="usualbg">
+				<td><table align="center" cellspacing="1" class="padding6px">
+						<tr>
+							<td colspan="2" align="right">{LOGIN_AS_MSG} <b>{user_login}</b></td>
+						</tr>
+						<tr>
+							<td colspan="2" align="right">{ACCESS_HOME_MSG} <a href="{user_home_href}">{CLICK_HERE_MSG}</a></td>
+						</tr>
+						<tr>
+							<td colspan="2" align="right"><span class="submit">
+								<input class="button" type="submit" value="{LOGOUT_BUTTON}" onCLick="document.record.operation.value='logout'">
+								</span></td>
+						</tr>
+					</table></td>
+			</tr>
+		</table>
+		<!-- END logout_form -->
+	</form>
+</div>
+<script language="JavaScript" type="text/javascript">
+<!--
+	if(document.record.login) {
+		document.record.login.focus();
+	}
+//-->
+</script>

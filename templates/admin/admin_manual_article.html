@@ -1,0 +1,271 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_MSG} {MANUAL_ARTICLE_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<link rel="stylesheet" href="../styles/editor.css" type="text/css">
+<script language="JavaScript" type= "text/javascript" src="../js/doubleCombo.js"></script>
+<script language="JavaScript" type= "text/javascript" src="../js/editor.js"></script>
+<script type="text/javascript" >
+{options_js}
+
+function open_article_popup() {
+	window.open("popup_manuals_articles_list.php", "", "width=400,height=500,scrollbars=1,resizable=1");
+}
+
+function clear_text(textfield_id) {
+	element = document.getElementById(textfield_id);
+	
+	if (element != null) {
+		element.value = "";
+	}
+}
+</script>
+
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td align="center">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_manual_href}">{MANUAL_MSG}</a>&nbsp;&gt;&nbsp;<!-- begin category_breadcrumb --><a 
+			href="{current_category_url}">{current_category_name}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_manual_href}">{current_manual_name}</a>&nbsp;&gt;&nbsp;<a 
+			href="{current_article_url}">{current_article_name}</a>&nbsp;&gt;&nbsp;<!-- end category_breadcrumb --><b>{EDIT_ARTICLE_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_ARTICLE_MSG}</legend>
+
+<table border="0" cellspacing="1" cellpadding="6" width="100%">
+<form action="{admin_manual_article_href}" name="record" method="POST" id="record" onSubmit="submit_editor(Array('editor_sd','editor_fd'));">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="article_id" value="{article_id}" id="article_id">
+<input type="hidden" name="manual_id" value="{manual_id}">
+<input type="hidden" name="saved_article_order" value="{saved_article_order}">
+<input type="hidden" name="saved_parent_article_id" value="{saved_parent_article_id}">
+<input type="hidden" name="article_path" value="">
+<input type="hidden" name="alias_article_id" id="alias_article_id" value="{alias_article_id}">
+<input type="hidden" name="rp" value="{rp}">
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{GENERAL_INFO_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ALLOW_VIEW_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="allowed_view" {allowed_view} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PARENT_ARTICLE_MSG}
+	</td>
+	<td>
+		&nbsp;<select name="parent_article_id" id="parent_article_id"><!-- begin parent_article_id -->
+			<option {parent_article_id_selected} value="{parent_article_id_value}">{parent_article_id_description}<!-- end parent_article_id -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ARTICLE_ORDER_MSG}
+	</td>
+	<td>
+		&nbsp;<select name="article_order" id="article_order"><!-- begin article_order -->
+			<option {article_order_selected} value="{article_order_value}">{article_order_description}<!-- end article_order -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ARTICLE_TITLE_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="article_title" value="{article_title}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ARTICLE_ALIAS_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="alias_article_title" id="alias_article_title" value="{alias_article_title}" size="45">
+		&nbsp;<a href="#" onclick="open_article_popup();">{SELECT_MSG} article</a>
+		&nbsp;<a href="#" onclick="clear_text('alias_article_title');clear_text('alias_article_id');">{CLEAR_BUTTON}</a>
+	</td>
+</tr>
+<!-- BEGIN friendly_url_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{FRIENDLY_URL_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="friendly_url" value="{friendly_url}" size="80" maxlength="255">
+	</td>
+</tr>
+<!-- END friendly_url_block -->
+		<!-- begin short_description_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{AD_SHORT_DESC_MSG}
+			</td>
+			<td>
+				<textarea name="short_description" cols="80" rows="4">{short_description}</textarea>
+				<script language= "JavaScript" type= "text/javascript">
+				<!--
+					var editor_sd = new VA_HTMLeditor('content_sd','../','{html_editor}');
+					editor_sd.text_field_name = 'short_description';
+					editor_sd.formname = 'record';
+					editor_sd.css_file = '{css_file}';
+					editor_sd.editor_type = 'manuals_category_editor';
+					editor_sd.displayEditor('editor_sd', 565, 100);
+				//-->
+				</script>
+			</td>
+		</tr><!-- end short_description_block --><!-- begin full_description_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{FULL_DESCRIPTION_MSG}
+			</td>
+			<td>
+				<textarea name="full_description" cols="80" rows="10">{full_description}</textarea>
+				<script language= "JavaScript" type= "text/javascript">
+				<!--
+					var editor_fd = new VA_HTMLeditor('content_fd','../','{html_editor}');
+					editor_fd.text_field_name = 'full_description';
+					editor_fd.formname = 'record';
+					editor_fd.css_file = '{css_file}';
+					editor_fd.editor_type = 'manuals_category_editor';
+					editor_fd.displayEditor('editor_fd', 565, 150);
+				//-->
+				</script>
+			</td>
+		</tr><!-- end full_description_block -->
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SHOW_IN_CONTENT_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="shown_in_contents" {shown_in_contents} value="1">
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{IMAGES_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_SMALL_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="image_small" value="{image_small}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_SMALL_ALT_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="image_small_alt" value="{image_small_alt}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_LARGE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="image_large" value="{image_large}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_LARGE_ALT_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="image_large_alt" value="{image_large_alt}">
+	</td>
+</tr>
+
+<tr class="middle">
+	<td colspan="2" class="middle">
+		&nbsp;{META_DATA_MSG}
+	</td>
+</tr>
+		
+<!-- BEGIN meta_title_block -->
+	<tr class="usual">
+	<td>
+		&nbsp;Meta {ADMIN_TITLE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="meta_title" value="{meta_title}" size="80" maxlength="255">
+	</td>
+</tr>
+<!-- END meta_title_block -->
+		
+<!-- BEGIN meta_keywords_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{META_KEYWORDS_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="meta_keywords" value="{meta_keywords}" size="80" maxlength="255">
+	</td>
+</tr>
+<!-- END meta_keywords_block -->
+		
+<!-- BEGIN meta_description_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{META_DESCRIPTION_MSG}
+	</td>
+	<td>
+		<textarea name="meta_description" cols="80" rows="3">{meta_description}</textarea>
+	</td>
+</tr>
+<!-- END meta_description_block -->
+		
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onclick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete --><input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete --><input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</form>	
+</table>
+
+</fieldset>
+<script language="javascript">
+//<!--
+var dc = new DoubleCombo( 'parent_article_id', 'article_order', options);
+//-->
+</script>
+
+{admin_footer}
+
+</body>
+</html>

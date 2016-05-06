@@ -1,0 +1,109 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {REGISTRATION_PRODUCTS_MSG} :: {EDIT_CATEGORY_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/editor.css" type="text/css">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+
+<body class="commonbg">
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header">
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<!-- BEGIN tree --><a
+			href="{admin_registration_products_href}?category_id={tree_cat_id}">{tree_cat_name}</a>&nbsp;&gt;&nbsp;<!-- END tree --><a
+			href="{admin_registration_products_href}?category_id={tree_current_id}">{tree_current_name}</a>&nbsp;&gt;&nbsp;<b>{EDIT_REGISTRATION_CATEGORY_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_REGISTRATION_CATEGORY_MSG}</legend>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr align="center">
+	<td class="">
+
+<form action="{admin_registration_category_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="category_id" value="{category_id}">
+
+	<table width="100%" border="0" cellspacing="1" cellpadding="6"><!-- BEGIN errors -->
+		<tr class="usual">
+			<td colspan="2" align="center">
+				<div class="error">{errors_list}</div>
+			</td>
+		</tr><!-- END errors -->
+		<tr class="usual">
+			<td colspan="2" align="right">
+				<font class="small">{ASTERISK_MSG}</font>
+		    </td>
+		</tr>
+		
+		<tr class="middle">
+			<td colspan="2" class="middle">
+				&nbsp;{GENERAL_INFO_MSG}
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{SHOW_ON_SITE_MSG}
+			</td>
+			<td>
+				<input type="checkbox" name="show_for_user" {show_for_user} value="1">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{CATEGORY_ORDER_MSG} *
+			</td>
+			<td>
+				<input type="text" class="field" name="category_order" value="{category_order}" size="10" maxlength="10">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{CATEGORY_NAME_MSG} *
+			</td>
+			<td>
+				<input type="text" class=field name="category_name" value="{category_name}" size="80" maxlength="255">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{PARENT_CATEGORY_MSG} *
+			</td>
+			<td>
+				<select name="parent_category_id"><!-- begin parent_category_id -->
+					<option {parent_category_id_selected} value="{parent_category_id_value}">{parent_category_id_description}<!-- end parent_category_id -->
+				</select>
+			</td>
+		</tr>
+		<tr class="middle">
+			<td>&nbsp;</td>
+			<td>
+				<!-- BEGIN save -->
+				<input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<!-- END save -->
+				<!-- BEGIN delete -->
+				<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<!-- END delete -->
+				<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">	
+			</td>
+		</tr>
+	</table>
+
+</form>
+
+	</td>
+</tr>
+</table>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

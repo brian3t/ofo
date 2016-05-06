@@ -1,0 +1,75 @@
+<div class="block-offers">
+	<div class="titleTopCenter">
+		
+		
+		{SPECIAL_OFFER_TITLE} </div>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<!-- BEGIN items_rows -->
+		<tr>
+			<!-- BEGIN items_cols -->
+			<td><div class="wrapper">
+					<h2 class="listing {product_new_class} {restricted_class}"><a class="bigtitle" href="{details_url}">{item_name}</a></h2>
+					<div>
+						<form name="form_{form_id}" action="">
+							<input type="hidden" name="rnd" value="{rnd}">
+							<input type="hidden" name="cart" value="ADD">
+							<input type="hidden" name="item_id" value="{item_id}">
+							<input type="hidden" name="saved_type_id" value="">
+							<input type="hidden" name="product_params" value="properties_ids=&form_id={form_id}">
+							<div class="listImage">
+								<!-- begin small_image -->
+								<a href="{details_url}"><img class="offerImg" src="{src}" alt="{alt}"></a>
+								<!-- end small_image -->
+							</div>
+							<!--begin product_new_image-->
+							<!--end product_new_image-->
+							<!-- begin sp_price_block -->
+							<div class="{price_block_class}">{PRICE_MSG}:&nbsp;<span class="price">{sp_price}</span> <span class="priceTax">{sp_tax_price}</span></div>
+							<!-- end sp_price_block -->
+							<!-- begin sp_sales -->
+							<div class="salesBlock">{OUR_PRICE_MSG}:&nbsp;<span class="salesPrice">{sp_sales_price}</span> <span class="salesTax">{sp_tax_sales}</span></div>
+							<!-- end sp_sales -->
+							<!-- begin points_price_block -->
+							<div class="pointsPriceBlock">{POINTS_PRICE_MSG}:&nbsp;<span class="points">{points_price}</span></div>
+							<!-- end points_price_block -->
+							<!-- begin reward_points_block -->
+							<div class="rewardPointsBlock">{REWARD_POINTS_MSG}:&nbsp;<span class="points">{reward_points}</span></div>
+							<!-- end reward_points_block -->
+							<!-- begin reward_credits_block -->
+							<div class="rewardCreditsBlock">{REWARD_CREDITS_MSG}:&nbsp;<span class="credits">{reward_credits}</span></div>
+							<!-- end reward_credits_block -->
+							<div class="cart-button">
+								<!-- begin quantity -->
+								<label>{PROD_QTY_COLUMN}: </label>
+								{quantity_control}
+								<!-- end quantity -->
+								<!-- begin add_button -->
+								<a class="button" id="add_{form_id}" href="{buy_href}" onClick="return confirmBuy(document.form_{form_id}, 'cart');">{ADD_TO_CART_MSG}</a>
+								<!-- end add_button -->
+								<!-- begin add_button_disabled -->
+								<a class="disabled" title="{PRODUCT_OUT_STOCK_MSG}" onClick="alert('{out_stock_alert}');">{ADD_TO_CART_MSG}</a>
+								<!-- end add_button_disabled -->
+								<!-- begin view_button -->
+								<a class="button" id="view_{form_id}" href="{basket_href}?rp={rp_url}">{VIEW_CART_MSG}</a>
+								<!-- end view_button -->
+								<!-- begin checkout_button -->
+								<a class="button" id="check_{form_id}" href="{checkout_href}?rp={rp_url}">{GOTO_CHECKOUT_MSG}</a>
+								<!-- end checkout_button -->
+								<!-- begin wishlist_button -->
+								<a class="button" id="wishlist_{form_id}" href="{wishlist_href}" onClick="return confirmBuy(document.form_{form_id}, 'wishlist');">Add to Wishlist</a>
+								<!-- end wishlist_button -->
+							</div>
+							<a class="buttonMore" href="{details_url}">{READ_MORE_MSG}</a>
+						</form>
+						<div class="clear"></div>
+					</div>
+				</div></td>
+			<!-- END items_cols -->
+		</tr>
+		<!-- begin delimiter -->
+		<!-- end delimiter -->
+		<!-- END items_rows -->
+	</table>
+	<!-- begin navigator_block -->
+	<!-- end navigator_block -->
+</div>

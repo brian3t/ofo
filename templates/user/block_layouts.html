@@ -1,0 +1,57 @@
+<div class="block-layouts">
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{LAYOUTS_TITLE}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr> 
+		<td class="blockTD">
+
+		<table width="100%" cellspacing="0" cellpadding="0" border="0">
+			<tr class="usualbg"> 
+				<td valign="top" class="padding10px">
+				<form action="{current_href}" name="frmLayouts" method="GET">
+					{hidden_parameters}
+					<!-- begin layouts_select -->
+					<table border="0" cellpadding="2" cellspacing="0">
+					<tr>
+						<td>
+							<select class="field" name="set_layout_id">
+								<!-- begin layouts_options --><option {layout_selected} value="{layout_id}">{layout_name}<!-- end layouts_options -->
+							</select>
+							<span class="submit"><input class="submit" type="submit" value="{APPLY_BUTTON}"></span>
+						</td>
+					</tr>
+					</table>
+					<!-- end layouts_select -->
+
+					<!-- begin layouts_list -->
+					<table border="0" cellpadding="2" cellspacing="0" width="100%">
+					<!-- BEGIN layouts -->
+					<tr>
+						<td class="usualbg"><a class="title" href="{layout_url}">{layout_name}</a></td>
+					</tr>
+					<!-- END layouts --> 
+					</table>
+					<!-- end layouts_list -->
+
+				</form>
+				</td>
+			</tr>
+		</table>
+		
+		</td>
+	</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+</div>

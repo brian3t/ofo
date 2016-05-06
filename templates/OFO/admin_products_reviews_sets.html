@@ -1,0 +1,475 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{REVIEWS_SETTINGS_MSG}</title>
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script type="text/javascript" src="../js/admin.js"></script>
+<script language="JavaScript">
+<!--
+	function openWindow(pagename, filetype)
+	{
+		var uploadWin = window.open (pagename + '?filetype=' + filetype, 'uploadWin', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=400,height=300');
+		uploadWin.focus();
+	}
+
+//-->
+</script>
+</head>
+<body class="mainbg">
+
+{admin_header}
+
+<form action="{admin_products_reviews_sets_href}" name="record" method="POST">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+
+			<table cellspacing="0" cellpadding="0" border="0" width="100%" align="center">
+			<tr>
+				<td class="usual">
+					&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a href="{admin_items_list_href}">{PRODUCTS_MSG}</a>&nbsp;&gt;&nbsp;<b>{REVIEWS_SETTINGS_MSG}</b>
+				</td>
+				<!-- begin sitelist -->
+				<td class="usual" align="right">
+					{SELECT_SITE_MSG}&nbsp;
+					<select name="param_site_id" onchange="reloadSite(this.form)"><!-- begin param_site_id -->
+						<option {param_site_id_selected} value="{param_site_id_value}">{param_site_id_description}<!-- end param_site_id -->
+					</select>		
+				</td>
+				<!-- end sitelist -->
+			</tr>
+			</table>
+
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+	<div id="tabs">
+		<!-- BEGIN tabs_rows -->
+		<div id="{row_id}" class="tabRow"><!-- BEGIN tabs -->
+			<div id="{tab_id}" class="{tab_class}"><a class="blackSm" href="#" onClick="changeTab('{tab_name}'); return false;">{tab_title}</a></div>{br}<!-- END tabs -->
+		</div>
+		<!-- END tabs_rows -->
+	</div>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tabTable">
+<tr align="center"> 
+	<td>
+
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="rp" value="{rp}">
+<input type="hidden" name="tab" value="{tab}">
+
+<div id="data_general" style="{general_style}">
+
+<table border="0" cellpadding="4" cellspacing="1" width="100%"><!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		<nobr>&nbsp;{ALLOWED_VIEW_REVIEWS_MSG}</nobr>
+	</td>
+	<td><!-- begin allowed_view -->
+		<input type="radio" name="allowed_view" {allowed_view_checked} value="{allowed_view_value}">{allowed_view_description}<!-- end allowed_view -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		<nobr>&nbsp;{ALLOWED_POST_REVIEWS_MSG}</nobr>
+	</td>
+	<td><!-- begin allowed_post -->
+		<input type="radio" name="allowed_post" {allowed_post_checked} value="{allowed_post_value}">{allowed_post_description}<!-- end allowed_post -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{AUTO_APPROVE_REVIEWS_MSG}
+	</td>
+	<td><!-- begin auto_approve -->
+		<input type="radio" name="auto_approve" {auto_approve_checked} value="{auto_approve_value}">{auto_approve_description}<!-- end auto_approve -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{RANDOM_IMAGE_VALIDATION_MSG}
+	</td>
+	<td><!-- begin review_random_image -->
+		<input type="radio" name="review_random_image" {review_random_image_checked} value="{review_random_image_value}">{review_random_image_description}<!-- end review_random_image -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{REVIEWS_PER_PAGE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="reviews_per_page" value="{reviews_per_page}" size="5" maxlength="5">
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">&nbsp;{REVIEWS_RESTRICTIONS_MSG}</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{REVIEWS_PER_USER_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="reviews_per_user" value="{reviews_per_user}" size="5" maxlength="5">
+		({REVIEWS_PER_USER_DESC})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{REVIEWS_PERIOD_MSG}
+	</td>
+	<td>
+		<table cellspacing="0" cellpadding="0" border="0">
+		<tr>
+			<td>
+				<input class="field" type="text" name="reviews_interval" value="{reviews_interval}" size="10" maxlength="10"> &nbsp;
+			</td>
+			<td>
+				<select name="reviews_period"><!-- begin reviews_period -->
+					<option {reviews_period_selected} value="{reviews_period_value}">{reviews_period_description}<!-- end reviews_period -->
+				</select>
+			</td>
+			<td>
+				&nbsp; ({REVIEWS_PERIOD_DESC})
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+
+<tr class="middle">
+	<td></td>
+	<td>
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</div>
+
+<div id="data_predefined_fields" style="{predefined_fields_style}">
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+<tr>
+	<td class="middle" width="32%">
+		&nbsp;
+	</td>
+	<td class="middle"  align="center" width="9%" class="small">
+		{ADMIN_SHOW_MSG}
+	</td>
+	<td class="middle"  align="center" width="9%" class="small">
+		{REQUIRED_MSG}
+	</td>
+	<td class="middle"  align="center" width="9%" class="small">
+		{ADMIN_ORDER_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{RECOMMEND_PRODUCT_MSG}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_recommended" {show_recommended} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="recommended_required" {recommended_required} value="1">
+	</td>
+	<td align="center">
+		<input class="field" type="text" name="recommended_order" value="{recommended_order}" size="5" maxlength="10">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{RATE_IT_MSG}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_rating" {show_rating} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="rating_required" {rating_required} value="1">
+	</td>
+	<td align="center">
+		<input class="field" type="text" name="rating_order" value="{rating_order}" size="5" maxlength="10">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{NAME_ALIAS_MSG}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_user_name" {show_user_name} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="user_name_required" {user_name_required} value="1">
+	</td>
+	<td align="center">
+		<input class="field" type="text" name="user_name_order" value="{user_name_order}" size="5" maxlength="10">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_MSG}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_user_email" {show_user_email} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="user_email_required" {user_email_required} value="1">
+	</td>
+	<td align="center">
+		<input class="field" type="text" name="user_email_order" value="{user_email_order}" size="5" maxlength="10">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ONE_LINE_SUMMARY_MSG}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_summary" {show_summary} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="summary_required" {summary_required} value="1">
+	</td>
+	<td align="center">
+		<input class="field" type="text" name="summary_order" value="{summary_order}" size="5" maxlength="10">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{DETAILED_COMMENT_MSG}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_comments" {show_comments} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="comments_required" {comments_required} value="1">
+	</td>
+	<td align="center">
+		<input class="field" type="text" name="comments_order" value="{comments_order}" size="5" maxlength="10">
+	</td>
+</tr>
+<tr class="middle">
+	<td></td>
+	<td colspan="8">
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</div>
+
+<!-- notification email -->
+<div id="data_notification_email" style="{notification_email_style}">
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{EMAIL_NOTIFICATION_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SEND_NOTIFICATION_ADMIN_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="admin_notification" {admin_notification} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>To</b>
+		<div class="small">
+		&nbsp;(<a href="javascript:openWindow('{admin_email_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_FILEDS_NOTE})
+		</div>
+		
+	</td>
+	<td>
+		<input class="field" type="text" name="admin_email" value="{admin_email}" size="80" maxlength="255">
+		<div class="small">({EG_MSG} <b>reviews@example.com</b>)</div>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_FROM_MSG}</b>
+	</td>
+	<td>
+		<input class="field" type="text" name="admin_mail_from" value="{admin_mail_from}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_CC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="admin_mail_cc" value="{admin_mail_cc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_BCC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="admin_mail_bcc" value="{admin_mail_bcc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_REPLY_TO_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="admin_mail_reply_to" value="{admin_mail_reply_to}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_RETURN_PATH_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="admin_mail_return_path" value="{admin_mail_return_path}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_SUBJECT_MSG}</b>
+	</td>
+	<td>
+		<input class="field" type="text" name="admin_subject" value="{admin_subject}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_MESSAGE_TYPE_MSG}</b>
+	</td>
+	<td><!-- begin admin_message_type -->
+		<input class="field" type="radio" name="admin_message_type" {admin_message_type_checked} value="{admin_message_type_value}">{admin_message_type_description}<!-- end admin_message_type -->
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{MESSAGE_MSG}</b>
+<!--
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_SETTINGS_NOTE}
+		<br>&nbsp;&nbsp;{LEARN_MORE_AND_SEE_NOTE})
+		</font>
+-->
+	</td>
+	<td>
+		<textarea name="admin_message" cols="80" rows="10">{admin_message}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{EMAIL_NOTIFICATION_USER_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SEND_NOTIFICATION_USER_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="user_notification" {user_notification} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_FROM_MSG}</b>
+		<div class="small">
+		&nbsp;(<a href="javascript:openWindow('{admin_email_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_FILEDS_NOTE})
+		</div>
+	</td>
+	<td>
+		<input class="field" type="text" name="user_mail_from" value="{user_mail_from}" size="80" maxlength="255">
+		<div class="small">({EG_MSG} <b>sales@example.com</b>)</div>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_CC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="user_mail_cc" value="{user_mail_cc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_BCC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="user_mail_bcc" value="{user_mail_bcc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_REPLY_TO_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="user_mail_reply_to" value="{user_mail_reply_to}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_RETURN_PATH_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="user_mail_return_path" value="{user_mail_return_path}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_SUBJECT_MSG}</b>
+	</td>
+	<td>
+		<input class="field" type="text" name="user_subject" value="{user_subject}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_MESSAGE_TYPE_MSG}</b>
+	</td>
+	<td><!-- begin user_message_type -->
+		<input type="radio" name="user_message_type" {user_message_type_checked} value="{user_message_type_value}">{user_message_type_description}<!-- end user_message_type -->
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{MESSAGE_MSG}</b>
+<!--
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_SETTINGS_NOTE}
+		<br>&nbsp;&nbsp;{LEARN_MORE_AND_SEE_NOTE})
+		</font>
+-->
+	</td>
+	<td>
+		<textarea name="user_message" cols="80" rows="10">{user_message}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td></td>
+	<td>
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</div>
+
+</form>
+
+</td></tr></table>
+
+{admin_footer}
+
+</body>
+</html>

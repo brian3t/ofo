@@ -1,0 +1,178 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_PRODUCT_TYPE_MSG} ::..</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_items_list_href}">{PRODUCTS_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_item_types_href}">{PRODUCTS_TYPES_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_PRODUCT_TYPE_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_PRODUCT_TYPE_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<form action="{admin_item_type_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="item_type_id" value="{item_type_id}">
+<table border="0" cellspacing="1" cellpadding="6" width="100%"><!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{TYPE_NAME_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" size="60" name="item_type_name" value="{item_type_name}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{GIFT_VOUCHER_MSG} 
+	</td>
+	<td>
+		<input type="checkbox" {is_gift_voucher} name="is_gift_voucher" value="1">
+		({GIFT_VOUCHER_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{BUNDLE_MSG}
+	</td>
+	<td>
+		<input type="checkbox" {is_bundle} name="is_bundle" value="1">
+		({BUNDLE_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SHOW_FOR_USER_MSG}
+	</td>
+	<td>
+		<input type="checkbox" {is_user} name="is_user" value="1">
+		({SHOW_FOR_USER_NOTE})
+	</td>
+</tr>
+<tr>
+	<td>
+		&nbsp;Google Base Product Type
+	</td>
+	<td>
+		<select name="google_base_type_id"><!-- begin google_base_type_id -->
+			<option {google_base_type_id_selected} value="{google_base_type_id_value}">{google_base_type_id_description}<!-- end google_base_type_id -->
+		</select>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2" class="middle">
+		&nbsp;{FEES_COMMISSIONS_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{MERCHANT_FEE_MSG}
+	</td>
+	<td colspan="3">
+		<select name="merchant_fee_type"><!-- begin merchant_fee_type -->
+			<option {merchant_fee_type_selected} value="{merchant_fee_type_value}">{merchant_fee_type_description}<!-- end merchant_fee_type -->
+		</select>
+		&nbsp; {AMOUNT_MSG} <input class="field"  type="text" name="merchant_fee_amount" size="20" value="{merchant_fee_amount}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{AFFILIATE_COMMISSION_MSG}
+	</td>
+	<td>
+		<select name="affiliate_commission_type"><!-- begin affiliate_commission_type -->
+			<option {affiliate_commission_type_selected} value="{affiliate_commission_type_value}">{affiliate_commission_type_description}<!-- end affiliate_commission_type -->
+		</select>
+		&nbsp; {AMOUNT_MSG} <input class="field"  type="text" name="affiliate_commission_amount" size="20" value="{affiliate_commission_amount}">
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{REWARDS_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{REWARD_POINTS_MSG}
+	</td>
+	<td>
+		<select name="reward_type"><!-- begin reward_type -->
+			<option {reward_type_selected} value="{reward_type_value}">{reward_type_description}<!-- end reward_type -->
+		</select>
+		&nbsp;{AMOUNT_MSG}
+		<input class="field" type="text" name="reward_amount" value="{reward_amount}" size="20" maxlength="10">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{REWARD_CREDITS_MSG}
+	</td>
+	<td>
+		<select name="credit_reward_type"><!-- begin credit_reward_type -->
+			<option {credit_reward_type_selected} value="{credit_reward_type_value}">{credit_reward_type_description}<!-- end credit_reward_type -->
+		</select>
+		&nbsp;{AMOUNT_MSG}
+		<input class="field" type="text" name="credit_reward_amount" value="{credit_reward_amount}" size="20" maxlength="10">
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onclick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+<!-- BEGIN duplicate --><tr class=usual>
+	<td></td>
+	<td>
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+		<tr>
+			<td align="right" width="100%" valign="center">
+				<input type="checkbox" name="duplicate_options" {duplicate_options} value="1">{OPTIONS_AND_COMPONENTS_MSG}
+				<input type="checkbox" name="duplicate_features" {duplicate_features} value="1">{PREDEFINED_SPECIFICATION_MSG}
+			</td>
+			<td align="right" valign="center">
+				&nbsp;<input class="submit" type="submit" value="{DUPLICATE_BUTTON}" onclick="document.record.operation.value='duplicate';return confirm('Do you want create a copy of this type with selected attributes?');"> &nbsp;
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr><!-- END duplicate -->
+</table>
+</form>	
+
+	</td>
+</tr>
+</table>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

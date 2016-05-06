@@ -1,0 +1,123 @@
+<html><head><title>..:: {ARTICLES_TITLE} :: {CHANGE_ARTICLES_ORDER_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+<script language="JavaScript">
+<!--
+
+	function changeOrder(column, order) 
+	{
+		var columnObject = document.layout.articles;
+		var selectedIndex = columnObject.selectedIndex;
+		var incrementIndex = (order == 'up') ? -1 : 1;
+
+		if(selectedIndex == -1) {
+			alert('Please select link');
+		} else {
+			var selectedValue = columnObject.options[selectedIndex].value;
+			var selectedText = columnObject.options[selectedIndex].text;
+			if((order == 'up' && selectedIndex != 0) ||
+				(order == 'down' && selectedIndex != (columnObject.length - 1))) {
+				columnObject.options[selectedIndex].value = columnObject.options[selectedIndex + incrementIndex].value;
+				columnObject.options[selectedIndex].text = columnObject.options[selectedIndex + incrementIndex].text;
+				columnObject.options[selectedIndex + incrementIndex].value = selectedValue;
+				columnObject.options[selectedIndex + incrementIndex].text = selectedText;
+				columnObject.options[selectedIndex].selected = false;
+				columnObject.options[selectedIndex + incrementIndex].selected = true;
+			} 
+		}
+	}
+
+	function prepareLists()
+	{
+		var valuesList = "";
+		for(var i = 0; i < document.layout.articles.length; i++) {
+			if(i > 0) valuesList += ","
+			valuesList += document.layout.articles.options[i].value;
+		}
+		document.layout.articles_list.value = valuesList;
+	}
+
+//-->
+</script>
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_articles_top_href}">{ARTICLES_TITLE}</a>&nbsp;&gt;&nbsp;<!-- BEGIN tree --><a 
+			href="{admin_articles_href}?category_id={tree_cat_id}">{tree_cat_name}</a>&nbsp;&gt;&nbsp;<!-- END tree --><a 
+			href="{admin_articles_href}?category_id={tree_current_id}">{tree_current_name}</a>&nbsp;&gt;&nbsp;<b>{CHANGE_ARTICLES_ORDER_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<form action="{admin_articles_order_href}" name="layout" method="POST" onSubmit="prepareLists();">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="articles_list" value="">
+<input type="hidden" name="parent_category_id" value="{parent_category_id}">
+<fieldset>
+<legend>{CHANGE_ARTICLES_ORDER_MSG}</legend>
+
+  	<table align="center" width="100%" border="0" cellspacing="1" cellpadding="4"><!-- BEGIN errors -->
+		<tr class="cell">
+			<td colspan="3" align="center">
+				<div class="error">{errors_list}</div>
+			</td>
+		</tr><!-- END errors -->		
+
+
+		<tr align="center" class="middle">
+			<td>{AVAILABLE_ARTICLES_MSG}</td>
+		</tr>	
+		<tr align="center" class="usual">
+			<td>
+				<table border="0" cellspacing="0" cellpadding="2">
+					<tr valign="top">
+						<td>
+							<select name="articles" size="20" style="width: 400px;"><!-- BEGIN articles -->
+								<option value="{articles_value}">{articles_description}<!-- END articles -->
+							</select>
+						</td>
+						<td>
+							<table border="0" cellspacing="0" cellpadding="0" height=100%>
+							<tr><td valign="top">
+								<a href="#" onClick="changeOrder('all_list', 'up');return false;" onDblClick="changeOrder('all_list', 'up');return false;"><img src="../images/move_up.gif" border="0" width="16" height="16" alt="{MOVE_MSG} Up"></a><br>
+								<img src="../images/tr.gif" border="0" width="2" height="2"><br>
+								<a href="#" onClick="changeOrder('all_list', 'down');return false;" onDblClick="changeOrder('all_list', 'down');return false;"><img src="../images/move_down.gif" border="0" width="16" height="16" alt="{MOVE_MSG} Down"></a><br>
+							</td></tr>
+							<tr><td valign="bottom">
+								<img src="../images/tr.gif" border="0" width="2" height="2"><br>
+								<a href="#" onClick="moveLink('all_list', 'list');return false;"><img src="../images/remove.gif" border="0" width="16" height="16" alt="{REMOVE_BUTTON} {LINK_URL_MSG}"></a><br>
+							</td></tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr align="right" class="middle">
+			<td colspan="2">
+				<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.layout.operation.value='save'">&nbsp;&nbsp;&nbsp;
+				<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.layout.operation.value='cancel'">
+			</td>
+		</tr>	
+		</table>
+
+</fieldset>
+</form>
+
+
+{admin_footer}
+</body>
+</html>

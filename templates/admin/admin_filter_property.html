@@ -1,0 +1,293 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {FILTER_OPTIONS_MSG} :: {EDIT_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript">
+<!--
+	function changePropertyType()
+	{
+		var typeControl = document.record.property_type;
+		var typeName = typeControl.options[typeControl.selectedIndex].value;
+		var customOptionsBlock = document.getElementById("custom_options_block");
+		if (typeName == "custom") {
+			customOptionsBlock.style.display = "block";
+		} else {
+			customOptionsBlock.style.display = "none";
+		}
+		var propertyValueName = document.getElementById("property_value_name");
+		if (typeName == "product_option") {
+			propertyValueName.innerHTML = "Product Option Name";
+		} else if (typeName == "product_specification") {
+			propertyValueName.innerHTML = "Product Specification Name";
+		} else {
+			propertyValueName.innerHTML = "Option Value";
+		}
+		var propertyValueBlock = document.getElementById("property_value_block");
+		if (typeName == "product_option" || typeName == "product_specification") {
+			propertyValueBlock.style.display = "block";
+		} else {
+			propertyValueBlock.style.display = "none";
+		}
+	}
+//-->
+</script>
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_filters_href}">{FILTERS_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_filter_href}?filter_id={filter_id}">{filter_name}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_filter_properties_href}?filter_id={filter_id}">{OPTIONS_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_OPTION_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<table cellspacing="0" cellpadding="0" border="0">
+<tr><!-- BEGIN tabs -->
+	<td onClick="changeTab('{tab_name}'); return false;"><div id="{tab_id}" class="{tab_class}"><a class="blackSm" href="#" onClick="changeTab('{tab_name}'); return false;">{tab_title}</a></td><!-- END tabs -->
+</tr>
+</table>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border: 1px solid #999;">
+<tr> 
+	<td>
+
+<form action="{admin_filter_property_href}" name="record" method="post">
+<input type="hidden" name="tab" value="{tab}">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="property_id" value="{property_id}">
+<input type="hidden" name="filter_id" value="{filter_id}">
+<input type="hidden" name="sort_dir" value="{sort_dir}">
+<input type="hidden" name="sort_ord" value="{sort_ord}">
+<input type="hidden" name="page" value="{page}">
+<input type="hidden" name="more_properties" value="0">
+<input type="hidden" name="number_properties" value="{number_properties}">
+
+<div id="data_general" style="{general_style}">
+<table cellspacing="1" cellpadding="4" border="0" align="center" width="100%">
+<!-- BEGIN errors -->
+<tr>
+	<td colspan="2" class="usual" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{ADMIN_GENERAL_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td width="150">
+		&nbsp;{OPTION_ORDER_MSG} *
+	</td>
+	<td>
+		&nbsp;<input class="field" type="text" name="property_order" value="{property_order}" size="12">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{OPTION_NAME_MSG} *
+	</td>
+	<td>
+		&nbsp;<input class="field" type="text" name="property_name" value="{property_name}" size="60">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{TYPE_MSG} *
+	</td>
+	<td>
+		&nbsp;<select name="property_type" onChange="changePropertyType();"><!-- begin property_type -->
+			<option {property_type_selected} value="{property_type_value}">{property_type_description}<!-- end property_type -->
+		</select>
+	</td>
+</tr>
+</table>
+
+<div id="property_value_block" style="{property_value_block_style}">
+	<table cellspacing="0" cellpadding="4" border="0" align="center" width="100%">
+	<tr class="usual">
+		<td width="150">
+			&nbsp;<span id="property_value_name">{property_value_name}</span> *
+		</td>
+		<td>
+			&nbsp;<input class="field" type="text" name="property_value" value="{property_value}" size="60"> 
+		</td>
+	</tr>
+	</table>
+</div>
+
+<div id="custom_options_block" style="{custom_options_block_style}">
+	<table width="100%" border="0" cellspacing="1" cellpadding="4">
+	<tr class="middle">
+		<td colspan="2">
+			&nbsp;{CUSTOM_OPTIONS_MSG}
+		</td>
+	</tr>
+	<tr class="usual">
+		<td width="150">
+			&nbsp;{FILTER_FROM_SQL_MSG}
+		</td>
+		<td>
+			&nbsp;<input class="field" type="text" name="filter_from_sql" value="{filter_from_sql}" size="80">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{FILTER_JOIN_SQL_MSG}
+		</td>
+		<td>
+			&nbsp;<textarea cols="80" rows="3" name="filter_join_sql">{filter_join_sql}</textarea>
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{FILTER_WHERE_SQL_MSG}
+		</td>
+		<td>
+			&nbsp;<textarea cols="80" rows="3" name="filter_where_sql">{filter_where_sql}</textarea>
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{GROUP_FIELDS_COUNT_LIST_MSG}
+		</td>
+		<td>
+			&nbsp;<textarea cols="80" rows="3" name="list_group_fields">{list_group_fields}</textarea>
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{WHERE_SQL_COUNT_LIST_MSG}
+		</td>
+		<td>
+			&nbsp;<textarea cols="80" rows="3" name="list_group_where">{list_group_where}</textarea>
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{LIST_TABLE_MSG}
+		</td>
+		<td>
+			&nbsp;<input class="field" type="text" name="list_table" value="{list_table}" size="80">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{LIST_FIELD_ID_MSG}
+		</td>
+		<td>
+			&nbsp;<input class="field" type="text" name="list_field_id" value="{list_field_id}" size="80">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{LIST_FIELD_TITLE_MSG}
+		</td>
+		<td>
+			&nbsp;<input class="field" type="text" name="list_field_title" value="{list_field_title}" size="80">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{LIST_FIELD_TOTAL_MSG}
+		</td>
+		<td>
+			&nbsp;<input class="field" type="text" name="list_field_total" value="{list_field_total}" size="80">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{LIST_FIELD_SQL_MSG}
+		</td>
+		<td>
+			&nbsp;<textarea cols="80" rows="3" name="list_sql">{list_sql}</textarea>
+		</td>
+	</tr>
+	</table>
+</div>
+
+<table width="100%" border="0" cellspacing="1" cellpadding="4">
+<tr class="middle">
+	<td colspan="5">
+		&nbsp;{OPTIONS_VALUES_MSG}
+	</td>
+</tr>
+<tr align="center" class="usual">
+	<td class="small">
+		{ADMIN_ORDER_MSG}
+	</td>
+	<td class="small">
+		{VALUE_ID_MSG}
+	</td>
+	<td class="small">
+		{TITLE_MSG}
+	</td>
+	<td class="small">
+		{SQL_WHERE_MSG}
+	</td>
+	<td class="small">
+		{DELETE_BUTTON}
+	</td>
+</tr><!-- begin properties --><!-- begin properties_errors -->
+<tr class="usual" align="center">
+	<td colspan="5">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- end properties_errors -->
+<tr class="usual" align="center" valign="top">
+	<td>
+		<input type="hidden" name="value_id_{properties_number}" value="{value_id}">
+		<input type="hidden" name="property_id_{properties_number}" value="{property_id}">
+		<input class="field" type="text" name="value_order_{properties_number}" value="{value_order}" size="10">
+	</td>
+	<td>
+		<input class="field" type="text" name="list_value_id_{properties_number}" value="{list_value_id}" size="20">
+	</td>
+	<td>
+		<input class="field" type="text" name="list_value_title_{properties_number}" value="{list_value_title}" size="40">
+	</td>
+	<td>
+		<textarea cols="60" rows="2" name="filter_where_sql_{properties_number}">{filter_where_sql}</textarea>
+	</td>
+	<td align="center">
+		<input type="checkbox" name="properties_delete_{properties_number}" {properties_delete} value="1">
+	</td>
+</tr><!-- end properties -->
+<tr class="usual">
+	<td>&nbsp;</td>
+	<td colspan="4" align="right">
+		{ADD_MORE_OPTIONS_QST} <input class="submit" type="submit" value=" {ADD_BUTTON} " onClick="document.record.more_properties.value=1">&nbsp;
+	</td>
+</tr>
+<tr class="middle">
+	<td></td>
+	<td colspan="4">
+		<input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onCLick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">&nbsp;
+	</td>
+</tr>
+</table>
+</div>
+
+
+</form>
+
+</td></tr>
+</table>
+
+	
+{admin_footer}
+</body>
+</html>

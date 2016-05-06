@@ -1,0 +1,288 @@
+/* @override http://plates.customeuropeanplates.com/themes/plates/styles/platebuilder.css */
+
+/* @group Plate Editor */
+
+#plateEditor {
+	float: left;
+	width: 433px;
+	display: inline;
+}
+#plateEditor label {
+	display: block;
+	margin-bottom: .5em;
+}
+.controls #plateText {
+	width: 180px !important;
+	font-size: 1.2em;
+	margin: 0 1em 0 0;
+	float: left;
+}
+#plateEditor .controls {
+	line-height: 27px;
+	width: 100%;
+}
+#plateEditor .controls input {
+	width: 90px;
+}
+
+.plate-bg {
+	width: 350px;
+	height: 77px;
+	text-align: center;
+	white-space: nowrap;
+	overflow: hidden;
+	vertical-align: middle;
+	padding-top: 12px;
+	background-repeat: no-repeat;
+}
+.alphabet {
+	display: none;
+}
+.plate-bg div {
+	font-size: 100px;
+	background-repeat: no-repeat;
+	white-space: pre;
+	width: 33px;
+	height: 51px;
+	float: left;
+	display: inline;
+}
+
+/* @group Plate share */
+
+.section #plateShare {
+	list-style: none;
+	float: right;
+	width: 200px;
+	padding: 0px;
+	margin: 0px;
+	display: inline;
+}
+.section #plateShare li {
+	margin: 0 0 .5em 0;
+	float: left;
+	clear: left;
+	width: 100%;
+}
+
+.section #plateShare li img{
+	position: relative;
+	top: 4px;
+}
+
+/* @end */
+
+/* @end */
+
+
+.plateSelector * {
+	margin: 0px;
+	padding: 0px;
+}
+.plateSelector {
+	font-size: 12px;
+}
+
+.plateSelector ul li {
+	padding-top: 1em;
+	width: 175px;
+	height: 6em;
+	float: left;
+	text-align: center;
+	overflow: hidden;
+	margin: .5em;
+	padding: 1em;
+	position: relative;
+}
+.plateSelector ul li label.textLabel {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 100%;
+	line-height: 13em;
+	white-space: nowrap;
+	display: block;
+}
+
+h1.plateName {
+	font-size: 2.5em;
+	margin: .25em 0;
+}
+
+.hint {
+	color: #666;
+}
+
+.plateType:checked ~ .textLabel, .plateSelector ul li label.textLabel:hover, .plateSelector ul li label:hover ~ .textLabel {
+	background: #ddd;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	cursor: pointer;
+}
+.plateSelector ul li input {
+	display: block;
+	width: 1.5em;
+	margin: 0 auto;
+	position: relative;
+	z-index: 9;
+}
+.plateSelector img {
+	position: relative;
+	z-index: 9;
+}
+.plateSelector .more {
+	display: block;
+	float: right;
+	font-size: 1.5em;
+}
+
+.section {
+	clear: both;
+	display: block;
+	float: left;
+	width: 100%;
+	margin-bottom: 1em;
+}
+
+/* @group hmm */
+.information {
+	padding-top: 2em;
+	border-top: 2px dashed #2a70ae;
+}
+/* @end */
+.information ul.col {
+	width: 310px;
+	margin-right: 1em;
+	float: left;
+	padding: 0px;
+	list-style-position: inside;
+}
+
+p {
+	line-height: 1.5em;
+}
+.information ul.col li {
+	font-size: 1.2em;
+	position: relative;
+	left: 1em;
+	margin-bottom: .5em;
+}
+
+.information div.col {
+	float: right;
+	width: 325px;
+}
+
+#accessories {
+	background: #2a70ae;
+	color: #fff;
+	width: 650px;
+	padding: .5em;
+	margin-bottom: 1.5em;
+}
+#accessories a {
+	color: #fff;
+}
+#accessories h5{
+	font-size: 1.2em;
+}
+#accessories h5 a {
+	text-decoration: none;
+}
+#accessories li {
+	text-align: center;
+	list-style: none;
+	width: 135px;
+	float: left;
+	margin: 1em;
+}
+
+#accessories li img {
+	width: 111px;
+	display: block;
+	margin: 0 auto;
+}
+
+#shareYourPlate #linkWrapper {
+	margin-top: 10px;
+	margin-right: auto;
+	margin-bottom: 10px;
+	margin-left: auto;
+	width: 600px;
+	display: table;
+}
+	
+#shareYourPlate #share {
+	list-style: none;
+	list-style-image: none;
+	padding: 0px;
+	text-align: left;
+	width: 600px;
+}
+#share img, #plateShare img {
+	padding-right: 5px;
+}
+#share li {
+	float: left;
+	width: 150px;
+}
+#share a {
+	text-decoration: none;
+}
+.clear {
+	clear: both;
+}
+.center {
+	text-align: center;
+}
+#shareYourPlate h2 {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+#block-product-details ul {
+	list-style: none;
+	list-style-image: none;
+	width: 300px;
+}
+#block-product-details #plateText {
+	width: 100px;
+	float:left;
+}
+#block-product-details ul li {
+	list-style: none;
+	list-style-image: none;
+	float: left;
+	width: 150px;
+	text-align: left;
+	padding-bottom: 3px;
+}
+#textAlert {
+	color:#FF0000;
+	font-weight: bold;
+	position: absolute;
+	clear: both;
+}
+#textCount {
+	background:#2A70AE;
+	height:16px;
+	padding:5px;
+	text-align:center;
+	width:10px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #fff;
+	float: left;
+	margin-right: 5px;
+}
+.propertyLabel {
+	font-weight: bold;
+	margin-bottom: 2px;
+	font-size: 14px;
+}
+#lpText input {
+	height: 28px;
+	margin-top: -1px;
+}
+	

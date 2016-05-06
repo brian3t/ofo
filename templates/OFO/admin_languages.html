@@ -1,0 +1,87 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {LANGUAGE_TITLE} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+
+</head>
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_lookup_tables_href}">{STATIC_TABLES_MSG}</a>&nbsp;&gt;&nbsp;<b>{LANGUAGE_TITLE}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr>
+</table>
+
+<br>
+
+<fieldset>
+<legend>{LANGUAGE_TITLE}</legend>
+
+<table border="0" cellspacing="1" cellpadding="6" width="100%">
+<tr align="center" class="middle">
+	<td>
+		{sorter_language_code}
+	</td>
+	<td>
+		{sorter_language_name}
+	</td>
+	<td>
+		{sorter_show_for_user}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- BEGIN records -->
+<tr class="usual" align="center">
+	<td>
+		{language_code}
+	</td>
+	<td align="left">
+		&nbsp;{language_name}&nbsp;
+	</td>
+	<td>
+		&nbsp;<a class="small" href="{admin_languages_href}?language_edit={language_code}&operation={operation}">{show_for_user}</a>&nbsp;
+	</td>
+	<td>
+		<a href="{admin_language_href}?language_edit={language_code}&sort_ord={sort_ord}&sort_dir={sort_dir}&page={page}&sp={sp_url}">{LANGUAGE_SETTINGS_MSG}</a>
+	</td>
+	<td>
+		<a href="{admin_messages_href}?language_code={language_code}">{EDIT_MESSAGES_MSG}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="5">
+		&nbsp;{NO_RECORDS_MSG}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="5">
+		<table cellspacing="0" cellpadding="0" width="100%" border="0">
+		<tr>
+			<td class="middle" align="left">
+				&nbsp;<a href="{admin_language_href}?sort_ord={sort_ord}&sort_dir={sort_dir}&page={page}&sp={sp_url}">{NEW_LANGUAGE_MSG}</a>
+			</td><!-- begin navigator_block -->
+			<td class="middle" align="right">
+				&nbsp;{navigator}&nbsp;
+			</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>	
+
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

@@ -1,0 +1,95 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {RELEASES_TITLE} ::..</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+ 
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_items_list_href}">{PRODUCTS_MSG}</a>&nbsp;&gt;&nbsp;<!-- BEGIN tree --><a 
+			href="{admin_items_list_href}?category_id={tree_cat_id}">{tree_cat_name}</a>&nbsp;&gt;&nbsp;<!-- END tree --><a 
+			href="{admin_items_list_href}?category_id={tree_current_id}">{tree_current_name}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_product_href}?category_id={category_id}&item_id={item_id}">{item_name}</a>&nbsp;&gt;&nbsp;<b>{RELEASES_TITLE}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{RELEASES_TITLE}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<table cellspacing="1" cellpadding="6" border="0" width="100%"><!-- begin sorters -->
+<tr class="middle" align="center">
+	<td>
+		&nbsp;{sorter_release_id}
+	</td>
+	<td>
+		&nbsp;{sorter_release_date}
+	</td>
+	<td>
+		&nbsp;{sorter_release_title}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- end sorters --><!-- begin records -->
+<tr class="usual">
+	<td align="center">
+		&nbsp;{release_id}&nbsp;
+	</td>
+	<td align="center">
+		&nbsp;{release_date}
+	</td>
+	<td>
+		&nbsp;{release_title}
+	</td>
+	<td align="center">
+		<a href="{admin_release_href}?release_id={release_id}&item_id={item_id}&category_id={category_id}">{EDIT_MSG}</a>
+	</td>
+	<td align="center">
+		<a href="{admin_release_changes_href}?release_id={release_id}&item_id={item_id}&category_id={category_id}">{EDIT_MSG}</a>
+	</td>
+</tr><!-- end records -->
+<!-- begin no_records -->
+<tr>
+	<td colspan="5" class="usual">
+		&nbsp;{NO_RELEASES_FOR_THIS_PRODUCT_MSG}
+	</td>
+</tr><!-- end no_records -->
+<tr>
+	<td colspan="5" class="middle">
+		<table cellpadding="0" cellspacing="0" border="0" width="100%">
+		<tr class="middle">
+			<td>&nbsp;<a href="{admin_release_href}?item_id={item_id}&category_id={category_id}">{ADD_NEW_MSG}</a></td>
+			<td align="right">&nbsp;{navigator}&nbsp;</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>
+
+	</td>
+</tr>
+</table>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

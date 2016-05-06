@@ -1,0 +1,20 @@
+<div class="block-search">
+	<form action="{search_href}" method="GET">
+		<!-- BEGIN search_categories -->
+		<select class="search field" name="search_category_id">
+			<!-- begin search_category_id -->
+			<option {search_category_id_selected} value="{search_category_id_value}">{search_category_id_description}</option>
+			<!-- end search_category_id -->
+		</select>
+		<!-- END search_categories -->
+		<!-- begin no_search_categories -->
+		<input type="hidden" name="search_category_id" value="{top_id}">
+		<!-- end no_search_categories -->
+		<input type="text" name="search_string" value="{search_string}" size="50">
+		<span class="search">
+		<input type="submit" class="button" value="Search">
+		</span>
+		<!-- BEGIN advanced_search -->
+		<!-- END advanced_search -->
+	</form>
+</div>

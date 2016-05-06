@@ -1,0 +1,271 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_FORUM_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+	function openWindow(pagename, filetype)
+	{
+		var uploadWin = window.open (pagename + '?filetype=' + filetype, 'uploadWin', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=400,height=300');
+		uploadWin.focus();
+	}
+
+	function setFileName(filename, filetype)
+	{
+		var siteUrl = '{site_url}';
+
+		if(filename != "" && filetype == "forum_small")
+		{
+			document.record.small_image.value = siteUrl + "images/forum/small/" + filename;
+			document.record.small_image.focus();
+		} else if(filename != "" && filetype == "forum_large")
+		{
+			document.record.large_image.value = siteUrl + "images/forum/large/" + filename;
+			document.record.large_image.focus();
+		}
+	}
+//-->
+</script>
+<script language="JavaScript" type= "text/javascript" src="../js/access_table.js"></script>
+<script language="JavaScript" type= "text/javascript" src="../js/tips.js"></script>
+</head>
+<body class="commonbg">
+
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_forum_href}">{ADMIN_FORUM_TITLE}</a>&nbsp;&gt;&nbsp;<b>{EDIT_FORUM_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<!-- BEGIN success -->
+	<div class="message">{success_message}</div>
+<!-- END success -->
+<!-- BEGIN errors -->
+	<div class="error">{errors_list}</div>
+<!-- END errors -->
+
+<table cellspacing="0" cellpadding="0" border="0">
+<tr><!-- BEGIN tabs -->
+	<td onClick="changeTab('{tab_name}'); return false;"><div id="{tab_id}" class="{tab_class}"><a class="blackSm" href="#" onClick="changeTab('{tab_name}'); return false;">{tab_title}</a></td><!-- END tabs -->
+</tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border: 1px solid #999;">
+<tr align="center">
+	<td class="">
+	
+<form action="{admin_forum_edit_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="forum_id" value="{forum_id}">
+<input type="hidden" name="tab" value="{tab}">
+<input type="hidden" name="apply" value="0">
+
+<div id="data_general" style="{general_style}">
+
+	<table width="100%" cellspacing="1" cellpadding="6">
+	<tr class="middle">
+		<td colspan="2" class="middle">
+			&nbsp;{ADMIN_GENERAL_MSG}
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{FORUM_NAME_MSG} *
+		</td>
+		<td>
+			<input class="field" type="text" size="60" maxlength="255" name="forum_name" value="{forum_name}">
+		</td>
+	</tr>
+	<!-- BEGIN friendly_url_block -->
+	<tr class="usual">
+		<td>
+			&nbsp;{FRIENDLY_URL_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="friendly_url" value="{friendly_url}" size="60" maxlength="255">
+		</td>
+	</tr>
+	<!-- END friendly_url_block -->
+	<tr class="usual">
+		<td>
+			&nbsp;{FORUM_ORDER_MSG} *
+		</td>
+		<td>
+			<input class="field" type="text" name="forum_order" value="{forum_order}" size="10" maxlength="10">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{CATEGORY_MSG} *
+		</td>
+		<td>
+			<select name="category_id"><!-- begin category_id -->
+				<option {category_id_selected} value="{category_id_value}">{category_id_description}<!-- end category_id -->
+			</select>
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{AD_SHORT_DESC_MSG}
+		</td>
+		<td>
+			<textarea name="short_description" cols="60" rows="4">{short_description}</textarea>
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{FULL_DESCRIPTION_MSG}
+		</td>
+		<td>
+			<textarea name="full_description" cols="60" rows="10">{full_description}</textarea>
+		</td>
+	</tr>
+	<tr class="middle">
+		<td colspan="2" class="middle">
+			&nbsp;{IMAGES_MSG}
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{IMAGE_SMALL_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="small_image" value="{small_image}" size="60" maxlength="255"> 
+			&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'forum_small')"><br><b>{UPLOAD_IMAGE_MSG}</b></a>
+			&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'forum_small')"><b>{SELECT_IMAGE_MSG}</b></a>
+			<br>(shown in the forums list)
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{IMAGE_LARGE_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="large_image" value="{large_image}" size="60" maxlength="255"> 
+			&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'forum_large')"><br><b>{UPLOAD_IMAGE_MSG}</b></a>
+			&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'forum_large')"><b>{SELECT_IMAGE_MSG}</b></a>
+			<br>({SHOWN_IN_FORUM_TOPICS_MSG})
+		</td>
+	</tr>
+	<tr class="middle">
+		<td colspan="2" class="middle">
+			&nbsp;{FORUM_STATISTICS_MSG}
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{DATE_MSG} {TOPIC_ADDED_DATE_FIELD}
+		</td>
+		<td>
+			{date_added}
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{THREADS_NUMBER_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" size="60" maxlength="255" name="threads_number" value="{threads_number}" readonly>
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{MESSAGES_NUMBER_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" size="60" maxlength="255" name="messages_number" value="{messages_number}" readonly>
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{LAST_POST_ADDED_MSG}
+		</td>
+		<td>
+			{last_post_added}
+		</td>
+	</tr>
+	<tr class="middle">
+		<td>
+			&nbsp;
+		</td>
+		<td>
+			<input class="submit" type="submit" value="{APPLY_BUTTON}" onClick="document.record.operation.value='save'; document.record.apply.value=1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input class="submit" type="submit" value="{save_button}" onclick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+			<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+			<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+		</td>
+	</tr>
+	</table>	
+	
+</div>
+<div id="data_admin" style="{admin_style}">
+			
+	<table width="100%" cellspacing="1" cellpadding="6" border="0">
+	<tr class="usual">
+		<td colspan="2" align="center"><b>{ASSIGN_MODERATORS_MSG}:</b></td>
+	</tr><!-- BEGIN admin_rows -->
+	<tr class="usual">
+		<td>&nbsp;{admin_name}</td>
+		<td align="center">{admin_checkbox}</td>
+	</tr><!-- END admin_rows -->
+	<tr class="middle">
+		<td>
+			&nbsp;
+		</td>
+		<td>
+			<input class="submit" type="submit" value="{APPLY_BUTTON}" onClick="document.record.operation.value='save'; document.record.apply.value=1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input class="submit" type="submit" value="{save_button}" onclick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+			<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+			<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+		</td>
+	</tr>
+	</table>
+</div>
+
+
+<div id="data_subscriptions" style="{subscriptions_style}">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr class="usual">
+	<td>
+		{subscriptions_table}
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+		<table cellspacing="1" cellpadding="4" border="0" width="100%">
+			<tr>
+				<td align="left">
+					<input type="checkbox" name="save_nested_subscriptions" value="1">
+					{SAVE_SUBSCRIPTIONS_SETTINGS_SUB_MSG}					
+				</td>
+				<td align="right">
+					<input class="submit" type="submit" value="{APPLY_BUTTON}" onClick="document.record.operation.value='save'; document.record.apply.value=1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input class="submit" type="submit" value="{save_button}" onclick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+					<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+					<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+				</td>
+			</tr>
+		</table>
+	</td>
+</tr>
+</table>
+</div>
+
+</form>
+		</td>
+	</tr>
+</table>
+{admin_footer}
+</body>
+</html>

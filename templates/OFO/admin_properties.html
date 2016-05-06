@@ -1,0 +1,236 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {OPTIONS_AND_COMPONENTS_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript" type= "text/javascript" src="../js/select.js"></script>
+<script language="JavaScript">
+<!--
+
+	function openProductWindow(formId)
+	{
+		var productWin = window.open ('admin_product_select.php?form_id=' + formId, 'uploadWin', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=600,height=500');
+		productWin.focus();
+	}
+
+	function setProduct(itemId, itemName, itemPrice, formId)
+	{
+		document.record.elements["sub_item_id_" + formId].value = itemId;
+		document.record.elements["property_value_" + formId].value = itemName;
+		var basicPrice = document.getElementById("price_" + formId);
+		if (basicPrice) {
+			basicPrice.innerHTML = itemPrice;
+		}
+	}
+
+	function updateoptions(operation)
+	{
+		var itemId = "";
+		var optionsIds = "";
+		var optionsNumber = document.options.options_number.value;
+		var totaloptions = 0;
+		for (var i = 1; i <= optionsNumber; i++) {
+			if (document.options.elements["id_" + i].checked) {
+				totaloptions++;
+				itemId = document.options.elements["id_" + i].value;
+				if(totaloptions > 1) { optionsIds += ","; }
+				optionsIds += itemId;
+			}
+		}
+
+		if (totaloptions == 0) {
+			alert("Please select options first.");
+			window.event.returnValue=false;
+		} else if (operation == "delete_subcomponent") {
+			if (confirm("Are you sure you want to delete " + totaloptions + " selected options?")) {
+				document.options.options_ids.value = optionsIds;
+				document.options.operation.value = "delete";
+				document.options.submit();
+			}
+		}
+	}
+	
+	function changeStatus()
+	{
+		var checkedStatus = document.options.all_options.checked;
+		var optionsNumber = document.options.options_number.value;
+		for (var i = 1; i <= optionsNumber; i++) {
+			document.options.elements["id_" + i].checked = checkedStatus;
+		}
+		checkoptions();
+	}
+	
+	function checkoptions()
+	{
+		var itemId = "";
+		var optionsIds = "";
+		var optionsNumber = document.options.options_number.value;
+		var totalSelected = 0; 
+		for (var i = 1; i <= optionsNumber; i++) {
+			if (document.options.elements["id_" + i].checked) {
+				document.getElementById("options_" + i).className = "SelectedRow";
+				totalSelected++;
+				itemId = document.options.elements["id_" + i].value;
+				if(optionsIds != "") { optionsIds += ","; }
+				optionsIds += itemId;
+			} else {
+				document.getElementById("options_" + i).className = mas[i];
+			}
+		}
+		var deleteLink = document.getElementById("delete_subcomponent");
+		var deleteBottom = document.getElementById("delete_bottom");
+		if (deleteLink) {
+			if (optionsIds == "") {
+				deleteLink.innerHTML = "";
+				deleteBottom.innerHTML = "";
+				deleteLink.href = "{admin_properties_href}{page}";
+			} else {
+				deleteBottom.innerHTML = "|";
+				deleteLink.innerHTML = "Delete Options & Components (" + totalSelected + ")";
+				deleteLink.href = "{admin_properties_href}?category_id={category_id}&item_type_id={item_type_id}&item_id={item_id}&operation=delete&options_ids=" + optionsIds + "{and_page}";
+			}
+		}
+		var copyLink = document.getElementById("copy_subcomponent");
+		var copyBottom = document.getElementById("copy_bottom");
+		if (copyLink) {
+			if (optionsIds == "") {
+				copyLink.innerHTML = "";
+				copyBottom.innerHTML = "";
+				copyLink.href = "{admin_copy_component_selection_href}";
+			} else {
+				copyBottom.innerHTML = "|";
+				copyLink.innerHTML = "Copy Options & Components (" + totalSelected + ")";
+				copyLink.href = "{admin_copy_component_selection_href}?category_id={category_id}&item_type_id={item_type_id}&item_id={item_id}&options_ids=" + optionsIds;
+			}
+		}
+	}
+
+//-->
+</script>
+<script language= "JavaScript" type= "text/javascript">
+<!--
+	var select_form = new select();
+		select_form.object_name = 'select_form';
+		select_form.name_prefix = 'id_';
+		select_form.formname = 'options';
+		select_form.final_action = 'checkoptions();';
+		select_form.create_event_click();
+//-->
+</script>
+</head>
+
+<body class="commonbg" onload="start_event_select();">
+<script language= "JavaScript" type= "text/javascript">
+<!--
+	function start_event_select(){
+		create_event_listener(select_form);
+		var options_number = document.options.options_number.value;
+		mas = new Array();
+		for (var i = 1; i <= options_number; i++) {
+			mas[i] = document.getElementById("options_" + i).className;
+		}
+	}
+//-->
+</script>
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			<!-- BEGIN product_path -->
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_items_list_href}">{PRODUCTS_MSG}</a>&nbsp;&gt;&nbsp;<!-- BEGIN tree --><a 
+			href="{admin_items_list_href}?category_id={tree_cat_id}">{tree_cat_name}</a>&nbsp;&gt;&nbsp;<!-- END tree --><a 
+			href="{admin_items_list_href}?category_id={tree_current_id}">{tree_current_name}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_product_href}?category_id={category_id}&item_id={item_id}">{item_name}</a>&nbsp;&gt;&nbsp;<b>{OPTIONS_AND_COMPONENTS_MSG}</b>
+			<!-- END product_path -->
+			<!-- BEGIN type_path -->
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_items_list_href}">{PRODUCTS_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_item_types_href}">{PRODUCTS_MSG} {TYPES_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_item_type_href}?item_type_id={item_type_id}">{item_type_name}</a>&nbsp;&gt;&nbsp;<b>{OPTIONS_AND_COMPONENTS_MSG}</b>
+			<!-- END type_path -->
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{OPTIONS_AND_COMPONENTS_MSG}</legend>
+<form action='{admin_properties_href}' method = "GET" name = 'options'>
+<input type="hidden" name="options_number" value="{onpage}">
+<input type="hidden" name="item_id" value="{item_id}">
+<input type="hidden" name="category_id" value="{category_id}">
+<table cellspacing="1" cellpadding="4" border="0" width="100%"><!-- begin sorters -->
+<tr class="middle" align="center">
+	<td>
+		<input type="checkbox" name="all_options" value="1" onClick="changeStatus();">
+	</td>
+	<td>
+		&nbsp;{sorter_property_id}
+	</td>
+	<td>
+		&nbsp;{sorter_property_name}
+	</td>
+	<td>
+		&nbsp;{sorter_property_order}
+	</td>
+	<td>
+		&nbsp;{sorter_property_type_id}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- end sorters --><!-- begin records -->
+<tr class="usual" id="options_{onpage_id}">
+	<td align="center" width="5%">
+		<input type = "checkbox" name = "id_{onpage_id}" value = "{property_id}" onClick="checkoptions();">
+	</td>
+	<td align="center">
+		&nbsp;{property_id}&nbsp;
+	</td>
+	<td>
+		&nbsp;{property_name}
+	</td>
+	<td align="center">
+		&nbsp;{property_order}
+	</td>
+	<td align="center">
+		&nbsp;{property_type}
+	</td>
+	<td align="center">
+		<a href="{admin_property_edit_url}">{EDIT_MSG}</a>
+	</td>
+</tr><!-- end records --></form>
+<!-- begin no_records -->
+<tr>
+	<td colspan="5" class="usual">
+		&nbsp;{NO_OPTIONS_AVAILABLE_MSG}
+	</td>
+</tr><!-- end no_records -->
+<tr>
+	<td colspan="6" class="middle">
+		<table cellspacing="0" cellpadding="0" border="0">
+		<tr>
+			<td>
+				&nbsp;<a href="{admin_property_new_url}">{OPTION_MSG}</a> |
+				&nbsp;<a href="{admin_component_single_url}">{SUBCOMPONENT_MSG}</a> |
+				&nbsp;<a href="{admin_component_selection_url}">{SUBCOMPONENT_SELECTION_MSG}</a> <font id="copy_bottom"></font>
+		&nbsp;<a id="copy_subcomponent" href="{admin_copy_component_selection_href}"></a> <font id="delete_bottom"></font>
+		&nbsp;<a id="delete_subcomponent" href="{admin_properties_href}{page}" onClick="updateoptions('delete_subcomponent');return false;"></a> &nbsp;  
+			</td>
+			<td align="right">
+				&nbsp;{navigator}&nbsp;
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

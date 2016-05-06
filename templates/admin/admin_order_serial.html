@@ -1,0 +1,175 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{ADMINISTRATION_MSG} :: {EDIT_SERIAL_NUMBER_MSG}</title>
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript" type= "text/javascript" src="../js/calendar.js"></script>
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_orders_href}">{ORDERS_MAINTENANCE_MSG}</a>&nbsp;&gt;
+			<a href="{admin_order_href}?order_id={order_id}">{ADMIN_ORDER_MSG}</a>&nbsp;&gt;
+			<a href="{admin_order_serials_href}?order_id={order_id}">{ADMIN_SERIAL_NUMBERS_MSG}</a>&nbsp;&gt;
+			<b>{EDIT_SERIAL_NUMBER_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_SERIAL_NUMBER_MSG}</legend>
+
+<table width="100%" border="0" cellspacing="1" cellpadding="6" align="center">
+<form action="{admin_order_serial_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="serial_id" value="{serial_id}">
+<input type="hidden" name="order_id" value="{order_id}">
+<input type="hidden" name="user_id" value="{user_id}">
+<input type="hidden" name="item_id" value="{item_id}">
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_ACTIVATED_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="activated" {activated} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_PRODUCT_MSG} *
+	</td>
+	<td>
+		<select name="order_item_id"><!-- begin order_item_id -->
+			<option {order_item_id_selected} value="{order_item_id_value}">{order_item_id_description}<!-- end order_item_id -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SERIAL_NUMBER_COLUMN} *
+	</td>
+	<td>
+		<input class="field" type="text" size="40" name="serial_number" value="{serial_number}">
+	</td>
+</tr>
+<!-- BEGIN serial_added_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{DATE_ADDED_MSG} *
+	</td>
+	<td>
+		<div class="small">
+		<input class="field" type="text" name="serial_added" value="{serial_added}">
+		({date_format_msg})
+	</td>
+</tr>
+<!-- END serial_added_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{EXPIRY_DATE_MSG}
+	</td>
+	<td>
+		<div class="small">
+		<input class="field" type="text" name="serial_expiry" value="{serial_expiry}">
+		<a href="#"
+			onClick="setDateField(document.record.serial_expiry, '{date_edit_format}');
+			top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+		<img src="../images/calendar.gif" border="0"><font size="1">{CALENDAR_MSG}</font></a>
+		({date_format_msg})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ACTIVATION_MAX_NUMBER_MSG} 
+	</td>
+	<td class="small">
+		<input class="field" type="text" name="activations_number" size="10" value="{activations_number}">
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</form>	
+</table>
+
+</fieldset>
+
+
+<br>
+<fieldset>
+<legend>{ADMIN_ACTIVATIONS_MSG}</legend>
+
+<table border="0" cellpadding="6" cellspacing="1" width="100%"><!-- begin sorters -->
+<tr class="middle"align="center">
+	<td>
+		{sorter_generation_key}
+	</td>
+	<td>
+		{sorter_date_added}
+	</td>
+	<td>
+		{sorter_remote_address}
+	</td>
+	<td></td>
+</tr><!-- end sorters --><!-- BEGIN records -->
+<tr class="usual" align="center">
+	<td>
+		&nbsp;{generation_key}&nbsp;
+	</td>
+	<td>
+		&nbsp;{date_added}&nbsp;
+	</td>
+	<td>
+		&nbsp;{remote_address}&nbsp;
+	</td>
+	<td>
+		&nbsp;<a href="{admin_order_activation_href}?order_id={order_id}&serial_id={serial_id}&activation_id={activation_id}">{EDIT_MSG}</a>&nbsp;
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="4">
+		&nbsp;{NO_ACTIVATIONS_MSG}
+	</td>
+</tr><!-- END no_records -->
+<!-- BEGIN add_activation -->
+<tr class="middle">
+	<td colspan="4">
+		<table cellspacing="0" cellpadding="0" border="0" width="100%">
+		<tr>
+			<td>&nbsp;<a href="{admin_order_activation_href}?order_id={order_id}&serial_id={serial_id}">{ADD_ACTIVATION_MSG}</a></td><!-- begin navigator_block -->
+			<td align="right">&nbsp;{navigator}&nbsp;</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+<!-- END add_activation -->
+</table>	
+
+</fieldset>
+
+{admin_footer}
+
+</body>
+</html>

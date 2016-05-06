@@ -1,0 +1,167 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{ADMINISTRATION_MSG} :: {PREDEFINED_REPLIES_MSG}</title>
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript">
+<!--
+
+function clearSearch() {
+	document.search_form.s_kw.value = "";
+	document.search_form.s_type.selectedIndex = 0;
+	document.search_form.submit();
+}
+
+function showReplyPreview(event, replyID)	
+{
+	var replyPreview = document.getElementById("reply_preview_" + replyID);
+	if (replyPreview) {
+	  var leftPos = mouseX(event) + 15;
+    var topPos  = mouseY(event) + 15;
+		replyPreview.style.left = leftPos;
+		replyPreview.style.top = topPos;
+
+		replyPreview.style.display = "block";
+	}
+}
+
+function hideReplyPreview(replyID)	
+{
+	var replyPreview = document.getElementById("reply_preview_" + replyID);
+	if (replyPreview) {
+		replyPreview.style.display = 'none';
+	}
+}
+
+//-->
+</script>
+
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_support_href}">{HELPDESK_MSG}</a>&nbsp;&gt;&nbsp;<b>{PREDEFINED_REPLIES_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+	<tr>
+		<td valign="top">
+
+		<table border="0" cellpadding="2" cellspacing="2">
+		<form action="{admin_support_prereplies_href}" name="search_form">
+		<input type="hidden" name="is_popup" value="{is_popup}">
+		<!-- BEGIN errors -->
+		<tr><td colspan="2">
+			&nbsp;<div align="center" class="error"><font style="font-size:8pt">{errors_list}</font></div>&nbsp;
+		</td></tr>
+		<!-- END errors -->
+		<tr>
+			<td colspan="2"><b>Search in predefined replies:</b></td>
+		</tr>
+		<tr>
+			<td>{BY_KEYWORD_MSG}:</td>
+			<td><input type="text" name="s_kw" value="{s_kw}" class="search"></td>
+		</tr>
+		<tr>
+			<td>Where Type is:</td>
+			<td>
+				<select name="s_type" class="search">
+					<!-- BEGIN s_type -->
+						<option {s_type_selected} value="{s_type_value}">{s_type_description}
+					<!-- END s_type -->
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2"><input type="submit" value="Search" class="submit">&nbsp;<input type="button" value="Clear" class="submit" onClick="clearSearch()"></td>
+		</tr>
+		</form>
+		</table>
+
+	</td>
+</tr>
+</table>
+
+<br>
+
+<fieldset class="normargin">
+<legend>{PREDEFINED_REPLIES_MSG}</legend>
+<table border="0" cellspacing="1" cellpadding="6" width="100%"><!-- begin sorters -->
+<tr align="center" class="middle">
+	<td width="10%">
+		{sorter_reply_id}
+	</td>
+	<td width="50%">
+		{sorter_subject}
+	</td>
+	<td width="5%">
+		<nobr>{sorter_uses}</nobr>
+	</td>
+	<td width="20%">
+		{sorter_type}
+	</td>
+	<td width="5%">
+		<nobr>{sorter_added_by}</nobr>
+	</td>
+	<td width="20%">
+		&nbsp;
+	</td>
+</tr><!-- end sorters --><!-- begin records -->
+<tr class="usual" align="center">
+	<td>
+		{reply_id}
+		<div id="reply_preview_{reply_id}" class="preview">{reply_preview}</div>
+	</td>
+	<td align="left"
+		onmouseover="javascript:showReplyPreview(event, {reply_id});" 
+		onmousemove="javascript:showReplyPreview(event, {reply_id});"	
+		onmouseout="javascript:hideReplyPreview({reply_id});" style="cursor: default;">
+		&nbsp;{subject}
+	</td>
+	<td>
+		{total_uses}
+	</td>
+	<td>
+		{type_name}
+	</td>
+	<td>
+		{added_by}
+	</td>
+	<td>
+		<a href="{admin_support_prereply_edit_url}">{EDIT_MSG}</a>
+	</td>
+</tr><!-- end records --><!-- begin no_records -->
+<tr class="usual">
+	<td colspan="6">
+		&nbsp;{NO_RECORDS_MSG}
+	</td>
+</tr><!-- end no_records -->
+<tr class="middle">
+	<td colspan="6">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+		<tr class="middle">
+			<td>&nbsp;<a href="{admin_support_prereply_new_url}">{NEW_PREDEFINED_REPLY_MSG}</a></td>
+			<!-- begin navigator_block -->
+			<td align="right">&nbsp;{navigator}&nbsp;</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>	
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

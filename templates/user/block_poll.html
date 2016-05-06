@@ -1,0 +1,57 @@
+<div class="block-poll">
+<form action="{poll_vote_href}" onSubmit="window.open('{poll_vote_href}','vote','toolbar=no,scrollbars=yes,resizable=no,width=400,height=300');" target="vote" method="POST">
+<input type="hidden" name="operation" value="vote">
+<input type="hidden" name="poll_id" value="{poll_id}">
+
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{POLL_TITLE}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr> 
+		<td class="blockTD">
+
+			<table width="100%" cellspacing="0" cellpadding="0" border="0">
+			<tr> 
+				<td valign="top" class="usualbg padding10px">
+					<table width="100%" border="0" cellpadding="0" cellspacing="4">
+					<tr>
+						<td colspan="2"><b>{question}</b></td>
+					</tr>
+					<!-- begin poll_options -->
+					<tr>
+						<td valign="top" width="5%"><input type="{poll_control}" name="{option_name}" {option_checked} value="{poll_option_id}" id="p{poll_option_id}"></td>
+						<td width="95%"><label for="p{poll_option_id}">{option_description}</label></td>
+					</tr>
+					<!-- end poll_options -->
+					<tr>
+						<td colspan="2">
+							<span class="submit"><input class="submit" type="submit" value="{VOTE_BUTTON}"></span>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<br><a href="{poll_vote_href}?poll_id={poll_id}" onClick="window.open('{poll_vote_href}?poll_id={poll_id}','vote','toolbar=no,scrollbars=yes,resizable=no,width=400,height=300'); return false;" target="vote">{VIEW_RESULTS_MSG}</a> | <a href="{polls_href}">{PREVIOUS_POLLS_MSG}</a>
+						</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			</table>
+
+		</td>
+	</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+</form>
+</div>

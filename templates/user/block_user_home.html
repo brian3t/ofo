@@ -1,0 +1,96 @@
+<div class="block-user-home">
+	<div class="titleTopCenter">
+	<h1>{USER_HOME_TITLE}</h1>
+	</div>
+	<div>
+		<!-- begin points_balance_block -->
+		{POINTS_BALANCE_MSG}: <b>{points_balance}</b>&nbsp;
+		<!-- end points_balance_block -->
+		<!-- begin credit_balance_block -->
+		&nbsp;&nbsp;&nbsp;Credit Balance: <b>{credit_balance}</b>&nbsp;
+		<!-- end credit_balance_block -->
+		<!-- begin current_subscription -->
+		&nbsp;&nbsp;&nbsp;{CURRENT_SUBSCRIPTION_MSG}:&nbsp;
+		{subscription_name}&nbsp;{subscription_fee}&nbsp;({subscription_interval}&nbsp;{subscription_period})
+		<!-- end current_subscription -->
+	</div>
+	<table width="100%" cellspacing="0" cellpadding="0" border="0">
+		<!-- begin rows -->
+		<tr valign="top">
+			<!-- begin cols -->
+			<td class="userHome"><!-- begin orders_block -->
+				<a href="{user_orders_href}"><img class="orders" src="images/tr.gif"></a> <a class="title" href="{user_orders_href}">{MY_ORDERS_MSG}</a>
+				<div>{MY_ORDERS_DESC}</div>
+				<!-- end orders_block -->
+				<!-- begin details_block -->
+				<a href="{user_profile_url}"><img class="profile" src="images/tr.gif"></a> <a class="title" href="{user_profile_url}">{CHANGE_DETAILS_MSG}</a>
+				<div> {CHANGE_DETAILS_DESC}<br>
+					{CHANGE_PASSWORD_DESC}</div>
+				<table border="0" cellspacing="0" cellpadding="1">
+					<tr>
+						<td><img class="arr" src="images/tr.gif"></td>
+						<td><a class="smallText" href="{user_change_password_url}"><b>{CHANGE_PASSWORD_MSG}</b></a></td>
+					</tr>
+					<!-- begin upgrade_downgrade_block -->
+					<tr>
+						<td><img class="arr" src="images/tr.gif"></td>
+						<td><a class="smallText" href="{user_change_type_url}"><b>{UPGRADE_DOWNGRADE_MSG}</b></a></td>
+					</tr>
+					<!-- end upgrade_downgrade_block -->
+				</table>
+				<!-- end details_block -->
+				<!-- BEGIN support_block -->
+				<a href="{user_support_href}"><img class="support" src="images/tr.gif"></a> <a class="title" href="{user_support_href}">{MY_SUPPORT_ISSUES_MSG}</a>
+				<div>{MY_SUPPORT_ISSUES_DESC}</div>
+				<!-- END support_block -->
+				<!-- BEGIN forum_block -->
+				<a href="{forum_href}?u=1"><img class="forum" src="images/tr.gif"></a> <a class="title" href="{forum_href}?u=1">{MY_FORUM_TOPICS_MSG}</a><br>
+				<div>{MY_FORUM_TOPICS_DESC}</div>
+				<!-- END forum_block -->
+				<!-- begin products_block -->
+				<a href="{user_products_href}"><img class="products" src="images/tr.gif"></a> <a class="title" href="{user_products_href}">{MY_PRODUCTS_MSG}</a>
+				<div>{MY_PRODUCTS_DESC}</div>
+				<!-- end products_block -->
+				<!-- begin product_registrations_block -->
+				<a href="{user_product_registrations_href}"><img class="products" src="images/tr.gif"></a> <a class="title" href="{user_product_registrations_href}">{MY_PRODUCT_REGISTRATIONS_MSG}</a>
+				<div>{MY_PRODUCT_REGISTRATIONS_DESC}</div>
+				<!-- end product_registrations_block-->
+				<!-- begin ad_block -->
+				<a href="{user_ads_href}"><img class="pages" src="images/tr.gif"></a> <a class="title" href="{user_ads_href}">{MY_ADS_MSG}</a>
+				<div>{MY_ADS_DESC}</div>
+				<!-- end ad_block -->
+				<!-- begin merchant_sales_block -->
+				<a href="{user_merchant_sales_href}"><img class="merchant" src="images/tr.gif"></a> <a class="title" href="{user_merchant_sales_href}">{MERCHANT_SALES_MSG}</a>
+				<div>{MERCHANT_SALES_DESC}</div>
+				<!-- end merchant_sales_block -->
+				<!-- begin merchant_orders_block -->
+				<a href="{user_merchant_orders_href}"><img class="orders" src="images/tr.gif"></a> <a class="title" href="{user_merchant_orders_href}">{MY_SALES_ORDERS_MSG}</a>
+				<div>{MY_SALES_ORDERS_DESC}</div>
+				<!-- end merchant_orders_block -->
+				<!-- begin affiliate_sales_block -->
+				<a href="{user_affiliate_sales_href}"><img class="affiliates" src="images/tr.gif"></a> <a class="title" href="{user_affiliate_sales_href}">{AFFILIATE_SALES_MSG}</a>
+				<div>{AFFILIATE_SALES_DESC}</div>
+				<!-- end affiliate_sales_block -->
+				<!-- begin payments_block -->
+				<a href="{user_payments_href}"><img class="payments" src="images/tr.gif"></a> <a class="title" href="{user_payments_href}">{COMMISSION_PAYMENTS_MSG}</a>
+				<div>{COMMISSION_PAYMENTS_DESC}</div>
+				<!-- end payments_block -->
+				<!-- begin carts_block -->
+				<a href="{user_carts_href}"><img class="carts" src="images/tr.gif"></a> <a class="title" href="{user_carts_href}">{MY_SAVED_CARTS_MSG}</a>
+				<div>{MY_SAVED_CARTS_DESC}</div>
+				<!-- end carts_block -->
+				<!-- begin wishlist_block -->
+				<a href="{user_wishlist_href}"><img class="wishlist" src="images/tr.gif"></a> <a class="title" href="{user_wishlist_href}">{MY_WISHLIST_MSG}</a>
+				<div>Here you can view wishlist items saved in the past.</div>
+				<!-- end wishlist_block -->
+				<!-- begin reminders_block -->
+				<a href="{user_reminders_href}"><img class="reminders" src="images/tr.gif"></a> <a class="title" href="{user_reminders_href}">{MY_REMINDERS_MSG}</a>
+				<div>{MY_REMINDERS_MSG}</div>
+				<!-- end reminders_block -->
+			</td>
+			<!-- end cols -->
+		</tr>
+		<!-- end rows -->
+	</table>
+	<a class="button right" href="user_home.php?operation=logout">{LOGOUT_BUTTON}</a>
+</div>

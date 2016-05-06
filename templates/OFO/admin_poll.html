@@ -1,0 +1,146 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_POLL_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_polls_href}">{OPINION_POLLS_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_POLL_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<form action="{admin_poll_href}" name="record" method="post">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="poll_id" value="{poll_id}">
+<input type="hidden" name="more_options" value="0">
+<input type="hidden" name="number_options" value="{number_options}">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<td>
+<fieldset>
+<legend>{EDIT_POLL_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<table cellspacing="1" cellpadding="4" border="0" align="center" width="100%"><!-- BEGIN errors -->
+<tr>
+	<td colspan="7" class="usual" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{IS_ACTIVE_MSG}
+	</td>
+	<td colspan="6">
+		&nbsp;<input type="checkbox" {is_active} name="is_active" value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{POLL_TYPE_MSG} *
+	</td>
+	<td colspan="6"><!-- begin poll_type -->
+			&nbsp;<input type="radio" name="poll_type" {poll_type_checked} value="{poll_type_value}">{poll_type_description}<!-- end poll_type -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{POLL_QUESTION_MSG} *
+	</td>
+	<td colspan="6">
+		&nbsp;<textarea name="question" cols="100" rows="5">{question}</textarea>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{POLL_ADDED_MSG} *
+	</td>
+	<td colspan="6">
+		<div class="small">
+		&nbsp;<input type="text" name="date_added" value="{date_added}" size="16"> 
+		({USE_FOLLOWING_FORMAT_MSG} <b>{date_edit_format}</b>)</div>		
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="7">
+		&nbsp;{POLL_CHOICES_MSG}
+	</td>
+</tr>
+<tr align="center" class="usual">
+	<td>
+		&nbsp;#&nbsp;
+	</td>
+	<td class="small">
+		{POLL_CHOICES_MSG}
+	</td>
+	<td class="small">
+		{DEFAULT_MSG}
+	</td>
+	<td class="small">
+		{DELETE_BUTTON}
+	</td>
+</tr><!-- begin options --><!-- begin options_errors -->
+<tr class="usual" align="center">
+	<td>&nbsp;</td>
+	<td colspan="2">
+		<div class="error">{errors_list}</div>
+	</td>
+	<td>&nbsp;</td>	
+</tr><!-- end options_errors -->
+<tr class="usual" align="center">
+	<td>
+		&nbsp;{row_number}&nbsp;
+		<input type="hidden" name="poll_option_id_{options_number}" value="{poll_option_id}">
+		<input type="hidden" name="poll_id_{options_number}" value="{poll_id}">
+	</td>
+	<td align="left">
+		&nbsp;<textarea name="option_description_{options_number}" cols="100" rows="3">{option_description}</textarea>
+	</td>
+	<td align="center">
+		<input type="checkbox" name="is_default_value_{options_number}" {is_default_value} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="options_delete_{options_number}" {options_delete} value="1">
+	</td>
+</tr><!-- end options -->
+<tr class="usual">
+	<td>&nbsp;</td>
+	<td colspan="3" align="right">
+		{ADD_MORE_CHOICES_MSG} <input class="submit" type="submit" value={ADD_BUTTON} onClick="document.record.more_options.value=1">&nbsp;
+	</td>
+<tr class="middle">
+	<td></td>
+	<td colspan="3">
+		<input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onCLick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">&nbsp;
+	</td>
+</tr>
+
+</table>
+
+	</td>
+</tr>
+</table>
+</fieldset>
+</form>
+
+</td></tr></table>
+
+	
+{admin_footer}
+</body>
+</html>

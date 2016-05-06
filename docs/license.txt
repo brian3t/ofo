@@ -1,0 +1,115 @@
+================================================================================
+ViArt v.3.3.2
+Copyright (c) 2007 ViArt Limited
+All Rights Reserved.
+
+LICENSE AGREEMENT
+
+================================================================================
+
+End-user License Agreement for ViArt Shop
+
+ViArt Shop - is an electronic commerce SOFTWARE package available to install in PHP.
+
+Important notice: This ViArt Shop End-user License Agreement ("EULA") 
+is a legal agreement between you (either an individual or a single entity) 
+and ViArt Limited. ("ViArt") for the SOFTWARE product 
+identified above, which includes computer SOFTWARE and may include associated 
+media, printed materials, and "online" or electronic documentation 
+(collectively, the "SOFTWARE"). 
+
+By installing, copying, or otherwise using the SOFTWARE, 
+you agree to be bound by the terms of this EULA. If you do not agree to the 
+terms of this EULA, then do not install or use the SOFTWARE.
+
+SOFTWARE License
+
+The SOFTWARE is protected by copyright laws and international copyright 
+treaties, as well as other intellectual property laws and treaties. 
+
+The SOFTWARE is licensed, not sold. 
+
+1. Grant of License. 
+
+This EULA grants you the following rights: 
+
+Installation and Use. 
+A License must be present for each Hostname (URL) using the SOFTWARE.
+You are granted permission to use an unlimited number of instances of the 
+SOFTWARE on each Hostname (URL) for which a License is present.
+
+<i>Description of other rights and limitations. </i>
+
+Rental. You may not rent, lease or lend the SOFTWARE. 
+
+Hosted Solutions. You must not install the SOFTWARE on hosted solutions 
+or applications, such as Application Service Providers without ViArt's 
+written approval.
+
+SOFTWARE transfer. You may permanently transfer all of your rights under 
+this EULA, provided you retain no copies, you transfer all of the 
+SOFTWARE (including all component parts, the media and printed materials, 
+any upgrades, and this EULA), and the recipient agrees to the terms of this 
+EULA. If the SOFTWARE is an upgrade, any transfer must include all prior 
+versions of the SOFTWARE. 
+
+2. Copyright and intellectual property rights
+
+The SOFTWARE is protected by copyright laws and international copyright 
+treaties, as well as other intellectual property laws and treaties. 
+The SOFTWARE is licensed, not sold. Furthermore, this EULA does not grant 
+you any rights in connection with any trademarks or service marks of 
+ViArt. ViArt reserves all intellectual property 
+rights, including copyrights, and trademark rights.
+
+3. Limitations on reverse engineering, decompilation, and disassembly
+
+You may not reverse engineer, decompile, or disassemble the SOFTWARE, 
+except and only to the extent that such activity is expressly permitted by 
+applicable law notwithstanding this limitation.
+
+4. Termination without prejudice to any other rights
+
+ViArt may terminate this EULA if you fail to comply with 
+any term or condition of this EULA. In such event, you must destroy 
+all copies of the SOFTWARE.
+
+5. No right to transfer
+
+You may not rent, lease, lend, sell, resell, or otherwise transfer, 
+the SOFTWARE to third parties without ViArt written approval 
+and subject to written agreement by the recipient of the terms of this EULA.
+
+6. No warranties
+
+You accept the SOFTWARE "as is," and ViArt (and its third party 
+suppliers and licensors) make no warranty as to its use, 
+performance, or otherwise. To the maximum extent permitted by applicable 
+law, ViArt (and its third party suppliers and licensors) 
+disclaim all other representations, warranties, and conditions, express, 
+implied, statutory, or otherwise, including, but not limited to, 
+implied warranties or conditions of merchantability, satisfactory quality, 
+fitness for a particular purpose, title, and non-infringement. 
+The entire risk arising out of use or performance of 
+the SOFTWARE product remains with you. 
+
+8. Limitation of liability
+
+This limitation of liability is to the maximum extent permitted by 
+applicable law. In no event shall ViArt (or its third party 
+suppliers and licensors) be liable for any costs of substitute products 
+or services, or for any special, incidental, indirect, or consequential 
+damages whatsoever (including, without limitation, damages for loss of 
+business profits, business interruption, or loss of business information) 
+arising out of this EULA or the use of or inability to use the SOFTWARE 
+product or the failure to provide support services, even if ViArt
+has been advised of the possibility of such damages. 
+In any case, ViArt (and its third party suppliers' and licensors') 
+entire liability arising out of this EULA shall be limited to $5.00.
+
+9. Documentation and examples
+
+ViArt bears no liability for any technical inaccuracies or 
+typographical errors, or for damages resulting from use of the information 
+in any provided documentation and/or examples.
+

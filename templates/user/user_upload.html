@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{UPLOAD_TITLE}</title>
+<link rel="stylesheet" href="{css_file}" type="text/css">
+<script language="JavaScript" type= "text/javascript" src="js/upload.js"></script>
+</head>
+
+<script language="JavaScript" type="text/javascript">
+<!--
+
+function checkOpenerImages()
+{
+	var filetype = document.upload.filetype.value;
+	if (filetype == "product_tiny" || filetype == "product_small" || filetype == "product_large" || filetype == "product_super") {
+		if (window.opener) {
+			if (window.opener.document.record.tiny_image) {
+				if (window.opener.document.record.tiny_image.value != "") {
+					document.upload.image_tiny_exists.value = 1;
+				}
+			}
+			if (window.opener.document.record.small_image) {
+				if (window.opener.document.record.small_image.value != "") {
+					document.upload.image_small_exists.value = 1;
+				}
+			}
+			if (window.opener.document.record.big_image) {
+				if (window.opener.document.record.big_image.value != "") {
+					document.upload.image_large_exists.value = 1;
+				}
+			}
+		}
+	}
+}
+
+//-->
+</script>
+
+<body class="popup" onLoad="checkOpenerImages();">
+
+<form name="upload" action="{user_upload_href}" enctype="multipart/form-data" method="post">
+<input type="hidden" name="operation" value="1">
+<input type="hidden" name="filetype" value="{filetype}">
+<input type="hidden" name="type" value="{type}">
+<input type="hidden" name="fid" value="{fid}">
+<input type="hidden" name="control_name" value="{control_name}">
+<input type="hidden" name="image_index" value="{image_index}">
+<input type="hidden" name="image_tiny_exists" value="0">
+<input type="hidden" name="image_small_exists" value="0">
+<input type="hidden" name="image_large_exists" value="0">
+<input type="hidden" name="image_tiny_generated" value="{image_tiny_generated}">
+<input type="hidden" name="image_small_generated" value="{image_small_generated}">
+<input type="hidden" name="image_large_generated" value="{image_large_generated}">
+<table width="100%" border="0" cellspacing="1" cellpadding="0" align="center" class="headerbg">
+<tr><td class="headerbg"> 
+
+	<table cellspacing="0" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td colspan="3" class="middlebg" align="center">
+			<a href="javascript:closeWindow('{filename_js}');"><b>{CLOSE_WINDOW_MSG}</b></a>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3" class="usualbg">
+		<br>
+		</td>
+	</tr><!-- BEGIN errors -->
+	<tr>
+		<td align="center" class="usualbg">
+			<div class="errorbg"><b>{errors_list}</b></div>
+		</td>
+	</tr><!-- END errors --><!-- BEGIN before_upload -->
+	<!--begin can_select_folder-->
+	<tr>
+		<td colspan="4" class="usual">
+			&nbsp;{CURRENT_DIR_MSG}: <b>{files_dir}</b>
+			<!-- begin subdir_id_block -->
+			<select name="subdir_id"><!-- begin subdir_id -->
+				<option {subdir_id_selected} value="{subdir_id_value}">{subdir_id_description}<!-- end subdir_id -->
+			</select><!-- end subdir_id_block -->
+		</td>
+	</tr>
+	<!--end can_select_folder-->
+	<tr>
+		<td class="usualbg">
+			<table><tr><td>&nbsp;&nbsp;&nbsp;{UPLOAD_SELECT_MSG}<br>
+			</td></tr>
+			<tr><td>
+				<table cellspacing="3"><tr>
+				<td>&nbsp;&nbsp;&nbsp;<input class="" size="40" type="file" name="newfile">&nbsp;&nbsp;</td>
+				<td><span class="submit"><input class="submit" type="submit" name="submit" value="{UPLOAD_BUTTON}"></span></td>
+				</tr></table>
+			</td></tr></table>
+		</td>
+	</tr>
+
+<!-- END before_upload --><!-- BEGIN after_upload -->
+	<tr>
+		<td class="usualbg" align="center">
+			{UPLOADED_FILE_MSG}
+			<input type="hidden" name="filename" value="{filename}">
+		</td>
+	</tr><!-- END after_upload -->
+
+	<tr>
+		<td colspan="3" class="usualbg">
+		<br>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3" class="middlebg" align="center">
+			<a href="javascript:closeWindow('{filename_js}');"><b>{CLOSE_WINDOW_MSG}</b></a>
+		</td>
+	</tr>
+	</table>
+
+</td></tr></table>
+</form>
+                      
+</body>
+</html>

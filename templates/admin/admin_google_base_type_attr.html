@@ -1,0 +1,102 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {GOOGLE_BASE_ATTRIBUTE_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_lookup_tables_href}">{STATIC_TABLES_MSG}</a>&nbsp;&gt;
+			<a href="{admin_google_base_types_href}">{GOOGLE_BASE_ITEM_TYPES_MSG}</a>&nbsp;&gt;&nbsp;
+			<a href="{admin_google_base_type_href}?type_id={type_id}">{type_name}</a>&nbsp;&gt;&nbsp;
+			<b>{ATTRIBUTES_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<td>
+<fieldset>
+<legend>{GOOGLE_BASE_ATTRIBUTE_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+<form name="record" action="{admin_google_base_type_attr_href}" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="type_id" value="{type_id}">
+<input type="hidden" name="more_attributes" id="more_attributes" value="0">
+<input type="hidden" name="number_attributes" value="{number_attributes}">
+<table align="center" border="0" cellpadding="4" cellspacing="1">
+	<tr class="middle" align="center">
+		<td>
+			#
+		</td>
+		<td>
+			{ATTRIBUTE_MSG}
+		</td>
+		<td>
+			{REQUIRED_MSG}
+		</td>
+		<td>
+			{DELETE_BUTTON}
+		</td>
+	</tr>
+	<!-- begin attributes -->
+	<!-- begin attributes_errors -->
+	<tr class="usual">
+		<td colspan="4">
+			{errors_list}
+		</td>
+	</tr>
+	<!-- end attributes_errors -->
+	<tr class="usual">
+		<td>
+			&nbsp;{row_number}&nbsp;
+			<input type="hidden" name="type_id_{attributes_number}" value="{type_id}">
+		</td>
+		<td>
+			<select name="attribute_id_{attributes_number}"><!-- begin attribute_id -->
+			<option {attribute_id_selected} value="{attribute_id_value}">{attribute_id_description}<!-- end attribute_id -->
+			</select>
+		</td>
+		<td>
+			<input type="checkbox" name="required_{attributes_number}" {required} value="1">
+		</td>
+		<td align="center">
+			<input type="checkbox" name="attributes_delete_{attributes_number}" {attributes_delete} value="1">
+		</td>
+	</tr>
+	<!-- end attributes -->
+	<tr class="usual">
+		<td colspan="4" align="right">
+			{ADD_MORE_ITEMS_QST} &nbsp;&nbsp;
+			<input class="submit" type="submit" value=" {ADD_BUTTON} " onClick="document.record.more_attributes.value=1;">
+		</td>
+	</tr>
+	<tr class="middle">
+		<td colspan="4" align="right">
+			<input class="submit" type="submit" value=" {UPDATE_BUTTON} " onClick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input class="submit" type="submit" value=" {DELETE_ALL_BUTTON} " onClick="document.record.operation.value='delete';return confirm('{DELETE_ALL_QST} {ATTRIBUTES_MSG}?');">&nbsp;
+			<input class="submit" type="submit" value=" {CANCEL_BUTTON} " onClick="document.record.operation.value='cancel'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</td>
+	</tr>
+</table>
+</form>
+	</td>
+</tr>
+</table>
+</fieldset>
+</td></tr></table>
+
+
+</body>
+</html>

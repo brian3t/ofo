@@ -1,0 +1,118 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_COUNTRY_MSG} ::..</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_lookup_tables_href}">{STATIC_TABLES_MSG}</a>&nbsp;&gt;
+			<a href="{admin_countries_href}?page={page}">{COUNTRIES_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_COUNTRY_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_COUNTRY_MSG}</legend>
+
+<table border="0" cellspacing="1" cellpadding="6" width="100%">
+<form action="{admin_country_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="country_id" value="{country_id}">
+<input type="hidden" name="sort_ord" value="{sort_ord}">
+<input type="hidden" name="sort_dir" value="{sort_dir}">
+<input type="hidden" name="page" value="{page}">
+<input type="hidden" name="sp" value="{sp}">
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{SHOW_FOR_USER_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="show_for_user" {show_for_user} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{COUNTRY_ORDER_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="10" name="country_order" value="{country_order}" maxlength="5">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ISO_NUMBER_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" size="10" name="country_iso_number" value="{country_iso_number}" maxlength="3">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{COUNTRY_CODE_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" size="10" name="country_code" value="{country_code}" maxlength="4">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{COUNTRY_CODE_ALPHA3_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="10" name="country_code_alpha3" value="{country_code_alpha3}" maxlength="4">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{COUNTRY_NAME_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" size="40" name="country_name" value="{country_name}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{DEFAULT_CURRENCY_MSG}
+	</td>
+	<td>
+		<select name="currency_code"><!-- begin currency_code -->
+			<option {currency_code_selected} value="{currency_code_value}">{currency_code_description}<!-- end currency_code -->
+		</select>
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onclick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</form>	
+</table>
+
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

@@ -1,0 +1,201 @@
+<html><head><title>{ADMINISTRATION_MSG} :: {APPLY_DUMP_MSG}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript">
+<!--
+	function checkOptions()
+	{
+		var operation = document.dump_apply.operation.value;
+		var sqlFile = document.dump_apply.sql_file_name.value;
+		var isSubmit = false;
+		if (sqlFile != "" && operation == "apply") {
+			var isApply = document.dump_apply.is_apply.checked;
+			if(!isApply) {
+				alert("{READ_AND_CHECK_MSG}");
+			} else {
+				var warnMsg = "{dump_warning_message}";
+				isSubmit = confirm(warnMsg);
+			}
+		} else if (operation == "cancel") {
+			isSubmit = true;
+		}
+		return isSubmit;
+	}				
+
+	var isApplied = false;
+	var stepNumber = 0;
+	var queriesSuccess = 0;
+	var queriesFailed = 0;
+
+	function updateBlockInfo(message, controlName, append)
+	{
+		var controlObject = document.getElementById(controlName);
+		var controlBlock = document.getElementById(controlName + "Block");
+		if (controlObject) {
+			if (append) {
+				controlObject.innerHTML += message;
+			} else {
+				controlObject.innerHTML = message;
+			}
+			if (controlBlock) {
+				controlBlock.style.display = "block";
+			}
+		}
+		if (controlName == "queriesSuccess") {
+			var queriesInt = parseInt(message);
+			if (!isNaN(queriesInt)) {
+				queriesSuccess = queriesInt;
+				updateBlockInfo((queriesSuccess + queriesFailed), "queriesTotal", false);
+			}
+		} else if (controlName == "queriesFailed") {
+			var queriesInt = parseInt(message);
+			if (!isNaN(queriesInt)) {
+				queriesFailed = queriesInt;
+				updateBlockInfo((queriesSuccess + queriesFailed), "queriesTotal", false);
+			}
+		}
+	}
+
+	function dumpApplied()
+	{
+		isApplied = true;
+		var message = "{file_applied_message}";
+		var processObject = document.getElementById("processInfo");
+		processObject.innerHTML = message;
+	}
+
+	function applyingProcess()
+	{
+		if (!isApplied) {
+			stepNumber++;
+			var message = "{DUMP_APPLYING_PROCESS_MSG} ";
+			for (var s = 0; s < (stepNumber % 15) + 1; s++) {
+				message += " . ";
+			}
+			var processObject = document.getElementById("processInfo");
+			processObject.innerHTML = message;
+			setTimeout("applyingProcess()", 500);
+		}
+	}
+
+//-->
+</script>
+
+</head>
+
+<body class="commonbg">
+
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header">
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_dump_href}">{DATABASE_MANAGEMENT_MSG}</a>&nbsp;&gt;&nbsp;<b>{APPLY_DUMP_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<!-- BEGIN dump_apply_form -->
+<fieldset>
+<legend>{APPLY_DUMP_MSG}</legend>
+
+<form action="{admin_dump_apply_href}" name="dump_apply" method="post" onSubmit="return checkOptions();">
+<input type="hidden" name="step" value="{step}">
+<input type="hidden" name="operation" value="apply">
+
+	<table width="100%" align="center" cellspacing="1" cellpadding="4" border="0">
+	<!-- BEGIN errors -->
+	<tr class="usual">
+		<td colspan="2" align="center">
+			<div class="error">{errors_list}</div>
+		</td>
+	</tr>
+	<!-- END errors -->
+	<tr class="usual">
+		<td width="20%">&nbsp;{SQL_FILENAME_MSG}</td>
+		<td width="80%"><input class="field" size="80" type="text" name="sql_file_name" value="{sql_file_name}"></td>
+	</tr>
+	<tr class="usual">
+		<td width="20%">&nbsp;{APPLY_DUMP_MSG}?</td>
+		<td width="80%">
+			<input type="checkbox" {is_apply} name="is_apply" value="1">
+			{APPLY_DUMP_NOTE}
+		</td>
+	</tr>
+	<tr class="middle">
+		<td>&nbsp;</td>
+		<td>
+			<input class="submit" type="submit" value="{APPLY_BUTTON}" onCLick="document.dump_apply.operation.value='apply'">&nbsp;&nbsp;&nbsp;
+			<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.dump_apply.operation.value='cancel'">
+		</td>
+	</tr>
+	</table>
+
+</form>
+</fieldset>
+<!-- END dump_apply_form -->
+
+<!-- BEGIN apply_result -->
+<fieldset>
+<legend>{DUMP_APPLYING_PROCESS_MSG}</legend>
+
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+<tr class="middle">
+	<td>
+		&nbsp;&nbsp;<span id="processInfo" class="message">{DUMP_APPLYING_PROCESS_MSG} </span>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		<!-- queries_success -->
+		<div id="queriesSuccessBlock" style="display: none;">
+		<table border="0" cellpadding="3" cellspacing="0">
+		<tr>
+			<td width="30%"><font color="blue">&nbsp;{SQL_SUCCESS_MSG}:&nbsp;</font></td>
+			<td width="70%"><font color="blue"><div id="queriesSuccess">0</div></font></td>
+		</tr>
+		</table>
+		</div>
+
+		<!-- queries_failed -->
+		<div id="queriesFailedBlock" style="display: none;">
+		<table border="0" cellpadding="3" cellspacing="0">
+		<tr>
+			<td width="30%"><font color="red">&nbsp;{SQL_FAILED_MSG}:&nbsp;</font></td>
+			<td width="70%"><font color="red"><div id="queriesFailed">0</div></font></td>
+		</tr>
+		</table>
+		</div>
+
+		<table border="0" cellpadding="3" cellspacing="0">
+		<tr>
+			<td width="30%">&nbsp;{SQL_TOTAL_MSG}:&nbsp;</td>
+			<td width="70%"><div id="queriesTotal">0</div></td>
+		</tr>
+		</table>
+
+		<!-- apply_result_errors -->
+		<table border="0" cellpadding="5" cellspacing="0">
+		<tr>
+			<td><div id="queriesErrors" class="error"></div></td>
+		</tr>
+		</table>
+		
+
+	</td>
+</tr>
+</table>
+
+</fieldset>
+<!-- END apply_result -->
+
+{admin_footer}
+
+<!-- begin page_end -->
+</body></html><!-- end page_end -->

@@ -1,0 +1,56 @@
+<div class="block-merchants">
+<form action="{user_list_href}" name="merchant" method="GET">
+<input type="hidden" name="category_id" value="{category_id}">
+
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{MERCHANTS_TITLE}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr> 
+		<td class="blockTD">
+
+			<table border="0" cellpadding="" cellspacing="0" width="100%">
+			<tr><td class="padding10px">
+
+			<!-- begin merchants_list -->
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<!-- BEGIN merchants -->
+			<tr><td class="usualbg"><a class="title" href="{merchant_url}">{merchant_name}</a> ({merchant_products})</td></tr>
+			<!-- END merchants --> 
+			</table>
+			<!-- end merchants_list -->
+		  
+			<!-- begin merchants_select -->
+			<table border="0" cellpadding="0" cellspacing="0" align="center">
+			<tr>
+				<td>
+					<select class="field" name="user">
+						<option value="">
+						<!-- begin merchants_options --><option {merchant_selected} value="{merchant_id}">{merchant_name} ({merchant_products})<!-- end merchants_options -->
+					</select>
+					<span class="submit"><input class="submit" type="submit" value="{GO_BUTTON}"></span>
+				</td>
+			</tr>
+			</table>
+			<!-- end merchants_select -->
+
+			</td></tr></table>
+
+		</td>
+	</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+
+</form>
+</div>

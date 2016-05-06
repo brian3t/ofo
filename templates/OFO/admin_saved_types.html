@@ -1,0 +1,80 @@
+<html><head><title>{ADMINISTRATION_MSG} :: Wish List Types</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_items_list_href}">{PRODUCTS_MSG}</a>&nbsp;&gt;&nbsp;<b>Wish List Types</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>Wish List Types</legend>
+
+<table border="0" cellspacing="1" cellpadding="6" width="100%">
+<tr align="center" class="middle">
+	<td>
+		{sorter_type_id}
+	</td>
+	<td>
+		{sorter_type_name}
+	</td>
+	<td>
+		{sorter_is_active}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- BEGIN records -->
+<tr class="usual" align="center">
+	<td>
+		{type_id}
+	</td>
+	<td align="left">
+		&nbsp;{type_name}
+	</td>
+	<td>
+		{is_active}
+	</td>
+	<td>
+		<a href="{admin_saved_type_href}?type_id={type_id}">{EDIT_MSG}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="4">
+		&nbsp;{NO_RECORDS_MSG}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="4">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+		<tr class="middle">
+			<td>
+				&nbsp;<a href="{admin_saved_type_href}">{ADD_NEW_MSG}</a>
+			</td><!-- begin navigator_block -->
+			<td align="right">
+				&nbsp;{navigator}&nbsp;
+			</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>	
+
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

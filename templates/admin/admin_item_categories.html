@@ -1,0 +1,347 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_MSG} {CATEGORIES_TITLE} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+	var tab = "{tab}";
+	var newPath = new Array();
+	var oldPath = new Array();
+	var catsInfo = new Array(); 
+	catsInfo[0] = new Array("{PRODUCTS_TITLE} [{TOP_CATEGORY_MSG}]", 0, 0);// <!-- BEGIN parent_categories_js -->
+	catsInfo[{category_id}] = new Array("{category_name_js}", {parent_category_id}, {subcategories_number}); // <!-- END parent_categories_js -->
+	var lastCategoryId = "";
+
+
+function GetXmlHttpObject()
+{
+	var xmlHttp = null;
+	try { xmlHttp=new XMLHttpRequest(); }
+	catch (e) {
+		try { 
+			xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+		} catch (e) {
+			xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+	}
+	return xmlHttp;
+}
+
+function stateChanged(parentId) 
+{ 
+	if (xmlHttp.readyState == 4) { 
+		
+		var categoriesDiv = document.getElementById("categories");
+		var responseText = xmlHttp.responseText;
+		var controlData = "";
+		if (responseText == "[no data]") {
+			if (tab == "browse") {
+				controlData = document.getElementById("bottomCategory").innerHTML;
+				controlData = controlData.replace("control_id", "categories_" + parentId);
+			}
+		} else {
+			controlData = "<select id=categories_" + parentId + " size=12 class=selectCategories onChange=\"selectCategory(" + parentId + ", this)\">";
+			var categoriesData = responseText.split("\n");
+			for (var i = 0; i < categoriesData.length; i++) {
+				var categoryData = categoriesData[i];
+				if (categoryData != "") {
+					categoryInfo = categoryData.split("\t");
+					catsInfo[categoryInfo[0]] = new Array(categoryInfo[1], parentId, categoryInfo[3])
+					controlData += "<option value=\"" + categoryInfo[0] + "\">" + categoryInfo[1];
+					if (categoryInfo[3] > 0) {
+						controlData += " >";
+					}
+				}
+			}
+			controlData += "</select>";
+		}
+
+		if (categoriesDiv.insertAdjacentHTML) {
+			categoriesDiv.insertAdjacentHTML("beforeEnd", controlData);
+		} else {
+			categoriesDiv.innerHTML += controlData;
+		}
+
+		for(var id in newPath)
+		{
+			var selectObj = document.getElementById("categories_" + id);
+			if (selectObj) {
+				selectObj.disabled = false;
+			}
+		}
+
+		var selectButton = document.getElementById("selectButton");
+		if (selectButton) {
+			selectButton.disabled = false;
+		}
+		selectActivePath();
+		moveScroller();
+	}
+}
+
+function selectActivePath()
+{
+	// select option
+	var totalBlocks = 0;
+	for(var id in newPath)
+	{
+		totalBlocks++;
+		if (id != 0) {
+			parentId = catsInfo[id][1];
+			var selectObj = document.getElementById("categories_" + id);
+			var parentObj = document.getElementById("categories_" + parentId);
+			if (parentObj) {
+				for (var i = 0; i < parentObj.length; i++) {
+					if (parentObj.options[i].value == id) {
+						parentObj.options[i].selected = true;
+					}
+				}
+			}
+		}
+	}
+}
+
+function moveScroller()
+{
+	var categoriesDiv = document.getElementById("categories");
+	var clientWidth = categoriesDiv.clientWidth; 
+	var scrollWidth = categoriesDiv.scrollWidth; 
+	if (scrollWidth > clientWidth) {
+		categoriesDiv.scrollLeft = scrollWidth - clientWidth;
+	}
+}
+
+function selectCategory(topId, selectObj)
+{
+	xmlHttp = GetXmlHttpObject()
+	if (xmlHttp == null) {
+		alert ("Your browser does not support AJAX!");
+		return;
+	} 
+	var categoryId = selectObj.options[selectObj.selectedIndex].value;
+	var categoryName = selectObj.options[selectObj.selectedIndex].text;
+	lastCategoryId = categoryId;
+
+	newPath = new Array();
+	var parentId = categoryId;
+	while (parentId != 0) {
+		newPath[parentId] = 1;
+		parentId = catsInfo[parentId][1];
+	}
+	newPath[0] = 1;
+
+	for(var id in oldPath)
+	{
+		if (newPath[id] != 1) {
+			var selectObj = document.getElementById("categories_" + id);
+			if (selectObj) {
+				selectObj.style.display = "none";
+				selectObj.selectedIndex = -1;
+			}
+		}
+	}
+	oldPath = newPath;
+
+	for(var id in newPath)
+	{
+		var selectObj = document.getElementById("categories_" + id);
+		if (selectObj) {
+			selectObj.style.display = "inline";
+			moveScroller();
+		} else if (catsInfo[categoryId][2] == 0) {
+			if (tab == "browse") {
+				controlData = document.getElementById("bottomCategory").innerHTML;
+				controlData = controlData.replace("control_id", "categories_" + categoryId);
+				var categoriesDiv = document.getElementById("categories");
+				if (categoriesDiv.insertAdjacentHTML) {
+					categoriesDiv.insertAdjacentHTML("beforeEnd", controlData);
+				} else {
+					categoriesDiv.innerHTML += controlData;
+				}
+				selectActivePath();
+				moveScroller();
+			}
+		} else {
+			// disable controls when new categories loading
+			for(var id in newPath)
+			{
+				var selectObj = document.getElementById("categories_" + id);
+				if (selectObj) {
+					selectObj.disabled = true;
+				}
+			}
+			var selectButton = document.getElementById("selectButton");
+			if (selectButton) {
+				selectButton.disabled = true;
+			}
+
+			var url = "admin_categories_data.php";
+			url = url + "?parent_id=" + categoryId;
+			//xmlHttp.onreadystatechange = stateChanged(categoryId);
+			xmlHttp.onreadystatechange = function() { stateChanged(categoryId); };  
+			xmlHttp.open("GET", url, true);
+			xmlHttp.send(null);
+		}
+	}
+
+}
+
+function addCategory()
+{
+	var categoryAdded = false;
+	var categoriesValues = document.categories.categories_ids.value;
+	var categoriesIds = categoriesValues.split(",");
+	for (var i = 0; i < categoriesIds.length; i++) {
+		var categoryId = categoriesIds[i];
+		if (categoryId == lastCategoryId) {
+			categoryAdded = true;
+		}
+	}
+	
+	if (categoryAdded) {
+		alert("This category is already selected.");
+	} else {
+		if (categoriesValues != "") { categoriesValues += "," }
+		categoriesValues += lastCategoryId;
+		document.categories.categories_ids.value = categoriesValues;
+  
+		generateSelected();
+	}
+}
+
+function removeCategory(removeId)
+{
+	var categoriesValues = document.categories.categories_ids.value;
+	var categoriesIds = categoriesValues.split(",");
+	categoriesValues = "";
+	for (var i = 0; i < categoriesIds.length; i++) {
+		var categoryId = categoriesIds[i];
+		if (categoryId != removeId) {
+			if (categoriesValues != "") { categoriesValues += "," }
+			categoriesValues += categoryId;
+		}
+	}
+	document.categories.categories_ids.value = categoriesValues;
+	generateSelected();
+}
+
+function generateSelected()
+{
+	var categoriesValues = document.categories.categories_ids.value;
+
+	var selectedDiv = document.getElementById("selectedCategories");
+	selectedDiv.innerHTML = "";
+	if (categoriesValues != "") {
+		var categoriesIds = categoriesValues.split(",");
+		for (var i = 0; i < categoriesIds.length; i++) {
+  
+			var categoryId = categoriesIds[i];
+			var parentId = categoryId;
+			
+			var categoryPath = "";
+			if (parentId == 0) {
+				categoryPath = catsInfo[parentId][0];
+			} else {
+				while (parentId != 0) {
+					if (categoryPath == "") {
+						categoryPath = catsInfo[parentId][0];
+					} else {
+						categoryPath = catsInfo[parentId][0] + " > " + categoryPath;
+					}
+					parentId = catsInfo[parentId][1];
+				}
+			}
+			var categoryInfo = "<li class=selectedCategory>" + categoryPath;
+			categoryInfo += " | <a href=\"#\" onClick=\"removeCategory(" + categoryId + "); return false;\">{REMOVE_BUTTON}</a>";
+  
+			if (selectedDiv.insertAdjacentHTML) {
+				selectedDiv.insertAdjacentHTML("beforeEnd", categoryInfo);
+			} else {
+				selectedDiv.innerHTML += categoryInfo;
+			}
+		}	
+	}
+}
+
+//-->
+</script>
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_items_list_href}">{PRODUCTS_MSG}</a>&nbsp;&gt;&nbsp;<!-- BEGIN tree --><a 
+			href="{admin_items_list_href}?category_id={tree_cat_id}">{tree_cat_name}</a>&nbsp;&gt;&nbsp;<!-- END tree --><a 
+			href="{admin_items_list_href}?category_id={tree_current_id}">{tree_current_name}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_product_href}?category_id={category_id}&item_id={item_id}">{item_name}</a>&nbsp;&gt;&nbsp;<b>{EDIT_MSG} {CATEGORIES_TITLE}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+<!-- begin errors -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr align="center">
+	<td>
+		<div class="error">{errors_list}</div>
+	</td>
+</tr>
+</table><!-- end errors -->
+
+<span id="bottomCategory" style="display: none;">
+<table id="control_id" class="bottomCategory" cellspacing="0" cellpadding="0" border="0">
+<tr><td class="bottomCategory">
+You have finished <br>
+selecting a category. <br>
+There are no subcategories <br>
+in this category.
+</td></tr></table>
+</span>
+
+
+	<table cellspacing="0" cellpadding="0" border="0">
+	<tr><!-- BEGIN tabs -->
+		<td><div id="{tab_id}" class="{tab_class}"><a class="blackSm" href="{tab_url}">{tab_title}</a></td><!-- END tabs -->
+	</tr>
+	</table>
+
+	<div id="categories" class="browseCategories">
+		<select id="categories_0" size="12" class="{categories_class}" onChange="selectCategory(0, this);">
+			<!-- begin parent_categories -->
+			<option value="{category_id}">{category_name_option}<!-- end parent_categories -->
+		</select>
+	</div>
+
+	<br>
+	<input id="selectButton" type="button" class="submit" value="{SELECT_CATEGORY_MSG}" onClick="addCategory();">
+
+	<br><br>
+	<b>{CATEGORIES_TITLE} you have selected:</b>
+	<div id="selectedCategories"><!-- begin selected_categories -->
+		<li class="selectedCategory">{selected_category_path} 
+		| <a href="#" onClick="removeCategory({category_id}); return false;">{REMOVE_BUTTON}</a><!-- end selected_categories -->
+	</div>
+
+	<form action="{admin_item_categories_href}" name="categories" method="POST">
+	<input type="hidden" name="operation" value="save">
+	<input type="hidden" name="tab" value="{tab}">
+	<input type="hidden" name="item_id" value="{item_id}">
+	<input type="hidden" name="category_id" value="{category_id}">
+	<input type="hidden" name="categories_ids" value="{categories_ids}">
+
+	<br><input type="submit" class="submit" value="{UPDATE_BUTTON}">
+	</form>
+
+<br>
+
+{admin_footer}
+</body>
+</html>

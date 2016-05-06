@@ -1,0 +1,79 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{FOOTER_LINKS_MSG}</title>
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<b>{FOOTER_LINKS_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{FOOTER_LINKS_MSG}</legend>
+
+<table border="0" cellpadding="6" cellspacing="1" width="100%"><!-- begin sorters -->
+<tr class="middle"align="center">
+	<td>
+		{sorter_menu_id}
+	</td>
+	<td>
+		{sorter_menu_title}
+	</td>
+	<td>
+		{sorter_menu_url}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- end sorters --><!-- BEGIN records -->
+<tr class="usual" align="center">
+	<td>
+		{menu_id}
+	</td>
+	<td align="left">
+		&nbsp;{menu_title}&nbsp;
+	</td>
+	<td align="left">
+		&nbsp;{menu_url}&nbsp;
+	</td>
+	<td>
+		<a href="{admin_footer_link_url}">{EDIT_MSG}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="4">
+		{NO_RECORDS_MSG}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="4">
+		<table cellspacing="0" cellpadding="0" border="0">
+		<tr>
+			<td>&nbsp;<a href="{admin_footer_link_new_url}">{ADD_NEW_MSG}</a>&nbsp;</td>
+			<!-- begin navigator_block -->
+			<td>&nbsp;{navigator}&nbsp;</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>	
+
+</fieldset>
+
+
+{admin_footer}
+</body>
+</html>

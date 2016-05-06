@@ -1,0 +1,45 @@
+<div class="block-forum-search">
+<form action="{forum_href}" method="GET">
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{FORUM_TITLE}&nbsp;&nbsp;{SEARCH_TITLE}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr> 
+		<td class="blockTD">
+
+		<table border="0" cellpadding="0" cellspacing="0" align="center">
+		<tr>
+			<td class="padding10px">
+				<table border="0" cellpadding="2" cellspacing="0" align="center">
+				<tr>
+					<td colspan="2" align="center">
+						<!-- BEGIN search_categories -->
+						<select name="sf" class="search field">
+							<!-- begin sf --><option {sf_selected} value="{sf_value}">{sf_description}<!-- end sf -->
+						</select>
+						<!-- END search_categories -->
+					<input class="search field" type="text" name="sw" value="{sw}">&nbsp; 
+					<span class="submit"><INPUT TYPE="submit" value="{SEARCH_BUTTON}" class="submit"></span>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		</table>
+
+	</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table></form>
+</div>

@@ -1,0 +1,81 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {ORDER_NOTES_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+
+<body class="commonbg">
+
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_orders_href}">{ORDERS_MAINTENANCE_MSG}</a>&nbsp;&gt;
+			<a href="{admin_order_href}?order_id={order_id}">{ADMIN_ORDER_MSG}</a>&nbsp;&gt;
+			<b>{NOTES_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+
+<fieldset>
+<legend>{ORDER_NOTES_MSG}</legend>
+		<table align="center" cellspacing="1" cellpadding="6" border="0" width=100%><!-- begin sorters -->
+		<tr class="middle" align="center">
+			<td>
+				&nbsp;{sorter_note_id}&nbsp;
+			</td>
+			<td>
+				&nbsp;{sorter_note_title}&nbsp;
+			</td>                         
+			<td>
+				&nbsp;{sorter_show_for_user}&nbsp;
+			</td>                         
+			<td>
+				&nbsp;{sorter_note_date}&nbsp;
+			</td>                         
+			<td>
+				&nbsp;
+			</td>                         
+		</tr><!-- end sorters --><!-- begin records -->
+		<tr class="usual" align="center">
+			<td>
+				&nbsp;{note_id}&nbsp;
+			</td>
+			<td align="left">
+				&nbsp;{note_title}&nbsp;
+			</td>                         
+			<td>
+				&nbsp;{show_for_user}&nbsp;
+			</td>                         
+			<td>
+				&nbsp;{note_date}&nbsp;
+			</td>                         
+			<td>
+				&nbsp;<a href="{admin_order_note_href}?note_id={note_id}&order_id={order_id}">{VIEW_MSG}/{EDIT_MSG}</a>&nbsp;
+			</td>                         
+		</tr><!-- end records --><!-- begin no_records -->
+		<tr>
+			<td colspan="5" class="usual">
+				&nbsp;{NO_NOTES_AVAILABLE_MSG}&nbsp;
+			</td>
+		</tr><!-- end no_records -->
+		<tr class="middle">
+			<td colspan="5">
+				&nbsp;<a href="{admin_order_note_href}?order_id={order_id}">Add {ADMIN_NOTE_MSG}</a>&nbsp;
+			</td>
+		</tr>
+		</table>
+</fieldset>
+<br>
+
+{admin_footer}
+
+</body>
+</html>

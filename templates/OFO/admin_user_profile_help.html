@@ -1,0 +1,161 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: User Profile Help ::..</title>
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+
+<body class="popup">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td align="center">
+			&nbsp;<b>How to Setup Email Message</b>&nbsp;
+		</td>
+	</tr>
+	<tr class="usual"> 
+		<td>
+		<br>
+			<table width="100%" border="0" cellspacing="5" cellpadding="5">
+			<tr><td>
+	<div align="center">
+	In your messages you can use some dynamic content.<br>
+	To apply it you can use tags from the table below.<br>
+	You can add these tags into your email body and email subject.
+	</div>
+	&nbsp;
+
+	<!-- begin reset_info -->
+	<div class="title" align="center">Reset Password Information</div>
+	<table border="0" cellspacing="1" cellpadding="0" align="center" width="450">
+	<tr><td class="header"> 
+
+	<table border="0" cellspacing="1" cellpadding="6" width="100%">
+	<tr class="middle" align="center">
+		<td>Tag Name</td>                               	
+		<td>&nbsp;Tag Description&nbsp;</td>
+	</tr>
+	<tr class="usual">
+		<td>&nbsp;{reset_password_code}</td><td>&nbsp;Code to reset the password&nbsp;</td>
+	</tr>
+	<tr class="usual">
+		<td>&nbsp;{reset_password_date}</td><td>&nbsp;The latest date when user can reset the password&nbsp;</td>
+	</tr>
+	<tr class="usual">
+		<td>&nbsp;{reset_password_url}</td><td>&nbsp;URL where user can reset the password&nbsp;</td>
+	</tr>
+	</table>
+
+	</td></tr></table><br>
+	<!-- end reset_info -->
+	<div class="title" align="center">User Profile Information</div>
+	<table border="0" cellspacing="0" cellpadding="0" align="center" width="450">
+	<tr><td class="header"> 
+
+	<table border="0" cellspacing="1" cellpadding="6" width="100%">
+	<tr class="middle" align="center">
+		<td colspan="2">Tag Name</td>                               	
+		<td>&nbsp;Tag Description&nbsp;</td>
+	</tr>
+	<!-- begin reminder_info -->
+	<tr class="usualWhite">
+		<td colspan="2">&nbsp;{reminder_title}</td><td>&nbsp;Reminder Title&nbsp;</td>
+	</tr>
+	<tr class="usualWhite">
+		<td colspan="2">&nbsp;{reminder_notes}</td><td>&nbsp;Reminder Note&nbsp;</td>
+	</tr>
+	<!-- end reminder_info -->
+	<tr class="usualWhite">
+		<td colspan="2">&nbsp;{user_id}</td><td>&nbsp;User Unique Identificator&nbsp;</td>
+	</tr>
+	<tr class="usualWhite">
+		<td colspan="2">&nbsp;{registration_date}&nbsp;</td><td>&nbsp;Date of Registration&nbsp;</td>
+	</tr>
+	<tr class="usualWhite">
+		<td colspan="2">&nbsp;{referrer}</td><td>&nbsp;HTTP Referrer&nbsp;</td>
+	</tr>
+	<tr class="usualWhite">
+		<td>&nbsp;{login}</td><td>&nbsp;{password}</td><td>&nbsp;Login Parameters</td>
+	</tr>
+	<tr class="usualWhite">
+		<td>&nbsp;{name}</td><td>&nbsp;{delivery_name}</td><td>&nbsp;User Name</td>
+	</tr>
+	<tr class="usualWhite">
+		<td>&nbsp;{first_name}</td><td>&nbsp;{delivery_first_name}</td><td>&nbsp;First Name</td>
+	</tr>
+	<tr class="usualWhite">
+		<td>&nbsp;{last_name}</td><td>&nbsp;{delivery_last_name}</td><td>&nbsp;Last Name</td>
+	</tr>
+	<tr class="usualWhite">
+		<td>&nbsp;{company_name}</td><td>&nbsp;{delivery_company_name}</td><td>&nbsp;Company Name</td>
+	</tr>
+	<tr class="usualWhite">
+		<td>&nbsp;{email}</td><td>&nbsp;{delivery_email}</td><td>&nbsp;Email</td>
+	</tr>
+	<tr class="usualWhite">
+		<td>&nbsp;{address1}</td><td>&nbsp;{delivery_address1}</td><td>&nbsp;Street Address<br>&nbsp;First Line</td>
+	</tr>
+	<tr class="usualWhite">
+		<td>&nbsp;{address2}</td><td>&nbsp;{delivery_address2}</td><td>&nbsp;Street Address<br>&nbsp;Second Line</td>
+	</tr>
+	<tr class="usualWhite">
+		<td>&nbsp;{city}</td><td>&nbsp;{delivery_city}</td><td>&nbsp;City</td>
+	</tr>
+	<tr class="usualWhite">
+		<td>&nbsp;{province}</td><td>&nbsp;{delivery_province}</td><td>&nbsp;Province</td>
+	</tr>
+	<tr class="usualWhite">
+		<td>&nbsp;{state}</td><td>&nbsp;{delivery_state}</td><td>&nbsp;State</td>
+	</tr>
+	<tr class="usualWhite">
+		<td>&nbsp;{zip}</td><td>&nbsp;{delivery_zip}</td><td>&nbsp;Zip/Postal Code</td>
+	</tr>
+	<tr class="usualWhite">
+		<td>&nbsp;{country}</td><td>&nbsp;{delivery_country}</td><td>&nbsp;Country</td>
+	</tr>
+	<tr class="usualWhite">
+		<td>&nbsp;{phone}</td><td>&nbsp;{delivery_phone}</td><td>&nbsp;Phone</td>
+	</tr>
+	<tr class="usualWhite">
+		<td>&nbsp;{daytime_phone}</td><td>&nbsp;{delivery_daytime_phone}</td><td>&nbsp;Daytime Phone Number&nbsp;</td>
+	</tr>
+	<tr class="usualWhite">
+		<td>&nbsp;{evening_phone}</td><td>&nbsp;{delivery_evening_phone}&nbsp;</td><td>&nbsp;Evening Phone Number&nbsp;</td>
+	</tr>
+	<tr class="usualWhite">
+		<td>&nbsp;{cell_phone}</td><td>&nbsp;{delivery_cell_phone}</td><td>&nbsp;{CELL_PHONE_NUMBER_MSG}</td>
+	</tr>
+	<tr class="usualWhite">
+		<td>&nbsp;{fax}</td><td>&nbsp;{delivery_fax}</td><td>&nbsp;Fax Number</td>
+	</tr>
+	<!-- BEGIN fields_title -->
+	<tr class="middle">
+		<td colspan="3">&nbsp;{CUSTOM_FIELDS_MSG}</td>
+	</tr>
+	<!-- END fields_title -->
+	<!-- BEGIN fields -->
+	<tr class="usualWhite">
+		<td>&nbsp;{field_{field_id}}</td>
+		<td colspan="2">&nbsp;{field_name}&nbsp;</td>
+	</tr>
+	<!-- END fields -->
+	</table>
+
+	</td></tr></table>
+
+			</td></tr>
+			</table>
+		<br>
+		</td>
+	</tr>
+	<tr>
+		<td class="header" align=center>
+			&nbsp;<a href="javascript:window.close();"><b>Close Window</b></a>
+		</td>
+	</tr>
+	</table>
+
+</td></tr></table>
+
+</body>
+</html>

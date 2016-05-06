@@ -1,0 +1,132 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_BLOCK_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<link rel="stylesheet" href="../styles/editor.css" type="text/css">
+<script language= "JavaScript" type= "text/javascript" src= "../js/editor.js"></script>
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_custom_blocks_url}">{CUSTOM_BLOCKS_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_BLOCK_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_BLOCK_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="6" align="center">
+<form action="{admin_custom_block_href}" name="record" method="POST" onSubmit="submit_editor(Array('editor_bd'));">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="menu_id" value="{menu_id}">
+<input type="hidden" name="sort_ord" value="{sort_ord}">
+<input type="hidden" name="sort_dir" value="{sort_dir}">
+<input type="hidden" name="page" value="{page}">
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td colspan="2" class="usual">
+		<table cellpadding="0" cellspacing="0" width="100%">
+		<tr>
+			<td nowrap>
+				<input type="checkbox" name="access_level" {access_level} value="1"> 
+				{SHOW_MENU_FOR_VISITORS_MSG}
+				<br><input type="checkbox" name="guest_access_level" {guest_access_level} value="1"> 
+				{SHOW_MENU_FOR_NOT_LOGGED_MSG}
+			</td>
+			<td align="right">
+				<font class="small">{ASTERISK_MSG}</font>
+      </td>
+		</tr>
+    </table>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{GENERAL_INFO_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_ORDER_NUMBER_MSG}
+	</td>
+	<td>
+		<input class="field"  type="text" name="menu_order" size="10" value="{menu_order}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_TITLE_MSG}
+	</td>
+	<td class="small">
+		<input class="field" type="text" name="menu_title" value="{menu_title}" size="60">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{MENU_URL_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" name="menu_url" size="60" value="{menu_url}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_TARGET_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="menu_target" size="60" value="{menu_target}">
+	</td>
+</tr>
+<!-- begin match_type_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{MATCH_TYPE_MSG}
+	</td>
+	<td>
+		<!-- begin match_type -->
+		<input type="radio" name="match_type" {match_type_checked} value="{match_type_value}">{match_type_description}<!-- end match_type -->
+	</td>
+</tr>
+<!-- end match_type_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{ONCLICK_EVENT_MSG}
+	</td>
+	<td>
+		<textarea class="text" name="onclick_code" rows="3" cols="60">{onclick_code}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</form>	
+</table>
+
+</fieldset>
+
+{admin_footer}
+
+</body>
+</html>
+
+

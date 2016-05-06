@@ -1,0 +1,223 @@
+<html><head><title>..:: WYSIWYG :: Add table ::..</title>
+<link rel="stylesheet" href="../../styles/editor.css" type="text/css">
+<script language="JavaScript">
+<!--
+
+function action_insert()
+{
+	if (window.dialogArguments){
+		var opener = window.dialogArguments[0];
+		var object_editor = window.dialogArguments[1];
+		var editor = eval('opener.'+object_editor);
+	} else {
+		var opener = window.opener;
+		var object_editor = "";
+		var currentURL    = document.URL;
+		var questionMark  = currentURL.indexOf("?");
+		var slashPosition = currentURL.lastIndexOf("/");
+		if (questionMark != -1) {
+			pageName = currentURL.substring(slashPosition + 1, questionMark);
+			var queryString = currentURL.substring(questionMark + 1, currentURL.length);
+			var queryParts = queryString.split("&");
+			for (var i = 0; i < queryParts.length; i++) {
+				var paramName  = ""; var paramValue = "";
+				var queryPart = queryParts[i];
+				var equalSign = queryPart.indexOf("=");
+				if (equalSign == -1) {
+					paramName = queryPart;
+				} else {
+					paramName  = queryPart.substring(0, equalSign);
+					paramValue = queryPart.substring(equalSign + 1, queryPart.length);
+					if (paramName == "object_editor") {
+						object_editor = paramValue;
+					}
+				}
+			}
+		}
+	}
+	var editor = eval('opener.'+object_editor);
+	var frm = document.forms['frmTable'];
+	editor.tableRows=frm.rows.value;
+	editor.tableColumns=frm.columns.value;
+	editor.tableWidth=frm.width.value;
+	editor.tableHeight=frm.height.value;
+	editor.tableBorder=frm.border.value;
+	editor.tableSpacing=frm.spacing.value;
+	editor.tablePadding=frm.padding.value;
+	editor.tableColor=frm.color.value;
+	editor.tableBGColor=frm.background.value;
+	editor.tableAlign=frm.align.value;
+	editor.addTable();
+	window.close();
+}
+
+//-->
+</script>
+</head>
+<body scroll="no" style="overflow: hidden" class="editor">
+	<form name="frmTable" id="frmTable">
+		<TABLE cellpadding="1" cellspacing="0" border="0" width="100%" height="100%">
+			<TR class="editor_usual" height="10">
+				<TD>
+				</TD>
+			</TR>
+			<TR class="editor_usual">
+				<TD ALIGN="CENTER">
+					<TABLE cellpadding="1" cellspacing="0" border="0" width="250" height="100%">
+						<TR class="editor_usual">
+							<TD ALIGN="RIGHT" width="50">
+								Rows
+							</TD>
+						<TD width="61">
+							<INPUT class="editor_field" name="rows" style="width:42" value="3">
+						</TD>
+						<TD ALIGN="RIGHT" width="39">
+							Width
+						</TD>
+						<TD width="95">
+							<INPUT class="editor_field" name="width" style="width:42">
+							<SELECT class="editor" name="width_units" style="width:40;font-size:10">
+								<OPTION value="px">px</OPTION>
+								<OPTION value="%">%</OPTION>
+							</SELECT>
+							</TD>
+						</TR>
+						<TR class="editor_usual">
+							<TD ALIGN="RIGHT" width="50">
+								Columns
+							</TD>
+							<TD width="61">
+								<INPUT class="editor_field" name="columns" style="width:42" value="3">
+							</TD width="39">
+							<TD ALIGN="RIGHT">
+								Height
+							</TD>
+							<TD width="95">
+								<INPUT class="editor_field" name="height" style="width:42">
+								<SELECT class="editor" name="height_units" style="width:40;font-size:10">
+									<OPTION value="px">px</OPTION>
+									<OPTION value="%">%</OPTION>
+								</SELECT>
+							</TD>
+						</TR>
+					</TABLE>
+				</TD>
+			</TR>
+			<TR class="editor_usual">
+				<TD ALIGN="CENTER">
+					<TABLE cellpadding="1" cellspacing="0" border="0" width="240" height="100%">
+						<TR class="editor_usual">
+							<TD ALIGN="RIGHT" width="45">
+								<b>Optional</b>
+							</TD>
+							<TD ALIGN="RIGHT" width="195">
+							</TD>
+						</TR>
+					</TABLE>
+				</TD>
+			</TR>
+			<TR class="editor_usual">
+				<TD ALIGN="CENTER">
+					<TABLE cellpadding="1" cellspacing="0" border="0" width="240" height="100%">
+						<TR class="editor_usual">
+							<TD ALIGN="RIGHT" width="50">
+								Border
+							</TD>
+							<TD width="40">
+								<INPUT class="editor_field" name="border" style="width:42" value="1">
+							</TD>
+							<TD ALIGN="RIGHT" width="110">
+								Color
+							</TD>
+							<TD width="50">
+								<SELECT class="editor" name="color" style="width:60;font-size:10">
+									<option selected="selected"></option>
+									<option value="black" style="color: black; background-color: black;">Black</option>
+									<option value="maroon" style="color: maroon; background-color: maroon;">Maroon</option>
+									<option value="green" style="color: green; background-color: green;">Green</option>
+									<option value="olive" style="color: olive; background-color: olive;">Olive</option>
+									<option value="navy" style="color: navy; background-color: navy;">Navy</option>
+									<option value="purple" style="color: purple; background-color: purple;">Purple</option>
+									<option value="teal" style="color: teal; background-color: teal;">Teal</option>
+									<option value="gray" style="color: gray; background-color: gray;">Gray</option>
+									<option value="silver" style="color: silver; background-color: silver;">Silver</option>
+									<option value="red" style="color: red; background-color: red;">Red</option>
+									<option value="lime" style="color: lime; background-color: lime;">Lime</option>
+									<option value="yellow" style="color: yellow; background-color: yellow;">Yellow</option>
+									<option value="blue" style="color: blue; background-color: blue;">Blue</option>
+									<option value="fuchsia" style="color: fuchsia; background-color: fuchsia;">Fuchsia</option>
+									<option value="aqua" style="color: aqua; background-color: aqua;">Aqua</option>
+									<option value="white" style="color: white; background-color: white;">White</option>
+									<option value="" style="color: black; background-color: white;">Auto</option>
+								</SELECT>
+							</TD>
+						</TR>
+						<TR class="editor_usual">
+							<TD ALIGN="RIGHT" width="50">
+								Spacing
+							</TD>
+							<TD width="40">
+								<INPUT class="editor_field" name="spacing" style="width:42" value="1">
+							</TD>
+							<TD ALIGN="RIGHT" width="110">
+								BackGround
+							</TD>
+							<TD width="50">
+								<SELECT class="editor" name="background" style="width:60;font-size:10">
+									<option selected="selected"></option>
+									<option value="black" style="color: black; background-color: black;">Black</option>
+									<option value="maroon" style="color: maroon; background-color: maroon;">Maroon</option>
+									<option value="green" style="color: green; background-color: green;">Green</option>
+									<option value="olive" style="color: olive; background-color: olive;">Olive</option>
+									<option value="navy" style="color: navy; background-color: navy;">Navy</option>
+									<option value="purple" style="color: purple; background-color: purple;">Purple</option>
+									<option value="teal" style="color: teal; background-color: teal;">Teal</option>
+									<option value="gray" style="color: gray; background-color: gray;">Gray</option>
+									<option value="silver" style="color: silver; background-color: silver;">Silver</option>
+									<option value="red" style="color: red; background-color: red;">Red</option>
+									<option value="lime" style="color: lime; background-color: lime;">Lime</option>
+									<option value="yellow" style="color: yellow; background-color: yellow;">Yellow</option>
+									<option value="blue" style="color: blue; background-color: blue;">Blue</option>
+									<option value="fuchsia" style="color: fuchsia; background-color: fuchsia;">Fuchsia</option>
+									<option value="aqua" style="color: aqua; background-color: aqua;">Aqua</option>
+									<option value="white" style="color: white; background-color: white;">White</option>
+									<option value="" style="color: black; background-color: white;">Auto</option>
+								</SELECT>
+							</TD>
+						</TR>
+						<TR class="editor_usual">
+							<TD ALIGN="RIGHT" width="50">
+								Padding
+							</TD>
+							<TD width="40">
+								<INPUT class="editor_field" name="padding" style="width:42" value="1">
+							</TD>
+							<TD ALIGN="RIGHT" width="110">
+								Align
+							</TD>
+							<TD width="50">
+								<SELECT class="editor" name="align" style="width:60;font-size:10">
+									<OPTION value=""></OPTION>
+									<OPTION value="left">Left</OPTION>
+									<OPTION value="center">Center</OPTION>
+									<OPTION value="right">Right</OPTION>
+								</SELECT>
+							</TD>
+						</TR>
+					</TABLE>
+				</TD>
+			</TR>
+			<TR class="editor_usual">
+				<TD ALIGN="CENTER">
+					<input class="editor_submit" type="button" name="button" value=" Ok " onClick="action_insert();">&nbsp;
+					<input class="editor_submit" type="button" name="button" value=" Cancel " onClick="window.close();">
+				</TD>
+			</TR>
+			<tr class="editor_usual" height="10">
+				<td>
+				</td>
+			</tr>
+		</TABLE>
+	</form>
+</body>
+</html>

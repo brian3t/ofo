@@ -1,0 +1,121 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_RELEASE_CHANGES_MSG} ::..</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_items_list_href}">{PRODUCTS_MSG}</a>&nbsp;&gt;&nbsp;<!-- BEGIN tree --><a 
+			href="{admin_items_list_href}?category_id={tree_cat_id}">{tree_cat_name}</a>&nbsp;&gt;&nbsp;<!-- END tree --><a 
+			href="{admin_items_list_href}?category_id={tree_current_id}">{tree_current_name}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_product_href}?category_id={category_id}&item_id={item_id}">{item_name}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_releases_href}?category_id={category_id}&item_id={item_id}">{RELEASES_TITLE}</a>&nbsp;&gt;&nbsp;<b>{EDIT_RELEASE_CHANGES_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<form action="{admin_release_changes_href}" name="record" method="post">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="category_id" value="{category_id}">
+<input type="hidden" name="release_id" value="{release_id}">
+<input type="hidden" name="item_id" value="{item_id}">
+<input type="hidden" name="more_changes" value="0">
+<input type="hidden" name="number_changes" value="{number_changes}">
+
+<fieldset>
+<legend>{EDIT_RELEASE_CHANGES_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<table cellspacing="1" cellpadding="4" border="0" align="center" width="100%">
+<tr align="center" class="middle" valign="top">
+	<td>
+		&nbsp;#&nbsp;
+	</td>
+	<td class="small">
+		{ADMIN_SHOW_MSG}
+	</td>
+	<td class="small">
+		{TYPE_MSG} *
+	</td>
+	<td class="small">
+		{DATE_MSG} *<br>
+		({change_date_format})
+	</td>
+	<td class="small">
+		Change {DESCRIPTION_MSG}
+	</td>
+	<td class="small">
+		{DELETE_BUTTON}
+	</td>
+</tr><!-- begin changes --><!-- begin changes_errors -->
+<tr class="usual" align="center">
+	<td>&nbsp;</td>
+	<td colspan="4">
+		<div class="error">{errors_list}</div>
+	</td>
+	<td>&nbsp;</td>	
+</tr><!-- end changes_errors -->
+<tr class="usual" align="center" valign="top">
+	<td>
+		&nbsp;{row_number}&nbsp;
+		<input type="hidden" name="change_id_{changes_number}" value="{change_id}">
+		<input type="hidden" name="release_id_{changes_number}" value="{release_id}">
+	</td>
+	<td>
+		<input type="checkbox" name="is_showing_{changes_number}" {is_showing} value="1">
+	</td>
+	<td>
+		<select name="change_type_id_{changes_number}"><!-- begin change_type_id -->
+			<option {change_type_id_selected} value="{change_type_id_value}">{change_type_id_description}<!-- end change_type_id -->
+		</select>
+	</td>
+	<td>
+		<input type="text" name="change_date_{changes_number}" value="{change_date}" size="12" maxlength="20">
+	</td>
+	<td align="center">
+		<textarea cols="42" name="change_desc_{changes_number}">{change_desc}</textarea>
+	</td>
+	<td align="center">
+		<input type="checkbox" name="changes_delete_{changes_number}" {changes_delete} value="1">
+	</td>
+</tr><!-- end changes -->
+<tr class="usual">
+	<td>&nbsp;</td>
+	<td colspan="5" align="right">
+		{ADD_MORE_CHANGES_VALUES_QST} <input class="submit" type="submit" value={ADD_BUTTON} onClick="document.record.more_changes.value=1">&nbsp;
+	</td>
+<tr class="middle">
+	<td></td>
+	<td colspan="5">
+		<input class="submit" type="submit" value={UPDATE_BUTTON} onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{DELETE_ALL_BUTTON}" onCLick="document.record.operation.value='delete';return confirm('{DELETE_ALL_QST} {RELEASE_CHANGES_MSG}?');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value=" {CANCEL_BUTTON} " onCLick="document.record.operation.value='cancel'">&nbsp;
+	</td>
+</tr>
+
+</table>
+
+	</td>
+</tr>
+</table>
+</fieldset>
+</form>
+
+
+{admin_footer}
+</body>
+</html>

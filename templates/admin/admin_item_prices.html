@@ -1,0 +1,145 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {PRICES_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_items_list_href}">{PRODUCTS_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_product_href}?item_id={item_id}">{item_name}</a>&nbsp;&gt;&nbsp;<b>{PRICES_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{PRICES_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<form action="{admin_item_prices_href}" name="record" method="post">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="item_id" value="{item_id}">
+<input type="hidden" name="category_id" value="{category_id}">
+<input type="hidden" name="more_prices" value="0">
+<input type="hidden" name="number_prices" value="{number_prices}">
+<input type="hidden" name="rp" value="{rp}">
+<table border="0" cellpadding="4" cellspacing="1" align="center" width="100%">
+<tr class="middle" align="center">
+	<td>
+		#
+	</td>
+	<td>
+		{PROD_ACTIVE_MSG}
+	</td>
+	<td>
+		Min {PROD_QTY_COLUMN}
+	</td>
+	<td>
+		Max {PROD_QTY_COLUMN}
+	</td>
+	<td>
+		{INDIVIDUAL_PRICE_MSG}
+	</td>
+	<td>
+		{OPTIONS_MSG} {DISCOUNT_MSG} (%)
+	</td>
+	<td>
+		{USER_TYPE_MSG}
+	</td><!-- begin site_column -->
+	<td>
+		Site
+	</td><!-- end site_column -->
+	<td>
+		{DISCOUNT_MSG} {SETTINGS_MSG}
+	</td>
+	<td>
+		{DELETE_BUTTON}
+	</td>
+</tr>
+<!-- begin prices --><!-- begin prices_errors -->
+<tr class="usual" align="center">
+	<td>&nbsp;</td>
+	<td colspan="{error_colspan}">
+		<div class="error">{errors_list}</div>
+	</td>
+	<td>&nbsp;</td>	
+</tr><!-- end prices_errors -->
+<tr class="usual" valign="top" align="center">
+	<td>
+		&nbsp;{row_number}&nbsp;
+		<input type="hidden" name="price_id_{prices_number}" value="{price_id}">
+		<input type="hidden" name="item_id_{prices_number}" value="{item_id}">
+	</td>
+	<td>
+		<input type="checkbox" name="is_active_{prices_number}" {is_active} value="1"> 
+	</td>
+	<td >
+		<input class="field" size=6 type="text" name="min_quantity_{prices_number}" value="{min_quantity}"> 
+	</td>
+	<td >
+		<input class="field" size=6 type="text" name="max_quantity_{prices_number}" value="{max_quantity}"> 
+	</td>
+	<td >
+		<input class="field" size=10 type="text" name="price_{prices_number}" value="{price}" style="text-align:right;"> 
+	</td>
+	<td >
+		<input class="field" size=8 type="text" name="properties_discount_{prices_number}" value="{properties_discount}" style="text-align:right;"> 
+	</td>
+	<td>
+		<select name="user_type_id_{prices_number}"><!-- begin user_type_id -->
+			<option {user_type_id_selected} value="{user_type_id_value}">{user_type_id_description}<!-- end user_type_id -->
+		</select> 
+	</td>
+	<!--begin site_id_block--><td>
+		<select name="site_id_{prices_number}"><!-- begin site_id -->
+			<option {site_id_selected} value="{site_id_value}">{site_id_description}<!-- end site_id -->
+		</select> 
+	</td><!--end site_id_block-->
+	<td >
+		<select name="discount_action_{prices_number}"><!-- begin discount_action -->
+			<option {discount_action_selected} value="{discount_action_value}">{discount_action_description}<!-- end discount_action -->
+		</select> 
+	</td>
+	<td align="center">
+		<input type="checkbox" name="prices_delete_{prices_number}" {prices_delete} value="1">
+	</td>
+</tr><!-- END prices -->
+<tr class="usual">
+	<td colspan="{total_colspan}" align="right">
+		<table cellspacing="0" cellpadding="0" border="0" width="100%">
+		<tr>
+			<td>{INITIAL_PRICE_MSG}: <b>{initial_price}</b></td>
+			<td align="right">{ADD_MORE_PRICES_QST} <input class="submit" type="submit" value=" {ADD_BUTTON} " onClick="document.record.more_prices.value=1">&nbsp;</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="{total_colspan}" align="right">
+		<input class="submit" type="submit" value=" {UPDATE_BUTTON} " onCLick="document.record.operation.value='save'">&nbsp;
+		<input class="submit" type="submit" value="{DELETE_ALL_BUTTON}" onCLick="document.record.operation.value='delete';return confirm('{DELETE_ALL_QST} {SHIPPING_RULES_MSG}?');">&nbsp;
+		<input class="submit" type="submit" value=" {CANCEL_BUTTON} " onCLick="document.record.operation.value='cancel'">&nbsp;
+	</td>
+</tr>
+</table>	
+</form>
+
+	</td>
+</tr>
+</table>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

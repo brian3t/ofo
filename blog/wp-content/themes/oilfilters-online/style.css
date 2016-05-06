@@ -1,0 +1,2231 @@
+/* @override 
+	http://www.oilfiltersonline.com/styles/Oil_Filters_Online.css
+	http://oilfiltersonline.local/blog/wp-content/themes/oilfilters-online/style.css
+	http://ajcates-macbook.local/egghead/oilfiltersonline/blog/wp-content/themes/oilfilters-online/style.css
+	http://www.oilfiltersonline.com/blog/wp-content/themes/oilfilters-online/style.css
+*/
+
+/*
+Theme Name: Oilfilters Online
+Theme URI: http://oilfiltersonline.com/
+Description: A blog theme to match the Oilfilters Online site.
+Author: <a href="http://eggheadventures.com">Egghead Ventures</a> &amp; <a href="http://ajcates.com">ajcates</a>
+Version: 0.1
+Tags: Egghead Ventures, Oilfilters, Oilfilters Online
+*/
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+}
+html, body, form {
+	height: 100%;
+}
+body {
+	color: #2F2F2F;
+	background: #F0F0F0;
+	font-family: helvetica, arial, Sans-Serif;
+	font-size: 12px;
+	line-height: 1.5em;
+}
+article,aside,canvas,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section,summary { 
+    display:block;
+}
+
+nav ul {
+    list-style:none;
+}
+
+a {
+    margin:0;
+    padding:0;
+    border:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+	color:#005599;
+	outline: none;
+}
+a:hover {
+	text-decoration: none;
+}
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+
+input, select {
+	color: #000;
+	vertical-align: middle;
+}
+input {
+	padding: .25em;
+}
+/****** Main Table ******/
+#lilWayne {
+	width: 100%;
+	display: table;
+}
+#mainTable {
+	margin: auto;
+	background: #FFF;
+	position: relative;
+	z-index: 93;
+	padding: 1.5em;
+	
+	border-right: 250px solid #fff;
+	height: 1%;
+	position: relative;
+	
+	
+	
+}
+* html div#mainTable {
+	width: 950px;
+ width:expression(((document.compatMode &&  document.compatMode=='CSS1Compat') ?  document.documentElement.clientWidth : 
+ document.body.clientWidth) > 1218 ? "1200px" : 
+ (((document.compatMode && document.compatMode=='CSS1Compat') ?  document.documentElement.clientWidth : 
+ document.body.clientWidth) < 950 ? "950px" : "99.7%"));
+	
+}
+#mainTable:after {
+	content: '.';
+	display: block;
+	clear: both;
+	visibility: hidden;
+	height: 0;
+}
+.mainTableCellLeft {
+	float: left;
+	margin-right: 1.5em;
+	height: 100%;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	width: 230px;
+}
+.mainTableCellCenter {
+	width: 100%;
+	float: left;
+	overflow: hidden;
+	margin-right: -100%;
+}
+
+
+.mainTableCellRight {
+	float: right;
+	margin-right: -230px;
+	width: 230px;
+	position: relative;
+	background: #fff;
+	left: 24px;
+	border: 1px solid #ccc;
+	border-top: none;
+	background-color: #fafafa;
+	-webkit-box-shadow: inset 0px 0px 2px rgba(0,0,0, .3);
+	margin-top: 1em;
+}
+#bodyWrapper {
+	margin: 0 auto;
+	width: 950px;;
+	border-left: #ccc solid 1px;
+	border-right: #ccc solid 1px;
+}
+/****** Main Table ******/
+
+
+/****** Menu ******/
+
+#header {
+	margin-right: auto;
+	margin-bottom: auto;
+	margin-left: auto;
+	position: relative;
+	z-index: 99;
+	width: 100%;
+	background-color: #777;
+	background-image: url(http://www.oilfiltersonline.com/images/header_bg.png);
+	background-repeat: repeat-x;
+	
+}
+#headerCenter {
+	height: 100%;
+	min-width: 950px;
+	max-width: 950px;
+	width: 950px;
+	margin: auto;
+	position: relative;
+}
+* html div#headerCenter {
+	width: 950px;
+ width:expression(((document.compatMode &&  document.compatMode=='CSS1Compat') ?  document.documentElement.clientWidth : 
+ document.body.clientWidth) > 1218 ? "1200px" : 
+ (((document.compatMode && document.compatMode=='CSS1Compat') ?  document.documentElement.clientWidth : 
+ document.body.clientWidth) < 950 ? "950px" : "99.7%"));
+}
+#logoL {				/* Logo on the site (if logo is left)*/
+	margin-top: 1.5em;
+	margin-left: .5em;
+	margin-bottom: 1.5em;
+	float: left;
+}
+.topnav {
+	height:57px;
+	z-index: 94;
+	background: #000;
+	margin-top: 10px;
+}
+#search_top {
+	clear: both;
+	font-size: 1.5em;
+	color: #fff;
+	line-height: 2em;
+	padding-left: 10px;
+}
+#freeShipping {
+	float:left;
+	font-size:1.5em;
+	line-height:1em;
+	padding-left:2em;
+	padding-top:1.5em;
+	width:200px;
+}
+#freeShipping em {
+	color: #ff6600;
+	font-weight: bold;
+}
+#freeShipping a {
+	color: #fff;
+	text-decoration: none;
+}
+/* Navigation */
+#navigation {
+	background: #000;
+	min-width: 950px;
+	width: 980px;
+	padding: 0px;
+	margin: 0 auto;
+	height: 57px;
+}
+* html ul#navigation {
+	width: 950px;
+ width:expression(((document.compatMode &&  document.compatMode=='CSS1Compat') ?  document.documentElement.clientWidth : 
+ document.body.clientWidth) > 1218 ? "1200px" : 
+ (((document.compatMode && document.compatMode=='CSS1Compat') ?  document.documentElement.clientWidth : 
+ document.body.clientWidth) < 950 ? "950px" : "99.7%"));
+}
+#navigation li {
+	display: inline;
+	float: left;
+	margin-left: 1em;
+	margin-right: 1em;
+	width: 14%;
+}
+#navigation li span {
+	font-size: .5em;
+	text-align: left;
+	color: #aaa;
+	display: block;
+}
+#navigation li a {
+	display: block;
+	font-size: 1.9em;
+	text-align: left;
+	color: #fff;
+	text-decoration: none;
+	padding-top: .5em;
+}
+#navigation li a:hover {
+	color: #ff6600;
+	text-decoration: none;
+}
+#navigation li ul {
+	clear: left;
+	position: absolute;
+	display: none;
+	z-index: 999;
+	width: 200px;
+	margin-top: 0;
+	margin-left: 0;
+	background: #181818;
+	border: 1px solid #484848;
+	list-style: none;
+	padding: .5em 0;
+}
+#navigation li ul li ul {
+	position: relative;
+	color: #fff;
+	border: none;
+}
+#navigation li ul li ul li {
+	display: block;
+	line-height: 1.5em;
+	margin-bottom: 0.25em;
+	margin-left: 3em;
+	margin-top: 0.25em;
+}
+#navigation li li {
+	display: inline;
+	_display: block;
+	float: none;
+	_float: left;
+	margin: 0;
+	text-transform: none;
+	width: 200px;
+}
+#navigation ul li a {
+	margin-right: 0;
+	border: none;
+	background: none;
+	color: #e8e8e8;
+	display: block;
+	padding: .25em 1.5em;
+	text-align: left;
+	font-size: 1.5em;
+}
+#navigation ul li ul li a {
+	padding: 0;
+	font-size: 1em;
+}
+#navigation ul li a:hover {
+	margin-right: 0;
+	border: none;
+	background: none;
+	color: #ff6600;
+}
+#navigation li:hover ul {
+	display: block;
+}
+/************* Breadcrumb *******************/
+
+.breadcrumbs {
+	width: 647px;
+	font-size: 14px;
+	line-height: 1;
+	font-weight: normal;
+	
+	color: #000000;
+	margin: 1em 0;
+	background-color: #ccc;
+	background: #ddd;
+	-webkit-border-radius: 1px;
+	text-shadow: 0px 1px 0px rgba(255,255,255, .7);
+	-webkit-box-shadow: 0px 1px 2px rgba(0,0,0, .5);
+	border: 1px solid rgba(0,0,0, .1);
+	border-bottom: 1px solid rgba(255,255,255, .5);
+	padding: .5em;
+	line-height: 1;
+	
+}
+.block-checkout-breadcrumb .breadcrumbs {
+	font-size: 1.75em;
+}
+.breadcrumbs a {
+	text-decoration: none;
+}
+.breadcrumbs a:hover {
+	color: #FF6600;
+	text-decoration: none;
+}
+.breadcrumbs a.treeItemLast {
+	font-weight: bold;
+	text-decoration: none;
+}
+.breadcrumbs a.treeItemLast:hover {
+	color: #FF6600;
+	font-weight: bold;
+	text-decoration: none;
+}
+.block-checkout-breadcrumb {
+	margin-bottom: 1.5em;
+}
+.block-checkout-breadcrumb .active {
+	color: #ff6600;
+	font-weight: bold;
+}
+/************* Fieldset *******************/
+
+.titleTopCenter {
+	font-size: 26px;
+	margin: 6px 0;
+	margin-top: .5em;
+}
+.titleTopCenter a {
+	text-decoration: none;
+	color: #333;
+}
+/***************custom blocks********************/
+
+.block-cart {
+	display: none;
+}
+#cartContents {
+	background: #fff;
+	display: none;
+	padding: 1em;
+	position: absolute;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-o-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	right: 0;
+	top: 26px;
+}
+/************* end Fieldset ***************/
+
+/************* userHome *******************/
+td.userHome {
+	padding: 7px;
+}
+td.userHomeTitle {
+	white-space: nowrap;
+	background-image: url(http://www.oilfiltersonline.com/images/oil-filters/BlkHdrBg.jpg);
+}
+td.userHomeTitle b {
+	color: #000000;
+}
+div.userHomeBottom {
+	width: 100px;
+	display: block;
+	margin: 0px 0px 10px 0px;
+	padding: 0px 0px 0px 15px;
+	border: none;
+	background: url(http://www.oilfiltersonline.com/images/oil-filters/button-left.gif) no-repeat left center;
+	white-space: nowrap;
+}
+div.userHomeBottom a {
+	display: block;
+	color:#FFFFFF;
+	text-decoration:none;
+	background: url(http://www.oilfiltersonline.com/images/oil-filters/button-right.gif) no-repeat right center;
+	padding: 5px 20px 7px 5px;
+	text-align: center;
+	font-weight: bold;
+}
+div.userHomeBottom a:hover {
+	color:#FFFFFF;
+	text-decoration:none;
+	font-weight: bold;
+}
+td.userHome img.orders {
+	background: url(http://www.oilfiltersonline.com/images/icons/admin_orders_d.png) no-repeat;
+	width: 50px;
+	height: 50px;
+	border:0px;
+	float: left;
+}
+td.userHome img.profile {
+	background: url(http://www.oilfiltersonline.com/images/icons/admin_profile_d.png) no-repeat;
+	width: 50px;
+	height: 50px;
+	border:0px;
+	float: left;
+}
+td.userHome img.arr {
+	background: url(http://www.oilfiltersonline.com/images/icons/arr.gif) no-repeat;
+	width: 15px;
+	height: 16px;
+	border:0px;
+	margin: 0px 5px 0px 55px;
+}
+td.userHome img.support {
+	background: url(http://www.oilfiltersonline.com/images/icons/admin_support_d.png) no-repeat;
+	width: 50px;
+	height: 50px;
+	border:0px;
+	float: left;
+}
+td.userHome img.forum {
+	background: url(http://www.oilfiltersonline.com/images/icons/admin_forum_d.png) no-repeat;
+	width: 50px;
+	height: 50px;
+	border:0px;
+	float: left;
+}
+td.userHome img.products {
+	background: url(http://www.oilfiltersonline.com/images/icons/admin_products_d.png) no-repeat;
+	width: 50px;
+	height: 50px;
+	border:0px;
+	float: left;
+}
+td.userHome img.pages {
+	background: url(http://www.oilfiltersonline.com/images/icons/admin_pages_d.png) no-repeat;
+	width: 50px;
+	height: 50px;
+	border:0px;
+	float: left;
+}
+td.userHome img.salesorders {
+	background: url(http://www.oilfiltersonline.com/images/icons/admin_salesorders_d.png) no-repeat;
+	width: 50px;
+	height: 50px;
+	border:0px;
+	float: left;
+}
+td.userHome img.merchant {
+	background: url(http://www.oilfiltersonline.com/images/icons/admin_merchant_d.png) no-repeat;
+	width: 50px;
+	height: 50px;
+	border:0px;
+	float: left;
+}
+td.userHome img.affiliates {
+	background: url(http://www.oilfiltersonline.com/images/icons/admin_affiliates_d.png) no-repeat;
+	width: 50px;
+	height: 50px;
+	border:0px;
+	float: left;
+}
+td.userHome img.payments {
+	background: url(http://www.oilfiltersonline.com/images/icons/admin_payments_d.png) no-repeat;
+	width: 50px;
+	height: 50px;
+	border:0px;
+	float: left;
+}
+td.userHome img.carts {
+	background: url(http://www.oilfiltersonline.com/images/icons/admin_carts_d.png) no-repeat;
+	width: 50px;
+	height: 50px;
+	border:0px;
+	float: left;
+}
+td.userHome img.wishlist {
+	background: url(http://www.oilfiltersonline.com/images/icons/admin_wishlist_d.png) no-repeat;
+	width: 50px;
+	height: 50px;
+	border:0px;
+	float: left;
+}
+td.userHome img.reminders {
+	background: url(http://www.oilfiltersonline.com/images/icons/admin_reminders_d.png) no-repeat;
+	width: 50px;
+	height: 50px;
+	border:0px;
+	float: left;
+}
+td.userHome div {
+	margin: 0px 0px 0px 50px;
+}
+/************* userHome *******************/
+/*****************************************************************************/
+
+/************* Button Links *******************/
+
+input.button {
+	cursor: pointer;
+	vertical-align: middle;
+}
+.fixed {
+	width: 100px;
+	display: inline-block;
+	text-align: center;
+}
+.fixed100 {
+	display:inline-block;
+	text-align:center;
+	width:100px;
+}
+a.button img, a.buttonBasket img, a.buttonCart img, a.buttonMore img {
+	display: none;
+}
+a.buttonMore:link, a.buttonMore:visited {
+	text-decoration: none;
+	white-space: nowrap;
+	position: absolute;
+	right: 1em;
+	bottom: 1em;
+	font-weight: bold;
+}
+a.buttonMore:hover, a.buttonMore:active {
+	text-decoration: underline;
+}
+a.disabled {							/* disabled add to cart */
+	color: #666;
+	cursor: pointer;
+	text-decoration:none;
+	border: 1px solid gray;
+	background: silver;
+	padding: 0 .25em;
+}
+a.disabled:hover {
+	color: #666;
+	cursor: pointer;
+	text-decoration:none;
+}
+.block-search, .block-description, .block-products-list, .block-products-breadcrumb, .block-simple, .block-userhome-breadcrumb, .block-forum-breadcrumb, .block-basket {
+	margin-bottom: 1em;
+}
+
+/************* Button Links *******************/
+
+/************* Category *******************/
+#categories .topCategory {
+	background: transparent;
+}
+#categories .topCategory a.title {
+	font-size: 14px;
+	color: #444;
+	padding: .5em;
+	background: #ddd;
+	text-shadow: 0px 1px 0px rgba(255,255,255, .7);
+	-webkit-box-shadow: 0px 1px 2px rgba(0,0,0, .5);
+	border: 1px solid rgba(0,0,0, .1);
+	border-bottom: 1px solid rgba(255,255,255, .5);
+	padding: .5em;
+	line-height: 1;
+}
+#categories .topCategory a.title:hover {
+	color: #000000;
+}
+#categories .selectedtopCategory {
+	background-image:-moz-linear-gradient(center top , rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0));
+	display:inline-block;
+	width:100%;
+	position: relative;
+	left: -3px;
+	border:3px solid #005599;
+}
+#categories .subCategory {
+	background: transparent;
+
+}
+#categories li.level2 a {
+	margin-left: 1.5em;
+}
+#categories li.level3 a {
+	margin-left: 2em;
+}
+#categories .subCategory a.title {
+	font-weight: normal;
+	font-size: 1em;
+	background-image: none;
+}
+#categories .subCategory a.title:hover {
+	font-weight: normal;
+}
+.ui-accordion .ui-accordion-header .ui-icon {
+	left:0.5em;
+	top:50%;
+	float: left;
+}
+.ui-state-active .ui-icon {
+	background-image:url("http://www.oilfiltersonline.com/images/ui_icons.png");
+}
+.ui-icon-triangle-1-s {
+	background-position:-64px -16px;
+}
+.ui-icon {
+	background-image:url("http://www.oilfiltersonline.com/images/ui_icons.png");
+	height:16px;
+	width:16px;
+}
+.ui-icon {
+	background-repeat:no-repeat;
+	display:block;
+	overflow:hidden;
+	text-indent:-99999px;
+}
+.ui-icon-triangle-1-e {
+	background-position:-32px -16px;
+}
+#categories li.selectedsubCategory {
+	background-color:#C0D0D9;
+	background-image:none;
+	border:3px solid #005599;
+	left:-3px;
+	margin:0;
+	padding:0;
+	position:relative;
+	width:100%;
+}
+#categories li.selectedsubCategory a.title {
+	background-image: none;
+}
+.topCategory .category_img, .subCategory .category_img, .selectedtopCategory .category_img, .selectedsubCategory .category_img {
+	margin: 0px 0px 0px 5px;
+}
+#categories {
+	width: 230px;
+}
+#categories li {
+	list-style: none;
+	list-style-image: none;
+}
+#categories li.topCategory {
+	display: inline-block;
+	width: 100%;
+	
+}
+#categories li.subCategory {
+    list-style: none;
+	border-bottom: 1px solid #CCC;
+}
+#categories li.subCategory:last-child {
+	border-bottom: none;
+}
+#categories a {
+	padding-bottom:0.25em;
+	padding-left:0.5em;
+	padding-top:0.25em;
+	display: block;
+	text-decoration: none;
+}
+
+.mainTableCellRight .widget-area {
+
+}
+
+.widget-container {
+	list-style: none;
+	padding-bottom: .5em;
+}
+
+.widget-container .widget-title {
+	font-size: 14px;
+	color: #444;
+	padding: .5em;
+	background: #ddd;
+	text-shadow: 0px 1px 0px rgba(255,255,255, .7);
+	-webkit-box-shadow: 0px 1px 2px rgba(0,0,0, .5);
+	border: 1px solid rgba(0,0,0, .1);
+	border-bottom: 1px solid rgba(255,255,255, .5);
+	padding: .5em;
+	line-height: 1;
+}
+.widget-container ul {
+	list-style: disc;
+}
+.widget-container ul li {
+	padding: .25em 0 .25em .5em;
+	list-style-position: inside;
+	list-style: disc;
+	list-style-position: inside;
+	border-bottom: 1px solid #CCC;	
+	
+}
+.widget-container ul li:last-child {
+	border-bottom: none;
+}
+
+.widget-container.widget_tag_cloud {
+	line-height: 1;
+}
+.widget-container.widget_tag_cloud div {
+	padding: .5em;
+}
+
+/************* Category *******************/
+
+/************* Latest *******************/
+td.topArticle {
+	padding: .25em 25em 25em 0px;
+}
+td.subArticle {
+	padding: 25em 25em 25em 0px;
+}
+a.subArticle {
+	padding-left: .5em;
+	background: url(http://www.oilfiltersonline.com/images/bullet.gif) no-repeat left 3px;
+}
+/************* Latest *******************/
+
+/************* Offers *******************/
+
+.offerTitle {
+	display: none;
+}
+.offerTd {
+	text-align: left;
+}
+.offerTd a.bigtitle {
+	display: none;
+}
+.offerTd img.offerImg {
+	float: left;
+	margin: 0px 5px 0px 0px;
+}
+.offerTd div {
+	color: #000000;
+}
+.offerTd div.offerText {
+	text-align: justify;
+	color: #000000;
+}
+.offerTd div.offerPrice {
+	color: #ec6b4b;
+}
+.offerTd div.salesBlock {
+	color:green;
+}
+/************* Forum *******************/
+
+.forumAdmin {
+	color: blue;
+	font-weight: bold;
+}
+.forumUser {
+	color: black;
+	font-weight: bold;
+}
+.forumGuest {
+	color: black;
+	font-weight: bold;
+	font-style: italic;
+}
+.forumMessageLeft {
+	background-color: #FF9900;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #000000;
+	border-bottom-color: #000000;
+	border-left-color: #000000;
+}
+.forumMessageRight {
+	border: 1px solid #000000;
+}
+.forumMessageTop {
+	background-color: #CCCCCC;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #000000;
+}
+/*****************************************************************************/
+
+/************* Footer *******************/
+
+#footer {
+	margin: auto;
+	clear: both;
+	background:#000;
+	color: #fff;
+	padding: 1.5em;
+	line-height: 2em;
+	width: 100%;
+	float: left;
+}
+#footerCenter {
+	max-width:1200px;
+	min-width:950px;
+	margin: auto;
+}
+#footerCenter ul {
+	float:left;
+	list-style:none outside none;
+	margin-right:1.5em;
+}
+ul#footer-nav {
+	margin-right: 5em;
+	font-weight: bold;
+}
+#manufacturersCat .level2{
+	display: none;
+}
+#footer .topCategory a, #footer .topCategory {
+	font-size:1.2em;
+	font-weight:bold;
+	color: #ff6600;
+}
+* html div#footerCenter {
+	width: 950px;
+ width:expression(((document.compatMode &&  document.compatMode=='CSS1Compat') ?  document.documentElement.clientWidth : 
+ document.body.clientWidth) > 1218 ? "1200px" : 
+ (((document.compatMode && document.compatMode=='CSS1Compat') ?  document.documentElement.clientWidth : 
+ document.body.clientWidth) < 950 ? "950px" : "99.7%"));
+}
+#footer a {
+	color: #fff;
+	text-decoration: none;
+}
+#footer-nav a{
+	font-size: 1.25em;
+}
+/************* Footer *******************/
+
+.errorbg {
+	background: #FF0000;
+	font-size: 1.5em;
+	line-height: 2.5em;
+}
+body.editor {
+	background: #ACACAC;
+}
+tr.middlebg {
+	background-color: #CCCCCC;
+}
+tr.error, td.error {
+	background-color: #FFE0E0;
+	color: #d50000;
+	font-weight: bold;
+}
+td.padding10px {
+	padding: 2px;
+}
+table.padding6px td {
+	padding: 3px;
+}
+table.padding6px td td {
+	padding: 0px;
+}
+table.padding4px td {
+	padding: 4px;
+}
+table.padding4px td td {
+	padding: 0px;
+}
+table.paddingReviews td {
+	padding: 0px 11px;
+}
+table.paddingReviews td td {
+	padding: 0px;
+}
+table.paddingRev5px td {
+	padding: 5px 11px;
+}
+table.paddingRev3px td {
+	padding: 3px 3px 3px 11px;
+}
+a.tab {
+	background: #ccc;
+	font-weight: bold;
+	padding: 0.25em 0.5em;
+	text-decoration: none;
+	border-top: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+}
+a.tab:hover {
+	font-weight: bold;
+	text-decoration: none;
+	background: #ddd;
+}
+a.tabActive {
+	background: #fff;
+	border-left:1px solid #CCCCCC;
+	border-right:1px solid #CCCCCC;
+	border-top:1px solid #CCCCCC;
+	border-bottom: 1px solid #fff;
+	font-weight:bold;
+	padding:0.4em 0.5em;
+}
+div.adminTab {
+	font: 11px;
+	border: 1px solid #FAA928;
+	border-bottom: none;
+	padding: 3px 8px 2px 8px;
+	margin: 0px 2px;
+	cursor: pointer;
+	background: none;
+	white-space: nowrap;
+}
+div.adminTabActive {
+	font: bold 11px;
+	border: 1px solid #FAA928;
+	border-top: 2px solid #FAA928;
+	border-bottom: none;
+	padding: 5px 9px 5px 9px;
+	margin: 3px 0px 0px 0px;
+	white-space: nowrap;
+}
+td.adminTab {
+	border-bottom: 1px solid #FAA928;
+	vertical-align: bottom;
+}
+td.adminTabActive {
+	border: none;
+}
+td.beginTab {
+	padding: 0px 4px;
+	border-bottom: 1px solid #FAA928;
+}
+td.endTab {
+	padding: 0px 4px;
+	width: 90%;
+	border-bottom: 1px solid #FAA928;
+}
+input.usualprice {
+	background: transparent;
+	border: none;
+	text-align: right;
+}
+input.orderprice {
+	background: transparent;
+	border: none;
+	text-align: right;
+	font-weight: bold;
+}
+select.field {
+	vertical-align: middle;
+}
+a.header {
+	color: #ffffff;
+	text-decoration: underline;
+}
+a.header:hover {
+	color: #FAF7AA;
+	text-decoration: underline;
+}
+a.smallText {
+	color: #000;
+}
+a.smallText:hover {
+	color: #000;
+	text-decoration: none;
+}
+a.bigtitle, a.title {
+	padding: 0.5em 0.5em 0.5em 1em;
+	display: block;
+	color: #000;
+	text-decoration: none;
+}
+a.bigtitle:hover, a.title:hover {
+	text-decoration: underline;
+}
+/* prices styles */
+.priceBlock {
+	font-weight: bold;
+	font-size: 1.5em;
+	margin-bottom: 0.25em;
+	margin-top: 0.5em;
+}
+#productPricing .priceBlock {
+	margin-top: 0;
+}
+.priceBlock .price {
+	font-weight: bold;
+}
+.priceBlockOld {
+	text-decoration: line-through;
+}
+.salesBlock {
+	font-weight: bold;
+	font-size: 1.5em;
+}
+.salesPrice {
+	font-weight: bold;
+}
+.salesTax {
+	font-weight: normal;
+}
+.priceSaveBlock {
+	color: green;
+	font-weight: bold;
+}
+.priceSaveBlock .price {
+	font-weight: bold;
+}
+.priceSaveBlock .percent {
+	font-weight: normal;
+}
+/* prices styles */
+.titleText {
+	color: #000;
+	text-decoration: underline;
+}
+.articleDate {
+	color: #6e1900;
+	font-style: italic;
+}
+.comment {
+	color: #343434;
+}
+.message {
+	color: #0000FF;
+}
+.title {
+	font-size:1.2em;
+	font-weight:bold;
+}
+.bigTitle, .bigtitle {
+	font-size: 1.2em;
+}
+.error {
+	color: #d50000;
+}
+.terms {
+	height: 300px;
+	width: 600px;
+	overflow: auto;
+	border: 1px solid silver;
+}
+/*************  Left Menu  ***************/
+table.matrix {
+	border: 1px solid gray;
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+th.matrixTop {
+	padding-left: 5px;
+	padding-right: 5px;
+	border-bottom: 1px solid silver;
+}
+th.matrixBottom {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+td.matrixTop {
+	border-bottom: 1px solid silver;
+	border-left: 1px solid silver;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+td.matrixBottom {
+	border-left: 1px solid silver;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+#signupbutton {
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+.buynowbutton {
+	padding-left: 35px;
+	padding-bottom: 5px;
+}
+.mainbodybtn {
+	margin-left: 150px;
+	margin-bottom: 160px;
+	padding: 10px 10px 10px 10px;
+}
+.profilepageheader {
+	background-image: url(http://www.oilfiltersonline.com/images/oil-filters/BlkHdrBg.jpg);
+	height: 37px;
+	width: 500px;
+	padding-left: 15px;
+	background-repeat: no-repeat;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-align: left;
+}
+h1 {
+	font-size: 1.3em;
+	font-weight: bold;
+}
+.titleTopCenter h1 {
+	color:#FFFFFF;
+	font-size: 1em;
+}
+.messagebg {
+	font-weight: bold;
+	color: #0000FF;
+}
+ul.tabs {
+	list-style-image:none;
+	list-style-position:outside;
+	list-style-type:none;
+	margin:0;
+	padding:0;
+	outline-style:none;
+	outline-width:medium;
+}
+.titleBar {
+	color:#FFFFFF;
+	font-weight:bold;
+	background:#999999;
+	padding:.25em;
+	margin-top: 1em;
+}
+.subTitleBar {
+	padding:.25em;
+	background:#cccccc;
+	font-weight:bold;
+}
+.applications td {
+	padding-right:1em;
+}
+#home-header {
+	height: 235px;
+	background-image: url(/images/oil-filters/find-your-parts-arrow2.jpg);
+	background-repeat: no-repeat;
+	padding-left: 6em;
+}
+#home-header p {
+	font-weight: normal;
+	font-size: 1.5em;
+	margin: 0;
+	padding: 0;
+}
+#home-header img {
+	position: absolute;
+	right: 0;
+}
+#home-header div {
+	margin-top: 1em;
+	position: relative;
+	float: left;
+	z-index: 5;
+	width: 50%;
+}
+#home-header span.fast {
+	line-height: 1em;
+	font-weight: normal;
+}
+#home-header h1 {
+	margin-top: .5em;
+	margin-bottom: .5em;
+	font-size: 2.2em;
+	line-height: 1em;
+}
+#home-header em {
+	color: #FF6600;
+}
+#home-header ul {
+	margin-top: .5em;
+	padding-left: 1em;
+}
+#manufacturers li {
+	float: left;
+	display: inline;
+	list-style-type: none;
+	padding-left: 1em;
+}
+.manufacturers, .categories {
+	margin:1em;
+	text-align:left;
+	float: left;
+}
+.manufacturers li, .categories li {
+	list-style-image: none;
+	list-style-type:none;
+	cursor: pointer;
+	padding-right: 1.5em;
+	float: left;
+	color: #005599;
+	font-size: 1.25em;
+	display: block;
+	text-align: center;
+	height: 175px;
+}
+.manufacturers li a, .categories li a {
+	display: block;
+	text-decoration: none;
+	width: 125px;
+}
+.manufacturers li img, .categories li img {
+	display: block;
+	margin: auto;
+	padding-bottom: .5em;
+	padding-top: .5em;
+}
+#corner-nav {
+	list-style-image: none;
+	margin-top: 1.5em;
+	list-style: none;
+	margin-bottom: 0;
+	position: absolute;
+	right: 1em;
+}
+#corner-nav li {
+	margin-bottom: 1em;
+}
+#part-finder {
+	position:relative;
+}
+#desc_data, #reviews_data, #willfit_data, #spec_data {
+	clear: both;
+	padding: 1em;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: none;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-right-color: #ccc;
+	border-bottom-color: #ccc;
+	border-left-color: #ccc;
+}
+#desc_data ul {
+	padding-top: 1em;
+	padding-bottom: 1em;
+	padding-left: 1.5em;
+}
+#desc_data p {
+}
+#desc_data h3 {
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+#productImages {
+	float: left;
+	margin: 2em;
+}
+#productPricing {
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-khtml-border-radius: 10px;
+	-o-border-radius: 10px;
+	border-radius: 4px;
+	background-color:#C3D2EA;
+	border:3px solid #005599;
+	float:right;
+	font-size:1em;
+	margin:1.5em;
+	padding:1.5em;
+	line-height: 1.7em;
+	-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  	-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.columnTitles {
+	font-weight: bold;
+}
+#noProducts {
+	width: 100%;
+	font-size: 1.5em;
+	text-align: center;
+}
+.listImage {
+	float: left;
+	margin: 1em 1.5em 0 0;
+	padding:1em;
+	height: 70px;
+}
+.cart-button {
+	vertical-align: middle;
+	margin: .25em;
+}
+.cart-button select {
+	vertical-align: middle;
+}
+.wrapper {
+	list-style: inside;
+	position: relative;
+}
+.post {
+	font-size: 1.2em;
+	margin-top: 12px;
+	padding-bottom: 12px;
+}
+.post.summary {
+	font-size: 1.1em;
+}
+.post.summary p {
+	margin: .5em 0;
+}
+
+
+.post p {
+	line-height: 1.6em;
+	margin: 1em 0;
+}
+.post ul, .post ol {
+	list-style-position: outside;
+	margin-left: 1.5em;
+}
+.post ul li, .post ol li {
+	margin: .5em 0;
+}
+.post .entry-title {
+	font-size: 28px;
+	line-height: 1;
+}
+.titleTopCenter {
+	float: left;
+	width: 100%;
+}
+.titleTopCenter .navigator {
+	clear: both;
+}
+.titleTopCenter .navigator span.user{
+}
+.titleTopCenter .entry-title {
+	margin: 12px 0;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: .25em;
+}
+
+.post h1 {
+	
+}
+.post h2 {
+	margin: 12px 0;
+	font-size: 18px;
+}
+
+.post h3 {
+	margin: 6px 0;
+}
+.post object {
+	width: 100%;
+}
+.post div.post-thumbnail {
+	height: 108px;
+	overflow: hidden;
+	text-align: center;
+	position: relative;
+	width: 664px;
+}
+.post div.post-thumbnail img {
+	height: auto;
+	width: 100%;
+	min-width: 664px;
+	min-height: 108px;
+	margin-top: -13.5px;
+}
+.post .alignright {
+	float: right;
+	margin-left: 1em;
+	margin-top: .5em;
+}
+.post .alignleft {
+	float: left;
+	margin-right: 1em;
+	margin-top: .5em;
+}
+
+.block-products-list .wrapper, .block-offers .wrapper, .block-related-products .wrapper, .block-basket-recommended .wrapper {
+	margin-top: 0;
+	margin-right: .5em;
+	margin-left: .5em;
+	margin-bottom: 1em;
+	padding-bottom: 1em;
+	border: 1px solid #ccc;
+	background: transparent url(/images/item_grad_03.jpg) repeat-x scroll center bottom;
+	line-height: 1.7em;
+}
+h2.listing {
+	background-color: #ccc;
+	margin: 0;
+}
+.searchFindings {
+	font-size: 1.5em;
+	padding: 1em;
+}
+.manufacturerImage {
+	text-align: center;
+	padding-bottom: 1em;
+}
+ul#productTabs {
+	clear: both;
+	text-align: left;
+	border-bottom: 1px solid #ccc;
+	list-style-type: none;
+	padding: 0.25em 0.5em 0.25em 0;
+	line-height: 1.4em;
+}
+ul#productTabs li {
+	display: inline;
+}
+ul#productTabs li a {
+	position: relative;
+	top: 1px;
+	border: 1px solid #ccc;
+	margin-right: 0px;
+	text-decoration: none;
+	border-bottom: none;
+}
+ul#productTabs a:hover {
+	background: #ddd;
+}
+#applications {
+	height:400px;
+	overflow:auto;
+	border:1px solid #999;
+}
+#willfit_data {
+	display: none;
+}
+.right {
+	float: right;
+}
+.left {
+	float: left;
+}
+.textRight {
+	text-align: right;
+}
+.textCenter {
+	text-align: center;
+}
+.navigator {
+	color: #666;
+	font-size: 12px;
+	margin: 0px;
+	padding: 0px;
+	margin-top: -.5em;
+}
+.basket {
+	border: 1px solid #BEBCB7;
+	margin: 1em;
+}
+.basket td {
+	border-right: 1px solid #D9DDE3;
+	padding-left: 1em;
+	padding-right: 1em;
+	padding-top: .5em;
+	padding-bottom: .5em;
+	vertical-align:middle;
+}
+.basket tr.usualbg {
+	background: #F8F7F5;
+}
+.basket tr.middlebg {
+	background-color: #C0D0D9;
+}
+.emptyCart {
+	text-align: center;
+	font-size: 1.5em;
+	margin: 1em;
+}
+.subTotal {
+	float:right;
+	font-weight: bold;
+}
+label {
+	font-weight: bold;
+	color: #666666;
+}
+.block-checkout-login label {
+	margin-left: .5em;
+}
+.required {
+	color: #EB340A;
+}
+.clear {
+	clear: both;
+}
+center {
+	display: none;
+}
+#oilFilterContent .content {
+	overflow: hidden;
+	height: auto;
+	border: 1px solid #CCCCCC;
+}
+#oilFilterContent .content .textArea {
+	width: 520px;
+	float: left;
+	padding: 1.5em 0 1.5em 1.5em;
+}
+#oilFilterContent .content .textArea .cornerImage {
+	float: left;
+	margin-right: 1.5em;
+}
+#oilFilterContent .content .textArea h1 {
+	color: #ff6600;
+	font-style: italic;
+	padding-bottom: 1em;
+}
+#oilFilterContent .content .textArea h2 {
+	color:#FF6600;
+	font-size:1.5em;
+	font-style:italic;
+	margin-bottom:1em;
+	margin-top:1em;
+}
+#oilFilterContent .content .textArea ul li {
+	margin: 0 1.5em;
+	padding: 0;
+}
+#oilFilterContent .content .textArea .firstBox {
+	float: left;
+	width: 290px;
+	margin: 0;
+	padding: 0;
+}
+#oilFilterContent .content .textArea .secondBox {
+	clear: left;
+	margin: 0;
+	padding: 1.5em 0;
+}
+#oilFilterContent .content .flashContent {
+	float: right;
+	padding: 1em 1em;
+}
+#disclaimer {
+	font-size: .9em;
+}
+/***** Rating iamges *****/
+.neutral {
+	display: none;
+}
+.commend {
+	background: url(http://www.oilfiltersonline.com/images/icons/commend.png) no-repeat;
+	width: 20px;
+	height: 20px;
+	border:0px;
+}
+* html .commend {
+	background-image: none !important;
+ filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=images/icons/commend.png, sizingMethod=crop);
+}
+.discommend {
+	background: url(http://www.oilfiltersonline.com/images/icons/discommend.png) no-repeat;
+	width: 20px;
+	height: 20px;
+	border:0px;
+}
+* html .discommend {
+	background-image: none !important;
+ filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=images/icons/discommend.png, sizingMethod=crop);
+}
+.not-rated {
+	background: url(http://www.oilfiltersonline.com/images/icons/not-rated.png) no-repeat;
+	width: 97px;
+	height: 18px;
+	border:0px;
+}
+* html .not-rated {
+	background-image: none !important;
+ filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=images/icons/not-rated.png, sizingMethod=crop);
+}
+.rating-1 {
+	background: url(http://www.oilfiltersonline.com/images/icons/rating-1.png) no-repeat;
+	width: 97px;
+	height: 18px;
+	border:0px;
+}
+* html .rating-1 {
+	background-image: none !important;
+ filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=images/icons/rating-1.png, sizingMethod=crop);
+}
+.rating-2 {
+	background: url(http://www.oilfiltersonline.com/images/icons/rating-2.png) no-repeat;
+	width: 97px;
+	height: 18px;
+	border:0px;
+}
+* html .rating-2 {
+	background-image: none !important;
+ filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=images/icons/rating-2.png, sizingMethod=crop);
+}
+.rating-3 {
+	background: url(http://www.oilfiltersonline.com/images/icons/rating-3.png) no-repeat;
+	width: 97px;
+	height: 18px;
+	border:0px;
+}
+* html .rating-3 {
+	background-image: none !important;
+ filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=images/icons/rating-3.png, sizingMethod=crop);
+}
+.rating-4 {
+	background: url(http://www.oilfiltersonline.com/images/icons/rating-4.png) no-repeat;
+	width: 97px;
+	height: 18px;
+	border:0px;
+}
+* html .rating-4 {
+	background-image: none !important;
+ filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=images/icons/rating-4.png, sizingMethod=crop);
+}
+.rating-5 {
+	background: url(http://www.oilfiltersonline.com/images/icons/rating-5.png) no-repeat;
+	width: 97px;
+	height: 18px;
+	border:0px;
+}
+* html .rating-5 {
+	background-image: none !important;
+ filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=images/icons/rating-5.png, sizingMethod=crop);
+}
+/***** Rating iamges *****/
+
+.button {
+	background-image: -moz-linear-gradient(top, rgba(255, 255, 255, .4), rgba(255, 255, 255, 0));
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 255, 255, .4)), to(rgba(255, 255, 255, 0)));
+ 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorStr='#fb821f', EndColorStr='#f05407');
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#fb821f', EndColorStr='#f05407')";
+	color: #fff;
+	font-weight: bold;
+	text-decoration: none;
+	padding: 0.25em 0.5em;
+	background-color: #ff4e00;
+	display: inline-block;
+	text-align:center;
+	text-shadow:0 1px 0 rgba(0, 0, 0, 0.7);
+	white-space:nowrap;
+	border: 1px solid #ccc;
+	border-right: 1px solid rgba(255, 255, 255, .3);
+	border-left: 1px solid rgba(255, 255, 255, .3);
+	border-top: 1px solid rgba(255, 255, 255, .6);
+	border-bottom: 1px solid rgba(0, 0, 0, .4);
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	-o-border-radius: 4px;
+	border-radius: 4px;
+	-moz-box-shadow: 0px 1px 0px rgba(255, 255, 255, .3);
+	-khtml-box-shadow: 0px 1px 0px rgba(255, 255, 255, .3);
+	-o-box-shadow: 0px 1px 0px rgba(255, 255, 255, .3);
+	-webkit-box-shadow: 0px 1px 0px rgba(255, 255, 255, .3);
+ 	-webkit-transition: background-color .185s linear;
+ 	-moz-transition: background-color .185s linear;
+	vertical-align: middle;
+	cursor: pointer;
+}
+.button:hover {
+	background-color: #ff6000;
+}
+.button:active {
+	color: rgba(255, 255, 255, .9);
+	background-color: #ff3c00;
+	-webkit-box-shadow:  0px 1px 0px rgba(255, 255, 255, .3),  inset 0px 1px 8px rgba(0, 0, 0, .7);
+	-moz-box-shadow:  0px 1px 0px rgba(255, 255, 255, .3),  inset 0px 1px 8px rgba(0, 0, 0, .7);
+	-khtml-box-shadow:  0px 1px 0px rgba(255, 255, 255, .3),  inset 0px 1px 8px rgba(0, 0, 0, .7);
+	-o-box-shadow:  0px 1px 0px rgba(255, 255, 255, .3),  inset 0px 1px 8px rgba(0, 0, 0, .7);
+ 	-webkit-transition: background-color .0s linear;
+ 	-moz-transition: background-color .0s linear;
+	background-image: -moz-linear-gradient(top, rgba(100, 100, 100, .4), rgba(255, 255, 255, .3)); /* FF3.6 */
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(75, 75, 75, .4)), to(rgba(255, 255, 255, .3)));
+ 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorStr='#664B4B4B', EndColorStr='#4CFFFFFF'); /* IE6,IE7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#664B4B4B',EndColorStr='#4CFFFFFF')"; /* IE8 */
+}
+#special-offers ol,  #special-offers ul{
+	padding: 1.5em;
+}
+#special-offers .bigTitle {
+	font-size: 1.5em;
+	text-align: center;
+	padding: 1em;
+}
+.center {
+	text-align: center;
+}
+
+/*************** FILTER FINDER **********************/
+.FRAM {
+	font-weight: bold;
+	font-style: italic;
+	color: #FF6600;
+}
+#vehicleSelector h2, #crossReference h2 {
+	text-align: center;
+	font-size: 1.5em;
+}
+#vehicleSelector, #crossReference {
+	background-color: #c3d2ea;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-khtml-border-radius: 10px;
+	-o-border-radius: 10px;
+	border-radius: 10px;
+	text-align: center;
+	display: inline-block;
+	position: relative;
+	border: 3px solid #005599;
+	padding:1em;
+	z-index: 5;
+}
+#vehicleSelector {
+	margin-bottom:1.5em;
+	width:200px;
+	-moz-box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.5);
+  	-webkit-box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.5);
+}
+.application .button {
+	padding: 0;
+	font-size: .75em;
+	margin-left: .5em;
+	vertical-align: middle;
+}
+#crossReferenceSubmit {
+	width: 100%;
+}
+#partnum {
+	margin-bottom: .5em;
+	margin-top: 0.5em;
+}
+.Autolite {
+	font-weight: bold;
+	color: #FF6600;
+}
+.finder_header_row {
+	font-size: 1.5em;
+	text-align: left;
+	padding: .5em;
+	background-color:#666;
+	border-bottom: 1px solid #ccc;
+	clear: both;
+	color: #fff;
+	height: 1em;
+}
+.finder_row {
+	text-align: left;
+}
+.finder_row td {
+	padding: .5em;
+}
+.finder_row .preview {
+	width: 30px;
+	float: none;
+	vertical-align: middle;
+}
+.finder_row a {
+	font-size: 1.5em;
+}
+.even {
+	background-color:#CCCCCC;
+}
+.finder_row .addToCart {
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+.finder_header_row a {
+	color: #FFFFFF;
+}
+ul.tabs {
+	list-style-image:none;
+	list-style-position:outside;
+	list-style-type:none;
+	margin:0;
+	padding:0;
+	outline-style:none;
+	outline-width:medium;
+	width: 100%;
+	float: left;
+}
+
+ul.tabs li {
+	text-align: center;
+}
+.MMYE {
+	width:60px;
+	float:left;
+	margin-top:.5em;
+	font-weight: bold;
+}
+#vehicleSelector select {
+	width: 100%;
+	margin-top:	0.5em;
+	font-size: 1.25em;
+}
+a.parts-highlight {
+	color:blue;	
+}
+a.parts-highlight:hover {
+	text-decoration: none;	
+}
+.preview {
+	background:#FFFFFF none repeat scroll 0 0;
+	border:1px solid #000000;
+	float:left;
+	padding:.25em;
+	margin-right: 1em;
+}
+#preview{
+	position:absolute;
+	border:1px solid #ccc;
+	background:#333;
+	padding:.25em;
+	display:none;
+	color:#fff;
+}
+.finder-row {
+	border-bottom:1px solid #CCCCCC;
+	clear:both;
+	float:left;
+	width:100%;
+	background-image: url(/images/item_grad_03.jpg);
+	background-position: bottom;
+	background-repeat: repeat-x;
+	position: relative;
+	background-color: #fefefe;
+	overflow: hidden;
+	min-height:150px;
+	height:auto !important;
+	height:150px;
+
+}
+.part-description {
+	float: left;
+	width: 490px;
+	text-align: left;
+	padding: 1em;
+}
+.part-price {
+	width:150px;
+	text-align: right;
+	line-height: 1.5em;
+	padding: 1em;
+	right: 0px;
+	background-color: #eee;
+	border-left: solid 1px #ccc;
+	float: right;
+	height: 300px;
+	position:absolute;
+}
+.priceNames {
+	float: left;
+}
+.part-description h3 {
+	margin-top: 0;
+	margin-bottom: .5em;
+	font-size: 1.5em;
+	line-height: 1.5em;
+}
+.part-description p {
+ 	padding: 0;
+ 	margin-bottom: 0;
+}
+.part-description a {
+	text-decoration: none;
+	color: #000;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #999;
+}
+.finder-wrapper {
+	overflow:hidden;
+	vertical-align: middle;
+	clear: both;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-top-color: #ccc;
+	border-right-color: #ccc;
+	border-left-color: #ccc;
+	margin-bottom: 1.5em;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-khtml-border-radius: 10px;
+	-o-border-radius: 10px;
+	border-radius: 10px;
+}
+.finder-contact {
+	padding: 1em;
+	font-size: 1.5em;
+}
+.partCategories {
+	margin:1em;
+	text-align:left;
+	line-height: 1.5em;
+}
+.partCategories li{
+	background-image:url(/images/oil-filters/bullet.gif);
+	background-position:left center;
+	background-repeat:no-repeat;
+	padding-left:1.5em;
+	list-style-image: none;
+	list-style-type:none;
+	cursor: pointer;
+	width: 170px;
+	float: left;
+}
+.partCategories li:hover {
+	text-decoration: underline;
+}
+#categoryWrapper {
+	background:#eee;
+	float:left;
+	overflow:hidden;
+	text-align:left;
+	width:100%;
+}
+.application {
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-khtml-border-radius: 10px;
+	-o-border-radius: 10px;
+	border-radius: 10px;
+	background-color:#FFFFFF;
+	float:left;
+	margin-top:1em;
+	text-align:left;
+	width:100%;
+}
+.application p {
+	margin: .5em;
+}
+.loading{
+	background: #fff;
+	text-align: center;
+}
+#selectCategory {
+	float: left;
+	padding: 1em;
+	font-size: 1.5em;
+}
+select[disabled] {
+	color: gray;
+	background: #ddd;
+}
+#preview {
+	z-index: 1000;
+}
+.currentVehicle {
+	color:#005599;
+	font-weight:bold;
+	cursor: pointer;
+	vertical-align: middle;
+}
+#searchVehicle {
+	border-bottom: 1px solid #ccc;
+	padding: 1em;
+	text-align: left;
+}
+.ui-effects-transfer {
+	border: 2px solid #666;
+	z-index: 2340;
+}
+.hide {
+	display: none;
+}
+.backToTop {
+	font-weight: normal;
+	font-size: 1em;
+	cursor: pointer;
+}
+.backToTop span {
+	vertical-align: top;
+	font-size: .75em;
+}
+.lowerLeft {
+	position: absolute;
+	bottom: 10px;
+}
+.availability {
+	bottom:0;
+	clear:both;
+	left:0;
+	position:relative;
+}
+.availability strong {
+	color: green;
+}
+.deleteVehicle {
+	padding-right: .5em;
+	vertical-align: middle;
+	cursor: pointer;
+}
+/** RECYLCING CENTER FINDER **/
+
+#map {
+	height:600px;
+}
+#list {
+	width:200px;
+	list-style:none;
+	clear:both;
+	margin-right: 1em;
+}
+#list li {
+	padding:.5em;
+	margin-bottom: 1em;
+	background-color: #C3D2EA;
+	border: 2px solid #005599;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-o-border-radius: 5px;
+	border-radius: 5px;
+}
+#list li:hover {
+	background:#555;
+	color:#fff;
+	cursor:pointer;
+	cursor:hand;
+}
+#message {
+	background:#555;
+	color:#fff;
+	position:absolute;
+	display:none;
+	width:100px;
+	padding:5px;
+}
+#add-point {
+	float:left;
+}
+div.error {
+	color:red;
+	font-weight:bold;
+}
+#leftContainer {
+	float: left;
+	clear: both;
+}
+#recycleDesc {
+	float: left;
+	width: 60%;
+}
+#addressInput label{
+	display: block;
+}
+#leftContainer div {
+	width: 200px;
+}
+#addressInput input {
+	width: 118px;
+}
+#leftContainer #status {
+	padding: .5em;
+	float: left;
+}
+/** HOME PAGE SLIDER **/
+
+#dollars {
+	font-size:20em;
+	font-weight:bold;
+	line-height:0.8em;
+	float: left;
+	margin: .05em;
+	text-shadow:3px 5px 5px rgba(0, 0, 0, 0.3);
+}
+#dollars span {
+	font-size:0.5em;
+	font-weight:normal;
+	line-height:1em;
+	margin-right:-15px;
+	vertical-align: top;
+}
+#ship-description {
+	float:left;
+	margin-top: 1em;
+}
+#ship-description strong {
+	font-size:4.5em;
+	line-height:1.25em;
+}
+#ship-description p {
+	border-bottom:1px solid #999999;
+	font-size:3em;
+	line-height:1em;
+	margin:0;
+	padding:0 0 0.25em;
+}
+#ship-description em {
+	color:#FF6600;
+	font-size:1.25em;
+	font-weight:bold;
+}
+#ship-description span {
+	display:block;
+	font-size:2em;
+	line-height:1.5em;
+	margin:0.25em 0 0;
+}
+#shipping-promo-small {
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-khtml-border-radius: 10px;
+	-o-border-radius: 10px;
+	border-radius: 10px;
+	background-image: -moz-linear-gradient(top, #ccc, #eee); /* FF3.6 */
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #ccc),color-stop(1, #eee));
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorStr='#cccccc', EndColorStr='#eeeeee');
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#cccccc', EndColorStr='#eeeeee')";
+	display: inline-block;
+	width: 100%;
+}
+#shipping-promo {
+	background-color: #fff;
+	padding-left: 2em;
+	width: 100%;
+}
+#shipping-promo a{
+	background-color: #fff;
+	width: 100%;
+}
+
+#shipping-promo-small #dollars {
+	font-size: 10em;
+}
+#shipping-promo-small #dollars span{
+	margin-right: -5px;
+}
+#shipping-promo-small #ship-description strong {
+	font-size:3.5em;
+	line-height:1em;
+}
+#shipping-promo-small #ship-description p {
+	border-bottom:1px solid #999999;
+	font-size:2em;
+	line-height:1em;
+	margin:0;
+	padding: 0;
+}
+#shipping-promo-small #ship-description span {
+	display:block;
+	font-size:1.5em;
+	line-height:1;
+	margin:0.25em 0 0;
+}
+#shipping-promo-small #ship-description {
+	margin-left: .75em;
+	margin-top: .75em;
+}
+#oil-filter-intro {
+	height: 235px;
+	background-image: url(/images/oil-filters/find-your-parts-arrow2.jpg);
+	background-repeat: no-repeat;
+	position:absolute;
+	background-color: #fff;
+	width: 100%;
+}
+#oil-filter-intro p {
+	font-weight: normal;
+	font-size: 1.5em;
+	margin: 0;
+	padding: 0;
+}
+#oil-filter-intro img {
+	position: absolute;
+	right: 0;
+}
+#oil-filter-intro div {
+	margin-left: 5.5em;
+	position: relative;
+	float: left;
+	z-index: 5;
+	width: 53%;
+	margin-top: .5em;
+}
+#oil-filter-intro span.fast {
+	line-height: 1em;
+	font-weight: normal;
+}
+#oil-filter-intro h1 {
+	margin-top: .5em;
+	margin-bottom: .5em;
+	font-size: 2.2em;
+	line-height: 1em;
+}
+#oil-filter-intro em {
+	color: #FF6600;
+}
+#oil-filter-intro ul {
+	margin-top: .5em;
+	padding-left: 1em;
+	margin-left: 1em;
+}
+#oil-filter-intro h2 {
+	font-size: 1.5em;
+}
+.finderButton {
+	margin-top:10px;
+}
+div.block-simple p {
+	font-size: 1.3em;
+	padding:0em 2em 1em 1em;
+	
+}

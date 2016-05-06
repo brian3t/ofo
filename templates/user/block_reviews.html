@@ -1,0 +1,208 @@
+<div class="block-reviews">
+	<div class="titleTopCenter">{reviewed_item_name} {REVIEWS_MSG}</div>
+	<!-- begin summary_statistic -->
+	<table cellpadding="0" cellspacing="0" border="0">
+		<tr>
+			<td>&nbsp;&nbsp;{commend_percent}%&nbsp;</td>
+			<td><img class="commend" src="images/tr.gif" align="top"></td>
+			<td>&nbsp;&nbsp;{discommend_percent}%&nbsp;</td>
+			<td><img class="discommend" src="images/tr.gif" align="top"></td>
+			<td>&nbsp;&nbsp;&nbsp;({total_votes} votes)</td>
+			</td>
+		</tr>
+	</table>
+
+	<div align="right"> {AVERAGE_RATING_MSG}: <img class="{average_rating_image}" src="images/tr.gif" align="top" alt="{average_rating_alt}"> </div>
+	<!-- end summary_statistic -->
+	<!-- begin errors -->
+	<div class="errorbg" align="center">{errors_list}</div>
+	<!-- end errors -->
+	<!-- begin success -->
+	<div class="message" align="center">{success_message}</div>
+	<!-- end success -->
+	<!-- begin record -->
+	<form name="review" action="{reviews_href}" method="post">
+		<input type="hidden" name="rnd" value="{rnd}">
+		<input type="hidden" name="operation" value="save">
+		<input type="hidden" name="item_id" value="{item_id}">
+		<input type="hidden" name="category_id" value="{current_category_id}">
+		<table width="100%" cellspacing="0" align="center" class="padding4px">
+			<!-- begin sections -->
+			<!-- end sections -->
+			<!-- begin recommended_block -->
+			<tr>
+				<td class="{recommended_class}">{RECOMMEND_PRODUCT_MSG} {recommended_required}</td>
+				<td class="{recommended_class}"><!-- begin recommended -->
+					<label>
+					<input type="radio" name="recommended" {recommended_checked} value="{recommended_value}">
+					{recommended_description}</label>
+					<!-- end recommended -->
+				</td>
+			</tr>
+			<!-- end recommended_block -->
+			<!-- begin rating_block -->
+			<tr>
+				<td class="{rating_class}">{RATE_IT_MSG} {rating_required}</td>
+				<td class="{rating_class}"><select class="text" name="rating">
+						<!-- begin rating -->
+						<option {rating_selected} value="{rating_value}">{rating_description}
+						<!-- end rating -->
+					</select>
+				</td>
+			</tr>
+			<!-- end rating_block -->
+			<!-- begin user_name_block -->
+			<tr>
+				<td class="{user_name_class}">{NAME_ALIAS_MSG} {user_name_required}</td>
+				<td class="{user_name_class}"><input class="text" type="text" name="user_name" size="42" value="{user_name}" maxlength="64">
+				</td>
+			</tr>
+			<!-- end user_name_block -->
+			<!-- begin user_email_block -->
+			<tr>
+				<td class="{user_email_class}">{EMAIL_FIELD} {user_email_required}</td>
+				<td class="{user_email_class}"><input class="text" type="text" name="user_email" size="42" value="{user_email}" maxlength="64">
+				</td>
+			</tr>
+			<!-- end user_email_block -->
+			<!-- begin summary_block -->
+			<tr>
+				<td class="{summary_class}">{ONE_LINE_SUMMARY_MSG} {summary_required}</td>
+				<td class="{summary_class}"><input class="text" type="text" name="summary" size="42" value="{summary}">
+				</td>
+			</tr>
+			<!-- end summary_block -->
+			<!-- begin comments_block -->
+			<tr>
+				<td class="{comments_class}">{DETAILED_COMMENT_MSG} {comments_required}</td>
+				<td class="{comments_class}"><textarea name="comments" cols="40" rows="5">{comments}</textarea>
+				</td>
+			</tr>
+			<!-- end comments_block -->
+			<!-- begin validation_number_block -->
+			<tr class="usualbg">
+				<td class="{validation_number_class}">{VALIDATION_CODE_FIELD} {validation_number_required}</td>
+				<td class="{validation_number_class}">
+					<input class="field" type="text" name="validation_number" size="4" value="{validation_number}">
+					&nbsp;<img src="validation_image.php" border="0" align="absmiddle"> </td>
+			</tr>
+			<!-- end validation_number_block -->
+			<!-- begin buttons -->
+			<tr>
+				<td></td>
+				<td><!-- begin add_button -->
+					<span class="submit">
+					<input class="submit" type="submit" value="{RATE_IT_BUTTON}">
+					</span>
+					<!-- end add_button -->
+				</td>
+			</tr>
+			<!-- end buttons -->
+		</table>
+	</form>
+	<!-- end record -->
+	<!-- begin reviews_block -->
+	<!-- begin navigator_block -->
+	<div>{navigator}</div>
+	<!-- end navigator_block -->
+	<table width="100%" border="0" cellpadding="0" class="middlebg paddingRev3px">
+		<tr>
+			<td><table border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td>{SHOW_MSG}:</td>
+						<td><!-- begin all_reviews_link -->
+							<a href="{all_reviews_url}">{ALL_REVIEWS_MSG}</a>
+							<!-- end all_reviews_link -->
+							<!-- begin all_reviews -->
+							<b>{ALL_REVIEWS_MSG}</b>
+							<!-- end all_reviews -->
+						</td>
+						<td><!-- begin positive_reviews_link -->
+							<a href="{positive_reviews_url}">{ONLY_POSITIVE_MSG}</a>
+							<!-- end positive_reviews_link -->
+							<!-- begin positive_reviews -->
+							<b>{POSITIVE_REVIEWS_MSG}</b>
+							<!-- end positive_reviews -->
+						</td>
+						<td><img class="commend" src="images/tr.gif" border="0"></td>
+						<td><!-- begin negative_reviews_link -->
+							<a href="{negative_reviews_url}">{ONLY_NEGATIVE_MSG}</a>
+							<!-- end negative_reviews_link -->
+							<!-- begin negative_reviews -->
+							<b>{NEGATIVE_REVIEWS_MSG}</b>
+							<!-- end negative_reviews -->
+						</td>
+						<td><img class="discommend" src="images/tr.gif" border="0"></td>
+					</tr>
+				</table></td>
+			<td align="right" class="smallText"> {FOUND_MSG}: <b>{total_records}</b> </td>
+		</tr>
+	</table>
+	<!-- begin reviews -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<!-- BEGIN reviews_list -->
+		<!-- begin delimiter -->
+		<tr>
+			<td class="hDelimiter"><img src="images/tr.gif" alt=""></td>
+		</tr>
+		<!-- end delimiter -->
+		<tr>
+			<td class="padding10px"><table width="100%" border="0" cellspacing="0" class="paddingRev5px">
+					<tr>
+						<td align="left" valign="top" class="{review_user_class}">{review_user_name} <img class="{recommended_image}" src="images/tr.gif" align="top" alt=""></td>
+						<td align="right"><div class="articleDate">{review_date_added}</div></td>
+					</tr>
+				</table>
+				<table width="100%" border="0" cellspacing="0" class="paddingRev3px">
+					<tr>
+						<td width="60" align="left" valign="top"><img class="{rating_image}" src="images/tr.gif" align="top"></td>
+						<td align="left" valign="top"><div class="title">{review_summary}</div>
+							<div align="justify">{review_comments}<br>
+							</div></td>
+					</tr>
+				</table></td>
+		</tr>
+		<!-- END reviews_list -->
+	</table>
+	<!-- end reviews -->
+	<!-- begin no_reviews -->
+	<div align="center"><b>{NO_REVIEWS_MSG}</b></div>
+	<!-- end no_reviews -->
+	<table width="100%" border="0" cellpadding="0" class="middlebg paddingRev3px">
+		<tr>
+			<td><table border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td>{SHOW_MSG}:</td>
+						<td><!-- begin all_reviews_link -->
+							<a href="{all_reviews_url}">{ALL_REVIEWS_MSG}</a>
+							<!-- end all_reviews_link -->
+							<!-- begin all_reviews -->
+							<b>{ALL_REVIEWS_MSG}</b>
+							<!-- end all_reviews -->
+						</td>
+						<td><!-- begin positive_reviews_link -->
+							<a href="{positive_reviews_url}">{ONLY_POSITIVE_MSG}</a>
+							<!-- end positive_reviews_link -->
+							<!-- begin positive_reviews -->
+							<b>{POSITIVE_REVIEWS_MSG}</b>
+							<!-- end positive_reviews -->
+						</td>
+						<td><img class="commend" src="images/tr.gif" border="0"></td>
+						<td><!-- begin negative_reviews_link -->
+							<a href="{negative_reviews_url}">{ONLY_NEGATIVE_MSG}</a>
+							<!-- end negative_reviews_link -->
+							<!-- begin negative_reviews -->
+							<b>{NEGATIVE_REVIEWS_MSG}</b>
+							<!-- end negative_reviews -->
+						</td>
+						<td><img class="discommend" src="images/tr.gif" border="0"></td>
+					</tr>
+				</table></td>
+			<td align="right" class="smallText"> {FOUND_MSG}: <b>{total_records}</b> </td>
+		</tr>
+	</table>
+	<!-- begin navigator_block -->
+	<div>{navigator}</div>
+	<!-- end navigator_block -->
+	<!-- end reviews_block -->
+</div>

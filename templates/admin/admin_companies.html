@@ -1,0 +1,78 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {COMPANIES_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_lookup_tables_href}">{STATIC_TABLES_MSG}</a>&nbsp;&gt;&nbsp;<b>{COMPANIES_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{COMPANIES_MSG}</legend>
+<table border="0" cellpadding="6" cellspacing="1" width="100%"><!-- begin sorters -->
+<tr class="middle" align="center">
+	<td>
+		{sorter_company_id}
+	</td>
+	<td>
+		{sorter_company_name}
+	</td>
+	<td>
+		{sorter_contact_email}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- end sorters --><!-- BEGIN records -->
+<tr class="usual" align="center">
+	<td>
+		{company_id}
+	</td>
+	<td align="left">
+		&nbsp;{company_name}
+	</td>
+	<td>
+		&nbsp;<a href="mailto:{contact_email}">{contact_email}</a>&nbsp;
+	</td>
+	<td>
+		&nbsp;<a href="{admin_company_href}?company_id={company_id}">{EDIT_COMPANY_MSG}</a>&nbsp;
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr>
+	<td colspan="6" class="usual">
+		&nbsp;{NO_COMPANIES_FOUND_MSG}
+	</td>
+</tr><!-- END no_records -->
+<tr>
+	<td colspan="6" class="middle" align="right">
+	<table width="100%" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td>
+			<a href="{admin_company_href}?discount_type=1">{ADD_NEW_MSG}</a>
+		</td><!-- begin navigator_block -->
+		<td align="right">
+			&nbsp;{navigator}&nbsp;
+		</td><!-- end navigator_block -->
+	</tr>
+	</table>
+	</td>
+</tr>
+</table>	
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

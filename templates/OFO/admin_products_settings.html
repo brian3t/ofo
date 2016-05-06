@@ -1,0 +1,1445 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{PRODUCTS_SETTINGS_MSG}</title>
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script type="text/javascript" src="../js/admin.js"></script>
+<script type="text/javascript" src="../js/calendar.js"></script>
+<script language="JavaScript">
+<!--
+	function openWindow(pagename, filetype)
+	{
+		var uploadWin = window.open (pagename + '?filetype=' + filetype, 'uploadWin', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=400,height=300');
+		uploadWin.focus();
+	}
+
+	function setFileName(filename, filetype)
+	{
+		var siteUrl = '{site_url}';
+		if(filename != "")
+		{
+			if(filetype == "logo")
+			{
+				document.record.watermark_image.value = siteUrl + "images/" + filename;
+				document.record.watermark_image.focus();
+			}
+		}
+	}
+	function rangeSelected() {
+		sel = document.record.new_product_range.selectedIndex;
+		if (sel == 3) {
+			document.getElementById("new_product_from_date_block").style.display = "block";
+		} else {
+			document.getElementById("new_product_from_date_block").style.display = "none";		
+		}
+		
+		if (sel == 2) {
+			document.getElementById("new_product_x_days_block").style.display = "block";
+		} else {
+			document.getElementById("new_product_x_days_block").style.display = "none";
+		}
+	}
+//-->
+</script>
+</head>
+<body class="mainbg">
+
+{admin_header}
+
+<form action="{admin_products_settings_href}" name="record" method="POST">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+
+			<table cellspacing="0" cellpadding="0" border="0" width="100%" align="center">
+			<tr>
+				<td class="usual">
+					&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a href="{admin_items_list_href}">{PRODUCTS_MSG}</a>&nbsp;&gt;&nbsp;<b>{PRODUCTS_SETTINGS_MSG}</b>
+				</td>
+				<!-- begin sitelist -->
+				<td class="usual" align="right">
+					{SELECT_SITE_MSG}&nbsp;
+					<select name="param_site_id" onchange="reloadSite(this.form)"><!-- begin param_site_id -->
+						<option {param_site_id_selected} value="{param_site_id_value}">{param_site_id_description}<!-- end param_site_id -->
+					</select>		
+				</td>
+				<!-- end sitelist -->
+			</tr>
+			</table>
+
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+	<div id="tabs">
+		<!-- BEGIN tabs_rows -->
+		<div id="{row_id}" class="tabRow"><!-- BEGIN tabs -->
+			<div id="{tab_id}" class="{tab_class}"><a class="blackSm" href="#" onClick="changeTab('{tab_name}'); return false;">{tab_title}</a></div>{br}<!-- END tabs -->
+		</div>
+		<!-- END tabs_rows -->
+	</div>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tabTable">
+<tr align="center"> 
+	<td>
+
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="rp" value="{rp}">
+<input type="hidden" name="tab" value="{tab}">
+
+<div id="data_general" style="{general_style}">
+
+<table border="0" cellpadding="4" cellspacing="1" width="100%"><!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{GLOBAL_SETTINGS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{WHEN_ADDING_PRODUCT_MSG}
+	</td>
+	<td><!-- begin confirm_add -->
+		<input type="radio" name="confirm_add" {confirm_add_checked} value="{confirm_add_value}">{confirm_add_description}<!-- end confirm_add -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{AFTER_ADDING_PRODUCT_MSG}
+	</td>
+	<td><!-- begin redirect_to_cart -->
+		<input type="radio" name="redirect_to_cart" {redirect_to_cart_checked} value="{redirect_to_cart_value}">{redirect_to_cart_description}<!-- end redirect_to_cart -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ENABLE_COUPONS_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="coupons_enable" {coupons_enable} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CUSTOMER_REGISTRATION_MSG}
+	</td>
+	<td><!-- begin user_registration -->
+		<input type="radio" name="user_registration" {user_registration_checked} value="{user_registration_value}">{user_registration_description}<!-- end user_registration -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SUBSCRIPTION_PAGE_MSG}
+	</td>
+	<td><!-- begin subscription_page -->
+		<input type="radio" name="subscription_page" {subscription_page_checked} value="{subscription_page_value}">{subscription_page_description}<!-- end subscription_page -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{DISPLAY_PRODUCTS_MSG}
+	</td>
+	<td><!-- begin display_products -->
+		<input type="radio" name="display_products" {display_products_checked} value="{display_products_value}">{display_products_description}<!-- end display_products -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ON_LOGOUT_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="logout_cart_clear" {logout_cart_clear} value="1"> {CLEARING_SHOPPING_CART_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ORDERS_CURRENCY_MSG}
+	</td>
+	<td><!-- begin orders_currency -->
+		<input type="radio" name="orders_currency" {orders_currency_checked} value="{orders_currency_value}">{orders_currency_description}<!-- end orders_currency -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ALLOW_RUN_PHP_CODE_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="php_in_products_short_desc" {php_in_products_short_desc} value="1"> {SHORT_DESCRIPTION_MSG}
+		<input type="checkbox" name="php_in_products_full_desc" {php_in_products_full_desc} value="1"> {FULL_DESCRIPTION_MSG}
+		<input type="checkbox" name="php_in_products_features" {php_in_products_features} value="1"> {HIGHLIGHTS_MSG}
+		<input type="checkbox" name="php_in_products_hot_desc" {php_in_products_hot_desc} value="1"> {SPECIAL_OFFER_MSG}
+		<input type="checkbox" name="php_in_products_notes" {php_in_products_notes} value="1"> {NOTES_MSG}
+		<input type="checkbox" name="php_in_products_download_terms" {php_in_products_download_terms} value="1"> {DOWNLOAD_TERMS_MSG} 
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{RSS_SETTINGS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		<nobr>&nbsp;{ACTIVATE_RSS_MSG}</nobr>
+	</td>
+	<td>
+		<input type="checkbox" name="is_rss" {is_rss} value="1">
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{HTML_SETTINGS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{HTML_TITLE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="products_title" value="{products_title}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{META_KEYWORDS_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="products_keywords" value="{products_keywords}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{META_DESCRIPTION_MSG}
+	</td>
+	<td>
+		<textarea name="products_description" cols="80" rows="3">{products_description}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td></td>
+	<td>
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</div>
+
+<div id="data_tax" style="{tax_style}">
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{TAX_SETTINGS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PRICES_TYPE_MSG}
+	</td>
+	<td>
+		<select name="tax_prices_type"><!-- begin tax_prices_type -->
+			<option {tax_prices_type_selected} value="{tax_prices_type_value}">{tax_prices_type_description}<!-- end tax_prices_type -->
+		</select>
+		({PRICES_TYPE_DESC})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{DISPLAY_PRICES_MSG}
+	</td>
+	<td>
+		<select name="tax_prices"><!-- begin tax_prices -->
+			<option {tax_prices_selected} value="{tax_prices_value}">{tax_prices_description}<!-- end tax_prices -->
+		</select>
+		(<a href="{admin_tax_rates_href}">{TAX_PRICES_BASED_ON_MSG}</a>)
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{TAX_INCL_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="40" name="tax_note" value="{tax_note}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{TAX_EXCL_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="40" name="tax_note_excl" value="{tax_note_excl}">
+	</td>
+</tr>
+<tr class="middle">
+	<td></td>
+	<td>
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</div>
+
+<div id="data_merchants_affiliates" style="{merchants_affiliates_style}">
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+<tr class="middle">
+	<td colspan="2" class="middle">
+		&nbsp;{MERCHANTS_AFFILIATES_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{MERCHANT_FEE_MSG}
+	</td>
+	<td>
+		<select name="merchant_fee_type"><!-- begin merchant_fee_type -->
+			<option {merchant_fee_type_selected} value="{merchant_fee_type_value}">{merchant_fee_type_description}<!-- end merchant_fee_type -->
+		</select>
+		&nbsp; {AMOUNT_MSG} <input class="field"  type="text" name="merchant_fee_amount" size="20" value="{merchant_fee_amount}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{AFFILIATE_COMMISSION_MSG}
+	</td>
+	<td>
+		<select name="affiliate_commission_type"><!-- begin affiliate_commission_type -->
+			<option {affiliate_commission_type_selected} value="{affiliate_commission_type_value}">{affiliate_commission_type_description}<!-- end affiliate_commission_type -->
+		</select>
+		&nbsp; {AMOUNT_MSG} <input class="field"  type="text" name="affiliate_commission_amount" size="20" value="{affiliate_commission_amount}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{AFFILIATE_COMMISSIONS_DEDUCTION_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="affiliate_commission_deduct" {affiliate_commission_deduct} value="1">
+		({AFFILIATE_COMMISSIONS_DEDUCTION_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{AFFILIATE_COOKIE_EXPIRES_MSG}
+	</td>
+	<td>
+		<input class="field"  type="text" name="affiliate_cookie_expire" size="20" value="{affiliate_cookie_expire}"> ({DAYS_MSG})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{MINIMUM_PAYMENT_AMOUNT_MSG}
+	</td>
+	<td>
+		<input class="field"  type="text" name="min_payment_amount" size="20" value="{min_payment_amount}" maxlength="12"> 
+		({MINIMUM_PAYMENT_AMOUNT_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{TELL_FRIEND_PARAM_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="tell_friend_param" {tell_friend_param} value="1">
+		({TELL_FRIEND_PARAM_DESC})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{FRIEND_COOKIE_EXPIRES_MSG}
+	</td>
+	<td>
+		<input class="field"  type="text" name="friend_cookie_expire" size="20" value="{friend_cookie_expire}"> ({DAYS_MSG})
+	</td>
+</tr>
+<tr class="middle">
+	<td></td>
+	<td>
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</div>
+
+<div id="data_appearance" style="{appearance_style}">
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{QUANTITY_CONTROL_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{QUANTITY_CONTROL_MSG} ({ON_PROD_LIST_MSG})
+	</td>
+	<td>
+		<select name="quantity_control_list"><!-- begin quantity_control_list -->
+			<option {quantity_control_list_selected} value="{quantity_control_list_value}">{quantity_control_list_description}<!-- end quantity_control_list -->
+		</select>
+		({PRODUCTS_QUANTITY_CONTROL_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{QUANTITY_CONTROL_MSG} ({ON_PROD_DETAILS_MSG})
+	</td>
+	<td>
+		<select name="quantity_control_details"><!-- begin quantity_control_details -->
+			<option {quantity_control_details_selected} value="{quantity_control_details_value}">{quantity_control_details_description}<!-- end quantity_control_details -->
+		</select>
+		({PRODUCTS_QUANTITY_CONTROL_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{QUANTITY_CONTROL_MSG} ({ON_BASKET_PAGE_MSG})
+	</td>
+	<td>
+		<select name="quantity_control_basket"><!-- begin quantity_control_basket -->
+			<option {quantity_control_basket_selected} value="{quantity_control_basket_value}">{quantity_control_basket_description}<!-- end quantity_control_basket -->
+		</select>
+		({BASKET_QUANTITY_CONTROL_NOTE})
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{NEW_PRODUCTS_SETTINGS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ENABLE_NEW_PRODUCT_MARK_MSG}
+	</td>
+	<td>
+		<input type="checkbox" {new_product_enable} name="new_product_enable" value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SORT_ORDER_MSG}
+	</td>
+	<td>
+		<select name="new_product_order"><!-- begin new_product_order -->
+			<option {new_product_order_selected} value="{new_product_order_value}">{new_product_order_description}<!-- end new_product_order -->
+		</select> 
+		
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{NEW_MARK_NOTE}
+	</td>
+	<td>
+		<table cellspacing="0" cellpadding="0" border="0">
+		<tr>
+		<td>
+			<select name="new_product_range" onChange="rangeSelected()"><!-- begin new_product_range -->
+				<option {new_product_range_selected} value="{new_product_range_value}">{new_product_range_description}<!-- end new_product_range -->
+			</select> 
+		</td>
+		<td>
+			<div id="new_product_from_date_block" style="display:none;">
+				&nbsp;&nbsp;{FROM_DATE_MSG} ({date_edit_format}):			
+				<input type="text" name="new_product_from_date" value="{new_product_from_date}" class="search">
+				<A HREF="#"
+					onClick="setDateField(document.record.new_product_from_date, '{date_edit_format}');
+					top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+				<IMG SRC="../images/calendar.gif" BORDER=0><font size=1>{CALENDAR_MSG}</font></A>
+			</div>
+			<div id="new_product_x_days_block" style="display:none;">
+				&nbsp;&nbsp;{DAYS_MSG}:			
+				<input type="text" name="new_product_x_days" value="{new_product_x_days}" class="search">				
+			</div>			
+		</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{ZERO_PRICE_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ZERO_PRICE_TYPE_MSG}
+	</td>
+	<td><!-- begin zero_price_type -->
+		<input type="radio" name="zero_price_type" {zero_price_type_checked} value="{zero_price_type_value}">{zero_price_type_description}<!-- end zero_price_type -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ZERO_PRICE_MESSAGE_MSG}
+	</td>
+	<td>
+		<input class="field"  type="text" name="zero_price_message" size="80" value="{zero_price_message}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ZERO_PRODUCT_ACTION_MSG}
+	</td>
+	<td><!-- begin zero_product_action -->
+		<input type="radio" name="zero_product_action" {zero_product_action_checked} value="{zero_product_action_value}">{zero_product_action_description}<!-- end zero_product_action -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ZERO_PEODUCT_WARNING_MSG}
+	</td>
+	<td>
+		<input class="field"  type="text" name="zero_product_warn" size="80" value="{zero_product_warn}">
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{PROD_APPEARANCE_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{DISPLAY_COMPONENTS_AND_OPTIONS_LIST_MSG}
+	</td>
+	<td><!-- begin components_list_style -->
+		<input type="radio" name="components_list_style" {components_list_style_checked} value="{components_list_style_value}">{components_list_style_description}<!-- end components_list_style -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PRICE_MATRIX_MSG}
+	</td>
+	<td >
+		<input type="checkbox" {price_matrix_list} name="price_matrix_list" value="1">
+		<font size="1">{ON_PROD_LIST_MSG}</font> &nbsp;
+		<input type="checkbox" {price_matrix_details} name="price_matrix_details" value="1">
+		<font size="1">{ON_PROD_DETAILS_MSG}</font> &nbsp;
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SHOW_PRODUCT_CODE_MSG}
+	</td>
+	<td >
+		<input type="checkbox" {item_code_list} name="item_code_list" value="1">
+		<font size="1">{ON_PROD_LIST_MSG}</font> &nbsp;
+		<input type="checkbox" {item_code_details} name="item_code_details" value="1">
+		<font size="1">{ON_PROD_DETAILS_MSG}</font> &nbsp;
+		<input type="checkbox" {item_code_basket} name="item_code_basket" value="1">
+		<font size="1">{ON_BASKET_PAGE_MSG}</font> &nbsp;
+		<input type="checkbox" {item_code_checkout} name="item_code_checkout" value="1">
+		<font size="1">{ON_ORDERS_CHECKOUT_MSG}</font> &nbsp;
+		<input type="checkbox" {item_code_invoice} name="item_code_invoice" value="1">
+		<font size="1">{ON_INVOICE_MSG}</font> &nbsp;
+		<!--
+		<input type="checkbox" {item_code_reports} name="item_code_reports" value="1">
+		<font size="1">{ON_REPORTS_MSG}</font> &nbsp;
+		-->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SHOW_MANUFACTURER_CODE_MSG}
+	</td>
+	<td >
+		<input type="checkbox" {manufacturer_code_list} name="manufacturer_code_list" value="1">
+		<font size="1">{ON_PROD_LIST_MSG}</font> &nbsp;
+		<input type="checkbox" {manufacturer_code_details} name="manufacturer_code_details" value="1">
+		<font size="1">{ON_PROD_DETAILS_MSG}</font> &nbsp;
+		<input type="checkbox" {manufacturer_code_basket} name="manufacturer_code_basket" value="1">
+		<font size="1">{ON_BASKET_PAGE_MSG}</font> &nbsp;
+		<input type="checkbox" {manufacturer_code_checkout} name="manufacturer_code_checkout" value="1">
+		<font size="1">{ON_ORDERS_CHECKOUT_MSG}</font> &nbsp;
+		<input type="checkbox" {manufacturer_code_invoice} name="manufacturer_code_invoice" value="1">
+		<font size="1">{ON_INVOICE_MSG}</font> &nbsp;
+		<!--
+		<input type="checkbox" {manufacturer_code_reports} name="manufacturer_code_reports" value="1">
+		<font size="1">{ON_REPORTS_MSG}</font> &nbsp;
+		-->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SHOW_STOCK_LEVEL_MSG}
+	</td>
+	<td >
+		<input type="checkbox" {stock_level_list} name="stock_level_list" value="1">
+		<font size="1">{ON_PROD_LIST_MSG}</font> &nbsp;
+		<input type="checkbox" {stock_level_details} name="stock_level_details" value="1">
+		<font size="1">{ON_PROD_DETAILS_MSG}</font> &nbsp;
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{hide_add_message} 
+	</td>
+	<td >
+		<input type="checkbox" {hide_add_list} name="hide_add_list" value="1">
+		<font size="1">{ON_PROD_LIST_MSG}</font> &nbsp;
+		<input type="checkbox" {hide_add_details} name="hide_add_details" value="1">
+		<font size="1">{ON_PROD_DETAILS_MSG}</font> &nbsp;
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{hide_view_message} 
+	</td>
+	<td >
+		<input type="checkbox" {hide_view_list} name="hide_view_list" value="1">
+		<font size="1">{ON_PROD_LIST_MSG}</font> &nbsp;
+		<input type="checkbox" {hide_view_details} name="hide_view_details" value="1">
+		<font size="1">{ON_PROD_DETAILS_MSG}</font> &nbsp;
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{hide_goto_message} 
+	</td>
+	<td >
+		<input type="checkbox" {hide_checkout_list} name="hide_checkout_list" value="1">
+		<font size="1">{ON_PROD_LIST_MSG}</font> &nbsp;
+		<input type="checkbox" {hide_checkout_details} name="hide_checkout_details" value="1">
+		<font size="1">{ON_PROD_DETAILS_MSG}</font> &nbsp;
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{hide_wish_message} 
+	</td>
+	<td >
+		<input type="checkbox" {hide_wishlist_list} name="hide_wishlist_list" value="1">
+		<font size="1">{ON_PROD_LIST_MSG}</font> &nbsp;
+		<input type="checkbox" {hide_wishlist_details} name="hide_wishlist_details" value="1">
+		<font size="1">{ON_PROD_DETAILS_MSG}</font> &nbsp;
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{HIDE_WEIGHT_INFO_MSG}
+	</td>
+	<td >
+		<input type="checkbox" {hide_weight_details} name="hide_weight_details" value="1">
+		<font size="1">{ON_PROD_DETAILS_MSG}</font> &nbsp;
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{OPTIONS_COMPONENTS_PRICE_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{POSITIVE_PRICE_RIGHT_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="20" name="option_positive_price_right" value="{option_positive_price_right}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{POSITIVE_PRICE_LEFT_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="20" name="option_positive_price_left" value="{option_positive_price_left}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{NEGATIVE_PRICE_RIGHT_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="20" name="option_negative_price_right" value="{option_negative_price_right}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{NEGATIVE_PRICE_LEFT_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="20" name="option_negative_price_left" value="{option_negative_price_left}">
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{CART_COLUMNS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ON_BASKET_PAGE_MSG}
+	</td>
+	<td>
+		<input type="checkbox" {basket_item_name} name="basket_item_name" value="1">
+		{PROD_NAME_MSG} &nbsp;
+		<input type="checkbox" {basket_item_price} name="basket_item_price" value="1">
+		{PRICE_EXCL_TAX_MSG} &nbsp;
+		<input type="checkbox" {basket_item_tax_percent} name="basket_item_tax_percent" value="1">
+		{TAX_PERCENTAGE_MSG}&nbsp;
+		<input type="checkbox" {basket_item_tax} name="basket_item_tax" value="1">
+		{TAX_MSG}&nbsp;
+		<input type="checkbox" {basket_item_price_incl_tax} name="basket_item_price_incl_tax" value="1">
+		{PRICE_INCL_EXCL_TAX_MSG}&nbsp;
+		<input type="checkbox" {basket_item_quantity} name="basket_item_quantity" value="1">
+		{QUANTITY_MSG} &nbsp;
+		<br>
+		<input type="checkbox" {basket_item_price_total} name="basket_item_price_total" value="1">
+		{TOTAL_PRICE_EXCL_TAX_MSG} ({PRICE_MSG} x {QUANTITY_MSG}) &nbsp;
+		<input type="checkbox" {basket_item_tax_total} name="basket_item_tax_total" value="1">
+		{TOTAL_TAX_MSG} ({TAX_MSG} x {QUANTITY_MSG}) &nbsp;
+		<input type="checkbox" {basket_item_price_incl_tax_total} name="basket_item_price_incl_tax_total" value="1">
+		{TOTAL_PRICE_INCL_TAX_MSG} ({PRICE_INCL_TAX_MSG} x {QUANTITY_MSG}) &nbsp;		
+		</font>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ON_ORDERS_CHECKOUT_MSG}
+	</td>
+	<td>
+		<input type="checkbox" {checkout_item_name} name="checkout_item_name" value="1">
+		{PROD_NAME_MSG} &nbsp;
+		<input type="checkbox" {checkout_item_price} name="checkout_item_price" value="1">
+		{PRICE_EXCL_TAX_MSG} &nbsp;
+		<input type="checkbox" {checkout_item_tax_percent} name="checkout_item_tax_percent" value="1">
+		{TAX_PERCENTAGE_MSG}&nbsp;
+		<input type="checkbox" {checkout_item_tax} name="checkout_item_tax" value="1">
+		{TAX_MSG}&nbsp;
+		<input type="checkbox" {checkout_item_price_incl_tax} name="checkout_item_price_incl_tax" value="1">
+		{PRICE_INCL_EXCL_TAX_MSG}&nbsp;
+		<input type="checkbox" {checkout_item_quantity} name="checkout_item_quantity" value="1">
+		{QUANTITY_MSG} &nbsp;
+		<br>
+		<input type="checkbox" {checkout_item_price_total} name="checkout_item_price_total" value="1">
+		{TOTAL_PRICE_EXCL_TAX_MSG} ({PRICE_MSG} x {QUANTITY_MSG}) &nbsp;
+		<input type="checkbox" {checkout_item_tax_total} name="checkout_item_tax_total" value="1">
+		{TOTAL_TAX_MSG} ({TAX_MSG} x {QUANTITY_MSG}) &nbsp;
+		<input type="checkbox" {checkout_item_price_incl_tax_total} name="checkout_item_price_incl_tax_total" value="1">
+		{TOTAL_PRICE_INCL_TAX_MSG} ({PRICE_INCL_TAX_MSG} x {QUANTITY_MSG}) &nbsp;
+		<select name="checkout_item_image"><!-- begin checkout_item_image -->
+			<option {checkout_item_image_selected} value="{checkout_item_image_value}">{checkout_item_image_description}<!-- end checkout_item_image -->
+		</select>
+		</font>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ON_INVOICE_MSG}
+	</td>
+	<td>
+		<input type="checkbox" {invoice_item_name} name="invoice_item_name" value="1">
+		{PROD_NAME_MSG} &nbsp;
+		<input type="checkbox" {invoice_item_price} name="invoice_item_price" value="1">
+		{PRICE_EXCL_TAX_MSG} &nbsp;
+		<input type="checkbox" {invoice_item_tax_percent} name="invoice_item_tax_percent" value="1">
+		{TAX_PERCENTAGE_MSG}&nbsp;
+		<input type="checkbox" {invoice_item_tax} name="invoice_item_tax" value="1">
+		{TAX_MSG} &nbsp;
+		<input type="checkbox" {invoice_item_price_incl_tax} name="invoice_item_price_incl_tax" value="1">
+		{PRICE_INCL_TAX_MSG} &nbsp;
+		<input type="checkbox" {invoice_item_quantity} name="invoice_item_quantity" value="1">
+		{QUANTITY_MSG} &nbsp;
+		<br>
+		<input type="checkbox" {invoice_item_price_total} name="invoice_item_price_total" value="1">
+		{TOTAL_PRICE_EXCL_TAX_MSG} ({PRICE_MSG} x {QUANTITY_MSG}) &nbsp;
+		<input type="checkbox" {invoice_item_tax_total} name="invoice_item_tax_total" value="1">
+		{TOTAL_TAX_MSG} ({TAX_MSG} x {QUANTITY_MSG}) &nbsp;
+		<input type="checkbox" {invoice_item_price_incl_tax_total} name="invoice_item_price_incl_tax_total" value="1">
+		{TOTAL_PRICE_INCL_TAX_MSG} ({PRICE_INCL_TAX_MSG} x {QUANTITY_MSG}) &nbsp;
+		<select name="invoice_item_image"><!-- begin invoice_item_image -->
+			<option {invoice_item_image_selected} value="{invoice_item_image_value}">{invoice_item_image_description}<!-- end invoice_item_image -->
+		</select>
+		</font>
+	</td>
+</tr>
+<tr class="middle">
+	<td></td>
+	<td>
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</div>
+
+<div id="data_points" style="{points_style}">
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{POINTS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PAY_WITH_POINTS_SYSTEM_MSG}
+	</td>
+	<td><!-- begin points_system -->
+		<input type="radio" name="points_system" {points_system_checked} value="{points_system_value}">{points_system_description}<!-- end points_system -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{POINTS_CONVERSION_RATE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="points_conversion_rate" value="{points_conversion_rate}" size="10" maxlength="10">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{POINTS_DECIMALS_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="points_decimals" value="{points_decimals}" size="10" maxlength="10">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SHOW_POINTS_PRICE_MSG}
+	</td>
+	<td>
+		<input type="checkbox" {points_price_list} name="points_price_list" value="1">
+		<font size="1">{ON_PROD_LIST_MSG}</font> &nbsp;
+		<input type="checkbox" {points_price_details} name="points_price_details" value="1">
+		<font size="1">{ON_PROD_DETAILS_MSG}</font> &nbsp;
+		<input type="checkbox" {points_price_basket} name="points_price_basket" value="1">
+		<font size="1">{ON_BASKET_PAGE_MSG}</font> &nbsp;
+		<input type="checkbox" {points_price_checkout} name="points_price_checkout" value="1">
+		<font size="1">{ON_ORDERS_CHECKOUT_MSG}</font> &nbsp;
+		<input type="checkbox" {points_price_invoice} name="points_price_invoice" value="1">
+		<font size="1">{ON_INVOICE_MSG}</font> &nbsp;
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PROD_PAY_POINTS_MSG}
+	</td>
+	<td>
+		<select name="points_prices"><!-- begin points_prices -->
+			<option {points_prices_selected} value="{points_prices_value}">{points_prices_description}<!-- end points_prices -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SHIPPING_PAY_POINTS_MSG}
+	</td>
+	<td>
+		<select name="points_shipping"><!-- begin points_shipping -->
+			<option {points_shipping_selected} value="{points_shipping_value}">{points_shipping_description}<!-- end points_shipping -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ORDER_OPTIONS_PAY_POINTS_MSG}
+	</td>
+	<td>
+		<select name="points_orders_options"><!-- begin points_orders_options -->
+			<option {points_orders_options_selected} value="{points_orders_options_value}">{points_orders_options_description}<!-- end points_orders_options -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{REWARD_POINTS_MSG}
+	</td>
+	<td>
+		<select name="reward_type"><!-- begin reward_type -->
+			<option {reward_type_selected} value="{reward_type_value}">{reward_type_description}<!-- end reward_type -->
+		</select>
+		&nbsp;{AMOUNT_MSG}
+		<input class="field" type="text" name="reward_amount" value="{reward_amount}" size="10" maxlength="10">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SHOW_REWARD_POINTS_MSG}
+	</td>
+	<td>
+		<input type="checkbox" {reward_points_list} name="reward_points_list" value="1">
+		<font size="1">{ON_PROD_LIST_MSG}</font> &nbsp;
+		<input type="checkbox" {reward_points_details} name="reward_points_details" value="1">
+		<font size="1">{ON_PROD_DETAILS_MSG}</font> &nbsp;
+		<input type="checkbox" {reward_points_basket} name="reward_points_basket" value="1">
+		<font size="1">{ON_BASKET_PAGE_MSG}</font> &nbsp;
+		<input type="checkbox" {reward_points_checkout} name="reward_points_checkout" value="1">
+		<font size="1">{ON_ORDERS_CHECKOUT_MSG}</font> &nbsp;
+		<input type="checkbox" {reward_points_invoice} name="reward_points_invoice" value="1">
+		<font size="1">{ON_INVOICE_MSG}</font> &nbsp;
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ACCUMULATE_POINTS_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="points_for_points" {points_for_points} value="1">
+		{ACCUMULATE_POINTS_FOR_POINTS_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ACCUMULATE_CREDITS_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="credits_for_points" {credits_for_points} value="1">
+		{ACCUMULATE_CREDITS_DESC}
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{CREDITS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CREDITS_SYSTEM_MSG}
+	</td>
+	<td><!-- begin credit_system -->
+		<input type="radio" name="credit_system" {credit_system_checked} value="{credit_system_value}">{credit_system_description}<!-- end credit_system -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{REWARD_CREDITS_MSG}
+	</td>
+	<td>
+		<select name="credit_reward_type"><!-- begin credit_reward_type -->
+			<option {credit_reward_type_selected} value="{credit_reward_type_value}">{credit_reward_type_description}<!-- end credit_reward_type -->
+		</select>
+		&nbsp;{AMOUNT_MSG}
+		<input class="field" type="text" name="credit_reward_amount" value="{credit_reward_amount}" size="10" maxlength="10">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SHOW_CREDITS_BALANCE_MSG}
+	</td>
+	<td>
+		<input type="checkbox" {credits_balance_user_home} name="credits_balance_user_home" value="1">
+		<font size="1">{ON_USER_HOME_BLOCK_MSG}</font> &nbsp;
+		<input type="checkbox" {credits_balance_order_profile} name="credits_balance_order_profile" value="1">
+		<font size="1">{ON_ORDER_PROFILE_BLOCK_MSG}</font> &nbsp;
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SHOW_REWARD_CREDITS_MSG}
+	</td>
+	<td><!-- begin reward_credits_users -->
+		<input type="radio" name="reward_credits_users" {reward_credits_users_checked} value="{reward_credits_users_value}">{reward_credits_users_description}<!-- end reward_credits_users -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SHOW_REWARD_CREDITS_MSG}
+	</td>
+	<td>
+		<input type="checkbox" {reward_credits_list} name="reward_credits_list" value="1">
+		<font size="1">{ON_PROD_LIST_MSG}</font> &nbsp;
+		<input type="checkbox" {reward_credits_details} name="reward_credits_details" value="1">
+		<font size="1">{ON_PROD_DETAILS_MSG}</font> &nbsp;
+		<input type="checkbox" {reward_credits_basket} name="reward_credits_basket" value="1">
+		<font size="1">{ON_BASKET_PAGE_MSG}</font> &nbsp;
+		<input type="checkbox" {reward_credits_checkout} name="reward_credits_checkout" value="1">
+		<font size="1">{ON_ORDERS_CHECKOUT_MSG}</font> &nbsp;
+		<input type="checkbox" {reward_credits_invoice} name="reward_credits_invoice" value="1">
+		<font size="1">{ON_INVOICE_MSG}</font> &nbsp;
+	</td>
+</tr>
+<tr class="middle">
+	<td></td>
+	<td>
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</div>
+
+<div id="data_images" style="{images_style}">
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{IMAGE_SETTINGS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{DEFAULT_LARGE_IMAGE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="product_no_image_large" value="{product_no_image_large}" size="60" maxlength="255">
+		&nbsp;({DEFAULT_LARGE_IMAGE_DESC}) 
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{DEFAULT_SMALL_IMAGE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="product_no_image" value="{product_no_image}" size="60" maxlength="255">
+		&nbsp;({DEFAULT_SMALL_IMAGE_DESC}) 
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{DEFAULT_TINY_IMAGE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="product_no_image_tiny" value="{product_no_image_tiny}" size="60" maxlength="255">
+		&nbsp;({DEFAULT_TINY_IMAGE_DESC})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{OPEN_LARGE_IMAGE_MSG}
+	</td>
+	<td>
+		<!-- begin open_large_image -->
+		<input type="radio" name="open_large_image" {open_large_image_checked} value="{open_large_image_value}">{open_large_image_description}<!-- end open_large_image -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{JPEG_QUALITY_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="jpeg_quality" value="{jpeg_quality}" size="10" maxlength="3">
+		&nbsp;({JPEG_QUALITY_NOTE})
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{ADMIN_IMAGES_RESTRICTION_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_TINY_MSG} ({WIDTH_MSG} x {HEIGHT_MSG})
+	</td>
+	<td>
+		<input class="field" type="text" size="5" name="tiny_image_max_width" value="{tiny_image_max_width}">
+    x
+		<input class="field" type="text" size="5" name="tiny_image_max_height" value="{tiny_image_max_height}">
+    &nbsp;&nbsp;
+    <input type="checkbox" name="resize_tiny_image" {resize_tiny_image} value="1">
+		{IMAGE_TINY_RESIZE_NOTE}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_SMALL_MSG} ({WIDTH_MSG} x {HEIGHT_MSG})
+	</td>
+	<td>
+		<input class="field" type="text" size="5" name="small_image_max_width" value="{small_image_max_width}">
+    x
+		<input class="field" type="text" size="5" name="small_image_max_height" value="{small_image_max_height}">
+    &nbsp;&nbsp;
+    <input type="checkbox" name="resize_small_image" {resize_small_image} value="1">
+		{IMAGE_SMALL_RESIZE_NOTE}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_LARGE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="5" name="big_image_max_width" value="{big_image_max_width}">
+    x
+		<input class="field" type="text" size="5" name="big_image_max_height" value="{big_image_max_height}">
+		&nbsp;&nbsp;
+		<input type="checkbox" name="resize_big_image" {resize_big_image} value="1">
+		{IMAGE_LARGE_RESIZE_NOTE}
+	</td>
+</tr>
+
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_SUPER_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="5" name="super_image_max_width" value="{super_image_max_width}">
+    x
+		<input class="field" type="text" size="5" name="super_image_max_height" value="{super_image_max_height}">
+    &nbsp;&nbsp;
+		<input type="checkbox" name="resize_super_image" {resize_super_image} value="1">
+		{IMAGE_SUPER_RESIZE_NOTE}
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{CUSTOMERS_IMAGES_RESTRICTIONS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_TINY_MSG} <br>
+		&nbsp;({WIDTH_MSG} x {HEIGHT_MSG}, {MAXIMUM_FILESIZE_IN_BYTES_MSG})
+	</td>
+	<td>
+		<input class="field" type="text" size="5" name="user_tiny_image_width" value="{user_tiny_image_width}">
+		x
+		<input class="field" type="text" size="5" name="user_tiny_image_height" value="{user_tiny_image_height}">
+    ,&nbsp;
+		<input class="field" type="text" size="8" name="user_tiny_image_size" value="{user_tiny_image_size}">
+    &nbsp;&nbsp;
+    <input type="checkbox" name="user_resize_tiny_image" {user_resize_tiny_image} value="1">
+		{ALWAYS_RESIZE_IMAGE_NOTE}
+    <input type="checkbox" name="user_generate_tiny_image" {user_generate_tiny_image} value="1">
+		{GENERATE_FROM_LARGE_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_SMALL_MSG} 
+	</td>
+	<td>
+		<input class="field" type="text" size="5" name="user_small_image_width" value="{user_small_image_width}">
+		x
+		<input class="field" type="text" size="5" name="user_small_image_height" value="{user_small_image_height}">
+    ,&nbsp;
+		<input class="field" type="text" size="8" name="user_small_image_size" value="{user_small_image_size}">
+    &nbsp;&nbsp;
+    <input type="checkbox" name="user_resize_small_image" {user_resize_small_image} value="1">
+		{ALWAYS_RESIZE_IMAGE_NOTE}
+    <input type="checkbox" name="user_generate_small_image" {user_generate_small_image} value="1">
+		{GENERATE_FROM_LARGE_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_LARGE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="5" name="user_large_image_width" value="{user_large_image_width}">
+		x
+		<input class="field" type="text" size="5" name="user_large_image_height" value="{user_large_image_height}">
+		,&nbsp;
+		<input class="field" type="text" size="8" name="user_large_image_size" value="{user_large_image_size}">
+    &nbsp;&nbsp;
+		<input type="checkbox" name="user_resize_large_image" {user_resize_large_image} value="1">
+		{ALWAYS_RESIZE_IMAGE_NOTE}
+    <input type="checkbox" name="user_generate_large_image" {user_generate_large_image} value="1">
+		{GENERATE_FROM_SUPER_MSG}
+	</td>
+</tr>
+
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_SUPER_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="5" name="user_super_image_width" value="{user_super_image_width}">
+		x
+		<input class="field" type="text" size="5" name="user_super_image_height" value="{user_super_image_height}">
+    ,&nbsp;
+		<input class="field" type="text" size="8" name="user_super_image_size" value="{user_super_image_size}">
+    &nbsp;&nbsp;
+		<input type="checkbox" name="user_resize_super_image" {user_resize_super_image} value="1">
+		{ALWAYS_RESIZE_IMAGE_NOTE}
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{WATERMARK_SETTINGS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{WATERMARK_IMAGE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="watermark_image" value="{watermark_image}" size="60" maxlength="255">
+		&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'logo')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+		&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'logo')"><b>{SELECT_IMAGE_MSG}</b></a>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_POSITION_MSG}
+	</td>
+	<td>
+		<select name="watermark_image_pos"><!-- begin watermark_image_pos -->
+			<option {watermark_image_pos_selected} value="{watermark_image_pos_value}">{watermark_image_pos_description}<!-- end watermark_image_pos -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_TRANSPARENCY_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="watermark_image_pct" value="{watermark_image_pct}" size="10" maxlength="10">
+		({IMAGE_TRANSPARENCY_DESC}) <br/>{OR_MSG}
+		<input type="checkbox" name="watermark_is_transparent" {watermark_is_transparent} value="1">
+		{IMAGE_IS_TRANSPARENT_ITSELF_MSG}
+	</td>
+</tr>
+
+<tr class="usual">
+	<td>
+		&nbsp;{WATERMARK_TEXT_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="watermark_text" value="{watermark_text}" size="60" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{TEXT_SIZE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="watermark_text_size" value="{watermark_text_size}" size="10" maxlength="10">
+		({TEXT_SIZE_DESC})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{TEXT_COLOR_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="watermark_text_color" value="{watermark_text_color}" size="10" maxlength="20">
+		({TEXT_COLOR_DESC})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{TEXT_ANGLE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="watermark_text_angle" value="{watermark_text_angle}" size="10" maxlength="20">
+		({TEXT_ANGLE_DESC})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{TEXT_POSITION_MSG}
+	</td>
+	<td>
+		<select name="watermark_text_pos"><!-- begin watermark_text_pos -->
+			<option {watermark_text_pos_selected} value="{watermark_text_pos_value}">{watermark_text_pos_description}<!-- end watermark_text_pos -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{TEXT_TRANSPARENCY_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="watermark_text_pct" value="{watermark_text_pct}" size="10" maxlength="10">
+		({TEXT_TRANSPARENCY_DESC})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{APPLY_WATERMARKS_TO_MSG}
+	</td>
+	<td>
+    <input type="checkbox" name="watermark_tiny_image" {watermark_tiny_image} value="1">
+		{IMAGE_TINY_MSG}  
+    <input type="checkbox" name="watermark_small_image" {watermark_small_image} value="1">
+		{IMAGE_SMALL_MSG}
+		<input type="checkbox" name="watermark_big_image" {watermark_big_image} value="1">
+		{IMAGE_LARGE_MSG}
+		<input type="checkbox" name="watermark_super_image" {watermark_super_image} value="1">
+		{IMAGE_SUPER_MSG}
+	</td>
+</tr>
+<tr class="middle">
+	<td></td>
+	<td>
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</div>
+
+<div id="data_google_base" style="{google_base_style}">
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{EXPORT_SETTINGS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{DATE_FEED_FILENAME_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" size="40" name="google_base_filename" value="{google_base_filename}">
+		(<a href="http://www.google.com/base/newfeed">{CREATE_NEW_DATA_FEED_MSG}</a>)
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{DATE_FEED_TITLE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="40" name="google_base_title" value="{google_base_title}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{DATE_FEED_DESC_MSG}
+	</td>
+	<td>
+		<textarea name="google_base_description" cols="80" rows="3">{google_base_description}</textarea>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{DATE_FEED_ENCODING_MSG}
+	</td>
+	<td>
+		<select name="google_base_encoding"><!-- begin google_base_encoding -->
+			<option {google_base_encoding_selected} value="{google_base_encoding_value}">{google_base_encoding_description}<!-- end google_base_encoding -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SAVE_FOLDER_PATH_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="40" name="google_base_save_path" value="{google_base_save_path}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EXPORT_TYPE_MSG}
+	</td>
+	<td>
+		<select name="google_base_export_type"><!-- begin google_base_export_type -->
+			<option {google_base_export_type_selected} value="{google_base_export_type_value}">{google_base_export_type_description}<!-- end google_base_export_type -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		<nobr>&nbsp;{GENERATE_PRICES_TAXES_MSG}</nobr>
+	</td>
+	<td>
+		<input type="checkbox" name="google_base_tax" {google_base_tax} value="1">
+		(<a href="{admin_tax_rates_href}">{TAX_PRICES_BASED_ON_MSG}</a>)
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PRODUCTS_EXPIRE_MSG} 
+	</td>
+	<td>
+		<input class="field" type="text" size="20" name="google_base_days_expiry" value="{google_base_days_expiry}">
+		{DAYS_MSG}
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{GOOGLE_FTP_DETAILS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{FTP_LOGIN_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="40" name="google_base_ftp_login" value="{google_base_ftp_login}">
+		(<a href="http://www.google.com/base/updateftp">{UPDATE_FTP_SETTING_MSG}</a>)
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{FTP_PASSWORD_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="40" name="google_base_ftp_password" value="{google_base_ftp_password}">
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{DEFAULT_SETTINGS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PROD_TYPE_MSG}
+	</td>
+	<td>
+		<select name="google_base_product_type_id"><!-- begin google_base_product_type_id -->
+			<option {google_base_product_type_id_selected} value="{google_base_product_type_id_value}">{google_base_product_type_id_description}<!-- end google_base_product_type_id -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CONDITION_MSG}
+	</td>
+	<td>
+		<select name="google_base_product_condition"><!-- begin google_base_product_condition -->
+			<option {google_base_product_condition_selected} value="{google_base_product_condition_value}">{google_base_product_condition_description}<!-- end google_base_product_condition -->
+		</select>
+	</td>
+</tr>
+<tr class="middle">
+	<td></td>
+	<td>
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</div>
+
+
+<div id="data_import_export" style="{import_export_style}">
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{IMPORT_PRODUCTS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		<nobr>&nbsp;{MATCH_EXISTED_PRODUCTS_MSG}</nobr>
+	</td>
+	<td>
+		<input type="checkbox" name="match_item_code" {match_item_code} value="1"> {MATCH_BY_ITEM_CODE_MSG}
+		<input type="checkbox" name="match_manufacturer_code" {match_manufacturer_code} value="1"> {MATCH_BY_MANUFACTURER_CODE_MSG}
+	</td>
+</tr>
+<tr class="middle">
+	<td></td>
+	<td>
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</div>
+
+</form>
+
+</td></tr></table>
+
+{admin_footer}
+
+<script language="JavaScript">
+<!--
+	rangeSelected();
+//-->
+</script>
+
+</body>
+</html>

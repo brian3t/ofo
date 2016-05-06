@@ -1,0 +1,339 @@
+<div class="block-order-data-preview">
+	<form action="{order_confirmation}" name="order_confirmation" method="GET">
+		<input type="hidden" name="order_id" value="{order_id}">
+		<input type="hidden" name="vc" value="{vc}">
+		<input type="hidden" name="action" value="save">
+		<!-- begin intro_block -->
+		{intro_text}
+		<!-- end intro_block -->
+		<!-- BEGIN errors -->
+		<div align="center" class="errorbg">{errors_list}</div>
+		<!-- END errors -->
+		<div class="titleTopCenter"> {PERSONAL_DETAILS_MSG} </div>
+		<div class="basket">
+			<table cellspacing="1" width="100%" border="0" class="orderInfo">
+				<!-- begin personal -->
+				<tr class="middlebg columnTitles" >
+					<td colspan="2">{INVOICE_TO_MSG}</td>
+				</tr>
+				<!-- begin name_block -->
+				<tr class="usualbg">
+					<td><label>{NAME_MSG}</label></td>
+					<td>{name}</td>
+				</tr>
+				<!-- end name_block -->
+				<!-- begin first_name_block -->
+				<tr class="usualbg">
+					<td><label>{FIRST_NAME_FIELD}</label></td>
+					<td>{first_name}</td>
+				</tr>
+				<!-- end first_name_block -->
+				<!-- begin last_name_block -->
+				<tr class="usualbg">
+					<td><label>{LAST_NAME_FIELD}</label></td>
+					<td>{last_name}</td>
+				</tr>
+				<!-- end last_name_block -->
+				<!-- begin email_block -->
+				<tr class="usualbg">
+					<td><label>{EMAIL_FIELD}</label></td>
+					<td>{email}</td>
+				</tr>
+				<!-- end email_block -->
+				<!-- begin company_id_block -->
+				<tr class="usualbg">
+					<td><label>{COMPANY_SELECT_FIELD}</label></td>
+					<td>{company_id}</td>
+				</tr>
+				<!-- end company_id_block -->
+				<!-- begin company_name_block -->
+				<tr class="usualbg">
+					<td><label>{COMPANY_NAME_FIELD}</label></td>
+					<td>{company_name}</td>
+				</tr>
+				<!-- end company_name_block -->
+				<!-- begin address1_block -->
+				<tr class="usualbg">
+					<td><label>{STREET_FIRST_FIELD}</label></td>
+					<td>{address1}</td>
+				</tr>
+				<!-- end address1_block -->
+				<!-- begin address2_block -->
+				<tr class="usualbg">
+					<td><label>{STREET_SECOND_FIELD}</label></td>
+					<td>{address2}</td>
+				</tr>
+				<!-- end address2_block -->
+				<!-- begin city_block -->
+				<tr class="usualbg">
+					<td><label>{CITY_FIELD}</label></td>
+					<td>{city}</td>
+				</tr>
+				<!-- end city_block -->
+				<!-- begin province_block -->
+				<tr class="usualbg">
+					<td><label>{PROVINCE_FIELD}</label></td>
+					<td>{province}</td>
+				</tr>
+				<!-- end province_block -->
+				<!-- begin state_id_block -->
+				<tr class="usualbg">
+					<td><label>{STATE_FIELD}</label></td>
+					<td>{state_id}</td>
+				</tr>
+				<!-- end state_id_block -->
+				<!-- begin zip_block -->
+				<tr class="usualbg">
+					<td><label>{ZIP_FIELD}</label></td>
+					<td>{zip}</td>
+				</tr>
+				<!-- end zip_block -->
+				<!-- begin country_id_block -->
+				<tr class="usualbg">
+					<td><label>{COUNTRY_FIELD}</label></td>
+					<td>{country_id}</td>
+				</tr>
+				<!-- end country_id_block -->
+				<!-- begin phone_block -->
+				<tr class="usualbg">
+					<td><label>{PHONE_FIELD}</label></td>
+					<td>{phone}</td>
+				</tr>
+				<!-- end phone_block -->
+				<!-- begin daytime_phone_block -->
+				<tr class="usualbg">
+					<td><label>{DAYTIME_PHONE_FIELD}</label></td>
+					<td>{daytime_phone}</td>
+				</tr>
+				<!-- end daytime_phone_block -->
+				<!-- begin evening_phone_block -->
+				<tr class="usualbg">
+					<td><label>{EVENING_PHONE_FIELD}</label></td>
+					<td>{evening_phone}</td>
+				</tr>
+				<!-- end evening_phone_block -->
+				<!-- begin cell_phone_block -->
+				<tr class="usualbg">
+					<td><label>{CELL_PHONE_FIELD}</label></td>
+					<td>{cell_phone}</td>
+				</tr>
+				<!-- end cell_phone_block -->
+				<!-- begin fax_block -->
+				<tr class="usualbg">
+					<td><label>{FAX_FIELD}</label></td>
+					<td>{fax}</td>
+				</tr>
+				<!-- end fax_block -->
+				<!-- begin personal_properties -->
+				<tr class="usualbg">
+					<td><label>{property_name}</label></td>
+					<td>{property_value}{property_price}</td>
+				</tr>
+				<!-- end personal_properties -->
+				<!-- end personal -->
+				<tr class="middlebg columnTitles" >
+					<td colspan="2">{DELIVERY_TO_MSG}</td>
+				</tr>
+				<!-- begin delivery -->
+				<!-- begin delivery_name_block -->
+				<tr class="usualbg">
+					<td><label>{NAME_MSG}</label></td>
+					<td>{delivery_name}</td>
+				</tr>
+				<!-- end delivery_name_block -->
+				<!-- begin delivery_first_name_block -->
+				<tr class="usualbg">
+					<td><label>{FIRST_NAME_FIELD}</label></td>
+					<td>{delivery_first_name}</td>
+				</tr>
+				<!-- end delivery_first_name_block -->
+				<!-- begin delivery_last_name_block -->
+				<tr class="usualbg">
+					<td><label>{LAST_NAME_FIELD}</label></td>
+					<td>{delivery_last_name}</td>
+				</tr>
+				<!-- end delivery_last_name_block -->
+				<!-- begin delivery_email_block -->
+				<tr class="usualbg">
+					<td><label>{EMAIL_FIELD}</label></td>
+					<td>{delivery_email}</td>
+				</tr>
+				<!-- end delivery_email_block -->
+				<!-- begin delivery_company_id_block -->
+				<tr class="usualbg">
+					<td><label>{COMPANY_SELECT_FIELD}</label></td>
+					<td>{delivery_company_id}</td>
+				</tr>
+				<!-- end delivery_company_id_block -->
+				<!-- begin delivery_company_name_block -->
+				<tr class="usualbg">
+					<td><label>{COMPANY_NAME_FIELD}</label></td>
+					<td>{delivery_company_name}</td>
+				</tr>
+				<!-- end delivery_company_name_block -->
+				<!-- begin delivery_address1_block -->
+				<tr class="usualbg">
+					<td><label>{STREET_FIRST_FIELD}</label></td>
+					<td>{delivery_address1}</td>
+				</tr>
+				<!-- end delivery_address1_block -->
+				<!-- begin delivery_address2_block -->
+				<tr class="usualbg">
+					<td><label>{STREET_SECOND_FIELD}</label></td>
+					<td>{delivery_address2}</td>
+				</tr>
+				<!-- end delivery_address2_block -->
+				<!-- begin delivery_city_block -->
+				<tr class="usualbg">
+					<td><label>{CITY_FIELD}</label></td>
+					<td>{delivery_city}</td>
+				</tr>
+				<!-- end delivery_city_block -->
+				<!-- begin delivery_province_block -->
+				<tr class="usualbg">
+					<td><label>{PROVINCE_FIELD}</label></td>
+					<td>{delivery_province}</td>
+				</tr>
+				<!-- end delivery_province_block -->
+				<!-- begin delivery_state_id_block -->
+				<tr class="usualbg">
+					<td><label>{STATE_FIELD}</label></td>
+					<td>{delivery_state_id}</td>
+				</tr>
+				<!-- end delivery_state_id_block -->
+				<!-- begin delivery_zip_block -->
+				<tr class="usualbg">
+					<td><label>{ZIP_FIELD}</label></td>
+					<td>{delivery_zip}</td>
+				</tr>
+				<!-- end delivery_zip_block -->
+				<!-- begin delivery_country_id_block -->
+				<tr class="usualbg">
+					<td><label>{COUNTRY_FIELD}</label></td>
+					<td>{delivery_country_id}</td>
+				</tr>
+				<!-- end delivery_country_id_block -->
+				<!-- begin delivery_phone_block -->
+				<tr class="usualbg">
+					<td><label>{PHONE_FIELD}</label></td>
+					<td>{delivery_phone}</td>
+				</tr>
+				<!-- end delivery_phone_block -->
+				<!-- begin delivery_daytime_phone_block -->
+				<tr class="usualbg">
+					<td><label>{DAYTIME_PHONE_FIELD}</label></td>
+					<td>{delivery_daytime_phone}</td>
+				</tr>
+				<!-- end delivery_daytime_phone_block -->
+				<!-- begin delivery_evening_phone_block -->
+				<tr class="usualbg">
+					<td><label>{EVENING_PHONE_FIELD}</label></td>
+					<td>{delivery_evening_phone}</td>
+				</tr>
+				<!-- end delivery_evening_phone_block -->
+				<!-- begin delivery_cell_phone_block -->
+				<tr class="usualbg">
+					<td><label>{CELL_PHONE_FIELD}</label></td>
+					<td>{delivery_cell_phone}</td>
+				</tr>
+				<!-- end delivery_cell_phone_block -->
+				<!-- begin delivery_fax_block -->
+				<tr class="usualbg">
+					<td><label>{FAX_FIELD}</label></td>
+					<td>{delivery_fax}</td>
+				</tr>
+				<!-- end delivery_fax_block -->
+				<!-- begin delivery_properties -->
+				<tr class="usualbg">
+					<td><label>{property_name}</label></td>
+					<td>{delivery_property_value}{property_price}</td>
+				</tr>
+				<!-- end delivery_properties -->
+				<!-- end delivery -->
+			</table>
+		</div>
+		<!-- begin payment -->
+		<div class="titleTopCenter"> {PAYMENT_DETAILS_MSG} </div>
+		<div class="basket">
+			<table cellspacing="1" width="100%" border="0" class="orderInfo">
+				<!-- begin payment_info_block -->
+				<tr class="usualbg">
+					<td colspan="2"> {payment_info} </td>
+				</tr>
+				<!-- end payment_info_block -->
+				<!-- begin cc_name_block -->
+				<tr class="usualbg">
+					<td width="200"  valign="top" class="usualbg"> {CC_NAME_FIELD} </td>
+					<td><b>{cc_name}</b></td>
+				</tr>
+				<!-- end cc_name_block -->
+				<!-- begin cc_first_name_block -->
+				<tr class="usualbg">
+					<td width="200"  valign="top" class="usualbg"> {CC_FIRST_NAME_FIELD} </td>
+					<td> {cc_first_name} </td>
+				</tr>
+				<!-- end cc_first_name_block -->
+				<!-- begin cc_last_name_block -->
+				<tr class="usualbg">
+					<td width="200"  valign="top" class="usualbg"> {CC_LAST_NAME_FIELD} </td>
+					<td> {cc_last_name} </td>
+				</tr>
+				<!-- end cc_last_name_block -->
+				<!-- begin cc_type_block -->
+				<tr class="usualbg">
+					<td width="200" valign="top" class="usualbg"> {CC_TYPE_FIELD} </td>
+					<td width="550" class="usualbg"><b>{cc_type}</b></td>
+				</tr>
+				<!-- end cc_type_block -->
+				<!-- begin cc_number_block -->
+				<tr class="usualbg">
+					<td width="200" valign="top" class="usualbg"> {CC_NUMBER_FIELD} </td>
+					<td width="550" class="usualbg"><b>{cc_number}</b></td>
+				</tr>
+				<!-- end cc_number_block -->
+				<!-- begin cc_issue_number_block -->
+				<tr class="usualbg">
+					<td width="200" valign="top" class="usualbg"> {CC_ISSUE_NUMBER_FIELD} </td>
+					<td><b>{cc_issue_number}</b></td>
+				</tr>
+				<!-- end cc_issue_number_block -->
+				<!-- begin cc_start_date_block -->
+				<tr class="usualbg">
+					<td width="200"  valign="top"  class="usualbg"> {CC_START_DATE_FIELD} </td>
+					<td><b>{cc_start_date}</b></td>
+				</tr>
+				<!-- end cc_start_date_block -->
+				<!-- begin cc_expiry_date_block -->
+				<tr class="usualbg">
+					<td width="200" valign="top" class="usualbg"> {CC_EXPIRY_DATE_FIELD} </td>
+					<td><b>{cc_expiry_date}</b></td>
+				</tr>
+				<!-- end cc_expiry_date_block -->
+				<!-- begin cc_security_code_block -->
+				<tr class="usualbg">
+					<td width="200"  valign="top"  class="usualbg"> {CC_SECURITY_CODE_FIELD} </td>
+					<td  class="usualbg"><b>{cc_security_code}</b></td>
+				</tr>
+				<!-- end cc_security_code_block -->
+				<!-- begin pay_without_cc_block -->
+				<tr class="usualbg">
+					<td width="200"  valign="top"  class="usualbg"> {PAY_WITHOUT_CC_FIELD} </td>
+					<td><b>{pay_without_cc}</b></td>
+				</tr>
+				<!-- end pay_without_cc_block -->
+				<!-- begin payment_properties -->
+				<tr class="usualbg">
+					<td width="25%"  valign="top"  class="usualbg"> {property_name} </td>
+					<td><b>{property_value}</b></td>
+				</tr>
+				<!-- end payment_properties -->
+			</table>
+			<!-- end payment -->
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+				<tr class="usualbg">
+					<td align="right"><input name="confirm" class="button" id="continue" type="submit" value="Complete My Order" onCLick="confirmOrder();"></td>
+				</tr>
+			</table>
+		</div>
+	</form>
+</div>

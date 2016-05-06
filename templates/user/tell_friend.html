@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{TELL_FRIEND_TITLE}</title>
+<base href="{absolute_url}">
+<link rel="stylesheet" href="{css_file}" type="text/css">
+</head>
+
+<body class="popup">
+
+<table height="100%" width="100%" border="0" cellpadding="5" cellspacing="0" align="center">
+<tr height="10%" class="usualbg" align="center">
+	<td>
+		<span class="bigtitle">{TELL_FRIEND_TITLE}</span>
+	</td>
+</tr>
+<tr height=80% class="usualbg">
+	<td valign="top" align="center"> 
+
+		<form method="post" name="record" action="{tell_friend_href}">
+		<input type=hidden name="item_id" value="{item_id}">
+		<input type=hidden name="type" value="{type}">
+		<input type=hidden name="operation" value="1">
+
+		<table width=350 border="0" cellspacing="0" cellpadding="2" align=center>
+		<!-- BEGIN errors -->
+		<tr>
+			<td class="usualbg" align="center" colspan="2">
+				<div class="errorbg">{errors_list}</div>
+			</td>
+		</tr><!-- END errors -->
+		<!-- BEGIN message_sent -->
+		<tr>
+			<td class="usualbg" align="center" colspan="2">
+				<div class="messagebg">{TELL_SENT_MSG}</div>
+			</td>
+		</tr><!-- END message_sent -->
+		<tr>
+			<td class="usualbg" align="right" colspan="2">
+				{ASTERISK_MSG}<br>
+			</td>
+		</tr>
+		<tr> 
+			<td align="right">{TELL_YOUR_NAME_FIELD}:&nbsp;</td>
+			<td><input class="text" type="text" class="field" name="from_name" value="{from_name}" size="32"></td>
+		</tr>
+		<tr> 
+			<td  align="right"><span class=asterisk>*</span> {TELL_YOUR_EMAIL_FIELD}:&nbsp;</td>
+			<td><input class="text" type="text" class="field" name="from_email" value="{from_email}" size="32"></td>
+		</tr>
+		<tr> 
+			<td align="right">{TELL_FRIENDS_NAME_FIELD}:&nbsp;</td>
+			<td>
+				<input class="text" type="text" class="field" name="to_name" value="{to_name}" size="32">
+			</td>
+		</tr>
+		<tr> 
+			<td nowrap align="right"><span class=asterisk>*</span> {TELL_FRIENDS_EMAIL_FIELD}:&nbsp;</td>
+			<td><input class="text" type="text" class="field" name="to_email" value="{to_email}" size="32"></td>
+		</tr>
+		<tr> 
+			<td valign=top align="right">{TELL_COMMENT_FIELD}:&nbsp;</td>
+			<td>	
+				<textarea class="text" name="comment" rows="6" cols="30" class=black>{comment}</textarea>
+			</td>
+		</tr>
+
+		<!-- BEGIN validation_number_block -->
+		<tr class="usualbg">
+			<td nowrap class="usualbg">
+				&nbsp;{VALIDATION_CODE_FIELD} *
+			</td>
+			<td class="usualbg">
+				&nbsp;<input class="field" type="text" name="validation_number" size="4" value="{validation_number}">
+				&nbsp;<img src="validation_image.php" border="0" align="absmiddle" alt="{VALIDATION_CODE_FIELD}" title="{VALIDATION_CODE_FIELD}">
+			</td>
+		</tr>
+		<!-- END validation_number_block -->
+
+		<tr align="left" valign="top">
+			<td>&nbsp;</td>
+			<td>
+				<span class="submit"><input class="submit" type="submit" value="{SEND_BUTTON}"></span>
+				<span class="submit"><input class="submit" id="reset" onclick="javascript:document.record.reset();return false;" type="reset" value="{RESET_BUTTON}"></span>
+			</td>
+		</tr>
+		<tr align="left" valign="top">
+			<td colspan="2">
+				<br>
+				<small class="comment">{TELL_FRIEND_PRIVACY_NOTE_MSG}.</small>
+			</td>
+		</tr>
+		</table>
+		</form>
+
+	</td>
+</tr>
+<tr>
+	<td class="headerbg" height="10%">
+		<div align="center"><a class="headerbg" href="javascript:self.close()"><b>{CLOSE_WINDOW_MSG}</b></a></div>
+	</td>
+</tr>
+</table>
+
+</body>
+</html>

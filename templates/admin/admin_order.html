@@ -1,0 +1,964 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {ADMIN_ORDER_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+
+<script language="JavaScript" type= "text/javascript" src="../js/images.js"></script>
+<script language="JavaScript">
+<!--
+
+function changeShipping()
+{
+	var basketForm = document.basket;
+	var currencyLeft = basketForm.currency_left.value;
+	var currencyRight = basketForm.currency_right.value;
+	var currencyRate = basketForm.currency_rate.value;
+	var taxPercent = parseFloat(basketForm.tax_percent.value);
+	if (isNaN(taxPercent)) { taxPercent = 0; }
+	var shippingTypeId = basketForm.shipping_type_id.options[basketForm.shipping_type_id.selectedIndex].value;
+	var shippingTaxable = parseInt(basketForm.elements["shipping_taxable_" + shippingTypeId].value);
+	var shippingValue = parseFloat(basketForm.elements["shipping_value_" + shippingTypeId].value);
+	var shippingTax = 0;
+	if (shippingTaxable == 1) {
+		shippingTax = Math.round(shippingValue * taxPercent) / 100;;
+	}
+	var shippingCostInclTax = shippingValue + shippingTax;
+
+	//basketForm.shipping_cost.value = currencyLeft + formatNumber(shippingValue * currencyRate) + currencyRight;
+	var shippingCostControl = document.getElementById("shipping_cost_selected");
+	if (shippingCostControl) {
+		shippingCostControl.innerHTML = currencyLeft + formatNumber(shippingValue * currencyRate) + currencyRight;
+	}
+	var shippingTaxControl = document.getElementById("shipping_tax_selected");
+	if (shippingTaxControl) {
+		shippingTaxControl.innerHTML = currencyLeft + formatNumber(shippingTax * currencyRate) + currencyRight;
+	}
+	var shippingCostInclTaxControl = document.getElementById("shipping_cost_incl_tax_selected");
+	if (shippingCostInclTaxControl) {
+		shippingCostInclTaxControl.innerHTML = currencyLeft + formatNumber(shippingCostInclTax * currencyRate) + currencyRight;
+	}
+
+	var shippingTaxableValue = 0;
+	if (shippingTaxable == 1) {
+		shippingTaxableValue = shippingValue;
+	}
+
+	var goodsTotal = parseFloat(basketForm.goods_value.value);
+	var goodsTaxValue = parseFloat(basketForm.goods_tax_value.value);
+
+	var propertiesTotal = parseFloat(basketForm.properties_total.value);
+	var propertiesTaxable = parseFloat(basketForm.properties_taxable.value);
+	var feeValue = parseFloat(basketForm.fee_value.value);
+	if (isNaN(feeValue)) { feeValue = 0; }
+
+	var taxCost = 0;
+	if (taxPercent > 0) {
+		var taxableAmount = (propertiesTaxable + shippingTaxableValue);
+		var taxCost = (Math.round(taxableAmount * taxPercent) / 100) + goodsTaxValue;
+		basketForm.tax_cost.value = currencyLeft + formatNumber(taxCost * currencyRate) + currencyRight;
+	}
+	var orderTotal = goodsTotal + propertiesTotal + shippingValue + taxCost + feeValue;
+
+	basketForm.order_total.value = currencyLeft + formatNumber(orderTotal * currencyRate) + currencyRight;
+}
+
+function formatNumber(numberValue)
+{
+	numberValue = Math.round(numberValue * 100) / 100;
+	var numberText = new String(numberValue);
+	if(numberText.indexOf(".") == -1) {
+		numberText += ".00";
+	} else if (numberText.indexOf(".") == (numberText.length - 2)) {
+		numberText += "0";
+	} else {
+		var numberParts = numberText.split(".");
+		if(numberParts[1].length > 2) {
+			numberText = numberParts[0] + "." + numberParts[1].substring(0, 2);
+		}
+	}
+	return numberText;
+}
+
+function changeStatus()
+{
+	var selectedStatus = document.basket.order_status.selectedIndex;
+	var orderItems = document.basket.order_items.value;
+	var items = orderItems.split(",");
+	for ( var i = 0; i < items.length; i++) {
+		var itemId = items[i];
+		document.basket.elements["item_status_" + itemId].selectedIndex = selectedStatus;
+	}
+}
+
+function confirmUpdate()
+{
+	var submitForm = false;
+	var isChanges  = false;
+	var isOrderStatusChange  = false;
+	var currentStatus = document.basket.current_status.value;
+	var newOrderStatus = document.basket.order_status.options[document.basket.order_status.selectedIndex].value;
+	var orderItems = document.basket.order_items.value;
+	var currentShippingId = document.basket.current_shipping_id.value;
+	var newShippingId = "";
+	if (document.basket.shipping_type_id) {
+		newShippingId = document.basket.shipping_type_id.value;
+	}
+	var currentTrackingId = document.basket.current_tracking_id.value;
+	var newTrackingId = document.basket.shipping_tracking_id.value;
+	var confirmMessage = "{CHANGE_FOLLOWING_PARAMETER_QST}\n";
+	if (currentStatus != newOrderStatus) {
+		var newStatusName = document.basket.order_status.options[document.basket.order_status.selectedIndex].text;
+		confirmMessage += " * {SET_ORDER_STATUS_MSG} '" + newStatusName + "'.\n";
+		isChanges = true;
+		isOrderStatusChange = true;
+	}
+	var items = orderItems.split(",");
+	for ( var i = 0; i < items.length; i++) {
+		var itemId = items[i];
+		var statusControl = document.basket.elements["item_status_" + itemId];
+		var newItemStatus = statusControl.options[statusControl.selectedIndex].value;
+		var curItemStatus = document.basket.elements["current_status_" + itemId].value;
+		if (curItemStatus != newItemStatus && newOrderStatus != newItemStatus) {
+			var itemName = document.basket.elements["item_name_" + itemId].value;
+			var itemStatusName = statusControl.options[statusControl.selectedIndex].text;
+			confirmMessage += " * {SET_STATUS_MSG} '" +itemStatusName+ "' for '" + itemName + "'.\n";
+			isChanges = true;
+		}
+	}
+	if (newShippingId != "" && currentShippingId != newShippingId) {
+		confirmMessage += " * {CHANGE_SHIPPING_METHOD_MSG}.\n";
+		isChanges = true;
+	}
+	if (currentTrackingId != newTrackingId) {
+		confirmMessage += " * {UPDATE_TRACKING_NUMBER_MSG}.\n";
+		isChanges = true;
+	}
+	if (isChanges) {
+		submitForm = confirm(confirmMessage);
+	} else {
+		alert("{NOTHING_TO_UPDATE_MSG}.")
+	}
+
+	return submitForm;	
+}
+
+function showOrderEvent(eventId)
+{                              	
+	var eventDescObj = document.getElementById("event_" + eventId);
+	var eventMoreObj = document.getElementById("event_more_" + eventId);
+	var popupDescObj = document.getElementById("popup_description");
+	var popupShadow = document.getElementById("popup_shadow");
+	var popupWin = document.getElementById("popup_win");
+	if (eventDescObj) {
+		popupDescObj.innerHTML = eventDescObj.innerHTML;
+		var pageScroll = getScroll();
+		popupWin.style.left = (findPosX(eventMoreObj, 0) - 370) + "px";
+		popupWin.style.top = (findPosY(eventMoreObj, 0) - 50) + "px";
+		var arrayPageSizeWithScroll = getPageSizeWithScroll();
+		popupShadow.style.height = arrayPageSizeWithScroll[1] + "px";
+
+		popupWin.style.display = "block";			
+		popupShadow.style.display = "block";			
+	}
+
+}
+
+function hideOrderEvent()
+{                              	
+	var popupShadow = document.getElementById("popup_shadow");
+	var popupWin = document.getElementById("popup_win");
+	popupWin.style.display = "none";			
+	popupShadow.style.display = "none";			
+}
+
+//-->
+</script>
+</head>
+
+<body class="commonbg">
+
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			<table cellspacing="0" cellpadding="0" border="0" width="100%" align="center">
+			<tr>
+			<td>
+				&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+				<a href="{admin_orders_url}">{ORDERS_MAINTENANCE_MSG}</a>&nbsp;&gt;&nbsp;<b>{ADMIN_ORDER_MSG}</b>
+			</td>
+			</tr></table>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<!-- BEGIN user_stats -->
+<br>
+<table width="100%" border="0" cellspacing="1" cellpadding="0" align="center" class="middlebg">
+<tr class="usual"> 
+	<td valign="top" align="center">
+		<table width="100%" border="0" cellspacing="0" cellpadding="3">
+		<tr>
+			<td class="usual">
+				<div class="message">
+				&nbsp;{CUSTOMERS_WHO_SUBMITTED_MSG} <b>{total_orders}</b> {ADMIN_ORDERS_BRAKETS_MSG}. <br>
+				&nbsp;{TOTAL_GOODS_AMOUNT_MSG} - <b>{total_goods}</b>
+				</div>
+			</td>
+			<td align="right">
+				<table border="0" cellspacing="1" cellpadding="1" class="headerbg">
+				<tr class="middle" align="center">
+					<td>&nbsp;{STATUS_MSG}&nbsp;</td>
+					<td>&nbsp;{ORDERS_MSG}&nbsp;</td>
+					<td>&nbsp;{AMOUNT_MSG}&nbsp;</td>
+				</tr>
+				<!-- begin user_statuses -->
+				<tr class=usual>
+					<td>&nbsp;{user_status}&nbsp;</td>
+					<td align="center">{status_orders}</td>
+					<td align="right">&nbsp;{status_goods}&nbsp;</td>
+				</tr>
+				<!-- end user_statuses -->
+				<tr class="middle">
+					<td>&nbsp;{TOTAL_MSG}&nbsp;</td>
+					<td align="center">&nbsp;{total_orders}&nbsp;</td>
+					<td align="right">&nbsp;{total_goods}&nbsp;</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>
+<!-- END user_stats -->
+
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr>
+	<td> 
+		<span class="bigText">&nbsp;{ORDER_NUMBER_MSG}:</span>
+		<span class="title">{order_id}</span>
+	</td>
+	<td align="right">
+		<span class="title">&nbsp;{order_placed_date}&nbsp;</span>
+	</td>
+</tr>
+<!-- BEGIN invoice_number_block -->
+<tr>
+	<td> 
+		<span class="bigText">&nbsp;{INVOICE_NUMBER_MSG}:</span>
+		<span class="title">{invoice_number}</span>
+	</td>
+	<td align="right">&nbsp;
+		
+	</td>
+</tr>
+<!-- END invoice_number_block -->
+<!-- BEGIN parent_order_id_block -->
+<tr>
+	<td> 
+		<span class="bigText">&nbsp;{PARENT_ORDER_NUMBER_MSG}:</span>
+		<span class="title"><a href="{admin_order_href}?order_id={parent_order_id}">{parent_order_id}</a></span>
+	</td>
+	<td align="right">
+		<span class="title">&nbsp;</span>
+	</td>
+</tr>
+<!-- END parent_order_id_block -->
+<!-- BEGIN order_currency -->
+<tr>
+	<td> 
+		<span class="bigText">&nbsp;{CURRENCY_TITLE}:</span>
+		<span class="title">{order_currency_code} - {order_currency_rate}</span>
+	</td>
+	<td align="right">
+		<span class="title">&nbsp;</span>
+	</td>
+</tr>
+<!-- END order_currency -->
+</table>
+
+<br>
+
+<!-- BEGIN errors -->
+<div align="center" class="error">{errors_list}</div><br><!-- END errors -->
+
+<form action="{admin_order_href}" name="basket" style="margin-top: 0px;" method="POST">
+<input type="hidden" name="operation" value="update">
+<input type="hidden" name="s_on" value="{s_on}">
+<input type="hidden" name="s_ne" value="{s_ne}">
+<input type="hidden" name="s_kw" value="{s_kw}">
+<input type="hidden" name="s_sd" value="{s_sd}">
+<input type="hidden" name="s_ed" value="{s_ed}">
+<input type="hidden" name="s_os" value="{s_os}">
+<input type="hidden" name="s_cc" value="{s_cc}">
+<input type="hidden" name="s_sc" value="{s_sc}">
+<input type="hidden" name="s_ex" value="{s_ex}">
+<input type="hidden" name="page" value="{page}">
+<input type="hidden" name="sort_ord" value="{sort_ord}">
+<input type="hidden" name="sort_dir" value="{sort_dir}">
+<input type="hidden" name="order_id" value="{order_id}">
+<input type="hidden" name="goods_value" value="{goods_value}">
+<input type="hidden" name="goods_tax_value" value="{goods_tax_value}">
+<input type="hidden" name="taxable_value" value="{taxable_value}">
+<input type="hidden" name="properties_total" value="{properties_total}">
+<input type="hidden" name="properties_taxable" value="{properties_taxable}">
+
+<input type="hidden" name="order_items" value="{order_items}">
+<input type="hidden" name="tax_percent" value="{tax_percent}">
+<input type="hidden" name="fee_value" value="{fee_value}">
+<input type="hidden" name="currency_left" value="{currency_left}">
+<input type="hidden" name="currency_right" value="{currency_right}">
+<input type="hidden" name="currency_rate" value="{currency_rate}">
+<input type="hidden" name="current_status" value="{current_status}">
+<input type="hidden" name="current_shipping_id" value="{current_shipping_id}">
+<input type="hidden" name="current_tracking_id" value="{current_tracking_id}">
+
+<table border="0" cellspacing="1" cellpadding="0" width="100%" align="center">
+<tr>
+	<td>
+		&nbsp;{STATUS_MSG}: <select name="order_status" onChange="changeStatus();"><!-- begin order_status -->
+							<option {order_status_selected} value="{order_status_value}">{order_status_description}<!-- end order_status -->
+						</select>
+	</td>
+	<td align="right">
+		<!-- begin currency_url -->
+		&nbsp;<a href="{admin_order_currency_url}">{CHANGE_CURRENCY_MSG} ({currency_code})</a>&nbsp;|
+		<!-- end currency_url -->
+		{ADMIN_PACKING_SLIP_MSG} 
+		<a href="{admin_packing_html_href}?order_id={order_id}" target="_blank"><img src="../images/html_icon.gif" width="28" height="16" border="0" align=""></a>
+		<a href="{admin_packing_pdf_href}?order_id={order_id}"><img src="../images/pdf_icon.gif" width="28" height="16" border="0"></a>&nbsp;|
+		<a style="{notes_style}" href="{admin_order_notes_href}?order_id={order_id}">{ORDER_NOTES_MSG} ({total_notes})</a>
+		|&nbsp;<a href="{admin_order_links_href}?order_id={order_id}">{DOWNLOAD_LINKS_MSG} ({total_links})</a>
+		|&nbsp;<a href="{admin_order_serials_href}?order_id={order_id}">{ADMIN_SERIAL_NUMBERS_MSG} ({total_serials})</a>
+		<!-- begin vouchers_link -->
+		|&nbsp;<a href="{admin_order_vouchers_href}?order_id={order_id}">{GIFT_VOUCHERS_MSG}</a><!-- end vouchers_link -->
+		<!-- begin remove_order_link-->
+		|&nbsp;<a href="javascript:document.basket.submit();" 
+			onCLick="document.basket.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">{DELETE_BUTTON}</a>&nbsp;
+		<!-- end remove_order_link -->
+	</td>
+</tr>
+</table>
+&nbsp;
+
+
+<!-- begin basket -->
+<fieldset>
+<legend>{CART_TITLE}</legend>
+
+<table cellpadding="6" cellspacing="1" width="100%" border="0">
+<tr class="middle" align="center">
+	<!-- begin item_image_header -->
+	<td>&nbsp;</td><!-- end item_image_header -->
+	<!-- begin item_name_header -->
+	<td><b>{PROD_TITLE_COLUMN}</b></td><!-- end item_name_header -->
+	<!-- begin item_price_header -->
+	<td><b>{PROD_PRICE_COLUMN} {tax_note_excl}</b></td><!-- end item_price_header -->
+	<!-- begin item_tax_percent_header -->
+	<td><b>{tax_name} (%)</b></td><!-- end item_tax_percent_header -->
+	<!-- begin item_tax_header -->
+	<td><b>{tax_name}</b></td><!-- end item_tax_header -->
+	<!-- begin item_price_incl_tax_header -->
+	<td><b>{PROD_PRICE_COLUMN} {tax_note}</b></td><!-- end item_price_incl_tax_header -->
+	<!-- begin item_quantity_header -->
+	<td><b>{PROD_QTY_COLUMN}</b></td><!-- end item_quantity_header -->
+	<!-- begin item_price_total_header -->
+	<td><b>{PROD_TOTAL_COLUMN} {tax_note_excl}</b></td><!-- end item_price_total_header -->
+	<!-- begin item_tax_total_header -->
+	<td><b>{tax_name} {PROD_TAX_TOTAL_COLUMN}</b></td><!-- end item_tax_total_header -->
+	<!-- BEGIN item_price_incl_tax_total_header -->
+	<td><b>{PROD_TOTAL_COLUMN} {tax_note}</b></td><!-- END item_price_incl_tax_total_header -->
+</tr><!-- begin items -->
+<tr class="usual" valign="top">
+	<!-- begin item_image_column -->
+	<td class="usual" align="center" valign="top">
+		<!-- begin image_preview -->
+			<img src="{src}" {height} {width} hspace="5" border="0" alt="{alt}" align="left">
+		<!-- end image_preview -->
+	</td><!-- end item_image_column -->
+	<!-- begin item_name_column -->
+	<td>
+		<a href="{admin_order_item_href}?order_item_id={order_item_id}">{item_name}</a>
+		<input type="hidden" name="item_name_{order_item_id}" value="{item_name_strip}">
+		<!-- begin item_code_block -->
+		<br>{PROD_CODE_MSG}: <b>{item_code}</b><!-- end item_code_block -->
+		
+		<!-- begin manufacturer_code_block -->
+		<br>{MANUFACTURER_CODE_MSG}: <b>{manufacturer_code}</b><!-- end manufacturer_code_block -->	
+		<font class="small">{item_properties}</font>
+			<!-- begin components_block -->
+			<div><b>{PROD_SUBCOMPONENTS_MSG}:</b></div>
+			<!-- begin components -->
+			<div>{selection_name} {component_quantity} x {component_name} {component_price} {component_icon}</div>
+				<!-- begin component_codes -->
+				<div class="componentCodes"><!-- begin component_item_code_block -->
+					({PROD_CODE_MSG}: {component_item_code})<!-- end component_item_code_block --><!-- begin component_man_code_block -->
+					({MANUFACTURER_CODE_MSG}: {component_manufacturer_code})<!-- end component_man_code_block -->
+				</div>
+				<!-- end component_codes -->
+			<!-- end components -->
+			<!-- end components_block -->
+		<!-- begin gift_vouchers -->
+		<div class="small">{COUPON_MSG}: <a href="{admin_coupon_href}?order_id={order_id}&coupon_id={coupon_id}">{coupon_code}</a></div>
+		<!-- end gift_vouchers -->
+		<!-- begin serial_numbers -->
+		<div class="small">{SERIAL_NUMBER_MSG}: <a href="{admin_order_serial_href}?order_id={order_id}&serial_id={serial_id}">{serial_number}</a></div>
+		<!-- end serial_numbers -->
+		<!-- begin item_coupons -->
+		<div class="small">{coupon_title} ({COUPON_MSG}: <a href="{admin_coupon_href}?coupon_id={coupon_id}">{coupon_code}</a>)</div>
+		<!-- end item_coupons -->
+		<!-- begin next_recurring_payment -->
+		<div class="small">{RECURRING_NEXT_PAYMENT_MSG}: {next_payment_date}</div>
+		<!-- end next_recurring_payment -->
+		<!-- begin points_price_block -->
+		<div class="points_price">{POINTS_PRICE_MSG}:&nbsp;<b>{points_price}</b></div><!-- end points_price_block -->
+		<!-- begin reward_points_block -->
+		<div class="reward_points">{REWARD_POINTS_MSG}:&nbsp;<b>{reward_points}</b></div><!-- end reward_points_block -->
+		<!-- begin reward_credits_block -->
+		<div class="reward_credits">{REWARD_CREDITS_MSG}:&nbsp;<b>{reward_credits}</b></div><!-- end reward_credits_block -->
+
+		<div>
+			{STATUS_MSG}: 
+			<input type="hidden" name="current_status_{order_item_id}" value="{current_item_status}">
+			<select name="item_status_{order_item_id}" style="font-size: 7pt;"><!-- begin item_status -->
+				<option {item_status_selected} value="{item_status_value}">{item_status_description}<!-- end item_status -->
+			</select>
+		</div>
+	</td><!-- end item_name_column -->
+	<!-- begin item_price_excl_tax_column -->
+	<td align="right">
+		{price_excl_tax}&nbsp;
+	</td><!-- end item_price_excl_tax_column -->
+	<!-- begin item_tax_percent_column -->
+	<td align="right">
+		{item_tax_percent}&nbsp;
+	</td><!-- end item_tax_percent_column -->
+	<!-- begin item_tax_column -->
+	<td align="right">{item_tax}&nbsp;</td><!-- end item_tax_column -->
+	<!-- begin item_price_incl_tax_column -->
+	<td align="right">{price_incl_tax}&nbsp;</td><!-- end item_price_incl_tax_column -->
+	<!-- begin item_quantity_column -->
+	<td align="center">{quantity}</td><!-- end item_quantity_column -->
+	<!-- begin item_price_excl_tax_total_column -->
+	<td align="right">{price_excl_tax_total}&nbsp;</td><!-- end item_price_excl_tax_total_column -->
+	<!-- begin item_tax_total_column -->
+	<td align="right">{item_tax_total}&nbsp;</td><!-- end item_tax_total_column -->
+	<!-- begin item_price_incl_tax_total_column -->
+	<td align="right">{price_incl_tax_total}&nbsp;</td><!-- end item_price_incl_tax_total_column -->
+</tr><!-- end items -->
+<tr class="middle">
+	<!-- begin goods_name_column -->
+	<td colspan="{goods_colspan}">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td>
+				<!-- begin reward_points_total_block -->
+				&nbsp;{REWARD_POINTS_MSG}: <b>{reward_points_total}</b>
+				<!-- end reward_points_total_block -->
+				<!-- begin reward_credits_total_block -->
+				&nbsp;&nbsp;{REWARD_CREDITS_MSG}: <b>{reward_credits_total}</b>
+				<!-- end reward_credits_total_block -->
+			</td>
+			<td align="right"><b>{GOODS_TOTAL_MSG}&nbsp;</b></td>
+		</tr>
+		</table>
+	</td>
+	<!-- end goods_name_column -->
+	<!-- begin goods_total_excl_tax_column -->
+	<td align="right">
+		<b>{goods_total_excl_tax}&nbsp;</b>
+	</td>
+	<!-- end goods_total_excl_tax_column -->
+	<!-- BEGIN goods_tax_total_column -->
+	<td align="right">
+		{goods_tax_total}&nbsp;
+	</td><!-- END goods_tax_total_column -->
+	<!-- BEGIN goods_total_incl_tax_column -->
+	<td align="right">
+		{goods_total_incl_tax}&nbsp;
+	</td><!-- END goods_total_incl_tax_column -->
+</tr>
+<!-- begin order_coupons -->
+<tr class="usual">
+	<!-- begin coupon_name_column -->
+	<td colspan="{goods_colspan}">
+		{coupon_title} ({COUPON_MSG}: <a href="{admin_coupon_href}?coupon_id={coupon_id}">{coupon_code}</a>)
+	</td>
+	<!-- end coupon_name_column -->
+	<!-- begin coupon_amount_column -->
+	<td align="right">
+		<b>{discount_amount_excl_tax}&nbsp;</b>
+	</td>
+	<!-- end coupon_amount_column -->
+	<!-- begin coupon_tax_column -->
+	<td align="right">
+		<b>{discount_tax_amount}&nbsp;</b>
+	</td><!-- end coupon_tax_column -->
+	<!-- begin coupon_amount_incl_tax_column -->
+	<td align="right">
+		{discount_amount_incl_tax}&nbsp;
+	</td><!-- end coupon_amount_incl_tax_column -->
+</tr>
+<!-- end order_coupons -->
+
+<!-- begin discount -->
+<tr class="middle">
+	<!-- BEGIN total_discount_name_column -->
+	<td colspan="{goods_colspan}" align="right">
+		<b>{TOTAL_DISCOUNT_MSG}&nbsp;</b>
+	</td><!-- END total_discount_name_column -->
+	<!-- BEGIN total_discount_amount_excl_tax_column -->
+	<td align="right"><b>{total_discount_excl_tax}&nbsp;</b></td><!-- END total_discount_amount_excl_tax_column -->
+	<!-- BEGIN total_discount_tax_column -->
+	<td align="right"><b>{total_discount_tax_amount}&nbsp;</b></td><!-- END total_discount_tax_column -->
+	<!-- BEGIN total_discount_amount_incl_tax_column -->
+	<td align="right"><b>{total_discount_incl_tax}&nbsp;</b></td><!-- END total_discount_amount_incl_tax_column -->
+</tr>
+<tr class="middle">
+	<!-- BEGIN discounted_name_column -->
+	<td colspan="{goods_colspan}" align="right">
+		<b>{GOODS_WITH_DISCOUNT_MSG}&nbsp;</b>
+	</td><!-- end discounted_name_column -->
+	<!-- BEGIN discounted_amount_excl_tax_column -->
+	<td align="right"><b>{discounted_amount_excl_tax}&nbsp;</b></td><!-- END discounted_amount_excl_tax_column -->
+	<!-- BEGIN discounted_tax_column -->
+	<td align="right"><b>{discounted_tax_amount}&nbsp;</b></td><!-- END discounted_tax_column -->
+	<!-- BEGIN discounted_amount_incl_tax_column -->
+	<td align="right"><b>{discounted_amount_incl_tax}&nbsp;</b></td><!-- END discounted_amount_incl_tax_column -->
+</tr><!-- end discount -->
+<!-- begin cart_properties -->
+<tr class="usual">
+	<td colspan="{goods_colspan}" align="right">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">	
+		<tr valign="top">
+			<td>
+				<!-- begin property_points_price_block -->
+				<div class="points_price">{POINTS_PRICE_MSG}: <b>{property_points_price}</b></div><!-- end property_points_price_block -->
+			</td>
+			<td align="right">
+				{property_name} ({property_value})&nbsp;
+			</td>
+		</tr>
+		</table>
+	</td>
+	<!-- BEGIN property_price_excl_tax_column -->
+	<td align="right">
+		{property_price_excl_tax}&nbsp;
+	</td><!-- END property_price_excl_tax_column -->
+	<!-- BEGIN property_tax_column -->
+	<td align="right">
+		{property_tax}&nbsp;
+	</td><!-- END property_tax_column -->
+	<!-- BEGIN property_price_incl_tax_column -->
+	<td align="right">
+		{property_price_incl_tax}&nbsp;
+	</td><!-- END property_price_incl_tax_column -->
+</tr><!-- end cart_properties -->
+<!-- begin shipping_type -->
+<tr class="usual">
+	<td colspan="{goods_colspan}" align="right">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">	
+		<tr valign="top">
+			<td>
+				<!-- begin shipping_points_price_block -->
+				<div class="points_price">{POINTS_PRICE_MSG}: <b>{shipping_points_price}</b></div><!-- end shipping_points_price_block -->
+			</td>
+			<td align="right">
+				{shipping_type_desc}&nbsp;
+			</td>
+		</tr>
+		</table>
+		<input type="hidden" name="shipping_type_id" value="{shipping_type_id}">
+	</td>
+	<!-- BEGIN shipping_cost_excl_tax_column -->
+	<td align="right">
+		{shipping_cost_excl_tax}&nbsp;
+	</td><!-- END shipping_cost_excl_tax_column -->
+	<!-- BEGIN shipping_tax_column -->
+	<td align="right">
+		{shipping_tax}&nbsp;
+	</td><!-- END shipping_tax_column -->
+	<!-- BEGIN shipping_cost_incl_tax_column -->
+	<td align="right">
+		{shipping_cost_incl_tax}&nbsp;
+	</td><!-- END shipping_cost_incl_tax_column -->
+</tr><!-- end shipping_type -->
+<!-- begin shipping_selection -->
+<tr class="usual">
+	<td colspan="{goods_colspan}" align="right">
+		<select name="shipping_type_id">
+			<!-- begin shipping_types -->
+			<option {shipping_selected} value="{row_shipping_id}">{row_shipping_desc}
+			<!-- end shipping_types -->
+		</select>
+		<!-- begin shipping_values -->
+		<input type="hidden" name="shipping_taxable_{row_shipping_id}" value="{shipping_taxable}">
+		<input type="hidden" name="shipping_value_{row_shipping_id}" value="{shipping_value}">
+		<!-- end shipping_values -->
+	</td>
+	<!-- BEGIN shipping_radio_cost_column -->
+	<td align="right">{shipping_cost_excl_tax}&nbsp;
+	</td><!-- END shipping_radio_cost_column -->
+	<!-- BEGIN shipping_radio_tax_column -->
+	<td align="right">
+		<span id="shipping_tax_selected">{shipping_tax}</span>&nbsp;
+	</td><!-- END shipping_radio_tax_column -->
+	<!-- BEGIN shipping_radio_cost_incl_tax_column -->
+	<td align="right">
+		<span id="shipping_cost_incl_tax_selected">{shipping_cost_incl_tax}</span>&nbsp;
+	</td><!-- END shipping_radio_cost_incl_tax_column -->
+</tr><!-- end shipping_selection --><!-- begin taxes -->
+<tr class="usual">
+	<td colspan="{sc_colspan}" align="right">{tax_name}</td>
+	<td align="right">
+		<span class="usualprice" id="tax_{tax_id}">{tax_cost}</span>&nbsp;
+	</td>
+</tr><!-- end taxes -->
+<!-- begin vouchers_block -->
+<tr class="middle">
+	<td colspan="{total_columns}">{USED_VOUCHERS_MSG}</td>
+</tr>
+<!-- begin used_vouchers -->
+<tr class="usual">
+	<td colspan="{sc_colspan}">{voucher_title}</td>
+	<td align="right">{voucher_amount}</td>
+</tr><!-- end used_vouchers -->
+<!-- end vouchers_block -->
+<!-- begin fee -->
+<tr class="usual">
+	<td colspan="{sc_colspan}" align="right">
+		{PROCESSING_FEE_MSG}&nbsp;
+	</td>
+	<td align="right">
+		<input readonly class="usualprice" type="text" size="10" name="processing_fee" value="{processing_fee_cost}">&nbsp;
+	</td>
+</tr><!-- end fee -->
+<!-- begin credit_amount_block -->
+<tr class="usual">
+	<td colspan="{sc_colspan}" align="right">
+		{CREDIT_AMOUNT_MSG}&nbsp;
+	</td>
+	<td align="right">
+		{credit_amount_cost}&nbsp;
+	</td>
+</tr><!-- end credit_amount_block -->
+<tr class="middle">
+	<td colspan="{sc_colspan}" align="right">
+		<b>{CART_TOTAL_MSG}&nbsp;</b>
+	</td>
+	<td align="right">
+		<input readonly class="orderprice" type="text" size="10" name="order_total" value="{order_total}">&nbsp;
+	</td>
+</tr>
+<!-- begin total_points_block -->
+<tr class="middle">
+	<td colspan="{sc_colspan}" align="right">
+		<b>{TOTAL_POINTS_MSG}&nbsp;</b>
+	</td>
+	<td align="right">
+		<b>{total_points_amount}&nbsp;</b>
+	</td>
+</tr>
+<!-- end total_points_block -->
+</table>
+</fieldset>
+<!-- end basket -->
+
+<table border="0" cellspacing="1" cellpadding="0" width="100%" align="center">
+<tr valign="top">
+	<td>
+
+<table border="0" cellspacing="1" cellpadding="0">
+<tr valign="top">
+	<td align="right">
+		&nbsp;{PAYMENT_GATEWAY_MSG}:&nbsp;
+	</td>
+	<td>
+		<b>{payment_name}&nbsp;</b>
+	</td>
+</tr>
+<!-- begin transaction_id_block -->
+<tr>
+	<td align="right">
+		&nbsp;{TRANSACTION_NUMBER_MSG}:&nbsp;
+	</td>
+	<td>
+		<b>{transaction_id}&nbsp;</b>
+	</td>
+</tr>
+<!-- end transaction_id_block -->
+<!-- begin error_message_block -->
+<tr valign="top">
+	<td align="right">
+		&nbsp;{ADMIN_ERROR_MSG}:&nbsp;
+	</td>
+	<td>
+		<div class="error">{error_message}&nbsp;</div>
+	</td>
+</tr>
+<!-- end error_message_block -->
+<!-- begin pending_message_block -->
+<tr valign="top">
+	<td align="right">
+		&nbsp;{PENDING_MSG}:&nbsp;
+	</td>
+	<td>
+		<div class="message">{pending_message}&nbsp;</div>
+	</td>
+</tr>
+<!-- end pending_message_block -->
+</table>
+
+	</td>
+	<td>
+
+<table border="0" cellspacing="1" cellpadding="0" width="100%" align="right">
+<tr>
+	<td align=right>
+		<b>{SHIPPING_TRACKING_MSG}&nbsp;</b>
+		<input type="text" class="field" name="shipping_tracking_id" style="text-align: right;" value="{shipping_tracking_id}"><br>
+	</td>
+</tr>
+<tr>
+	<td colspan="2" align="right">
+		<input type="submit" class="submit" value="{UPDATE_BUTTON}" onClick="return confirmUpdate();">
+	</td>
+</tr>
+</table>
+	</td>
+
+</tr>
+</table>
+
+</form>
+&nbsp;
+
+<fieldset>
+<legend>{PERSONAL_DETAILS_MSG}</legend>
+
+<table cellspacing="1" cellpadding="6" border="0" width="100%">
+<tr class="usual" valign="top"><!-- begin personal -->
+	<td width="50%">
+			<b><u>{INVOICE_TO_MSG}:</u></b><br>
+			
+			<br>
+			<!-- begin user_id_block -->
+			{CUSTOMER_ID_MSG}: <b><a href="{admin_user_href}?user_id={user_id}">{user_id}</a></b><br><!-- end user_id_block -->
+			<!-- begin affiliate_code_block -->
+			{AFFILIATE_CODE_FIELD}: <b>{affiliate_code}</b><br><!-- end affiliate_code_block -->
+			<!-- begin name_block -->
+			{NAME_MSG}: <b>{name}</b><br><!-- end name_block --><!-- begin first_name_block -->
+			{FIRST_NAME_FIELD}: <b>{first_name}</b><br><!-- end first_name_block --><!-- begin last_name_block -->
+			{LAST_NAME_FIELD}: <b>{last_name}</b><br><!-- end last_name_block --><!-- begin email_block -->
+			{EMAIL_FIELD}: <a href="{admin_order_email_href}?order_id={order_id}"><b>{email}</b></a><br><!-- end email_block --><!-- begin company_id_block -->
+			{COMPANY_SELECT_FIELD}: <b>{company_id}</b><br><!-- end company_id_block --><!-- begin company_name_block -->
+			{COMPANY_NAME_FIELD}: <b>{company_name}</b><br><!-- end company_name_block --><!-- begin address1_block -->
+			{STREET_FIRST_FIELD}: <b>{address1}</b><br><!-- end address1_block --><!-- begin address2_block -->
+			{STREET_SECOND_FIELD}: <b>{address2}</b><br><!-- end address2_block --><!-- begin city_block -->
+			{CITY_FIELD}: <b>{city}</b><br><!-- end city_block --><!-- begin province_block -->
+			{PROVINCE_FIELD}: <b>{province}</b><br><!-- end province_block --><!-- begin state_id_block -->
+			{STATE_FIELD}: <b>{state_id}</b><br><!-- end state_id_block --><!-- begin zip_block -->
+			{ZIP_FIELD}: <b>{zip}</b><br><!-- end zip_block --><!-- begin country_id_block -->
+			{COUNTRY_FIELD}: <b>{country_id}</b><br><!-- end country_id_block --><!-- begin phone_block -->
+			{PHONE_FIELD}: <b>{phone}</b><br><!-- end phone_block --><!-- begin daytime_phone_block -->
+			{DAYTIME_PHONE_FIELD}: <b>{daytime_phone}</b><br><!-- end daytime_phone_block --><!-- begin evening_phone_block -->
+			{EVENING_PHONE_FIELD}: <b>{evening_phone}</b><br><!-- end evening_phone_block --><!-- begin cell_phone_block -->
+			{CELL_PHONE_FIELD}: <a href="{admin_order_sms_href}?order_id={order_id}"><b>{cell_phone}</b></a><br><!-- end cell_phone_block --><!-- begin fax_block -->
+			{FAX_FIELD}: <b>{fax}</b><br><!-- end fax_block -->
+			<!-- begin personal_properties -->
+			{property_name}: <b>{property_value}</b> {property_price}<br>
+			<!-- end personal_properties -->
+			<!-- begin remote_address_info -->
+			Remote Address: <b>{remote_address}</b> <a href="{admin_order_black_url}" onClick="return confirm('{ADD_IP_CONFIRM_QST}')">{ADD_TO_BLACK_LIST_MSG}<br><!-- end remote_address_info -->
+			<!-- begin black_remote_address -->
+			Remote Address: <font color="red"><b>{remote_address}</b></font> <a href="{admin_order_black_url}" onClick="return confirm('{REMOVE_IP_CONFIRM_QST}')">{REMOVE_FROM_BLACK_LIST_MSG}<br>
+			<!-- end black_remote_address -->
+
+			<br><a href="{admin_order_edit_href}?order_id={order_id}&p_d=2">{EDIT_MSG}</a>
+		</td><!-- end personal --><!-- begin delivery -->
+		<td width="50%">
+			<b><u>{DELIVERY_TO_MSG}:</u></b><br>
+			<br>
+			<!-- begin delivery_name_block -->
+			{NAME_MSG}: <b>{delivery_name}</b><br><!-- end delivery_name_block --><!-- begin delivery_first_name_block -->
+			{FIRST_NAME_FIELD}: <b>{delivery_first_name}</b><br><!-- end delivery_first_name_block --><!-- begin delivery_last_name_block -->
+			{LAST_NAME_FIELD}: <b>{delivery_last_name}</b><br><!-- end delivery_last_name_block --><!-- begin delivery_email_block -->
+			{EMAIL_FIELD}: <b>{delivery_email}</b><br><!-- end delivery_email_block --><!-- begin delivery_company_id_block -->
+			{COMPANY_SELECT_FIELD}: <b>{delivery_company_id}</b><br><!-- end delivery_company_id_block --><!-- begin delivery_company_name_block -->
+			{COMPANY_NAME_FIELD}: <b>{delivery_company_name}</b><br><!-- end delivery_company_name_block --><!-- begin delivery_address1_block -->
+			{STREET_FIRST_FIELD}: <b>{delivery_address1}</b><br><!-- end delivery_address1_block --><!-- begin delivery_address2_block -->
+			{STREET_SECOND_FIELD}: <b>{delivery_address2}</b><br><!-- end delivery_address2_block --><!-- begin delivery_city_block -->
+			{CITY_FIELD}: <b>{delivery_city}</b><br><!-- end delivery_city_block --><!-- begin delivery_province_block -->
+			{PROVINCE_FIELD}: <b>{delivery_province}</b><br><!-- end delivery_province_block --><!-- begin delivery_state_id_block -->
+			{STATE_FIELD}: <b>{delivery_state_id}</b><br><!-- end delivery_state_id_block --><!-- begin delivery_zip_block -->
+			{ZIP_FIELD}: <b>{delivery_zip}</b><br><!-- end delivery_zip_block --><!-- begin delivery_country_id_block -->
+			{COUNTRY_FIELD}: <b>{delivery_country_id}</b><br><!-- end delivery_country_id_block --><!-- begin delivery_phone_block -->
+			{PHONE_FIELD}: <b>{delivery_phone}</b><br><!-- end delivery_phone_block --><!-- begin delivery_daytime_phone_block -->
+			{DAYTIME_PHONE_FIELD}: <b>{delivery_daytime_phone}</b><br><!-- end delivery_daytime_phone_block --><!-- begin delivery_evening_phone_block -->
+			{EVENING_PHONE_FIELD}: <b>{delivery_evening_phone}</b><br><!-- end delivery_evening_phone_block --><!-- begin delivery_cell_phone_block -->
+			{CELL_PHONE_FIELD}: <b>{delivery_cell_phone}</b><br><!-- end delivery_cell_phone_block --><!-- begin delivery_fax_block -->
+			{FAX_FIELD}: <b>{delivery_fax}</b><br><!-- end delivery_fax_block -->
+			<!-- begin delivery_properties -->
+			{property_name}: <b>{property_value}</b> {property_price}<br>
+			<!-- end delivery_properties -->
+
+			<br><a href="admin_order_edit.php?order_id={order_id}&p_d=3">{EDIT_MSG}</a>
+		</td><!-- end delivery -->
+	</tr>
+</table>
+
+</fieldset>
+
+<!-- begin payment -->
+<br>
+<fieldset>
+<legend>{PAYMENT_DETAILS_MSG} &nbsp; <a href="admin_order_edit.php?order_id={order_id}&p_d=4">{EDIT_MSG}</a></legend>
+
+<table align=center cellspacing=1 cellpadding=8 border=0 width=100%><!-- begin payment_info_block -->
+<tr>
+	<td class="usual" colspan="2">
+		{payment_info}
+	</td>
+</tr><!-- end payment_info_block --><!-- begin cc_name_block -->
+<tr>
+	<td width="25%"  valign="top" class="usual">
+		{CC_NAME_FIELD}
+	</td>
+	<td width="75%" class="usual">
+		{cc_name}&nbsp;
+	</td>
+</tr><!-- end cc_name_block --><!-- begin cc_first_name_block -->
+<tr>
+	<td width="25%"  valign="top" class="usual">
+		{CC_FIRST_NAME_FIELD}
+	</td>
+	<td class="usual">
+		{cc_first_name}&nbsp;
+	</td>
+</tr><!-- end cc_first_name_block --><!-- begin cc_last_name_block -->
+<tr>
+	<td width="25%"  valign="top" class="usual">
+		{CC_LAST_NAME_FIELD}
+	</td>
+	<td class="usual">
+		{cc_last_name}&nbsp;
+	</td>
+</tr><!-- end cc_last_name_block --><!-- begin cc_type_block -->
+<tr>
+	<td width="25%" valign="top" class="usual">
+		{CC_TYPE_FIELD}
+	</td>
+	<td width="75%" class="usual">
+		{cc_type}&nbsp;
+	</td>
+</tr><!-- end cc_type_block --><!-- begin cc_number_block -->
+<tr>
+	<td width="25%" valign="top" class="usual">
+		{CC_NUMBER_FIELD}
+	</td>
+	<td width="75%" class="usual">
+		{cc_number}
+	</td>
+</tr><!-- end cc_number_block --><!-- begin cc_issue_number_block -->
+<tr>
+	<td width="25%" valign="top" class="usual">
+		{CC_ISSUE_NUMBER_FIELD}
+	</td>
+	<td class="usual">
+		{cc_issue_number}
+	</td>
+</tr><!-- end cc_issue_number_block --><!-- begin cc_start_date_block -->
+<tr>
+	<td width="25%"  valign="top"  class="usual">
+		{CC_START_DATE_FIELD}
+	</td>
+	<td class="usual">
+		{cc_start_date}
+	</td>
+</tr><!-- end cc_start_date_block --><!-- begin cc_expiry_date_block -->
+<tr>
+	<td width="25%" valign="top" class="usual">
+		{CC_EXPIRY_DATE_FIELD}
+	</td>
+	<td class="usual">
+		{cc_expiry_date}
+	</td>
+</tr><!-- end cc_expiry_date_block --><!-- begin cc_security_code_block -->
+<tr>
+	<td width="25%"  valign="top"  class="usual">
+		{CC_SECURITY_CODE_FIELD}
+	</td>
+	<td  class="usual">
+		{cc_security_code}
+	</td>
+</tr><!-- end cc_security_code_block --><!-- begin pay_without_cc_block -->
+<tr>
+	<td width="25%"  valign="top"  class="usual">
+		{PAY_WITHOUT_CC_FIELD}
+	</td>
+	<td width="75%" class="usual">
+		{pay_without_cc}
+	</td>
+</tr><!-- end pay_without_cc_block --><!-- begin payment_properties -->
+		<tr>
+			<td width="25%"  valign="top"  class="usual">
+				{property_name}
+			</td>
+			<td class="usual">
+				{property_value}
+			</td>
+		</tr><!-- end payment_properties -->
+</table>
+</fieldset>
+<!-- end payment -->
+
+<br>
+
+<!-- begin order_log -->
+<fieldset>
+<legend>{ORDER_CHANGE_LOG_MSG}</legend>
+<table align=center cellspacing=1 cellpadding=8 border=0 width=100%><!-- begin events -->
+<tr class="usual">
+	<td align="center">
+		{event_date}
+	</td>
+	<td>
+		{event_type}
+	</td>
+	<td>
+		{event_name} 
+		<!-- begin event_more -->
+		<a id="event_more_{event_id}" href="#" onClick="showOrderEvent('{event_id}');return false;">{SHOW_MORE_MSG}</a>
+		<!-- end event_more -->
+		<div id="event_{event_id}" style="display:none;">{event_description}</div>
+	</td>
+	<td align="center">
+		{admin_name}
+	</td>
+</tr><!-- end events -->
+</table>
+</fieldset>
+<br>
+<!-- end order_log -->
+
+{admin_footer}
+
+<div id="popup_shadow" class="popup-opacity" style="display: none;" onClick="hideOrderEvent();return false;">
+</div>
+
+<div id="popup_win" class="popup-shadow" style="display: none;">
+<div class="popup-block">
+<div class="popup-img-close" align="right"><a href="#" onClick="hideOrderEvent();return false;"><img src="../images/icons/close.gif" border="0" alt=""></a></div>
+
+<div id="popup_description" class="popup-descr"></div>
+
+</div>
+</div>
+
+</body>
+</html>

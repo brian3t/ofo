@@ -1,0 +1,325 @@
+<div class="block-user-merchant-order">
+<!-- BEGIN errors -->
+<div align="center" class="errorbg">{errors_list}</div><br><!-- END errors -->
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td>
+
+<table border="0" cellspacing="0" cellpadding="1">
+<tr>
+	<td class="bigText">{ORDER_NUMBER_MSG}:</td>
+	<td class="title">&nbsp;{order_id}&nbsp;</td>
+</tr>
+<tr>
+	<td class="bigText">{ORDER_DATE_MSG}:</td>
+	<td class="title">&nbsp;{order_placed_date}&nbsp;</td>
+</tr>
+</table>
+
+</td></tr>
+</table>
+<br>
+
+<!-- begin basket -->
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{CART_TITLE}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr class="headerbg"> 
+		<td class="blockTD">
+
+<table cellspacing="1" border="0" width="100%" class="padding6px">
+<tr class="middlebg" align="center">
+	<!-- begin item_name_header -->
+	<td><b>{PROD_TITLE_COLUMN}</b></td><!-- end item_name_header -->
+	<!-- begin item_price_header -->
+	<td><b>{PROD_PRICE_COLUMN} {tax_note_excl}</b></td><!-- end item_price_header -->
+	<!-- begin item_tax_percent_header -->
+	<td><b>{tax_name} (%)</b></td><!-- end item_tax_percent_header -->
+	<!-- begin item_tax_header -->
+	<td><b>{tax_name}</b></td><!-- end item_tax_header -->
+	<!-- begin item_price_incl_tax_header -->
+	<td><b>{PROD_PRICE_COLUMN} {tax_note}</b></td><!-- end item_price_incl_tax_header -->
+	<!-- begin item_quantity_header -->
+	<td><b>{PROD_QTY_COLUMN}</b></td><!-- end item_quantity_header -->
+	<!-- begin item_price_total_header -->
+	<td><b>{PROD_TOTAL_COLUMN} {tax_note_excl}</b></td><!-- end item_price_total_header -->
+	<!-- begin item_tax_total_header -->
+	<td><b>{tax_name} {PROD_TAX_TOTAL_COLUMN}</b></td><!-- end item_tax_total_header -->
+	<!-- BEGIN item_price_incl_tax_total_header -->
+	<td><b>{PROD_TOTAL_COLUMN} {tax_note}</b></td><!-- END item_price_incl_tax_total_header -->
+</tr><!-- begin items -->
+<tr class="usualbg" valign="top">
+	<!-- begin item_name_column -->
+	<td>
+		{item_name}
+		<font class="smallText">{item_properties}</font>
+			<!-- begin components_block -->
+			<div><b>{PROD_SUBCOMPONENTS_MSG}:</b></div>
+			<!-- begin components -->
+			<div>{component_quantity} x {component_name} {component_price} {component_icon}</div>
+			<!-- end components -->
+			<!-- end components_block -->
+		<!-- begin serial_numbers -->
+		<div class="smallText">{SERIAL_NUMBER_MSG}: <b>{serial_number}</b></div>
+		<!-- end serial_numbers -->
+		<!-- begin next_recurring_payment -->
+		<div class="small">{RECURRING_NEXT_PAYMENT_MSG}: {next_payment_date}</div>
+		<!-- end next_recurring_payment -->
+	</td>
+	<!-- end item_name_column -->
+	<!-- begin item_price_excl_tax_column -->
+	<td align="right">
+		{price_excl_tax}&nbsp;
+	</td><!-- end item_price_excl_tax_column -->
+	<!-- begin item_tax_percent_column -->
+	<td align="right">
+		{item_tax_percent}&nbsp;
+	</td><!-- end item_tax_percent_column -->
+	<!-- begin item_tax_column -->
+	<td align="right">{item_tax}&nbsp;</td><!-- end item_tax_column -->
+	<!-- begin item_price_incl_tax_column -->
+	<td align="right">{price_incl_tax}&nbsp;</td><!-- end item_price_incl_tax_column -->
+	<!-- begin item_quantity_column -->
+	<td align="center">{quantity}</td><!-- end item_quantity_column -->
+	<!-- begin item_price_excl_tax_total_column -->
+	<td align="right">{price_excl_tax_total}&nbsp;</td><!-- end item_price_excl_tax_total_column -->
+	<!-- begin item_tax_total_column -->
+	<td align="right">{item_tax_total}&nbsp;</td><!-- end item_tax_total_column -->
+	<!-- begin item_price_incl_tax_total_column -->
+	<td align="right">{price_incl_tax_total}&nbsp;</td><!-- end item_price_incl_tax_total_column -->
+</tr><!-- end items -->
+<tr class="middlebg">
+	<!-- begin goods_name_column -->
+	<td colspan="{goods_colspan}" align="right">
+		<b>{GOODS_TOTAL_MSG}&nbsp;</b>
+	</td>
+	<!-- end goods_name_column -->
+	<!-- begin goods_total_excl_tax_column -->
+	<td align="right">
+		<b>{goods_total_excl_tax}&nbsp;</b>
+	</td>
+	<!-- end goods_total_excl_tax_column -->
+	<!-- BEGIN goods_tax_total_column -->
+	<td align="right">
+		{goods_tax_total}&nbsp;
+	</td><!-- END goods_tax_total_column -->
+	<!-- BEGIN goods_total_incl_tax_column -->
+	<td align="right">
+		{goods_total_incl_tax}&nbsp;
+	</td><!-- END goods_total_incl_tax_column -->
+</tr>
+</table>
+
+	</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+<!-- end basket -->
+
+
+
+
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{PERSONAL_DETAILS_MSG}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr class="headerbg"> 
+		<td class="blockTD">
+
+<table cellspacing="1" border="0" width="100%" class="padding6px">
+<tr><!-- begin personal -->
+		<td valign="top" class="usualbg">
+			<b><u>{INVOICE_TO_MSG}:</u></b><br><br><!-- begin name_block -->
+			{NAME_MSG}: <b>{name}</b><br><!-- end name_block --><!-- begin first_name_block -->
+			{FIRST_NAME_FIELD}: <b>{first_name}</b><br><!-- end first_name_block --><!-- begin last_name_block -->
+			{LAST_NAME_FIELD}: <b>{last_name}</b><br><!-- end last_name_block --><!-- begin email_block -->
+			{EMAIL_FIELD}: <b>{email}</b><br><!-- end email_block --><!-- begin company_id_block -->
+			{COMPANY_SELECT_FIELD}: <b>{company_id}</b><br><!-- end company_id_block --><!-- begin company_name_block -->
+			{COMPANY_NAME_FIELD}: <b>{company_name}</b><br><!-- end company_name_block --><!-- begin address1_block -->
+			{STREET_FIRST_FIELD}: <b>{address1}</b><br><!-- end address1_block --><!-- begin address2_block -->
+			{STREET_SECOND_FIELD}: <b>{address2}</b><br><!-- end address2_block --><!-- begin city_block -->
+			{CITY_FIELD}: <b>{city}</b><br><!-- end city_block --><!-- begin province_block -->
+			{PROVINCE_FIELD}: <b>{province}</b><br><!-- end province_block --><!-- begin state_id_block -->
+			{STATE_FIELD}: <b>{state_id}</b><br><!-- end state_id_block --><!-- begin zip_block -->
+			{ZIP_FIELD}: <b>{zip}</b><br><!-- end zip_block --><!-- begin country_id_block -->
+			{COUNTRY_FIELD}: <b>{country_id}</b><br><!-- end country_id_block --><!-- begin phone_block -->
+			{PHONE_FIELD}: <b>{phone}</b><br><!-- end phone_block --><!-- begin daytime_phone_block -->
+			{DAYTIME_PHONE_FIELD}: <b>{daytime_phone}</b><br><!-- end daytime_phone_block --><!-- begin evening_phone_block -->
+			{EVENING_PHONE_FIELD}: <b>{evening_phone}</b><br><!-- end evening_phone_block --><!-- begin cell_phone_block -->
+			{CELL_PHONE_FIELD}: <b>{cell_phone}</b><br><!-- end cell_phone_block --><!-- begin fax_block -->
+			{FAX_FIELD}: <b>{fax}</b><br><!-- end fax_block -->
+		</td><!-- end personal --><!-- begin delivery -->
+		<td valign=top class="usualbg">
+			<b><u>{DELIVERY_TO_MSG}:</u></b><br><br><!-- begin delivery_name_block -->
+			{NAME_MSG}: <b>{delivery_name}</b><br><!-- end delivery_name_block --><!-- begin delivery_first_name_block -->
+			{FIRST_NAME_FIELD}: <b>{delivery_first_name}</b><br><!-- end delivery_first_name_block --><!-- begin delivery_last_name_block -->
+			{LAST_NAME_FIELD}: <b>{delivery_last_name}</b><br><!-- end delivery_last_name_block --><!-- begin delivery_email_block -->
+			{EMAIL_FIELD}: <b>{delivery_email}</b><br><!-- end delivery_email_block --><!-- begin delivery_company_id_block -->
+			{COMPANY_SELECT_FIELD}: <b>{delivery_company_id}</b><br><!-- end delivery_company_id_block --><!-- begin delivery_company_name_block -->
+			{COMPANY_NAME_FIELD}: <b>{delivery_company_name}</b><br><!-- end delivery_company_name_block --><!-- begin delivery_address1_block -->
+			{STREET_FIRST_FIELD}: <b>{delivery_address1}</b><br><!-- end delivery_address1_block --><!-- begin delivery_address2_block -->
+			{STREET_SECOND_FIELD}: <b>{delivery_address2}</b><br><!-- end delivery_address2_block --><!-- begin delivery_city_block -->
+			{CITY_FIELD}: <b>{delivery_city}</b><br><!-- end delivery_city_block --><!-- begin delivery_province_block -->
+			{PROVINCE_FIELD}: <b>{delivery_province}</b><br><!-- end delivery_province_block --><!-- begin delivery_state_id_block -->
+			{STATE_FIELD}: <b>{delivery_state_id}</b><br><!-- end delivery_state_id_block --><!-- begin delivery_zip_block -->
+			{ZIP_FIELD}: <b>{delivery_zip}</b><br><!-- end delivery_zip_block --><!-- begin delivery_country_id_block -->
+			{COUNTRY_FIELD}: <b>{delivery_country_id}</b><br><!-- end delivery_country_id_block --><!-- begin delivery_phone_block -->
+			{PHONE_FIELD}: <b>{delivery_phone}</b><br><!-- end delivery_phone_block --><!-- begin delivery_daytime_phone_block -->
+			{DAYTIME_PHONE_FIELD}: <b>{delivery_daytime_phone}</b><br><!-- end delivery_daytime_phone_block --><!-- begin delivery_evening_phone_block -->
+			{EVENING_PHONE_FIELD}: <b>{delivery_evening_phone}</b><br><!-- end delivery_evening_phone_block --><!-- begin delivery_cell_phone_block -->
+			{CELL_PHONE_FIELD}: <b>{delivery_cell_phone}</b><br><!-- end delivery_cell_phone_block --><!-- begin delivery_fax_block -->
+			{FAX_FIELD}: <b>{delivery_fax}</b><br><!-- end delivery_fax_block -->
+		</td><!-- end delivery -->
+</tr>
+</table>
+
+	</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+
+<!-- begin payment -->
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{PAYMENT_DETAILS_MSG}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr class="headerbg"> 
+		<td class="blockTD">
+
+		<table cellspacing="1" border="0" width="100%" class="padding6px"><!-- begin payment_info_block -->
+		<tr>
+			<td class="usualbg" colspan="2">
+				{payment_info}
+			</td>
+		</tr><!-- end payment_info_block --><!-- begin cc_type_block -->
+		<tr>
+			<td width="25%" valign="top" class="usualbg">
+				{CC_TYPE_FIELD}</b></font>
+			</td>
+			<td class="usualbg">
+				<b>{cc_type}</b>
+			</td>
+		</tr><!-- end cc_type_block --><!-- begin cc_name_block -->
+		<tr>
+			<td width="25%"  valign="top" class="usualbg">
+				{CC_NAME_FIELD}
+			</td>
+			<td class="usualbg">
+				<b>{cc_name}</b>
+			</td>
+		</tr><!-- end cc_name_block --><!-- begin cc_first_name_block -->
+		<tr>
+			<td width="25%"  valign="top" class="usualbg">
+				{CC_FIRST_NAME_FIELD}
+			</td>
+			<td class="usualbg">
+				<b>{cc_first_name}</b>
+			</td>
+		</tr><!-- end cc_first_name_block --><!-- begin cc_last_name_block -->
+		<tr>
+			<td width="25%"  valign="top" class="usualbg">
+				{CC_LAST_NAME_FIELD}
+			</td>
+			<td class="usualbg">
+				<b>{cc_last_name}</b>
+			</td>
+		</tr><!-- end cc_last_name_block --><!-- begin cc_number_block -->
+		<tr>
+			<td width="25%" valign="top" class="usualbg">
+				{CC_NUMBER_FIELD}
+			</td>
+			<td class="usualbg">
+				<b>{cc_number}</b>
+			</td>
+		</tr><!-- end cc_number_block --><!-- begin cc_issue_number_block -->
+		<tr>
+			<td width="25%" valign="top" class="usualbg">
+				{CC_ISSUE_NUMBER_FIELD}
+			</td>
+			<td class="usualbg">
+				{cc_issue_number}
+			</td>
+		</tr><!-- end cc_issue_number_block --><!-- begin cc_start_date_block -->
+		<tr>
+			<td width="25%"  valign="top"  class="usualbg">
+				{CC_START_DATE_FIELD}
+			</td>
+			<td class="usualbg">
+				{cc_start_date}
+			</td>
+		</tr><!-- end cc_start_date_block --><!-- begin cc_expiry_date_block -->
+		<tr>
+			<td width="25%" valign="top" class="usualbg">
+				{CC_EXPIRY_DATE_FIELD}
+			</td>
+			<td class="usualbg">
+				{cc_expiry_date}
+			</td>
+		</tr><!-- end cc_expiry_date_block --><!-- begin cc_security_code_block -->
+		<tr>
+			<td width="25%"  valign="top"  class="usualbg">
+				{CC_SECURITY_CODE_FIELD}
+			</td>
+			<td  class="usualbg">
+				{cc_security_code}
+			</td>
+		</tr><!-- end cc_security_code_block --><!-- begin pay_without_cc_block -->
+		<tr>
+			<td width="25%"  valign="top"  class="usualbg">
+				{PAY_WITHOUT_CC_FIELD}
+			</td>
+			<td class="usualbg">
+				{pay_without_cc}
+			</td>
+		</tr><!-- end pay_without_cc_block --><!-- begin payment_properties -->
+		<tr>
+			<td width="25%"  valign="top"  class="usualbg">
+				{property_name}
+			</td>
+			<td class="usualbg">
+				<b>{property_value}</b>
+			</td>
+		</tr><!-- end payment_properties -->
+		</table>
+
+
+	</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+<!-- end payment -->
+</div>

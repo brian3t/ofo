@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{SELECT_DATE_TITLE}</title>
+<base href="{absolute_url}">
+<link rel="stylesheet" href="{css_file}" type="text/css">
+	
+<script language="JavaScript" type="text/javascript">
+<!--
+
+function selectFormat(dateFormat)
+{
+	window.opener.setDateFormat(dateFormat, document.date_format.format_type.value);
+	window.opener.focus();
+	window.close();
+}
+
+function closeWindow()
+{
+	window.opener.focus();
+	window.close();
+}
+
+//-->
+</script>
+</head>
+<body>
+
+<form name="date_format">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="format_type" value="{format_type}">
+	
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+	<tr><td class="headerbg"> 
+		<table cellspacing="1" border="0" width="100%" align="center" class="padding6px"><!-- begin no_formats -->
+		<tr>
+			<td colspan="3" class="middlebg" align="center">{NO_DATE_FORMATS_MSG}No formats available</td>
+		</tr><!-- end no_formats --><!-- begin formats -->
+		<tr class="middlebg">
+			<td align="center">{DATE_FORMAT_COLUMN}</td>
+			<td align="center">{CURRENT_DATE_COLUMN}</td>
+			<td>&nbsp;</td>
+		</tr><!-- begin format_row -->
+		<tr class="usualbg">
+			<td class="smallText">&nbsp;{date_format}</td>
+			<td class="smallText">&nbsp;{current_date}</td>
+			<td align="center" class="smallText">
+					&nbsp;<a href="javascript:selectFormat('{date_format}');">{SELECT_MSG}</a>&nbsp;
+			</td>
+		</tr><!-- end format_row --><!-- end formats -->
+		<tr>
+			<td colspan="3" class="headerbg">
+				<table cellspacing="0" cellpadding="0" border="0" width="100%">
+				<tr align="center">
+					<td>
+						<a href="javascript:closeWindow();"><b>{CLOSE_WINDOW_MSG}</b></a>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		</table>
+	</td></tr>
+	</table>
+	
+</form>
+
+</body>
+</html>

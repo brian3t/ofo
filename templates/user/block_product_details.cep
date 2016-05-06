@@ -1,0 +1,365 @@
+<link rel="stylesheet" type="text/css" href="css/platebuilder.css" media="all" />
+<script language="javascript" type="text/javascript" charset="UTF-8">
+	function limitText(field, limitCount, limitNum) {
+		var limitField = document.getElementById(field);
+		var alphaExp = /^[a-zA-Z1234567890 \u00C4\u00D6\u00DC\.\-@]+$/;
+		if(!limitField.value.match(alphaExp)){
+			$("#lpText").after('<div id="textAlert">Character Not Available</div>');
+			$('#textAlert').fadeOut(2000, function() {$('#textAlert').remove();} );
+			
+			limitField.value = limitField.value.substring(0, limitField.value.length - 1);
+		}
+		if (limitField.value.length > limitNum) {
+			limitField.value = limitField.value.substring(0, limitNum);
+		} else {
+			document.getElementById(limitCount).innerHTML = limitNum - limitField.value.length;
+		}
+	}
+	function addSpecialCharacter(text, field, limitCount, limitNum) {
+		document.getElementById(field).value += text;
+		document.getElementById(field).focus();
+
+		limitText(field, limitCount, limitNum);	
+		jQuery.plateBuilder.drawLetters();	
+	}
+	function swapImg () {
+		$('#product-img').css({'display': 'none'});
+		$('#plate-bg').css({'background-image': 'url({plateImg})', 'display': 'block'});
+	}
+</script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js"></script>
+<script charset="UTF-8" src="js/plateMaker.js"></script>
+<script type="text/javascript" language="javascript">
+	function log(message) {
+		//console.log(message);
+		return message;
+	}
+	jQuery(document).ready(function(){
+		var letters = $.getUrlVar('letters');
+		if(letters) {
+			$('#plateText').val(unescape(letters));
+			swapImg();
+			limitText('plateText','textCount',9);
+		}
+		$('#block-product-details').plateMaker({plateJson});
+		$('#plateShare a').sharenator({
+			'type': function() {
+				return jQuery.plateBuilder.plateData.type;
+			},
+			'letters': function() {
+				return jQuery.plateBuilder.inputFeild.attr('value');
+			}
+		});
+	});
+</script>
+
+<div class="block-product-details" id="block-product-details">
+	<h1 class="{product_new_class}">{item_name} - <!-- begin price_block -->{price_control}<!-- end price_block -->
+		<!--begin product_new_image-->
+		<img src="images/tr.gif" alt="">
+		<!--end product_new_image-->
+	</h1>
+	<!-- BEGIN links_block -->
+	<!-- END links_block -->
+	<!-- begin no_item -->
+	<div class="errorbg">{NO_PRODUCT_MSG}</div>
+	<!-- end no_item -->
+	<!-- BEGIN item -->
+	<!-- start item table -->
+	<!-- BEGIN item_added -->
+	<div class="messagebg" align="center">{added_message}</div>
+	<!-- END item_added -->
+	<!-- BEGIN sc_errors -->
+	<div class="errorbg" align="center">{errors_list}</div>
+	<!-- END sc_errors -->
+	<form name="form_{item_id}" action="{product_details_href}" method="post">
+		{hidden_parameters}
+		<input type="hidden" name="rp" value="{rp}">
+		<input type="hidden" name="rnd" value="{rnd}">
+		<input type="hidden" name="cart" value="ADD">
+		<input type="hidden" name="saved_type_id" value="">
+		<input type="hidden" name="tax_percent" value="{tax_percent}">
+		<input type="hidden" name="product_params" value="{product_params}">
+		<input type="hidden" name="tab" value="{tab}">
+		<table width="100%" border="0" cellspacing="0" cellpadding="3">
+			<tr>
+				<td rowspan="2" align="center">
+					<!-- begin big_image -->
+					<img class="alphabet" src="http://plates.customeuropeanplates.com/?alphabet/{textColor}" />
+					<img id="product-img" class="productImg" name="image_{form_id}" src="{src}" {width} {height} border="0" hspace="0" alt="{alt}">
+					<div style="background-image: url({src}); display: none" class="plate-bg" id="plate-bg"></div>
+					<!-- end big_image -->
+					{share}
+					{product_previews_under_large}
+					<!-- begin main_images -->
+					<div class="rolloverImagesTop">
+						<!-- begin main_images_rows -->
+						<!-- begin main_images_cols -->
+						<a href="{image_super}" target="_blank" onClick="{image_click_js}" onMouseOver="{rollover_js}"> <img src="{image_small}" {image_size} border="0" alt="{image_alt}"> </a>
+						<!-- end main_images_cols -->
+						<!-- end main_images_rows -->
+					</div>
+					<!-- end main_images -->
+					<!-- begin super_image -->
+					<div> <a id="super_{form_id}" href="{src}" title="{item_name}" onCLick="{open_large_image_function}">{PROD_SUPER_IMAGE_MSG}</a> </div>
+					<!-- end super_image -->
+					<!-- begin manufacturer_image -->
+					<div class="manufacturerImage"> <img src="{manufacturer_image_src}" alt="{manufacturer_image_alt}" border="0"> </div>
+					<!-- end manufacturer_image -->
+				</td>
+				<td align="left" valign="top"><div>
+						<!-- begin sales -->
+						<div class="salesBlock"> 
+							{OUR_PRICE_MSG}:&nbsp;<span id="sales_price_{item_id}" class="salesPrice">{sales_price_control}</span> <span class="salesTax">{tax_sales}</span>
+						</div>
+						<!-- end sales -->
+						<!-- begin save -->
+						<div class="priceSaveBlock"> {YOU_SAVE_MSG}: <span class="price">{you_save}</span> <span class="percent">({discount_percent}%)</span> </div>
+						<!-- end save -->
+						<!-- begin price_matrix -->
+						<table cellspacing="0" cellpadding="2" border="0" class="matrix">
+							<tr>
+								<th class="matrixTop">{QTY_MSG}</th>
+								<!-- begin matrix_quantities -->
+								<td class="matrixTop" align="center">{matrix_quantity}</td>
+								<!-- end matrix_quantities -->
+							</tr>
+							<tr>
+								<th class="matrixBottom">{PRICE_MSG}</th>
+								<!-- begin matrix_prices -->
+								<td class="matrixBottom" align="center"><span class="price">{matrix_price}</font> <span class="priceTax">{matrix_tax_price}</span></td>
+								<!-- end matrix_prices -->
+							</tr>
+						</table>
+						<!-- end price_matrix -->
+						<font class="smallText">
+						<!-- BEGIN notes_block -->
+						<div><b>{PROD_NOTE_MSG}:</b> {notes}</div>
+						<!-- END notes_block -->
+						<!-- begin availability -->
+						<div><b>{PROD_AVAILABILITY_MSG}:</b> {shipping_time_desc}</div>
+						<!-- end availability -->
+						<!-- BEGIN shipping_block -->
+						<div><b>{PROD_SHIPPING_MSG}:</b> {shipping_rule_desc}</div>
+						<!-- END shipping_block -->
+						<!-- BEGIN weight_block -->
+						<div><b>{PROD_WEIGHT_MSG}:</b> {weight}</div>
+						<!-- END weight_block -->
+						</font>
+						<!-- begin points_price_block -->
+						<div class="pointsPriceBlock">{POINTS_PRICE_MSG}:&nbsp;<span id="points_price_{item_id}" class="points">{points_price}</span></div>
+						<!-- end points_price_block -->
+						<!-- begin reward_points_block -->
+						<div class="rewardPointsBlock">{REWARD_POINTS_MSG}:&nbsp;<span id="reward_points_{item_id}" class="points">{reward_points}</span></div>
+						<!-- end reward_points_block -->
+						<!-- begin reward_credits_block -->
+						<div class="rewardCreditsBlock">{REWARD_CREDITS_MSG}:&nbsp;<span id="reward_credits_{item_id}" class="credits">{reward_credits}</span></div>
+						<!-- end reward_credits_block -->
+						<!-- begin item_code_block -->
+						<div>{PROD_CODE_MSG}: <b>{item_code}</b></div>
+						<!-- end item_code_block -->
+						<!-- begin manufacturer_code_block -->
+						<div>{MANUFACTURER_CODE_MSG}: <b>{manufacturer_code}</b></div>
+						<!-- end manufacturer_code_block -->
+						<!-- begin product_preview -->
+						{PROD_PREVIEW_MSG}: <a href="{preview_url}" onClick="return openPreviewWin('{preview_url}', {preview_width}, {preview_height});">{PROD_PREVIEW_CLICK_MSG}</a><br>
+						<!-- end product_preview -->
+						<div id="properties">
+						<!-- begin properties -->
+						<div id="{property_block_id}" style="{property_style}"><p class="propertyLabel">{property_name}</p> {property_control}</div>
+						<!-- end properties -->
+						 </div>
+						<!-- begin stock_level_block -->
+						{STOCK_LEVEL_MSG}: <span id="stock_level_{item_id}" class="stock_level">{stock_level}</span><br>
+						<!-- end stock_level_block -->
+					</div>
+					<div>
+						<div class="cart-button">
+							<!-- begin quantity -->
+							{PROD_QTY_COLUMN}: {quantity_control}
+							<!-- end quantity -->
+						</div>
+						<div class="cart-button">
+						<!-- begin add_button -->
+						<a class="button button-add" id="add_{item_id}" href="{buy_href}" onClick="return confirmBuy(document.form_{item_id}, 'cart');"><span>{ADD_TO_CART_MSG}</span><img src="images/tr.gif" alt="{ADD_TO_CART_MSG}"></a>
+						<!-- end add_button -->
+						<!-- begin add_button_disabled -->
+						<a class="disabled" title="{PRODUCT_OUT_STOCK_MSG}" onClick="alert('{out_stock_alert}');">{ADD_TO_CART_MSG}</a>
+						<!-- end add_button_disabled -->
+						<!-- begin view_button -->
+						<a class="button button-view" id="view_{item_id}" href="{basket_href}?rp={rp_url}"><span>{VIEW_CART_MSG}</span><img src="images/tr.gif" alt="{VIEW_CART_MSG}"></a>
+						<!-- end view_button -->
+						<!-- begin checkout_button -->
+						<a class="button button-check" id="check_{item_id}" href="{checkout_href}?rp={rp_url}"><span>{GOTO_CHECKOUT_MSG}</span><img src="images/tr.gif" alt="{GOTO_CHECKOUT_MSG}"></a>
+						<!-- end checkout_button -->
+						<!-- begin wishlist_button -->
+						<a class="button button-wishlist" id="wishlist_{item_id}" href="{wishlist_href}" onClick="return confirmBuy(document.form_{form_id}, 'wishlist');"><span>Add to Wishlist</span><img src="images/tr.gif" alt="Add to Wishlist"></a>
+						<!-- end wishlist_button -->
+						</div>
+					</div>				</td>
+			</tr>
+			<tr>
+				<td align="left" valign="top"></td>
+			</tr>
+		</table>
+	</form>
+	<!-- END item -->
+	<!-- begin tabs_block -->
+	<table border="0" cellspacing="0" cellpadding="5">
+		<tr>
+			<!-- BEGIN tabs -->
+			<td class="usualbg">&nbsp;</td>
+			<td id="{tab_td_id}" class="{tab_style}"><a id="{tab_a_id}" href="{tab_href}" class="{tab_style}" onClick="changeProductTab(document.form_{form_id}, '{tab_name}'); return false;">{tab_title}</a></td>
+			<!-- END tabs -->
+			<td class="usualbg">&nbsp;</td>
+		</tr>
+	</table>
+	<!-- end tabs_block -->
+	<!-- begin description_block -->
+	<!-- begin title_desc -->
+	<div class="bigTitle">{PROD_DESCRIPTION_MSG}</div>
+	<!-- end title_desc -->
+	<div id="desc_data">
+		<!-- begin description -->
+		<div>{full_description}</div>
+		<!-- end description -->
+	</div>
+	<!-- end description_block -->
+	<!-- begin specification_block -->
+	<!-- begin title_spec -->
+	<div class="bigTitle">{PROD_SPECIFICATION_MSG}</div>
+	<!-- end title_spec -->
+	<div id="spec_data" style="{spec_style}">
+		<!-- begin groups -->
+		<table cellspacing="1" cellpadding="4" width="100%" align="center" border="0">
+			<tr>
+				<td class="headerbg" colspan=2><b>{group_name}</b></td>
+			</tr>
+			<!-- begin features -->
+			<tr>
+				<td class="middlebg" valign=top width="30%">{feature_name}</td>
+				<td class="usualbg" valign=top>{feature_value}</td>
+			</tr>
+			<!-- end features -->
+		</table>
+		<!-- end groups -->
+	</div>
+	<!-- end specification_block -->
+	<!-- begin images_block -->
+	<!-- begin title_images -->
+	<div class="bigTitle">{PROD_IMAGES_MSG}</div>
+	<!-- end title_images -->
+	<div id="images_data" style="{images_style}">
+		<table width="100%" border="0" cellspacing="0" class="padding6px">
+			<tr>
+				<td align="center" width="50%"><div class="padding10px"><img name="rollover_image" src="{rollover_image}" border="0"></div>
+					<div><a id="rollover_super" style="{rollover_super_style}" href="{rollover_super_src}" title="" onCLick="{rollover_super_click}">{PROD_SUPER_IMAGE_MSG}</a></div></td>
+				<td width="50%"><!-- begin images_rows -->
+					<!-- begin images_cols -->
+					<div class="rolloverImages">
+						<div class="title">{image_title}</div>
+						<a href="{image_super}" target="_blank" onClick="{image_click_js}" onLoad="alert('{image_large}')" onMouseOver="{rollover_js}"><img src="{image_small}" {image_size} border="0"></a>
+						<div class="smallText">{image_description}</div>
+					</div>
+					<!-- end images_cols -->
+					<!-- end images_rows -->
+				</td>
+			</tr>
+		</table>
+	</div>
+	<!-- end images_block -->
+	<!-- begin previews_block -->
+	<!-- begin title_previews -->
+	<div class="bigTitle">{PROD_PREVIEWS_MSG}</div>
+	<!-- end title_previews -->
+	<div id="previews_data" style="{previews_style}"> {product_previews_tab} </div>
+	<!-- end previews_block -->
+	<!-- begin accessories_block -->
+	<!-- begin title_accessories -->
+	<div class="bigTitle">{PROD_ACCESSORIES_MSG}</div>
+	<!-- end title_accessories -->
+	<div id="accessories_data" style="{accessories_style}"> <br>
+		<table cellSpacing=0 cellPadding=0 width="100%" align=center border=0>
+			<!-- begin accessories_rows -->
+			<tr valign="top">
+				<!-- begin accessories_cols -->
+				<td width="50%" class="padding10px"><a href="{accessory_details_url}" class="title {restricted_class}">{accessory_name}
+					<!--begin restricted_image-->
+					<img src="images/tr.gif" alt="" class="{restricted_class}">
+					<!--end restricted_image-->
+					</a>
+					<!-- begin accessory_price_block -->
+					- <span class="ourprice">{accessory_price}</span> <span class="taxprice">{accessory_tax_price}</span>
+					<!-- end accessory_price_block -->
+					<div class="smallText" align="justify">{accessory_description} <a href="{accessory_details_url}">{READ_MORE_MSG}</a></div></td>
+				<!-- end accessories_cols -->
+			</tr>
+			<!-- end accessories_rows -->
+		</table>
+	</div>
+	<!-- end accessories_block -->
+	<!-- begin reviews_block -->
+	<!-- begin title_reviews -->
+	<div class="bigTitle">{REVIEWS_MSG}</div>
+	<!-- end title_reviews -->
+	<div id="reviews_data" class="wrapper"> <a href="{reviews_url}">{RATE_PRODUCT_MSG}</a>
+		<table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<!-- begin not_rated -->
+				<td><b>{NOT_RATED_PRODUCT_MSG}</b></td>
+				<!-- end not_rated -->
+				<!-- begin summary_statistic -->
+				<td><b>{AVERAGE_RATING_MSG}:</b>&nbsp;</td>
+				<td><img class="{average_rating_image}" src="images/tr.gif" alt="{average_rating_alt}"></td>
+				<td>{BASED_ON_REVIEWS_MSG}.</td>
+				<!-- end summary_statistic -->
+				<td>&nbsp;<a href="{reviews_url}">{WRITE_REVIEW_MSG}</a>.</td>
+			</tr>
+		</table>
+		<!-- begin positive_review -->
+		<table width="100%" border="0" cellspacing="0" class="paddingRev5px">
+			<tr>
+				<td colspan="2" class="middlebg"><b>{POSITIVE_REVIEW_MSG}</b> </td>
+			</tr>
+			<tr>
+				<td align="left" valign="top" class="{review_user_class}">{review_user_name} <img class="commend" src="images/tr.gif" align="top" alt=""></td>
+				<td align="right"><div class="articleDate">{review_date_added}</div></td>
+			</tr>
+		</table>
+		<table width="100%" border="0" cellspacing="0" class="paddingRev3px">
+			<tr>
+				<td width="60" align="left" valign="top"><img class="{rating_image}" src="images/tr.gif" align="top"></td>
+				<td align="left" valign="top"><div class="title">{review_summary}</div>
+					<div align="justify">{review_comments}<br>
+					</div></td>
+			</tr>
+		</table>
+		<!-- end positive_review -->
+		<!-- begin negative_review -->
+		<table width="100%" border="0" cellspacing="0" class="paddingRev5px">
+			<tr>
+				<td colspan="2" class="middlebg"><b>&nbsp;{NEGATIVE_REVIEW_MSG}</b></td>
+			</tr>
+			<tr>
+				<td align="left" valign="top" class="{review_user_class}">{review_user_name} <img class="discommend" src="images/tr.gif" align="top"></td>
+				<td align="right"><div class="articleDate">{review_date_added}</div></td>
+			</tr>
+		</table>
+		<table width="100%" border="0" cellspacing="0" class="paddingRev3px">
+			<tr>
+				<td width="60" align="left" valign="top">&nbsp;<img class="{rating_image}" src="images/tr.gif" align="top"></td>
+				<td align="left" valign="top"><div class="title">{review_summary}</div>
+					<div align="justify">{review_comments}</div></td>
+			</tr>
+		</table>
+		<!-- end negative_review -->
+		<!-- begin all_reviews_link -->
+		<table width="100%" border="0" cellspacing="0" class="paddingRev5px">
+			<tr>
+				<td align="right" class="middlebg"><a href="{reviews_url}">{SEE_ALL_REVIEWS_MSG}</a></td>
+			</tr>
+		</table>
+		<!-- end all_reviews_link -->
+	</div>
+	<!-- end reviews_block -->
+</div>

@@ -1,0 +1,32 @@
+<!--begin table-->
+<table width="100%" border="0" cellspacing="1" cellpadding="3">
+	<tr class="middle">
+		<td colspan="3">
+			&nbsp; <input type="checkbox" name="{field_id}_all" {sites_all} onClick="checkListFields('{field_id}');" value="1">
+			{message}
+		</td>
+	</tr>
+	<tr align="center" class="usual">
+		<td width="40%"><b>{AVAILABLE_SITES_MSG}</b></td>
+		<td width="20%"><b>{OPERATIONS_MSG}</b></td>
+		<td width="40%"><b>{USE_ITEM_SITES_MSG}</b></td>
+	</tr>
+	<tr align="center" class="usual">
+		<td width="40%">
+			<select name="available_{field_id}" MULTIPLE size="10"  style="width: 300px;"><!-- begin available_sites -->
+				<option value="{site_id}">{site_name}<!-- end available_sites-->
+			</select>
+		</td>
+		<td width="20%">
+			<input class="submit" readonly type="button" name="add_sites" value="&nbsp;&nbsp; {ADD_BUTTON}  -> &nbsp;&nbsp;" onClick="addListFields('{field_id}');">
+			<br><br>
+			<input class="submit" type="button" name="remove_{field_id}" value="<- {REMOVE_BUTTON}" onClick="removeListFields('{field_id}');">
+		</td>
+		<td width="40%">
+			<select name="selected_{field_id}" MULTIPLE size="10" style="width: 300px;"><!-- begin selected_sites -->
+				<option value="{site_id}">{site_name}<!-- end selected_sites -->
+			</select>
+		</td>
+	</tr>
+</table>
+<!--end table-->

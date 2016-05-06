@@ -1,0 +1,47 @@
+================================================================================
+ViArt Enterprise v.2.5.4
+Copyright (c) 2005 ViArt Limited
+All Rights Reserved.
+
+  Viart Shop is an electronic commerce package available to install in 
+  PHP. It supports MySQL and PostgreSQL databases as well as ODBC connected 
+  databases. The goal of Viart Shop is to create a system capable of 
+  performing all of the functions needed to do business online. 
+
+================================================================================
+CONTACT & SUPPORT:
+  All contact and support options:  http://www.viart.com/support
+
+  ViArt Shop is owned by ViArt Limited
+
+  E-Mail:  enquiries@viart.com
+  Web:     http://www.viart.com/
+
+================================================================================
+INSTALLATION:
+* Read the file 'INSTALL.TXT' for a complete step-by-step installation 
+  instructions. Check also 'manual/Installing.html' or 
+  http://www.viart.com/manual/Installing.html for HTML version
+  of Installation Guide.
+
+================================================================================
+LICENSE:
+* Consult the 'LICENSE.TXT' before using this software.
+
+================================================================================
+CHANGES:
+* See the file 'CHANGES.TXT' for a detailed list of all changes.
+
+================================================================================
+DOCUMENTATION:
+* See the 'docs' directory. It should contain  files listed below:
+
+  ./docs
+  ./docs/INSTALL.TXT
+  ./docs/FAQ.TXT
+  ./docs/LICENSE.TXT
+  ./docs/CHANGES.TXT
+
+Please also visit http://www.viart.com/doc.php for Online Manual
+
+================================================================================

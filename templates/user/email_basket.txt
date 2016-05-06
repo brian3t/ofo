@@ -1,0 +1,72 @@
+======================================================<!-- begin item_name_header --> 
+[ {PROD_TITLE_COLUMN} ]<!-- end item_name_header --><!-- begin item_price_header --> 
+[ {PROD_PRICE_COLUMN} {tax_note_excl} ]<!-- end item_price_header --><!-- begin item_tax_percent_header -->
+[ {tax_name} (%) ]<!-- end item_tax_percent_header --><!-- begin item_tax_header -->
+[ {tax_name} ]<!-- end item_tax_header --><!-- begin item_price_incl_tax_header -->
+[ {PROD_PRICE_COLUMN} {tax_note} ]<!-- end item_price_incl_tax_header --><!-- begin item_quantity_header -->
+[ {PROD_QTY_COLUMN} ]<!-- end item_quantity_header --><!-- begin item_price_total_header -->
+[ {PROD_TOTAL_COLUMN} {tax_note_excl} ]<!-- end item_price_total_header --><!-- begin item_tax_total_header -->
+[ {tax_name} {PROD_TAX_TOTAL_COLUMN} ]<!-- end item_tax_total_header --><!-- BEGIN item_price_incl_tax_total_header -->
+[ {PROD_TOTAL_COLUMN} {tax_note} ]<!-- END item_price_incl_tax_total_header -->
+======================================================<!-- begin items --><!-- begin item_name_column -->
+[ 
+  {item_name}<!-- begin item_code_block -->
+  {PROD_CODE_MSG}: {item_code}<!-- end item_code_block --><!-- begin manufacturer_code_block -->
+  {MANUFACTURER_CODE_MSG}: {manufacturer_code}<!-- end manufacturer_code_block -->	
+  {item_properties}<!-- begin components_block -->
+  {PROD_SUBCOMPONENTS_MSG}:<!-- begin components -->
+    {component_quantity} x {component_name} {component_price}<!-- end components --><!-- end components_block --><!-- begin points_price_block -->
+  {POINTS_PRICE_MSG}:{points_price}<!-- end points_price_block --><!-- begin reward_points_block -->
+  {REWARD_POINTS_MSG}:{reward_points} <!-- end reward_points_block --><!-- begin reward_credits_block -->
+  {REWARD_CREDITS_MSG}:{reward_credits} <!-- end reward_credits_block -->
+]	<!-- end item_name_column --><!-- begin item_price_excl_tax_column -->
+[ {price_excl_tax} ]<!-- end item_price_excl_tax_column --><!-- begin item_tax_percent_column -->
+[ {item_tax_percent} ]<!-- end item_tax_percent_column --><!-- begin item_tax_column -->
+[ {item_tax} ]<!-- end item_tax_column --><!-- begin item_price_incl_tax_column -->
+[ {price_incl_tax} ]<!-- end item_price_incl_tax_column --><!-- begin item_quantity_column -->
+[ {quantity} ]<!-- end item_quantity_column --><!-- begin item_price_excl_tax_total_column -->
+[ {price_excl_tax_total} ]<!-- end item_price_excl_tax_total_column --><!-- begin item_tax_total_column -->
+[ {item_tax_total} ]<!-- end item_tax_total_column --><!-- begin item_price_incl_tax_total_column -->
+[ {price_incl_tax_total} ]<!-- end item_price_incl_tax_total_column -->
+------------------------------------------------------<!-- end items -->
+======================================================<!-- begin goods_name_column -->
+{GOODS_TOTAL_MSG}:<!-- end goods_name_column --><!-- begin goods_total_excl_tax_column -->
+[ {goods_total_excl_tax} ]<!-- end goods_total_excl_tax_column --><!-- BEGIN goods_tax_total_column -->
+[ {goods_tax_total} ]<!-- END goods_tax_total_column --><!-- BEGIN goods_total_incl_tax_column -->
+[ {goods_total_incl_tax} ]<!-- END goods_total_incl_tax_column -->
+======================================================<!-- begin discount --><!-- BEGIN total_discount_name_column -->
+{TOTAL_DISCOUNT_MSG}:<!-- END total_discount_name_column --><!-- BEGIN total_discount_amount_excl_tax_column -->
+[ {total_discount_excl_tax} ]<!-- END total_discount_amount_excl_tax_column --><!-- BEGIN total_discount_tax_column -->
+[ {total_discount_tax_amount} ]<!-- END total_discount_tax_column --><!-- BEGIN total_discount_amount_incl_tax_column -->
+[ {total_discount_incl_tax} ]<!-- END total_discount_amount_incl_tax_column -->
+------------------------------------------------------<!-- BEGIN discounted_name_column -->
+{GOODS_WITH_DISCOUNT_MSG}:<!-- end discounted_name_column --><!-- BEGIN discounted_amount_excl_tax_column -->
+[ {discounted_amount_excl_tax} ]<!-- END discounted_amount_excl_tax_column --><!-- BEGIN discounted_tax_column -->
+[ {discounted_tax_amount} ]<!-- END discounted_tax_column --><!-- BEGIN discounted_amount_incl_tax_column -->
+[ {discounted_amount_incl_tax} ]<!-- END discounted_amount_incl_tax_column -->
+------------------------------------------------------<!-- end discount --><!-- begin cart_properties -->
+{property_name} ({property_value})<!-- begin property_points_price_block -->
+{POINTS_PRICE_MSG}: {property_points_price}<!-- end property_points_price_block --><!-- BEGIN property_price_excl_tax_column -->
+[ {property_price_excl_tax} ]<!-- END property_price_excl_tax_column --><!-- BEGIN property_tax_column -->
+[ {property_tax} ]<!-- END property_tax_column --><!-- BEGIN property_price_incl_tax_column -->
+[ {property_price_incl_tax} ]<!-- END property_price_incl_tax_column -->
+------------------------------------------------------<!-- end cart_properties --><!-- begin shipping_type -->
+{shipping_type_desc}:<!-- begin shipping_points_price_block -->
+{POINTS_PRICE_MSG}: {shipping_points_price}<!-- end shipping_points_price_block --><!-- BEGIN shipping_cost_excl_tax_column -->
+[ {shipping_cost_excl_tax} ]<!-- END shipping_cost_excl_tax_column --><!-- BEGIN shipping_tax_column -->
+[ {shipping_tax} ]<!-- END shipping_tax_column --><!-- BEGIN shipping_cost_incl_tax_column -->
+[ {shipping_cost_incl_tax} ]<!-- END shipping_cost_incl_tax_column -->
+------------------------------------------------------<!-- end shipping_type --><!-- begin taxes -->
+{tax_name}: {tax_cost}
+------------------------------------------------------<!-- end taxes --><!-- begin vouchers_block -->
+{USED_VOUCHERS_MSG}:<!-- begin used_vouchers -->
+{voucher_title} [ {voucher_amount ]<!-- end used_vouchers -->
+------------------------------------------------------<!-- end vouchers_block --><!-- begin credit_amount_block -->
+{CREDIT_AMOUNT_MSG}: {credit_amount_cost}
+------------------------------------------------------<!-- end credit_amount_block --><!-- begin fee -->
+{PROCESSING_FEE_MSG}: {processing_fee_cost}
+------------------------------------------------------<!-- end fee -->
+======================================================
+{CART_TOTAL_MSG}: {order_total}<!-- begin total_points_block -->
+{TOTAL_POINTS_MSG}: {total_points_amount}<!-- end total_points_block -->
+======================================================

@@ -1,0 +1,506 @@
+<div class="block-user-order">
+<!-- BEGIN errors -->
+<div align="center" class="errorbg">{errors_list}</div>
+<!-- END errors -->
+
+<div class="titleTopCenter">
+	
+	
+	{ORDER_NUMBER_MSG} - {order_id}
+</div>
+<table border="0" cellspacing="0" cellpadding="1">
+<tr>
+	<td class="bigText">{ORDER_DATE_MSG}:</td>
+	<td class="title">&nbsp;{order_placed_date}&nbsp;</td>
+</tr>
+</table>
+
+<div class="titleTopCenter">
+	
+	
+	{CART_TITLE} 
+</div>
+<!-- begin basket -->
+<div class="basket">
+<table cellspacing="1" border="0" width="100%" class="orderInfo">
+<tr class="middlebg" align="center">
+	<!-- begin item_image_header -->
+	<td>&nbsp;</td><!-- end item_image_header -->
+	<!-- begin item_name_header -->
+	<td><b>{PROD_TITLE_COLUMN}</b></td><!-- end item_name_header -->
+	<!-- begin item_price_header -->
+	<td><b>{PROD_PRICE_COLUMN} {tax_note_excl}</b></td><!-- end item_price_header -->
+	<!-- begin item_tax_percent_header -->
+	<td><b>{tax_name} (%)</b></td><!-- end item_tax_percent_header -->
+	<!-- begin item_tax_header -->
+	<td><b>{tax_name}</b></td><!-- end item_tax_header -->
+	<!-- begin item_price_incl_tax_header -->
+	<td><b>{PROD_PRICE_COLUMN} {tax_note}</b></td><!-- end item_price_incl_tax_header -->
+	<!-- begin item_quantity_header -->
+	<td><b>{PROD_QTY_COLUMN}</b></td><!-- end item_quantity_header -->
+	<!-- begin item_price_total_header -->
+	<td><b>{PROD_TOTAL_COLUMN} {tax_note_excl}</b></td><!-- end item_price_total_header -->
+	<!-- begin item_tax_total_header -->
+	<td><b>{tax_name} {PROD_TAX_TOTAL_COLUMN}</b></td><!-- end item_tax_total_header -->
+	<!-- BEGIN item_price_incl_tax_total_header -->
+	<td><b>{PROD_TOTAL_COLUMN} {tax_note}</b></td><!-- END item_price_incl_tax_total_header -->
+</tr><!-- begin items -->
+<tr class="usualbg" valign="top">
+	<!-- begin item_image_column -->
+	<td class="usualbg" align="center" valign="top">
+		<!-- begin image_preview -->
+			<img src="{src}" {height} {width} hspace="5" border="0" alt="{alt}" align="left">
+		<!-- end image_preview -->
+	</td><!-- end item_image_column -->
+	<!-- begin item_name_column -->
+	<td>
+		{item_name}
+		<!-- begin item_code_block -->
+		<br>{PROD_CODE_MSG}: <b>{item_code}</b><!-- end item_code_block -->	
+		<!-- begin manufacturer_code_block -->
+		<br>{MANUFACTURER_CODE_MSG}: <b>{manufacturer_code}</b><!-- end manufacturer_code_block -->	
+		<font class="smallText">{item_properties}</font>
+			<!-- begin components_block -->
+			<div><b>{PROD_SUBCOMPONENTS_MSG}:</b></div>
+			<!-- begin components -->
+			<div>{component_quantity} x {component_name} {component_price} {component_icon}</div>
+			<!-- end components -->
+			<!-- end components_block -->
+		<!-- begin gift_vouchers -->
+		<div class="smallText">{COUPON_MSG}: <b>{coupon_code}</b></div>
+		<!-- end gift_vouchers -->
+		<!-- begin serial_numbers -->
+		<div class="smallText">{SERIAL_NUMBER_MSG}: <b>{serial_number}</b></div>
+		<!-- end serial_numbers -->
+		<!-- begin download_links -->
+		<div class="smallText"><a href="{download_url}">{filename}</a></div>
+		<!-- end download_links -->
+		<!-- begin releases_link -->
+		<div class="smallText"><a href="{releases_href}?order_item_id={order_item_id}">{ALL_PROD_RELEASES_MSG}</a></div>
+		<!-- end releases_link -->
+		<!-- begin next_recurring_payment -->
+		<div class="small">{RECURRING_NEXT_PAYMENT_MSG}: {next_payment_date}</div><!-- end next_recurring_payment -->
+
+		<!-- begin cancel_subscription_link -->
+		<div><a href="{user_order_href}?order_id={order_id}&order_item_id={order_item_id}&operation=cancel_susbcription" 
+			onClick="return confirm('{confirm_cancel_subscription}')">{CANCEL_SUBSCRIPTION_MSG}</a></div>
+		<!-- end cancel_subscription_link -->
+		<!-- begin points_price_block -->
+		<div class="points_price">{POINTS_PRICE_MSG}:&nbsp;<b>{points_price}</b></div><!-- end points_price_block -->
+		<!-- begin reward_points_block -->
+		<div class="reward_points">{REWARD_POINTS_MSG}:&nbsp;<b>{reward_points}</b></div><!-- end reward_points_block -->
+		<!-- begin reward_credits_block -->
+		<div class="reward_credits">{REWARD_CREDITS_MSG}:&nbsp;<b>{reward_credits}</b></div><!-- end reward_credits_block -->
+	</td>
+	<!-- end item_name_column -->
+	<!-- begin item_price_excl_tax_column -->
+	<td align="right">
+		{price_excl_tax}&nbsp;
+	</td><!-- end item_price_excl_tax_column -->
+	<!-- begin item_tax_percent_column -->
+	<td align="right">
+		{item_tax_percent}&nbsp;
+	</td><!-- end item_tax_percent_column -->
+	<!-- begin item_tax_column -->
+	<td align="right">{item_tax}&nbsp;</td><!-- end item_tax_column -->
+	<!-- begin item_price_incl_tax_column -->
+	<td align="right">{price_incl_tax}&nbsp;</td><!-- end item_price_incl_tax_column -->
+	<!-- begin item_quantity_column -->
+	<td align="center">{quantity}</td><!-- end item_quantity_column -->
+	<!-- begin item_price_excl_tax_total_column -->
+	<td align="right">{price_excl_tax_total}&nbsp;</td><!-- end item_price_excl_tax_total_column -->
+	<!-- begin item_tax_total_column -->
+	<td align="right">{item_tax_total}&nbsp;</td><!-- end item_tax_total_column -->
+	<!-- begin item_price_incl_tax_total_column -->
+	<td align="right">{price_incl_tax_total}&nbsp;</td><!-- end item_price_incl_tax_total_column -->
+</tr><!-- end items -->
+<tr class="middlebg">
+	<!-- begin goods_name_column -->
+	<td colspan="{goods_colspan}" align="right">
+		<b>{GOODS_TOTAL_MSG}&nbsp;</b>
+	</td>
+	<!-- end goods_name_column -->
+	<!-- begin goods_total_excl_tax_column -->
+	<td align="right">
+		<b>{goods_total_excl_tax}&nbsp;</b>
+	</td>
+	<!-- end goods_total_excl_tax_column -->
+	<!-- BEGIN goods_tax_total_column -->
+	<td align="right">
+		{goods_tax_total}&nbsp;
+	</td><!-- END goods_tax_total_column -->
+	<!-- BEGIN goods_total_incl_tax_column -->
+	<td align="right">
+		{goods_total_incl_tax}&nbsp;
+	</td><!-- END goods_total_incl_tax_column -->
+</tr><!-- begin discount -->
+<tr class="middlebg">
+	<!-- BEGIN total_discount_name_column -->
+	<td colspan="{goods_colspan}" align="right">
+		<b>{TOTAL_DISCOUNT_MSG}&nbsp;</b>
+	</td><!-- END total_discount_name_column -->
+	<!-- BEGIN total_discount_amount_excl_tax_column -->
+	<td align="right"><b>{total_discount_excl_tax}&nbsp;</b></td><!-- END total_discount_amount_excl_tax_column -->
+	<!-- BEGIN total_discount_tax_column -->
+	<td align="right"><b>{total_discount_tax_amount}&nbsp;</b></td><!-- END total_discount_tax_column -->
+	<!-- BEGIN total_discount_amount_incl_tax_column -->
+	<td align="right"><b>{total_discount_incl_tax}&nbsp;</b></td><!-- END total_discount_amount_incl_tax_column -->
+</tr>
+<tr class="middlebg">
+	<!-- BEGIN discounted_name_column -->
+	<td colspan="{goods_colspan}" align="right">
+		<b>{GOODS_WITH_DISCOUNT_MSG}&nbsp;</b>
+	</td><!-- end discounted_name_column -->
+	<!-- BEGIN discounted_amount_excl_tax_column -->
+	<td align="right"><b>{discounted_amount_excl_tax}&nbsp;</b></td><!-- END discounted_amount_excl_tax_column -->
+	<!-- BEGIN discounted_tax_column -->
+	<td align="right"><b>{discounted_tax_amount}&nbsp;</b></td><!-- END discounted_tax_column -->
+	<!-- BEGIN discounted_amount_incl_tax_column -->
+	<td align="right"><b>{discounted_amount_incl_tax}&nbsp;</b></td><!-- END discounted_amount_incl_tax_column -->
+</tr><!-- end discount -->
+<!-- begin cart_properties -->
+<tr class="usualbg">
+	<td colspan="{goods_colspan}" align="right">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">	
+		<tr valign="top">
+			<td>
+				<!-- begin property_points_price_block -->
+				<div class="points_price">{POINTS_PRICE_MSG}: <b>{property_points_price}</b></div><!-- end property_points_price_block -->
+			</td>
+			<td align="right">
+				{property_name} ({property_value})&nbsp;
+			</td>
+		</tr>
+		</table>
+	</td>
+	<!-- BEGIN property_price_excl_tax_column -->
+	<td align="right">
+		{property_price_excl_tax}&nbsp;
+	</td><!-- END property_price_excl_tax_column -->
+	<!-- BEGIN property_tax_column -->
+	<td align="right">
+		{property_tax}&nbsp;
+	</td><!-- END property_tax_column -->
+	<!-- BEGIN property_price_incl_tax_column -->
+	<td align="right">
+		{property_price_incl_tax}&nbsp;
+	</td><!-- END property_price_incl_tax_column -->
+</tr><!-- end cart_properties -->
+<!-- begin shipping_type -->
+<tr class="usualbg">
+	<td colspan="{goods_colspan}" align="right">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">	
+		<tr valign="top">
+			<td>
+				<!-- begin shipping_points_price_block -->
+				<div class="points_price">{POINTS_PRICE_MSG}: <b>{shipping_points_price}</b></div><!-- end shipping_points_price_block -->
+			</td>
+			<td align="right">
+				{shipping_type_desc}&nbsp;
+			</td>
+		</tr>
+		</table>
+	</td>
+	<!-- BEGIN shipping_cost_excl_tax_column -->
+	<td align="right">
+		{shipping_cost_excl_tax}&nbsp;
+	</td><!-- END shipping_cost_excl_tax_column -->
+	<!-- BEGIN shipping_tax_column -->
+	<td align="right">
+		{shipping_tax}&nbsp;
+	</td><!-- END shipping_tax_column -->
+	<!-- BEGIN shipping_cost_incl_tax_column -->
+	<td align="right">
+		{shipping_cost_incl_tax}&nbsp;
+	</td><!-- END shipping_cost_incl_tax_column -->
+</tr><!-- end shipping_type -->
+<!-- begin taxes -->
+<tr class="usualbg">
+	<td colspan="{sc_colspan}" align="right">
+		{tax_name}&nbsp;
+	</td>
+	<td align="right">
+		{tax_cost}&nbsp;
+	</td>
+</tr><!-- end taxes -->
+<!-- begin vouchers_block -->
+<tr class="middlebg">
+	<td colspan="{total_columns}">{USED_VOUCHERS_MSG}</td>
+</tr>
+<!-- begin used_vouchers -->
+<tr class="usualbg">
+	<td colspan="{sc_colspan}">{voucher_title}</td>
+	<td align="right">{voucher_amount}</td>
+</tr><!-- end used_vouchers -->
+<!-- end vouchers_block -->
+<!-- begin fee -->
+<tr class="usualbg">
+	<td colspan="{sc_colspan}" align="right">
+		{PROCESSING_FEE_MSG}&nbsp;
+	</td>
+	<td align="right">
+		{processing_fee_cost}&nbsp;
+	</td>
+</tr><!-- end fee -->
+<!-- begin credit_amount_block -->
+<tr class="usualbg">
+	<td colspan="{sc_colspan}" align="right">
+		{CREDIT_AMOUNT_MSG}&nbsp;
+	</td>
+	<td align="right">
+		{credit_amount_cost}&nbsp;
+	</td>
+</tr><!-- end credit_amount_block -->
+<tr class="middlebg">
+	<td colspan="{sc_colspan}" align="right">
+		<b>{CART_TOTAL_MSG}&nbsp;</b>
+	</td>
+	<td align="right">
+		<b>{order_total}&nbsp;</b>
+	</td>
+</tr>
+<!-- begin total_points_block -->
+<tr class="middlebg">
+	<td colspan="{sc_colspan}" align="right">
+		<b>{TOTAL_POINTS_MSG}&nbsp;</b>
+	</td>
+	<td align="right">
+		<b>{total_points_amount}&nbsp;</b>
+	</td>
+</tr>
+<!-- end total_points_block -->
+<!-- begin shipping_tracking_id_block -->
+<tr class="usualbg">
+	<td colspan="{sc_colspan}" align="right">
+		<b>{SHIPPING_TRACKING_MSG}</b>&nbsp;
+	</td>
+	<td align="right" class="comment"> 
+		<!-- begin shipping_tracking_url -->
+		<b><a href="{shipping_tracking_url}{shipping_tracking_id_url}" target="_blank">{shipping_tracking_id}</a>&nbsp;</b><!-- end shipping_tracking_url -->
+		<!-- begin shipping_tracking_text -->
+		<b>{shipping_tracking_id}&nbsp;</b><!-- end shipping_tracking_text -->
+	</td>
+</tr>
+<!-- end shipping_tracking_id_block -->
+<!-- begin shipping_expecting_date_block -->
+<tr class="usualbg">
+	<td colspan="{sc_colspan}" align="right">
+		<b>{SHIPPING_EXPECTING_MSG}</b>&nbsp;
+	</td>
+	<td align="right" class="comment" nowrap> 
+		<b>{shipping_expecting_date}&nbsp;</b>
+	</td>
+</tr>
+<!-- end shipping_expecting_date_block -->
+</table>
+
+	</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+<!-- end basket -->
+
+<!-- BEGIN cancel_order_link -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr>
+	<td align="right"> 
+		&nbsp;<a class="title" href="{user_order_href}?operation=cancel&order_id={order_id}" 
+			onClick="return confirm('{CANCEL_ORDER_CONFIRM_MSG}');">{CANCEL_ORDER_MSG}</a>&nbsp;&nbsp;&nbsp;
+	</td>
+</tr>
+</table><br>
+<!-- END cancel_order_link -->
+
+<!-- begin order_notes -->
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{ORDER_NOTES_MSG}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+
+<table cellspacing="1" border="0" width="100%" class="padding6px">
+<!-- begin notes -->
+<tr class="usualbg" valign=top>
+	<td>
+		<span class="articleDate">&nbsp;{note_date}&nbsp;</span> &nbsp;
+		<a class="title" onClick="window.open('{user_order_note_href}','note','toolbar=no,scrollbars=yes,resizable=no,width=400,height=300');return false;"
+			href="{user_order_note_href}" >{note_title}</a>
+	</td>
+</tr>
+<!-- end notes -->
+</table>
+
+<!-- end order_notes -->
+</div>
+<div class="titleTopCenter">
+	
+	
+	{PERSONAL_DETAILS_MSG}
+</div>
+<div class="basket">
+<table cellspacing="1" border="0" width="100%" class="padding6px">
+	<!-- begin personal -->
+	<tr class="middlebg columnTitles" >
+		<td colspan="2">{INVOICE_TO_MSG}</td>
+	</tr>
+	<!-- begin name_block --><tr class="usualbg"><td><label>{NAME_MSG}</label></td><td>{name}</td></tr><!-- end name_block -->
+	<!-- begin first_name_block --><tr class="usualbg"><td><label>{FIRST_NAME_FIELD}</label></td><td>{first_name}</td></tr><!-- end first_name_block -->
+	<!-- begin last_name_block --><tr class="usualbg"><td><label>{LAST_NAME_FIELD}</label></td><td>{last_name}</td></tr><!-- end last_name_block -->
+	<!-- begin email_block --><tr class="usualbg"><td><label>{EMAIL_FIELD}</label></td><td>{email}</td></tr><!-- end email_block -->
+	<!-- begin company_id_block --><tr class="usualbg"><td><label>{COMPANY_SELECT_FIELD}</label></td><td>{company_id}</td></tr><!-- end company_id_block -->
+	<!-- begin company_name_block --><tr class="usualbg"><td><label>{COMPANY_NAME_FIELD}</label></td><td>{company_name}</td></tr><!-- end company_name_block -->
+	<!-- begin address1_block --><tr class="usualbg"><td><label>{STREET_FIRST_FIELD}</label></td><td>{address1}</td></tr><!-- end address1_block -->
+	<!-- begin address2_block --><tr class="usualbg"><td><label>{STREET_SECOND_FIELD}</label></td><td>{address2}</td></tr><!-- end address2_block -->
+	<!-- begin city_block --><tr class="usualbg"><td><label>{CITY_FIELD}</label></td><td>{city}</td></tr><!-- end city_block -->
+	<!-- begin province_block --><tr class="usualbg"><td><label>{PROVINCE_FIELD}</label></td><td>{province}</td></tr><!-- end province_block -->
+	<!-- begin state_id_block --><tr class="usualbg"><td><label>{STATE_FIELD}</label></td><td>{state_id}</td></tr><!-- end state_id_block -->
+	<!-- begin zip_block --><tr class="usualbg"><td><label>{ZIP_FIELD}</label></td><td>{zip}</td></tr><!-- end zip_block -->
+	<!-- begin country_id_block --><tr class="usualbg"><td><label>{COUNTRY_FIELD}</label></td><td>{country_id}</td></tr><!-- end country_id_block -->
+	<!-- begin phone_block --><tr class="usualbg"><td><label>{PHONE_FIELD}</label></td><td>{phone}</td></tr><!-- end phone_block -->
+	<!-- begin daytime_phone_block --><tr class="usualbg"><td><label>{DAYTIME_PHONE_FIELD}</label></td><td>{daytime_phone}</td></tr><!-- end daytime_phone_block -->
+	<!-- begin evening_phone_block --><tr class="usualbg"><td><label>{EVENING_PHONE_FIELD}</label></td><td>{evening_phone}</td></tr><!-- end evening_phone_block -->
+	<!-- begin cell_phone_block --><tr class="usualbg"><td><label>{CELL_PHONE_FIELD}</label></td><td>{cell_phone}</td></tr><!-- end cell_phone_block -->
+	<!-- begin fax_block --><tr class="usualbg"><td><label>{FAX_FIELD}</label></td><td>{fax}</td></tr><!-- end fax_block -->
+	<!-- begin personal_properties --><tr class="usualbg"><td><label>{property_name}</label></td><td>{property_value}{property_price}</td></tr><!-- end personal_properties -->
+	<!-- end personal -->
+	<tr class="middlebg columnTitles" >
+		<td colspan="2">{DELIVERY_TO_MSG}</td>
+	</tr>
+	<!-- begin delivery -->
+	<!-- begin delivery_name_block --><tr class="usualbg"><td><label>{NAME_MSG}</label></td><td>{delivery_name}</td></tr><!-- end delivery_name_block -->
+	<!-- begin delivery_first_name_block --><tr class="usualbg"><td><label>{FIRST_NAME_FIELD}</label></td><td>{delivery_first_name}</td></tr><!-- end delivery_first_name_block -->
+	<!-- begin delivery_last_name_block --><tr class="usualbg"><td><label>{LAST_NAME_FIELD}</label></td><td>{delivery_last_name}</td></tr><!-- end delivery_last_name_block -->
+	<!-- begin delivery_email_block --><tr class="usualbg"><td><label>{EMAIL_FIELD}</label></td><td>{delivery_email}</td></tr><!-- end delivery_email_block -->
+	<!-- begin delivery_company_id_block --><tr class="usualbg"><td><label>{COMPANY_SELECT_FIELD}</label></td><td>{delivery_company_id}</td></tr><!-- end delivery_company_id_block -->
+	<!-- begin delivery_company_name_block --><tr class="usualbg"><td><label>{COMPANY_NAME_FIELD}</label></td><td>{delivery_company_name}</td></tr><!-- end delivery_company_name_block -->
+	<!-- begin delivery_address1_block --><tr class="usualbg"><td><label>{STREET_FIRST_FIELD}</label></td><td>{delivery_address1}</td></tr><!-- end delivery_address1_block -->
+	<!-- begin delivery_address2_block --><tr class="usualbg"><td><label>{STREET_SECOND_FIELD}</label></td><td>{delivery_address2}</td></tr><!-- end delivery_address2_block -->
+	<!-- begin delivery_city_block --><tr class="usualbg"><td><label>{CITY_FIELD}</label></td><td>{delivery_city}</td></tr><!-- end delivery_city_block -->
+	<!-- begin delivery_province_block --><tr class="usualbg"><td><label>{PROVINCE_FIELD}</label></td><td>{delivery_province}</td></tr><!-- end delivery_province_block -->
+	<!-- begin delivery_state_id_block --><tr class="usualbg"><td><label>{STATE_FIELD}</label></td><td>{delivery_state_id}</td></tr><!-- end delivery_state_id_block -->
+	<!-- begin delivery_zip_block --><tr class="usualbg"><td><label>{ZIP_FIELD}</label></td><td>{delivery_zip}</td></tr><!-- end delivery_zip_block -->
+	<!-- begin delivery_country_id_block --><tr class="usualbg"><td><label>{COUNTRY_FIELD}</label></td><td>{delivery_country_id}</td></tr><!-- end delivery_country_id_block -->
+	<!-- begin delivery_phone_block --><tr class="usualbg"><td><label>{PHONE_FIELD}</label></td><td>{delivery_phone}</td></tr><!-- end delivery_phone_block -->
+	<!-- begin delivery_daytime_phone_block --><tr class="usualbg"><td><label>{DAYTIME_PHONE_FIELD}</label></td><td>{delivery_daytime_phone}</td></tr><!-- end delivery_daytime_phone_block -->
+	<!-- begin delivery_evening_phone_block --><tr class="usualbg"><td><label>{EVENING_PHONE_FIELD}</label></td><td>{delivery_evening_phone}</td></tr><!-- end delivery_evening_phone_block -->
+	<!-- begin delivery_cell_phone_block --><tr class="usualbg"><td><label>{CELL_PHONE_FIELD}</label></td><td>{delivery_cell_phone}</td></tr><!-- end delivery_cell_phone_block -->
+	<!-- begin delivery_fax_block --><tr class="usualbg"><td><label>{FAX_FIELD}</label></td><td>{delivery_fax}</td></tr><!-- end delivery_fax_block -->
+	<!-- begin delivery_properties --><tr class="usualbg"><td><label>{property_name}</label></td><td>{delivery_property_value}{property_price}</td></tr><!-- end delivery_properties -->
+
+<!-- end delivery -->
+</table>
+</div>
+<!-- begin payment -->
+<div class="titleTopCenter">
+	
+	
+	{PAYMENT_DETAILS_MSG}
+</div>
+<div class="basket">
+		<table cellspacing="1" border="0" width="100%" class="orderInfo"><!-- begin payment_info_block -->
+		<tr class="usualbg">
+			<td colspan="2">
+				<label>{payment_info}</label>
+			</td>
+		</tr><!-- end payment_info_block --><!-- begin cc_type_block -->
+		<tr class="usualbg">
+			<td width="25%" valign="top">
+				<label>{CC_TYPE_FIELD}</label>
+			</td>
+			<td>
+				<b>{cc_type}</b>
+			</td>
+		</tr><!-- end cc_type_block --><!-- begin cc_name_block -->
+		<tr class="usualbg">
+			<td width="25%"  valign="top">
+				<label>{CC_NAME_FIELD}</label>
+			</td>
+			<td>
+				<b>{cc_name}</b>
+			</td>
+		</tr><!-- end cc_name_block --><!-- begin cc_first_name_block -->
+		<tr class="usualbg">
+			<td width="25%"  valign="top">
+				<label>{CC_FIRST_NAME_FIELD}</label>
+			</td>
+			<td>
+				<b>{cc_first_name}</b>
+			</td>
+		</tr><!-- end cc_first_name_block --><!-- begin cc_last_name_block -->
+		<tr class="usualbg">
+			<td width="25%"  valign="top">
+				<label>{CC_LAST_NAME_FIELD}</label>
+			</td>
+			<td>
+				<b>{cc_last_name}</b>
+			</td>
+		</tr><!-- end cc_last_name_block --><!-- begin cc_number_block -->
+		<tr class="usualbg">
+			<td width="25%" valign="top">
+				<label>{CC_NUMBER_FIELD}</label>
+			</td>
+			<td>
+				<b>{cc_number}</b>
+			</td>
+		</tr><!-- end cc_number_block --><!-- begin cc_issue_number_block -->
+		<tr class="usualbg">
+			<td width="25%" valign="top">
+				<label>{CC_ISSUE_NUMBER_FIELD}</label>
+			</td>
+			<td>
+				{cc_issue_number}
+			</td>
+		</tr><!-- end cc_issue_number_block --><!-- begin cc_start_date_block -->
+		<tr class="usualbg">
+			<td width="25%"  valign="top">
+				<label>{CC_START_DATE_FIELD}</label>
+			</td>
+			<td>
+				{cc_start_date}
+			</td>
+		</tr><!-- end cc_start_date_block --><!-- begin cc_expiry_date_block -->
+		<tr class="usualbg">
+			<td width="25%" valign="top">
+				<label>{CC_EXPIRY_DATE_FIELD}</label>
+			</td>
+			<td>
+				{cc_expiry_date}
+			</td>
+		</tr><!-- end cc_expiry_date_block --><!-- begin cc_security_code_block -->
+		<tr class="usualbg">
+			<td width="25%"  valign="top">
+				<label>{CC_SECURITY_CODE_FIELD}</label>
+			</td>
+			<td>
+				{cc_security_code}
+			</td>
+		</tr><!-- end cc_security_code_block --><!-- begin pay_without_cc_block -->
+		<tr class="usualbg">
+			<td width="25%" valign="top">
+				<label>{PAY_WITHOUT_CC_FIELD}</label>
+			</td>
+			<td>
+				{pay_without_cc}
+			</td>
+		</tr><!-- end pay_without_cc_block --><!-- begin payment_properties -->
+		<tr class="usualbg">
+			<td width="25%" valign="top">
+				<label>{property_name}</label>
+			</td>
+			<td>
+				<b>{property_value}</b>
+			</td>
+		</tr><!-- end payment_properties -->
+		</table>
+<!-- end payment -->
+</div>
+</div>

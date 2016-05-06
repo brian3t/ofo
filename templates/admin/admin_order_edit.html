@@ -1,0 +1,527 @@
+<html><head><title>{ADMINISTRATION_MSG} :: {VIEW_MSG}/{EDIT_MSG} {ADMIN_ORDER_MSG}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript" type="text/javascript" src="../js/profile.js"></script>
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+				<a href="{admin_orders_href}">{ORDERS_MAINTENANCE_MSG}</a>&nbsp;&gt;&nbsp;<b>{ADMIN_ORDER_MSG} No {order_id}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{PERSONAL_DETAILS_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<form action="{admin_order_edit_href}" name="order_custom" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="order_id" value="{order_id}">
+<input type="hidden" name="p_d" value="{p_d}">
+<input type="hidden" name="type" value="{type}">
+<input type="hidden" name="return_page" value="{return_page}">
+<input type="hidden" name="site_url" value="{site_url}">
+<table width="100%" border="0" cellspacing="1" cellpadding="6" align="center"><!-- BEGIN errors -->
+<tr>
+	<td colspan="2" class="usual" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+
+<!-- begin profile_sections -->
+<!-- begin profile_section -->
+<tr>
+	<td class="middle" colspan="2">
+		&nbsp;<b>{section_name}</b>
+	</td>
+</tr>
+<!-- end profile_section -->
+<!-- begin profile_properties -->
+<tr id="pp_block_{property_id}" class="usual">
+	<td style="{property_style}">
+		&nbsp;{property_name} {property_required}
+	</td>
+	<td style="{property_style}">
+		{property_control} 
+	</td>
+</tr><!-- end profile_properties -->
+<!-- end profile_sections -->
+
+<!-- begin personal -->
+<tr>
+	<td class="middle" colspan="2">
+		&nbsp;<b>{PERSONAL_DETAILS_MSG}</b>
+	</td>
+</tr><!-- end personal --><!-- begin name_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{NAME_MSG} {name_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="name" value="{name}" size="40" maxlength="128">
+	</td>
+</tr><!-- end name_block --><!-- begin first_name_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{FIRST_NAME_FIELD} {first_name_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="first_name" value="{first_name}" size="40" maxlength="64">
+	</td>
+</tr><!-- end first_name_block --><!-- begin last_name_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{LAST_NAME_FIELD} {last_name_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="last_name" value="{last_name}" size="40" maxlength="64">
+	</td>
+</tr><!-- end last_name_block --><!-- begin company_id_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{COMPANY_SELECT_FIELD} {company_id_required}
+	</td>
+	<td>
+		<select class="search" name="company_id"><!-- begin company_id -->
+			<option {company_id_selected} value="{company_id_value}">{company_id_description}<!-- end company_id -->
+		</select>
+	</td>
+</tr><!-- end company_id_block --><!-- begin company_name_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{COMPANY_NAME_FIELD} {company_name_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="company_name" value="{company_name}" size="40" maxlength="128">
+	</td>
+</tr><!-- end company_name_block --><!-- begin email_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_FIELD} {email_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="email" value="{email}" size="40" maxlength="128">
+	</td>
+</tr><!-- end email_block --><!-- begin address1_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{STREET_FIRST_FIELD} {address1_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="address1" value="{address1}" size="40" maxlength="255">
+	</td>
+</tr><!-- end address1_block --><!-- begin address2_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{STREET_SECOND_FIELD} {address2_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="address2" value="{address2}" size="40" maxlength="255">
+	</td>
+</tr><!-- end address2_block --><!-- begin city_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{CITY_FIELD} {city_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="city" value="{city}" size="40" maxlength="128">
+	</td>
+</tr><!-- end city_block --><!-- begin province_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{PROVINCE_FIELD} {province_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="province" value="{province}" size="40" maxlength="128">
+	</td>
+</tr><!-- end province_block --><!-- begin state_id_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{STATE_FIELD} {state_id_required}
+	</td>
+	<td>
+		<select name="state_id"><!-- begin state_id -->
+			<option {state_id_selected} value="{state_id_value}">{state_id_description}<!-- end state_id -->
+		</select>
+	</td>
+</tr><!-- end state_id_block --><!-- begin zip_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{ZIP_FIELD} {zip_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="zip" value="{zip}" size="10" maxlength="16">
+	</td>
+</tr><!-- end zip_block --><!-- begin country_id_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{COUNTRY_FIELD} {country_id_required}
+	</td>
+	<td>
+		<select name="country_id"><!-- begin country_id -->
+			<option {country_id_selected} value="{country_id_value}">{country_id_description}<!-- end country_id -->
+		</select>
+	</td>
+</tr><!-- end country_id_block --><!-- begin phone_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{PHONE_FIELD} {phone_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="phone" value="{phone}" size="40" maxlength="32">
+	</td>
+</tr><!-- end phone_block --><!-- begin daytime_phone_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{DAYTIME_PHONE_FIELD} {daytime_phone_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="daytime_phone" value="{daytime_phone}" size="40" maxlength="32">
+	</td>
+</tr><!-- end daytime_phone_block --><!-- begin evening_phone_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{EVENING_PHONE_FIELD} {evening_phone_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="evening_phone" value="{evening_phone}" size="40" maxlength="32">
+	</td>
+</tr><!-- end evening_phone_block --><!-- begin cell_phone_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{CELL_PHONE_FIELD} {cell_phone_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="cell_phone" value="{cell_phone}" size="40" maxlength="32"> 
+	</td>
+</tr><!-- end cell_phone_block --><!-- begin fax_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{FAX_FIELD} {fax_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="fax" value="{fax}" size="40" maxlength="32">
+	</td>
+</tr><!-- end fax_block -->
+<!-- begin delivery -->
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{DELIVERY_DETAILS_MSG}</b>
+		<!-- begin same_as_personal_block -->
+		<table cellpadding=0 cellspacing=0 border=0>
+		<tr>
+			<td>&nbsp;</td>
+			<td>
+				<font class="smallText">{SAME_DETAILS_MSG}</font>
+			</td>
+			<td valign="top">
+				&nbsp;<input type="checkbox" name="same_as_personal" {same_as_personal} value="1" onClick="checkSame();"><br>
+			</td>
+		</tr>
+		</table>
+		<!-- end same_as_personal_block -->
+	</td>
+</tr><!-- end delivery -->
+<!-- begin delivery_name_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{NAME_MSG} {delivery_name_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="delivery_name" value="{delivery_name}" size="40" maxlength="128">
+	</td>
+</tr><!-- end delivery_name_block --><!-- begin delivery_first_name_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{FIRST_NAME_FIELD} {delivery_first_name_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="delivery_first_name" value="{delivery_first_name}" size="40" maxlength="64">
+	</td>
+</tr><!-- end delivery_first_name_block --><!-- begin delivery_last_name_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{LAST_NAME_FIELD} {delivery_last_name_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="delivery_last_name" value="{delivery_last_name}" size="40" maxlength="64">
+	</td>
+</tr><!-- end delivery_last_name_block --><!-- begin delivery_company_id_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{COMPANY_SELECT_FIELD} {delivery_company_id_required}
+	</td>
+	<td>
+		<select name="delivery_company_id"><!-- begin delivery_company_id -->
+			<option {delivery_company_id_selected} value="{delivery_company_id_value}">{delivery_company_id_description}<!-- end delivery_company_id -->
+		</select>
+	</td>
+</tr><!-- end delivery_company_id_block --><!-- begin delivery_company_name_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{COMPANY_NAME_FIELD} {delivery_company_name_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="delivery_company_name" value="{delivery_company_name}" size="40" maxlength="128">
+	</td>
+</tr><!-- end delivery_company_name_block --><!-- begin delivery_email_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_FIELD} {delivery_email_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="delivery_email" value="{delivery_email}" size="40" maxlength="128">
+	</td>
+</tr><!-- end delivery_email_block --><!-- begin delivery_address1_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{STREET_FIRST_FIELD} {delivery_address1_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="delivery_address1" value="{delivery_address1}" size="40" maxlength="255">
+	</td>
+</tr><!-- end delivery_address1_block --><!-- begin delivery_address2_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{STREET_SECOND_FIELD} {delivery_address2_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="delivery_address2" value="{delivery_address2}" size="40" maxlength="255">
+	</td>
+</tr><!-- end delivery_address2_block --><!-- begin delivery_city_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{CITY_FIELD} {delivery_city_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="delivery_city" value="{delivery_city}" size="40" maxlength="128">
+	</td>
+</tr><!-- end delivery_city_block --><!-- begin delivery_province_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{PROVINCE_FIELD} {delivery_province_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="delivery_province" value="{delivery_province}" size="40" maxlength="128">
+	</td>
+</tr><!-- end delivery_province_block --><!-- begin delivery_state_id_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{STATE_FIELD} {delivery_state_id_required}
+	</td>
+	<td>
+		<select name="delivery_state_id"><!-- begin delivery_state_id -->
+			<option {delivery_state_id_selected} value="{delivery_state_id_value}">{delivery_state_id_description}<!-- end delivery_state_id -->
+		</select>
+	</td>
+</tr><!-- end delivery_state_id_block --><!-- begin delivery_zip_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{ZIP_FIELD} {delivery_zip_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="delivery_zip" value="{delivery_zip}" size="10" maxlength="16">
+	</td>
+</tr><!-- end delivery_zip_block --><!-- begin delivery_country_id_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{COUNTRY_FIELD} {delivery_country_id_required}
+	</td>
+	<td>
+		<select name="delivery_country_id"><!-- begin delivery_country_id -->
+			<option {delivery_country_id_selected} value="{delivery_country_id_value}">{delivery_country_id_description}<!-- end delivery_country_id -->
+		</select>
+	</td>
+</tr><!-- end delivery_country_id_block --><!-- begin delivery_phone_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{PHONE_FIELD} {delivery_phone_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="delivery_phone" value="{delivery_phone}" size="40" maxlength="32">
+	</td>
+</tr><!-- end delivery_phone_block --><!-- begin delivery_daytime_phone_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{DAYTIME_PHONE_FIELD} {delivery_daytime_phone_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="delivery_daytime_phone" value="{delivery_daytime_phone}" size="40" maxlength="32">
+	</td>
+</tr><!-- end delivery_daytime_phone_block --><!-- begin delivery_evening_phone_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{EVENING_PHONE_FIELD} {delivery_evening_phone_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="delivery_evening_phone" value="{delivery_evening_phone}" size="40" maxlength="32">
+	</td>
+</tr><!-- end delivery_evening_phone_block --><!-- begin delivery_cell_phone_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{CELL_PHONE_FIELD} {delivery_cell_phone_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="delivery_cell_phone" value="{delivery_cell_phone}" size="40" maxlength="32"> 
+	</td>
+</tr><!-- end delivery_cell_phone_block --><!-- begin delivery_fax_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{FAX_FIELD} {delivery_fax_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="delivery_fax" value="{delivery_fax}" size="40" maxlength="32">
+	</td>
+</tr><!-- end delivery_fax_block -->
+<!-- begin payment_info_block -->
+<tr>
+	<td class="usual" colspan="2">
+		{payment_info}
+	</td>
+</tr><!-- end payment_info_block --><!-- begin cc_name_block -->
+<tr>
+	<td class="usual">
+		&nbsp;{CC_NAME_FIELD}&nbsp;{cc_name_required}
+		<div class="smallText">&nbsp;({CC_NAME_DESC})</div>
+	</td>
+	<td class="usual">
+		<input class="text" type="text" name="cc_name" size="50" value="{cc_name}">
+	</td>
+</tr><!-- end cc_name_block --><!-- begin cc_first_name_block -->
+<tr>
+	<td class="usual">
+		&nbsp;{CC_FIRST_NAME_FIELD}&nbsp;{cc_first_name_required}
+	</td>
+	<td class="usual">
+		<input class="text" type="text" name="cc_first_name" size="50" value="{cc_first_name}">
+	</td>
+</tr><!-- end cc_first_name_block --><!-- begin cc_last_name_block -->
+<tr>
+	<td class="usual">
+		&nbsp;{CC_LAST_NAME_FIELD}&nbsp;{cc_last_name_required}
+	</td>
+	<td class="usual">
+		<input class="text" type="text" name="cc_last_name" size="50" value="{cc_last_name}">
+	</td>
+</tr><!-- end cc_last_name_block --><!-- begin cc_number_block -->
+<tr>
+	<td class="usual">
+		&nbsp;{CC_NUMBER_FIELD}&nbsp;{cc_number_required}
+	</td>
+	<td class="usual">
+		<input class="text" type="text" name="cc_number" size="50" value="{cc_number}">
+	</td>
+</tr><!-- end cc_number_block --><!-- begin cc_start_date_block -->
+<tr>
+	<td class="usual">
+		&nbsp;{CC_START_DATE_FIELD}&nbsp;{cc_start_date_required}
+	</td>
+	<td class="usual">
+		<select class="text" name="cc_start_month"><!-- begin cc_start_month -->
+			<option {cc_start_month_selected} value="{cc_start_month_value}">{cc_start_month_description}<!-- end cc_start_month -->
+		</select>
+
+		<select class="text" name="cc_start_year"><!-- begin cc_start_year -->
+			<option {cc_start_year_selected} value="{cc_start_year_value}">{cc_start_year_description}<!-- end cc_start_year -->
+		</select>
+		</font>
+	</td>
+</tr><!-- end cc_start_date_block --><!-- begin cc_expiry_date_block -->
+<tr>
+	<td class="usual">
+		&nbsp;{CC_EXPIRY_DATE_FIELD}&nbsp;{cc_expiry_date_required}
+	</td>
+	<td class="usual">
+		<select class="text" name="cc_expiry_month"><!-- begin cc_expiry_month -->
+			<option {cc_expiry_month_selected} value="{cc_expiry_month_value}">{cc_expiry_month_description}<!-- end cc_expiry_month -->
+		</select>
+
+		<select class="text" name="cc_expiry_year"><!-- begin cc_expiry_year -->
+			<option {cc_expiry_year_selected} value="{cc_expiry_year_value}">{cc_expiry_year_description}<!-- end cc_expiry_year -->
+		</select>
+		</font>
+	</td>
+</tr><!-- end cc_expiry_date_block --><!-- begin cc_type_block -->
+<tr>
+	<td class="usual">
+		&nbsp;{CC_TYPE_FIELD}&nbsp;{cc_type_required}
+	</td>
+	<td class="usual">
+		<select class="text" name="cc_type"><!-- begin cc_type -->
+			<option {cc_type_selected} value="{cc_type_value}">{cc_type_description}<!-- end cc_type -->
+		</select>
+	</td>
+</tr><!-- end cc_type_block --><!-- begin cc_issue_number_block -->
+<tr>
+	<td class="usual">
+		&nbsp;{CC_ISSUE_NUMBER_FIELD}&nbsp;{cc_issue_number_required}
+	</td>
+	<td class="usual">
+	<select class="text" name="cc_issue_number" width=20><!-- begin cc_issue_number -->
+			<option {cc_issue_number_selected} value="{cc_issue_number_value}">{cc_issue_number_description}<!-- end cc_issue_number -->
+	</select>
+	&nbsp;
+	({CC_ISSUE_NUMBER_DESC})
+	</td>
+</tr><!-- end cc_issue_number_block --><!-- begin cc_security_code_block -->
+<tr>
+	<td class="usual">
+		&nbsp;{CC_SECURITY_CODE_FIELD}&nbsp;{cc_security_code_required}
+	</td>
+	<td class="usual">
+		<input class="text" type=text name="cc_security_code" width=10 value="{cc_security_code}"> 
+			<a href="{cc_security_code_help_href}" target="_blank" 
+				onClick="window.open('{cc_security_code_help_href}', 'cc_security_code_help', 'width=425,height=300,location=no,menubar=no,status=no,toolbar=no');return false;" 
+				class="tocreverse">{CC_SECURITY_CODE_HELP_MSG}</a>
+	</td>
+</tr><!-- end cc_security_code_block --><!-- begin pay_without_cc_block -->
+<tr class="usual">
+	<td valign="top">
+		&nbsp;{PAY_WITHOUT_CC_FIELD} {pay_without_cc_required}
+		<div class="smallText">&nbsp;({PAY_WITHOUT_CC_DESC})</div>
+	</td>
+	<td>
+		<textarea class="text" name="pay_without_cc" cols="50" rows="5">{pay_without_cc}</textarea>
+	</td>
+</tr><!-- end pay_without_cc_block -->
+<!-- begin payment_properties -->
+<tr id="op_block_{property_id}" class="usual">
+	<td style="{property_style}">
+		&nbsp;{property_name} {property_required}
+	</td>
+	<td style="{property_style}">
+		{property_control} 
+	</td>
+</tr><!-- end payment_properties -->
+<tr class="middle">
+	<td></td>
+	<td>
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onclick="document.order_custom.operation.value='save'"> &nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.order_custom.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</form>
+
+	</td>
+</tr>
+</table>
+</fieldset>
+
+{admin_footer}
+
+</body></html>

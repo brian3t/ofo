@@ -1,0 +1,192 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {NEWSLETTER_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<link rel="stylesheet" href="../styles/editor.css" type="text/css">
+
+<script language="JavaScript" type= "text/javascript" src="../js/editor.js"></script>
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_newsletters_href}">{CUSTOMER_MENU_NEWSLETTERS}</a>&nbsp;&gt;&nbsp;<b>{EDIT_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{NEWSLETTER_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<form action="{admin_newsletter_href}" name="record" method="POST" enctype="multipart/form-data" onSubmit="submit_editor(Array('editor_nb'));">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="newsletter_id" value="{newsletter_id}">
+<table width="100%" border="0" cellspacing="1" cellpadding="6" align="center"><!-- BEGIN errors -->
+<tr>
+	<td colspan="2" class="usual" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<!-- BEGIN check_emails_errors_block -->
+<tr>
+	<td colspan="2" class="usual" align="center">
+		<div class="error">{INCORRECT_EMAILS_MSG}</div>
+	</td>
+</tr><!-- END check_emails_errors_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{IS_ACTIVE_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="is_active" {is_active} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{DATE_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" name="newsletter_date" value="{newsletter_date}">
+		({USE_FOLLOWING_FORMAT_MSG} <b>{datetime_format}</b>)</div>		
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{TYPE_MSG} *
+	</td>
+	<td><!-- begin mail_type -->
+		<input type="radio" name="mail_type" {mail_type_checked} value="{mail_type_value}">{mail_type_description}<!-- end mail_type -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		<div class="small">
+		&nbsp;{EMAIL_FROM_MSG}
+		</div>
+	</td>
+	<td>
+		<input class="field" type="text" name="mail_from" value="{mail_from}" size="75" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_REPLY_TO_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="mail_reply_to" value="{mail_reply_to}" size="75" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_RETURN_PATH_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="mail_return_path" value="{mail_return_path}" size="75" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_SUBJECT_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" name="newsletter_subject" value="{newsletter_subject}" size="75" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td colspan="2">
+		<!--<textarea rows="20" cols="120" name="newsletter_body">{newsletter_body}</textarea>-->
+		<textarea class="text" name="newsletter_body" style="display: block; width: 604px; height: 300px;">{newsletter_body}</textarea>
+		<script language= "JavaScript" type= "text/javascript">
+		<!--
+			var editor_nb = new VA_HTMLeditor('content_nd','../','{html_editor}');
+			editor_nb.text_field_name = 'newsletter_body';
+			editor_nb.formname = 'record';
+			editor_nb.css_file = '{css_file}';
+			editor_nb.editor_type = 'newsletter_editor';
+			editor_nb.displayEditor('editor_nb', 604, 300);
+		//-->
+		</script>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">&nbsp;{RECIPIENTS_GROUPS_MSG}</td>
+</tr>
+<tr class="usual" valign="top">
+	<td>&nbsp;{SUBSCRIBED_CUSTOMERS_MSG}</td>
+	<td>
+		<input type="checkbox" name="subscribed_recipients" {subscribed_recipients} value="1">
+	</td>
+</tr>
+<tr class="usual" valign="top">
+	<td>&nbsp;{REGISTERED_CUSTOMERS_MSG}</td>
+	<td>
+		<input type="hidden" name="user_types_total" value="{user_types_total}">
+		<!-- BEGIN user_types -->
+		<input type="checkbox" name="user_type_{index}" {user_type_checked} value="{type_id}"> {type_name} &nbsp;
+		<!-- END user_types -->
+	</td>
+</tr>
+<tr class="usual" valign="top">
+	<td>&nbsp;{CUSTOMER_PURCHASED_PRODUCTS_MSG}</td>
+	<td>
+		<input type="hidden" name="order_statuses_total" value="{order_statuses_total}">
+		<table cellspacing="0" cellpadding="0" border="0"><!-- BEGIN order_statuses_rows -->
+		<tr><!-- BEGIN order_statuses_cols -->
+			<td><input type="checkbox" name="order_status_{index}" {order_status_checked} value="{status_id}"> {status_name} &nbsp; </td>
+		<!-- END order_statuses_cols -->
+		</tr><!-- END order_statuses_rows -->
+		</table>
+	</td>
+</tr>
+<tr class="usual" valign="top">
+	<td>&nbsp;{ADMINISTRATORS_MSG}</td>
+	<td>
+		<input type="hidden" name="privileges_total" value="{privileges_total}">
+		<!-- BEGIN admin_types -->
+		<input type="checkbox" name="privilege_{index}" {privilege_checked} value="{privilege_id}"> {privilege_name}
+		<!-- END admin_types -->
+	</td>
+</tr>
+<tr class="usual" valign="top">
+	<td>&nbsp;{ADD_CUSTOM_EMAILS_MSG}</td>
+	<td>
+		<input type="file" name="custom_recipients_file" value="{custom_recipients_file}" size="60" class="submit">&nbsp;
+		<input class="submit" type="submit" value="{UPLOAD_BUTTON}" onclick="document.record.operation.value = 'load'">
+	</td>
+</tr>
+<tr class="usual" valign="top">
+	<td>&nbsp;{CUSTOM_EMAILS_LIST_MSG}</td>
+	<td>
+		<textarea rows = "12" cols="70" name="custom_recipients">{custom_recipients}</textarea>
+	</td>
+</tr>
+<tr>
+	<td class="middle" colspan="2">
+		<input class="submit" type="submit" value="{save_button}" onclick="document.record.operation.value='save'"><!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');"><!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</form>
+
+	</td>
+</tr>
+</table>
+</fieldset>
+
+{admin_footer}
+
+</body></html>

@@ -1,0 +1,287 @@
+.FRAM {
+	font-weight: bold;
+	font-style: italic;
+	color: #FF6600;
+}
+#vehicleSelector h2, #crossReference h2 {
+	text-align: center;
+	font-size: 1.5em;
+}
+#vehicleSelector, #crossReference {
+	background-color: #c3d2ea;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-khtml-border-radius: 10px;
+	-o-border-radius: 10px;
+	border-radius: 10px;
+	text-align: center;
+	display: inline-block;
+	position: relative;
+	border: 3px solid #005599;
+	padding:1em;
+}
+#vehicleSelector {
+	left:-30px;
+	margin-bottom:1.5em;
+	width:225px;
+	-moz-box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.5);
+  	-webkit-box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.5);
+}
+.application .button {
+	padding: 0;
+	font-size: .75em;
+	margin-left: .5em;
+	vertical-align: middle;
+}
+#crossReferenceSubmit {
+	width: 100%;
+}
+#partnum {
+	margin-bottom: .5em;
+	margin-top: 0.5em;
+}
+.Autolite {
+	font-weight: bold;
+	color: #FF6600;
+}
+.finder_header_row {
+	font-size: 1.5em;
+	text-align: left;
+	padding: .5em;
+	background-color:#666;
+	border-bottom: 1px solid #ccc;
+	clear: both;
+	color: #fff;
+	height: 1em;
+}
+.finder_row {
+	text-align: left;
+}
+.finder_row td {
+	padding: .5em;
+}
+.finder_row .preview {
+	width: 30px;
+	float: none;
+	vertical-align: middle;
+}
+.finder_row a {
+	font-size: 1.5em;
+}
+.even {
+	background-color:#CCCCCC;
+}
+.finder_row .addToCart {
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+.finder_header_row a {
+	color: #FFFFFF;
+}
+ul.tabs {
+	list-style-image:none;
+	list-style-position:outside;
+	list-style-type:none;
+	margin:0;
+	padding:0;
+	outline-style:none;
+	outline-width:medium;
+	width: 100%;
+	float: left;
+}
+
+ul.tabs li {
+	text-align: center;
+}
+.MMYE {
+	width:60px;
+	float:left;
+	margin-top:.5em;
+	font-weight: bold;
+}
+#vehicleSelector select {
+	width: 100%;
+	margin-top:	0.5em;
+	font-size: 1.25em;
+}
+a.parts-highlight {
+	color:blue;	
+}
+a.parts-highlight:hover {
+	text-decoration: none;	
+}
+.preview {
+	background:#FFFFFF none repeat scroll 0 0;
+	border:1px solid #000000;
+	float:left;
+	padding:.25em;
+	margin-right: 1em;
+}
+#preview{
+	position:absolute;
+	border:1px solid #ccc;
+	background:#333;
+	padding:.25em;
+	display:none;
+	color:#fff;
+}
+.finder-row {
+	border-bottom:1px solid #CCCCCC;
+	clear:both;
+	float:left;
+	width:100%;
+	background-image: url(/images/item_grad_03.jpg);
+	background-position: bottom;
+	background-repeat: repeat-x;
+	position: relative;
+	background-color: #fefefe;
+	overflow: hidden;
+}
+.part-description {
+	float: left;
+	width: 490px;
+	text-align: left;
+	padding: 1em;
+}
+.part-price {
+	width:150px;
+	text-align: right;
+	line-height: 1.5em;
+	padding: 1em;
+	right: 0px;
+	background-color: #eee;
+	border-left: solid 1px #ccc;
+	float: right;
+}
+.priceNames {
+	float: left;
+}
+.part-description h3 {
+	margin-top: 0;
+	margin-bottom: .5em;
+	font-size: 1.5em;
+}
+.part-description p {
+ 	padding: 0;
+ 	margin: 0;
+}
+.part-description a {
+	text-decoration: none;
+	color: #000;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #999;
+}
+.finder-wrapper {
+	overflow:hidden;
+	text-align: center;
+	vertical-align: middle;
+	clear: both;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-top-color: #ccc;
+	border-right-color: #ccc;
+	border-left-color: #ccc;
+}
+.finder-contact {
+	padding: 1em;
+	font-size: 1.5em;
+}
+.partCategories {
+	margin:1em;
+	text-align:left;
+	line-height: 1.5em;
+}
+.partCategories li{
+	background-image:url(/images/oil-filters/bullet.gif);
+	background-position:left center;
+	background-repeat:no-repeat;
+	padding-left:1.5em;
+	list-style-image: none;
+	list-style-type:none;
+	cursor: pointer;
+	width: 170px;
+	float: left;
+}
+.partCategories li:hover {
+	text-decoration: underline;
+}
+#categoryWrapper {
+	background:#eee;
+	float:left;
+	overflow:hidden;
+	text-align:left;
+	width:100%;
+}
+.application {
+	-moz-border-radius:8px 8px 8px 8px;
+	background-color:#FFFFFF;
+	float:left;
+	margin-top:1em;
+	text-align:left;
+	width:100%;
+}
+.application p {
+	margin: .5em;
+}
+.loading{
+	background: #fff;
+	text-align: center;
+}
+#selectCategory {
+	float: left;
+	padding: 1em;
+	font-size: 1.5em;
+}
+select[disabled] {
+	color: gray;
+	background: #ddd;
+}
+#preview {
+	z-index: 1000;
+}
+.currentVehicle {
+	color:#005599;
+	font-weight:bold;
+	cursor: pointer;
+	vertical-align: middle;
+}
+#searchVehicle {
+	border-bottom: 1px solid #ccc;
+	padding: 1em;
+	text-align: left;
+}
+.ui-effects-transfer {
+	border: 2px solid #666;
+	z-index: 2340;
+}
+.hide {
+	display: none;
+}
+.backToTop {
+	font-weight: normal;
+	font-size: 1em;
+	cursor: pointer;
+}
+.backToTop span {
+	vertical-align: top;
+	font-size: .75em;
+}
+.lowerLeft {
+	position: absolute;
+	bottom: 10px;
+}
+.availability strong {
+	color: green;
+}
+.deleteVehicle {
+	padding-right: .5em;
+	vertical-align: middle;
+	cursor: pointer;
+}

@@ -1,0 +1,177 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {ARTICLES_AND_CATEGORIES_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+
+<body class="commonbg">
+{admin_header}
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr><td valign="top" colspan="3" align="center">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header">
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_articles_top_href}">{ARTICLES_TITLE}</a>&nbsp;&gt;&nbsp;<!-- BEGIN tree --><a
+			href="{admin_articles_href}?category_id={tree_cat_id}">{tree_cat_name}</a>&nbsp;&gt;&nbsp;<!-- END tree --><b>{tree_current_name}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td align=right>
+			<b>
+				<a href="{admin_articles_category_href}?category_id={top_category_id}">{top_category_name} {SETTINGS_MSG}</a> |
+				<a href="{admin_layout_page_href}?art_cat_id={top_category_id}&page_name=list">{top_category_name} {LIST_PAGE_LAYOUT_MSG}</a> |
+				<a href="{admin_layout_page_href}?art_cat_id={top_category_id}&page_name=details">{top_category_name} {DETAILED_PAGE_LAYOUT_MSG}</a> |
+				<a href="{admin_articles_reviews_href}?art_cat_id={top_category_id}">{top_category_name} {ARTICLES_REVIEWS_MSG}</a> |
+				<a href="{admin_tell_friend_href}?art_cat_id={top_category_id}&type=articles">{TELL_FRIEND_TITLE}</a>
+			</b>
+		</td>
+	</tr></table>
+
+	<br>
+	<form action="{admin_articles_href}" method="GET">
+	<select name="sc"><!-- BEGIN sc -->
+		<option {sc_selected} value="{sc_value}">{sc_description}<!-- end sc -->
+	</select> <input class="field3" type="text" name="s" value="{s}"> <input class="submit" type="submit" name="search" value="{SEARCH_TITLE}">
+	</form>
+	&nbsp;
+
+</td></tr>
+
+<tr><td valign="top" width="25%">
+
+
+<fieldset>
+<legend>{AVAILABLE_CATEGORIES_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center">
+	<td>
+
+		<table width="100%" border="0" cellspacing="1" cellpadding="6"><!-- begin categories_header -->
+		<tr class="middle">
+				<td>
+				&nbsp;{CATEGORY_NAME_MSG}
+			</td>
+			<td>&nbsp;</td>
+		</tr><!-- END categories_header --><!-- BEGIN articles_categories -->
+		<tr class="usual">
+			<td>
+				&nbsp;<a href="{admin_articles_href}?category_id={row_category_id}">{category_name}</a>&nbsp;
+				<span style="color: black; font-size: 7pt"><br>&nbsp;<a href="{admin_article_category_items_related_href}?category_id={row_category_id}&parent_category_id={category_id}">{ADMIN_RELATED_PRODUCTS_TITLE}</a>&nbsp;</span>
+			</td>
+			<td align="center">
+				<a href="{admin_articles_category_href}?parent_category_id={category_id}&category_id={row_category_id}">{EDIT_MSG}</a><br>
+			</td>
+		</tr><!-- END articles_categories --><!-- BEGIN no_categories -->
+		<tr class="usual">
+			<td colspan="2">&nbsp;<b>'{tree_current_name}'</b> {CATEGORY_DOESNT_HAVE_MSG}.</td>
+		</tr><!-- END no_categories -->
+		<tr class="middle">
+			<td colspan="2">
+				&nbsp;<a href="{admin_articles_category_href}?parent_category_id={category_id}">{NEW_CATEGORY_MSG}</a>
+				<!-- BEGIN categories_order_link -->
+				| <a href="{admin_articles_categories_href}?parent_category_id={category_id}">{CHANGE_ORDER_MSG}</a>
+				<!-- END categories_order_link -->
+			</td>
+		</tr>
+		</table>
+
+	</td>
+</tr>
+</table>
+</fieldset>
+</td>
+
+<td width=15>&nbsp;</td>
+<td valign="top" width="75%">
+
+<!-- begin items_block -->
+
+<fieldset>
+<legend>{ARTICLES_TITLE} in <b>{tree_current_name}</b> category<!-- begin s_d --> matching the term(s) '<b>{s}</b>'<!-- end s_d -->:</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center">
+	<td>
+
+		<table width="100%" border="0" cellspacing="1" cellpadding="4"><!-- begin items_header -->
+		<tr class="middle">
+			<td>
+				&nbsp;{ADMIN_TITLE_MSG}
+			</td>
+			<td align="center">
+				{STATUS_MSG}
+			</td>
+			<!-- begin article_date_header_column -->
+			<td align="center">
+				{DATE_MSG}
+			</td>
+			<!-- end article_date_header_column -->
+		</tr><!-- end items_header --><!-- BEGIN items_list -->
+		<tr class="usual" align="center" valign="top">
+			<td align="left">
+				<a class="title" style="color: black" href="{admin_article_href}?category_id={article_category_id}&article_id={article_id}">{article_title}</a>
+				<br>
+				<span style="color: black; font-size: 8pt">
+				<a class="smallink" href="{admin_article_href}?category_id={article_category_id}&article_id={article_id}">{EDIT_MSG}</a> |
+				<a class="smallink" href="{admin_article_items_related_href}?category_id={article_category_id}&article_id={article_id}">{ADMIN_RELATED_PRODUCTS_TITLE}</a> |
+				<a class="smallink" href="{admin_article_related_href}?category_id={article_category_id}&article_id={article_id}">{RELATED_ARTICLES_MSG}</a> |<!--begin related_forums_priv-->
+				<a class="smallink" href="{admin_article_forums_related_href}?category_id={article_category_id}&article_id={article_id}">{RELATED_FORUMS_MSG}</a> |<!--end related_forums_priv-->
+				<a class="smallink" href="{admin_articles_assign_href}?category_id={article_category_id}&article_id={article_id}">{ASSIGN_CATEGORIES_MSG}</a>
+			</td>
+			<td align="center" valign="center">
+				&nbsp;{article_status}
+			</td>
+			<!-- begin article_date_column -->
+			<td align="center" valign="center">
+				&nbsp;{article_date}
+			</td>
+			<!-- end article_date_column -->
+		</tr><!-- END items_list --><!-- BEGIN no_items -->
+		<tr class="usual">
+			<td colspan="2">&nbsp;'<b>{tree_current_name}</b>' {CATEGORY_DOESNT_HAVE_ARTICLES_MSG}</td>
+		</tr><!-- END no_items -->
+		<tr>
+			<td class="middle" colspan="4">
+				&nbsp;<a href="{admin_article_href}?category_id={category_id}">{ADD_NEW_MSG}</a>
+				<!-- BEGIN articles_order_link -->
+				| <a href="{admin_articles_order_href}?parent_category_id={category_id}">{CHANGE_ORDER_MSG}</a>
+				<!-- END articles_order_link -->
+			</td>
+		</tr>
+		</table>
+
+	</td>
+</tr>
+</table><!-- end items_block -->
+</fieldset><br>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr align="center" class="header">
+	<td>
+		<table width="100%" border="0" cellspacing="1" cellpadding="10" >
+		<tr>
+      <td class="middlebg"><img src="../images/icons/admin_forum.gif" hspace="10"></td>
+			<td class="commonbg">
+      	<ul class=cat>
+        	<li class=nob><b>{TO_FIND_OR_VIEW_ARTICLES_MSG}</b><br>{NAVIGATE_IN_CATEGORIES_ARTICLES_MSG}<br><br>
+          <li class=nob><b>{TO_ADD_SUB_CATEGORY_ARTICLE_MSG}</b><br>{FOLLOW_INSTRUCTIONS_ARTICLES_MSG}</ul>
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>
+
+</td></tr></table>
+
+{admin_footer}
+</body>
+</html>

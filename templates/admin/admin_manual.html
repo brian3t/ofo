@@ -1,0 +1,197 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {MANUAL_MSG} ::..</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;
+			<a href="{admin_manual_href}">{MANUAL_MSG}</a><!-- begin current_category_block -->&nbsp;&gt;&nbsp;<a href="{admin_manual_href}?category_id={category_id}">{current_category}</a><!-- end current_category_block --><!-- begin current_manual_block -->&nbsp;&gt;&nbsp;<b>{current_manual}</b><!-- end current_manual_block --><!-- begin title_manual_block -->&nbsp;&gt;&nbsp;<a href="{admin_manual_href}?category_id={category_id}&manual_id={manual_id}">{title_block}</a></a><!-- end title_manual_block -->
+		</td>
+	</tr>
+	</table>
+</td>
+</tr>
+</table>
+
+<br>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+	<tr>
+		<td  valign=top width=25%>
+		<fieldset>
+			<legend>{title_left_block}</legend>
+			<table width="100%" border="0" cellspacing="1" cellpadding="5">
+				<!-- begin list_block --><!-- begin list_category -->
+				<tr class="usual"> 
+					<td>
+						<a href="{admin_manual_href}?category_id={list_category_id}"><b>{list_category_name}</b></a>
+					</td>
+					<td align=center><a href="{admin_manual_category_href}?category_id={list_category_id}">{EDIT_MSG}</a></td>
+				</tr><!-- end list_category --><!-- begin list_manual -->
+				<tr class="usual"> 
+					<td>
+						&nbsp;&nbsp;--&nbsp;<a href="{admin_manual_href}?category_id={category_id}&manual_id={manual_id}">{manual_title}</a>
+					</td>
+					<td align=center><a href="{admin_manual_edit_href}?category_id={category_id}&manual_id={manual_id}">{EDIT_MSG}</a></td>
+				</tr><!-- end list_manual --><!-- end list_block -->				
+				<tr>
+					<td class="middle" colspan=2>
+						<a href="{admin_manual_category_href}">{NEW_CATEGORY_MSG}</a><!-- begin new_manual_link -->&nbsp;|&nbsp;<a href="{admin_manual_edit_href}">{SUPPORT_STATUS_NEW_MSG} {MANUAL_MSG}</a><!-- end new_manual_link -->
+					</td>
+				</tr>
+			</table>
+		</fieldset>
+		<br>
+		<fieldset>
+			<legend>{title_left_search_block}</legend>
+			<table width="100%" border="0" cellspacing="1" cellpadding="5">
+				<tr>
+					<td class="usual" colspan=2>
+						<form name="manual_search" method="POST" enctype="multipart/form-data">
+							<table border="0" width="100%">
+							<tr>
+								<td>{SEARCH_TITLE} In:</td>
+								<td>
+								<!-- BEGIN manuals_select -->
+								<select name="manuals_select">
+									<option value="">{MANUALS_SEARCH_IN_FIRST_VARIANT}</option>
+									<!-- BEGIN manuals_option -->
+									<option value="{option_value}" {option_selected}>{option_description}</option>
+									<!-- END manuals_option -->
+								</select>
+								<!-- END manuals_select -->
+								</td>
+							</tr>
+							<tr>
+								<td>{SEARCH_TITLE}:</td>
+								<td><input class="field" type="text" name="search_string" value="{search_string}" size="16"></td>
+							</tr>
+							<tr>
+								<td colspan="2"><a href="#" onclick="document.forms.manual_search.submit();">{SEARCH_TITLE}</a></td>
+							</tr>
+							</table>
+						</form>
+					</td>
+				</tr>
+				<!-- BEGIN searched_results_block -->
+				<tr class="usual">
+					<td>
+					<table border="0" width="100%">
+						<tr>
+							<td class="middle">{RESULTS_MSG}</td>
+						</tr>
+					<!-- BEGIN no_results -->
+						<tr>
+							<td>{NO_RESULTS_MSG}</td>
+						</tr>
+					<!-- END no_results -->
+					<!-- BEGIN searched_record -->
+						<tr>
+							<td><a href="{article_href}">{counter}.&nbsp;{article_title}</a>
+							</td>
+						</tr>
+					<!-- END searched_record -->
+					</table>
+					</td>
+				</tr>
+				<!-- END searched_results_block -->
+				
+			</table>
+		</fieldset>
+
+		<br>
+		<fieldset>
+			<legend>{title_left_goto_block}</legend>
+			<table width="100%" border="0" cellspacing="1" cellpadding="5">
+				<tr>
+					<td class="usual" colspan=2>
+						<form name="manual_goto" method="POST" enctype="multipart/form-data" action="{admin_manual_article_url}">
+						<input type="hidden" name="manual_id" value="{manual_id}">
+							<table border="0" width="100%">
+							<tr>
+								<td><input class="field" type="text" name="section_goto" value="" size="20"></td>
+								<td><a href="#" onclick="document.forms.manual_goto.submit();">{GO_TO_MSG}</a></td>
+							</tr>
+							</table>
+						</form>
+					</td>
+				</tr>
+			</table>
+		</fieldset>
+		
+	</td>
+	<td>&nbsp;&nbsp;&nbsp;</td>
+	<td width=75% valign=top>
+		<fieldset>
+		<legend>{title_block}</legend>
+
+			<table border="0" cellpadding="5" cellspacing="1" width="100%">
+			<!-- begin block_errors -->
+			<tr>
+				<td colspan="5"><div class="error">{error_list}</div></td>
+			</tr><!-- end block_errors -->
+			<!-- begin block_message -->
+			<tr>
+				<td colspan="5"><div class="message">{message_list}</div></td>
+			</tr><!-- end block_message -->
+			<!-- begin sorters -->
+			<tr class="middle" align="center">
+				<td>
+					{sorter_id}
+				</td>
+				<td>
+					{sorter_article}
+				</td>
+				<td>
+					{sorter_section_number}
+				</td>
+				<td>
+					{sorter_modified}
+				</td>
+			</tr><!-- end sorters --><!-- begin records -->
+			<tr class="usual" valign="top" align="center">
+				<td>
+					{article_id}
+				</td>
+				<td align="left">
+					{indent}<a href="{admin_manual_article_url}?manual_id={manual_id}&article_id={article_id}&parent_article_id={parent_article_id}">{article_title}</a>
+				</td>
+				<td>
+					{section_number}
+				</td>
+				<td>
+					{date_modified}
+				</td>
+			</tr><!-- end records --><!-- begin manual_links -->
+			<tr class="middle" align="right">
+				<td colspan="5">
+					<table width="100%" cellpadding="0" cellspacing="0" border="0">
+					<tr>
+						<td>&nbsp;<a href="{admin_manual_article_url}?manual_id={manual_id}">{ADD_NEW_MSG}</a>&nbsp;</td>
+						<!-- begin navigator_block -->
+						<td align="right">&nbsp;{navigator}&nbsp;</td><!-- end navigator_block -->
+					</tr> 
+					</table>
+				</td>
+			</tr><!-- end manual_links -->
+			</table>	
+
+		</fieldset>
+	</td>
+</tr>
+</table>
+<br>
+
+{admin_footer}
+
+</body>
+</html>

@@ -1,0 +1,136 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {ADMIN_PAGES_MSG} :: {CHANGE_ORDER_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+<script language="JavaScript">
+<!--
+	function changeOrder(column, order) 
+	{
+			var columnObject = null;
+			if (column == 'left') {
+				columnObject = document.layout.shown_header_menus;
+			} else {
+				alert("Wrong object type"); return;
+			}
+			var selectedIndex = columnObject.selectedIndex;		
+			var incrementIndex = (order == 'up') ? -1 : 1;
+
+			if(selectedIndex == -1) {
+				alert('Please select link');
+			} else {			
+				var selectedValue = columnObject.options[selectedIndex].value;
+				var selectedText = columnObject.options[selectedIndex].text;
+				if((order == 'up' && selectedIndex != 0) ||
+					(order == 'down' && selectedIndex != (columnObject.length - 1))) {
+					columnObject.options[selectedIndex].value = columnObject.options[selectedIndex + incrementIndex].value;
+					columnObject.options[selectedIndex].text = columnObject.options[selectedIndex + incrementIndex].text;
+				
+					columnObject.options[selectedIndex + incrementIndex].value = selectedValue;
+					columnObject.options[selectedIndex + incrementIndex].text = selectedText;
+				
+					columnObject.options[selectedIndex].selected = false;
+					columnObject.options[selectedIndex + incrementIndex].selected = true;
+				} 
+			}
+	}
+
+	function prepareLists()
+	{
+		var valuesList = "";
+		for(var i = 0; i < document.layout.shown_header_menus.length; i++) {
+			if(i > 0) valuesList += ","
+			valuesList += document.layout.shown_header_menus.options[i].value;
+		}
+		document.layout.shown_list.value = valuesList;
+	}
+
+//-->
+</script>
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_header_menus_href}?layout_id={layout_id}">{SITE_NAVIGATION_MSG}</a>&nbsp;&gt;
+			<b>{CHANGE_ORDER_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<form action="{admin_header_menus_order_href}" name="layout" method="POST" onSubmit="prepareLists();">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="shown_list" value="">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<td>
+<fieldset>
+<legend>{ADMIN_PAGES_MSG}</legend>
+
+  	<table align="center" width="100%" border="0" cellspacing="1" cellpadding="4"><!-- BEGIN errors -->
+		<tr class="cell">
+			<td colspan="3" align="center">
+				<div class="error">{errors_list}</div>
+			</td>
+		</tr><!-- END errors -->		
+
+
+		<tr align="center" class="middle">			
+			<td>{CHANGE_ORDER_MSG}</td>
+		</tr>
+		<tr align="center" class="usual">
+			<td>
+				<table border="0" cellspacing="0" cellpadding="2">
+				<tr valign="top">
+					<td>
+						<select name="shown_header_menus" size="15" style="width: 300px;"><!-- BEGIN shown_header_menus -->
+							<option value="{shown_header_menus_value}">{shown_header_menus_description}<!-- END shown_header_menus -->
+							<option>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+						</select>
+					</td>
+					<td>
+						<table border="0" cellspacing="0" cellpadding="0" height=100%>
+						<tr><td valign="top">
+							<a href="#" onClick="changeOrder('left', 'up');return false;" onDblClick="changeOrder('left', 'up');return false;"><img src="../images/move_up.gif" border="0" width="16" height="16" alt="{MOVE_MSG} Up"></a><br>
+							<img src="../images/tr.gif" border="0" width="2" height="2"><br>
+							<a href="#" onClick="changeOrder('left', 'down');return false;" onDblClick="changeOrder('left', 'down');return false;"><img src="../images/move_down.gif" border="0" width="16" height="16" alt="{MOVE_MSG} Down"></a><br>
+						</td></tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+
+			</td>
+
+		</tr>
+		<tr align="right" class="middle">
+			<td colspan="2">
+				<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.layout.operation.value='save'">&nbsp;&nbsp;&nbsp;
+				<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.layout.operation.value='cancel'">
+			</td>
+		</tr>	
+		</table>
+
+
+
+<script language="JavaScript">
+<!--	
+	document.layout.shown_header_menus.options[document.layout.shown_header_menus.length - 1] = null;
+-->
+</script>
+
+</fieldset>
+</td></tr></table>
+</form>
+
+
+{admin_footer}
+</body>
+</html>

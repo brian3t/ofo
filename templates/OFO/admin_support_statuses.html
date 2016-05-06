@@ -1,0 +1,80 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {SUPPORT_STATUSES_MSG} ::..</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5" align="center">
+<tr><td align="center">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_support_href}">{HELPDESK_MSG}</a>&nbsp;&gt;&nbsp;<b>{SUPPORT_STATUSES_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<td>
+<fieldset>
+<legend>{SUPPORT_STATUSES_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center">  
+	<td>
+
+<table border="0" cellspacing="1" cellpadding="6" width="100%">
+<tr align="center" class="middle">
+	<td>
+		{sorter_status_id}
+	</td>
+	<td>
+		{sorter_status_name}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- BEGIN records -->
+<tr class="usual" align="center">
+	<td>
+		{status_id}
+	</td>
+	<td align="left">
+		&nbsp;{status_name}
+	</td>
+	<td>
+		<a href="{admin_support_status_href}?status_id={status_id}">{EDIT_STATUS_MSG}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="3">
+		&nbsp;{NO_RECORDS}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="2">&nbsp;<a href="{admin_support_status_href}">{NEW_STATUS_MSG}</a>
+	<td align=center><!-- begin navigator_block -->&nbsp;{navigator}&nbsp;<!-- end navigator_block --></td>
+	</td>
+</tr>
+</table>	
+
+	</td>
+</tr>
+</table>
+</fieldset>
+</td></tr></table>
+
+{admin_footer}
+</body>
+</html>

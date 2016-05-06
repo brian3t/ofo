@@ -1,0 +1,71 @@
+<script>
+	function toggleManualAdvancedSearch() {
+		if (document.manuals_search.manuals_advanced_search.value == 1) {
+			document.manuals_search.manuals_advanced_search.value = 0;
+			document.getElementById("manuals_advanced_search_block").style.display="none";
+		} else {
+			document.manuals_search.manuals_advanced_search.value = 1;
+			document.getElementById("manuals_advanced_search_block").style.display="block";
+		}
+		return false;
+	}
+
+</script>
+
+<div class="block-manuals-search">
+<form name="manuals_search" id="manuals_search" method="POST" action="manuals_search.php">
+	<input name="manuals_advanced_search" value="{manuals_advanced_search}" type="hidden">
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{MANUALS_SEARCH_TITLE}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr> 
+		<td class="blockTD">
+			<table border="0" cellpadding="3" cellspacing="3" width="100%">
+			<tr>
+				<td>{MANUALS_SEARCH_IN_MSG}:</td>
+				<td align="left">
+				<select class="text" name="manual_id" id="manual_id">
+					<!-- BEGIN manual_id -->
+					<option {manual_id_selected} value="{manual_id_value}">{manual_id_description}</option>
+					<!-- END manual_id -->
+				</select>
+				</td>
+			</tr>
+			<tr>
+				<td>{MANUALS_SEARCH_FOR_MSG}:</td>
+				<td align="left"><input type="text" class="text" name="manuals_search" id="manuals_search" size="20" value="{manuals_search}"></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+				<a href="#" onclick="toggleManualAdvancedSearch(); return false;">{ADVANCED_SEARCH_TITLE}</a>
+				<div id="manuals_advanced_search_block" {manuals_advanced_search_style}>
+					<!-- begin search_type -->
+						<input type="radio" name="manuals_search_type" {search_type_checked} value="{search_type_value}">&nbsp;{search_type_description}&nbsp;<br/><!-- end search_type-->
+				</div>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<span class="submit"><input class="submit" type="submit" value="Search" name="search"></span>
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+</form>
+</div>

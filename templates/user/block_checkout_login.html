@@ -1,0 +1,78 @@
+<div class="block-checkout-login">
+	<div class="titleTopCenter">
+		
+		
+		<h1>{CHECKOUT_LOGIN_TITLE}</h1>
+	</div>
+	<form action="{checkout_url}" method="POST" name="login">
+		<input type="hidden" name="action" value="login">
+		<table width="100%" border="0" cellspacing="2" cellpadding="0">
+			<tr>
+				<td width="50%" valign="top"><table cellspacing="1" width="100%" border="0" class="padding6px">
+						<!-- begin new_user_block -->
+						<tr>
+							<td colspan="2" align="center" class="middlebg"><b><font size="3">{NEW_USER_MSG}?</font></b></td>
+						</tr>
+						<tr class="usualbg">
+							<td colspan="2" align="center"><br>
+								<!-- BEGIN checkout_without_link -->
+								<a href="{order_info_url}">{CHECKOUT_WITHOUT_MSG}</a><br>
+								<br>
+								<!-- END checkout_without_link -->
+								<!-- begin user_types -->
+								<a href="{user_profile_type_url}">{OPEN_AND_CHECKOUT_MSG} ({user_type_name})</a><br>
+								<br>
+								<!-- end user_types --></td>
+						</tr>
+						<!-- end new_user_block -->
+						<tr>
+							<td>If you have any questions or need assistance, please feel free to contact us using our <a href="support.php">Get Help</a> form or send us an email at <span>support</span>@OilFiltersOnline.com.  If you prefer to place your order by phone, please send us your name and telephone number and we would be happy to call and assist you.  Thank you for choosing OilFiltersOnline.com</td>
+						</tr>
+					</table></td>
+				<td width="50%" valign="top"><table cellspacing="1" width="100%" border="0" class="padding6px">
+						<tr>
+							<td colspan="2" align="center" class="middlebg"><b><font size="3">{EXISTS_USER_MSG}</font></b></td>
+						</tr>
+						<tr>
+							<td colspan="2" align="center" class="usualbg">{ENTER_LOGIN_MSG}</td>
+						</tr>
+						<!-- begin errors -->
+						<tr  class="usualbg">
+							<td colspan="2" align="center"><div class="errorbg">{errors_list}</div></td>
+						</tr>
+						<!-- end errors -->
+						<tr  class="usualbg">
+							<td align="right" width="44%">&nbsp;{LOGIN_FIELD}{login_desc}&nbsp;</td>
+							<td width="56%"><input class="text" type="text" name="login" maxlength="64" value="{login}"></td>
+						</tr>
+						<tr  class="usualbg">
+							<td align="right">&nbsp;{PASSWORD_FIELD}&nbsp;</td>
+							<td><input class="text" type="password" name="password" maxlength="32"></td>
+						</tr>
+						<tr class="usualbg">
+							<td></td>
+							<td><input type="checkbox" {remember_me} name="remember_me" value="1">
+								<label for="remember_me">{REMEMBER_LOGIN_MSG}</label></td>
+						</tr>
+						<tr class="usualbg">
+							<td></td>
+							<td><span class="submit">
+								<input class="button" type="submit" value="{SIGN_IN_BUTTON}">
+								</span></td>
+						</tr>
+						<tr class="usualbg">
+							<td></td>
+							<td>&nbsp;<a href="{forgot_password_href}">{FORGOT_PASSWORD_MSG}</a></td>
+						</tr>
+					</table></td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script language="JavaScript" type="text/javascript">
+<!--
+	if(document.login.login) {
+		document.login.login.focus();
+	}
+//-->
+</script>

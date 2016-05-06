@@ -1,0 +1,49 @@
+<div class="block-currency">
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{CURRENCY_TITLE}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr> 
+		<td class="blockTD">
+
+		<form action="{current_href}" name="currency" method="GET">
+		{hidden_parameters}
+
+			<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="padding10px">
+					<!-- begin select_currencies -->
+					<table border="0" cellpadding="2" cellspacing="0">
+					<tr>
+						<td>
+							<select class="field" name="currency_code">
+							<!-- begin currencies --><option {currency_selected} value="{currency_code}">{currency_title}<!-- end currencies -->
+							</select>
+							<span class="submit"><input class="submit" type="submit" value="{APPLY_BUTTON}"></span>
+						</td>
+					</tr>
+					</table>
+					<!-- end select_currencies -->
+					<!-- begin currencies_images --><a href="{current_href}{currency_query}"><img border="0" src="{src}" {width} {height} alt="{currency_title}" title="{currency_title}"></a> <!-- end currencies_images -->
+				</td>
+			</tr>
+			</table>
+
+		</form>
+
+		</td>
+	</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+</div>

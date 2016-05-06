@@ -1,0 +1,111 @@
+<div class="block-user-reminders">
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr class="usualbg"> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft"></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{MY_REMINDERS_MSG}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight"></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr class="headerbg"> 
+		<td class="blockTD">
+
+<table border="0" cellpadding="6" cellspacing="1" width="100%"><!-- begin sorters -->
+<tr class="middlebg" align="center">
+	<td>
+		{sorter_id}
+	</td>
+	<td>
+		{sorter_title}
+	</td>
+	<td>
+		{sorter_start}
+	</td>
+	<td>
+		{sorter_end}
+	</td>
+	<!--td>
+		{sorter_year}
+	</td>
+	<td>
+		{sorter_month}
+	</td>
+	<td>
+		{sorter_day}
+	</td-->
+	<td>
+		{sorter_reminder_date}
+	</td>
+	<td>
+		{sorter_weekdays}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- end sorters --><!-- BEGIN records -->
+<tr class="usualbg" valign="top" align="center">
+	<td>
+		{reminder_id}
+	</td>
+	<td>
+		{reminder_title}
+	</td>
+	<td>
+		{start_date}
+	</td>
+	<td>
+		{end_date}
+	</td>
+	<!--td>
+		{reminder_year}
+	</td>
+	<td>
+		{reminder_month}
+	</td>
+	<td>
+		{reminder_day}
+	</td-->
+	<td>
+		{reminder_date}
+	</td>
+	<td>
+		{reminder_weekdays}
+	</td>
+	<td>
+		&nbsp;<a href="{user_reminder_href}?reminder_id={reminder_id}">Edit</a>&nbsp;
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usualbg">
+	<td colspan="5">
+		&nbsp;No reminders were found.
+	</td>
+</tr><!-- END no_records -->
+<tr class="middlebg">
+	<td colspan="10">
+		<table cellpadding="0" cellspacing="0" border="0" width="100%">
+		<tr>
+		<td>
+			&nbsp;<a href="{user_reminder_href}">Add new reminder</a>&nbsp;
+		</td>	
+		<!-- begin navigator_block -->
+			<td align="right">
+				&nbsp;{navigator}&nbsp;
+			</td>
+		</tr><!-- end navigator_block -->
+		</table>
+	</td>
+</tr>
+</table>	
+
+	</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr class="usualbg"> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft"></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight"></td>
+	</tr>
+</table>
+</div>

@@ -1,0 +1,336 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {COMMISSION_PAYMENTS} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<style type="text/css">
+<!--
+	.row1 { background-color:#f0f0f0; }
+	.row2 { background-color:#fffeee; }
+	.rowWarn { background-color: #FFd0d0; }
+
+//-->
+</style>
+<script language="JavaScript" src="../js/calendar.js"></script>
+<script language="JavaScript">
+<!--
+	function clearSearch() {
+		document.search_form.s_ne.value = "";
+		document.search_form.s_min.value = "";
+		document.search_form.s_max.value = "";
+		document.search_form.s_sd.value = "";
+		document.search_form.s_ed.value = "";
+		document.search_form.s_st[0].checked = true;
+	
+		document.search_form.submit();
+
+	}
+
+	function changeStatus()
+	{
+		var checkedStatus = document.payments.all_payments.checked;
+		var paymentsNumber = document.payments.payments_number.value;
+		for (var i = 1; i <= paymentsNumber; i++) {
+			document.payments.elements["id_" + i].checked = checkedStatus;
+		}
+		checkPayments();
+	}
+
+	function checkPayments()
+	{
+		var paymentId = "";
+		var paymentsIds = "";
+		var paymentsNumber = document.payments.payments_number.value;
+		var totalSelected = 0;
+		for (var i = 1; i <= paymentsNumber; i++) {
+			if (document.payments.elements["id_" + i].checked) {
+				totalSelected++;
+				paymentId = document.payments.elements["id_" + i].value;
+				if(paymentsIds != "") { paymentsIds += ","; }
+				paymentsIds += paymentId;
+			}
+		}
+		var exportPaymentsLink = document.getElementById("export_payments");
+		if (exportPaymentsLink) {
+			if (paymentsIds == "") {
+				exportPaymentsLink.innerHTML = "{EXPORT_PAYMENTS_MSG}";
+				exportPaymentsLink.href = "{admin_export_payments_href}";
+			} else {
+				exportPaymentsLink.innerHTML = "{EXPORT_MSG} Selected (" + totalSelected + ")";
+				exportPaymentsLink.href = "{admin_export_payments_href}?ids=" + paymentsIds;
+			}
+		}
+	}
+
+	function updatePayments(operation)
+	{
+		var paymentId = "";
+		var paymentsIds = "";
+		var paymentsNumber = document.payments.payments_number.value;
+		var totalPayments = 0;
+		for (var i = 1; i <= paymentsNumber; i++) {
+			if (document.payments.elements["id_" + i].checked) {
+				totalPayments++;
+				paymentId = document.payments.elements["id_" + i].value;
+				if(totalPayments > 1) { paymentsIds += ","; }
+				paymentsIds += paymentId;
+			}
+		}
+		var paymentsControl = document.update_payments.status_id;
+		if (totalPayments == 0) {
+			alert("Please select payments first.")
+		} else if (operation == "update_status") {
+			if (paymentsControl.options[paymentsControl.selectedIndex].value == "") {
+				alert("Please select status.");
+			} else if (confirm("You are about to change the status of selected payments to '" + paymentsControl.options[paymentsControl.selectedIndex].text + "'.\nContinue?'")) {
+				document.update_payments.payments_ids.value = paymentsIds;
+				document.update_payments.operation.value = "update_status";
+				document.update_payments.submit();
+			}
+		} else if (operation == "remove_payments") {
+			if (confirm("Are you sure you want remove selected payments (" + totalPayments + ")?")) {
+				document.update_payments.payments_ids.value = paymentsIds;
+				document.update_payments.operation.value = "remove_payments";
+				document.update_payments.submit();
+			}
+		}
+	} 
+
+//-->
+</script>
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<b>{COMMISSION_PAYMENTS}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+	<tr>
+		<td valign="top">
+
+			<table border="0" cellpadding="2" cellspacing="2">
+				<form action="{admin_user_payments_href}" name="search_form">
+				<!-- BEGIN errors -->
+				<tr>
+					<td colspan="2">
+					&nbsp;<div align="center" class="error"><font style="font-size:8pt">{errors_list}</font></div>&nbsp;
+					</td>
+				</tr>
+				<!-- END errors -->
+				<tr>
+					<td colspan="2"><b>{SEARCH_PAYMENTS_MSG}:</b></td>
+				</tr>
+				<tr>
+					<td>{BY_USER_NAME_EMAIL_MSG}:</td>
+					<td><input type="text" name="s_ne" value="{s_ne}" class="search"></td>
+				</tr>
+				<tr>
+					<td>{AMOUNT_RANGE_MSG}:</td>
+					<td>
+						<input type="text" name="s_min" value="{s_min}" class="field" size="10"> - 
+						<input type="text" name="s_max" value="{s_max}" class="field" size="10">
+					</td>
+				</tr>
+				<tr>
+					<td>{FROM_DATE_MSG} ({date_edit_format}):</td>
+					<td>
+					<input type="text" name="s_sd" value="{s_sd}" class="search">
+					<A HREF="#"
+					onClick="setDateField(document.search_form.s_sd, '{date_edit_format}');
+					top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+					<IMG SRC="../images/calendar.gif" BORDER=0><font size=1>{CALENDAR_MSG}</font></A>
+					</td>
+				</tr>
+				<tr>
+					<td>{TO_DATE_MSG} ({date_edit_format}):</td>
+					<td>
+					<input type="text" name="s_ed" value="{s_ed}" class="search">
+					<A HREF="#"
+					onClick="setDateField(document.search_form.s_ed, '{date_edit_format}');
+					top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+					<IMG SRC="../images/calendar.gif" BORDER=0><font size=1>{CALENDAR_MSG}</font></A>
+					</td>
+				</tr>
+				<tr>
+					<td>{ADMIN_SHOW_MSG}:</td>
+					<td>
+					<!-- BEGIN s_st -->
+					<input type="radio" name="s_st" {s_st_checked} value="{s_st_value}">{s_st_description}
+					<!-- END s_st -->
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" value="Search" class="submit">&nbsp;<input type="button" value="{CLEAR_BUTTON}" class="submit" onClick="clearSearch()"></td>
+				</tr>
+				</form>
+			</table>
+
+		</td>
+		<td valign="top" align="right" valign="top">
+			<table cellpadding="2" cellspacing="2" border="0">
+				<tr>
+					<td colspan="5">&nbsp;<b>Payments stats:</b></td>
+				</tr>
+				<tr class="middle">
+					<td></td>
+					<td><a href="{admin_user_payments_href}?s_sd={today_date}&s_ed={today_date}">{TODAY_MSG}</a></td>
+					<td><a href="{admin_user_payments_href}?s_sd={yesterday_date}&s_ed={yesterday_date}">{YESTERDAY_MSG}</a></td>
+					<td><a href="{admin_user_payments_href}?s_sd={week_date}&s_ed={today_date}">{LAST_SEVEN_DAYS_MSG}</a></td>
+					<td><a href="{admin_user_payments_href}?s_sd={month_date}&s_ed={today_date}">{THIS_MONTH_FMSG}</a></td>
+				</tr>
+				<!-- begin types_stats -->
+				<tr class="usual" align="center">
+					<td align="left"><a href="{admin_users_payments_href}?s_st={type_id}">{type_name}</a></td>
+					<td>{payments_today}</td>
+					<td>{payments_yesterday}</td>
+					<td>{payments_week}</td>
+					<td>{payments_month}</td>
+				</tr>
+				<!-- end types_stats -->
+				<tr class="middle" align="center">
+					<td align="right">{TOTAL_MSG}:&nbsp;</td>
+					<td>{payments_total_today}</td>
+					<td>{payments_total_yesterday}</td>
+					<td>{payments_total_week}</td>
+					<td>{payments_total_month}</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+<br>
+
+<!-- BEGIN payments_errors -->
+&nbsp;<div align="center" class="error">{errors_list}</div>&nbsp;
+<!-- END payments_errors -->
+<br>
+
+<fieldset>
+<legend>{COMMISSION_PAYMENTS}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<table border="0" cellspacing="1" cellpadding="3" width="100%">
+<form name="payments" action="{admin_user_payments_href}" method="POST">
+<input type="hidden" name="payments_number" value="{payments_number}">
+<!-- begin sorters -->
+<tr align="center" class="middle" valign="top">
+	<td>
+		<input type="checkbox" name="all_payments" value="1" onClick="changeStatus();">
+	</td>
+	<td>
+		{sorter_payment_id}
+	</td>
+	<td>
+		{sorter_payment_name}
+	</td>
+	<td>
+		{ADMIN_USER_MSG}
+	</td>
+	<td>
+		{sorter_paypal_account}
+	</td>
+	<td>
+		{sorter_payment_total}
+	</td>
+	<td>
+		{sorter_is_paid}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- end sorters --><!-- BEGIN records -->
+<tr class="{row_style}">
+	<td align="center">
+		<input type="checkbox" name="id_{payment_index}" value="{payment_id}" onClick="checkPayments();">
+	</td>
+	<td align="center">
+		{payment_id}
+	</td>
+	<td>
+		&nbsp;{payment_name}
+	</td>
+	<td>
+		&nbsp;{name}
+	</td>
+	<td>
+		&nbsp;{paypal_account}&nbsp;
+	</td>
+	<td align="right">
+		&nbsp;{payment_total}&nbsp;
+	</td>
+	<td align="center">
+		&nbsp;{is_paid}
+	</td>
+	<td align="center">
+		<a href="{admin_user_payment_href}?payment_id={payment_id}">{EDIT_MSG}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="8">
+		&nbsp; {NO_PAYMENTS_WERE_FOUND_MSG}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="9">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+		<tr class="middle">
+			<td>&nbsp;
+				<a id="export_payments" href="{admin_export_payments_href}">{EXPORT_PAYMENTS_MSG}</a>
+				<!-- begin export_filtered -->
+				| <a href="{admin_export_filtered_url}">{EXPORT_FILTERED_MSG} ({total_filtered})</a>
+				<!-- end export_filtered -->
+				<!-- begin new_payment_link -->
+				|  <a href="{admin_user_payment_href}">{ADD_NEW_MSG}</a>
+				<!-- end new_payment_link -->
+			</td><!-- begin navigator_block -->
+			<td>&nbsp;{navigator}&nbsp;</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</form>
+</table>	
+	</td>
+</tr>
+</table>
+</fieldset>
+
+<form name="update_payments" action="{admin_user_payments_href}" method="POST">
+<input type="hidden" name="operation" value="">
+<input type="hidden" name="payments_ids" value="">
+<input type="hidden" name="s_ne" value="{s_ne}">
+<input type="hidden" name="s_min" value="{s_min}">
+<input type="hidden" name="s_max" value="{s_max}">
+<input type="hidden" name="s_sd" value="{s_sd}">
+<input type="hidden" name="s_ed" value="{s_ed}">
+<input type="hidden" name="s_st" value="{s_st_search}">
+
+<!-- begin update_status -->
+<select name="status_id"><!-- begin status_id -->
+	<option {status_id_selected} value="{status_id_value}">{status_id_description}<!-- end status_id -->
+</select> 
+<input class="submit" type="button" value="Update {STATUS_MSG}" onClick="updatePayments('update_status');">
+<!-- end update_status -->
+<!-- begin remove_payments_button -->
+<input class="submit" type="button" value="Remove Selected" onClick="updatePayments('remove_payments');">
+<!-- end remove_payments_button -->
+
+</form>
+
+{admin_footer}
+</body>
+</html>

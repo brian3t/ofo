@@ -1,0 +1,797 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_STATUS_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript">
+<!--
+	function openWindow(pagename)
+	{
+		var popupWin = window.open (pagename, 'popup', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');
+		popupWin.focus();
+	}
+//-->
+</script>
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_order_statuses_href}">{ORDER_STATUSES_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_STATUS_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<table cellspacing="0" cellpadding="0" border="0">
+<tr><!-- BEGIN tabs -->
+	<td onClick="changeTab('{tab_name}'); return false;"><div id="{tab_id}" class="{tab_class}"><a class="blackSm" href="#" onClick="changeTab('{tab_name}'); return false;">{tab_title}</a></td><!-- END tabs -->
+</tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border: 1px solid #999;">
+<tr align="center"> 
+	<td class="">
+
+<form action="{admin_order_status_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="status_id" value="{status_id}">
+<input type="hidden" name="tab" value="{tab}">
+
+<div id="data_general" style="{general_style}">
+<table border="0" cellspacing="1" cellpadding="4" width="100%">
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{IS_ACTIVE_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="is_active" {is_active} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{STATUS_ORDER_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" size="10" name="status_order" value="{status_order}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{STATUS_NAME_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" size="60" name="status_name" value="{status_name}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{STATUS_TYPE_MSG} *
+	</td>
+	<td>
+		<select name="status_type"><!-- begin status_type -->
+			<option {status_type_selected} value="{status_type_value}">{status_type_description}<!-- end status_type -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PROPERTIES_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="allow_user_cancel" {allow_user_cancel} value="1"> {CANCEL_ORDER_STATUS_MSG}
+		<br>
+		<input type="checkbox" name="is_user_cancel" {is_user_cancel} value="1"> {CANCELLED_ORDER_STATUS_MSG}
+		<br>
+		<input type="checkbox" name="user_invoice_activation" {user_invoice_activation} value="1"> if order has this status user can see and download invoice for such order 
+		<br>
+		<input type="checkbox" name="is_dispatch" {is_dispatch} value="1"> {GENERATE_PACKING_SLIP_MSG}
+		<br>
+		<input type="checkbox" name="is_list" {is_list} value="1"> {SHOW_ORDERS_DEFAULT_MSG}
+		<br>
+		<input type="checkbox" name="show_for_user" {show_for_user} value="1"> {SHOW_ORDERS_MERCHANTS_MSG}
+		<br>
+		<input type="checkbox" name="item_notify" {item_notify} value="1"> {SEND_SPECIFIC_NOTIFY_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PAID_STATUS_MSG}
+	</td>
+	<td><!-- begin paid_status -->
+		<input type="radio" name="paid_status" {paid_status_checked} value="{paid_status_value}">{paid_status_description}<!-- end paid_status -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		<!--
+		&nbsp;{DOWNLOAD_ACTIVATION_MSG}
+		<div class="small">&nbsp;({OPTION_DOWNLOADABLE_PRODUCTS_MSG})</div>
+		-->
+		&nbsp;{DOWNLOADABLE_ACTIVATION_MSG}
+		<div class="small">&nbsp;({DOWNLOADABLE_ACTIVATION_NOTE})</div>
+	</td>
+	<td><!-- begin download_activation -->
+		<input type="radio" name="download_activation" {download_activation_checked} value="{download_activation_value}">{download_activation_description}<!-- end download_activation -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{DOWNLOADABLE_NOTIFICATIONS_MSG}
+		<div class="small">&nbsp;(<a href="{admin_download_info_href}">{DOWNLOADABLE_NOTIFICATIONS_NOTE}</a>)</div>
+	</td>
+	<td>
+		<input type="checkbox" name="download_notify" {download_notify} value="1"> send notification regarding purchased links, serial numbers and gift vouchers
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{COMMISSION_REWARD_ACTION_MSG}
+		<div class="small">&nbsp;({OPTION_MERCHANTS_AFFILIATES_MSG})</div>
+	</td>
+	<td><!-- begin commission_action -->
+		<input type="radio" name="commission_action" {commission_action_checked} value="{commission_action_value}">{commission_action_description}<!-- end commission_action -->
+	</td>
+</tr>
+<!-- begin stock_level_action_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{STOCK_LEVEL_ACTION_MSG}
+	</td>
+	<td><!-- begin stock_level_action -->
+		<input type="radio" name="stock_level_action" {stock_level_action_checked} value="{stock_level_action_value}">{stock_level_action_description}<!-- end stock_level_action -->
+	</td>
+</tr>
+<!-- end stock_level_action_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{POINTS_ACTION_MSG}
+	</td>
+	<td><!-- begin points_action -->
+		<input type="radio" name="points_action" {points_action_checked} value="{points_action_value}">{points_action_description}<!-- end points_action -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;Credit Balance Action
+	</td>
+	<td><!-- begin credit_action -->
+		<input type="radio" name="credit_action" {credit_action_checked} value="{credit_action_value}">{credit_action_description}<!-- end credit_action -->
+	</td>
+</tr>
+<tr class="middle">
+	<td></td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onclick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</div>
+
+
+<div id="data_user_notify" style="{user_notify_style}">
+<table border="0" cellspacing="1" cellpadding="4" width="100%">
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{EMAIL_NOTIFICATION_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SEND_IF_STATUS_APLIED_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="mail_notify" {mail_notify} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_FROM_MSG}</b>
+		<div class="small">
+		&nbsp;(<a class="small" href="javascript:openWindow('{admin_email_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_FILEDS_NOTE})
+		</div>
+	</td>
+	<td>
+		<input class="field" type="text" name="mail_from" value="{mail_from}" size="80" maxlength="255">
+		<div class="small">({EG_MSG} <b>sales@yoursite.com</b>)</div>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_CC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="mail_cc" value="{mail_cc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_BCC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="mail_bcc" value="{mail_bcc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_REPLY_TO_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="mail_reply_to" value="{mail_reply_to}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_RETURN_PATH_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="mail_return_path" value="{mail_return_path}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_SUBJECT_MSG}</b>
+	</td>
+	<td>
+		<input class="field" type="text" name="mail_subject" value="{mail_subject}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_MESSAGE_TYPE_MSG}</b>
+	</td>
+	<td><!-- begin mail_type -->
+		<input type="radio" name="mail_type" {mail_type_checked} value="{mail_type_value}">{mail_type_description}<!-- end mail_type -->
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}?status=1')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_SETTINGS_NOTE} 
+		<br>&nbsp;&nbsp;{LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td>
+		<textarea name="mail_body" cols="80" rows="10">{mail_body}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{SMS_NOTIFICATION_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SEND_SMS_IF_STATUS_APLIED_MSG} 
+	</td>
+	<td>
+		<input type="checkbox" name="sms_notify" {sms_notify} value="1">
+		({SMS_NOTIFICATION_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{SMS_RECIPIENT_MSG}</b> ('{CELL_PHONE_FIELD}' {FIELD_USED_IF_EMPTY_MSG})
+	</td>
+	<td>
+		<input class="field" type="text" name="sms_recipient" value="{sms_recipient}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{SMS_ORIGINATOR_MSG}</b>
+	</td>
+	<td>
+		<input class="field" type="text" name="sms_originator" value="{sms_originator}" size="80" maxlength="16">
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{SMS_MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}?status=1')">{CLICK_HERE_MSG}</a> {LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td>
+		<textarea name="sms_message" cols="80" rows="3">{sms_message}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td>&nbsp;</td>
+	<td>
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'"> &nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">&nbsp;
+	</td>
+</tr>
+</table>
+</div>
+
+<div id="data_merchant_notify" style="{merchant_notify_style}">
+<table border="0" cellspacing="1" cellpadding="4" width="100%">
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{EMAIL_NOTIFICATION_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{MERCHANT_STATUS_NOTIFY_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="merchant_notify" {merchant_notify} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_TO_MSG}<br>
+		&nbsp;({MERCHANT_EMAIL_IF_EMPTY_MSG})
+	</td>
+	<td>
+		<input class="field" type="text" name="merchant_to" value="{merchant_to}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_FROM_MSG}</b>
+		<div class="small">
+		&nbsp;(<a href="javascript:openWindow('{admin_email_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_FILEDS_NOTE})
+		</div>
+	</td>
+	<td>
+		<input class="field" type="text" name="merchant_from" value="{merchant_from}" size="80" maxlength="255">
+		<div class="small">({EG_MSG} <b>sales@yoursite.com</b>)</div>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_CC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="merchant_cc" value="{merchant_cc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_BCC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="merchant_bcc" value="{merchant_bcc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_REPLY_TO_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="merchant_reply_to" value="{merchant_reply_to}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_RETURN_PATH_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="merchant_return_path" value="{merchant_return_path}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_SUBJECT_MSG}</b>
+	</td>
+	<td>
+		<input class="field" type="text" name="merchant_subject" value="{merchant_subject}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_MESSAGE_TYPE_MSG}</b>
+	</td>
+	<td><!-- begin merchant_mail_type -->
+		<input type="radio" name="merchant_mail_type" {merchant_mail_type_checked} value="{merchant_mail_type_value}">{merchant_mail_type_description}<!-- end merchant_mail_type -->
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}?merchant=1')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_SETTINGS_NOTE} 
+		<br>&nbsp;&nbsp;{LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td>
+		<textarea name="merchant_body" cols="80" rows="10">{merchant_body}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{SMS_NOTIFICATION_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SEND_SMS_IF_STATUS_APLIED_MSG} 
+	</td>
+	<td>
+		<input type="checkbox" name="merchant_sms_notify" {merchant_sms_notify} value="1">
+		({SMS_NOTIFICATION_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{SMS_RECIPIENT_MSG}</b> (Merchant '{CELL_PHONE_FIELD}' {FIELD_USED_IF_EMPTY_MSG})
+	</td>
+	<td>
+		<input class="field" type="text" name="merchant_sms_recipient" value="{merchant_sms_recipient}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{SMS_ORIGINATOR_MSG}</b>
+	</td>
+	<td>
+		<input class="field" type="text" name="merchant_sms_originator" value="{merchant_sms_originator}" size="80" maxlength="16">
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{SMS_MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}?merchant=1')">{CLICK_HERE_MSG}</a> {LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td>
+		<textarea name="merchant_sms_message" cols="80" rows="3">{merchant_sms_message}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td>&nbsp;</td>
+	<td>
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'"> &nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">&nbsp;
+	</td>
+</tr>
+</table>
+</div>
+
+<!-- start suppliers settings -->
+<div id="data_supplier_notify" style="{supplier_notify_style}">
+<table border="0" cellspacing="1" cellpadding="4" width="100%">
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{EMAIL_NOTIFICATION_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SUPPLIER_STATUS_NOTIFY_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="supplier_notify" {supplier_notify} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_TO_MSG}<br>
+		&nbsp;({SUPPLIER_EMAIL_IF_EMPTY_MSG})
+	</td>
+	<td>
+		<input class="field" type="text" name="supplier_to" value="{supplier_to}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_FROM_MSG}</b>
+		<div class="small">
+		&nbsp;(<a href="javascript:openWindow('{admin_email_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_FILEDS_NOTE})
+		</div>
+	</td>
+	<td>
+		<input class="field" type="text" name="supplier_from" value="{supplier_from}" size="80" maxlength="255">
+		<div class="small">({EG_MSG} <b>sales@yoursite.com</b>)</div>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_CC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="supplier_cc" value="{supplier_cc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_BCC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="supplier_bcc" value="{supplier_bcc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_REPLY_TO_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="supplier_reply_to" value="{supplier_reply_to}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_RETURN_PATH_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="supplier_return_path" value="{supplier_return_path}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_SUBJECT_MSG}</b>
+	</td>
+	<td>
+		<input class="field" type="text" name="supplier_subject" value="{supplier_subject}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_MESSAGE_TYPE_MSG}</b>
+	</td>
+	<td><!-- begin supplier_mail_type -->
+		<input type="radio" name="supplier_mail_type" {supplier_mail_type_checked} value="{supplier_mail_type_value}">{supplier_mail_type_description}<!-- end supplier_mail_type -->
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}?supplier=1')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_SETTINGS_NOTE} 
+		<br>&nbsp;&nbsp;{LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td>
+		<textarea name="supplier_body" cols="80" rows="10">{supplier_body}</textarea>
+	</td>
+</tr>
+<!-- there is no supplier cell number 
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{SMS_NOTIFICATION_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SEND_SMS_IF_STATUS_APLIED_MSG} 
+	</td>
+	<td>
+		<input type="checkbox" name="supplier_sms_notify" {supplier_sms_notify} value="1">
+		({SMS_NOTIFICATION_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{SMS_RECIPIENT_MSG}</b> ({SUPPLIER_MSG} '{CELL_PHONE_FIELD}' {FIELD_USED_IF_EMPTY_MSG})
+	</td>
+	<td>
+		<input class="field" type="text" name="supplier_sms_recipient" value="{supplier_sms_recipient}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{SMS_ORIGINATOR_MSG}</b>
+	</td>
+	<td>
+		<input class="field" type="text" name="supplier_sms_originator" value="{supplier_sms_originator}" size="80" maxlength="16">
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{SMS_MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}?supplier=1')">{CLICK_HERE_MSG}</a> {LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td>
+		<textarea name="supplier_sms_message" cols="80" rows="3">{supplier_sms_message}</textarea>
+	</td>
+</tr>-->
+<tr class="middle">
+	<td>&nbsp;</td>
+	<td>
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'"> &nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">&nbsp;
+	</td>
+</tr>
+</table>
+</div>
+<!-- suppliers settings end -->
+
+<div id="data_admin_notify" style="{admin_notify_style}">
+<table border="0" cellspacing="1" cellpadding="4" width="100%">
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{EMAIL_NOTIFICATION_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_STATUS_NOTIFY_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="admin_notify" {admin_notify} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_TO_MSG}<br>
+		<div class="small">
+		&nbsp;(<a href="javascript:openWindow('{admin_email_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_FILEDS_NOTE})
+		</div>
+	</td>
+	<td>
+		<input class="field" type="text" name="admin_to" value="{admin_to}" size="80" maxlength="255">
+		<div class="small">({EG_MSG} <b>sales@yoursite.com</b>)</div>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_FROM_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="admin_from" value="{admin_from}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_CC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="admin_cc" value="{admin_cc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_BCC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="admin_bcc" value="{admin_bcc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_REPLY_TO_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="admin_reply_to" value="{admin_reply_to}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_RETURN_PATH_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="admin_return_path" value="{admin_return_path}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_SUBJECT_MSG}</b>
+	</td>
+	<td>
+		<input class="field" type="text" name="admin_subject" value="{admin_subject}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_MESSAGE_TYPE_MSG}</b>
+	</td>
+	<td><!-- begin admin_mail_type -->
+		<input type="radio" name="admin_mail_type" {admin_mail_type_checked} value="{admin_mail_type_value}">{admin_mail_type_description}<!-- end admin_mail_type -->
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}?status=1')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_SETTINGS_NOTE} 
+		<br>&nbsp;&nbsp;{LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td>
+		<textarea name="admin_body" cols="80" rows="10">{admin_body}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{SMS_NOTIFICATION_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SEND_SMS_IF_STATUS_APLIED_MSG} 
+	</td>
+	<td>
+		<input type="checkbox" name="admin_sms_notify" {admin_sms_notify} value="1">
+		({SMS_NOTIFICATION_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{SMS_RECIPIENT_MSG}</b>
+	</td>
+	<td>
+		<input class="field" type="text" name="admin_sms_recipient" value="{admin_sms_recipient}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{SMS_ORIGINATOR_MSG}</b>
+	</td>
+	<td>
+		<input class="field" type="text" name="admin_sms_originator" value="{admin_sms_originator}" size="80" maxlength="16">
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{SMS_MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}?status=1')">{CLICK_HERE_MSG}</a> {LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td>
+		<textarea name="admin_sms_message" cols="80" rows="3">{admin_sms_message}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td>&nbsp;</td>
+	<td>
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'"> &nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">&nbsp;
+	</td>
+</tr>
+</table>
+</div>
+
+<div id="data_final_checkout" style="{final_checkout_style}">
+<table border="0" cellspacing="1" cellpadding="4" width="100%">
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{ORDER_FINAL_MESSAGE_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{ORDER_FINAL_MESSAGE_MSG}</b>
+	</td>
+	<td>
+		<textarea name="final_message" cols="80" rows="10">{final_message}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td>&nbsp;</td>
+	<td>
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'"> &nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">&nbsp;
+	</td>
+</tr>
+</table>
+</div>
+
+</form>
+</td></tr></table>
+
+{admin_footer}
+</body>
+</html>

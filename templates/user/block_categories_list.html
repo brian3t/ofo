@@ -1,0 +1,16 @@
+<div class="block-categories-list">
+<script type="text/javascript">
+	$(function() {
+		$("#categories").accordion({ 
+			header: 'a.cat_header', 
+			collapsible: true,
+			autoHeight: false,
+			navigation: true });
+	});
+</script>
+		<ul id="categories"><!-- BEGIN categories_rows --><!-- BEGIN categories -->
+			<li class="{category_tr_class} {manufacturers_flag}">
+				<!-- begin category_image --><!-- end category_image --><a class="title {restricted_class} {header_id}" href="{list_url}">{category_name}</a><!-- BEGIN category_rss --><!-- END category_rss -->
+			{category_close_tag}
+		<!-- END categories --><!-- END categories_rows --></ul>
+</div>

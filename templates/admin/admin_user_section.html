@@ -1,0 +1,91 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_SECTION_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_lookup_tables_href}">{STATIC_TABLES_MSG}</a>&nbsp;&gt;
+			<a href="{admin_user_sections_href}">{PROFILE_SECTION_MENU_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_SECTION_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_SECTION_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<form action="{admin_user_section_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="section_id" value="{section_id}">
+<table border="0" cellspacing="1" cellpadding="6" width="100%"><!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{IS_ACTIVE_MSG}
+	</td>
+	<td colspan="5">
+		<input type="checkbox" name="is_active" {is_active} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_STEP_NUMBER_MSG} *
+	</td>
+	<td>
+		<input type="text" size="10" name="step_number" value="{step_number}"> 
+		({ADMIN_STEP_NUMBER_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SECTION_ORDER_MSG} *
+	</td>
+	<td>
+		<input type="text" size="10" name="section_order" value="{section_order}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SECTION_NAME_MSG} *
+	</td>
+	<td>
+		<input type="text" size="50" name="section_name" value="{section_name}">
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onclick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</form>	
+
+	</td>
+</tr>
+</table>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

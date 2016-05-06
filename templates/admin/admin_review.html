@@ -1,0 +1,160 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{PRODUCTS_REVIEWS_MSG} :: {EDIT_REVIEW_MSG}</title>
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript" type="text/javascript" src="../js/admin.js"></script>
+<script language="JavaScript" type="text/javascript" src="../js/select.js"></script>
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_items_list_href}">{PRODUCTS_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_reviews_href}">{PRODUCTS_REVIEWS_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_REVIEW_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_REVIEW_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<form action="{admin_review_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="review_id" value="{review_id}">
+<table border="0" cellpadding="6" cellspacing="1" width="100%"><!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_PRODUCT_MSG}
+	</td>
+	<td>
+		<b>{item_name}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{REVIEW_DATE_MSG} 
+	</td>
+	<td>
+		{date_added} 
+		<input type="hidden" name="date_added" size="20" value="{date_added}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IP_ADDRESS_MSG} 
+	</td>
+	<td>
+		{remote_address}
+		<input class="" type="hidden" name="remote_address" size="20" value="{remote_address}">
+	</td>
+</tr>
+<tr class="usual">
+	<td nowrap>
+		&nbsp;{IS_APPROVED_MSG}
+	</td>
+	<td><!-- begin approved -->
+		<input type="radio" name="approved" {approved_checked} value="{approved_value}">{approved_description}<!-- end approved -->
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{USER_IDENT_INFO_MSG}</b>
+	</td>
+</tr>
+
+<tr class="usual">
+	<td>
+		&nbsp;{USER_NAME_MSG} {user_name_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="user_name" size="60" value="{user_name}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{USER_EMAIL_MSG} {user_email_required}
+	</td>
+	<td>
+		<input class="field" type="text" name="user_email" size="60" value="{user_email}">
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{ADMIN_DETAILS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{USER_RECOMMEND_QST} {reviewed_item}?
+	</td>
+	<td>
+		<select name="recommended"><!-- begin recommended -->
+			<option {recommended_selected} value="{recommended_value}">{recommended_description}<!-- end recommended -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_RATING_MSG}
+	</td>
+	<td>
+		<select name="rating"><!-- begin rating -->
+			<option {rating_selected} value="{rating_value}">{rating_description}<!-- end rating -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CONTACT_SUMMARY_FIELD}
+	</td>
+	<td>
+		<input class="field" type="text" name="summary" size="60" value="{summary}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{USER_COMMENT_MSG}
+	</td>
+	<td>
+		<textarea name="comments" cols="60" rows="10">{comments}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</form>	
+
+	</td>
+</tr>
+</table>
+</fieldset>
+
+{admin_footer}
+
+</body>
+</html>

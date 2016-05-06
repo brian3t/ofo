@@ -1,0 +1,131 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {COUPONS_MSG} ::..</title>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+ 
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<b>{COUPONS_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<p align="center">
+<!-- BEGIN errors -->{errors_list}<!-- END errors -->
+<form action="{admin_coupons_href}" method="GET">
+<input type="hidden" name="s" value="1">
+
+<table border="0" cellpadding="1" cellspacing="0">
+<tr>
+	<td>
+		<input class="field" type="text" name="s_n" value="{s_n}" size="40">
+	</td>
+	<td>
+		<select name="s_a"><!-- begin s_a -->
+			<option {s_a_selected} value="{s_a_value}">{s_a_description}<!-- end s_a -->
+		</select>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{ADMIN_SHOW_MSG}">
+	</td>
+</tr>
+</table>
+
+</form>
+</p>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<td>
+<fieldset>
+<legend>{COUPONS_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<table border="0" cellpadding="6" cellspacing="1" width="100%"><!-- begin sorters -->
+<tr class="middle" align="center">
+	<td>
+		{sorter_coupon_id}
+	</td>
+	<td>
+		{sorter_coupon_title}
+	</td>
+	<td>
+		{sorter_coupon_code}
+	</td>
+	<td>
+		{sorter_expiry_date}
+	</td>
+	<td>
+		{STATUS_MSG}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- end sorters --><!-- BEGIN records -->
+<tr class="usual" align="center">
+	<td>
+		{coupon_id}
+	</td>
+	<td align="left">
+		&nbsp;{coupon_title}
+	</td>
+	<td>
+		&nbsp;{coupon_code}&nbsp;
+	</td>
+	<td>
+		{expiry_date}
+	</td>
+	<td>
+		{coupon_status}
+	</td>
+	<td>
+		&nbsp;<a href="{admin_coupon_href}?coupon_id={coupon_id}&s={s_url}&s_a={s_a_url}">{EDIT_COUPON_MSG}</a>&nbsp;
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr>
+	<td colspan="6" class="usual">
+		&nbsp;{NO_COUPONS_FOUND_MSG}
+	</td>
+</tr><!-- END no_records -->
+<tr>
+	<td colspan="6" class="middle" align="right">
+	<table width="100%" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td>
+			<a href="{admin_coupon_href}?discount_type=1&s={s_url}&s_a={s_a_url}">{ADD_ORDER_COUPON_MSG}</a> |
+			<a href="{admin_coupon_href}?discount_type=3&s={s_url}&s_a={s_a_url}">{ADD_PRODUCT_COUPON_MSG}</a> |
+			<a href="{admin_coupon_href}?discount_type=5&s={s_url}&s_a={s_a_url}">{ADD_GIFT_VOUCHER_MSG}</a>
+		</td><!-- begin navigator_block -->
+		<td align="right">
+			&nbsp;{navigator}&nbsp;
+		</td><!-- end navigator_block -->
+	</tr>
+	</table>
+	</td>
+</tr>
+</table>	
+
+	</td>
+</tr>
+</table>
+</fieldset>
+
+</td>
+</tr></table>
+{admin_footer}
+</body>
+</html>

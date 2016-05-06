@@ -1,0 +1,96 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_STATUS_MSG} ::..</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_articles_top_href}">{ARTICLES_TITLE}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_articles_statuses_href}">{ARTICLES_STATUSES_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_STATUS_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_STATUS_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<form action="{admin_order_status_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="status_id" value="{status_id}">
+<table border="0" cellspacing="1" cellpadding="6" width="100%"><!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{SHOW_THIS_STATUS_MSG} 
+	</td>
+	<td>
+		<input type="checkbox" name="is_shown" {is_shown} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{STATUS_NAME_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" size="55" name="status_name" value="{status_name}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{STATUS_DESCRIPTION_MSG}
+	</td>
+	<td>
+		<textarea cols="50" rows="2" name="status_description">{status_description}</textarea>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ALLOWED_VIEW_ARTICLES_MSG}
+	</td>
+	<td colspan="3"><!-- BEGIN allowed_view -->
+		<input type="radio" name="allowed_view" {allowed_view_checked} value="{allowed_view_value}">{allowed_view_description}<!-- END allowed_view -->
+	</td>
+</tr>
+
+
+
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onclick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</form>	
+
+	</td>
+</tr>
+</table>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

@@ -1,0 +1,91 @@
+<div class="block-product-options">
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{item_name}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr> 
+		<td class="blockTD">
+
+			<!-- begin no_item -->
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr><td align="center" class="padding10px"><div class="errorbg">{NO_PRODUCT_MSG}</div><td></tr>
+			</table>
+			<!-- end no_item -->
+
+			<!-- BEGIN item -->
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td class="padding10px">
+				<!-- start item table -->
+				<!-- BEGIN item_added --><div class="messagebg" align="center">{added_message}</div><!-- END item_added -->
+				<!-- BEGIN sc_errors --><div class="errorbg" align="center">{errors_list}</div><!-- END sc_errors -->
+				<form name="form_{item_id}" action="{product_details_href}" method="post">
+				<input type="hidden" name="rp" value="{rp}">
+				<input type="hidden" name="rnd" value="{rnd}">
+				<input type="hidden" name="cart" value="ADD">
+				<input type="hidden" name="cart_id" value="{cart_id}">
+				<input type="hidden" name="add_id" value="{item_id}">
+				<input type="hidden" name="saved_type_id" value="">
+				<input type="hidden" name="properties_discount" value="{properties_discount}">
+				<input type="hidden" name="quantity" value="{quantity}">
+				<input type="hidden" name="tax_percent" value="{tax_percent}">
+				<input type="hidden" name="product_params" value="{product_params}">
+
+				<table width="100%" border="0" cellspacing="0" cellpadding="3">
+				<tr>
+					<td colspan="3">
+						<span class="bigtitle">{item_name}</span>
+					</td>
+				</tr>
+				<tr>
+					<td align="left" width="1%">
+						<!-- begin big_image --><img name="image_{item_id}" src="{src}" {width} {height} border="0" hspace="0" alt="{alt}"><!-- end big_image -->
+					</td>
+					<td>&nbsp;</td>
+					<td align="left" valign="top">
+
+						{PRICE_MSG}: 
+						<span id="price_{item_id}" class="ourprice">{price}</span> 
+						<span class="taxprice">{tax_price}</span>
+						<br>
+						<!-- begin item_code_block -->
+						{PROD_CODE_MSG}: <b>{item_code}</b><br><!-- end item_code_block -->	
+						<!-- begin manufacturer_code_block -->
+						{MANUFACTURER_CODE_MSG}: <b>{manufacturer_code}</b><br><!-- end manufacturer_code_block -->	
+						<br>
+						<!-- begin properties -->
+						<div id="{property_block_id}" style="{property_style}">{property_name}: {property_control}</div><!-- end properties -->
+
+						<!-- begin add_button -->
+						<br><a class="button button-add" id="add_{item_id}" href="{buy_href}" onClick="return confirmBuy(document.form_{item_id});"><span>{ADD_TO_CART_MSG}</span><img src="images/tr.gif" alt="{ADD_TO_CART_MSG}"></a> 
+						<!-- end add_button -->
+						<!-- begin add_button_disabled -->
+						<br><a class="disabled" title="{PRODUCT_OUT_STOCK_MSG}" onClick="alert('{out_stock_alert}');">{ADD_TO_CART_MSG}</a> 
+						<!-- end add_button_disabled -->
+
+					</td>
+				</tr>
+				</table>
+				</form>
+
+				</td>
+			</tr>
+			</table>
+			<!-- END item -->
+
+	</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+</div>

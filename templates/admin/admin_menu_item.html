@@ -1,0 +1,197 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{ADMINISTRATION_MSG} :: {EDIT_MENU_MSG}</title>
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript">
+<!--				
+	function openWindow(pagename, filetype)
+	{
+		var uploadWin = window.open (pagename + '?filetype=' + filetype + '&layout_id=' + {current_layout_id}, 'uploadWin', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=400,height=300');
+		uploadWin.focus();
+	}
+
+	function setFileName(filename, filetype)
+	{
+		if (filename != "")
+		{
+			if (filetype == "menu_image")
+			{
+				document.record.menu_image.value = "images/" + filename;
+				document.record.menu_image.focus();
+			}
+			if (filetype == "menu_image_active")
+			{
+				document.record.menu_image_active.value = "images/" + filename;
+				document.record.menu_image_active.focus();
+			}
+		}
+	}
+//-->
+</script>
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_menu_href}">{SITE_NAVIGATION_MSG}</a>&nbsp;&gt;
+			<b>{EDIT_MENU_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_MSG} {HEADER_MSG}</legend>
+<table border="0" cellpadding="6" cellspacing="1" width="100%">
+<form action="{admin_page_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="menu_id" value="{menu_id}">
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td colspan="2" class="usual">
+		<table cellpadding="0" cellspacing="0" width="100%">
+		<tr>
+			<td nowrap>
+				<input type="checkbox" name="show_logged" {show_logged} value="1"> 
+				{SHOW_MENU_FOR_VISITORS_MSG}
+				<br><input type="checkbox" name="show_non_logged" {show_non_logged} value="1"> 
+				{SHOW_MENU_FOR_NOT_LOGGED_MSG}
+			</td>
+			<td align="right">
+				<font class="small">{ASTERISK_MSG}</font>
+      </td>
+		</tr>
+    </table>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{GENERAL_INFO_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_ORDER_NUMBER_MSG}
+	</td>
+	<td>
+		<input class="field"  type="text" name="menu_order" size="10" value="{menu_order}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{LAYOUT_MSG}
+	</td>
+	<td>
+		<select name="layout_id"><!-- begin layout_id -->
+			<option {layout_id_selected} value="{layout_id_value}">{layout_id_description}<!-- end layout_id -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PARENT_ITEM_MSG}
+	</td>
+	<td>
+		<select name="parent_menu_id"><option value=""></option><!-- begin parent_menu_id -->
+			<option {parent_menu_id_selected} value="{parent_menu_id_value}">{parent_menu_id_description}<!-- end parent_menu_id -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_TITLE_MSG}
+	</td>
+	<td class="small">
+		<input class="field" type="text" name="menu_title" value="{menu_title}" size="80">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{MENU_URL_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" name="menu_url" size="80" value="{menu_url}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_TARGET_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="menu_target" size="20" value="{menu_target}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SECONDARY_MENU_STYLE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="submenu_style_name" size="20" value="{submenu_style_name}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{MATCH_TYPE_MSG}
+	</td>
+	<td>
+		<!-- begin match_type -->
+		<input type="radio" name="match_type" {match_type_checked} value="{match_type_value}">{match_type_description}<!-- end match_type -->
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{IMAGES_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ACTIVE_IMAGE_MSG}
+	</td>
+	<td class="small">
+		<input class="field" type="text" name="menu_image_active" value="{menu_image_active}" size="50">
+		&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'menu_image_active')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+		&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'menu_image_active')"><b>{SELECT_IMAGE_MSG}</b></a>
+		&nbsp;|&nbsp; <a href="#" onClick="document.record.menu_image_active.value=''">{CLEAR_BUTTON}</a>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{NOT_ACTIVE_IMAGE_MSG}
+	</td>
+	<td class="small">
+		<input class="field" type="text" name="menu_image" value="{menu_image}" size="50">
+		&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'menu_image')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+		&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'menu_image')"><b>{SELECT_IMAGE_MSG}</b></a>
+		&nbsp;|&nbsp; <a href="#" onClick="document.record.menu_image.value=''">{CLEAR_BUTTON}</a>
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</form>	
+</table>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

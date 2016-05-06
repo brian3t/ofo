@@ -1,0 +1,177 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_BOOKMARK_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+
+<script lang="JavaScript">
+/*
+function CheckForm() 
+{
+	if (document.record.title.value=="") {
+		alert("You have not entered title of the bookmark!");
+		document.record.title.focus();
+		return false;
+	}
+
+	if (document.record.url.value=="") {
+		alert("You have not entered url address!");
+		document.record.url.focus();
+		return false;
+	} else if (document.record.url.value != "") {
+		var str=document.record.url.value;
+		var reg=/[0-9a-z]+.[0-9a-z]{2,3}/;
+		var result=reg.test(str) ? "1": "2";
+		if (result == "2") 
+		{
+			alert("Web Url is not correct. Please try again.");
+			document.record.url.focus();
+			return false;
+		}
+	}
+	document.record.submit();
+	return true;		
+}
+*/
+</script>
+
+</head>
+<body class="mainbg">
+
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a href="{admin_bookmarks_href}">{BOOKMARKS_MSG}</a>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<td>
+<fieldset>
+<legend>Bookmark</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td align="center">
+
+		<form action="{admin_bookmark_href}" name="record" method="POST">
+		<input type="hidden" name="operation" value="save">
+		<input type="hidden" name="rp" value="{rp}">
+		<input type="hidden" name="bookmark_id" value="{bookmark_id}">
+		<table border="0" cellpadding="6" cellspacing="1" width="100%">
+		<!-- begin msg -->
+		<tr class="usual">
+			<td colspan="2" align="center">
+				<div class="message">{BOOKMARK_ADDED_MSG}</div>
+			</td>
+		</tr><!-- end msg -->
+		<!-- begin errors -->
+		<tr class="usual">
+			<td colspan="2" align="center">
+				<div class="error">{errors_list}</div>
+			</td>
+		</tr><!-- end errors -->
+		
+		<tr class="middle">
+			<td colspan="2">
+				&nbsp;<b>{ADD_BOOKMARK_MSG}</b>
+			</td>
+		</tr>
+		
+		<tr class="usual">
+			<td>
+				&nbsp;{ADMIN_TITLE_MSG}:
+			</td>
+			<td>
+				<input class="field" id="title" type="text" size="120" name="title" value="{title}">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{ADMIN_URL_SHORT_MSG}:
+			</td>
+			<td>
+				<input class="field" id="url" type="text" size="120" name="url" value="{url}">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{IMAGE_MSG}:
+			</td>
+			<td>
+				<input class="field" type="text" size="120" name="image_path" value="{image_path}">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{ADMIN_NOTE_MSG}:
+			</td>
+			<td>
+				<textarea name="notes" cols="120" rows="3">{notes}</textarea>
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{IS_START_PAGE_MSG}:
+			</td>
+			<td>
+				<input type="checkbox" name="is_start_page" {is_start_page} value="1">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{IS_POPUP_MSG}:
+			</td>
+			<td>
+				<input type="checkbox" name="is_popup" {is_popup} value="1">
+			</td>
+		</tr>
+		<tr class="middle">
+			<td></td>
+			<td>
+				<!-- begin add_button -->
+				<input class="submit" type="submit" value="{ADD_NEW_MSG}" onclick="document.record.operation.value='save'"> &nbsp; <!-- end add_button -->
+				<!-- begin update_button -->
+				<input class="submit" type="submit" value="{UPDATE_BUTTON}" onclick="document.record.operation.value='save'"> &nbsp; <!-- end update_button -->
+				<!-- begin delete -->
+				<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');"> &nbsp; <!-- end delete -->
+				<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+			</td>
+		</tr>
+		</table>
+		</form>
+
+	</td>
+</tr>
+</table>
+</fieldset>
+
+<script language="javascript">
+	var element1 = document.getElementById("title");
+	var elementURL = document.getElementById("url");
+	//var element{HIDDEN_MSG} = document.getElementById("referer_hidden");
+	
+	if (elementURL != null && elementURL.value == "") {
+	  	if (document.referrer.match("admin/admin_bookmarks.php") || document.referrer.match("admin/admin_login.php"))
+	  		{
+			 elementURL.value = "";   
+			}
+		else
+			{
+				elementURL.value = document.referrer;
+			}
+			//element{HIDDEN_MSG}.value = document.referrer;
+	}
+</script>
+
+</td></tr></table>
+
+{admin_footer}
+
+</body>
+</html>

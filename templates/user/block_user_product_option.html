@@ -1,0 +1,489 @@
+<script language="JavaScript" type= "text/javascript" src="js/tabs.js"></script>
+<script language="JavaScript" type= "text/javascript" src="js/files.js"></script>
+<script language="">
+<!--
+	var removeButton = "{REMOVE_BUTTON}";
+	var files = new Array(); // <!-- BEGIN selected_files_js -->
+	files["{file_id}"] = new Array("{file_title_js}");// <!-- END selected_files_js -->
+
+	function updateStockProperty(optionNumber)
+	{
+		var useStockLevel = document.record.elements["use_stock_level_" + optionNumber];
+		var hideOffLimits = document.record.elements["hide_out_of_stock_" + optionNumber];
+
+		if (!useStockLevel.checked) {
+			hideOffLimits.checked = false;
+		}
+	}
+
+	function checkUseStock(optionNumber)
+	{
+		var useStockLevel = document.record.elements["use_stock_level_" + optionNumber];
+		var hideOffLimits = document.record.elements["hide_out_of_stock_" + optionNumber];
+
+		if (!useStockLevel.checked) {
+			hideOffLimits.checked = false;
+			alert("{CHECK_STOCK_USE_MSG}");
+		}
+	}
+
+//-->
+</script>
+
+<div class="block-user-product-option">
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop" id="user-home">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+<tr><td class="blockTD blockTDtabs">
+<table cellspacing="0" cellpadding="0" border="0">
+<tr>
+	<td class="beginTab">&nbsp;</td>
+	<!-- BEGIN tabs -->
+	<td id="td_{tab_id}" class="{tab_class}"><div id="{tab_id}" class="{tab_class}"><a class="blackSm" href="#" onClick="changeTab('{tab_name}'); return false;">{tab_title}</a></td>
+	<!-- END tabs -->
+	<td class="endTab">&nbsp;</td>
+</tr>
+</table>
+</td></tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+<tr><td class="blockTD">
+
+<form action="{user_product_option_href}" name="record" method="post">
+<input type="hidden" name="tab" value="{tab}">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="property_id" value="{property_id}">
+<input type="hidden" name="item_id" value="{item_id}">
+<input type="hidden" name="sort_dir" value="{sort_dir}">
+<input type="hidden" name="sort_ord" value="{sort_ord}">
+<input type="hidden" name="page" value="{page}">
+<input type="hidden" name="more_properties" value="0">
+<input type="hidden" name="number_properties" value="{number_properties}">
+
+
+<div id="data_general" style="{general_style}">
+<table width="100%" border="0" cellspacing="1" class="padding4px">
+<!-- BEGIN errors -->
+<tr>
+	<td colspan="2" class="usualbg" align="center">
+		<div class="errorbg">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usualbg">
+	<td>
+		{OPTION_ORDER_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" name="property_order" value="{property_order}" size="12">
+	</td>
+</tr>
+<tr class="usualbg">
+	<td>
+		{OPTION_NAME_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" name="property_name" value="{property_name}" size="50">
+	</td>
+</tr>
+<tr class="usualbg">
+	<td>
+		{OPTION_CONTROL_MSG} *
+	</td>
+	<td>
+		<select name="control_type"><!-- begin control_type -->
+			<option {control_type_selected} value="{control_type_value}">{control_type_description}<!-- end control_type -->
+		</select>
+		<font size=1>({CONTROL_TYPE_USE_DESC})</font>
+	</td>
+</tr>
+<tr class="usualbg">
+	<td>
+		{OPTION_TEXT_MSG} 
+	</td>
+	<td>
+		<input class="field" type="text" name="property_description" value="{property_description}" size="50"> 
+		<font size=1>(Only for <b>Label Control</b>. {DELETE_QUESTION_MSG})</font>
+	</td>
+</tr>
+<!-- begin property_style_block -->
+<tr class="usualbg">
+	<td>
+		{OPTION_STYLE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="property_style" value="{property_style}" size="50"> 
+		<font size=1>({OPTION_STYLE_NOTE}, {EG_MSG} 'text-transform: uppercase;')</font>
+	</td>
+</tr><!-- end property_style_block -->
+<!-- begin show_option_block -->
+<tr class="usualbg">
+	<td>
+		{SHOW_OPTION_MSG}
+	</td>
+	<td>
+		<!-- begin use_on_list_block -->
+		<input type="checkbox" {use_on_list} name="use_on_list" value="1">
+		<font size="1">{ON_PROD_LIST_MSG}</font> &nbsp;<!-- end use_on_list_block -->
+		<!-- begin use_on_details_block -->
+		<input type="checkbox" {use_on_details} name="use_on_details" value="1">
+		<font size="1">{ON_PROD_DETAILS_MSG}</font> &nbsp;<!-- end use_on_details_block -->
+		<!-- begin use_on_table_block -->
+		<input type="checkbox" {use_on_table} name="use_on_table" value="1">
+		<font size="1">on table view</font> &nbsp;<!-- end use_on_table_block -->
+		<!-- begin use_on_grid_block -->
+		<input type="checkbox" {use_on_grid} name="use_on_grid" value="1">
+		<font size="1">on grid view</font> &nbsp;<!-- end use_on_grid_block -->
+		<!-- begin use_on_second_block -->
+		<input type="checkbox" {use_on_second} name="use_on_second" value="1">
+		<font size="1">{ON_SEPARATE_PAGE_MSG}</font> &nbsp;<!-- end use_on_second_block -->
+		<!-- begin use_on_checkout_block -->
+		<input type="checkbox" {use_on_checkout} name="use_on_checkout" value="1">
+		<font size="1">{ON_CHECKOUT_PROCESS_MSG}</font><!-- end use_on_checkout_block -->
+	</td>
+</tr>
+<!-- end show_option_block -->
+<tr class="usualbg">
+	<td>
+		{OPTION_REQUIRED_MSG}
+	</td>
+	<td>
+		<input type="checkbox" {required} name="required" value="1">
+	</td>
+</tr>
+<!-- begin options_values_block -->
+<tr class="middlebg">
+	<td colspan="2">
+		{OPTIONS_VALUES_MSG}
+	</td>
+</tr>
+<tr>
+	<td colspan="2">
+
+<table width="100%" border="0" cellspacing="1" class="padding4px">
+<tr align="center" class="usualbg">
+	<td class="small">
+		{ID_MSG}
+	</td>
+	<td class="small">
+		{DESCRIPTION_AND_CODE_MSG}
+	</td>
+	<!-- begin values_prices_title -->
+	<td class="small">
+		{PRICES_MSG}
+	</td><!-- end values_prices_title -->
+	<!-- begin values_weight_title -->
+	<td class="small">
+		
+	</td><!-- end values_weight_title -->
+	<!-- begin values_levels_weight_title -->
+	<td class="small">
+		{levels_and_weight}
+	</td><!-- end values_levels_weight_title -->
+	<!-- begin values_downloads_title -->
+	<td class="small">
+		{DOWNLOADABLE_FILES_MSG}
+	</td><!-- end values_downloads_title -->
+	<td class="small">
+		{OPTIONS_MSG}
+	</td>
+	<td class="small">
+		{DELETE_BUTTON}
+	</td>
+</tr><!-- begin properties --><!-- begin properties_errors -->
+<tr class="usualbg" align="center">
+	<td colspan="8">
+		<div class="errorbg">{errors_list}</div>
+	</td>
+</tr><!-- end properties_errors -->
+<tr class="usualbg" align="center" valign="top">
+	<td>
+		<!-- begin item_property_id_block -->
+		{item_property_id}
+		<!-- end item_property_id_block -->
+	</td>
+	<td>
+		<input type="hidden" name="item_property_id_{properties_number}" value="{item_property_id}">
+		<input type="hidden" name="property_id_{properties_number}" value="{property_id}">
+		<table cellspacing="0" cellpadding="0" border="0">
+		<tr>
+			<td align="right" colspan="2">
+				<input class="field" type="text" name="property_value_{properties_number}" value="{property_value}" size="20">
+			<td>
+		</tr>
+		<tr>
+			<td align="right">
+				Order&nbsp;
+			</td>
+			<td>
+				<input class="field" type="text" name="value_order_{properties_number}" value="{value_order}" size="8">
+			</td>
+		</tr>
+		<tr>
+			<td align="right">
+				{PROD_CODE_MSG}&nbsp;
+			</td>
+			<td>
+				<input class="field" type="text" name="item_code_{properties_number}" value="{item_code}" size="8">
+			</td>
+		</tr>
+		<tr>
+			<td align="right">
+				{MANUFACTURER_CODE_MSG}&nbsp;
+			</td>
+			<td>
+				<input class="field" type="text" name="manufacturer_code_{properties_number}" value="{manufacturer_code}" size="8">
+			</td>
+		</tr>
+		</table>
+	</td>
+	<!-- begin values_prices_block -->
+	<td>
+		<table cellspacing="0" cellpadding="0" border="0">
+		<tr>
+			<td align="right">{SELLING_MSG}&nbsp;</td>
+			<td><input class="field" type="text" name="additional_price_{properties_number}" value="{additional_price}" size="5" maxlength="10" style="text-align:right;"><td>
+		</tr>
+		<!-- begin trade_additional_price_block -->
+		<tr>
+			<td align="right">{PROD_TRADE_PRICE_MSG}&nbsp;</td>
+			<td><input class="field" type="text" name="trade_additional_price_{properties_number}" value="{trade_additional_price}" size="5" maxlength="10" style="text-align:right;"><td>
+		</tr>
+		<!-- end trade_additional_price_block -->
+		<tr>
+			<td align="right"><a title="{OPTION_PERCENTAGE_PRICE_DESC}" onClick="alert('{OPTION_PERCENTAGE_PRICE_DESC}')" style="cursor:hand">{PERCENTAGE_MSG}</a>&nbsp;</td>
+			<td><input class="field" type="text" name="percentage_price_{properties_number}" value="{percentage_price}" size="5" maxlength="10" style="text-align:right;"><td>
+		</tr>
+		<tr>
+			<td align="right">{BUYING_MSG}&nbsp;</td>
+			<td><input class="field" type="text" name="buying_price_{properties_number}" value="{buying_price}" size="5" maxlength="10" style="text-align:right;"><td>
+		</tr>
+		</table>
+	</td><!-- end values_prices_block -->
+	<!-- begin values_levels_weight_block -->
+	<td>
+		<table cellspacing="0" cellpadding="0" border="0">
+		<!-- begin values_levels_block -->
+		<tr>
+			<td align="right">
+				{QTY_MSG}&nbsp;
+			</td>
+			<td>
+				<input class="field" type="text" name="stock_level_{properties_number}" value="{stock_level}" size="5" maxlength="10">
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" align="right" nowrap>
+				<a title="{ACTIVATE_STOCK_CONTROL_MSG}" onClick="alert('{ACTIVATE_CONTROL_CHECKBOX_MSG}')" style="cursor:hand">{USE_MSG}</a> 
+				<input type="checkbox" name="use_stock_level_{properties_number}" {use_stock_level} value="1" onClick="updateStockProperty('{properties_number}')"> 
+				<a title="{HIDE_IF_OUT_STOCK_MSG}" onClick="alert('{HIDE_OPTION_VALUE_DESC}')" style="cursor:hand">{HIDE_MSG}</a> 
+				<input type="checkbox" name="hide_out_of_stock_{properties_number}" {hide_out_of_stock} value="1" onClick="checkUseStock('{properties_number}')"> 
+			<td>
+		</tr>
+		<!-- end values_levels_block -->
+		<!-- begin values_weight_block -->
+		<tr>
+			<td align="right">
+				{PROD_WEIGHT_MSG}&nbsp;
+			</td>
+			<td>
+			 <input class="field" type="text" name="additional_weight_{properties_number}" value="{additional_weight}" size="5" maxlength="10">
+			</td>
+		</tr>
+		<!-- end values_weight_block -->
+		</table>
+	</td>
+	<!-- end values_levels_weight_block -->
+	<!-- begin values_downloads_block -->
+	<td align="left">
+		<input type="hidden" name="download_files_ids_{row_number}" value="{download_files_ids}">
+
+		<span id="block_download_files_ids_{row_number}"><!-- BEGIN selected_files -->
+			<b>{file_title}</b> - <a href="#" onClick="removeFile('{file_id}', 'record', 'download_files_ids_{row_number}'); return false;">{REMOVE_BUTTON}</a><br><!-- END selected_files -->
+		</span>
+
+		<!-- begin select_file_link -->
+		<a href="#" onClick="openFilesWindow('{user_files_select_href}?item_id={item_id}&type=options', 'record', 'download_files_ids_{row_number}'); return false;">{SELECT_MSG}</a>
+		<!-- end select_file_link -->
+	</td>
+	<!-- end values_downloads_block -->
+	<td align="center">                                                                        
+		<table cellspacing="0" cellpadding="0" border="0">
+		<tr>
+			<td align="right">{DEFAULT_MSG}&nbsp;</td>
+			<td><input type="checkbox" name="is_default_value_{properties_number}" {is_default_value} value="1"><td>
+		</tr>
+		<tr>
+			<td align="right">{HIDE_MSG}&nbsp;</td>
+			<td><input type="checkbox" name="hide_value_{properties_number}" {hide_value} value="1"><td>
+		</tr>
+		</table>
+	</td>
+	<td align="center">
+		<input type="checkbox" name="properties_delete_{properties_number}" {properties_delete} value="1">
+	</td>
+</tr><!-- end properties -->
+</table>
+
+	</td>
+</tr>
+<tr>
+	<td colspan="2" align="right">
+		{ADD_MORE_OPTIONS_QST}
+		<span class="submit"><input class="submit" type="submit" value=" {ADD_BUTTON} " onClick="document.record.more_properties.value=1"></span>
+	</td>
+</tr>
+<!-- end options_values_block -->
+<tr class="middlebg">
+	<td></td>
+	<td>
+		<span class="submit"><input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'"> &nbsp; </span><!-- BEGIN delete -->
+		<span class="submit"><input class="submit" type="submit" value="{DELETE_BUTTON}" onCLick="document.record.operation.value='delete';return confirm('{DELETE_QUESTION_MSG} &quot;{property_name}&quot; option?');"> &nbsp; </span><!-- END delete -->
+		<span class="submit"><input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">&nbsp;</span>
+	</td>
+</tr>
+</table>
+</div>
+
+<div id="data_html" style="{html_style}">
+<table width="100%" border="0" cellspacing="1" class="padding4px">
+<!-- begin apperance_block -->
+<tr class="middlebg">
+	<td colspan="2">
+		{OPTIONS_APPEARANCE_MSG}
+	</td>
+</tr>
+<!-- end apperance_block -->
+<!-- begin control_style_block -->
+<tr class="usualbg">
+	<td>
+		{CONTROL_STYLE_MSG}
+		<div class="smallText">({CONTROL_STYLE_NOTE}, {EG_MSG} 'color: green;')</div>
+	</td>
+	<td>
+		<textarea cols="60" rows="2" name="control_style">{control_style}</textarea>
+	</td>
+</tr><!-- end control_style_block -->
+<!-- begin start_html_block -->
+<tr class="usualbg">
+	<td>
+		{BEFORE_TITLE_HTML_MSG}
+		<div class="smallText">({BEFORE_TITLE_HTML_NOTE})</div>
+	</td>
+	<td>
+		<textarea cols="60" rows="2" name="start_html">{start_html}</textarea>
+	</td>
+</tr><!-- end start_html_block -->
+<!-- begin middle_html_block -->
+<tr class="usualbg">
+	<td>
+		{AFTER_TITLE_HTML_MSG}
+		<div class="smallText">({AFTER_TITLE_HTML_NOTE})</div>
+	</td>
+	<td>
+		<textarea cols="60" rows="2" name="middle_html">{middle_html}</textarea>
+	</td>
+</tr><!-- end middle_html_block -->
+<!-- begin before_control_html_block -->
+<tr class="usualbg">
+	<td>
+		{BEFORE_CONTROL_HTML_MSG}
+		<div class="smallText">({BEFORE_CONTROL_HTML_NOTE})</div>
+	</td>
+	<td>
+		<textarea cols="60" rows="2" name="before_control_html">{before_control_html}</textarea>
+	</td>
+</tr><!-- end before_control_html_block -->
+<!-- begin after_control_html_block -->
+<tr class="usualbg">
+	<td>
+		{AFTER_CONTROL_HTML_MSG}
+		<div class="smallText">({AFTER_CONTROL_HTML_NOTE})</div>
+	</td>
+	<td>
+		<textarea cols="60" rows="2" name="after_control_html">{after_control_html}</textarea>
+	</td>
+</tr>
+<!-- end after_control_html_block -->
+<!-- begin end_html_block -->
+<tr class="usualbg">
+	<td>
+		{END_HTML_MSG}
+		<div class="smallText">({END_HTML_NOTE})</div>
+	</td>
+	<td>
+		<textarea cols="60" rows="2" name="end_html">{end_html}</textarea>
+	</td>
+</tr><!-- end end_html_block -->
+<tr class="middlebg">
+	<td></td>
+	<td>
+		<span class="submit"><input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'"> &nbsp; </span>
+	</td>
+</tr>
+</table>
+</div>
+
+<div id="data_js" style="{js_style}">
+<table width="100%" border="0" cellspacing="1" class="padding4px">
+<!-- begin js_block -->
+<tr class="middlebg">
+	<td colspan="2">
+		{JAVASCRIPT_SETTINGS_MSG}
+	</td>
+</tr><!-- end js_block -->
+<!-- begin onchange_code_block -->
+<tr class="usualbg">
+	<td>
+		{ONCHANGE_EVENT_MSG}
+		<div class="smallText">({EG_MSG} &lt;select onChange="<b>[your code here]</b>"&gt;)</div>
+	</td>
+	<td>
+		<textarea cols="60" rows="2" name="onchange_code">{onchange_code}</textarea>
+	</td>
+</tr><!-- end onchange_code_block -->
+<!-- begin onclick_code_block -->
+<tr class="usualbg">
+	<td>
+		{ONCLICK_EVENT_MSG}
+		<div class="smallText">({EG_MSG} &lt;input type="radio" onClick="<b>[your code here]</b>"&gt;)</div>
+	</td>
+	<td>
+		<textarea cols="60" rows="2" name="onclick_code">{onclick_code}</textarea>
+	</td>
+</tr><!-- end onclick_code_block -->
+<!-- begin control_code_block -->
+<tr class="usualbg">
+	<td>
+		{CONTROL_CODE_MSG}
+		<div class="smallText">({EG_MSG} &lt;input type="text" <b>[your code here]</b>&gt;)</div>
+	</td>
+	<td>
+		<textarea cols="60" rows="2" name="control_code">{control_code}</textarea>
+	</td>
+</tr><!-- end control_code_block -->
+<tr class="middlebg">
+	<td></td>
+	<td>
+		<span class="submit"><input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'"> &nbsp; </span>
+	</td>
+</tr>
+</table>
+</div>
+
+</form>
+
+</td></tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+</div>

@@ -1,0 +1,254 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{ADMINISTRATION_MSG} :: {UPGRADE_DOWNGRADE_MSG}</title>
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript" type="text/javascript">
+<!--
+	var userSubscriptionId = "{user_subscription_id}";
+	var types = new Array();
+	var ordersSubscriptions = new Array();
+	var subscriptions = new Array();//<!-- begin js_types -->
+	types["{type_id_js}"] = "{type_name_js}";
+	subscriptions["{type_id_js}"] = new Array();//<!-- end js_types -->
+	//<!-- begin js_subscriptions -->
+	subscriptions["{type_id_js}"]["{subscription_id_js}"] = new Array();
+	subscriptions["{type_id_js}"]["{subscription_id_js}"]["name"] = "{subscription_name_js}";
+	subscriptions["{type_id_js}"]["{subscription_id_js}"]["fee"] = "{subscription_fee_js}";
+	subscriptions["{type_id_js}"]["{subscription_id_js}"]["period"] = "{subscription_period_js}";//<!-- end js_subscriptions -->
+	//<!-- begin js_orders_subscriptions -->
+	ordersSubscriptions["{order_item_id_js}"] = new Array();
+	ordersSubscriptions["{order_item_id_js}"]["subscription_id"] = "{subscription_id_js}";
+	ordersSubscriptions["{order_item_id_js}"]["price"] = "{price_js}";
+	ordersSubscriptions["{order_item_id_js}"]["credits_return"] = "{credits_return_js}";//<!-- end js_orders_subscriptions -->
+
+	function changeUserType()
+	{
+		var typeObj = document.profile.type_id;
+		var typeId = typeObj.options[typeObj.selectedIndex].value;
+		var typeSubscriptions = subscriptions[typeId];
+		var subscriptionObj = document.getElementById("subscriptions");
+		var subscriptionInfo = document.getElementById("subscription_info");
+
+		subscriptionObj.innerHTML = "";
+		if (typeSubscriptions.length > 0) {
+			var optionHTML = document.getElementById("subscription_option").innerHTML;
+			var subscriptionHTML = ""; var subscriptionChecked = "";
+			for (id in typeSubscriptions) {
+				subscriptionHTML = optionHTML;
+				subscriptionChecked = (id == userSubscriptionId) ? "checked" : "";
+				subscriptionHTML = subscriptionHTML.replace("\[subscription_id_checked\]", subscriptionChecked);
+				subscriptionHTML = subscriptionHTML.replace("\[subscription_id_value\]", id);
+				subscriptionHTML = subscriptionHTML.replace("\[subscription_id_name\]", "subscription_id");
+				subscriptionHTML = subscriptionHTML.replace("\[subscription_name\]", typeSubscriptions[id]["name"]);
+				subscriptionHTML = subscriptionHTML.replace("\[subscription_fee\]", typeSubscriptions[id]["fee"]);
+				subscriptionHTML = subscriptionHTML.replace("\[subscription_period\]", typeSubscriptions[id]["period"]);
+				subscriptionObj.innerHTML += subscriptionHTML;
+			}
+			subscriptionInfo.style.cssText = "display: table-row;";
+		} else {
+			// no subscription options available for selected type
+			subscriptionInfo.style.cssText = "display: none;";
+		}
+		changeSubscription();
+	}
+
+	function changeSubscription()
+	{
+
+		var moneyBackObj = document.getElementById("money_back");
+		var creditsObj = document.getElementById("totalCreditsReturn");
+		var subscriptionId = "";
+		var subscriptionObj = document.profile.subscription_id;
+		if (subscriptionObj) {
+			for (var s = 0; s < subscriptionObj.length; s++) {
+				if (subscriptionObj[s].checked) {
+					subscriptionId = subscriptionObj[s].value;
+				}
+			}
+		}
+		var totalCreditsReturn = 0;
+		for (id in ordersSubscriptions) {
+			var orderSubscriptionId = ordersSubscriptions[id]["subscription_id"];
+			var orderCreditsReturn = parseFloat(ordersSubscriptions[id]["credits_return"]);
+			if (orderSubscriptionId != subscriptionId) {
+				totalCreditsReturn += orderCreditsReturn;
+			}
+		}
+		if (totalCreditsReturn > 0) {
+			creditsObj.innerHTML = currencyFormat(totalCreditsReturn);
+			moneyBackObj.style.cssText = "display: table-row;";
+		} else {
+			creditsObj.innerHTML = "";
+			moneyBackObj.style.cssText = "display: none;";
+		}
+	}
+
+function currencyFormat(numberValue) 
+{
+	var formObj = document.profile;
+	var currencyLeft = formObj.currency_left.value;
+	var currencyRight = formObj.currency_right.value;
+	var currencyRate = formObj.currency_rate.value;
+	var currencyDecimals = formObj.currency_decimals.value;
+	var currencyPoint = formObj.currency_point.value;
+	var currencySeparator = formObj.currency_separator.value;
+	return currencyLeft + formatNumber(numberValue * currencyRate, currencyDecimals, currencyPoint, currencySeparator) + currencyRight;
+}
+
+function formatNumber(numberValue, decimals, decimalPoint, thousandsSeparator)
+{
+	if (decimals == undefined) {
+		decimals = 0;
+	}
+	if (thousandsSeparator == undefined) {
+		thousandsSeparator = ",";
+	}
+
+	var numberParts = "";
+	var roundValue = 1;
+	for (var d = 0; d < decimals; d++) {
+		roundValue *= 10;
+	}
+	numberValue = Math.round(numberValue * roundValue) / roundValue;
+	var numberSign = "";
+	if (numberValue < 0) {
+		numberSign = "-";
+		numberValue = Math.abs(numberValue);
+	} 
+
+	var numberText = new String(numberValue);
+	var numberParts = numberText.split(".");
+	var beforeDecimal = numberParts[0];
+	var afterDecimal = "";
+	numberText = "";
+	if (numberParts.length == 2) {
+		afterDecimal = numberParts[1];
+	}
+	while (beforeDecimal.length > 0) {
+		if (beforeDecimal.length > 3) {
+			numberText = thousandsSeparator + beforeDecimal.substring(beforeDecimal.length - 3, beforeDecimal.length) + numberText;
+			beforeDecimal = beforeDecimal.substring(0, beforeDecimal.length - 3);
+		} else {
+			numberText = beforeDecimal + numberText;
+			beforeDecimal = "";
+		}
+	}
+	if (decimals > 0) {
+		while (afterDecimal.length < decimals) {
+			afterDecimal += "0";
+		}
+		if (decimalPoint == undefined) {
+			decimalPoint = ".";
+		}
+		numberText += decimalPoint + afterDecimal;
+	}
+	numberText = numberSign + numberText;
+
+	return numberText;
+}
+
+
+//-->
+</script>
+
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_users_href}">{SITE_USERS_MSG}</a>&nbsp;&gt;
+			<a href="{admin_user_href}?user_id={user_id}">{user_name}</a>&nbsp;&gt;
+			<b>{UPGRADE_DOWNGRADE_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{UPGRADE_DOWNGRADE_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<form action="{user_change_type_href}" name="profile" method="POST">
+<input type="hidden" name="operation" value="update">
+<input type="hidden" name="user_id" value="{user_id}">
+<input type="hidden" name="return_page" value="{return_page}">
+<input type="hidden" name="currency_left" value="{currency_left}">
+<input type="hidden" name="currency_right" value="{currency_right}">
+<input type="hidden" name="currency_rate" value="{currency_rate}">
+<input type="hidden" name="currency_decimals" value="{currency_decimals}">
+<input type="hidden" name="currency_point" value="{currency_point}">
+<input type="hidden" name="currency_separator" value="{currency_separator}">
+<table width="100%" border="0" cellspacing="1" cellpadding="6" align="center"><!-- BEGIN errors -->
+<tr>
+	<td colspan="2" class="usual">
+		<div align="center" class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<!-- BEGIN user_type_block -->
+<tr class="usualbg" width="30%">
+	<td>
+		{GROUP_MSG} 
+	</td>
+	<td width="70%">
+		<select class="text" name="type_id" onChange="changeUserType();"><!-- begin type_id -->
+			<option {type_id_selected} value="{type_id_value}">{type_id_description}<!-- end type_id -->
+		</select>
+	</td>
+</tr>
+<!-- END user_type_block -->
+<tr class="usualbg" width="30%" id="subscription_info" style="{subscription_info_style}">
+	<td>
+		{SUBSCRIPTION_MSG} 
+	</td>
+	<td width="70%">
+		<div id="subscription_option" style="display: none;">
+			<input type="radio" name="[subscription_id_name]" [subscription_id_checked] value="[subscription_id_value]" onClick="changeSubscription();">
+			<span class="title">[subscription_name]</span> - <span class="salesPrice">[subscription_fee]</span> ([subscription_period])<br>
+		</div>
+		<div id="subscriptions">
+			<!-- begin subscriptions -->
+			<input type="radio" name="subscription_id" {subscription_id_checked} value="{subscription_id_value}" onClick="changeSubscription();">
+			<span class="title">{subscription_name}</span> - <span class="salesPrice">{subscription_fee}</span> ({subscription_period})<br><!-- end subscriptions -->
+		</div>
+	</td>
+</tr>
+<tr class="usualbg" width="30%" id="money_back" style="{money_back_style}">
+	<td>
+		{SUBSCRIPTION_MONEY_BACK_MSG} 
+	</td>
+	<td width="70%">
+		<span class="salesPrice" id="totalCreditsReturn">{total_credits_return}</span>
+		({MONEY_TO_CREDITS_BALANCE_MSG})
+	</td>
+</tr>
+<tr class="middle" >
+	<td>
+	</td>
+	<td>
+		<span class="submit"><input class="submit" type="submit" value="{APPLY_BUTTON}" onCLick="document.profile.operation.value='save'"></span>
+		<span class="submit"><input class="submit" id="cancel" type="submit" value="{CANCEL_BUTTON}" onCLick="document.profile.operation.value='cancel'"></span>
+	</td>
+</tr>
+</table>
+</form>
+
+	</td>
+</tr>
+</table>
+</fieldset>
+
+{admin_footer}
+
+</body></html>

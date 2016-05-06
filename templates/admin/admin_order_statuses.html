@@ -1,0 +1,79 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {ORDERS_STATUSES_MSG} ::..</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+
+</head>
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<b>{ORDER_STATUSES_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{ORDER_STATUSES_MSG}</legend>
+<table border="0" cellspacing="1" cellpadding="6" width="100%"><!-- begin sorters -->
+<tr align="center" class="middle">
+	<td>
+		{sorter_status_id}
+	</td>
+	<td>
+		{sorter_status_name}
+	</td>
+	<td>
+		{sorter_is_active}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- end sorters --><!-- begin records -->
+<tr class="usual" align="center">
+	<td>
+		{status_id}
+	</td>
+	<td align="left">
+		&nbsp;{status_name}
+	</td>
+	<td>
+		&nbsp;<a class="small" href="{status_active_url}">{is_active}</a>
+	</td>
+	<td>
+		<a href="{admin_order_status_href}?status_id={status_id}">{EDIT_STATUS_MSG}</a>
+	</td>
+</tr><!-- end records --><!-- begin no_records -->
+<tr class="usual">
+	<td colspan="4">
+		&nbsp;{NO_RECORDS}
+	</td>
+</tr><!-- end no_records -->
+<tr class="middle">
+	<td colspan="4">
+		<table cellpadding="0" cellspacing="0" border="0" width="100%">
+		<tr>
+			<td>
+				&nbsp;<a href="{admin_order_status_href}">{ADD_NEW_MSG}</a>&nbsp;
+			</td>
+			<!-- begin navigator_block -->
+			<td align="right">&nbsp;{navigator}&nbsp;</td>
+			<!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>	
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

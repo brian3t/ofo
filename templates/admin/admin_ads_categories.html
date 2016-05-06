@@ -1,0 +1,200 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {CHANGE_CATEGORIES_ORDER_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+<script language="JavaScript">
+<!--
+
+	function moveLink(oldLink, newLink)
+	{
+		var oldObject = null; var newObject = null;
+		if(oldLink == 'list') {
+			oldObject = document.layout.available_categories;
+		} else if (oldLink == 'left') {
+			oldObject = document.layout.shown_categories;
+		} else {
+			alert("Wrong object type"); return;
+		}
+		if(newLink == 'list') {
+			newObject = document.layout.available_categories;
+		} else if (newLink == 'left') {
+			newObject = document.layout.shown_categories;
+		} else {
+			alert("Wrong object type"); return;
+		}
+		
+		var selectedIndex = oldObject.selectedIndex;
+
+		if(selectedIndex == -1) {
+			alert('Please select link');
+		} else {
+			newObject.options[newObject.length] = new Option(oldObject.options[selectedIndex].text, oldObject.options[selectedIndex].value);
+			oldObject.options[selectedIndex] = null;
+		}
+	}
+
+	function changeOrder(column, order) 
+	{
+		var columnObject = null;
+		if (column == 'left') {
+			columnObject = document.layout.shown_categories;
+		} else {
+			alert("Wrong object type"); return;
+		}
+		var selectedIndex = columnObject.selectedIndex;
+		var incrementIndex = (order == 'up') ? -1 : 1;
+
+		if(selectedIndex == -1) {
+			alert('Please select link');
+		} else {
+			var selectedValue = columnObject.options[selectedIndex].value;
+			var selectedText = columnObject.options[selectedIndex].text;
+			if((order == 'up' && selectedIndex != 0) ||
+				(order == 'down' && selectedIndex != (columnObject.length - 1))) {
+				columnObject.options[selectedIndex].value = columnObject.options[selectedIndex + incrementIndex].value;
+				columnObject.options[selectedIndex].text = columnObject.options[selectedIndex + incrementIndex].text;
+				columnObject.options[selectedIndex + incrementIndex].value = selectedValue;
+				columnObject.options[selectedIndex + incrementIndex].text = selectedText;
+				columnObject.options[selectedIndex].selected = false;
+				columnObject.options[selectedIndex + incrementIndex].selected = true;
+			} 
+		}
+	}
+
+	function prepareLists()
+	{
+		var valuesList = "";
+		for(var i = 0; i < document.layout.available_categories.length; i++) {
+			if(i > 0) valuesList += ","
+			valuesList += document.layout.available_categories.options[i].value;
+		}
+		document.layout.available_list.value = valuesList;
+		valuesList = "";
+		for(var i = 0; i < document.layout.shown_categories.length; i++) {
+			if(i > 0) valuesList += ","
+			valuesList += document.layout.shown_categories.options[i].value;
+		}
+		document.layout.shown_list.value = valuesList;
+	}
+
+//-->
+</script>
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<!-- BEGIN tree --><a 
+			href="{admin_ads_href}?category_id={tree_cat_id}">{tree_cat_name}</a>&nbsp;&gt;&nbsp;<!-- END tree --><a 
+			href="{admin_ads_href}?category_id={tree_current_id}">{tree_current_name}</a>&nbsp;&gt;&nbsp;<b>{CHANGE_CATEGORIES_ORDER_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<form action="{admin_ads_categories_href}" name="layout" method="POST" onsubmit="prepareLists();">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="available_list" value="">
+<input type="hidden" name="shown_list" value="">
+<input type="hidden" name="parent_category_id" value="{parent_category_id}">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<td>
+<fieldset>
+<legend>{CHANGE_CATEGORIES_ORDER_MSG}</legend>
+
+  	<table align="center" width="100%" border="0" cellspacing="1" cellpadding="4"><!-- BEGIN errors -->
+		<tr class="cell">
+			<td colspan="3" align="center">
+				<div class="error">{errors_list}</div>
+			</td>
+		</tr><!-- END errors -->		
+
+
+		<tr align="center" class="middle">
+			<td>{AVAILABLE_CATEGORIES_MSG}</td>
+			<td>{SHOWN_ON_SITE_MSG}</td>
+		</tr>	
+		<tr align="center" class="usual">
+			<td align="center">
+				<table border="0" cellspacing="0" cellpadding="2">
+				<tr valign="top">
+					<td>
+						<select name="available_categories" size="10" style="width: 300px;"><!-- BEGIN available_categories -->
+							<option value="{available_categories_value}">{available_categories_description}<!-- END available_categories -->
+							<option>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+						</select>
+					</td>
+					<td align="center" height="100%">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0" height="100%">
+						<tr align="center" valign="top">
+							<td><a href="#" onClick="moveLink('list', 'left');return false;"><img src="../images/move_right.gif" border="0" width="16" height="16" alt="{ADD_BUTTON} {LINK_URL_MSG}"></a></td>
+						</tr>
+						<tr align="center" valign="bottom">
+							<td ><a href="#" onClick="moveLink('list', 'left');return false;"><img src="../images/move_right.gif" border="0" width="16" height="16" alt="{ADD_BUTTON} {LINK_URL_MSG}"></a></td>
+						</tr>
+						</table>
+					</td>
+				</tr></table>
+			</td>
+			<td>
+				<table border="0" cellspacing="0" cellpadding="2">
+				<tr valign="top">
+					<td>
+						<select name="shown_categories" size="10" style="width: 300px;"><!-- BEGIN shown_categories -->
+							<option value="{shown_categories_value}">{shown_categories_description}<!-- END shown_categories -->
+							<option>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+						</select>
+					</td>
+					<td>
+						<table border="0" cellspacing="0" cellpadding="0" height=100%>
+						<tr><td valign="top">
+							<a href="#" onClick="changeOrder('left', 'up');return false;" onDblClick="changeOrder('left', 'up');return false;"><img src="../images/move_up.gif" border="0" width="16" height="16" alt="{MOVE_MSG} Up"></a><br>
+							<img src="../images/tr.gif" border="0" width="2" height="2"><br>
+							<a href="#" onClick="changeOrder('left', 'down');return false;" onDblClick="changeOrder('left', 'down');return false;"><img src="../images/move_down.gif" border="0" width="16" height="16" alt="{MOVE_MSG} Down"></a><br>
+						</td></tr>
+						<tr><td valign="bottom">
+							<img src="../images/tr.gif" border="0" width="2" height="2"><br>
+							<a href="#" onClick="moveLink('left', 'list');return false;"><img src="../images/remove.gif" border="0" width="16" height="16" alt="{REMOVE_BUTTON} {LINK_URL_MSG}"></a><br>
+						</td></tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+
+			</td>
+
+		</tr>
+		<tr align="right" class="middle">
+			<td colspan="2">
+				<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.layout.operation.value='save'">&nbsp;
+				<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.layout.operation.value='cancel'">
+			</td>
+		</tr>	
+		</table>
+
+
+
+<script language="JavaScript">
+<!--
+
+	document.layout.available_categories.options[document.layout.available_categories.length - 1] = null;
+	document.layout.shown_categories.options[document.layout.shown_categories.length - 1] = null;
+
+-->
+</script>
+
+</fieldset>
+</td></tr></table>
+</form>
+
+
+{admin_footer}
+</body>
+</html>

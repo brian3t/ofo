@@ -1,0 +1,578 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_TYPE_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript">
+<!--
+	function checkActive()
+	{
+		var isActive = document.record.is_active.checked;
+		var isDefault = document.record.is_default.checked;
+		if (isDefault && !isActive) {
+			document.record.is_default.checked = false;
+			alert("Sorry but you can't check 'Default' option for inactive type.\nPlease check 'Active' checkbox first.");
+		}
+		
+	}
+
+	function checkDefault(pagename)
+	{
+		var isActive = document.record.is_active.checked;
+		if (!isActive) {
+			document.record.is_default.checked = false
+		}
+	}
+//-->
+</script>
+<script language="JavaScript" type= "text/javascript" src="../js/list_fields.js"></script>
+<script language="JavaScript">
+<!--
+var list_fields_names = new Array('sites');
+//-->
+</script>
+</head>
+<body class="commonbg">
+
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_users_href}">{CUSTOMERS_MSG}</a>&nbsp;&gt;
+			<a href="{admin_user_types_href}">{USERS_TYPES_MSG}</a>&nbsp;&gt;
+			<b>{EDIT_TYPE_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+	<div id="tabs">
+		<!-- BEGIN tabs_rows -->
+		<div id="{row_id}" class="tabRow"><!-- BEGIN tabs -->
+			<div id="{tab_id}" class="{tab_class}"><a class="blackSm" href="#" onClick="changeTab('{tab_name}'); return false;">{tab_title}</a></div>{br}<!-- END tabs -->
+		</div>
+		<!-- END tabs_rows -->
+	</div>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tabTable">
+<tr align="center">
+	<td>
+
+<form action="{admin_user_type_href}" name="record" onSubmit="selectListFieldsAll();" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="rp" value="{rp}">
+<input type="hidden" name="type_id" value="{type_id}">
+<input type="hidden" name="tab" value="{tab}">
+<input type="hidden" name="sites" value="">
+
+<div id="data_general" style="{general_style}">
+
+	<table border="0" cellpadding="6" cellspacing="1" width="100%">
+	<!-- BEGIN errors -->
+	<tr class="usual">
+		<td colspan="4" align="center">
+			<div class="error">{errors_list}</div>
+		</td>
+	</tr><!-- END errors -->
+	<tr class="middle">
+		<td colspan="4">
+			&nbsp;{GLOBAL_SETTINGS_MSG}
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{IS_ACTIVE_MSG}
+		</td>
+		<td colspan="3">
+			<input type="checkbox" name="is_active" {is_active} value="1" onCLick="checkDefault();">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{USE_THIS_TYPE_BY_DEFAULT_MSG}
+		</td>
+		<td colspan="3">
+			<input type="checkbox" name="is_default" {is_default} value="1" onCLick="checkActive();">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{SHOW_THIS_TYPE_FOR_MSG}
+		</td>
+		<td colspan="3">
+			<!-- begin show_for_user -->
+			<input type="radio" name="show_for_user" {show_for_user_checked} value="{show_for_user_value}">{show_for_user_description}<!-- end show_for_user -->
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{TYPE_NAME_MSG} *
+		</td>
+		<td colspan="3">
+			<input class="field" type="text" name="type_name" value="{type_name}" size="60" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{PRICE_TYPE_MSG}
+		</td>
+		<td colspan="3"><!-- begin price_type -->
+			<input type="radio" name="price_type" {price_type_checked} value="{price_type_value}">{price_type_description}<!-- end price_type -->
+		</td>
+	</tr>
+	<!-- begin tax_free_block -->
+	<tr class="usual">
+		<td>
+			&nbsp;{TAXES_FREE_MSG}
+		</td>
+		<td colspan="3">
+			<input type="checkbox" name="tax_free" {tax_free} value="1">
+		</td>
+	</tr><!-- end tax_free_block -->
+	<tr class="usual">
+		<td>
+			&nbsp;{ALLOW_SENDING_SMS_MSG}  
+		</td>
+		<td colspan="3">
+			<!-- begin is_sms_allowed -->
+			<input type="radio" name="is_sms_allowed" {is_sms_allowed_checked} value="{is_sms_allowed_value}">{is_sms_allowed_description}<!-- end is_sms_allowed -->
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{ACCOUNT_SUBSCRIPTION_MSG}
+		</td>
+		<td colspan="3">
+			<input type="checkbox" name="is_subscription" {is_subscription} value="1"> 
+			({ACCOUNT_SUBSCRIPTION_DESC})
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{SUBSCRIPTION_CANCELLATION_MSG}  
+		</td>
+		<td colspan="3">
+			<!-- begin cancel_subscription -->
+			<input type="radio" name="cancel_subscription" {cancel_subscription_checked} value="{cancel_subscription_value}">{cancel_subscription_description}<!-- end cancel_subscription -->
+		</td>
+	</tr>
+	<tr>
+		<td class="middle" colspan="4">
+			<b>{USE_CHECKBOXES_TO_ALLOW_MSG}</b>
+		</td>
+	</tr><!-- BEGIN aps_errors -->
+	<tr class="usual">
+		<td colspan="4" align="center">
+			<div class="error">{errors_list}</div>
+		</td>
+	</tr><!-- END aps_errors -->
+	<tr>
+		<td colspan="4" class="header">
+			&nbsp;{ACCOUNT_SETTINGS_MSG}
+		</td>
+	</tr>
+	<tr class="usual">
+		<td width="35%">
+			&nbsp;{CAN_USER_OPEN_A_NEW_ACCOUNT_MSG}
+		</td>
+		<td align="center" width="15%">
+			<input type="checkbox" name="new_profile" {new_profile} value="1">
+		</td>
+		<td>
+			&nbsp;{CAN_USER_EDIT_HIS_PROFILE_MSG}
+		</td>
+		<td align="center">
+			<input type="checkbox" name="edit_profile" {edit_profile} value="1">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{APPROVE_CHANGES_IN_PROFILE_MSG}
+		</td>
+		<td align="center">
+			<input type="checkbox" name="approve_profile" {approve_profile} value="1">
+		</td>
+		<td>
+			&nbsp;{UPGRADE_DOWNGRADE_TYPE_MSG}
+		</td>
+		<td align="center">
+			<input type="checkbox" name="upgrade_downgrade" {upgrade_downgrade} value="1">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="4" class="header">
+			&nbsp;{HOME_PAGE_SETTINGS_MSG}
+		</td>
+	</tr>
+	<!-- begin home_page_rows -->
+	<tr class="usual"><!-- begin home_page_cols --><!-- begin orders_block -->
+		<td width="35%">
+			&nbsp;{ALLOW_USER_ACCESS_ORDERS_MSG}
+		</td>
+		<td align="center" width="15%">
+			<input type="checkbox" name="my_orders" {my_orders} value="1">
+		</td><!-- end orders_block --><!-- begin details_block -->
+		<td width="35%">
+			&nbsp;{CHANGE_DETAILS_MSG}
+		</td>
+		<td align="center" width="15%">
+			<input type="checkbox" name="my_details" {my_details} value="1">
+		</td><!-- end details_block --><!-- begin support_block -->
+		<td width="35%">
+			&nbsp;{MY_SUPPORT_ISSUES_MSG}
+		</td>
+		<td align="center" width="15%">
+			<input type="checkbox" name="my_support" {my_support} value="1">
+		</td><!-- end support_block --><!-- begin forum_block -->
+		<td width="35%">
+			&nbsp;{MY_FORUM_TOPICS_MSG}
+		</td>
+		<td align="center" width="15%">
+			<input type="checkbox" name="my_forum" {my_forum} value="1">
+		</td><!-- end forum_block --><!-- begin payments_block -->
+		<td width="35%">
+			&nbsp;{COMMISSION_PAYMENTS_MSG}
+		</td>
+		<td align="center" width="15%">
+			<input type="checkbox" name="my_payments" {my_payments} value="1">
+		</td><!-- end payments_block --><!-- begin carts_block -->
+		<td width="35%">
+			&nbsp;{MY_SAVED_CARTS_MSG}
+		</td>
+		<td align="center" width="15%">
+			<input type="checkbox" name="my_carts" {my_carts} value="1">
+		</td><!-- end carts_block --><!-- begin wishlist_block -->
+		<td width="35%">
+			&nbsp;{WISHLIST_MSG}
+		</td>
+		<td align="center" width="15%">
+			<input type="checkbox" name="my_wishlist" {my_wishlist} value="1">
+		</td><!-- end wishlist_block -->
+		<!-- begin reminder_block -->
+		<td width="35%">
+			&nbsp;{REMINDER_SERVICE_MSG}
+		</td>
+		<td align="center" width="15%">
+			<input type="checkbox" name="reminder_service" {reminder_service} value="1">
+		</td><!-- end reminder_block --><!-- begin registration_block -->
+		<td width="35%">
+			&nbsp;{MY_PRODUCT_REGISTRATIONS_MSG}
+		</td>
+		<td align="center" width="15%">
+			<input type="checkbox" name="my_product_registrations" {my_product_registrations} value="1">
+		</td><!-- end registration_block --><!-- begin blank_block -->
+		<td width="35%">
+			&nbsp;
+		</td>
+		<td align="center" width="15%">
+			&nbsp;
+		</td><!-- end blank_block --><!-- end home_page_cols -->
+	</tr><!-- end home_page_rows -->
+	<!-- begin products_block -->
+	<tr>
+		<td colspan="4" class="header">
+			&nbsp;{PRODUCT_SETTINGS_MSG}
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{CAN_USER_ACCESS_PRODUCT_MSG}
+		</td>
+		<td align="center">
+			<input type="checkbox" name="access_products" {access_products} value="1">
+		</td>
+		<td>
+			&nbsp;{ALLOW_MERCHANT_VIEW_STATS_MSG}
+		</td>
+		<td align="center">
+			<input type="checkbox" name="merchant_sales" {merchant_sales} value="1">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{CAN_USER_ADD_PRODUCTS_MSG}
+		</td>
+		<td align="center">
+			<input type="checkbox" name="add_product" {add_product} value="1">
+		</td>
+		<td>
+			&nbsp;{CAN_USER_EDIT_PRODUCTS_MSG}
+		</td>
+		<td align="center">
+			<input type="checkbox" name="edit_product" {edit_product} value="1">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{CAN_USER_DELETE_PRODUCTS_MSG}
+		</td>
+		<td align="center">
+			<input type="checkbox" name="delete_product" {delete_product} value="1">
+		</td>
+		<td>
+			&nbsp;{AUTOMATICALLY_APPROVE_PRODUCTS_MSG}
+		</td>
+		<td align="center">
+			<input type="checkbox" name="approve_product" {approve_product} value="1">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{CAN_USER_ACCESS_PRODUCT_REGISTRATION_MSG}
+		</td>
+		<td align="center">
+			<input type="checkbox" name="access_product_registration" {access_product_registration} value="1">
+		</td>
+		<td>
+			&nbsp;{AUTOMATICALLY_APPROVE_PRODUCT_REGISTRATION_MSG}
+		</td>
+		<td align="center">
+			<input type="checkbox" name="approve_product_registration" {approve_product_registration} value="1">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="4" class="header">
+			&nbsp;{MERCHANT_SALES_ORDERS_MSG}
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{ALLOW_MERCHANT_VIEW_ORDERS_MSG}
+		</td>
+		<td align="center">
+			<input type="checkbox" name="merchant_orders" {merchant_orders} value="1">
+		</td>
+		<td>
+			&nbsp;{ALLOW_MERCHANT_VIEW_PAYMENT_MSG}
+		</td>
+		<td align="center">
+			<input type="checkbox" name="merchant_order_payment_details" {merchant_order_payment_details} value="1">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{ALLOW_MERCHANT_VIEW_CC_MSG}
+		</td>
+		<td align="center">
+			<input type="checkbox" name="merchant_order_cc_number" {merchant_order_cc_number} value="1">
+		</td>
+		<td>
+			&nbsp;{ALLOW_MERCHANT_VIEW_CC_CODE_MSG}
+		</td>
+		<td align="center">
+			<input type="checkbox" name="merchant_order_cc_cvv2" {merchant_order_cc_cvv2} value="1">
+		</td>
+	</tr>
+	<!-- end products_block -->
+	<!-- begin affiliate_block -->
+	<tr>
+		<td colspan="4" class="header">
+			&nbsp;{AFFILIATE_SETTINGS_MSG}
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{CAN_USER_JOIN_AFFILIATE_MSG}
+		</td>
+		<td align="center">
+			<input type="checkbox" name="affiliate_join" {affiliate_join} value="1">
+		</td>
+		<td>
+			&nbsp;{CAN_USER_ACCESS_AFFILIATE_MSG}
+		</td>
+		<td align="center">
+			<input type="checkbox" name="affiliate_sales" {affiliate_sales} value="1">
+		</td>
+	</tr>
+	<!-- end affiliate_block -->
+	<!-- begin ad_block -->
+	<tr>
+		<td colspan="4" class="header">
+			&nbsp;{ADS_DETAILS_SETTINGS_MSG}
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{CAN_USER_ADD_ADS_MSG}
+		</td>
+		<td align="center">
+			<input type="checkbox" name="add_ad" {add_ad} value="1">
+		</td>
+		<td>
+			&nbsp;{CAN_USER_EDIT_ADS_MSG}
+		</td>
+		<td align="center">
+			<input type="checkbox" name="edit_ad" {edit_ad} value="1">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{CAN_USER_DELETE_ADS_MSG}
+		</td>
+		<td align="center">
+			<input type="checkbox" name="delete_ad" {delete_ad} value="1">
+		</td>
+		<td>
+			&nbsp;{AUTOMATICALLY_APPROVE_ADS_MSG}
+		</td>
+		<td align="center">
+			<input type="checkbox" name="approve_ad" {approve_ad} value="1">
+		</td>
+	</tr>
+	<!-- end ad_block -->
+	<tr class="middle">
+		<td align="right" colspan="4">
+			<input class="submit" type="submit" value="{save_button}" onclick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+			<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{confirm_delete}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+			<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+		</td>
+	</tr>
+	
+	</table>
+</div>
+
+<div id="data_commissions" style="{commissions_style}">
+<table cellspacing="1" cellpadding="4" border="0" width="100%">
+	<tr>
+		<td class="middle" colspan="2">
+			&nbsp;<b>{DISCOUNTS_FEES_COMMISSIONS_MSG}</b>
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{DISCOUNT_MSG}
+		</td>
+		<td>
+			<select name="discount_type"><!-- begin discount_type -->
+				<option {discount_type_selected} value="{discount_type_value}">{discount_type_description}<!-- end discount_type -->
+			</select>
+			&nbsp; {AMOUNT_MSG} <input class="field" type="text" name="discount_amount" size="20" value="{discount_amount}">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{MERCHANT_FEE_MSG}
+		</td>
+		<td>
+			<select name="merchant_fee_type"><!-- begin merchant_fee_type -->
+				<option {merchant_fee_type_selected} value="{merchant_fee_type_value}">{merchant_fee_type_description}<!-- end merchant_fee_type -->
+			</select>
+			&nbsp; {AMOUNT_MSG} <input class="field" type="text" name="merchant_fee_amount" size="20" value="{merchant_fee_amount}">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{AFFILIATE_COMMISSION_MSG}
+		</td>
+		<td>
+			<select name="affiliate_commission_type"><!-- begin affiliate_commission_type -->
+				<option {affiliate_commission_type_selected} value="{affiliate_commission_type_value}">{affiliate_commission_type_description}<!-- end affiliate_commission_type -->
+			</select>
+			&nbsp; {AMOUNT_MSG} <input class="field" type="text" name="affiliate_commission_amount" size="20" value="{affiliate_commission_amount}">
+		</td>
+	</tr>
+	<tr class="middle">
+		<td colspan="4">
+			&nbsp;{PRODUCT_REWARDS_MSG}
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{REWARD_POINTS_MSG}
+		</td>
+		<td>
+			<select name="reward_type"><!-- begin reward_type -->
+				<option {reward_type_selected} value="{reward_type_value}">{reward_type_description}<!-- end reward_type -->
+			</select>
+			&nbsp;{AMOUNT_MSG}
+			<input class="field" type="text" name="reward_amount" value="{reward_amount}" size="20" maxlength="10">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{REWARD_CREDITS_MSG}
+		</td>
+		<td>
+			<select name="credit_reward_type"><!-- begin credit_reward_type -->
+				<option {credit_reward_type_selected} value="{credit_reward_type_value}">{credit_reward_type_description}<!-- end credit_reward_type -->
+			</select>
+			&nbsp;{AMOUNT_MSG}
+			<input class="field" type="text" name="credit_reward_amount" value="{credit_reward_amount}" size="20" maxlength="10">
+		</td>
+	</tr>
+	<tr class="middle">
+		<td></td>
+		<td>
+			&nbsp; <input class="submit" type="submit" value=" {save_button} " onCLick="document.record.operation.value='save'"> &nbsp;
+		</td>
+	</tr>
+	</table>
+</div>
+
+<!--begin sitelist-->
+<div id="data_sites" style="{sites_style}">
+<table cellspacing="1" cellpadding="4" border="0" width="100%">
+<tr class="usual">
+	<td colspan="3">
+		&nbsp; <input type="checkbox" name="sites_all" {sites_all} onClick="checkListFields('sites');" value="1">
+		{USE_TYPE_SITES_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td colspan="2">
+
+		<table width="100%" border="0" cellspacing="1" cellpadding="3">
+		<tr align="center" class="usual">
+			<td width="40%"><b>{AVAILABLE_SITES_MSG}</b></td>
+			<td width="20%"><b>{OPERATIONS_MSG}</b></td>
+			<td width="40%"><b>{USE_ITEM_SITES_MSG}</b></td>
+		</tr>
+		<tr align="center" class="usual">
+			<td width="40%">
+				<select name="available_sites" MULTIPLE size="10"  style="width: 300px;"><!-- begin available_sites -->
+					<option value="{site_id}">{site_name}<!-- end available_sites-->
+				</select>
+			</td>
+			<td width="20%">
+
+				<input class="submit" readonly type="button" name="add_sites" value="&nbsp;&nbsp; {ADD_BUTTON}  -> &nbsp;&nbsp;" onClick="addListFields('sites');">
+				<br><br>
+				<input class="submit" type="button" name="remove_sites" value="<- {REMOVE_BUTTON}" onClick="removeListFields('sites');">
+			</td>
+			<td width="40%">
+
+				<select name="selected_sites" MULTIPLE size="10" style="width: 300px;"><!-- begin selected_sites -->
+					<option value="{site_id}">{site_name}<!-- end selected_sites -->
+				</select>
+			</td>
+		</tr>
+		</table>
+
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="3">
+		&nbsp; <input class="submit" type="submit" value=" {save_button} " onCLick="document.record.operation.value='save'"> &nbsp;
+	</td>
+</tr>
+</table>
+</div>
+<!--end sitelist-->
+</form>
+
+	</td>
+</tr>
+</table>
+<script language="JavaScript">
+<!--
+	checkListFieldsAll();
+//-->
+</script>
+
+{admin_footer}
+</body>
+</html>

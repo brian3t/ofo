@@ -1,0 +1,109 @@
+<div class="block-support">
+	<!-- begin support_errors -->
+	<div class="errorbg" align="center">
+		<!-- begin db_error -->
+		{DATABASE_ERROR_MSG}
+		<!-- end db_error -->
+		{errors_list} </div>
+	<!-- end support_errors -->
+	<!-- begin support_thanks -->
+	<div class="messagebg" align="center">{SUPPORT_REQUEST_ADDED_MSG}</div>
+	<!-- end support_thanks -->
+	<div class="titleTopCenter">
+		
+		
+		<h1>Ask A Question</h1>
+	</div>
+	<div class="wrapper">
+		<!-- begin intro_block -->
+		<div>{intro_text}</div>
+		<!-- end intro_block -->
+		<form name="support" action="{support_href}" method="post">
+			<input type="hidden" name="rnd" value="{rnd}">
+			<input type="hidden" name="type" value="new">
+			<input type="hidden" name="attachments_url" value="{user_support_attachments_url}">
+			<input type="hidden" name="action" value="1">
+			<input type="hidden" name="support_status_id" value="1">
+			<table width="100%" border="0" cellspacing="1" align="center" class="padding6px">
+				<tr class="usualbg">
+					<td colspan="2" class="smallText" align="right">{ASTERISK_MSG}&nbsp;</td>
+				</tr>
+				<tr class="usualbg">
+					<td class="{user_name_class}" width="40%">{SUPPORT_USER_NAME_FIELD} <span class="required">*</span></td>
+					<td class="{user_name_class}" width="60%"><input class="text" type="text" name="user_name" style="width: 90%;" value="{user_name}" maxlength="64"></td>
+				</tr>
+				<tr class="usualbg">
+					<td class="{user_email_class}">{SUPPORT_USER_EMAIL_FIELD} <span class="required">*</span></td>
+					<td class="{user_email_class}"><input class="text" type="text" name="user_email" style="width: 90%;" value="{user_email}" maxlength="128"></td>
+				</tr>
+				<!-- begin dep_id_block -->
+				<tr class="usualbg">
+					<td class="{dep_class}">{SUPPORT_DEPARTMENT_FIELD} <span class="required">*</span></td>
+					<td class="{dep_class}"><select class="text" name="dep_id">
+							<!-- begin dep_id -->
+							<option {dep_id_selected} value="{dep_id_value}">{dep_id_description}</option>
+							<!-- end dep_id -->
+						</select>
+					</td>
+				</tr>
+				<!-- end dep_id_block -->
+				<!-- begin support_product_id_block -->
+				<tr class="usualbg">
+					<td class="{product_class}">{SUPPORT_PRODUCT_FIELD} <span class="required">*</span></td>
+					<td class="{product_class}"><select class="text" name="support_product_id">
+							<!-- begin support_product_id -->
+							<option {support_product_id_selected} value="{support_product_id_value}">{support_product_id_description}
+							<!-- end support_product_id -->
+						</select>
+					</td>
+				</tr>
+				<!-- end support_product_id_block -->
+				<tr class="usualbg">
+					<td class="{type_class}">{SUPPORT_TYPE_FIELD} <span class="required">*</span></td>
+					<td class="{type_class}"><select class="text" name="support_type_id">
+							<!-- begin support_type_id -->
+							<option {support_type_id_selected} value="{support_type_id_value}">{support_type_id_description}
+							<!-- end support_type_id -->
+						</select>
+					</td>
+				</tr>
+				<!-- begin profile_properties -->
+				<tr id="pp_block_{property_id}" class="usualbg">
+					<td style="{property_style}" class="{property_class}"> {property_name} <span class="required">{property_required}</span> </td>
+					<td style="{property_style}" class="{property_class}"> {property_control} </td>
+				</tr>
+				<!-- end profile_properties -->
+				<tr class="usualbg">
+					<td class="{summary_class}">{SUPPORT_SUMMARY_FIELD} <span class="required">*</span></td>
+					<td class="{summary_class}"><input class="text" type="text" name="summary" style="width: 90%;" value="{summary}"></td>
+				</tr>
+				<!-- begin attachments_block -->
+				<tr class="usualbg">
+					<td><a href="#" onClick="attachFiles(document.support);return false;"><img src="images/clip.gif" border="0" width="16" height="16"></a> &nbsp;<a href="#" onClick="attachFiles(document.support);return false;">{ATTACHMENTS_MSG}</a> </td>
+					<td><div id="attachmentsBlock" style="{attachments_class}"> &nbsp;<a href="#" onClick="attachFiles(document.support);return false;">Attached Files</a>:&nbsp;
+							&nbsp;<span id="attachedFiles">{attached_files}</span> </div></td>
+				</tr>
+				<!-- end attachments_block -->
+				<tr class="usualbg">
+					<td colspan="2" class="{description_class}">{SUPPORT_DESCRIPTION_FIELD} <span class="required">*</span></td>
+				</tr>
+				<tr class="usualbg">
+					<td colspan="2" class="{description_class}"><textarea name="description" style="width: 95%;" rows="10">{description}</textarea></td>
+				</tr>
+				<!-- begin validation_number_block -->
+				<tr class="usualbg">
+					<td class="{validation_class}">{VALIDATION_CODE_FIELD} <span class="required">*</span></td>
+					<td class="{validation_class}">&nbsp;
+						<input class="field" type="text" name="validation_number" size="4" value="{validation_number}">
+						&nbsp;<img src="validation_image.php" border="0" align="absmiddle"> </td>
+				</tr>
+				<!-- end validation_number_block -->
+				<tr class="usualbg">
+					<td colspan="2"><span class="submit">
+						<input class="button" type="submit" value="{SUPPORT_REQUEST_BUTTON}">
+						</span> </td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,366 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {IMPORT_MSG} {table_title} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript">
+<!--
+	function checkDBColumns()
+	{
+		var totalColumns = document.record.total_columns.value;
+		for(var i = 1; i <= totalColumns; i++) {
+			var objectControl = eval("document.record.db_column_" + i);
+			var controlValue = objectControl.options[objectControl.selectedIndex].value;
+			if (controlValue == "") {
+				var columnName = eval("document.record.f_1_" + i + ".value");
+				alert("Please select 'Database Column' or 'Ignore' for CSV Column '" + columnName + "'.");
+				objectControl.focus();
+				return false;
+			}
+		}
+		
+		return true;
+	}
+
+	function useAll()
+	{
+		var totalRows = document.record.total_rows.value;
+		var useAll = document.record.use_all.checked;
+		for(var i = 1; i <= totalRows; i++) {
+			var objectControl = eval("document.record.use_" + i);
+			if(objectControl) {
+				if(useAll) {
+					var errorValue = eval("document.record.error_" + i + ".value");
+					if(errorValue != 1) {
+						objectControl.checked = true;
+					}
+				} else {
+					objectControl.checked = false;
+				}
+			}
+		}
+		
+		return true;
+	}
+
+	var clickNumber = 0;
+
+	function checkErrors()
+	{
+		var totalRows = document.record.total_rows.value;
+		var rowsSelected = 0;
+		for(var i = 1; i <= totalRows; i++) {
+			var rowObject = eval("document.record.use_" + i);
+			var errorObject = eval("document.record.error_" + i);
+			if (rowObject) {
+				if (rowObject.checked && errorObject.value == 1) {
+					alert("{PLEASE_UNTICK_COLUMNS_MSG}");
+					rowObject.focus();
+					return false;
+				} else if (rowObject.checked) {
+					rowsSelected++;
+				}
+			}
+		}
+		if (rowsSelected == 0) {
+			alert("{NO_ROWS_SELECTED_MSG}");
+			return false;
+		}
+		
+		var formSubmit = true;
+  
+		clickNumber++;
+		if(clickNumber % 2 == 0) {
+			formSubmit = false;
+		} 
+
+		return formSubmit;
+	}
+
+	function matchColumns()
+	{
+		var matchOption = document.record.match_option.checked;
+		if (matchOption) {
+			var importedFields = document.record.imported_fields.value;
+			var fields = importedFields.split(",");
+			for (var i = 1; i < fields.length; i++) {
+				var objectControl = eval("document.record.db_column_" + i);
+				var controlValue = objectControl.options[objectControl.selectedIndex].value;
+				for (var opt = 0; opt < objectControl.options.length; opt++) {          
+					if (objectControl.options[opt].value == fields[i]) {
+						objectControl.selectedIndex = opt;
+						break;
+					}
+				}
+			}
+		} else {
+			document.record.reset();
+		}
+		
+	}
+
+//-->
+</script>
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;<!-- BEGIN products_path -->
+			<a href="{admin_items_list_href}">{PRODUCTS_MSG}</a>&nbsp;&gt;&nbsp;<!-- BEGIN tree --><a 
+			href="{admin_items_list_href}?category_id={tree_cat_id}">{tree_cat_name}</a>&nbsp;&gt;&nbsp;<!-- END tree -->
+			<a href="{admin_items_list_href}?category_id={tree_current_id}">{tree_current_name}</a>&nbsp;&gt;<!-- END products_path -->
+			<!-- BEGIN newsletters_path --><a 
+			href="{admin_users_list_href}">{NEWSLETTER_USERS_MSG}</a>&nbsp;&gt;&nbsp;<!-- END newsletters_path -->
+			<b>{IMPORT_MSG} {table_title}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td>
+<fieldset>
+<legend>{IMPORT_MSG} {table_title}</legend>
+
+
+	<!-- BEGIN upload_block -->
+	<br>
+	<table cellspacing="0" cellpadding="3" border="0" width="100%" align="center">
+	<form name="record" action="{admin_import_href}" enctype="multipart/form-data" method="post">
+	<input type="hidden" name="table" value="{table}">
+	<input type="hidden" name="operation" value="upload">
+	<input type="hidden" name="category_id" value="{category_id}">
+	<tr>
+		<td class="usual">&nbsp;</td>
+	</td><!-- BEGIN errors -->
+	<tr>
+		<td class="usual">
+			<div class="error">
+			&nbsp;&nbsp;&nbsp;{errors_list}</div>
+		</td>
+	</tr><!-- END errors -->
+	<tr>
+		<td class="usual">
+			&nbsp;&nbsp;&nbsp;{DELIMITED_BY_MSG}: <select name="csv_delimiter"><!-- begin delimiter -->
+			<option {delimiter_selected} value="{delimiter_value}">{delimiter_description}<!-- end delimiter -->
+		</select>
+		<font class=small>&nbsp;(characters such as commas or tabs separate each field)</font>
+		</td>
+	</tr><!-- begin related_delimiter_block-->
+	<tr>
+		<td class="usual">
+			&nbsp;&nbsp;&nbsp;<input type="checkbox" name="import_related_table" value="1" checked> with {PRODUCTS_MSG} {DELIMITED_BY_MSG}: <select name="csv_related_delimiter"><!-- begin related_delimiter -->
+			<option {related_delimiter_selected} value="{related_delimiter_value}">{related_delimiter_description}<!-- end related_delimiter -->
+		</select>
+		</td>
+	</tr><!-- end related_delimiter_block-->
+	<tr>
+		<td class="usual">
+			&nbsp;&nbsp;&nbsp;Please select <b>CSV</b> file and press '{UPLOAD_TITLE}' button.
+		</td>
+	</tr>
+	<tr>
+		<td class="usual">
+				&nbsp;&nbsp;&nbsp;<input class="submit" type="file" size="60" name="csv_file" style="width: 400px;">&nbsp;&nbsp;
+				<input class="submit" type="submit" name="submit" value="{UPLOAD_TITLE}" style="width: 90px;">
+		</td>
+	</tr>
+	<tr>
+		<td class="usual">
+			&nbsp;&nbsp;&nbsp;Or please specify path to your <b>CSV</b> file and press '{CONTINUE_BUTTON}' button.
+		</td>
+	</tr>
+	<tr>
+		<td class="usual">
+				&nbsp;&nbsp;&nbsp;<input class="submit" type="text" size="60" name="csv_file_path" value="{csv_file_path}" style="width: 400px;">&nbsp;&nbsp;
+				<input class="submit" type="submit" name="submit" value="{CONTINUE_BUTTON}" style="width: 90px;">
+		</td>
+	</tr>
+	<tr>
+		<td class="usual">&nbsp;</td>
+	</td>
+	</form>	
+	</table>
+	<!-- END upload_block -->
+
+
+	<!-- BEGIN import_block -->
+	<form name="record" action="{admin_import_href}" method="post" onSubmit="return checkDBColumns();">
+	<input type="hidden" name="rnd" value="{rnd}">
+	<input type="hidden" name="operation" value="import">
+	<input type="hidden" name="table" value="{table}">
+	<input type="hidden" name="category_id" value="{category_id}">
+	<input type="hidden" name="total_columns" value="{total_columns}">
+	<input type="hidden" name="total_rows" value="{total_rows}">
+	<input type="hidden" name="csv_delimiter" value="{csv_delimiter}">
+	<input type="hidden" name="csv_file_path" value="{csv_file_path}">	
+	<input type="hidden" name="csv_related_delimiter" value="{csv_related_delimiter}">
+	<input type="hidden" name="import_related_table" value="{import_related_table}">
+
+	<table cellspacing="0" cellpadding="1" border="0" width="100%" align="center">
+	<tr>
+		<td align="center">
+			Please select database columns and press '<b>{CONTINUE_BUTTON}</b>' button
+			<!-- begin match_option -->
+			<br>You can match the columns with previous import by ticking this checkbox
+			<input type="checkbox" name="match_option" value="1" onClick="matchColumns();">
+			<input type="hidden" name="imported_fields" value="{imported_fields}">
+			<!-- end match_option -->
+			<br><br>
+			<table border="0" cellpadding="4" cellspacing="1" class="commonbg">
+			<tr class=middle>
+				<td>&nbsp;#&nbsp;</td>
+				<td>&nbsp;CSV&nbsp;Column&nbsp;</td>
+				<td></td>
+				<td>&nbsp;Database&nbsp;Column&nbsp;</td>
+			</tr><!-- begin columns -->
+			<tr class=usual>
+				<td align="center">{column_number}</td>
+				<td><b>{column_title}</b></td>
+				<td><img src="../images/double_right.gif" width="16" height="16" border="0" hspace=5></td>
+				<td>
+					<select name="db_column_{column_number}"><!-- begin db_column -->
+						<option {db_column_selected} value="{db_column_value}">{db_column_description}<!-- end db_column -->
+					</select>
+				</td>
+			</tr><!-- end columns -->
+			<tr>
+				<td colspan="4">
+					<input type="checkbox" name="use_first_row" value="1"> the first row of my CSV file contains data as well
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<input type="radio" name="insert_data" value="0" checked> {ADMIN_SHOW_MSG} all the data before proceed
+					<input type="radio" name="insert_data" value="1"> {IMPORT_MSG} data immediately
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4" align="right"><!-- begin fields -->
+					<input type="hidden" name="{field_name}" value="{field_value}"><!-- end fields -->
+					<input class="submit" type="submit" value="{CONTINUE_BUTTON}">
+				</td>
+			</tr>
+			</table>
+			&nbsp;
+
+		</td>
+	</tr>
+	</table>
+
+	</form>
+	<!-- END import_block -->
+
+
+	<!-- BEGIN insert_block -->
+	<form name="record" action="{admin_import_href}" method="post" onSubmit="return checkErrors();">
+	<input type="hidden" name="rnd" value="{rnd}">
+	<input type="hidden" name="table" value="{table}">
+	<input type="hidden" name="operation" value="insert">
+	<input type="hidden" name="category_id" value="{category_id}">
+	<input type="hidden" name="total_columns" value="{total_columns}">
+	<input type="hidden" name="total_rows" value="{total_rows}">
+	<input type="hidden" name="use_first_row" value="{use_first_row}">
+	<input type="hidden" name="csv_delimiter" value="{csv_delimiter}">
+	<input type="hidden" name="csv_file_path" value="{csv_file_path}"><!-- begin columns_data -->
+	<input type="hidden" name="db_column_{col}" value="{column_name}">
+	<input type="hidden" name="db_value_{col}" value="{column_value}"><!-- end columns_data --><!-- begin fields_info -->
+	<input type="hidden" name="{field_name}" value="{field_value}"><!-- end fields_info -->
+	<input type="hidden" name="csv_related_delimiter" value="{csv_related_delimiter}">
+	<input type="hidden" name="import_related_table" value="{import_related_table}">
+
+	<table cellspacing="0" cellpadding="1" border="0" width="100%" align="center">
+	<tr>
+		<td align="center">
+
+			The following records will be added or updated. Please use checkboxes to select data rows.
+			<table border="0" cellpadding="1" cellspacing="1" class="commonbg">
+			<tr class=middle align="center">
+				<td><input type="checkbox" name="use_all" value="1" onClick="useAll();"></td><!-- BEGIN columns_titles -->
+				<td>
+					&nbsp;{column_title}&nbsp;
+				</td><!-- END columns_titles -->
+				<td class="middle">&nbsp;</td>
+				<td>{STATUS_MSG}</td>
+			</tr><!-- begin rows --><!-- begin row_errors -->
+			<tr class="usual">
+				<td colspan="{total_colspan}" align="center"><div class="error">{errors_list}</div></td>
+				<td class="middle">&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr><!-- end row_errors -->
+			<tr class="{row_class}">
+				<td align="center">
+					<input type="hidden" name="is_exists_{row}" value="{is_exists}">
+					<input type="checkbox" name="use_{row}" value="1">
+					<input type="hidden" name="error_{row}" value="{error_value}">
+				</td><!-- begin cols -->
+				<td>{short_field_value}</td><!-- end cols -->
+				<td class="middle">&nbsp;</td>
+				<td align="center"><b>{status}</b></td>
+			</tr><!-- end rows -->
+			<tr>
+				<td colspan="{total_colspan}">
+					<input class="submit" type="submit" value="{IMPORT_MSG}">
+				</td>
+				<td></td>
+				<td></td>
+			</tr>
+			</table>
+			&nbsp;
+
+		</td>
+	</tr>
+	</table>
+
+	</form>
+	<!-- END insert_block -->
+
+
+	<!-- BEGIN result_block -->
+
+	<table cellspacing="0" cellpadding="1" border="0" width="100%" align="center">
+	<tr>
+		<td align="center">
+
+			&nbsp;
+			<table border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td>
+					<div style="color:blue">
+					<b>{records_added}</b> records added.
+					</div>
+					<div style="color:green">
+					<b>{records_updated}</b> records updated.
+					</div>
+					<div style="color:gray">
+					<b>{records_ignored}</b> records ignored.
+					</div>
+					<!-- BEGIN db_errors -->
+					<div style="color:red">
+					<b>{records_error}</b> errors occurred.
+					</div>
+					<!-- END db_errors -->
+				</td>
+			</tr>
+			</table>
+			&nbsp;
+
+		</td>
+	</tr>
+	</table>
+
+	<!-- END result_block -->
+
+
+</fieldset>
+</td></tr></table>
+
+{admin_footer}
+</body>
+</html>

@@ -1,0 +1,257 @@
+<html><head><title>{ADMINISTRATION_MSG} :: {CREATE_NEW_DUMP_MSG}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript">
+<!--
+
+	var tables = new Array();
+	var selectedtables = new Array();
+	//	<!-- BEGIN tables -->
+	tables[{table_id}] = "{table_name}"; // <!-- END tables -->
+	selectedtables[0] = 0;
+
+	function initValues()
+	{
+		clearOptions();
+		setOptions();
+	}
+
+	function updateFilesize(filesize, final)
+	{
+		var filesizeBlock = document.getElementById('filesize_block');
+		var dumpFileBlock = document.getElementById('dump_file');
+		var dumpFilename = "";
+		if (dumpFileBlock) {
+			dumpFilename = dumpFileBlock.innerHTML;
+		}
+		if (filesizeBlock) {
+			var filesizeMsg = filesize;
+			if (filesize < 1048576) {
+				filesizeMsg = Math.round(filesize / 1024) + " Kb";
+			} else {
+				filesizeMsg = Math.round(filesize / 104857.6) / 10 + " Mb";
+			}
+ 	    filesizeBlock.innerHTML = dumpFilename + " (" + filesizeMsg + ")";
+			if (final == 1) {
+				var dumpCreatingBlock = document.getElementById('dump_creating');
+				var dumpCreatedBlock = document.getElementById('dump_created');
+				var fileCreatedBlock = document.getElementById('file_created');
+				if (dumpCreatedBlock && dumpCreatingBlock) {
+		 	    fileCreatedBlock.innerHTML = dumpFilename + " (" + filesizeMsg + ")";
+					dumpCreatedBlock.style.display = 'block'; 
+					dumpCreatingBlock.style.display = 'none'; 
+				}
+			}	
+		}
+	}
+
+	function setOptions()
+	{
+		for (var i = 0; i < tables.length; i++) {
+			if (selectedtables[i]) {
+				var optionNumber = document.tables.selected.length;
+				document.tables.selected.options[optionNumber] = new Option( tables[i], i);
+			} else {
+				var optionNumber = document.tables.not_selected.length;
+				document.tables.not_selected.options[optionNumber] = new Option( tables[i], i);
+			}
+		}
+	}
+
+	function clearOptions()
+	{
+		var totalNotSelected = document.tables.not_selected.length;
+		var totalSelected = document.tables.selected.length;
+
+		for (var i = totalNotSelected - 1; i >= 0; i--) {
+			document.tables.not_selected.options[i] = null;
+		}
+		for (var i = totalSelected - 1; i >= 0; i--) {
+			document.tables.selected.options[i] = null;
+		}
+	}
+
+	function addValues()
+	{
+		var totalOptions = document.tables.not_selected.length;
+
+		for (var i = 0; i < totalOptions; i++) {
+			if (document.tables.not_selected.options[i].selected == true) {
+				selectedtables[document.tables.not_selected.options[i].value] = 1;
+			}
+		}
+		clearOptions();
+		setOptions();
+	}
+
+	function removeValues()
+	{
+		var totalOptions = document.tables.selected.length;
+
+		for (var i = 0; i < totalOptions; i++) {
+			if (document.tables.selected.options[i].selected == true) {
+				selectedtables[document.tables.selected.options[i].value] = 0;
+			}
+		}
+
+		clearOptions();
+		setOptions();
+	}
+
+	function selectValues()
+	{
+		var totalOptions = document.tables.selected.length;
+		var tablesValues = "";
+
+		if ((totalOptions == 0) && (document.tables.operation.value != 'cancel')) {
+			alert('Please select some table');
+			return false;
+		}
+		for (var i = 0; i < totalOptions; i++) {
+			document.tables.selected.options[i].selected = true;
+			if (i > 0) tablesValues += ",";
+			tablesValues += document.tables.selected.options[i].text;
+		}
+		document.tables.tables_select.value = tablesValues;
+		return true;
+	}
+
+	function ViewSelect()
+	{
+		var table_popup = document.getElementById("database_type");
+
+		if (document.getElementById("use_structure").checked) {
+	     	table_popup.style.display = "block";
+		} else {
+	     	table_popup.style.display = "none";
+		}
+	}
+//-->
+</script>
+</head>
+
+<body class="commonbg">
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header">
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_dump_href}">{DATABASE_MANAGEMENT_MSG}</a>&nbsp;&gt;&nbsp;<b>{CREATE_NEW_DUMP_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td>
+<fieldset>
+<legend>{CREATE_NEW_DUMP_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center">
+	<td>
+		<!-- BEGIN dump_creation -->
+			<table width="100%" border="0" cellspacing="1" cellpadding="4">
+				<tr class="usual">
+					<td align="center">
+						<div id="dump_file" style="display: none;">{dump_file_name}</div>
+						<div id="dump_creating">{INPROGRESS_MSG} - <span class="message" id="filesize_block">{dump_file_name} (0 Kb)</span></div>
+						<div id="dump_created" style="display: none;">{NEW_DUMP_CREATED_MSG} - <b><span class="message" id="file_created"></span></b></div>
+						
+					</td>
+				</tr>
+			</table>
+		<!-- END dump_creation -->
+		<!-- BEGIN dump_create -->
+		<form action="{admin_dump_create_href}" name="tables" method="POST" onSubmit="return selectValues();">
+		<input type="hidden" name="operation" value="1">
+		<input type="hidden" name="tables_select" value="">
+  	<table width="100%" border="0" cellspacing="1" cellpadding="4"><!-- BEGIN errors -->
+		<tr class="usual">
+			<td colspan="3" align="center">
+				<div class="error">{errors_list}</div>
+			</td>
+		</tr><!-- END errors -->
+		<tr class="usual">
+			<td colspan="3" align="left">
+				<div class="usual">
+					{DUMP_FILENAME_MSG}&nbsp;<input class="field" TYPE="text" NAME="dump_file_name" size="30" value="{dump_file_name}">
+				</div>
+			</td>
+		</tr>
+		<!-- begin db_structure -->
+		<tr class="usual">
+			<td colspan="3" align="left">
+				<div class="usual">
+					{CREATE_TABLE_STRUCTURE_MSG} <input type="checkbox" id="use_structure" name="use_structure" {use_structure} value="1" onkeyup="ViewSelect();" onClick="ViewSelect();">
+					<font size="1">({OR_DATA_ONLY_MSG})</font>
+				</div>
+			</td>
+		</tr>
+		<!-- end db_structure -->
+		<tr class="usual">
+			<td colspan="3" align="left">
+				<div id="database_type" style="display: none;">
+				<div class="usual">
+					{CREATE_DUMP_FOR_DB_MSG}
+					<select name="db_type"><!-- begin db_type -->
+						<option {db_type_selected} value="{db_type_value}">{db_type_description}<!-- end db_type -->
+					</select>
+				</div>
+				</div>
+			</td>
+		</tr>
+		<tr align="center" class="middle">
+			<td width="345">{AVAILABLE_TABLES_MSG}</td>
+			<td width="85">{OPERATIONS_MSG}</td>
+			<td width="345">{SELECTED_TABLES_MSG}</td>
+		</tr>
+		<tr align="center" class="usual">
+			<td width="345">
+				<select name="not_selected" MULTIPLE size="10" style="width: 325px;">
+					<option>{AVAILABLE_TABLES_MSG}
+				</select>
+			</td>
+			<td width="85">
+				<input class="submit" style="width: 80px;" type="button" name="add" value="&nbsp;&nbsp; Add  -> &nbsp;&nbsp;" onClick="addValues();"><br><br>
+				<input class="submit" style="width: 80px;" type="button" name="remove" value="<- Remove" onClick="removeValues();">
+			</td>
+			<td width="345">
+
+				<select name="selected" MULTIPLE size="10" style="width: 325px;">
+					<option>{SELECTED_TABLES_MSG}
+				</select>
+			</td>
+		</tr>
+		<tr align="right" class="middle">
+			<td colspan="3">
+				<input class="submit" type="submit" value="{SUBMIT_BUTTON}" onCLick="document.tables.operation.value='save'">&nbsp;&nbsp;&nbsp;
+				<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.tables.operation.value='cancel'">
+			</td>
+		</tr>
+		</table>
+		</form>
+		<!-- END dump_create -->
+	</td>
+</tr>
+</table>
+</fieldset>
+</td></tr></table>
+
+<script language="JavaScript">
+<!--
+	if (document.tables) {
+		initValues();
+		ViewSelect();
+	}
+//-->
+</script>
+
+{admin_footer}
+
+<!-- begin page_end -->
+</body></html><!-- end page_end -->

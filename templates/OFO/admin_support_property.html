@@ -1,0 +1,321 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_CUSTOM_FIELD_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<form action="{admin_property_href}" name="record" method="post">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="property_id" value="{property_id}">
+<input type="hidden" name="more_properties" value="0">
+<input type="hidden" name="number_properties" value="{number_properties}">
+<input type="hidden" name="section_id" value="{section_id}">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;
+			<a href="{admin_support_settings_href}">{SUPPORT_SETTINGS_MSG}</a>&nbsp;&gt;&nbsp;
+			<b>{EDIT_CUSTOM_FIELD_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_CUSTOM_FIELD_MSG}</legend>
+<table cellspacing="1" cellpadding="4" border="0" align="center" width="100%">
+
+<!-- BEGIN errors -->
+<tr>
+	<td colspan="6" class="usual" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{FIELD_ORDER_MSG} *
+	</td>
+	<td colspan="5">
+		&nbsp;<input class="field" type="text" name="property_order" value="{property_order}" size="12">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{FIELD_NAME_MSG} *
+	</td>
+	<td colspan="5">
+		&nbsp;<input class="field" type="text" name="property_name" value="{property_name}" size="60">
+	</td>
+</tr>
+<!-- begin sitelist -->
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_SITE_MSG} *
+	</td>
+	<td colspan="5">
+		<select name="param_site_id"><!-- begin site_id -->
+			<option {site_id_selected} value="{site_id_value}">{site_id_description}<!-- end site_id -->
+		</select>
+	</td>
+</tr>
+<!-- end sitelist -->
+<tr class="usual">
+	<td>
+		&nbsp;{DEFAULT_VALUE_MSG}
+	</td>
+	<td colspan="5">
+		&nbsp;<input class="field" type="text" name="default_value" value="{default_value}" size="60"> 
+		<font size=1>(Used for <b>Label</b>, <b>TextBox</b> and <b>TextArea</b>)</font>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{FIELD_STYLE_MSG}
+	</td>
+	<td colspan="5">
+		&nbsp;<input class="field" type="text" name="property_style" value="{property_style}" size="60"> 
+		<font size=1>({OPTION_STYLE_NOTE}, {EG_MSG} 'color: blue;')</font>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{FIELD_CONTROL_MSG} *
+	</td>
+	<td colspan="5">
+		&nbsp;<select name="control_type"><!-- begin control_type -->
+			<option {control_type_selected} value="{control_type_value}">{control_type_description}<!-- end control_type -->
+		</select>
+		<font size=1>({CONTROL_TYPE_USE_DESC})</font>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SHOW_FIELD_MSG} *
+	</td>
+	<td colspan="5"><!-- begin property_show -->
+		<input type="radio" name="property_show" {property_show_checked} value="{property_show_value}">{property_show_description}<!-- end property_show -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{FIELD_REQUIRED_MSG}
+	</td>
+	<td colspan="5">
+		<input type="checkbox" {required} name="required" value="1">
+	</td>
+</tr>
+<!-- BEGIN tax_free_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{TAX_FEE_MSG}
+	</td>
+	<td colspan="5">
+		<input type="checkbox" {tax_free} name="tax_free" value="1">
+	</td>
+</tr>
+<!-- END tax_free_block -->
+<tr class="middle">
+	<td colspan="6">
+		&nbsp;{OPTIONS_APPEARANCE_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CONTROL_STYLE_MSG}
+	</td>
+	<td colspan="5">
+		&nbsp;<input class="field" type="text" name="control_style" value="{control_style}" size="60">
+		<font size=1>({CONTROL_STYLE_NOTE}, {EG_MSG} 'color: green;')</font>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{BEFORE_TITLE_HTML_MSG}
+	</td>
+	<td colspan="5">
+		&nbsp;<input class="field" type="text" name="before_name_html" value="{before_name_html}" size="60">
+		<font size=1>({BEFORE_TITLE_HTML_NOTE})</font>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{AFTER_TITLE_HTML_MSG}
+	</td>
+	<td colspan="5">
+		&nbsp;<input class="field" type="text" name="after_name_html" value="{after_name_html}" size="60">
+		<font size=1>({AFTER_TITLE_HTML_NOTE})</font>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{BEFORE_CONTROL_HTML_MSG}
+	</td>
+	<td colspan="5">
+		&nbsp;<input class="field" type="text" name="before_control_html" value="{before_control_html}" size="60">
+		<font size=1>({BEFORE_CONTROL_HTML_NOTE})</font>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{AFTER_CONTROL_HTML_MSG}
+	</td>
+	<td colspan="5">
+		&nbsp;<input class="field" type="text" name="after_control_html" value="{after_control_html}" size="60">
+		<font size=1>({AFTER_CONTROL_HTML_NOTE})</font>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="6">
+		&nbsp;{JAVASCRIPT_SETTINGS_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ONCHANGE_EVENT_MSG}
+	</td>
+	<td colspan="5">
+		&nbsp;<input class="field" type="text" name="onchange_code" value="{onchange_code}" size="60">
+		<font size=1>({EG_MSG} &lt;select onChange="<b>[your code here]</b>"&gt;)</font>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ONCLICK_EVENT_MSG}
+	</td>
+	<td colspan="5">
+		&nbsp;<input class="field" type="text" name="onclick_code" value="{onclick_code}" size="60">
+		<font size=1>({EG_MSG} &lt;input type="radio" onClick="<b>[your code here]</b>"&gt;)</font>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CONTROL_CODE_MSG}
+	</td>
+	<td colspan="5">
+		&nbsp;<input class="field" type="text" name="control_code" value="{control_code}" size="60">
+		<font size=1>({EG_MSG} &lt;input type="text" <b>[your code here]</b>&gt;)</font>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="6">
+		&nbsp;{REGEXP_SETTINGS_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{VALIDATION_REGEXP_MSG}
+	</td>
+	<td colspan="5">
+		&nbsp;<input class="field" type="text" name="validation_regexp" value="{validation_regexp}" size="60">
+		<font size=1>({EG_MSG} <b>/^\d&#123;2&#125;\/\d&#123;2&#125;\/\d&#123;4&#125;$/</b>)</font>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{REGEXP_ERROR_MSG}
+	</td>
+	<td colspan="5">
+		&nbsp;<input class="field" type="text" name="regexp_error" value="{regexp_error}" size="60">
+		<font size=1>({EG_MSG} Field <b>&#123;field_name&#125;</b> doesn't match the following date mask <b>MM/DD/YYYY</b>)</font>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="6">
+		&nbsp;{OPTIONS_VALUES_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SQL_TO_OBTAIN_VALUES_MSG}
+	</td>
+	<td colspan="5">
+		<table cellpadding="0" cellspacing="0" border="0">
+		<tr>
+			<td><textarea name="options_values_sql" rows="3" cols="80">{options_values_sql}</textarea></td>
+			<td>&nbsp;&nbsp;</td>
+			<td valign="top"><font size=1>
+				({EG_MSG} <b>SELECT country_id,country_name FROM va_countries ORDER BY country_order, country_name</b>)
+				</font>
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr align="center" class="usual">
+	<td>
+		&nbsp;{ID_MSG}&nbsp;
+	</td>
+	<td class="small">
+		{OPTION_VALUE_MSG}
+	</td>
+	<td class="small">
+		{DEFAULT_MSG}
+	</td>
+	<td class="small">
+		{HIDE_MSG}
+	</td>
+	<td class="small">
+		{DELETE_BUTTON}
+	</td>
+	<td class="small" width="275">
+		&nbsp;
+	</td>
+</tr><!-- begin properties --><!-- begin properties_errors -->
+<tr class="usual" align="center">
+	<td>&nbsp;</td>
+	<td colspan="4">
+		<div class="error">{errors_list}</div>
+	</td>
+	<td>&nbsp;</td>	
+</tr><!-- end properties_errors -->
+<tr class="usual" align="center">
+	<td>
+		&nbsp;{property_value_id}&nbsp;
+		<input type="hidden" name="property_value_id_{properties_number}" value="{property_value_id}">
+		<input type="hidden" name="property_id_{properties_number}" value="{property_id}">
+	</td>
+	<td align="left">
+		<input class="field" type="text" name="property_value_{properties_number}" value="{property_value}" size="60">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="is_default_value_{properties_number}" {is_default_value} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="hide_value_{properties_number}" {hide_value} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="properties_delete_{properties_number}" {properties_delete} value="1">
+	</td>
+	<td>&nbsp;</td>
+</tr><!-- end properties -->
+<tr class="usual">
+	<td>&nbsp;</td>
+	<td colspan="4" align="right">
+		{ADD_MORE_OPTION_VALUES_QST} <input class="submit" type="submit" value={ADD_BUTTON} onClick="document.record.more_properties.value=1">&nbsp;
+	</td>
+	<td>&nbsp;</td>
+<tr class="middle">
+	<td></td>
+	<td colspan="5">
+		<input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onCLick="document.record.operation.value='delete';return confirm('Do you want delete &quot;{property_name}&quot; option?');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">&nbsp;
+	</td>
+</tr>
+
+</form>
+</table>
+</fieldset>
+
+	
+{admin_footer}
+</body>
+</html>

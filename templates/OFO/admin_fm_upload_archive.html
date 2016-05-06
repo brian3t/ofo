@@ -1,0 +1,74 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {FILE_MANAGER_MSG} :: {UPLOAD_FILE_MSG} ::..</title>
+<style>
+<!--
+.use_message {background-color:#eeeeee;}
+.internal_message {background-color:#fffddd;}
+.topTab {font-size:11px; border-bottom:#919b9c 1px solid; border-left:#91a7b4 1px solid; border-right:#91a7b4 1px solid; border-top:#91a7b4 1px solid; padding-top:3px; padding-right:8px; padding-left:8px; padding-bottom:2px; margin:3px 3px 0px 0px; cursor:hand; font-family:Verdana, sans-serif; background:#F5F3EB; moz-border-radius:4px 4px 0px 0px; whitespace:nowrap}
+.topTabActive {font-size:11px; border-right:#919b9c 1px solid; border-left:#919b9c 1px solid; border-top:#FF8200 2px solid; border-bottom:0px solid; padding-top:5px; padding-bottom:4px; padding-right:9px; padding-left:9px; margin:3px 3px 0px 0px; font-weight:bold; cursor:default; font-family:Verdana, sans-serif; background-color:#FCFFD5; moz-border-radius:4px 4px 0px 0px; whitespace:nowrap}
+//-->
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+</head>
+<body class="commonbg">
+{admin_header} 
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a href="{admin_filemanager_href}?root_dir={dir_root}">{FILE_MANAGER_MSG}</a>&nbsp;&gt;&nbsp<b>{UPLOAD_TITLE} Arhive</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{FILE_MANAGER_MSG}</legend>
+<table  border="0" cellspacing="0" cellpadding="0" width="100%">
+	<tr class="middle">
+		<td COLSPAN=3>
+			<table height=10 cellspacing=0 cellpadding=0 border=0>
+				<tr height=10>
+					<td><div class=topTab><a class=blackSm href="{admin_upload_file}?op=1&dir_root={dir_root}">{UPLOAD_FILE_MSG}</a></td>
+					<td><div  class=topTabActive><a class=blackSm href="{admin_upload_href}?op=2&dir_root={dir_root}">{UPLOAD_ARCHIVE_MSG}</a></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<TR>
+		<TD>
+			<table  border="0" cellspacing="1" cellpadding="6" width="100%">
+				<form action="{admin_upload_href}" enctype="multipart/form-data" method="post">
+			<!-- BEGIN service_messages -->
+			<TR>
+			<TD class=message colspan=2 align=center>{service_message}</TD>
+			</TR>
+			<!-- END service_messages -->
+			<!-- BEGIN errors -->
+				<TR>
+					<TD class=error colspan=2 align=center>{error}</TD>
+				</TR>
+			<!-- END errors -->
+			
+				<tr class="usual">
+					<td>Enter path to archive: 
+						<input class="submit" type="file" name="newfile_0">
+						<INPUT TYPE="hidden" name=op value=2><INPUT TYPE="hidden" name=dir_root value="{dir_root}">
+					</td>
+					<td align=center>
+						<input type=submit  class="submit" name=button value="{UPLOAD_TITLE}">
+					</td>
+				</TR>
+			</form>
+			</TABLE>
+		</TD>
+	</TR>
+</table>
+</fieldset>
+{admin_footer}
+</body>
+</html>

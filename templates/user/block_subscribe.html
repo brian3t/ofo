@@ -1,0 +1,92 @@
+<div class="block-subscribe">
+<!-- begin subscribe_form -->
+<form action="{current_href}" method="GET">
+{hidden_parameters}
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing="0" cellpadding="0" border="0"><tr><td><div>{SUBSCRIBE_TITLE}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr> 
+		<td class="blockTD">
+		<table border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td class="padding10px">
+				<!-- begin subscribe_error -->
+				<div class="errorbg"><b>{error_desc}</b></div><br>
+				<!-- end subscribe_error -->
+				<!-- begin subscribe_message -->
+				<div class="messagebg"><b>{message_desc}</b></div>
+				<!-- end subscribe_message -->
+				<div>{SUBSCRIBE_FORM_MSG}</div><br>
+				<div align="right">
+					<input class="field" type="text" name="subscribed_email" value="{subscribed_email}" style="width:100%;">
+					<span class="submit"><input class="submit" type="submit" value="{SUBSCRIBE_BUTTON}"></span>
+				</div>
+				<div><a href="{current_href}{query_string}">{UNSUBSCRIBE_LINK_MSG}</a></div>
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+</form>
+<!-- end subscribe_form -->
+
+<!-- begin unsubscribe_form -->
+<form action="{current_href}" method="GET">
+<input type="hidden" name="unsubscribe" value="1">
+{hidden_parameters}
+<table width=100% cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing="0" cellpadding="0" border="0"><tr><td><div>{UNSUBSCRIBE_TITLE}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr> 
+		<td valign="top" class="blockTD">
+			<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="padding10px">
+					<!-- begin unsubscribe_error -->
+					<div class="errorbg"><b>{error_desc}</b></div><br>
+					<!-- end unsubscribe_error -->
+					<!-- begin unsubscribe_message -->
+					<div class="messagebg"><b>{message_desc}</b></div><br>
+					<!-- end unsubscribe_message -->
+					<div>{UNSUBSCRIBE_FORM_MSG}</div><br>
+					<div align="right">
+						<input class="field" type="text" name="unsubscribed_email" value="{unsubscribed_email}" style="width:100%;">
+						<span class="submit"><input class="submit" type="submit" value="{UNSUBSCRIBE_BUTTON}"></span>
+					</div>
+					<div><a href="{current_href}{query_string}">{SUBSCRIBE_LINK_MSG}</a></div>
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+</form>
+<!-- end unsubscribe_form -->
+</div>

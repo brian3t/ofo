@@ -1,0 +1,657 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {PAYMENT_SYSTEMS_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript">
+<!--
+
+	function openWindow(pagename, filetype)
+	{
+		var uploadWin = window.open (pagename + '?filetype=' + filetype, 'uploadWin', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=400,height=300');
+		uploadWin.focus();
+  }
+
+	function setFileName(filename, filetype)
+	{
+		var siteUrl = '{site_url}';
+
+		if(filename != "" && filetype == "payment_small") {
+			document.record.image_small.value = siteUrl + "images/payments/small/" + filename;
+			document.record.image_small.focus();
+		} else if(filename != "" && filetype == "payment_large") {
+			document.record.image_large.value = siteUrl + "images/payments/large/" + filename;
+			document.record.image_large.focus();
+		}
+	}
+
+	function openParamWindow(pagename)
+	{
+		var popupWin = window.open (pagename, 'popup', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');
+		popupWin.focus();
+	}
+
+	function checkActive()
+	{
+		var isActive = document.record.is_active.checked;
+		var isDefault = document.record.is_default.checked;
+		if (isDefault && !isActive) {
+			document.record.is_default.checked = false;
+			alert("Sorry but you can't check 'Default' option for inactive system.\nPlease check 'Active' checkbox first.");
+		}
+
+	}
+
+	function checkDefault()
+	{
+		var isActive = document.record.is_active.checked;
+		if (!isActive) {
+			document.record.is_default.checked = false
+		}
+	}
+
+	function checkAdvanced()
+	{
+		var isAdvanced = document.record.is_advanced.checked;
+		var isCallCenter = document.record.is_call_center.checked;
+		if (isCallCenter && !isAdvanced) {
+			document.record.is_call_center.checked = false;
+			alert("Sorry but you can't check 'Use for Call Center' option for not advanced system.\nPlease check 'Is Advanced' checkbox first.");
+		}
+
+	}
+
+	function checkCallCenter()
+	{
+		var isAdvanced = document.record.is_advanced.checked;
+		if (!isAdvanced) {
+			document.record.is_call_center.checked = false
+		}
+	}
+
+//-->
+</script>
+<script language="JavaScript" type= "text/javascript" src="../js/list_fields.js"></script>
+<script language="JavaScript">
+<!--
+var list_fields_names = new Array('user_types','sites');
+//-->
+</script>
+
+</head>
+
+<body class="commonbg">
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header">
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_payment_systems_href}">{PAYMENT_SYSTEMS_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_PAYMENT_SYSTEM_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+
+	<div id="tabs">
+		<!-- BEGIN tabs_rows -->
+		<div id="{row_id}" class="tabRow"><!-- BEGIN tabs -->
+			<div id="{tab_id}" class="{tab_class}"><a class="blackSm" href="#" onClick="changeTab('{tab_name}'); return false;">{tab_title}</a></div>{br}<!-- END tabs -->
+		</div>
+		<!-- END tabs_rows -->
+	</div>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tabTable">
+<tr align="center">
+	<td class="">
+
+<form action="{admin_payment_system_href}" name="record" onSubmit="selectListFieldsAll();" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="payment_id" value="{payment_id}">
+<input type="hidden" name="more_parameters" value="0">
+<input type="hidden" name="number_parameters" value="{number_parameters}">
+<input type="hidden" name="tab" value="{tab}">
+<input type="hidden" name="user_types" value="">
+<input type="hidden" name="sites" value="">
+
+<div id="data_general" style="{general_style}">
+<table cellspacing="1" cellpadding="4" border="0" width="100%"><!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="6" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{IS_ACTIVE_MSG}
+	</td>
+	<td colspan="5">
+		<input type="checkbox" name="is_active" {is_active} value="1" onCLick="checkDefault();">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IS_DEFAULT}
+	</td>
+	<td colspan="5">
+		<input type="checkbox" name="is_default" {is_default} value="1" onClick="checkActive();">
+		({IS_DEFAULT_MSG})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{USE_FOR_CALLCENTRE_MSG}
+	</td>
+	<td colspan="5">
+		<input type="checkbox" name="is_call_center" {is_call_center} value="1" onClick="checkAdvanced();">
+		({USE_FOR_CALLCENTRE_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_ORDER_MSG} *
+	</td>
+	<td colspan="5">
+		<input type="text" class="field" name="payment_order" value="{payment_order}" size="10">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PAYMENT_SYSTEM_NAME_MSG} *
+	</td>
+	<td colspan="5">
+		<input type="text" class="field" name="payment_name" value="{payment_name}" size="80">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{USER_PAYMENT_SYSTEM_NAME_MSG}
+	</td>
+	<td colspan="5">
+		<input type="text" class="field" name="user_payment_name" value="{user_payment_name}" size="80">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PROCESSING_TIME_MSG}
+	</td>
+	<td colspan="5">
+		<input type="text" class="field" name="processing_time" value="{processing_time}" size="10">
+		({PROCESSING_TIME_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PAYMENT_INFO_MSG}
+		<br>&nbsp;({SHOWN_FOR_USERS_MSG})
+	</td>
+	<td colspan="5">
+		<textarea cols="80" rows="4" name="payment_info">{payment_info}</textarea>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{INSTALLATION_NOTES_MSG}
+	</td>
+	<td colspan="5">
+		<textarea cols="80" rows="10" name="payment_notes">{payment_notes}</textarea>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+	  &nbsp;{PAYMENT_URL_MSG} *
+	</td>
+	<td colspan="5">
+		<input type="text" class="field" name="payment_url" value="{payment_url}" size="80">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{FORM_SUBMIT_METHOD_MSG}
+	</td>
+	<td colspan="5"><!-- begin submit_method -->
+		<input type="radio" name="submit_method" {submit_method_checked} value="{submit_method_value}">{submit_method_description}<!-- end submit_method -->
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="6">
+		&nbsp;{RECURRING_OPTIONS_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{RECURRING_METHOD_MSG}
+	</td>
+	<td colspan="5">
+		<!-- begin recurring_method -->
+		<input type="radio" name="recurring_method" {recurring_method_checked} value="{recurring_method_value}">{recurring_method_description}<!-- end recurring_method -->
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="6">
+		&nbsp;{ADVANCED_PARAMETERS_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+	  &nbsp;{IS_ADVANCED_MSG}
+	</td>
+	<td colspan="5">
+		<input type="checkbox" name="is_advanced" {is_advanced} value="1" onClick="checkCallCenter();">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+	  &nbsp;{ADVANCED_LIBRARIES_MSG}
+	</td>
+	<td colspan="5">
+		<input type="text" class="field" name="advanced_php_lib" value="{advanced_php_lib}" size="70"> &nbsp; ({SCRIPT_FILE_HANDLING_MSG})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+	  &nbsp;{ADVANCED_URL_MSG}
+	</td>
+	<td colspan="5">
+		<input type="text" class="field" name="advanced_url" value="{advanced_url}" size="70">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SUCCESS_STATUS_MSG}
+	</td>
+	<td colspan="5">
+		<select name="success_status_id"><!-- begin success_status_id -->
+			<option {success_status_id_selected} value="{success_status_id_value}">{success_status_id_description}<!-- end success_status_id -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PENDING_STATUS_MSG}
+	</td>
+	<td colspan="5">
+		<select name="pending_status_id"><!-- begin pending_status_id -->
+			<option {pending_status_id_selected} value="{pending_status_id_value}">{pending_status_id_description}<!-- end pending_status_id -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{FAILURE_STATUS_MSG}
+	</td>
+	<td colspan="5">
+		<select name="failure_status_id"><!-- begin failure_status_id -->
+			<option {failure_status_id_selected} value="{failure_status_id_value}">{failure_status_id_description}<!-- end failure_status_id -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ON_FAILURE_ACTION_MSG}
+	</td>
+	<td colspan="5"><!-- begin failure_action -->
+		<input type="radio" name="failure_action" {failure_action_checked} value="{failure_action_value}">{failure_action_description}<!-- end failure_action -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+	  &nbsp;Library to Capture Order
+	</td>
+	<td colspan="5">
+		<input type="text" class="field" name="capture_php_lib" value="{capture_php_lib}" size="70"> &nbsp; (php library to capture previously authorized transaction)
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+	  &nbsp;Library to Refund Order
+	</td>
+	<td colspan="5">
+		<input type="text" class="field" name="refund_php_lib" value="{refund_php_lib}" size="70"> &nbsp; (php library to refund settled transaction)
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+	  &nbsp;Library to Cancel Order
+	</td>
+	<td colspan="5">
+		<input type="text" class="field" name="void_php_lib" value="{void_php_lib}" size="70"> &nbsp; (php library to cancel a transaction that has not yet settled)
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="6">
+		&nbsp;{PARAMETERS_LIST_MSG}
+	</td>
+</tr>
+<tr align="center" class="usual">
+	<td class="small">
+		#
+	</td>
+	<td class="small">
+		{PARAMETER_NAME_MSG}
+	</td>
+	<td class="small">
+		{PARAMETER_TYPE_MSG}
+	</td>
+	<td class="small">
+		{PARAMETER_SOURCE_MSG}
+	</td>
+	<td class="small">
+		{NOT_PASSED_MSG}
+	</td>
+	<td class="small">
+		{DELETE_BUTTON}
+	</td>
+</tr><!-- begin parameters --><!-- begin parameters_errors -->
+<tr class="usual" align="center">
+	<td colspan="6">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- end parameters_errors -->
+<tr class="usual" align="center">
+	<td class="small">
+		&nbsp;{row_number}&nbsp;
+		<input type="hidden" name="parameter_id_{parameters_number}" value="{parameter_id}">
+		<input type="hidden" name="payment_id_{parameters_number}" value="{payment_id}">
+	</td>
+	<td>
+		<input type="text" class="field"  name="parameter_name_{parameters_number}" value="{parameter_name}" size="25" maxlength="100">
+	</td>
+	<td>
+		<select name="parameter_type_{parameters_number}"><!-- begin parameter_type -->
+			<option {parameter_type_selected} value="{parameter_type_value}">{parameter_type_description}<!-- end parameter_type -->
+		</select>
+	</td>
+	<td>
+		<input type="text" class="field"  name="parameter_source_{parameters_number}" value="{parameter_source}" size="25">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="not_passed_{parameters_number}" {not_passed} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="parameters_delete_{parameters_number}" {parameters_delete} value="1">
+	</td>
+</tr><!-- end parameters -->
+<tr class="usual">
+	<td colspan="3" align="center">
+		<font class="small">
+		&nbsp;<a href="javascript:openParamWindow('{admin_payment_help_href}?payment_id={payment_id}')">{CLICK_HERE_MSG}</a> to see all available variables you can pass to payment system.
+		</font>
+	</td>
+	<td colspan="3" align="right">
+		{ADD_MORE_PARAMETERS_QST} <input class="submit" type="submit" value={ADD_BUTTON} onClick="document.record.more_parameters.value=1">&nbsp;
+	</td>
+</tr>
+<tr class="middle">
+	<td></td>
+	<td colspan="5">
+		<input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'"> &nbsp; <!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onCLick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');"> &nbsp; <!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">&nbsp;
+	</td>
+</tr>
+</table>
+</div>
+
+<div id="data_images" style="{images_style}">
+<table cellspacing="1" cellpadding="4" border="0" width="100%">
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{IMAGES_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_SMALL_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="50" maxlength="255" name="image_small" value="{image_small}">
+		&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'payment_small')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+		&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'payment_small')"><b>{SELECT_IMAGE_MSG}</b></a>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_SMALL_ALT_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="50" maxlength="255" name="image_small_alt" value="{image_small_alt}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_LARGE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="50" maxlength="255" name="image_large" value="{image_large}">
+		&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'payment_large')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+		&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'payment_large')"><b>{SELECT_IMAGE_MSG}</b></a>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_LARGE_ALT_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="50" maxlength="255" name="image_large_alt" value="{image_large_alt}">
+	</td>
+</tr>
+<tr class="middle">
+	<td></td>
+	<td>
+		&nbsp; <input class="submit" type="submit" value=" {save_button} " onCLick="document.record.operation.value='save'"> &nbsp;
+	</td>
+</tr>
+</table>
+</div>
+
+<div id="data_fee" style="{fee_style}">
+<table cellspacing="1" cellpadding="4" border="0" width="100%">
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{FEE_SETTINGS_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PROCESSING_FEE_MSG}
+	</td>
+	<td>
+		<input type="text" class="field" name="processing_fee" value="{processing_fee}" size="10">
+		&nbsp;&nbsp;&nbsp;
+		<!-- begin fee_type -->
+		<input type="radio" name="fee_type" {fee_type_checked} value="{fee_type_value}">{fee_type_description}<!-- end fee_type -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{MINIMUM_GOODS_COST_MSG}
+	</td>
+	<td>
+		<input type="text" class="field" name="fee_min_goods" value="{fee_min_goods}" size="10">
+		({WHEN_FEE_IS_APPLIED_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{MAXIMUM_GOODS_COST_MSG}
+	</td>
+	<td>
+		<input type="text" class="field" name="fee_max_goods" value="{fee_max_goods}" size="10">
+		({WHEN_FEE_IS_APPLIED_NOTE})
+	</td>
+</tr>
+<tr class="middle">
+	<td></td>
+	<td>
+		&nbsp; <input class="submit" type="submit" value=" {save_button} " onCLick="document.record.operation.value='save'"> &nbsp;
+	</td>
+</tr>
+</table>
+</div>
+
+<div id="data_fast_checkout" style="{fast_checkout_style}">
+<table cellspacing="1" cellpadding="4" border="0" width="100%">
+<tr class="usual">
+	<td>
+		&nbsp;{FAST_CHECKOUT_ACTIVE_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="fast_checkout_active" {fast_checkout_active} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{FAST_CHECKOUT_IMAGE_MSG} 
+	</td>
+	<td>
+		<input type="text" class="field" name="fast_checkout_image" value="{fast_checkout_image}" size="80">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{FAST_CHECKOUT_WIDTH_MSG} 
+	</td>
+	<td>
+		<input type="text" class="field" name="fast_checkout_width" value="{fast_checkout_width}" size="10">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{FAST_CHECKOUT_HEIGHT_MSG} 
+	</td>
+	<td>
+		<input type="text" class="field" name="fast_checkout_height" value="{fast_checkout_height}" size="10">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{FAST_CHECKOUT_ALT_MSG}
+	</td>
+	<td >
+		<input type="text" class="field" name="fast_checkout_alt" value="{fast_checkout_alt}" size="80">
+	</td>
+</tr>
+<tr class="middle">
+	<td></td>
+	<td>
+		&nbsp; <input class="submit" type="submit" value=" {save_button} " onCLick="document.record.operation.value='save'"> &nbsp;
+	</td>
+</tr>
+</table>
+</div>
+
+<div id="data_user_types" style="{user_types_style}">
+	<table cellspacing="1" cellpadding="4" border="0" width="100%">
+	<tr class="usual">
+		<td colspan="3">
+			&nbsp; <input type="checkbox" name="user_types_all" {user_types_all} onClick="checkListFields('user_types');" value="1">
+			Use this payment system for all users types (untick this checkbox to select users types manually)
+		</td>
+	</tr>
+	<tr class="usual">
+		<td colspan="2">
+	
+			<table width="100%" border="0" cellspacing="1" cellpadding="3">
+			<tr align="center" class="usual">
+				<td width="40%"><b>{AVAILABLE_USER_TYPES_MSG}</b></td>
+				<td width="20%"><b>{OPERATIONS_MSG}</b></td>
+				<td width="40%"><b>{USE_GATEWAY_USERS_TYPE_MSG}</b></td>
+			</tr>
+			<tr align="center" class="usual">
+				<td width="40%">
+					<select name="available_user_types" MULTIPLE size="10"  style="width: 300px;"><!-- begin available_user_types -->
+						<option value="{type_id}">{type_name}<!-- end available_user_types -->
+					</select>
+				</td>
+				<td width="20%">
+	
+					<input class="submit" readonly type="button" name="add_user_types" value="&nbsp;&nbsp; {ADD_BUTTON}  -> &nbsp;&nbsp;" onClick="addListFields('user_types');">
+					<br><br>
+					<input class="submit" type="button" name="remove_user_types" value="<- {REMOVE_BUTTON}" onClick="removeListFields('user_types');">
+				</td>
+				<td width="40%">
+	
+					<select name="selected_user_types" MULTIPLE size="10" style="width: 300px;"><!-- begin selected_user_types -->
+						<option value="{type_id}">{type_name}<!-- end selected_user_types -->
+					</select>
+				</td>
+			</tr>
+			</table>
+	
+		</td>
+	</tr>
+	<tr class="middle">
+		<td colspan="3">
+			&nbsp; <input class="submit" type="submit" value=" {save_button} " onCLick="document.record.operation.value='save'"> &nbsp;
+		</td>
+	</tr>
+	</table>
+</div>
+<!-- begin sitelist-->
+<div id="data_sites" style="{sites_style}">
+	<table cellspacing="1" cellpadding="4" border="0" width="100%">
+	<tr class="usual">
+		<td colspan="3">
+			&nbsp; <input type="checkbox" name="sites_all" {sites_all} onClick="checkListFields('sites');" value="1">
+			Use this payment system for all sites (untick this checkbox to select sites manually)
+		</td>
+	</tr>
+	<tr class="usual">
+		<td colspan="2">
+	
+			<table width="100%" border="0" cellspacing="1" cellpadding="3">
+			<tr align="center" class="usual">
+				<td width="40%"><b>{AVAILABLE_SITES_MSG}</b></td>
+				<td width="20%"><b>{OPERATIONS_MSG}</b></td>
+				<td width="40%"><b>{USE_ITEM_SITES_MSG}</b></td>
+			</tr>
+			<tr align="center" class="usual">
+				<td width="40%">
+					<select name="available_sites" MULTIPLE size="10"  style="width: 300px;"><!-- begin available_sites -->
+						<option value="{site_id}">{site_name}<!-- end available_sites-->
+					</select>
+				</td>
+				<td width="20%">
+	
+					<input class="submit" readonly type="button" name="add_sites" value="&nbsp;&nbsp; {ADD_BUTTON}  -> &nbsp;&nbsp;" onClick="addListFields('sites');">
+					<br><br>
+					<input class="submit" type="button" name="remove_sites" value="<- {REMOVE_BUTTON}" onClick="removeListFields('sites');">
+				</td>
+				<td width="40%">
+	
+					<select name="selected_sites" MULTIPLE size="10" style="width: 300px;"><!-- begin selected_sites -->
+						<option value="{site_id}">{site_name}<!-- end selected_sites -->
+					</select>
+				</td>
+			</tr>
+			</table>
+	
+		</td>
+	</tr>
+	<tr class="middle">
+		<td colspan="3">
+			&nbsp; <input class="submit" type="submit" value=" {save_button} " onCLick="document.record.operation.value='save'"> &nbsp;
+		</td>
+	</tr>
+	</table>
+</div>
+<!-- end sitelist-->
+
+</form>
+
+	</td>
+</tr>
+</table>
+
+{admin_footer}
+<script language="JavaScript">
+<!--
+	checkListFieldsAll();
+//-->
+</script>
+</body>
+</html>

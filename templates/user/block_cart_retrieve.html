@@ -1,0 +1,17 @@
+<div class="block-cart-retrieve">
+	<div class="titleTopCenter">{RETRIEVE_CART_TITLE}</div>
+	<form name="record" action="{cart_retrieve_href}">
+		<input type="hidden" name="operation" value="retrieve">
+		<input type="hidden" name="rnd" value="{random_value}">
+		<input type="hidden" name="rp" value="{rp}">
+		<p>{RETRIEVE_CART_INFO_MSG}</p>
+		<!-- begin errors -->
+		<p class="errorbg">{errors_list}</p>
+		<!-- end errors -->
+		<p>{CART_NO_FIELD}&nbsp;<input type="text" class="text" name="cart_id" value="{cart_id}"></p>
+		<p>{CART_NAME_FIELD}&nbsp;<input type="text" class="text" name="cart_name" value="{cart_name}"></p>
+		<input class="button" type="submit" value="{RETRIEVE_CART_BUTTON}" onCLick="document.record.operation.value='retrieve'">
+		<input class="button" id="cancel" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+		<p>{RETRIEVE_CART_NOTE_MSG}</p>
+	</form>
+</div>

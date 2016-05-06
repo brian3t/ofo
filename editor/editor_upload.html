@@ -1,0 +1,54 @@
+<html><head><title>..:: WYSIWYG :: Image Properties ::..</title>
+<link rel="stylesheet" href="../styles/editor.css" type="text/css">
+</head>
+<body scroll="no" style="overflow: hidden" class="editor">
+	<!-- BEGIN errors -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+	<tr><td class="editor_header"> 
+	<table cellspacing="1" cellpadding="5" border="0" width="100%" align="center">
+		<tr>
+			<td align="center" class="editor_usual">
+				<div class="editor_error"><b>
+				{errors_list}</b></div>
+			</td>
+		</tr>
+	</table>
+	</td>
+	</tr>
+	</table>
+	<!-- END errors -->
+	<!-- BEGIN upload -->
+	<table id="data_upload" border="0" cellspacing="1" cellpadding="0" width="100%" class="editor_header">
+		<tr>
+			<td class="editor_usual" valign="baseline">
+				<form name="upload" id="upload" action="./editor_upload.php" enctype="multipart/form-data" method="post">
+				<input type="hidden" name="operation" value="1">
+				<input type="hidden" id="filetype" name="filetype" value="{filetype}">
+				<input type="hidden" id="image_Url" name="image_Url" value="{filename}">
+				<input type="hidden" id="image_Width" name="image_Width" value="{image_width}">
+				<input type="hidden" id="image_Height" name="image_Height" value="{image_height}">
+					<table border="0" cellspacing="1" cellpadding="5" width="100%">
+					<tr>
+						<td class="editor">
+							<br>&nbsp;&nbsp;&nbsp;Select file to upload and press Upload button<br>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							&nbsp;&nbsp;&nbsp;<input class="editor_submit" type="file" name="newfile">&nbsp;&nbsp;
+							<input class="editor_submit" type="submit" name="submit" value="Upload"><br>&nbsp;
+						</td>
+					</tr>
+					</table>
+				</form>
+			</td>
+		</tr>
+	</table>
+<script language="JavaScript">
+if (document.forms['upload'].image_Url.value != ''){
+	parent.changePane('settings');
+}
+</script>
+	<!-- END upload -->
+</body>
+</html>

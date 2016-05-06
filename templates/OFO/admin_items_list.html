@@ -1,0 +1,473 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {PRODUCTS_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript">
+<!--
+	function allItems()
+	{
+		var checkedStatus = document.items.all_items.checked;
+		var itemsNumber = document.items.items_number.value;
+		for (var i = 1; i <= itemsNumber; i++) {
+			document.items.elements["id_" + i].checked = checkedStatus;
+		}
+		checkItems();
+	}
+
+	function updateItems(operation)
+	{
+		var itemId = "";
+		var itemsIds = "";
+		var itemsNumber = document.items.items_number.value;
+		var totalitems = 0;
+		for (var i = 1; i <= itemsNumber; i++) {
+			if (document.items.elements["id_" + i].checked) {
+				totalitems++;
+				itemId = document.items.elements["id_" + i].value;
+				if(totalitems > 1) { itemsIds += ","; }
+				itemsIds += itemId;
+			}
+		}
+
+		if (totalitems == 0) {
+			alert("Please select products first.");
+			window.event.returnValue=false;
+		} else if (operation == "delete_items") {
+			if (confirm("{DELETE_CONFIRM_QST} " + totalitems + " {SELECTED_PRODUCTS_MSG}?")) {
+				document.items.items_ids.value = itemsIds;
+				document.items.operation.value = "delete_items";
+				document.items.action = window.location.href;
+				document.items.submit();
+			}
+		} else if (operation == "update_status") {
+				if (document.items.status_id.options[document.items.status_id.selectedIndex].value == "") {
+					alert("Please select approve status first.");
+					window.event.returnValue=false;
+				} else {
+					document.items.approved_status.value = document.items.status_id.options[document.items.status_id.selectedIndex].value;
+					document.items.items_ids.value = itemsIds;
+					document.items.operation.value = "update_status";
+					document.items.action = window.location.href;
+					document.items.submit();
+				}
+		}
+	}
+
+	function checkItems()
+	{
+		var itemId = "";
+		var itemsIds = "";
+		var itemsNumber = document.items.items_number.value;
+		var totalSelected = 0;
+		for (var i = 1; i <= itemsNumber; i++) {
+			if (document.items.elements["id_" + i].checked) {
+				document.getElementById("tr_product_" + i).className = "SelectedRow";
+				totalSelected++;
+				itemId = document.items.elements["id_" + i].value;
+				if(itemsIds != "") { itemsIds += ","; }
+				itemsIds += itemId;
+			} else {
+				document.getElementById("tr_product_" + i).className = mas[i];
+			}
+		}
+		var deleteLink = document.getElementById("delete_items");
+		if (deleteLink) {
+			if (itemsIds == "") {
+				deleteLink.innerHTML = "{DELETE_SELECTED_MSG}";
+				deleteLink.href = "{admin_items_list_href}";
+			} else {
+				deleteLink.innerHTML = "{DELETE_SELECTED_MSG} (" + totalSelected + ")";
+				deleteLink.href = "{admin_items_list_href}?operation=delete_items&items_ids=" + itemsIds;
+			}
+		}
+		var editLink = document.getElementById("edit_items");
+		if (editLink) {
+			if (itemsIds == "") {
+				editLink.innerHTML = "{EDIT_SELECTED_MSG}";
+				editLink.href = "{admin_items_list_href}";
+			} else {
+				editLink.innerHTML = "{EDIT_SELECTED_MSG} (" + totalSelected + ")";
+				editLink.href = "{admin_products_edit_href}?category_id={parent_category_id}&page_show=fields&items_ids="+itemsIds;
+
+			}
+		}
+		var statusButton = document.getElementById("update_status_button");
+		if (statusButton) {
+			if (itemsIds == "") {
+				statusButton.value = "{UPDATE_BUTTON} {STATUS_MSG}";
+			} else {
+				statusButton.value = "{UPDATE_BUTTON} {STATUS_MSG} (" + totalSelected + ")";
+			}
+		}
+	}
+
+	function allCategories()
+	{
+		var checkedStatus = document.categories.all_categories.checked;
+		var categoriesNumber = document.categories.categories_number.value;
+		for (var i = 1; i <= categoriesNumber; i++) {
+			document.categories.elements["category_id_" + i].checked = checkedStatus;
+		}
+		checkCategories();
+	}
+
+	function checkCategories()
+	{
+		var categoryId = "";
+		var categoriesIds = "";
+		var categoriesNumber = document.categories.categories_number.value;
+		var totalSelected = 0;
+		for (var i = 1; i <= categoriesNumber; i++) {
+			if (document.categories.elements["category_id_" + i].checked) {
+				document.getElementById("tr_category_" + i).className = "SelectedRow";
+				totalSelected++;
+				categoryId = document.categories.elements["category_id_" + i].value;
+				if(categoriesIds != "") { categoriesIds += ","; }
+				categoriesIds += categoryId;
+			} else {
+				document.getElementById("tr_category_" + i).className = mas[i];
+			}
+		}
+		var deleteLink = document.getElementById("delete_categories");
+		if (deleteLink) {
+			if (categoriesIds == "") {
+				deleteLink.innerHTML = "{DELETE_SELECTED_MSG}";
+				deleteLink.href = "{admin_items_list_href}";
+			} else {
+				deleteLink.innerHTML = "{DELETE_SELECTED_MSG} (" + totalSelected + ")";
+				deleteLink.href = "{admin_items_list_href}?operation=delete_categories&categories_ids=" + categoriesIds;
+			}
+		}
+	}
+
+	function deleteCategories()
+	{
+		var operation = document.categories.operation.value;
+		var categoriesNumber = document.categories.categories_number.value;
+		var totalcategories = 0;
+		for (var i = 1; i <= categoriesNumber; i++) {
+			if (document.categories.elements["category_id_" + i].checked) {
+				totalcategories++;
+			}
+		}
+
+		if (totalcategories == 0) {
+			alert("Please select categories first.");
+			return false;
+		} else if (operation == "delete_categories") {
+			return confirm("{DELETE_CONFIRM_QST} " + totalcategories + " {SELECTED_CATEGORIES_MSG}?");
+		}
+	}
+
+	
+	function start_event_select(){
+		if (document.items.items_number.value > 0) {
+			var itemsNumber = document.items.items_number.value;
+			mas = new Array();
+			for (var i = 1; i <= itemsNumber; i++) {
+				mas[i] = document.getElementById("tr_product_" + i).className;
+			}
+		}
+	}
+
+//-->
+</script>
+</head>
+
+<body class="commonbg" onload="start_event_select();">
+{admin_header}
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr><td valign="top" colspan="3" align="center">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header">
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_items_list_href}">{PRODUCTS_TITLE}</a>&nbsp;&gt;&nbsp;<!-- BEGIN tree --><a
+			href="{admin_items_list_href}?category_id={tree_cat_id}">{tree_cat_name}</a>&nbsp;&gt;&nbsp;<!-- END tree --><b>{tree_current_name}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+	<br>
+	<form action="{admin_items_list_href}" method="GET">
+	{PROD_STOCK_MSG}: <select name="sl"><!-- begin sl -->
+		<option {sl_selected} value="{sl_value}">{sl_description}<!-- end sl -->
+	</select>
+	{SALES_MSG}: <select name="ss"><!-- begin ss -->
+		<option {ss_selected} value="{ss_value}">{ss_description}<!-- end ss -->
+	</select>
+
+	{IS_APPROVED_MSG}: <select name="ap"><!-- begin ap -->
+		<option {ap_selected} value="{ap_value}">{ap_description}<!-- end ap -->
+	</select>	
+	<br>
+	<!-- begin sitelist -->
+	{ADMIN_SITE_MSG}:&nbsp;
+	<select name="param_site_id"><!-- begin param_site_id -->
+		<option {param_site_id_selected} value="{param_site_id_value}">{param_site_id_description}<!-- end param_site_id -->
+	</select>
+	<!-- end sitelist -->
+	<select name="sc"><!-- begin sc -->
+		<option {sc_selected} value="{sc_value}">{sc_description}<!-- end sc -->
+	</select>
+	<input size="30" class="field" type="text" name="s" value="{s}">
+	<input class="submit" type="submit" name="search" value="{SEARCH_TITLE}">
+	</form>
+	&nbsp;
+
+</td>
+</tr>
+<tr>
+	<td valign="top" width="26%">
+
+<fieldset>
+<legend>{AVAILABLE_CATEGORIES_MSG}</legend>
+<form name="categories" action="{admin_items_list_href}" method="POST">
+<input type="hidden" name="operation" value="delete_categories">
+<input type="hidden" name="categories_number" value="{categories_number}">
+<input type="hidden" name="categories_ids" value="{categories_ids}">
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center">
+	<td>
+
+		<table width="100%" border="0" cellspacing="1" cellpadding="3"><!-- begin categories_header -->
+		<tr class="middle">
+			<!-- begin categories_all_checkbox -->
+			<td>
+				<input type="checkbox" name="all_categories" value="1" onClick="allCategories();">
+			</td><!-- end categories_all_checkbox -->
+			<td>
+				&nbsp;{CATEGORY_NAME_MSG}
+			</td>
+		</tr><!-- end categories_header --><!-- BEGIN categories -->
+		<tr class="{row_style}" id="tr_category_{category_index}">
+			<!-- begin category_checkbox -->
+			<td>
+				<input type="checkbox" name="category_id_{category_index}" value="{category_id}" onClick="checkCategories();">
+			</td><!-- end category_checkbox -->
+			<td>
+				&nbsp;<a class="title" style="color: black;" href="{admin_items_list_href}?category_id={category_id}">{category_name}</a>&nbsp; &nbsp;
+				<!-- BEGIN categories_edit_link -->
+				<a href="{admin_category_edit_href}?parent_category_id={parent_category_id}&category_id={category_id}">{category_edit_msg}</a>
+				<!-- END categories_edit_link -->				
+				<br>
+				<span style="color: black; font-size: 8pt">
+					&nbsp;<a class="small" href="{admin_layout_page_href}?page_name=products_list_{category_id}&rp={rp_url}">{CUSTOM_LAYOUT_MSG}</a>				
+					<!-- BEGIN category_products_priv -->
+					 | <a class="small" href="{admin_category_items_href}?category_id={category_id}">{PRODUCTS_TITLE}</a>
+					<!-- END category_products_priv -->
+				</span>
+			</td>
+		</tr><!-- END categories--><!-- BEGIN no_categories -->
+		<tr class="usual">
+			<td colspan="2">&nbsp;<b>'{tree_current_name}'</b> {CATEGORY_DOESNT_HAVE_MSG}.</td>
+		</tr><!-- END no_categories -->
+		<!-- BEGIN categories_first_block -->
+		<tr class="middle">
+			<td colspan="{categories_colspan}">
+				<!-- BEGIN add_categories_priv -->
+				<nobr>&nbsp;<a href="{admin_category_edit_href}?parent_category_id={parent_category_id}">{ADD_CATEGORY_MSG}</a></nobr>
+				<!-- END add_categories_priv -->
+				<!-- BEGIN categories_order_link -->
+				{categories_order_delimiter} <nobr>&nbsp;<a href="{admin_categories_order_href}?parent_category_id={parent_category_id}">{CHANGE_ORDER_MSG}</a></nobr>
+				<!-- END categories_order_link -->
+				<!-- BEGIN delete_categories_link -->
+				{delete_categories_delimiter} <nobr>&nbsp;<a id="delete_categories" href="{admin_items_list_href}" onClick="return deleteCategories();">{DELETE_SELECTED_MSG}</a></nobr>
+				<!-- END delete_categories_link -->
+			</td>
+		</tr>
+		<!-- END categories_first_block -->
+		<!-- BEGIN categories_second_block -->
+		<tr class="middle">
+			<td colspan="{categories_colspan}">
+				<!-- BEGIN categories_export_priv -->
+				&nbsp;<a href="{admin_export_href}?table=categories&category_id={parent_category_id}">{EXPORT_MSG}</a>
+				<!-- END categories_export_priv -->
+				<!-- BEGIN categories_import_priv -->
+				{categories_import_delimiter}<a href="{admin_import_href}?table=categories&category_id={parent_category_id}">{IMPORT_MSG}</a>
+				<!-- END categories_import_priv -->
+			</td>
+		</tr>
+		<!-- END categories_second_block -->
+		</table>
+
+	</td>
+</tr>
+</table>
+</form>
+</fieldset>
+</td>
+<td width="2%"></td>
+<td valign="top" width="72%">
+
+<!-- begin items_block -->
+<fieldset>
+<legend>{PRODUCTS_MSG} in <b>{tree_current_name}</b> category<!-- begin s_d --> matching the term(s) '<b>{s}</b>'<!-- end s_d -->:</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<form name="items" action="{admin_items_list_href}" method="POST">
+<input type="hidden" name="operation" value="delete_items">
+<input type="hidden" name="items_number" value="{items_number}">
+<input type="hidden" name="items_ids" value="{items_ids}">
+<input type="hidden" name="approved_status" value="{approved_status}">
+{hidden_parameters}
+<tr align="center">
+	<td>
+
+		<table width="100%" border="0" cellspacing="1" cellpadding="3"><!-- begin items_header -->
+		<tr class="middle" align="center">
+			<!-- begin checkbox_header_priv -->
+			<td>
+				<input type="checkbox" name="all_items" value="1" onClick="allItems();">
+			</td>
+			<!-- end checkbox_header_priv -->
+			<td align="left">
+				<nobr>{sorter_item_name}</nobr>
+			</td>
+			<td >
+				<nobr>{sorter_price}</nobr>
+			</td>
+			<td>
+				<nobr>{sorter_qty}</nobr>
+			</td>
+		</tr><!-- end items_header --><!-- BEGIN items_list -->
+		<tr class="{row_style}" align="center" valign="top" id="tr_product_{item_index}">
+			<!-- begin checkbox_list_priv -->
+			<td>
+				<input type="checkbox" name="id_{item_index}" value="{item_id}" onClick="checkItems();">
+			</td>
+			<!-- end checkbox_list_priv -->
+			<td align="left">
+				<!-- BEGIN update_products_priv -->
+				<a class="title" style="color: black" href="{admin_product_href}?category_id={category_id}&item_id={item_id}">{item_name}</a> 
+				&nbsp; {item_codes}
+				&nbsp; <a href="{admin_product_href}?category_id={category_id}&item_id={item_id}">{product_edit_msg}</a>
+				<!-- END update_products_priv -->
+				<!-- BEGIN read_only_products_priv -->
+				<span class="title">{item_name}</span>
+				&nbsp; {item_codes}
+				<!-- END read_only_products_priv -->
+				<br>
+				<span style="color: black; font-size: 8pt">
+				<!-- BEGIN product_prices_priv -->
+					<a class="small" href="{admin_item_prices_href}?category_id={category_id}&item_id={item_id}">{PRICES_MSG}</a>
+				<!-- END product_prices_priv -->
+				<!-- BEGIN product_images_priv -->
+					{product_images_delimiter}<a class="small" href="{admin_item_images_href}?category_id={category_id}&item_id={item_id}">{IMAGES_MSG}</a>
+				<!-- END product_images_priv -->
+				<!-- BEGIN product_properties_priv -->
+					{product_properties_delimiter}<a class="small" href="{admin_properties_href}?category_id={category_id}&item_id={item_id}">{OPTIONS_AND_COMPONENTS_MSG}</a>
+				<!-- END product_properties_priv -->
+				<!-- BEGIN product_features_priv -->
+					{product_features_delimiter}<a class="small" href="{admin_item_features_href}?category_id={category_id}&item_id={item_id}">{PROD_SPECIFICATION_MSG}</a>
+				<!-- END product_features_priv -->
+				<!-- BEGIN product_related_priv -->
+					{product_related_delimiter}<a class="small" href="{admin_item_related_href}?category_id={category_id}&item_id={item_id}">{RELATED_TITLE}</a>
+				<!-- END product_related_priv -->
+				<!-- BEGIN product_categories_priv -->
+					{product_categories_delimiter}<a class="small" href="{admin_item_categories_href}?category_id={category_id}&item_id={item_id}">{CATEGORIES_TITLE}</a>
+				<!-- END product_categories_priv -->
+				<!-- BEGIN product_accessories_priv -->
+					{product_accessories_delimiter}<a class="small" href="{admin_item_accessories_href}?category_id={category_id}&item_id={item_id}">{PROD_ACCESSORIES_MSG}</a>
+				<!-- END product_accessories_priv -->
+				<!-- BEGIN product_releases_priv -->
+					{product_releases_delimiter}<a class="small" href="{admin_releases_href}?category_id={category_id}&item_id={item_id}">{RELEASES_TITLE}</a>
+				<!-- END product_releases_priv -->
+			</td>
+			<td align="right">{price}&nbsp;</td>
+			<td>{stock_level}</td>
+		</tr><!-- END items_list --><!-- BEGIN no_items -->
+		<tr class="usual">
+			<td colspan="3">&nbsp;'<b>{tree_current_name}</b>' {CATEGORY_DOESNT_HAVE_PRODUCTS_MSG}</td>
+		</tr><!-- END no_items -->
+		<!-- BEGIN products_select_block_priv -->
+		<tr>
+			<td class="middlebg" colspan="4">
+				<table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tr>
+					<td>
+						<!-- BEGIN add_products_priv -->
+							<a href="{admin_product_href}?category_id={parent_category_id}">{ADD_NEW_MSG}</a>
+						<!-- END add_products_priv -->
+						<!-- BEGIN edit_items_link -->
+						{edit_items_delimiter}<a id="edit_items" href="{admin_products_edit_href}?category_id={parent_category_id}" onClick="updateItems('')">{EDIT_SELECTED_MSG}</a>
+						<!-- END edit_items_link -->
+						<!-- BEGIN delete_items_link -->
+						{delete_items_delimiter}<a id="delete_items" href="{admin_items_list_href}" onClick="updateItems('delete_items');return false;">{DELETE_SELECTED_MSG}</a>
+						<!-- END delete_items_link -->
+						<!-- BEGIN products_order_link -->
+						{products_order_delimiter}<a href="{admin_products_order_href}?parent_category_id={parent_category_id}">{CHANGE_PRODUCTS_ORDER_MSG}</a>
+						<!-- END products_order_link -->
+					</td><!-- begin navigator_block -->
+					<td align="right">&nbsp;{navigator}&nbsp;</td><!-- end navigator_block -->
+				</tr>
+				</table>
+
+			</td>
+		</tr>
+		<!-- END products_select_block_priv -->
+		<!-- BEGIN products_export_block_priv -->
+		<tr class="middlebg">
+			<td colspan="4">
+				<!-- begin products_export_priv -->
+					<a href="{admin_export_href}?table=items">Export All</a>
+				<!-- end products_export_priv -->
+				<!-- begin export_filtered -->
+				 | <a href="{admin_export_filtered_url}">{EXPORT_FILTERED_MSG} ({total_filtered})</a>&nbsp;<!-- end export_filtered -->
+				<!-- begin products_import_priv -->
+					{products_import_delimiter}<a href="{admin_import_href}?table=items&category_id={parent_category_id}">{IMPORT_PRODUCTS_MSG}</a>
+				<!-- end products_import_priv -->
+				<!-- begin products_export_google_base_priv -->
+					{products_export_google_base_delimiter}<a href="{admin_export_google_base_href}">Google Base Export</a>
+					<!-- begin google_base_filtered -->
+						| <a href="{admin_google_base_filtered_url}">Google Base Filtered({total_filtered})</a>&nbsp;
+					<!-- end google_base_filtered -->
+				<!-- end products_export_google_base_priv -->
+				<!-- begin update_status -->
+					{update_status_br}
+					<select name="status_id"><!-- begin status_id -->
+						<option {status_id_selected} value="{status_id_value}">{status_id_description}<!-- end status_id -->
+					</select>
+					<input id="update_status_button" class="submit" type="button" value="{UPDATE_BUTTON} {STATUS_MSG}" onClick="updateItems('update_status');">
+				<!-- end update_status -->
+			</td>
+		</tr>
+		<!-- END products_export_block_priv -->
+		</table>
+
+	</td>
+</tr>
+</form>
+</table>
+</fieldset>
+<!-- end items_block -->
+<br>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr align="center" class="header">
+	<td>
+		<table width="100%" border="0" cellspacing="1" cellpadding="10" >
+		<tr>
+      <td class="middlebg"><img src="../images/icons/admin_forum.gif" hspace="10"></td>
+			<td class="commonbg">
+      	<ul class=cat>
+        	<li class=nob><b>{TO_FIND_OR_VIEW_PRODUCTS_MSG}</b><br>{NAVIGATE_IN_CATEGORIES_PRODUCTS_MSG}<br><br>
+          <li class=nob><b>{TO_ADD_SUB_CATEGORY_PRODUCT_MSG}</b><br>{FOLLOW_INSTRUCTIONS_PRODUCTS_MSG}</ul>
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>
+
+
+</td></tr></table>
+
+
+
+{admin_footer}
+</body>
+</html>

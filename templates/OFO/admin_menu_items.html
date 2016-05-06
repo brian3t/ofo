@@ -1,0 +1,90 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {ADMIN_PAGES_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<style>
+<!--
+.topTab {font-size:11px; border-bottom:#919b9c 1px solid; border-left:#91a7b4 1px solid; border-right:#91a7b4 1px solid; border-top:#91a7b4 1px solid; padding-top:3px; padding-right:8px; padding-left:8px; padding-bottom:2px; margin:3px 3px 0px 0px; cursor:hand; font-family:Verdana, sans-serif; background:#F5F3EB; moz-border-radius:4px 4px 0px 0px; whitespace:nowrap}
+.topTabActive {font-size:11px; border-right:#919b9c 1px solid; border-left:#919b9c 1px solid; border-top:#FF8200 2px solid; border-bottom:0px solid; padding-top:5px; padding-bottom:4px; padding-right:9px; padding-left:9px; margin:3px 3px 0px 0px; font-weight:bold; cursor:default; font-family:Verdana, sans-serif; background-color:#FCFFD5; moz-border-radius:4px 4px 0px 0px; whitespace:nowrap}
+//-->
+</style>
+ 
+ 
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_custom_menus_href}">{CUSTOM_MENUS_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_custom_menu_href}?menu_id={parent_menu_id}">{parent_menu_title}</a>&nbsp;&gt;&nbsp;
+			<b>{MENU_ITEMS_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+
+<br>
+
+<table height=10 cellspacing=0 cellpadding=0 border=0>
+<tr height=10>
+	<td><div id="tabReply" class=topTab><a class=blackSm href="admin_menu_datasheet.php?set_default=1&menu_id={menu_id}">{DATASHEET_VIEW_MSG}</a></td>
+	<td><div id="tabAssign"  class=topTabActive><a class=blackSm href="#" >{TREE_VIEW_MSG}</a></td>
+</tr>
+</table>
+<br>
+
+<fieldset>
+<legend>{SITE_NAVIGATION_MSG} - {TREE_VIEW_MSG}</legend>
+
+<table width="100%" border="0" cellpadding="6" cellspacing="1" align="center">
+<tr class="middle" align="center">
+	<td>
+		#
+	</td>
+	<td>
+		{ADMIN_TITLE_MSG}
+	</td>
+	<td>
+		{TARGET_URL_MSG}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- BEGIN records -->
+<tr align="center" class="usual">
+	<td>
+		{menu_count}
+	</td>
+	<td align="left">
+		&nbsp;{menu_title}
+	</td>
+	<td align="left">
+		&nbsp;{menu_url}
+	</td>
+	<td>
+		<a href="{admin_item_edit}&menu_item_id={menu_item_id}">{EDIT_MSG} Item</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr>
+	<td colspan="5" class="usual">
+		{NO_RECORDS}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="3">&nbsp;<a href="{admin_item_edit}">{ADD_MENU_ITEM_MSG}</a></td>
+	<td colspan="2" align=center><!-- begin navigator_block -->&nbsp;{navigator}&nbsp;<!-- end navigator_block --></td>
+</tr>
+</table>	
+</fieldset>
+
+
+{admin_footer}
+</body>
+</html>

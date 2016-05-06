@@ -1,0 +1,90 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {BOOKMARKS_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+<body class="commonbg">
+
+{admin_header}
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a href="{admin_bookmarks_href}">{BOOKMARKS_MSG}</a>
+		</td>
+	</tr>
+	</table>
+</td></tr>
+</table>
+
+<br>
+
+<fieldset>
+<legend>{BOOKMARKS_MSG}</legend>
+	<table border="0"  cellpadding="2" cellspacing="1" align="center" width=100%>
+		<tr>
+			<td>
+			<table width=100% border="0" cellspacing="1" cellpadding="1">
+			<!--begin  bookmarks_table -->
+				<tr class="middle" align="center" height=25>
+					<td>
+					<!--u>	{ID_MSG}</u--> {sorter_admin_bookmark_id}
+					</td>
+					<td>
+						<!--u>{ADMIN_TITLE_MSG}</u--> {sorter_admin_title}
+					</td>
+					<td>
+						<!--u>URL</u--> {sorter_admin_url}
+					</td>
+					<td>
+						<!--u>URL</u--> {sorter_is_start_page}
+					</td>
+					<td>
+					</td>
+				</tr>
+				<!--end  bookmarks_table -->
+				<!-- begin admin_bookmarks -->
+				<tr class="usual" height=25> 
+					<td align="center" >
+						{admin_bookmark_id}
+					</td>
+					<td>
+						&nbsp;{admin_title}
+					</td>
+					<td>
+						&nbsp;<a href="{admin_url}">{admin_url}</a>
+					</td>
+					<td>
+						&nbsp;{admin_start_page}
+					</td>
+					<td>
+						&nbsp;<a href="admin_bookmark.php?bookmark_id={admin_bookmark_id}">{EDIT_MSG}</a>
+					</td>
+				</tr>
+			<!-- end admin_bookmarks -->
+			<!-- begin errors -->
+			
+			<tr height=25>
+					<td colspan=5 class="usual">
+						&nbsp;&nbsp;{error}
+					</td>
+			</tr>
+			<!-- end errors -->
+			<tr height=25>
+					<td colspan=5 class="middle" align="left">
+						&nbsp;&nbsp;<a href="admin_bookmark.php">{ADD_NEW_MSG}</a>
+					</td>
+			</tr>
+			
+				
+		</table>
+		</td>
+	</tr>
+</table>
+</fieldset>
+
+
+{admin_footer}
+
+</body>
+</html>

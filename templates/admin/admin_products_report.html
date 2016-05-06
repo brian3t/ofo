@@ -1,0 +1,205 @@
+<html><head><title>{ADMINISTRATION_MSG} :: {PRODUCTS_REPORT_MSG}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+<script type="text/javascript">
+function nextNode(e) {
+	return ((e && e.nodeType != 1) ? nextNode(e = e.nextSibling) : e);
+}
+function toggle(img, toggle_all) {	
+	var tr = img.parentNode.parentNode;
+	tr = nextNode(tr.nextSibling);
+	if (tr.className == "subRow1" || tr.className == "subRow2" || tr.className == "subRow3" || tr.className == "subRow4") {
+		if ( (toggle_all == 1) || ((toggle_all != -1) && tr.style.display && (tr.style.display == 'none') ) ) {
+			tr.style.cssText = 'display:table-row';
+			img.src="../images/but-up.gif";
+			tr = nextNode(tr.nextSibling);
+			
+			while (tr && (tr.className == "subRow1" || tr.className == "subRow2" || tr.className == "subRow3" || tr.className == "subRow4")) {
+				tr.style.cssText = 'display:table-row';
+				tr = nextNode(tr.nextSibling);
+			}
+		} else {
+			tr.style.cssText = 'display:none';
+			img.src="../images/but-down.gif";
+			tr = nextNode(tr.nextSibling);
+			while (tr && (tr.className == "subRow1" || tr.className == "subRow2" || tr.className == "subRow3" || tr.className == "subRow4")) {
+				tr.style.cssText = 'display:none';
+				tr = nextNode(tr.nextSibling);
+			}			
+		}
+	}
+}
+var all_toggled = -1;
+function toggle_all() {
+	var images = document.getElementsByName('properties_control');
+	for (i=0; i<images.length; i++) {
+		 toggle(images[i], all_toggled);		 
+	}
+	if (all_toggled == 1) all_toggled = -1; else  all_toggled = 1;
+	return false;
+	
+}
+</script>
+ 
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<!-- begin products_links -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_items_list_href}">{PRODUCTS_MSG}</a>&nbsp;&gt;&nbsp;<b>{PRODUCTS_REPORT_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+<!-- end products_links -->
+
+<br>
+
+<table align="center">
+<tr>
+	<td>
+
+	<!-- BEGIN errors -->{errors_list}<!-- END errors -->
+	<form action="{admin_products_report_href}" method="GET">
+	<input type="hidden" name="operation" value="filter">
+	<!-- begin sl -->
+	<input type="radio" name="sl" {sl_checked} value="{sl_value}">&nbsp;{sl_description}&nbsp;<!-- end sl --><br>
+
+	<select name="sc"><!-- begin sc -->
+		<option {sc_selected} value="{sc_value}">{sc_description}<!-- end sc -->
+	</select><br>
+	<input size="50" class="field" type="text" name="s" value="{s}"> <input class="submit" type="submit" name="search" value="Get Report">
+	</form>
+	<a href="#" onclick="toggle_all(); return false;">
+	{ADMIN_SHOW_MSG} /  {HIDE_MSG} {OPTIONS_AND_COMPONENTS_MSG}
+	</a>
+
+	</td>
+</tr>
+</table>
+
+<!-- BEGIN report_results -->
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr height="25">
+	<td style="border:1px solid #919B9C; background-color:#FCFFD5;" class="message"> &nbsp; Report for: {report_info}</td>
+</tr>
+</table>
+<!-- END report_results -->
+
+<!-- BEGIN category -->
+<br>
+
+<fieldset>
+<legend>{report_title}</legend>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr class="middle" align="center">
+	<td width=6%>
+		{ID_MSG}
+	</td>
+	<td width=70% colspan="4">
+		{PROD_NAME_MSG}
+	</td>
+	<td width=6%>
+		{PROD_CODE_MSG}
+	</td>
+	<td width=6%>
+		{MANUFACTURER_CODE_MSG}
+	</td>
+	<td width=6%>
+		{PROD_PRICE_COLUMN}
+	</td>
+	<td width=6%>
+		{PROD_QTY_COLUMN}
+	</td>
+</tr><!-- BEGIN records -->
+<tr class="{row_class}" align="center">
+	<td width="6%" class="{row_class}">
+		<b>{product_id}</b>
+	</td>
+	<td align="left" width="70%" colspan="4" class="{row_class}" >
+		{product_name}<!-- BEGIN properties_control --><img name="properties_control" class="open" onclick="toggle(this); return false;" src="../images/but-up.gif" alt="Click to open options" title="Click to open options" align="absmiddle" height="12" hspace="3" width="13"><!-- END properties_control -->
+	</td>
+	<td width="6%" class="{row_class}">
+		&nbsp;{item_code}&nbsp;
+	</td>
+	<td width="6%" class="{row_class}">
+		&nbsp;{manufacturer_code}&nbsp;
+	</td>
+	<td align="right" width="6%" class="{row_class}">
+		<nobr>&nbsp;{price}&nbsp;</nobr>
+	</td>
+	<td align="center" width="6%" class="{row_class}">
+		<nobr>&nbsp;{stock_level}&nbsp;</nobr>
+	</td>
+</tr><!-- BEGIN properties -->
+<tr class="{property_row_class}" align="center">
+	<td width="6%">
+
+	</td>
+	<td width="1%">&nbsp;</td>
+	<td width="14"><img src="{property_tree_image}" width="14" height="20" border="0"></td>
+	<td align="left" colspan="2" width="69%">
+		&nbsp;{property_name}
+	</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td align="right">
+		<nobr>&nbsp;{price}&nbsp;</nobr>
+	</td>
+	<td align="center">
+		<nobr>&nbsp;{stock_level}&nbsp;</nobr>
+	</td>
+</tr><!-- BEGIN properties_values -->
+<tr class="{value_row_class}" align="center">
+	<td width="6%"></td>
+	<td width="1%">&nbsp;</td>
+	<td width="14"><img src="{property_value_tree_image}" width="14" height="20" border="0"></td>
+	<td width="14"><img src="{value_tree_image}" width="14" height="20" border="0"></td>
+	<td align="left" width="68%">
+		&nbsp;{property_value}
+	</td>
+	<td>
+		{item_code}
+	</td>
+	<td>
+		{manufacturer_code}
+	</td>
+	<td align="right">
+		<nobr>&nbsp;{price}&nbsp;</nobr>
+	</td>
+	<td align="center">
+		<nobr>&nbsp;{stock_level}&nbsp;</nobr>
+	</td>
+</tr><!-- END properties_values --><!-- END properties -->
+<!-- END records --><!-- BEGIN no_records -->
+<tr>
+	<td colspan="9" class="usual">
+		&nbsp;{NO_REPORTS_FOUND_MSG}
+	</td>
+</tr><!-- END no_records --><!-- begin navigator_block -->
+<tr>
+	<td colspan="9" class="middle" align="right">
+		&nbsp;{navigator}&nbsp;
+	</td>
+</tr><!-- end navigator_block -->
+</table>	
+
+</fieldset>
+<!-- END category -->
+ 
+<script type="text/javascript">
+	toggle_all();
+</script>
+{admin_footer}
+</body>
+</html>

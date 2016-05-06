@@ -1,0 +1,197 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {ARTICLES_LOST_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+<script language="JavaScript">
+<!--
+	function allItems()
+	{
+		var checkedStatus = document.articles.all_articles.checked;
+		var articlesNumber = document.articles.articles_number.value;
+		for (var i = 1; i <= articlesNumber; i++) {
+			document.articles.elements["id_" + i].checked = checkedStatus;
+		}
+		checkItems();
+	}
+
+	function updateItems(operation)
+	{
+		var articlesId = "";
+		var articlesIds = "";
+		var articlesNumber = document.articles.articles_number.value;
+		var total = 0;
+		for (var i = 1; i <= articlesNumber; i++) {
+			if (document.articles.elements["id_" + i].checked) {
+				total++;
+				articlesId = document.articles.elements["id_" + i].value;
+				if(total > 1) { articlesIds += ","; }
+				articlesIds += articlesId;
+			}
+		}
+
+		if (total == 0) {
+			alert("Please select article first.");
+			return false;
+		} else if (operation == "move") {
+			var cat_name = document.articles.parent_category_id.options[document.articles.parent_category_id.selectedIndex].text;			
+			if (confirm("{MOVE_CONFIRM_QST} " + total + " selected articles to " + cat_name + "?")) {
+				document.articles.articles_ids.value = articlesIds;
+				document.articles.operation.value = "move";
+				document.articles.action = window.location.href;
+				document.articles.submit();
+			}
+		} else if (operation == "delete") {					
+			if (confirm("{DELETE_CONFIRM_QST} " + total + " selected articles?")) {
+				document.articles.articles_ids.value = articlesIds;
+				document.articles.operation.value = "delete";
+				document.articles.action = window.location.href;
+				document.articles.submit();
+			}
+		}
+	}
+
+	function checkItems()
+	{
+		var articlesId = "";
+		var articlesIds = "";
+		var articlesNumber = document.articles.articles_number.value;
+		var totalSelected = 0;
+		for (var i = 1; i <= articlesNumber; i++) {
+			if (document.articles.elements["id_" + i].checked) {
+				document.getElementById("tr_article_" + i).className = "SelectedRow";
+				totalSelected++;
+				articlesId = document.articles.elements["id_" + i].value;
+				if(articlesIds != "") { articlesIds += ","; }
+				articlesIds += articlesId;
+			} else {
+				document.getElementById("tr_article_" + i).className = mas[i];
+			}
+		}
+		var moveButton = document.getElementById("move_button");
+		if (moveButton) {
+			if (articlesIds == "") {
+				moveButton.value = "{MOVE_MSG}";
+			} else {
+				moveButton.value = "{MOVE_MSG} (" + totalSelected + ")";
+			}
+		}
+		
+		var deleteButton = document.getElementById("delete_button");
+		if (deleteButton) {
+			if (articlesIds == "") {
+				deleteButton.value = "{DELETE_BUTTON}";
+			} else {
+				deleteButton.value = "{DELETE_BUTTON} (" + totalSelected + ")";
+			}
+		}
+	}
+
+	function start_event_select(){
+		if (document.articles.articles_number.value > 0) {
+			var articlesNumber = document.articles.articles_number.value;
+			mas = new Array();
+			for (var i = 1; i <= articlesNumber; i++) {
+				mas[i] = document.getElementById("tr_article_" + i).className;
+			}
+		}
+	}
+
+//-->
+</script>
+</head>
+	
+<body class="commonbg" onload="start_event_select();">
+{admin_header}
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr><td valign="top" colspan="3" align="center">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header">
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_articles_top_href}">{ARTICLES_TITLE}</a>&nbsp;&gt;&nbsp;
+			<b>{ARTICLES_LOST_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br/>
+
+<fieldset>
+<legend>{ARTICLES_TITLE}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center">
+	<td>
+
+<form name="articles" action="{admin_articles_lost_href}" method="POST">
+<input type="hidden" name="operation" value="">
+<input type="hidden" name="articles_number" value="{articles_number}">
+<input type="hidden" name="articles_ids" value="{articles_ids}">
+
+<table border="0" cellspacing="1" cellpadding="6" width="100%"><!-- BEGIN sorters -->
+<tr align="center" class="middle">
+	<td align="center">
+		<input type="checkbox" name="all_articles" value="1" onClick="allItems();">
+	</td>
+	<td align="left">
+		{sorter_article_id}
+	</td>
+	<td align="left">
+		&nbsp;{sorter_article_title}
+	</td>
+	<td align="left">
+		&nbsp;{sorter_status}
+	</td>
+	<td align="left">
+		&nbsp;{sorter_date_added}
+	</td>
+</tr><!-- END sorters --><!-- BEGIN records -->
+<tr id="tr_article_{index}" class="row{row_class}" align="center">
+	<td>
+		<input name="id_{index}" value="{article_id}" onclick="checkItems();" type="checkbox">		
+	</td>
+	<td>
+		{article_id}
+	</td>
+	<td align="left">
+		{article_title}
+	</td>
+	<td align="center" valign="center">
+		{article_status}
+	</td>
+	<td align="center" valign="center">
+		{date_added}
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="5">
+		&nbsp;{NO_RECORDS_MSG}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="5">
+		<!--begin move_articles_block-->
+		<select name="parent_category_id"><!-- begin parent_category_id -->
+			<option {parent_category_id_selected} value="{parent_category_id_value}">{parent_category_id_description}<!-- end parent_category_id -->
+		</select>
+		<input id="move_button" class="submit" type="button" value="{MOVE_MSG}" onClick="updateItems('move');">
+		<!--end move_articles_block-->
+		<input id="delete_button" class="submit" type="button" value="{DELETE_BUTTON}" onClick="updateItems('delete');">
+		&nbsp;<!-- begin navigator_block -->&nbsp;{navigator}&nbsp;<!-- end navigator_block -->
+	</td>
+</tr>
+</table>
+</form>
+
+	</td>
+</tr>
+</table>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

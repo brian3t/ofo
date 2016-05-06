@@ -1,0 +1,199 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{ADMINISTRATION_MSG} :: {ORDERS_RECOVER_SETTINGS_MSG}</title>
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script type="text/javascript" src="../js/admin.js"></script>
+<script language="JavaScript">
+<!--
+	function openWindow(pagename)
+	{
+		var popupWin = window.open (pagename + "?cc=1", 'popup', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');
+		popupWin.focus();
+	}
+//-->
+</script>
+</head>
+<body class="mainbg">
+
+{admin_header}
+
+<form action="{admin_orders_recover_settings_href}" name="record" method="POST">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="breadcrumb"> 
+
+	<table width="100%" cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>
+			&nbsp;&gt;&nbsp;<a href="{admin_orders_href}">{ORDERS_MAINTENANCE_MSG}</a>
+			&nbsp;&gt;&nbsp;<a href="{admin_orders_recover_href}">{ORDERS_RECOVER_MSG}</a>
+			&nbsp;&gt;&nbsp;<b>{ORDERS_RECOVER_SETTINGS_MSG}</b>
+		</td>
+		<!-- begin sitelist -->
+		<td class="usual" align="right">
+			{SELECT_SITE_MSG}&nbsp;
+			<select name="param_site_id" onchange="reloadSite(this.form)"><!-- begin param_site_id -->
+				<option {param_site_id_selected} value="{param_site_id_value}">{param_site_id_description}<!-- end param_site_id -->
+			</select>		
+		</td>
+		<!-- end sitelist -->
+	</tr>
+	</table>
+
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{ORDERS_RECOVER_SETTINGS_MSG}</legend>
+
+<table border="0" cellpadding="6" cellspacing="1" width="100%">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="rp" value="{rp}">
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{GENERAL_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;{LOOK_BACK_DAYS_MSG}
+		<div class="small">
+		&nbsp;{LOOK_BACK_DAYS_NOTE}
+		</div>
+	</td>
+	<td valign="top">
+		<input class="field" type="text" name="lookback_days" value="{lookback_days}" size="10" maxlength="10">
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;{EMAIL_DAYS_TO_LIVE_MSG}
+		<div class="small">
+		&nbsp;{EMAIL_DAYS_TO_LIVE_NOTE}
+		</div>
+	</td>
+	<td valign="top">
+		<input class="field" type="text" name="email_live_days" value="{email_live_days}" size="10" maxlength="10">
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;{IGNORE_CUSTOMERS_WITH_SESSION_MSG}
+	</td>
+	<td valign="top">
+		<input type="checkbox" name="ignore_active_customers" {ignore_active_customers} value="1"> {IGNORE_CUSTOMERS_WITH_SESSION_NOTE}
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{EMAIL_NOTIFICATION_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_FROM_MSG}</b>
+		<div class="small">
+		&nbsp;(<a href="javascript:openWindow('{admin_email_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_FILEDS_NOTE})
+		</div>
+	</td>
+	<td>
+		<input class="field" type="text" name="user_mail_from" value="{user_mail_from}" size="80" maxlength="255">
+		<div class="small">({EG_MSG} <b>sales@yoursite.com</b>)</div>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_CC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="user_mail_cc" value="{user_mail_cc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_BCC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="user_mail_bcc" value="{user_mail_bcc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_REPLY_TO_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="user_mail_reply_to" value="{user_mail_reply_to}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_RETURN_PATH_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="user_mail_return_path" value="{user_mail_return_path}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ATTACHMENTS_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="user_mail_pdf_invoice" {user_mail_pdf_invoice} value="1"> PDF Invoice
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_SUBJECT_MSG}</b>
+	</td>
+	<td>
+		<input class="field" type="text" name="user_subject" value="{user_subject}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_MESSAGE_TYPE_MSG}</b>
+	</td>
+	<td><!-- begin user_message_type -->
+		<input type="radio" name="user_message_type" {user_message_type_checked} value="{user_message_type_value}">{user_message_type_description}<!-- end user_message_type -->
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}?final=1')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_SETTINGS_NOTE} 
+		<br>&nbsp;&nbsp;{LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td>
+		<textarea name="user_message" cols="80" rows="10">{user_message}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</form>
+
+</fieldset>
+
+
+{admin_footer}
+
+</body>
+</html>

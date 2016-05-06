@@ -1,0 +1,100 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_MESSAGE_MSG} ::..</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5" align="center">
+<tr><td align="center">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_support_href}">{HELPDESK_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_support_reply_href}?support_id={support_id}">{support_request}</a>&nbsp;&gt;&nbsp;<b>{EDIT_MESSAGE_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<td>
+<fieldset>
+<legend>{EDIT_MESSAGE_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+
+<form action="{admin_support_message_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="message_id" value="{message_id}">
+<input type="hidden" name="support_id" value="{support_id}">
+<table border="0" cellspacing="1" cellpadding="6" width="100%"><!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{INTERNAL_MESSAGE_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="internal" {internal} value="1"> 
+		<font class="small">
+		({INTERNAL_MESSAGE_NOTE})
+		</font>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{STATUS_MSG} *
+	</td>
+	<td>
+		<select name="support_status_id"><!-- begin support_status_id -->
+			<option {support_status_id_selected} value="{support_status_id_value}">{support_status_id_description}<!-- end support_status_id -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{MESSAGE_MSG} *
+	</td>
+	<td>
+		<textarea name="message_text" cols="60" rows="10">{message_text}</textarea>
+	</td>
+</tr>
+
+
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onclick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}')">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</form>	
+
+	</td>
+</tr>
+</table>
+</fieldset>
+</td></tr></table>
+
+{admin_footer}
+</body>
+</html>

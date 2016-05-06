@@ -1,0 +1,99 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{ADMINISTRATION_MSG} :: {SITE_NAVIGATION_MSG}</title>
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<b>{SITE_NAVIGATION_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+
+<br>
+
+<fieldset>
+<legend>{SITE_NAVIGATION_MSG}</legend>
+
+<table width="100%" border="0" cellpadding="6" cellspacing="1" align="center">
+<tr class="middle" align="center">
+	<td>
+		#
+	</td>
+	<td>
+		{ADMIN_TITLE_MSG}
+	</td>
+	<td>
+		{TARGET_URL_MSG}
+	</td>
+	<td>
+		{LAYOUT_MSG}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- BEGIN records -->
+<tr align="center" class="usual">
+	<td>
+		{menu_count}
+	</td>
+	<td align="left">
+		&nbsp;{menu_title}
+	</td>
+	<td align="left">
+		&nbsp;{menu_url}
+	</td>
+	<td>
+		&nbsp;{layout_name}
+	</td>
+	<td>
+		<a href="{admin_menu_item_url}">{EDIT_MENU_ITEM_MSG}</a>
+	</td>
+	<td>
+		<!-- begin submenu_link -->
+		<a href="{admin_menu_submenus_url}">Secondary Submenu</a>
+		<!-- end submenu_link -->
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr>
+	<td colspan="6" class="usual">
+		{NO_RECORDS_MSG}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="6">
+		<table cellspacing="0" cellpadding="0" width="100%" border="0">
+		<tr>
+			<td class="middle" align="left">
+				&nbsp;<a href="{admin_menu_item_new_url}">{ADD_NEW_MSG}</a>
+				&nbsp;|&nbsp; <a href="{admin_header_menus_order_url}">{CHANGE_ORDER_MSG}</a>
+			</td><!-- begin navigator_block -->
+			<td class="middle" align="right">
+				&nbsp;{navigator}&nbsp;
+			</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>	
+
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

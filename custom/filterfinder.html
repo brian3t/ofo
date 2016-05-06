@@ -1,0 +1,60 @@
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+	<tbody><tr> 
+	  <td width="20"><img width="20" height="39" src="images/fashion/BlkHdrLt.jpg"/></td>
+		<td class="titleTopCenter">
+		  <table width="100%" cellspacing="0" cellpadding="0" border="0">
+		  <tbody><tr><td><div><b><a name="FF" style="color:#FFFFFF;font-family:Trebuchet MS,Arial,Verdana,Sans-Serif;font-size:16px;font-weight:bold;">FILTER FINDER&#8482; - Select Your Filter Application</a></b></div></td></tr></tbody></table>
+		</td>
+	  <td width="20"><img width="20" height="39" alt="" src="images/fashion/BlkHdrRt.jpg"/></td>
+	</tr>
+</tbody></table>
+<table width="660" border="0" align="center" cellpadding="1" cellspacing="0">
+	<tr>
+	    <td width="16%"><div align="center"><a href="#" onclick="ApplySlider('Automotive-Filters.php'); return false;"><img src="/images/oil-filters/SearchAuto.jpg" alt="Car Oil Air Filters" width="65" height="66" border="0" /></a></div></td>
+        <td width="16%"><div align="center"><a href="#" onclick="ApplySlider('Motorcycle-Filter.php'); return false;"><img src="/images/oil-filters/SearchMotorcycle.jpg" alt="Motorcycle Filters" width="65" height="66" border="0"></a></div></td>
+        <td width="16%"><div align="center"><a href="#" onclick="ApplySlider('ATV-Watercraft-Filters.php'); return false;"><img src="/images/oil-filters/SearchATV.jpg" alt="ATV Watercraft Filters" width="65" height="66" border="0"></a></div></td>
+        <td width="17%"><div align="center"><a href="#" onclick="ApplySlider('Heavy-Duty-Oil-Filters-Selector.php'); return false;"><img src="/images/oil-filters/SearchHD.jpg" alt="Heavy Duty Oil Filters" width="66" height="66" border="0"></a></div></td>
+        <td width="18%"><div align="center"><a href="#" onclick="ApplySlider('Oil-Filter-Cross-Reference.php'); return false;"><img src="/images/oil-filters/SearchCross.jpg" alt="Oil Filter Cross Reference" width="65" height="66" border="0" /></a></div></td>
+	    <td width="17%"><div align="center"><a href="#" onClick="window.open('articles.php?category_id=36','_top');"><img src="/images/oil-filters/SearchQuestion.jpg" alt="Ask A Filter Question" width="66" height="66" border="0"></a></div></td>
+	</tr>
+	<tr>
+        <td><div align="center"><strong>Passenger Car<br />
+        &amp; Small Truck </strong></div></td>
+        <td><div align="center"><strong>Motorcycle<br />
+        Filters</strong></div></td>
+        <td><div align="center"><strong>Small<br />
+        Recreation</strong></div></td>
+        <td><div align="center"><strong>Heavy Duty<br />
+        Filters</strong></div></td>
+        <td><div align="center"><strong>Cross Reference<br />
+        Filters</strong></div></td>
+        <td><div align="center"><strong>Ask a<br />
+        Question</strong></div></td>
+	</tr>
+</table>
+
+<div id="FilterFinderSlider" style="height:600px;display:none;">
+    <div>
+    	<div id="framewrapper" style="display:none">
+        <iframe name="iframeName" style="overflow-x: hidden;height:600px" width="665" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto" src="">
+        You can't see this because your browser does not support iframes.
+        </iframe>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+function ApplySlider (application) {
+
+	if (document.getElementById('FilterFinderSlider').style.display == 'none') {
+		Effect.SlideDown('FilterFinderSlider');
+		Effect.Appear('framewrapper',{queue:'end'});
+	}
+	if (window.frames && window.frames.iframeName) {
+		window.frames.iframeName.location.href = application;
+	}
+
+}
+
+</script>

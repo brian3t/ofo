@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{product_title}</title>
+<meta name="description" content="{meta_description}">
+<base href="{absolute_url}">
+<link rel="stylesheet" href="{css_file}" type="text/css">
+<script language="JavaScript" type="text/javascript">
+<!--
+	var imageUp = new Image();
+	imageUp.src = "images/but-up.gif";
+	var imageDown = new Image();
+	imageDown.src = "images/but-down.gif";
+
+	function changeBlockStatus(blockName) 
+	{
+		var sectionBlock = document.getElementById(blockName);
+		var sectionImage = document.getElementById(blockName + "_img");
+		if (sectionBlock.style.display == "none") {
+			sectionBlock.style.display = "block";
+			sectionImage.src = imageUp.src;
+		} else {
+			sectionBlock.style.display = "none";
+			sectionImage.src = imageDown.src;
+		}
+	}
+
+//-->
+</script>
+
+</head>
+
+<body class="commonbg">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr class="usualWhite"> 
+	<td valign="top">
+
+			<!-- begin no_item -->
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr><td align="center" class="padding10px"><div class="errorbg">{NO_AD_MSG}</div></td></tr>
+			</table><!-- end no_item -->
+
+			<!-- begin item -->
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td>
+					<br>
+					</td>
+				</tr>
+				<tr>
+					<td class="usualWhite">
+						<table width="100%" border="0" cellspacing="0" cellpadding="6">
+							<tr>
+								<td class="usualWhite">
+									<!--<input type="hidden" name="tab" value="{tab}">-->
+									<span class="h5" style="text-decoration: underline;">{item_title}</span>
+								</td>
+								<td class="usualWhite" align="right">
+									<a href="javascript:print()"><img src="images/ico-print.gif" alt="{PRINT_PAGE_MSG}" width="20" height="20" border="0" align="middlebg" hspace=5><b>{PRINT_PAGE_MSG}</b></a>
+								</td>
+							<tr>
+						</table>
+					</td>
+				<tr>
+			</table>
+			<table width="100%" border="0" cellspacing="0" cellpadding="10">
+			<tr>
+				<td>
+				<!--1 start item table -->
+				<form name="form_{item_id}" action="{ads_details_href}" method="post">
+				<table width="100%" border="0" cellspacing="0" cellpadding="3">
+				<tr>
+				  <td align="left" width="25%">
+						<!-- begin big_image -->
+						<a href="{ads_details_href}?item_id={item_id}&category_id={category_id}"><img src="{src}" {width} {height} border="0" hspace="0" alt="{alt}"></a><!-- end big_image -->
+					</td>
+					<td align="left" valign="top" width="35%">
+						<div>
+							<b>{TYPE_MSG}</b>:&nbsp;{type_name}<br>	
+							<b>{AD_PRICE_MSG}</b>:&nbsp;<font class="ourprice">{price}</font><br>	
+							<!-- begin user_block -->
+							<b>{AD_SELLER_MSG}</b>:&nbsp;{user_name}<br><!-- end user_block -->	
+							<!-- begin quantity_block -->
+							<b>{AD_QTY_MSG}</b>:&nbsp;{quantity}<br><!-- end quantity_block -->	
+							<!-- begin availability_block -->
+							<b>{AD_AVAILABILITY_MSG}</b>:&nbsp;{availability}</font><br><!-- end availability_block -->	
+							<!-- begin location_block -->
+							<b>{AD_LOCATION_MSG}</b>:&nbsp;{location}<br><!-- end location_block -->	
+						</div>
+					</td>
+					<td align="left" valign="top" width="40%">
+						<!-- begin properties -->
+						<b>{property_name}</b>: {property_value}<br><!-- end properties -->
+					</td>
+				</tr>
+				</table>
+				</form>
+
+				</td>
+			</tr>
+			</table><!-- end item -->
+
+			<!-- begin seller_block -->
+			<!-- begin title_seller -->
+			<table width="100%" border="0" cellspacing="0" cellpadding="6">
+			<tr>
+				<td class="usualWhite"> 
+					<div class="h5" style="text-decoration: underline;">{AD_SELLER_MSG}<a href="#" onClick="changeBlockStatus('sell'); return false;"><img align="" id="sell_img" src="images/but-up.gif" width="13" height="12" border="0"></a></div>
+				</td>                    	
+			</tr>                      	
+			</table>
+			<!-- end title_seller -->
+			                           	
+			<table width="100%" border="0" cellspacing="0" cellpadding="10">
+			<tr>
+				<td>
+					<!-- begin seller_desc -->
+					<div id="sell" style="display: block;">
+						<b>{AD_SELLER_MSG}</b>:&nbsp;{user_name}<br>
+						<b>{AD_LOCATION_MSG}</b>:&nbsp;{location}<br>
+					</div><!-- end seller_desc -->
+				</td>
+			</tr>				
+			</table>
+			<br>
+			<!-- end seller_block -->
+
+			<!-- begin description_block -->
+			<!--1 begin title_desc -->
+			<table width="100%" border="0" cellspacing="0" cellpadding="6">
+			<tr>
+				<td class="usualWhite"> 
+					<div class="h5" style="text-decoration: underline;">{AD_DESCRIPTION_MSG}<a href="#" onClick="changeBlockStatus('desc'); return false;"><img align="" id="desc_img" src="images/but-up.gif" width="13" height="12" border="0"></a></div>
+				</td>                    	
+			</tr>                      	
+			</table>
+			<!--1 end title_desc -->
+			                           	
+			<table width="100%" border="0" cellspacing="0" cellpadding="10">
+			<tr>
+				<td>
+					<!-- begin description -->
+				  <div id="desc" style="display: block;">{full_description}</div><!-- end description -->
+				</td>
+			</tr>				
+			</table>
+			<br>
+			<!-- end description_block -->
+
+
+			<!-- begin specification -->
+			<!--1 begin title_spec -->
+			<table width="100%" border="0" cellspacing="0" cellpadding="6">
+			<tr>
+				<td class="usualWhite"> 
+					<div class="h5" style="text-decoration: underline;">{AD_SPECIFICATION_MSG}<a href="#" onClick="changeBlockStatus('spec'); return false;"><img align="" id="spec_img" src="images/but-up.gif" width="13" height="12" border="0"></a></div>
+				</td>                    	
+			</tr>                      	
+			</table>
+			<!--1 end title_spec -->
+			<div id="spec" style="display: block;">
+			<table width="100%" border="0" cellspacing="0" cellpadding="10">
+				<tr><td><!-- begin groups -->
+					<table cellspacing=0 cellpadding=0 width="100%" align=center class=headerbg border=0>
+						<tr><td>
+							<table cellspacing=1 cellpadding=4 width="100%" align=center border="1">
+								<tr >
+									<td class="usualbg" colspan=2><b>{group_name}</b></td></tr><!-- begin features -->
+								<tr>
+									<td class="usualbg" valign=top width="35%">{feature_name}</td>
+									<td class="usualbg" valign=top>{feature_value}</td>
+								</tr><!-- end features -->
+							</table>
+						</td></tr>
+					</table><!-- end groups -->
+				</td></tr>
+			</table>
+			</div>
+			<br>
+			<!-- end specification -->
+
+
+			<!-- begin images -->
+			<!--1 begin title_images -->
+			<table width="100%" border="0" cellspacing="0" cellpadding="6">
+			<tr>
+				<td class="usualWhite"> 
+					<div class="h5" style="text-decoration: underline;">{IMAGES_MSG}<a href="#" onClick="changeBlockStatus('imag'); return false;"><img align="" id="imag_img" src="images/but-up.gif" width="13" height="12" border="0"></a></div>
+				</td>                    	
+			</tr>                      	
+			</table>
+			<!--1 end title_images -->
+			<br>
+			<div id="imag" style="display: block;">
+			<table cellSpacing=0 cellPadding=5 width="100%" align=center border=0>
+			<!-- begin images_rows -->
+			<tr valign="top" align="center"><!-- begin images_cols -->
+				<td>
+					<div class="title">{image_title}</div>
+					<a href="{image_large}" target="_blank"><img src="{image_small}" {image_width} {image_height} border="0"></a>
+					<div class="smallText">{image_description}</div>
+				</td><!-- end images_cols -->
+			</tr>
+			<tr><td colspan="2">&nbsp;</td></tr>
+			<!-- end images_rows -->
+			</table>
+			</div>
+			<!-- end images -->
+
+		</td>
+	</tr>
+</table>
+<br>
+
+<br>
+
+</body>
+</html>

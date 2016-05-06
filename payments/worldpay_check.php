@@ -1,0 +1,12 @@
+<?php
+/*
+  ****************************************************************************
+  ***                                                                      ***
+  ***      ViArt Shop 3.6                                                  ***
+  ***      File:  worldpay_check.php                                       ***
+  ***      Built: Wed Feb 18 13:08:18 2009                                 ***
+  ***      http://www.viart.com                                            ***
+  ***                                                                      ***
+  ****************************************************************************
+*/
+/* * Worldpay (www.worldpay.com) transaction handler by www.viart.com */	// get payments parameters for validation	$our_pass = isset($payment_params["callbackPW"]) ? trim($payment_params["callbackPW"]) : "";	// get parameters passed from 2Checkout.com	$inst_id        = get_param("instId", POST); // our installation id	$trans_id       = get_param("transId", POST); // worldpay transaction id	$order_id       = get_param("cartId", POST); // our cart id number passed in.	$trans_status   = get_param("transStatus", POST); // Y - successful, C - cancelled	$amount         = get_param("amount", POST); // amount.	$currency       = get_param("currency", POST); // currency	$auth_amount    = get_param("authAmount", POST); // Total purchase amount.	$auth_currency  = get_param("authCurrency", POST); // currency	$call_back_pass = get_param("callbackPW", POST); // callbackPW is returned if you have set a Callback password for your installation on the WorldPay Customer Management System.	// check parameters	if (!strlen($inst_id)) {		$error_message = "Can't obtain installation id.";	} else if (!strlen($order_id)) {		$error_message = "Can't obtain order number parameter.";	}	if (strlen($error_message)) { 		return;	}	// use some checks on placed order	if(strlen($our_pass) && strtoupper($our_pass) != strtoupper($call_back_pass)) {		$error_message = "Callback Password has wrong value.";	} else if ($trans_status != "Y") {		$error_message = "Your transaction has been declined.";	} else {		//check amount		$error_message = check_payment($order_id, $amount, $currency);	}	if (strlen($error_message)) { 		return;	}	// validation passed	// update transaction information	$sql  = " UPDATE " . $table_prefix . "orders SET transaction_id=" . $db->tosql($trans_id, TEXT);	$sql .= " WHERE order_id=" . $db->tosql($order_id, INTEGER);	$db->query($sql);?>

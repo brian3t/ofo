@@ -1,0 +1,104 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {CUSTOMER_MENU_NEWSLETTERS} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript">
+<!--
+	function openSendWindow(newsletterID)
+	{
+		var sendWin = window.open ('{admin_newsletter_send_href}?newsletter_id=' + newsletterID, 'sendWin', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=600,height=440');
+		sendWin.focus();
+	}
+//-->
+</script>
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<b>{CUSTOMER_MENU_NEWSLETTERS}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{CUSTOMER_MENU_NEWSLETTERS}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<table border="0" cellspacing="1" cellpadding="6" width="100%"><!-- begin sorters -->
+<tr align="center" class="middle" valign="top">
+	<td>
+		{sorter_newsletter_id}
+	</td>
+	<td>
+		{sorter_newsletter_subject}
+	</td>
+	<td>
+		{sorter_newsletter_date}
+	</td>
+	<td>
+		{STATUS_MSG}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- end sorters --><!-- BEGIN records -->
+<tr class="usual">
+	<td align="center">
+		{newsletter_id}
+	</td>
+	<td>
+		&nbsp;{newsletter_subject}
+	</td>
+	<td align="center">
+		&nbsp;{newsletter_date}
+	</td>
+	<td align="center">
+		&nbsp;{newsletter_status}
+	</td>
+	<td align="center">
+		<a href="{admin_newsletter_href}?newsletter_id={newsletter_id}">{EDIT_MSG}</a>
+	</td>
+	<td align="center">
+		<a href="{admin_newsletter_send_href}?newsletter_id={newsletter_id}" onClick="openSendWindow('{newsletter_id}'); return false;">{SEND_BUTTON}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="6">
+		&nbsp;{NO_RECORDS}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="6">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+		<tr class="middle">
+			<td>&nbsp;<a href="{admin_newsletter_href}">{ADD_NEW_MSG}</a>&nbsp;</td><!-- begin navigator_block -->
+			<td>&nbsp;{navigator}&nbsp;</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>	
+
+	</td>
+</tr>
+</table>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

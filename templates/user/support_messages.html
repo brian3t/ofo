@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{html_title}</title>
+<meta name="description" content="{meta_description}">
+<meta name="keywords" content="{meta_keywords}">
+<base href="{absolute_url}">
+<link type="text/css" rel="stylesheet" href="{css_file}">
+<script type="text/javascript" src="js/attachments.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript" ></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js" type="text/javascript" ></script>
+<script src="js/preview.js" type="text/javascript" ></script>
+<script src="js/partfinder.js" type="text/javascript" ></script>
+<script type="text/javascript" src="js/showcart.js"></script>
+<!--[if lte IE 6]><style>.png { behavior: url("/css/iepngfix.htc") }</style><![endif]-->
+</head>
+
+<body>
+{header}
+
+<div id="bodyWrapper">
+<div id="mainTable">
+	<!-- begin left_column -->
+	<div class="mainTableCellLeft">
+		<!-- begin left -->
+		{block_body}
+		<!-- end left -->
+	</div>
+	<!-- end left_column -->
+	<!-- begin middle_column -->
+	<div class="mainTableCellCenter">
+		<!-- begin middle -->
+		{block_body}
+		<!-- end middle -->
+		<!-- end middle_column -->
+		<!-- begin right_column -->
+	</div>
+	<div class="mainTableCellRight">
+		<!-- begin right -->
+		{block_body}
+		<!-- end right -->
+		<!-- end right_column -->
+	</div>
+	<div class="clear"></div>
+</div>
+</div>
+{footer}
+
+</body>
+</html>

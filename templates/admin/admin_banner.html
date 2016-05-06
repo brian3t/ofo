@@ -1,0 +1,280 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_BANNER_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript" type= "text/javascript" src="../js/list_fields.js"></script>
+<script language="JavaScript">
+<!--
+	function openWindow(pagename, filetype)
+	{
+		var uploadWin = window.open (pagename + '?filetype=' + filetype, 'uploadWin', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=400,height=300');
+		uploadWin.focus();
+	}
+
+	function setFileName(filename, filetype)
+	{
+		var siteUrl = '{site_url}';
+
+		if(filename != "")
+		{
+			if(filetype == "banner")
+			{
+				document.record.image_src.value = siteUrl + "images/bnrs/" + filename;
+				document.record.image_src.focus();
+			}
+		}
+	}
+
+//-->
+</script>
+<script language="JavaScript">
+<!--
+var list_fields_names = new Array('sites', 'groups');
+//-->
+</script>
+
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_banners_href}">{BANNERS_MANAGEMENT_MSG}</a>&nbsp;&gt;
+			<b>{EDIT_BANNER_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<!-- BEGIN success -->
+	<div class="message">{success_message}</div>
+<!-- END success -->
+<!-- BEGIN errors -->
+	<div class="error">{errors_list}</div>
+<!-- END errors -->
+
+<table cellspacing="0" cellpadding="0" border="0">
+<tr><!-- BEGIN tabs -->
+	<td onClick="changeTab('{tab_name}'); return false;"><div id="{tab_id}" class="{tab_class}"><a class="blackSm" href="#" onClick="changeTab('{tab_name}'); return false;">{tab_title}</a></td><!-- END tabs -->
+</tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border: 1px solid #999;">
+<tr align="center">
+	<td class="">
+
+<form action="{admin_banner_href}" name="record" onSubmit="selectListFieldsAll();" method="POST">
+<input type="hidden" name="operation" value="">
+<input type="hidden" name="apply" value="">
+<input type="hidden" name="tab" value="{tab}">
+<input type="hidden" name="banner_id" value="{banner_id}">
+<input type="hidden" name="total_impressions" value="{total_impressions}">
+<input type="hidden" name="total_clicks" value="{total_clicks}">
+<input type="hidden" name="page" value="{page}">
+<input type="hidden" name="groups" value="">
+<input type="hidden" name="sites" value="">
+
+
+<div id="data_general" style="{general_style}">
+	<table width="100%" border="0" cellspacing="1" cellpadding="6">
+	<tr class="usual">
+		<td>
+			&nbsp;{IS_ACTIVE_MSG}
+		</td>
+		<td>
+			<input type="checkbox" name="is_active" {is_active} value="1">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{RANK_MSG} *
+		</td>
+		<td>
+			<input class="field" type="text" size="10" name="banner_rank" value="{banner_rank}">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{ADMIN_TITLE_MSG} *
+		</td>
+		<td>
+			<input class="field" type="text" size="80" name="banner_title" value="{banner_title}">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{SHOW_TITLE_MSG}
+		</td>
+		<td>
+			<input type="checkbox" name="show_title" {show_title} value="1">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{IMAGE_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" size="80" name="image_src" value="{image_src}">
+			&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'banner')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+			&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'banner')"><b>{SELECT_IMAGE_MSG}</b></a>
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{IMAGE_ALT_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" size="80" name="image_alt" value="{image_alt}">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{HTML_TEXT_MSG}
+		</td>
+		<td>
+			<textarea name="html_text" cols="80" rows="5">{html_text}</textarea>
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{TARGET_URL_MSG} *
+		</td>
+		<td>
+			<input class="field" type="text" size="80" name="target_url" value="{target_url}">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{OPEN_IN_NEW_WINDOW_MSG}
+		</td>
+		<td>
+			<input type="checkbox" name="is_new_window" {is_new_window} value="1">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{SHOW_ON_SSL_MSG}
+		</td>
+		<td>
+			<input type="checkbox" name="show_on_ssl" {show_on_ssl} value="1">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{MAX_IMPRESSIONS_MSG} *
+		</td>
+		<td>
+			<input class="field" type="text" size="20" name="max_impressions" value="{max_impressions}"> 
+			&nbsp; <b>{TOTAL_IMPRESSIONS_MSG}: <font color="blue">{total_impressions}</font></b>
+			&nbsp; ({TOTAL_IMPRESSIONS_NOTE}) 
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{MAX_CLICKS_MSG} *
+		</td>
+		<td>
+			<input class="field" type="text" size="20" name="max_clicks" value="{max_clicks}"> 
+			&nbsp; <b>{TOTAL_CLICKS_MSG}: <font color="green">{total_clicks}</font></b>
+			&nbsp; ({TOTAL_CLICKS_NOTE}) 
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{ADMIN_EXPIRY_DATE_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" size="20" name="expiry_date" value="{expiry_date}">
+			({USE_FOLLOWING_FORMAT_MSG} <b>{datetime_format}</b>)
+		</td>
+	</tr>
+	<tr class="middle">
+		<td colspan="2" align="right">
+		<input class="submit" type="submit" value="{APPLY_BUTTON}" onClick="document.record.operation.value='save'; document.record.apply.value=1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input class="submit" type="submit" value="{save_button}"  onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+		</td>
+	</tr>
+	</table>
+</div>
+
+<div id="data_groups" style="{groups_style}">
+	<table width="100%" border="0" cellspacing="1" cellpadding="6">
+	<tr align="center" class="middle">
+		<td width="40%">{AVAILABLE_GROUPS_MSG}</td>
+		<td width="20%">{OPERATIONS_MSG}</td>
+		<td width="40%">{USE_BANNER_WITH_GROUPS_MSG}</td>
+	</tr>	
+	<tr align="center" class="usual">
+		<td width="40%">
+			<select name="available_groups" MULTIPLE size="10"  style="width: 300px;"><!-- begin available_groups -->
+				<option value="{group_id}">{group_name}<!-- end available_groups-->
+			</select>
+		</td>
+		<td width="20%">
+				<input class="submit" readonly type="button" name="add_sites" value="&nbsp;&nbsp; {ADD_BUTTON}  -> &nbsp;&nbsp;" onClick="addListFields('groups');">
+				<br><br>
+				<input class="submit" type="button" name="remove_groups" value="<- {REMOVE_BUTTON}" onClick="removeListFields('groups');">
+		</td>
+		<td width="40%">
+				<select name="selected_groups" MULTIPLE size="10" style="width: 300px;"><!-- begin selected_groups -->
+					<option value="{group_id}">{group_name}<!-- end selected_groups -->
+				</select>
+		</td>
+	</tr>
+	<tr class="middle">
+		<td align="right" colspan="3">	
+			<input class="submit" type="submit" value="{APPLY_BUTTON}" onClick="document.record.operation.value='save'; document.record.apply.value=1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			<input class="submit" type="submit" value="{save_button}"  onCLick="document.record.operation.value='save'">
+		</td>
+	</tr>
+	</table>
+</div>
+
+<div id="data_sites" style="{sites_style}">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr class="usual">
+		<td>
+			{sites_table}
+		</td>
+	</tr>
+	<tr class="middle">
+		<td>
+			<table width="100%" border="0" cellspacing="1" cellpadding="6">
+				<tr>
+					<td align="right">
+						<input class="submit" type="submit" value="{APPLY_BUTTON}" onClick="document.record.operation.value='save'; document.record.apply.value=1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						<input class="submit" type="submit" value="{save_button}"  onCLick="document.record.operation.value='save'">
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+</div>
+
+</form>
+
+	</td>
+</tr>
+</table>
+
+</fieldset>
+<script language="JavaScript">
+<!--
+	checkListFieldsAll();
+//-->
+</script>
+
+
+{admin_footer}
+</body>
+</html>

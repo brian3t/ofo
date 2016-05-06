@@ -1,0 +1,108 @@
+<html><head><title>{COUNTRIES_MSG}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_lookup_tables_href}">{STATIC_TABLES_MSG}</a>&nbsp;&gt;&nbsp;<b>{COUNTRIES_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+	<br>
+	<div align="center">
+		<form name="sf" action="{admin_countries_href}" method="GET">
+		<input class="field" size="40" type="text" name="sp" value="{sp}">
+		<input class="submit" type="submit" name="search" value="{SEARCH_TITLE}">
+		<input class="submit" type="submit" name="search" value="{CLEAR_BUTTON}" onClick="document.sf.sp.value = '';">
+		</form>
+	</div>
+	&nbsp;
+
+
+<fieldset>
+<legend>{COUNTRIES_MSG}</legend>
+<table border="0" cellspacing="1" cellpadding="6" width="100%">
+<tr align="center" class="middle">
+	<td>
+		{sorter_country_order}
+	</td>
+	<td>
+		{sorter_country_name}
+	</td>
+	<td>
+		{sorter_country_iso_number}
+	</td>
+	<td>
+		{sorter_country_code}
+	</td>
+	<td>
+		{sorter_country_code_alpha3}
+	</td>
+	<td>
+		{sorter_show_for_user}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- BEGIN records -->
+<tr class="usual" align="center">
+	<td>
+		&nbsp;{country_order}&nbsp;
+	</td>
+	<td align="left">
+		&nbsp;{country_name}&nbsp;
+	</td>
+	<td>
+		{country_iso_number}
+	</td>
+	<td>
+		{country_code}
+	</td>
+	<td>
+		{country_code_alpha3}
+	</td>
+	<td>
+		{show_for_user}
+	</td>
+	<td>
+		<a href="{admin_country_href}?country_id={country_id}&sort_ord={sort_ord}&sort_dir={sort_dir}&page={page}&sp={sp_url}">{EDIT_COUNTRY_MSG}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="7">
+		&nbsp;{NO_RECORDS_MSG}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="7">
+		<table cellspacing="0" cellpadding="0" width="100%" border="0">
+		<tr>
+			<td class="middle">
+				&nbsp;<a href="{admin_country_href}?sort_ord={sort_ord}&sort_dir={sort_dir}&page={page}&sp={sp_url}">{NEW_COUNTRY_MSG}</a>
+			</td><!-- begin navigator_block -->
+			<td class="middle" align="right">
+				&nbsp;{navigator}&nbsp;
+			</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>	
+
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

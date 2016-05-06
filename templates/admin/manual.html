@@ -1,0 +1,104 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<style>
+textarea { font-family: verdana;}
+</style>
+</head>
+
+
+<body class="commonbg">
+<!-- BEGIN errors -->
+<table>
+<tr class="usual">
+	<td colspan="5" align="center">
+		<font color="red">{errors_list}</font>
+	</td>
+</tr></table><!-- END errors -->
+
+<h3>{MANUAL_ARTICLE_MSG}</h3>
+<table >
+<form action="manual.php" name="frm{ADMIN_DETAILS_MSG}" method="POST">
+<input type="hidden" name="manual_id" value="{manual_id}">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="id" value="{id}">
+<input type="hidden" name="product_id" value="{product_id}">
+<input type="hidden" name="search_site_id" value="{search_site_id}">
+<tr>
+	<td colspan="2">
+		<input type="checkbox" name="is_shown_contents" value="1" {is_shown_contents}>
+		{SHOW_IN_CONTENT_QST}
+	</td>
+</tr>
+
+<tr>
+	<td>{ARTICLE_TITLE_MSG}:</td>
+	<td><input type="text" name="manual_name" value="{manual_name}" size="50"></td>
+</tr>
+<tr>
+	<td>{PARENT_ARTICLE_MSG}:</td>
+	<td><select name="parent_manual_id"><option value=0> --- select here ---
+	<!-- BEGIN parent_id -->
+	<option {selected} value="{manual_id}">{manual_name}<!-- END parent_id --></select>
+	</td>
+</tr>
+<tr>
+	<td>{ADMIN_PRODUCT_MSG}:</td>
+	<td>
+	<select name="manual_product_id"><option value=0> --- select here ---</option><!-- begin manual_product_id -->
+			<option {manual_product_id_selected} value="{manual_product_id_value}">{manual_product_id_description}<!-- end manual_product_id -->
+		</select>
+
+	</td>
+</tr>
+<tr>
+	<td>{MANUAL_PAGE_NAME_MSG}:</td>
+	<td><input type="text" size="50" name="manual_page" value="{manual_page}"></td>
+</tr>
+<tr>
+	<td>{ALIAS_PAGE_NAME_MSG}:<font size="1"><br>{USED_FOR_CONTENTS_MSG}</font></td>
+	<td><input type="text" size="50" name="alias_manual_page" value="{alias_manual_page}"></td>
+</tr>
+<tr>
+	<td colspan="2">
+	{SHORT_DESCRIPTION_TEXT_MSG}:
+	<br><textarea name="short_description" cols="90" rows="5">{short_description}</textarea>
+	</td>
+</tr>
+
+<tr>
+	<td colspan="2">
+	{ARTICLE_TEXT_MSG}:
+	<br><textarea name="description" cols="90" rows="17">{description}</textarea>
+	</td>
+</tr>
+<tr>
+	<td>{IMAGE_MSG}:</td>
+	<td><input type="text" size="50" name="image" value="{image}"></td>
+</tr>
+<tr>
+	<td>{ALT_TEXT_MSG}:</td>
+	<td><input type="text" size="50" name="alt" value="{alt}"></td>
+</tr>
+<tr>
+	<td>{ICON_NAME_MSG}:</td>
+	<td><input type="text" size="50" name="icon_name" value="{icon_name}"></td>
+</tr>
+<tr>
+	<td>{MENU_IMAGE_MSG}:</td>
+	<td><input type="text" size="50" name="menu_image" value="{menu_image}"></td>
+</tr>
+<tr>
+	<td>{ADMIN_ORDER_NUMBER_MSG}:</td>
+	<td><input type="text" size="5" name="manual_order" value="{manual_order}"></td>
+</tr>
+<tr>
+    	<td colspan="5">
+		<input value="{save_button}" type="submit" name="btnSave" class="butGreen">
+		<input class="butGrey" type="submit" value="{CANCEL_BUTTON}" onClick="window.location='manuals.php?product_id={product_id}&search_site_id={search_site_id}'">
+</tr>
+</form>
+</table>
+</body>
+</html>

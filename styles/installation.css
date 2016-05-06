@@ -1,0 +1,22 @@
+body {background: #fff5d9; font-family: verdana,tahoma,sans-serif;}
+
+h5 {font-family: verdana,tahoma,sans-serif; font-size: 10pt;}
+
+tr,td {font-size: 8pt;}
+.zend {font-size: 10pt;}
+
+input {border: 1px solid #7F9DB9; font-family: verdana,tahoma,sans-serif; font-size: 10pt; height: 22px;}
+select {border: 1px solid #7F9DB9; font-family: verdana,tahoma,sans-serif; font-size: 10pt; height: 22px;}
+textarea {border: 1px solid #7F9DB9; font-family: verdana,tahoma,sans-serif; font-size: 10pt;}
+input.db-progr  {border: 0px; background: transparent;}
+input.checkbox  {border: 0px; height: 13px;}
+
+form {padding: 0px; margin: 0px;}
+
+.installTitleTop {border-bottom: 1px solid #fde9b2;}
+.installTitleTop td {padding: 0 0 10 0;}
+
+div {font-family: verdana,tahoma,sans-serif; font-size: 8pt;}
+
+.error { font-size: 9pt; color: #CC0000; }
+.message { font-size: 9pt; color: #6666CC; }

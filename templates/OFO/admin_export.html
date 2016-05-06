@@ -1,0 +1,251 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EXPORT_MSG} {table_title} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript">
+<!--
+
+	function useAll()
+	{
+		var totalColumns = document.record.total_columns.value;
+		var useAll = document.record.use_all.checked;
+		for(var i = 1; i <= totalColumns ; i++) {
+			var objectControl = eval("document.record.db_column_" + i);
+			if(objectControl) {
+				objectControl.checked = useAll;
+			}
+		}
+
+		return true;
+	}
+
+	function relatedAll()
+	{
+		var totalRelated = document.record.total_related.value;
+		var relatedAll = document.record.related_all.checked;
+		for(var i = 1; i <= totalRelated; i++) {
+			var objectControl = eval("document.record.related_column_" + i);
+			if(objectControl) {
+				objectControl.checked = relatedAll;
+			}
+		}
+
+		return true;
+	}
+
+	var clickNumber = 0;
+
+	function checkErrors()
+	{
+		var totalColumns = document.record.total_columns.value;
+		var columnsSelected = 0;
+		for(var i = 1; i <= totalColumns; i++) {
+			var columnObject = eval("document.record.db_column_" + i);
+			if (columnObject) {
+				if (columnObject.checked) {
+					columnsSelected++;
+				}
+			}
+		}
+		if (columnsSelected== 0) {
+			alert("No columns were selected. Please select at least one column.");
+			return false;
+		}
+
+		return true;
+	}
+
+	function delimiterChange(controlPosition)
+	{
+		if (controlPosition == "top") {
+			document.record.csv_delimiter_bottom.selectedIndex = document.record.csv_delimiter.selectedIndex;
+		} else if (controlPosition == "bottom") {
+			document.record.csv_delimiter.selectedIndex = document.record.csv_delimiter_bottom.selectedIndex;
+		} else if (controlPosition == "related_top") {
+			document.record.related_delimiter_bottom.selectedIndex = document.record.related_delimiter.selectedIndex;
+		} else if (controlPosition == "related_bottom") {
+			document.record.related_delimiter.selectedIndex = document.record.related_delimiter_bottom.selectedIndex;
+		}
+	}
+
+//-->
+</script>
+</head>
+
+<body class="commonbg">
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header">
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;<!-- BEGIN products_path -->
+			<a href="{admin_items_list_href}">{PRODUCTS_MSG}</a>&nbsp;&gt;&nbsp;<!-- BEGIN tree --><a
+			href="{admin_items_list_href}?category_id={tree_cat_id}">{tree_cat_name}</a>&nbsp;&gt;&nbsp;<!-- END tree -->
+			<a href="{admin_items_list_href}?category_id={tree_current_id}">{tree_current_name}</a>&nbsp;&gt;<!-- END products_path -->
+			<!-- BEGIN newsletters_path --><a
+			href="{admin_users_list_href}">{NEWSLETTER_USERS_MSG}</a>&nbsp;&gt;&nbsp;<!-- END newsletters_path -->
+			<!-- BEGIN orders_path -->
+			<a href="{admin_orders_url}">{ORDERS_MAINTENANCE_MSG}</a>&nbsp;&gt;<!-- END orders_path -->
+
+			<b>{EXPORT_MSG} {table_title}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td>
+<fieldset>
+<legend>{EXPORT_MSG} {table_title}</legend>
+
+
+	<br>
+	<table cellspacing="0" cellpadding="0" border="0" width="100%">
+	<form name="record" action="{admin_export_href}" method="post" onSubmit="return checkErrors();">
+	<input type="hidden" name="table" value="{table}">
+	<input type="hidden" name="total_columns" value="{total_columns}">
+	<input type="hidden" name="total_related" value="{total_related}">
+	<input type="hidden" name="operation" value="export">
+	<input type="hidden" name="category_id" value="{category_id}">
+	<input type="hidden" name="id" value="{id}">
+	<input type="hidden" name="ids" value="{ids}">
+	<input type="hidden" name="s_on" value="{s_on}">
+	<input type="hidden" name="s_ne" value="{s_ne}">
+	<input type="hidden" name="s_kw" value="{s_kw}">
+	<input type="hidden" name="s_sd" value="{s_sd}">
+	<input type="hidden" name="s_ed" value="{s_ed}">
+	<input type="hidden" name="s_os" value="{s_os}">
+	<input type="hidden" name="s_ad" value="{s_ad}">
+	<input type="hidden" name="s_ut" value="{s_ut}">
+	<input type="hidden" name="s_ap" value="{s_ap}">
+	<input type="hidden" name="s_ci" value="{s_ci}">
+	<input type="hidden" name="s_si" value="{s_si}">
+	<input type="hidden" name="s_ex" value="{s_ex}">
+	<input type="hidden" name="s_cct" value="{s_cct}">
+	<input type="hidden" name="s" value="{s}">
+	<input type="hidden" name="sc" value="{sc}">
+	<input type="hidden" name="sl" value="{sl}">
+	<input type="hidden" name="ss" value="{ss}">
+	<input type="hidden" name="ap" value="{ap}">
+	<tr>
+		<td>
+
+		<table cellspacing="1" cellpadding="3" border="0" align="center">
+		<!-- BEGIN errors -->
+		<tr class="usual">
+			<td colspan="4">
+				<div class="error">
+				&nbsp;{errors_list}</div>
+			</td>
+		</tr><!-- END errors -->
+		<tr>
+			<td colspan="4">
+				&nbsp;{DELIMITED_BY_MSG}
+				<select name="csv_delimiter" onChange="delimiterChange('top');"><!-- begin delimiter -->
+					<option {delimiter_selected} value="{delimiter_value}">{delimiter_description}<!-- end delimiter -->
+				</select>
+				<input type="submit" class="submit" value=" {EXPORT_MSG} ">
+				<br>&nbsp;
+			</td>
+		</tr>
+		<tr>
+			<td colspan="4">&nbsp;{USE_CHECKBOXES_TO_SELECT_MSG}</td>
+		</td>
+		<tr class="usual">
+			<td>&nbsp;{SELECT_MSG}/{UNSELECT_ALL_MSG}</td>
+			<td colspan="3">&nbsp;<input type="checkbox" name="use_all" value="1" onClick="useAll();"></td>
+		</td><!-- BEGIN columns -->
+		<tr><!-- BEGIN rows -->
+			<td class="middle">
+				&nbsp;{column_title} {column_link}
+			</td>
+			<td class="usual">
+				&nbsp;<input type="checkbox" name="db_column_{col}" {column_checked} value="{column_name}">
+				&nbsp;<input type="hidden" name="column_title_{col}" value="{column_title}">
+			</td><!-- END rows -->
+		</tr><!-- END columns -->
+		<tr>
+			<td colspan="4">&nbsp;<a href="{admin_export_custom_url}">{ADD_CUTOM_FIELD_MSG}</a></td>
+		</td>
+		<tr>
+			<td colspan="4">&nbsp;</td>
+		</td>
+		<tr>
+			<td colspan="4">
+				&nbsp;{DELIMITED_BY_MSG}
+				<select name="csv_delimiter_bottom" onChange="delimiterChange('bottom');"><!-- begin delimiter_bottom -->
+					<option {delimiter_bottom_selected} value="{delimiter_bottom_value}">{delimiter_bottom_description}<!-- end delimiter_bottom -->
+				</select>
+				<input type="submit" class="submit" value=" {EXPORT_MSG} ">
+			</td>
+		</tr>
+		<tr>
+			<td colspan="4">&nbsp;</td>
+		</td>
+		</table>
+
+		</td>
+
+		<!-- begin related_data -->
+		<td valign="top">
+
+
+		<table cellspacing="1" cellpadding="3" border="0" align="center">
+		<tr>
+			<td colspan="4" align="right">
+				&nbsp;{PRODUCTS_MSG} {DELIMITED_BY_MSG}
+				<select name="related_delimiter" onChange="delimiterChange('related_top');"><!-- begin related_delimiter -->
+					<option {related_delimiter_selected} value="{related_delimiter_value}">{related_delimiter_description}<!-- end related_delimiter -->
+				</select>
+				<br>&nbsp;
+			</td>
+		</tr>
+		<tr>
+			<td colspan="4">&nbsp;{ORDER_PRODUCTS_INFO_MSG}</td>
+		</td>
+		<tr class="usual">
+			<td>&nbsp;{SELECT_MSG}/{UNSELECT_ALL_MSG}</td>
+			<td colspan="3">&nbsp;<input type="checkbox" name="related_all" value="1" onClick="relatedAll();"></td>
+		</td><!-- BEGIN related_columns -->
+		<tr>
+			<td class="middle">
+				&nbsp;{column_title}
+			</td>
+			<td class="usual">
+				&nbsp;<input type="checkbox" name="related_column_{col}" {column_checked} value="{column_name}">
+			</td>
+		</tr><!-- END related_columns -->
+		<tr>
+			<td colspan="4">&nbsp;<a href="{admin_export_custom_related_url}">{ADD_CUTOM_FIELD_MSG}</a></td>
+		</td>
+		<tr>
+			<td colspan="4">&nbsp;</td>
+		</td>
+		<tr>
+			<td colspan="4" align="right">
+				&nbsp;{PRODUCTS_MSG} {DELIMITED_BY_MSG}
+				<select name="related_delimiter_bottom" onChange="delimiterChange('related_bottom');"><!-- begin related_delimiter_bottom -->
+					<option {related_delimiter_bottom_selected} value="{related_delimiter_bottom_value}">{related_delimiter_bottom_description}<!-- end related_delimiter_bottom -->
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="4">&nbsp;</td>
+		</td>
+		</table>
+
+		</td>
+		<!-- end related_data -->
+	</tr>
+	</form>
+	</table>
+
+</fieldset>
+</td></tr></table>
+
+{admin_footer}
+</body>
+</html>

@@ -1,0 +1,430 @@
+<html><head><title>..:: WYSIWYG :: Add link ::..</title>
+<link rel="stylesheet" href="../../styles/editor.css" type="text/css">
+<script language="JavaScript">
+<!--
+
+function action_insert()
+{
+	if (window.dialogArguments){
+		var opener = window.dialogArguments[0];
+		var object_editor = window.dialogArguments[1];
+		var editor = eval('opener.'+object_editor);
+	} else {
+		var opener = window.opener;
+		var object_editor = "";
+		var currentURL    = document.URL;
+		var questionMark  = currentURL.indexOf("?");
+		var slashPosition = currentURL.lastIndexOf("/");
+		if (questionMark != -1) {
+			pageName = currentURL.substring(slashPosition + 1, questionMark);
+			var queryString = currentURL.substring(questionMark + 1, currentURL.length);
+			var queryParts = queryString.split("&");
+			for (var i = 0; i < queryParts.length; i++) {
+				var paramName  = ""; var paramValue = "";
+				var queryPart = queryParts[i];
+				var equalSign = queryPart.indexOf("=");
+				if (equalSign == -1) {
+					paramName = queryPart;
+				} else {
+					paramName  = queryPart.substring(0, equalSign);
+					paramValue = queryPart.substring(equalSign + 1, queryPart.length);
+					if (paramName == "object_editor") {
+						object_editor = paramValue;
+					}
+				}
+			}
+		}
+	}
+	var editor = eval('opener.'+object_editor);
+	var frm = document.forms['frmLink'];
+	editor.linkAlt=frm.linkAlt.value;
+	editor.linkText=frm.linkText.value;
+	var targe_t = document.getElementById("target_type");
+	if (targe_t.value == 'popup') {
+		resizable_v = (frm.popup_resize.checked) ? 'yes' : 'no';
+		location_v = (frm.popup_locat_bar.checked) ? 'yes' : 'no';
+		menubar_v = (frm.popup_menu_bar.checked) ? 'yes' : 'no';
+		scrollbars_v = (frm.popup_scroll_bars.checked) ? 'yes' : 'no';
+		status_v = (frm.popup_stat_bar.checked) ? 'yes' : 'no';
+		toolbar_v = (frm.popup_toolbar.checked) ? 'yes' : 'no';
+		fullscreen_v = (frm.popup_full_screen.checked) ? 'yes' : 'no';
+		dependent_v = (frm.popup_dependent.checked) ? 'yes' : 'no';
+		width_v = (!isNaN(frm.popup_width.value) && frm.popup_width.value != '') ? parseInt(frm.popup_width.value) : 100;
+		height_v = (!isNaN(frm.popup_height.value) && frm.popup_height.value != '') ? parseInt(frm.popup_height.value) : 100;
+		left_v = (!isNaN(frm.popup_left.value) && frm.popup_left.value != '') ? parseInt(frm.popup_left.value) : 0;
+		top_v = (!isNaN(frm.popup_top.value) && frm.popup_top.value != '') ? parseInt(frm.popup_top.value) : 0;
+			href_v="javascript:void(window.open('"+frm.linkHref.value+"','','resizable="+resizable_v+",location="+location_v+",menubar="+menubar_v+",scrollbars="+scrollbars_v+",status="+status_v+",toolbar="+toolbar_v+",fullscreen="+fullscreen_v+",dependent="+dependent_v+",width="+width_v+",height="+height_v+",left="+left_v+",top="+left_v+"'))"
+		editor.linkHref=href_v;
+		editor.linkTarget='';
+	} else {
+		editor.linkHref=frm.linkHref.value;
+		editor.linkTarget=frm.target_name.value;
+	}
+	editor.addLink();
+	window.close();
+}
+
+function changePane(newTabName)
+{
+
+	var currentTabName = document.frmLink.current_tab.value;
+
+	if (currentTabName != newTabName) {
+		currentTab = document.getElementById("tab_" + currentTabName);
+		newTab = document.getElementById("tab_" + newTabName);
+   
+		currentTab.className = "editorTab";
+		newTab.className = "editorTabActive";
+
+		currentData = document.getElementById("data_" + currentTabName);
+		newData = document.getElementById("data_" + newTabName);
+
+     	currentData.style.display = "none";
+     	newData.style.display = "block";
+
+		document.frmLink.current_tab.value = newTabName;
+	}
+}
+
+function updateTarger()
+{
+	var targe_t = document.getElementById("target_type");
+	var targe_n = document.getElementById("target_name");
+	if (targe_n.value != '' && targe_t.value == 'not_set') {
+		targe_t.value = 'frame';
+	} else if (targe_n.value != '_blank' && targe_t.value == '_blank') {
+		targe_t.value = 'frame';
+	} else if (targe_n.value != '_top' && targe_t.value == '_top') {
+		targe_t.value = 'frame';
+	} else if (targe_n.value != '_self' && targe_t.value == '_self') {
+		targe_t.value = 'frame';
+	} else if (targe_n.value != '_parent' && targe_t.value == '_parent') {
+		targe_t.value = 'frame';
+	}
+
+}
+
+function updateTargerName()
+{
+	var targe_t = document.getElementById("target_type");
+	var targe_n = document.getElementById("target_name");
+	if (targe_t.value == 'popup') {
+		var table_popup = document.getElementById("data_target_popup");
+		var data_target_name = document.getElementById("data_target_name");
+     	data_target_name.style.display = "none";
+     	table_popup.style.display = "block";
+	} else {
+		var table_popup = document.getElementById("data_target_popup");
+		var data_target_name = document.getElementById("data_target_name");
+     	data_target_name.style.display = "block";
+     	table_popup.style.display = "none";
+	}
+	if (targe_t.value == '_blank') {
+		targe_n.value = '_blank';
+	} else if (targe_t.value == '_top') {
+		targe_n.value = '_top';
+	} else if (targe_t.value == '_self') {
+		targe_n.value = '_self';
+	} else if (targe_t.value == '_parent') {
+		targe_n.value = '_parent';
+	} else if (targe_n.value != '' && targe_t.value == 'not_set') {
+		targe_t.value = 'frame';
+	}
+}
+
+//-->
+</script>
+</head>
+<body scroll="no" style="overflow: hidden" class="editor">
+	<form name="frmLink" id="frmLink">
+		<input type="hidden" name="current_tab" value="settings">
+		<table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><div id="tab_settings" class="editorTabActive"><a class="editor" href="#" onClick="changePane('settings'); return false;">Settings</a></td>
+				<td><div id="tab_target" class="editorTab"><a class="editor" href="#" onClick="changePane('target'); return false;">Target</a></td>
+			</tr>
+		</table>
+		<table id="data_settings" style="display: block;" border="0" cellspacing="0" cellpadding="0" width="100%" height="100%" VALIGN=TOP>
+			<tr class="editor_usual" VALIGN=TOP height="5">
+				<td colspan="5">
+				</td>
+			</tr>
+			<tr class="editor_usual">
+				<td width="1%">
+					&nbsp;
+				</td>
+				<td align="RIGHT" width="20%">
+					URL
+				</td>
+				<td width="1%">
+					&nbsp;
+				</td>
+				<td align="LEFT" width="80%">
+					<input class="editor_field" id="linkHref" name="linkHref" type="text" style="width: 95%" value="http://">
+				</td>
+				<td width="1%">
+					&nbsp;
+				</td>
+			</tr>
+			<tr class="editor_usual" VALIGN=TOP height="5">
+				<td colspan="5">
+				</td>
+			</tr>
+			<tr class="editor_usual">
+				<td width="1%">
+					&nbsp;
+				</td>
+				<td align="RIGHT" width="20%">
+					Alt
+				</td>
+				<td width="1%">
+					&nbsp;
+				</td>
+				<td align="LEFT" width="80%">
+					<input class="editor_field" id="linkAlt" name="linkAlt" type="text" style="width: 95%" value="">
+				</td>
+				<td width="1%">
+					&nbsp;
+				</td>
+			</tr>
+			<tr class="editor_usual" VALIGN=TOP height="5">
+				<td colspan="5">
+				</td>
+			</tr>
+			<tr class="editor_usual">
+				<td width="1%">
+					&nbsp;
+				</td>
+				<td align="RIGHT" width="20%">
+					Description
+				</td>
+				<td width="1%">
+					&nbsp;
+				</td>
+				<td ALIGN="LEFT" width="80%">
+					<input class="editor_field" id="linkText" name="linkText" type="text" style="width: 95%" value="">
+				</td>
+				<td width="1%">
+					&nbsp;
+				</td>
+			</tr>
+			<tr class="editor_usual" VALIGN=TOP height="5">
+				<td colspan="5">
+				</td>
+			</tr>
+			<tr class="editor_usual">
+				<td colspan="5" ALIGN="CENTER" width="100%">
+					<input class="editor_submit" type="button" name="button" value=" Ok " onClick="action_insert();">&nbsp;
+					<input class="editor_submit" type="button" name="button" value=" Cancel " onClick="window.close();">&nbsp;
+				</td>
+			</tr>
+			<tr class="editor_usual" VALIGN=TOP height="5">
+				<td colspan="5">
+				</td>
+			</tr>
+			<tr class="editor_usual" VALIGN=TOP>
+				<td colspan="5">
+					&nbsp;
+				</td>
+			</tr>
+		</table>
+		<table id="data_target" style="display: none;" border="0" cellspacing="0" cellpadding="0" width="100%" height="100%" VALIGN=TOP>
+			<tr class="editor_usual" VALIGN=TOP height="5">
+				<td colspan="5">
+				</td>
+			</tr>
+			<tr class="editor_usual" height="10">
+				<td width="1%">
+					&nbsp;
+				</td>
+				<td  width="33%" VALIGN=TOP ALIGN=LEFT>
+					Target
+				</td>
+				<td width="1%">
+					&nbsp;
+				</td>
+				<td  width="60%" VALIGN=TOP ALIGN=LEFT>
+					Target Frame Name
+				</td>
+				<td width="1%">
+					&nbsp;
+				</td>
+			</tr>
+			<tr class="editor_usual" VALIGN=TOP height="5">
+				<td colspan="5">
+				</td>
+			</tr>
+			<tr class="editor_usual">
+				<td width="1%">
+					&nbsp;
+				</td>
+				<td width="33%" VALIGN=TOP ALIGN=LEFT>
+					<SELECT class="editor" id="target_type" name="target_type" style="width:150;font-size:10" onkeyup="updateTargerName();" onClick="updateTargerName();">
+						<OPTION value="not_set">&lt;not set&gt;</OPTION>
+						<OPTION value="frame">&lt;frame&gt;</OPTION>
+						<OPTION value="popup">&lt;Popup Window&gt;</OPTION>
+						<OPTION value="_blank">&lt;New Window (_blank)&gt;</OPTION>
+						<OPTION value="_top">&lt;Topmost Window (_top)&gt;</OPTION>
+						<OPTION value="_self">&lt;Same Window (_self)&gt;</OPTION>
+						<OPTION value="_parent">&lt;Parent Window (_parent)&gt;</OPTION>
+					</SELECT>
+				</td>
+				<td width="1%">
+					&nbsp;
+				</td>
+				<td width="60%" VALIGN=TOP ALIGN=LEFT id="data_target_name" style="display: block;">
+					<input class="editor_field" id="target_name" name="target_name" type="text" style="width: 100%" value="" onkeyup="updateTarger();">
+				</td>
+				<td width="1%">
+					&nbsp;
+				</td>
+			</tr>
+			<tr class="editor_usual" VALIGN=TOP height="400">
+				<td colspan="5">
+					<table id="data_target_popup" style="display: none;" border="0" cellspacing="0" cellpadding="0" width="100%" height="100%" VALIGN=TOP>
+						<tr class="editor_usual" VALIGN=TOP height="5">
+							<td colspan="5">
+							</td>
+						</tr>
+						<tr class="editor_usual" VALIGN=MIDDLE ALIGN=CENTER height="5">
+							<td colspan="5">
+								Popup Window Features
+							</td>
+						</tr>
+						<tr class="editor_usual" VALIGN=TOP height="5">
+							<td colspan="5">
+							</td>
+						</tr>
+						<tr class="editor_usual" VALIGN=TOP height="10">
+							<td width="1%">
+								&nbsp;
+							</td>
+							<td width="46%" VALIGN=TOP ALIGN=LEFT>
+								<input type="checkbox" id="popup_resize" name="popup_resize" value="0">Resizable
+							</td>
+							<td width="1%">
+								&nbsp;
+							</td>
+							<td width="47%" VALIGN=TOP ALIGN=LEFT>
+								<input type="checkbox" id="popup_stat_bar" name="popup_stat_bar" value="0">Status bar
+							</td>
+							<td width="1%">
+								&nbsp;
+							</td>
+						</tr>
+						<tr class="editor_usual" VALIGN=TOP height="5">
+							<td colspan="5">
+							</td>
+						</tr>
+						<tr class="editor_usual" VALIGN=TOP height="10">
+							<td width="1%">
+								&nbsp;
+							</td>
+							<td width="46%" VALIGN=TOP ALIGN=LEFT>
+								<input type="checkbox" id="popup_locat_bar" name="popup_locat_bar" value="0">Location bar
+							</td>
+							<td width="1%">
+								&nbsp;
+							</td>
+							<td width="47%" VALIGN=TOP ALIGN=LEFT>
+								<input type="checkbox" id="popup_toolbar" name="popup_toolbar" value="0">Toolbar
+							</td>
+							<td width="1%">
+								&nbsp;
+							</td>
+						</tr>
+						<tr class="editor_usual" VALIGN=TOP height="5">
+							<td colspan="5">
+							</td>
+						</tr>
+						<tr class="editor_usual" VALIGN=TOP height="10">
+							<td width="1%">
+								&nbsp;
+							</td>
+							<td width="46%" VALIGN=TOP ALIGN=LEFT>
+								<input type="checkbox" id="popup_menu_bar" name="popup_menu_bar" value="0">Menu bar
+							</td>
+							<td width="1%">
+								&nbsp;
+							</td>
+							<td width="47%" VALIGN=TOP ALIGN=LEFT>
+								<input type="checkbox" id="popup_full_screen" name="popup_full_screen" value="0">Full Screen (IE)
+							</td>
+							<td width="1%">
+								&nbsp;
+							</td>
+						</tr>
+						<tr class="editor_usual" VALIGN=TOP height="5">
+							<td colspan="5">
+							</td>
+						</tr>
+						<tr class="editor_usual" VALIGN=TOP height="10">
+							<td width="1%">
+								&nbsp;
+							</td>
+							<td width="46%" VALIGN=TOP ALIGN=LEFT>
+								<input type="checkbox" id="popup_scroll_bars" name="popup_scroll_bars" value="0">Scroll bars
+							</td>
+							<td width="1%">
+								&nbsp;
+							</td>
+							<td width="47%" VALIGN=TOP ALIGN=LEFT>
+								<input type="checkbox" id="popup_dependent" name="popup_dependent" value="0">Dependent (Netscape)
+							</td>
+							<td width="1%">
+								&nbsp;
+							</td>
+						</tr>
+						<tr class="editor_usual" VALIGN=TOP height="5">
+							<td colspan="5">
+							</td>
+						</tr>
+						<tr class="editor_usual" VALIGN=TOP height="10">
+							<td width="1%">
+								&nbsp;
+							</td>
+							<td width="46%" VALIGN=TOP ALIGN=RIGHT>
+								Width&nbsp;<input class="editor_field" id="popup_width" name="popup_width" type="text" style="width: 100" value="">
+							</td>
+							<td width="1%">
+								&nbsp;
+							</td>
+							<td width="47%" VALIGN=TOP ALIGN=LEFT>
+								Left Position&nbsp;<input class="editor_field" id="popup_left" name="popup_left" type="text" style="width: 100" value="">
+							</td>
+							<td width="1%">
+								&nbsp;
+							</td>
+						</tr>
+						<tr class="editor_usual" VALIGN=TOP height="5">
+							<td colspan="5">
+							</td>
+						</tr>
+						<tr class="editor_usual" VALIGN=TOP height="10">
+							<td width="1%">
+								&nbsp;
+							</td>
+							<td width="46%" VALIGN=TOP ALIGN=RIGHT>
+								Height&nbsp;<input class="editor_field" id="popup_height" name="popup_height" type="text" style="width: 100" value="">
+							</td>
+							<td width="1%">
+								&nbsp;
+							</td>
+							<td width="47%" VALIGN=TOP ALIGN=LEFT>
+								Top Position&nbsp;<input class="editor_field" id="popup_top" name="popup_top" type="text" style="width: 100" value="">
+							</td>
+							<td width="1%">
+								&nbsp;
+							</td>
+						</tr>
+						<tr class="editor_usual" VALIGN=TOP>
+							<td colspan="5">
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

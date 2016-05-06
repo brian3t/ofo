@@ -1,0 +1,1412 @@
+<html><head><title>{ADMINISTRATION_MSG} :: {CUSTOMER_PROFILE_MSG}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script type="text/javascript" src="../js/admin.js"></script>
+<script language="JavaScript">
+<!--
+	function openWindow(pagename)
+	{
+		var popupWin = window.open (pagename, 'popup', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');
+		popupWin.focus();
+	}
+//-->
+</script>
+</head>
+<body class="commonbg">
+
+{admin_header}
+
+<form action="{admin_user_profile_href}" name="record" method="POST">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_users_href}">{USERS_MSG}</a>&nbsp;&gt;
+			<a href="{admin_user_types_href}">{USERS_TYPES_MSG}</a>&nbsp;&gt;
+			<a href="{admin_user_type_href}?type_id={type_id}">{type_name}</a>&nbsp;&gt;
+			<b>{PROFILE_SETTINGS_MSG}</b>
+		</td>
+		<!-- begin sitelist -->
+		<td class="usual" align="right">
+			{SELECT_SITE_MSG}&nbsp;
+			<select name="param_site_id" onchange="reloadSite(this.form)"><!-- begin param_site_id -->
+				<option {param_site_id_selected} value="{param_site_id_value}">{param_site_id_description}<!-- end param_site_id -->
+			</select>
+		</td>
+		<!-- end sitelist -->
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<table cellspacing="0" cellpadding="0" border="0">
+<tr><!-- BEGIN tabs -->
+	<td onClick="changeTab('{tab_name}'); return false;"><div id="{tab_id}" class="{tab_class}"><a class="blackSm" href="#" onClick="changeTab('{tab_name}'); return false;">{tab_title}</a></td><!-- END tabs -->
+</tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border: 1px solid #999;">
+<tr align="center"> 
+	<td class="">
+
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="type_id" value="{type_id}">
+<input type="hidden" name="rp" value="{rp}">
+<input type="hidden" name="tab" value="{tab}">
+
+<div id="data_general" style="{general_style}">
+
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="5" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr>
+	<td colspan="5" class="middle">
+		&nbsp;<b>{PROFILE_SETTINGS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{RANDOM_IMAGE_VALIDATION_MSG}
+	</td>
+	<td colspan="4"><!-- begin use_random_image -->
+		<input type="radio" name="use_random_image" {use_random_image_checked} value="{use_random_image_value}">{use_random_image_description}<!-- end use_random_image -->
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;{INTRO_TEXT_FOR_NEW_USERS_MSG}
+	</td>
+	<td colspan="4">
+		<textarea name="intro_text_new" cols="80" rows="6">{intro_text_new}</textarea>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{REDIRECT_TO_PAGE_MSG}
+		<div class="comment">&nbsp;({user_home_href} {BY_DEFAULT_MSG})</div>
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="registration_redirect" value="{registration_redirect}" size="80">
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;{INTRO_TEXT_FOR_REGISTERED_USERS_MSG}
+	</td>
+	<td colspan="4">
+		<textarea name="intro_text_registered" cols="80" rows="6">{intro_text_registered}</textarea>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{REDIRECT_UPDATE_MSG}
+		<div class="comment">&nbsp;({user_home_href} {BY_DEFAULT_MSG})</div>
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="update_redirect" value="{update_redirect}" size="80">
+	</td>
+</tr>
+<tr class="middle">
+	<td></td>
+	<td colspan="4">
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'"> &nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</div>
+
+<!-- predefined fields -->
+<div id="data_predefined_fields" style="{predefined_fields_style}">
+
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+<tr class="middle">
+	<td colspan="6">
+		&nbsp;<b>{LOGIN_DETAILS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{FIELD_TYPE_MSG}
+	</td>
+	<td colspan="6">
+		<!-- begin login_field_type -->
+		<input type="radio" name="login_field_type" {login_field_type_checked} {login_field_type_disabled} value="{login_field_type_value}">{login_field_type_description}<!-- end login_field_type -->
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+	
+	</td>
+	<td align="center" colspan="2">
+		<b>{PERSONAL_DETAILS_MSG}</b>
+	</td>
+	<td align="center" colspan="2">
+		<b>{DELIVERY_DETAILS_MSG}</b>
+	</td>
+	<td align="center" rowspan="2">
+		<b>{SORT_ORDER_MSG}</b>
+	</td>
+</tr>
+<tr>
+	<td class="middle" width="25%">
+	
+	</td>
+	<td class="middle"  align="center" width="15%" class="small">
+		{ADMIN_SHOW_MSG}
+	</td>
+	<td class="middle"  align="center" width="15%" class="small">
+		{REQUIRED_MSG}
+	</td>
+	<td class="middle"  align="center" width="15%" class="small">
+		{ADMIN_SHOW_MSG}
+	</td>
+	<td class="middle"  align="center" width="15%" class="small">
+		{REQUIRED_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{NAME_MSG}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_name" {show_name} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="name_required" {name_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_name" {show_delivery_name} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_name_required" {delivery_name_required} value="1">
+	</td>
+	<td align="center">
+		<input type="input" class="text" name="name_order" value="{name_order}" size="2">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{FIRST_NAME_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_first_name" {show_first_name} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="first_name_required" {first_name_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_first_name" {show_delivery_first_name} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_first_name_required" {delivery_first_name_required} value="1">
+	</td>
+	<td align="center">
+		<input type="input" class="text" name="first_name_order" value="{first_name_order}" size="2">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{LAST_NAME_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_last_name" {show_last_name} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="last_name_required" {last_name_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_last_name" {show_delivery_last_name} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_last_name_required" {delivery_last_name_required} value="1">
+	</td>
+	<td align="center">
+		<input type="input" class="text" name="last_name_order" value="{last_name_order}" size="2">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{COMPANY_SELECTION_MSG} <div class="comment">&nbsp;({FROM_PREDEFINED_COMPANIES_MSG})</div>
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_company_id" {show_company_id} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="company_id_required" {company_id_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_company_id" {show_delivery_company_id} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_company_id_required" {delivery_company_id_required} value="1">
+	</td>
+	<td align="center">
+		<input type="input" class="text" name="company_id_order" value="{company_id_order}" size="2">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{COMPANY_NAME_FIELD} <div class="comment">&nbsp;({TYPE_IN_TEXT_BOX_MSG})</div>
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_company_name" {show_company_name} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="company_name_required" {company_name_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_company_name" {show_delivery_company_name} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_company_name_required" {delivery_company_name_required} value="1">
+	</td>
+	<td align="center">
+		<input type="input" class="text" name="company_name_order" value="{company_name_order}" size="2">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_email" {show_email} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="email_required" {email_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_email" {show_delivery_email} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_email_required" {delivery_email_required} value="1">
+	</td>
+	<td align="center">
+		<input type="input" class="text" name="email_order" value="{email_order}" size="2">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{STREET_FIRST_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_address1" {show_address1} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="address1_required" {address1_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_address1" {show_delivery_address1} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_address1_required" {delivery_address1_required} value="1">
+	</td>
+	<td align="center">
+		<input type="input" class="text" name="address1_order" value="{address1_order}" size="2">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{STREET_SECOND_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_address2" {show_address2} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="address2_required" {address2_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_address2" {show_delivery_address2} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_address2_required" {delivery_address2_required} value="1">
+	</td>
+	<td align="center">
+		<input type="input" class="text" name="address2_order" value="{address2_order}" size="2">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CITY_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_city" {show_city} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="city_required" {city_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_city" {show_delivery_city} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_city_required" {delivery_city_required} value="1">
+	</td>
+	<td align="center">
+		<input type="input" class="text" name="city_order" value="{city_order}" size="2">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PROVINCE_FIELD}		
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_province" {show_province} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="province_required" {province_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_province" {show_delivery_province} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_province_required" {delivery_province_required} value="1">
+	</td>
+	<td align="center">
+		<input type="input" class="text" name="province_order" value="{province_order}" size="2">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{STATE_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_state_id" {show_state_id} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="state_id_required" {state_id_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_state_id" {show_delivery_state_id} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_state_id_required" {delivery_state_id_required} value="1">
+	</td>
+	<td align="center">
+		<input type="input" class="text" name="state_id_order" value="{state_order}" size="2">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ZIP_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_zip" {show_zip} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="zip_required" {zip_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_zip" {show_delivery_zip} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_zip_required" {delivery_zip_required} value="1">
+	</td>
+	<td align="center">
+		<input type="input" class="text" name="zip_order" value="{zip_order}" size="2">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{COUNTRY_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_country_id" {show_country_id} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="country_id_required" {country_id_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_country_id" {show_delivery_country_id} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_country_id_required" {delivery_country_id_required} value="1">
+	</td>
+	<td align="center">
+		<input type="input" class="text" name="country_id_order" value="{country_order}" size="2">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PHONE_FIELD}		
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_phone" {show_phone} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="phone_required" {phone_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_phone" {show_delivery_phone} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_phone_required" {delivery_phone_required} value="1">
+	</td>
+	<td align="center">
+		<input type="input" class="text" name="phone_order" value="{phone_order}" size="2">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{DAYTIME_PHONE_FIELD}		
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_daytime_phone" {show_daytime_phone} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="daytime_phone_required" {daytime_phone_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_daytime_phone" {show_delivery_daytime_phone} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_daytime_phone_required" {delivery_daytime_phone_required} value="1">
+	</td>
+	<td align="center">
+		<input type="input" class="text" name="daytime_phone_order" value="{daytime_phone_order}" size="2">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EVENING_PHONE_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_evening_phone" {show_evening_phone} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="evening_phone_required" {evening_phone_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_evening_phone" {show_delivery_evening_phone} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_evening_phone_required" {delivery_evening_phone_required} value="1">
+	</td>
+	<td align="center">
+		<input type="input" class="text" name="evening_phone_order" value="{evening_phone_order}" size="2">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CELL_PHONE_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_cell_phone" {show_cell_phone} value="1"> 
+	</td>
+	<td align="center">
+		<input type="checkbox" name="cell_phone_required" {cell_phone_required} value="1"> 
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_cell_phone" {show_delivery_cell_phone} value="1"> 
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_cell_phone_required" {delivery_cell_phone_required} value="1"> 
+	</td>
+	<td align="center">
+		<input type="input" class="text" name="cell_phone_order" value="{cell_phone_order}" size="2">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{FAX_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_fax" {show_fax} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="fax_required" {fax_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_fax" {show_delivery_fax} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_fax_required" {delivery_fax_required} value="1">
+	</td>
+	<td align="center">
+		<input type="input" class="text" name="fax_order" value="{fax_order}" size="2">
+	</td>
+</tr>
+<tr class="usual" align="center">
+	<td align="left">
+		&nbsp;{BIRTHDAY_MSG}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_birth_date" {show_birth_date} value="1">
+	</td>
+	<td>
+		<input type="checkbox" name="birth_date_required" {birth_date_required} value="1">
+	</td>
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		&nbsp;
+	</td>
+	<td align="center">
+		<input type="input" class="text" name="birth_date_order" value="{birth_date_order}" size="2">
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="6" height="1"></td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SUBSCRIBE_BLOCK_MSG}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="subscribe_block" {subscribe_block} value="1">
+	</td>
+	<td align="center">
+	</td>
+	<td align="center">
+	</td>
+	<td align="center">
+	</td>
+	<td align="center">
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="6">
+		&nbsp;{IMAGE_SETTINGS_MSG}
+	</td>
+</tr>
+<tr class="usual" align="center">
+	<td align="left">
+		&nbsp;{PERSONAL_IMAGE_FIELD} ({ALLOWED_MSG})
+	</td>
+	<td>
+		<input type="checkbox" name="show_personal_image" {show_personal_image} value="1">
+	</td>
+	<td colspan="4">&nbsp;</td>
+</tr>
+<tr class="usual" align="center">
+	<td align="left">
+		&nbsp;{PERSONAL_IMAGE_FIELD} ({WIDTH_MSG} x {HEIGHT_MSG}, {FILESIZE_IN_BYTES_MSG})
+	</td>
+	<td colspan="5" align="left">
+		<input class="field" type="text" name="personal_image_width" value="{personal_image_width}" size="5" maxlength="5">
+		x
+		<input class="field" type="text" name="personal_image_height" value="{personal_image_height}" size="5" maxlength="5">
+    ,&nbsp;
+		<input class="field" type="text" name="personal_image_size" value="{personal_image_size}" size="8" maxlength="10">
+    &nbsp;&nbsp;
+		<input type="checkbox" name="personal_image_resize" {personal_image_resize} value="1">
+		{ALWAYS_RESIZE_IMAGE_NOTE}
+	</td>
+</tr>
+<tr align="center">
+	<td class="middle" align="left" width="40%">
+		&nbsp;{ADDITIONAL_DETAILS_MSG}
+	</td>
+	<td class="middle" width="15%" class="small">
+		{ADMIN_SHOW_MSG}
+	</td>
+	<td class="middle" width="15%" class="small">
+		{REQUIRED_MSG}
+	</td>
+	<td class="middle" colspan="2">
+		{CONTROL_TYPE_MSG}
+	</td>
+	<td class="middle">
+		{SORT_ORDER_MSG}
+	</td>
+</tr>
+<tr class="usual" align="center">
+	<td align="left">
+		&nbsp;{NICKNAME_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_nickname" {show_nickname} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="nickname_required" {nickname_required} value="1">
+	</td>
+	<td colspan="2"></td>
+	<td align="center">
+		<input type="input" class="text" name="nickname_order" value="{nickname_order}" size="2">
+	</td>
+</tr>
+<tr class="usual" align="center">
+	<td align="left">
+		&nbsp;{FRIENDLY_URL_MSG}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_friendly_url" {show_friendly_url} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="friendly_url_required" {friendly_url_required} value="1">
+	</td>
+	<td colspan="2"></td>
+	<td align="center">
+		<input type="input" class="text" name="friendly_url_order" value="{friendly_url_order}" size="2">
+	</td>
+</tr>
+<tr class="usual" align="center">
+	<td align="left">
+		&nbsp;{TAX_ID_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_tax_id" {show_tax_id} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="tax_id_required" {tax_id_required} value="1">
+	</td>
+	<td colspan="2"></td>
+	<td align="center">
+		<input type="input" class="text" name="tax_order" value="{tax_order}" size="2">
+	</td>
+</tr>
+<tr class="usual" align="center">
+	<td align="left">
+		&nbsp;{PAYPAL_ACCOUNT_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_paypal_account" {show_paypal_account} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="paypal_account_required" {paypal_account_required} value="1">
+	</td>
+	<td colspan="2"></td>
+	<td align="center">
+		<input type="input" class="text" name="paypal_account_order" value="{paypal_account_order}" size="2">
+	</td>
+</tr>
+<tr class="usual" align="center">
+	<td align="left">
+		&nbsp;{MSN_ACCOUNT_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_msn_account" {show_msn_account} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="msn_account_required" {msn_account_required} value="1">
+	</td>
+	<td colspan="2"></td>
+	<td align="center">
+		<input type="input" class="text" name="msn_account_order" value="{msn_account_order}" size="2">
+	</td>
+</tr>
+<tr class="usual" align="center">
+	<td align="left">
+		&nbsp;{ICQ_NUMBER_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_icq_number" {show_icq_number} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="icq_number_required" {icq_number_required} value="1">
+	</td>
+	<td colspan="2"></td>
+	<td align="center">
+		<input type="input" class="text" name="icq_number_order" value="{icq_number_order}" size="2">
+	</td>
+</tr>
+<tr class="usual" align="center">
+	<td align="left">
+		&nbsp;{USER_SITE_URL_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_user_site_url" {show_user_site_url} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="user_site_url_required" {user_site_url_required} value="1">
+	</td>
+	<td colspan="2"></td>
+	<td align="center">
+		<input type="input" class="text" name="user_site_url_order" value="{user_site_url_order}" size="2">
+	</td>
+</tr>
+<tr class="usual" align="center">
+	<td align="left">
+		&nbsp;{SHORT_DESCRIPTION_MSG}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_short_description" {show_short_description} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="short_description_required" {short_description_required} value="1">
+	</td>
+	<td colspan="2">
+		<!-- begin short_description_editor -->
+		<input type="radio" name="short_description_editor" {short_description_editor_checked} {short_description_editor_disabled} value="{short_description_editor_value}">{short_description_editor_description}<!-- end short_description_editor -->
+	</td>
+	<td align="center">
+		<input type="input" class="text" name="short_description_order" value="{short_description_order}" size="2">
+	</td>
+</tr>
+<tr class="usual" align="center">
+	<td align="left">
+		&nbsp;{FULL_DESCRIPTION_MSG}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_full_description" {show_full_description} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="full_description_required" {full_description_required} value="1">
+	</td>
+	<td colspan="2">
+		<!-- begin full_description_editor -->
+		<input type="radio" name="full_description_editor" {full_description_editor_checked} {full_description_editor_disabled} value="{full_description_editor_value}">{full_description_editor_description}<!-- end full_description_editor -->
+	</td>
+	<td align="center">
+		<input type="input" class="text" name="full_description_order" value="{full_description_order}" size="2">
+	</td>
+</tr>
+<tr class="usual" align="center">
+	<td align="left">
+		&nbsp;{HIDDEN_STATUS_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_is_hidden" {show_is_hidden} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="is_hidden_required" {is_hidden_required} value="1">
+	</td>
+	<td colspan="2"></td>
+	<td align="center">
+		<input type="input" class="text" name="is_hidden_order" value="{is_hidden_order}" size="2">
+	</td>
+</tr>
+<tr class="middle">
+	<td></td>
+	<td colspan="5">
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'"> &nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</div>
+
+<!-- custom fields -->
+<div id="data_custom_fields" style="{custom_fields_style}">
+
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+<!-- begin properties_titles -->
+<tr class="middle" align="center">
+	<td>
+		&nbsp;{ID_MSG}
+	</td>
+	<td valign="top">
+		&nbsp;{FIELD_NAME_MSG}
+	</td>
+	<td>
+		&nbsp;{SHOW_FIELD_MSG}
+	</td>
+	<td>
+		&nbsp;{FIELD_SECTION_MSG}
+	</td>
+	<td>
+		&nbsp;{SORT_ORDER_MSG}
+	</td>
+	<td align="center">
+		&nbsp;
+	</td>
+</tr><!-- end properties_titles -->
+<!-- begin properties -->
+<tr class="usual">
+	<td align="center">
+		&nbsp;{property_id}
+	</td>
+	<td>
+		&nbsp;{property_name}
+	</td>
+	<td align="center">
+		&nbsp;{property_show}
+	</td>
+	<td align="center">
+		&nbsp;{section_name}
+	</td>
+	<td align="center">
+		{property_order}
+	</td>
+	<td align="center">
+		&nbsp;<a href="{admin_user_property_href}?user_type_id={type_id}&property_id={property_id}">{EDIT_MSG}</a>
+	</td>
+</tr>
+<!-- end properties -->
+<!-- begin no_properties -->
+<tr class="usual">
+	<td colspan="6">
+		&nbsp;{NO_CUSTOM_FIELDS_MSG}
+	</td>
+</tr>
+<!-- end no_properties -->
+<tr class="middle">
+	<td colspan="6">
+		&nbsp;<a href="{admin_user_property_href}?user_type_id={type_id}&tab=custom_fields">{ADD_NEW_MSG}</a>&nbsp; |
+		<a href="{admin_user_sections_href}">{PROFILE_SECTION_MENU_MSG}</a>&nbsp; 
+	</td>
+</tr>
+</table>
+</div>
+
+<!-- registration notify -->
+<div id="data_registration_notify" style="{registration_notify_style}">
+
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+<tr class="middle">
+	<td colspan="5">
+		&nbsp;<b>{EMAIL_NOTIFICATION_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SEND_NOTIFICATION_ADMIN_MSG}
+	</td>
+	<td colspan="4">
+		<input type="checkbox" name="admin_notification" {admin_notification} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_TO_MSG}</b>
+		<div class="small">
+		&nbsp;(<a href="javascript:openWindow('{admin_email_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_FILEDS_NOTE})
+		</div>
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="admin_email" value="{admin_email}" size="80" maxlength="255">
+		<div class="small">({EG_MSG} <b>manager@yoursite.com</b>)</div>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_FROM_MSG}</b>
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="admin_mail_from" value="{admin_mail_from}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_CC_MSG}
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="cc_emails" value="{cc_emails}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_BCC_MSG}
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="admin_mail_bcc" value="{admin_mail_bcc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_REPLY_TO_MSG}
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="admin_mail_reply_to" value="{admin_mail_reply_to}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_RETURN_PATH_MSG}
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="admin_mail_return_path" value="{admin_mail_return_path}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_SUBJECT_MSG}</b>
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="admin_subject" value="{admin_subject}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_MESSAGE_TYPE_MSG}</b>
+	</td>
+	<td colspan="4"><!-- begin admin_message_type -->
+		<input type="radio" name="admin_message_type" {admin_message_type_checked} value="{admin_message_type_value}">{admin_message_type_description}<!-- end admin_message_type -->
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_user_profile_help_href}?user_type={type_id}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_SETTINGS_NOTE} 
+		<br>&nbsp;&nbsp;{LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td colspan="4">
+		<textarea name="admin_message" cols="80" rows="10">{admin_message}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="5">
+		&nbsp;<b>{EMAIL_NOTIFICATION_USER_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SEND_NOTIFICATION_USER_MSG}
+	</td>
+	<td colspan="4">
+		<input type="checkbox" name="user_notification" {user_notification} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_FROM_MSG}</b>
+		<div class="small">
+		&nbsp;(<a href="javascript:openWindow('{admin_email_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_FILEDS_NOTE})
+		</div>
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="user_mail_from" value="{user_mail_from}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_CC_MSG}
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="user_mail_cc" value="{user_mail_cc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_BCC_MSG}
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="user_mail_bcc" value="{user_mail_bcc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_REPLY_TO_MSG}
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="user_mail_reply_to" value="{user_mail_reply_to}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_RETURN_PATH_MSG}
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="user_mail_return_path" value="{user_mail_return_path}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_SUBJECT_MSG}</b>
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="user_subject" value="{user_subject}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_MESSAGE_TYPE_MSG}</b>
+	</td>
+	<td colspan="4"><!-- begin user_message_type -->
+		<input type="radio" name="user_message_type" {user_message_type_checked} value="{user_message_type_value}">{user_message_type_description}<!-- end user_message_type -->
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_user_profile_help_href}?user_type={type_id}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_SETTINGS_NOTE} 
+		<br>&nbsp;&nbsp;{LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td colspan="4">
+		<textarea name="user_message" cols="80" rows="10">{user_message}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="5">
+		&nbsp;<b>{SMS_NOTIFICATION_ADMIN_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SMS_SEND_ADMIN_MSF}
+	</td>
+	<td colspan="4">
+		<input type="checkbox" name="admin_sms_notification" {admin_sms_notification} value="1">
+		({SMS_NOTIFICATION_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{SMS_RECIPIENT_MSG}</b> ({SMS_RECIPIENT_ADMIN_DESC}) 
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="admin_sms_recipient" value="{admin_sms_recipient}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{SMS_ORIGINATOR_MSG}</b>
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="admin_sms_originator" value="{admin_sms_originator}" size="80" maxlength="16">
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{SMS_MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_user_profile_help_href}?user_type={type_id}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td colspan="4">
+		<textarea name="admin_sms_message" cols="80" rows="3">{admin_sms_message}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="5">
+		&nbsp;<b>{USER_SMS_NOTIFICATION_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SEND_SMS_NOTIFICATION_USER_MSG}
+	</td>
+	<td colspan="4">
+		<input type="checkbox" name="user_sms_notification" {user_sms_notification} value="1">
+		({SMS_NOTIFICATION_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{SMS_RECIPIENT_MSG}</b> ('{CELL_PHONE_FIELD}' {FIELD_USED_IF_EMPTY_MSG})
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="user_sms_recipient" value="{user_sms_recipient}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{SMS_ORIGINATOR_MSG}</b>
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="user_sms_originator" value="{user_sms_originator}" size="80" maxlength="16">
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{SMS_MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_user_profile_help_href}?user_type={type_id}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td colspan="4">
+		<textarea name="user_sms_message" cols="80" rows="3">{user_sms_message}</textarea>
+	</td>
+</tr>
+
+<tr class="middle">
+	<td></td>
+	<td colspan="4">
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'"> &nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</div>
+
+<!-- birthday greetings notify -->
+<div id="data_birthday_greetings" style="{birthday_greetings_style}">
+
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+<tr class="middle">
+	<td colspan="5">
+		&nbsp;<b>{BIRTHDAY_GREETINGS_SETTINGS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SEND_BIRTHDAY_GREETINGS_MSG}
+	</td>
+	<td colspan="4">
+		<input type="checkbox" name="user_birth_mail_greetings" {user_birth_mail_greetings} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_FROM_MSG}</b>
+		<div class="small">
+		&nbsp;(<a href="javascript:openWindow('{admin_email_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_FILEDS_NOTE})
+		</div>
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="user_birth_mail_from" value="{user_birth_mail_from}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_CC_MSG}
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="user_birth_mail_cc" value="{user_birth_mail_cc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_BCC_MSG}
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="user_birth_mail_bcc" value="{user_birth_mail_bcc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_REPLY_TO_MSG}
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="user_birth_mail_reply_to" value="{user_birth_mail_reply_to}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_RETURN_PATH_MSG}
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="user_birth_mail_return_path" value="{user_birth_mail_return_path}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_SUBJECT_MSG}</b>
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="user_birth_subject" value="{user_birth_subject}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_MESSAGE_TYPE_MSG}</b>
+	</td>
+	<td colspan="4"><!-- begin user_birth_message_type -->
+		<input type="radio" name="user_birth_message_type" {user_birth_message_type_checked} value="{user_birth_message_type_value}">{user_birth_message_type_description}<!-- end user_birth_message_type -->
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_user_profile_help_href}?user_type={type_id}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_SETTINGS_NOTE} 
+		<br>&nbsp;&nbsp;{LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td colspan="4">
+		<textarea name="user_birth_message" cols="80" rows="10">{user_birth_message}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="5">
+		&nbsp;<b>SMS {BIRTHDAY_GREETINGS_SETTINGS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;SMS {SEND_BIRTHDAY_GREETINGS_MSG}
+	</td>
+	<td colspan="4">
+		<input type="checkbox" name="user_birth_sms_greetings" {user_birth_sms_greetings} value="1">
+		({SMS_NOTIFICATION_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{SMS_RECIPIENT_MSG}</b> ('{CELL_PHONE_FIELD}' {FIELD_USED_IF_EMPTY_MSG})
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="user_birth_sms_recipient" value="{user_birth_sms_recipient}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{SMS_ORIGINATOR_MSG}</b>
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="user_birth_sms_originator" value="{user_birth_sms_originator}" size="80" maxlength="16">
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{SMS_MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_user_profile_help_href}?user_type={type_id}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td colspan="4">
+		<textarea name="user_birth_sms_message" cols="80" rows="3">{user_birth_sms_message}</textarea>
+	</td>
+</tr>
+
+
+<tr class="middle">
+	<td></td>
+	<td colspan="4">
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'"> &nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</div>
+
+<!-- reminder service notify -->
+<div id="data_reminder_service" style="{reminder_service_style}">
+
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+<tr class="middle">
+	<td colspan="5">
+		&nbsp;<b>{REMINDER_SERVICE_SETTINGS_EMAIL_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{REMINDER_SERVICE_SEND_EMAIL_MSG}
+	</td>
+	<td colspan="4">
+		<input type="checkbox" name="user_reminder_mail" {user_reminder_mail} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_FROM_MSG}</b>
+		<div class="small">
+		&nbsp;(<a href="javascript:openWindow('{admin_email_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_FILEDS_NOTE})
+		</div>
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="user_reminder_mail_from" value="{user_reminder_mail_from}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_CC_MSG}
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="user_reminder_mail_cc" value="{user_reminder_mail_cc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_BCC_MSG}
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="user_reminder_mail_bcc" value="{user_reminder_mail_bcc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_REPLY_TO_MSG}
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="user_reminder_mail_reply_to" value="{user_reminder_mail_reply_to}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_RETURN_PATH_MSG}
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="user_reminder_mail_return_path" value="{user_reminder_mail_return_path}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_SUBJECT_MSG}</b>
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="user_reminder_subject" value="{user_reminder_subject}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_MESSAGE_TYPE_MSG}</b>
+	</td>
+	<td colspan="4"><!-- begin user_reminder_message_type -->
+		<input type="radio" name="user_reminder_message_type" {user_reminder_message_type_checked} value="{user_reminder_message_type_value}">{user_reminder_message_type_description}<!-- end user_reminder_message_type -->
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{EMAIL_MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_user_profile_help_href}?type=reminder&user_type={type_id}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_SETTINGS_NOTE}
+		<br>&nbsp;&nbsp;{LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td colspan="4">
+		<textarea name="user_reminder_message" cols="80" rows="10">{user_reminder_message}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="5">
+		&nbsp;<b>{REMINDER_SERVICE_SETTINGS_SMS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{REMINDER_SERVICE_SEND_SMS_MSG}
+	</td>
+	<td colspan="4">
+		<input type="checkbox" name="user_reminder_sms" {user_reminder_sms} value="1">
+		({SMS_NOTIFICATION_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{SMS_RECIPIENT_MSG}</b> ({SMS_RECIPIENT_USER_DESC})
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="user_reminder_sms_recipient" value="{user_reminder_sms_recipient}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{SMS_ORIGINATOR_MSG}</b>
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="user_reminder_sms_originator" value="{user_reminder_sms_originator}" size="80" maxlength="16">
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{SMS_MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_user_profile_help_href}?type=reminder&user_type={type_id}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td colspan="4">
+		<textarea name="user_reminder_sms_message" cols="80" rows="3">{user_reminder_sms_message}</textarea>
+	</td>
+</tr>
+
+<tr class="middle">
+	<td></td>
+	<td colspan="4">
+		<input class="submit" type="submit" value="Update" onCLick="document.record.operation.value='save'"> &nbsp;
+		<input class="submit" type="submit" value="Cancel" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</div>
+
+</form>
+
+</td></tr></table>
+
+{admin_footer}
+
+</body>
+</html>

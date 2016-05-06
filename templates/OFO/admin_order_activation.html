@@ -1,0 +1,75 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_SERIAL_NUMBER_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_orders_href}">{ORDERS_MAINTENANCE_MSG}</a>&nbsp;&gt;
+			<a href="{admin_order_href}?order_id={order_id}">{ADMIN_ORDER_MSG}</a>&nbsp;&gt;
+			<a href="{admin_order_serials_href}?order_id={order_id}">{ADMIN_SERIAL_NUMBERS_MSG}</a>&nbsp;&gt;
+			<a href="{admin_order_serial_href}?order_id={order_id}&serial_id={serial_id}">{EDIT_SERIAL_NUMBER_MSG}</a>&nbsp;&gt;
+			<b>{EDIT_ACTIVATION_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_ACTIVATION_MSG}</legend>
+
+<table width="100%" border="0" cellspacing="1" cellpadding="6" align="center">
+<form action="{admin_order_activation_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="activation_id" value="{activation_id}">
+<input type="hidden" name="serial_id" value="{serial_id}">
+<input type="hidden" name="order_id" value="{order_id}">
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{GENERATION_KEY_MSG} *
+	</td>
+	<td>
+		<input type="text" size="40" name="generation_key" value="{generation_key}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ACTIVATION_KEY_MSG}
+	</td>
+	<td>
+		<input type="text" size="40" name="activation_key" value="{activation_key}">
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</form>	
+</table>
+
+</fieldset>
+
+{admin_footer}
+
+</body>
+</html>

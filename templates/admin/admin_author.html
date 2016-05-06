@@ -1,0 +1,157 @@
+<html><head><title>{ADMINISTRATION_MSG} :: {AUTHORS_MSG} :: {EDIT_MSG}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+	function openWindow(pagename, filetype)
+	{
+		var uploadWin = window.open (pagename + '?filetype=' + filetype, 'uploadWindow', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=400,height=300');
+		uploadWin.focus();
+	}
+
+	function setFileName(filename, filetype)
+	{
+		var siteUrl = '{site_url}';
+
+		if (filename != "" && filetype == "author_small")
+		{
+			document.record.image_small.value = siteUrl + "images/authors/small/" + filename;
+			document.record.image_small.focus();
+		} else if (filename != "" && filetype == "author_large") {
+			document.record.image_large.value = siteUrl + "images/authors/large/" + filename;
+			document.record.image_large.focus();
+		}
+	}
+
+//-->
+</script>
+
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_lookup_tables_href}">{STATIC_TABLES_MSG}</a>&nbsp;&gt;
+			<a href="{admin_authors_href}">{AUTHORS_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_MSG}</legend>
+
+<form action="{admin_author_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="author_id" value="{author_id}">
+<table border="0" cellspacing="1" cellpadding="6" width="100%"><!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{AUTHOR_NAME_MSG}	*
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="author_name" value="{author_name}">
+	</td>
+</tr>
+<!-- BEGIN friendly_url_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{FRIENDLY_URL_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="friendly_url" value="{friendly_url}" size="80" maxlength="255">
+	</td>
+</tr>
+<!-- END friendly_url_block -->
+<!-- begin short_description_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{SHORT_DESCRIPTION_MSG}
+	</td>
+	<td>
+		<textarea name="short_description" cols="80" rows="4">{short_description}</textarea>
+	</td>
+</tr><!-- end short_description_block --><!-- begin full_description_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{FULL_DESCRIPTION_MSG}
+	</td>
+	<td>
+		<textarea name="full_description" cols="80" rows="10">{full_description}</textarea>
+	</td>
+</tr><!-- end full_description_block -->
+<!--
+<tr class="middle">
+	<td colspan="2" class="middle">
+		&nbsp;Images
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;Small Image
+	</td>
+	<td>
+		<input class="field" type="text" name="image_small" value="{image_small}" size="80" maxlength="255"> 
+		&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'author_small')"><b>Upload Image</b></a>
+		&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'author_small')"><b>Select Image</b></a>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;Small Image Alt
+	</td>
+	<td>
+		<input class="field" type="text" name="image_small_alt" value="{image_small_alt}" size="80" maxlength="255"> 
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;Large Image
+	</td>
+	<td>
+		<input class="field" type="text" name="image_large" value="{image_large}" size="80" maxlength="255"> 
+		&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'author_large')"><b>Upload Image</b></a>
+		&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'author_large')"><b>Select Image</b></a>
+		<br>(shown along with full description)
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;Large Image Alt
+	</td>
+	<td>
+		<input class="field" type="text" name="image_large_alt" value="{image_large_alt}" size="80" maxlength="255"> 
+	</td>
+</tr>-->
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onclick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="Delete" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="Cancel" onclick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</form>	
+
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

@@ -1,0 +1,142 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_RELEASE_MSG} ::..</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_items_list_href}">{PRODUCTS_MSG}</a>&nbsp;&gt;&nbsp;<!-- BEGIN tree --><a 
+			href="{admin_items_list_href}?category_id={tree_cat_id}">{tree_cat_name}</a>&nbsp;&gt;&nbsp;<!-- END tree --><a 
+			href="{admin_items_list_href}?category_id={tree_current_id}">{tree_current_name}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_product_href}?category_id={category_id}&item_id={item_id}">{item_name}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_releases_href}?category_id={category_id}&item_id={item_id}">{RELEASES_TITLE}</a>&nbsp;&gt;&nbsp;<b>{EDIT_RELEASE_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<form action="{admin_release_href}" name="record" method="post">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="category_id" value="{category_id}">
+<input type="hidden" name="release_id" value="{release_id}">
+<input type="hidden" name="item_id" value="{item_id}">
+
+<fieldset>
+<legend>{EDIT_RELEASE_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<table cellspacing="1" cellpadding="4" border="0" align="center" width="100%"><!-- BEGIN errors -->
+<tr>
+	<td colspan="6" class="usual" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{SHOW_ON_SITE_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="is_showing" {is_showing} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{HOT_RELEASE_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="show_on_index" {show_on_index} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{RELEASE_DATE_MSG} *
+	</td>
+	<td >
+		<input class="field" type="text" name="release_date" value="{release_date}" size="20"> (<b>{release_date_format}</b>)
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{RELEASE_TYPES_MSG} *
+	</td>
+	<td >
+		<select name="release_type_id"><!-- begin release_type_id -->
+			<option {release_type_id_selected} value="{release_type_id_value}">{release_type_id_description}<!-- end release_type_id -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_TITLE_MSG} *
+	</td>
+	<td >
+		<input class="field" type="text" name="release_title" value="{release_title}" size="80">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{VERSION_MSG}
+	</td>
+	<td >
+		<input class="field" type="text" name="version" value="{version}" size="20">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{DOWNLOAD_TYPE_MSG} *
+	</td>
+	<td ><!-- begin download_type -->
+		<input type="radio" name="download_type" {download_type_checked} value="{download_type_value}">{download_type_description}<!-- end download_type -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_DOWNLOAD_PATH_MSG}
+	</td>
+	<td >
+		<input class="field" type="text" name="path_to_file" value="{path_to_file}" size="80">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{DESCRIPTION_MSG}
+	</td>
+	<td >
+		<textarea name="release_desc" cols="80" rows="10">{release_desc}</textarea>
+	</td>
+</tr>
+
+<tr class="middle">
+	<td></td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onclick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+
+</table>
+
+	</td>
+</tr>
+</table>
+</fieldset>
+</form>
+
+	
+{admin_footer}
+</body>
+</html>

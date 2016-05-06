@@ -1,0 +1,116 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_CUSTOM_FIELD_MSG} :: {table_title} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript">
+<!--
+	function openWindow(pagename)
+	{
+		var popupWin = window.open (pagename, 'popup', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');
+		popupWin.focus();
+	}
+//-->
+</script>
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;<!-- BEGIN products_path -->
+			<a href="{admin_items_list_href}">{PRODUCTS_MSG}</a>&nbsp;&gt;&nbsp;<!-- BEGIN tree --><a 
+			href="{admin_items_list_href}?category_id={tree_cat_id}">{tree_cat_name}</a>&nbsp;&gt;&nbsp;<!-- END tree -->
+			<a href="{admin_items_list_href}?category_id={tree_current_id}">{tree_current_name}</a>&nbsp;&gt;<!-- END products_path -->
+			<a href="{admin_export_url}">{EXPORT_MSG} {table_title}</a>&nbsp;&gt;
+			<b>{EDIT_CUSTOM_FIELD_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_CUSTOM_FIELD_MSG}: {table_title}</legend>
+
+<table width="100%" border="0" cellspacing="1" cellpadding="6" align="center">
+<form action="{admin_export_custom_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="table" value="{table}">
+<input type="hidden" name="field" value="{field}">
+<input type="hidden" name="category_id" value="{category_id}">
+<input type="hidden" name="id" value="{id}">
+<input type="hidden" name="ids" value="{ids}">
+<input type="hidden" name="s_on" value="{s_on}">
+<input type="hidden" name="s_ne" value="{s_ne}">
+<input type="hidden" name="s_kw" value="{s_kw}">
+<input type="hidden" name="s_sd" value="{s_sd}">
+<input type="hidden" name="s_ed" value="{s_ed}">
+<input type="hidden" name="s_os" value="{s_os}">
+<input type="hidden" name="s_cc" value="{s_cc}">
+<input type="hidden" name="s_sc" value="{s_sc}">
+<input type="hidden" name="s_ex" value="{s_ex}">
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td width="25%">
+		&nbsp;{FIELD_TITLE_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" name="field_title" size="60" value="{field_title}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{FIELD_VALUE_MSG}
+		<br><br>(<a href="javascript:openWindow('{admin_export_custom_help_href}?table={table}')">{CLICK_HERE_MSG}</a> {FIELD_VALUE_NOTE})	
+	</td>
+	<td>
+		<table border="0" cellpadding="0" cellspacing="0">
+		<tr valign="top">
+			<td rowspan="4"><textarea name="field_value" cols="60" rows="5">{field_value}</textarea></td>
+			<td rowspan="4">&nbsp;&nbsp;</td>
+			<td><b>{VALUE_EXAMPLE_MSG}</b></td>
+			<td rowspan="4">&nbsp;&nbsp;&nbsp;</td>
+			<td><b>{OUTPUT_EXAMPLE_MSG}</b></td>		
+		</tr>
+		<tr>
+			<td>&#123;order_placed_date_YYYY&#125;</td>
+			<td><i>2008</i></td>
+		</tr>
+		<tr>
+			<td>&#123;country_code&#125;, &#123;state_code&#125;</td>
+			<td><i>US, NY</i></td>
+		</tr>
+		<tr>
+			<td>ID: &#123;user_id&#125;, Name: &#123;name&#125;</td>
+			<td><i>ID: 111, Name: John</i></td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'">&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</form>	
+
+</fieldset>
+
+
+{admin_footer}
+</body>
+</html>

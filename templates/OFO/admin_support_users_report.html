@@ -1,0 +1,193 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {SUPPORT_USERS_MSG} ::..</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+
+<style type="text/css">
+<!--
+	.row1 { background-color:#f0f0f0; }
+	.row2 { background-color:#fffeee; }
+	.rowWarn { background-color: #FFd0d0; }
+
+//-->
+</style>
+<script language="JavaScript" src="../js/calendar.js"></script>
+<script language="JavaScript">
+<!--
+
+	function selectPeriod()
+	{
+		var theForm = document.forms['stats'];
+		var period = theForm.s_tp.options[theForm.s_tp.selectedIndex].value;
+		var Statistic = ""; 
+		var endDate = "";
+		if(period == 1) {
+			Statistic = "{today_date}"; endDate = "{today_date}";
+		} else if(period == 2) {
+			Statistic = "{yesterday_date}"; endDate = "{yesterday_date}";
+		} else if (period == 3) {
+			Statistic = "{week_start_date}"; endDate = "{today_date}";
+		} else if (period == 4) {
+			Statistic = "{month_start_date}"; endDate = "{today_date}";
+		} else if (period == 5) {
+			Statistic = "{last_month_start_date}"; endDate = "{last_month_end_date}";
+		} else if (period == 6) {
+			Statistic = "{quarter_start_date}"; endDate = "{today_date}";
+		} else if (period == 7) {
+			Statistic = "{year_start_date}"; endDate = "{today_date}";
+		}
+		theForm.s_sd.value = Statistic;
+		theForm.s_ed.value = endDate;
+	}
+	
+	function clearForm() {
+		var theForm = document.forms['stats'];
+
+		theForm.s_tp.selectedIndex = 0;
+		theForm.s_sd.value = "";
+		theForm.s_ed.value = "";
+		theForm.s_os.selectedIndex = 0;
+	
+		theForm.submit();
+	}
+
+	function showTip(tipName) {
+		var tip = document.getElementById(tipName);
+		if (tip) {
+  	  		var leftPos = event.x + document.body.scrollLeft + 15;
+	    	var topPos  = event.y + document.body.scrollTop + 15;
+			tip.style.left = leftPos;
+			tip.style.top = topPos;
+			tip.style.display = "block";
+		}
+
+	}
+
+	function hideTip(tipName) {		
+		var tip = document.getElementById(tipName);
+		if (tip) {
+			tip.style.display = 'none'; 
+		}
+	}
+
+//-->
+</script>
+
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td align="center">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_support_href}">{HELPDESK_MSG}</a>&nbsp;&gt;&nbsp;<b>{USERS_REPORT_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<!-- BEGIN stats_errors -->
+&nbsp;<div align="center" class="error">{errors_list}</div>&nbsp;
+<!-- END stats_errors -->
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr>
+	<td>
+		<table border="0" cellpadding="2" cellspacing="2">
+			<form action="{admin_support_users_report}" name="stats">
+				<input type="hidden" name="s_form" value="1">
+			<!-- BEGIN errors -->
+			<tr><td colspan="2">
+				&nbsp;<div align="center" class="error"><font style="font-size:8pt">{errors_list}</font></div>&nbsp;
+			</td></tr>
+			<!-- END errors -->
+			<tr>
+				<td colspan="2"><b>{FILTER_USERS_STATS_MSG}:</b></td>
+			</tr>
+			<tr>
+				<td>{TIME_PERIOD_MSG}:</td>
+				<td>
+					<select name="s_tp" class="search" onChange="selectPeriod();">
+						<!-- BEGIN s_tp --><option {s_tp_selected} value="{s_tp_value}">{s_tp_description}<!-- END s_tp -->
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>{FROM_DATE_MSG} ({date_edit_format}):</td>
+				<td>
+					<input type="text" name="s_sd" value="{s_sd}" class="search">
+					<a href="#"
+						onClick="setDateField(document.stats.s_sd, '{date_edit_format}');
+						top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+					<img src="../images/calendar.gif" border="0"><font size=1>{CALENDAR_MSG}</font></a>
+				</td>
+			</tr>
+			<tr>
+				<td>{TO_DATE_MSG} ({date_edit_format}):</td>
+				<td>
+					<input type="text" name="s_ed" value="{s_ed}" class="search">
+					<a href="#"
+						onClick="setDateField(document.stats.s_ed, '{date_edit_format}');
+						top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+					<img src="../images/calendar.gif" border="0"><font size=1>{CALENDAR_MSG}</font></a>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td colspan="1" align="left"><input type="submit" name="filter" value="Filter" class="submit">&nbsp;
+				<input type="button" value="{CLEAR_BUTTON}" class="submit" onClick="clearForm();"></td>
+			</tr>
+			</form>
+		</table>
+	</td>
+</tr>
+<!-- BEGIN stats -->
+<tr>
+<td>
+<fieldset class="normargin">
+<legend>{USERS_REPORT_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center">  
+	<td>
+
+
+<table border="0" cellspacing="1" cellpadding="2" width="100%">
+<tr align="center" class="middle">
+	<td align="center" width='150'>{USER_NAME_MSG}</td>
+	<!-- BEGIN statuses --><td align="center" style="font-size: 8pt;">{status_name}</td><!-- END statuses -->
+</tr>
+<!-- BEGIN records -->
+<tr class="{row_style}" align="center">
+	<td align=left>&nbsp;<b>{user_name}</b></td>{messages}
+</tr>
+<!-- END records -->
+<!-- BEGIN no_records -->
+<tr class="usual" align= "center">
+	<td colspan="25">
+		&nbsp;{NO_RECORDS}
+	</td>
+</tr><!-- END no_records -->
+</table>	
+
+	</td>
+
+</tr>
+
+</table>
+</fieldset>
+</td></tr>
+	<!-- END stats -->
+</table>
+
+{admin_footer}
+</body>
+</html>

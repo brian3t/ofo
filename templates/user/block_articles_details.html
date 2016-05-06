@@ -1,0 +1,136 @@
+<div class="block-articles-details">
+<div class="titleTopCenter">{article_title}</div>
+	<!-- begin no_item -->
+	<div class="errorbg">{NO_ARTICLE_MSG}</div>
+	<!-- end no_item -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<!-- BEGIN item -->
+		<tr>
+			<td class="padding10px">
+				<table width="100%" border="0" cellspacing="0" cellpadding="3">
+					<tr>
+						<td><!-- begin author_block -->
+							<!-- begin author_name_block -->
+							<b>{author_name}</b>
+							<!-- end author_name_block -->
+							<!-- begin author_email_block -->
+							&lt;{author_email}&gt;
+							<!-- end author_email_block -->
+							<!-- begin author_url_block -->
+							<a href="{author_url}" target="_blank">{author_url}</a>
+							<!-- end author_url_block -->
+							<!-- end author_block -->
+							<!-- begin date_block -->
+							<div class="articleDate">
+								<!-- begin article_date_block -->
+								{article_date}
+								<!-- end article_date_block -->
+								<!-- begin date_end_block -->
+								&ndash; {date_end}
+								<!-- end date_end_block -->
+							</div>
+							<!-- end date_block -->
+							<div align=justify>
+								<!-- begin flash_player_block -->
+								<script type="text/javascript">flashplayer('{stream_video}','{stream_video_preview}','{stream_video_width}','{stream_video_height}','no','');</script>
+								<!-- end flash_player_block -->
+								<!-- begin windows_media_block-->
+								<script type="text/javascript">mediaplayer('{stream_video}','{stream_video_width}','{stream_video_height}','false');</script>
+								<!-- end windows_media_block-->
+								<!-- begin image_large_block -->
+								<img src="{src}" {width} {height} border="0" hspace="5" align="left" alt="{alt}">
+								<!-- end image_large_block -->
+								<!-- begin image_small_block -->
+								<img src="{src}" {width} {height} border="0" hspace="5" align="left" alt="{alt}">
+								<!-- end image_small_block -->
+								<!-- begin short_description_block -->
+								{short_description}
+								<!-- end short_description_block -->
+								{full_description} </div>
+							<!-- begin link_url_block -->
+							<div align=justify><b>{LINK_URL_MSG}</b>: <a href="{link_url}" target="_blank">{link_url}</a></div>
+							<!-- end link_url_block -->
+							<!-- begin download_url_block -->
+							<div align=justify><b>{DOWNLOAD_URL_MSG}</b>: <a href="{download_url}" target="_blank">{download_url}</a></div>
+							<!-- end download_url_block -->
+							<!-- begin notes_block -->
+							<div align=justify><b>{NOTES_MSG}</b>: {notes}</div>
+							<!-- end notes_block -->
+							<!-- begin keywords_block -->
+							<div align=justify><b>{KEYWORDS_MSG}</b>: {keywords}</div>
+							<!-- end keywords_block --></td>
+					</tr>
+				</table></td>
+		</tr>
+		<!-- END item -->
+	</table>
+	<!-- begin reviews -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="paddingReviews">
+		<tr>
+			<td><br>
+				<a href="{reviews_href}">{RATE_ARTICLE_MSG}</a>.</td>
+		</tr>
+		<tr>
+			<td><table cellspacing="0" cellpadding="0" border="0">
+					<tr>
+						<!-- begin not_rated -->
+						<td><b>{NOT_RATED_ARTICLE_MSG}</b></td>
+						<!-- end not_rated -->
+						<!-- begin summary_statistic -->
+						<td><b>{AVERAGE_RATING_MSG}:</b>&nbsp;</td>
+						<td><img class="{average_rating_image}" src="images/tr.gif" alt="{average_rating_alt}"></td>
+						<td>{BASED_ON_REVIEWS_MSG}.</td>
+						<!-- end summary_statistic -->
+						<td>&nbsp;<a href="{reviews_href}">{WRITE_REVIEW_MSG}</a>.</td>
+					</tr>
+				</table></td>
+		</tr>
+	</table>
+	<br>
+	<!-- begin positive_review -->
+	<table width="100%" border="0" cellspacing="0" class="paddingRev5px">
+		<tr>
+			<td colspan="2" class="middlebg"><b>{POSITIVE_REVIEW_MSG}</b>
+		</td>
+		</tr>
+		<tr>
+			<td align="left" valign="top" class="{review_user_class}">{review_user_name} <img class="commend" src="images/tr.gif" align="top" alt=""></td>
+			<td align="right"><div class="articleDate">{review_date_added}</div></td>
+		</tr>
+	</table>
+	<table width="100%" border="0" cellspacing="0" class="paddingRev3px">
+		<tr>
+			<td width="60" align="left" valign="top"><img class="{rating_image}" src="images/tr.gif" align="top"></td>
+			<td align="left" valign="top"><div class="title">{review_summary}</div>
+				<div align="justify">{review_comments}<br>
+				</div></td>
+		</tr>
+	</table>
+	<!-- end positive_review -->
+	<!-- begin negative_review -->
+	<table width="100%" border="0" cellspacing="0" class="paddingRev5px">
+		<tr>
+			<td colspan="2" class="middlebg"><b>&nbsp;{NEGATIVE_REVIEW_MSG}</b></td>
+		</tr>
+		<tr>
+			<td align="left" valign="top" class="{review_user_class}">{review_user_name} <img class="discommend" src="images/tr.gif" align="top"></td>
+			<td align="right"><div class="articleDate">{review_date_added}</div></td>
+		</tr>
+	</table>
+	<table width="100%" border="0" cellspacing="0" class="paddingRev3px">
+		<tr>
+			<td width="60" align="left" valign="top">&nbsp;<img class="{rating_image}" src="images/tr.gif" align="top"></td>
+			<td align="left" valign="top"><div class="title">{review_summary}</div>
+				<div align="justify">{review_comments}</div></td>
+		</tr>
+	</table>
+	<!-- end negative_review -->
+	<!-- begin all_reviews_link -->
+	<table width="100%" border="0" cellspacing="0" class="paddingRev5px">
+		<tr>
+			<td align="right" class="middlebg"><a href="{reviews_href}">{SEE_ALL_REVIEWS_MSG}</a></td>
+		</tr>
+	</table>
+	<!-- end all_reviews_link -->
+	<!-- end reviews -->
+</div>

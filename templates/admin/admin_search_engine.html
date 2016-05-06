@@ -1,0 +1,107 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_ENGINE_MSG} ::..</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5" align="center">
+<tr><td align="center">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_lookup_tables_href}">{STATIC_TABLES_MSG}</a>&nbsp;&gt;
+			<a href="{admin_search_engines_href}">{SEARCH_ENGINES_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_ENGINE_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<td>
+<fieldset>
+<legend>{EDIT_ENGINE_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<form action="{admin_search_engine_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="engine_id" value="{engine_id}">
+<table border="0" cellspacing="1" cellpadding="6" width="100%"><!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{ENGINE_NAME_MSG}	*
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="engine_name" value="{engine_name}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{KEYWORDS_PARAMETER_NAME_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="keywords_parameter" value="{keywords_parameter}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{REFERRER_REGULAR_EXPRESSION_MSG}
+	</td>
+	<td>
+		<textarea name="referer_regexp" cols="80" rows="4">{referer_regexp}</textarea>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{USER_AGENT_REGULAR_EXPRESSION_MSG}
+	</td>
+	<td>
+		<textarea name="user_agent_regexp" cols="80" rows="4">{user_agent_regexp}</textarea>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IP_ADDRESS_REGULAR_EXPRESSION_MSG}
+	</td>
+	<td>
+		<textarea name="ip_regexp" cols="80" rows="4">{ip_regexp}</textarea>
+	</td>
+</tr>
+
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onclick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</form>	
+
+	</td>
+</tr>
+</table>
+</fieldset>
+</td></tr></table>
+
+{admin_footer}
+</body>
+</html>

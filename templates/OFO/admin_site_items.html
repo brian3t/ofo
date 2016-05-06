@@ -1,0 +1,124 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {PRODUCTS_MSG} ::..</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript" type= "text/javascript" src="../js/ajax.js"></script>
+<script language="JavaScript" type= "text/javascript" src="../js/ajax_list_tree.js"></script>
+<script language="JavaScript">
+<!--
+function addLeafFormat(id, text, tree_name, action_object_id) {
+	
+	var return_text = "<div class='tree_leaf_button' ";
+		return_text += " onClick=\"removeListItem('" + id + "', '" + tree_name +"', '" +  action_object_id + "')\"";
+		return_text += "><img src='../images/icons/minus_small.gif'></div>";
+		return_text += "<div class=\"tree_leaf_title\">";
+	    return_text += text;
+		return_text += "</div>";
+	return return_text;
+}
+//-->
+</script>
+</head>
+
+<body class="commonbg">
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header">
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_sites_href}">{ADMIN_SITES_MSG}</a>&nbsp;&gt;&nbsp;
+			<!--begin update_sites_perm-->
+			<a href="{admin_site_href}?param_site_id={param_site_id}">{site_name}</a><!--end update_sites_perm-->
+			<!--begin no_update_sites_perm-->
+			<b>{site_name}</b><!--end no_update_sites_perm-->
+			&nbsp;&gt;&nbsp;<b>{PRODUCTS_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br/>
+
+<!-- begin errors -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr align="center">
+	<td>
+		<div class="error">{errors_list}</div>
+	</td>
+</tr>
+</table><!-- end errors -->
+					
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border: 1px solid #999;">
+<tr align="center">
+	<td>
+		<form action="{admin_site_items_href}" name="record" method="POST" onSubmit="saveListItems('related_ids', 'products_ajax_tree', 'selected_related_ids');">
+			<input type="hidden" name="operation" value="save">
+			<input type="hidden" name="param_site_id" value="{param_site_id}">
+			<input type="hidden" name="related_ids" value="">
+			
+	  		<table width="100%" border="0" cellspacing="1" cellpadding="4">
+	  			
+	  		<!--begin all_sites_note-->
+	  		<tr align="left" class="middle">
+				<td colspan="3">
+					{ITEM_BELONGS_TO_ALL_SITES_MSG} <a href="{admin_site_items_href}">{GOTO_ALL_SITES_MSG}</a>
+				</td>
+			</tr>
+			<!--end all_sites_note-->
+			<tr align="center" class="middle">
+				<td width="450">{AVAILABLE_PRODCUTS_MSG}</td>
+				<td width="420">{PRODUCTS_MSG}</td>
+			</tr>
+			<tr class="usual" align="center">
+				<td align="left" valign="top">										
+					<div id="products" class="browseProducts">
+						{products_ajax_tree}			
+					</div>
+				</td>			
+				<td align="left" valign="top">
+					<div class='tree_outer' style="width:420px;">
+						<ul id='selected_related_ids' class='tree'><!-- begin related_items -->
+						<li class='tree_leaf' id='selected_related_ids_{related_id}'>
+							<!-- begin related_item_button -->
+							<div class='tree_leaf_button'
+								onClick="removeListItem('{related_id}', 'products_ajax_tree', 'selected_related_ids')"
+							>
+								<img src='../images/icons/minus_small.gif'>
+							</div>
+							<!-- end related_item_button -->
+							<!-- begin related_item_star -->
+							<div class='tree_leaf_button'>
+								*								
+							</div>
+							<!-- end related_item_star -->
+							<div class="tree_leaf_title">								
+								{related_name}
+							</div>
+						</li><!-- end related_items --></ul>
+					</div>
+				</td>
+			</tr>
+			<tr align="right" class="middle">
+				<td colspan="3">
+					<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;
+					<input class="submit" type="submit" value="{APPLY_BUTTON}" onCLick="document.record.operation.value='apply'">&nbsp;&nbsp;
+					<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">&nbsp;&nbsp;
+				</td>
+			</tr>
+			</table>
+		</form>
+		
+	</td>
+</tr>
+</table>
+<script language="JavaScript">
+<!--
+document.onmousedown = mouseDown;
+//-->
+</script>
+{admin_footer}
+</body>
+</html>

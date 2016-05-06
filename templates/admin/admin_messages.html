@@ -1,0 +1,107 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {MESSAGES_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<style type="text/css">
+<!--
+	.row1 { background-color:#f0f0f0; }
+	.row2 { background-color:#fffeee; }
+	.rowWarn { background-color: #FFd0d0; }
+
+//-->
+</style>
+<script language="JavaScript" src="../js/calendar.js"></script>
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<b>{MESSAGES_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+
+<form action="{admin_messages_href}" name="search_form">
+<input type="hidden" name="language_code" value="{current_language_code}">
+<table width="100%" border="0" cellspacing="3" cellpadding="3" align="center">
+  <tr>
+		<td width="70%"><b>&nbsp;{LANGUAGE_TITLE}:</b>
+			<!-- begin languages_images -->
+			&nbsp;<a href="{current_href}{admin_messages_href}{language_href}">{language_image}</a>&nbsp;
+			<!-- end languages_images -->
+		</td>
+		<td>Current Language: &nbsp;{current_language_image}&nbsp;&nbsp;<b>{current_language}</b></td>
+	</tr>
+	<tr>
+		<td valign="top">
+			<table border="0" cellpadding="2" cellspacing="2">
+				<tr>
+					<td>
+						<b>Sections:<br>
+					</td>
+	      <tr>
+				<!-- BEGIN sections -->
+				<tr>
+					<td colspan="4"><a href="{current_href}{admin_messages_href}{section_href}">{section_title}{is_readonly}</a></td>
+				</tr>
+				<!-- END sections -->
+			</table>
+		</td>
+		<td valign="top">
+			<b>Section Search:</b><br>
+			<input type="text" name="message_search" value="{message_search}" class="search"></b>&nbsp;&nbsp;<input type="submit" value="Search" class="submit">
+ 		</td>
+	</tr>
+</table>
+</form>
+
+<br>
+
+<!-- BEGIN message_block -->
+<fieldset>
+<legend>{current_message}</legend>
+<table width="100%" border="0" cellspacing="2" cellpadding="2">
+<tr align="center" class="middle" valign="top">
+	<td width="30%">
+		{ADMIN_CONSTANT_MSG}
+	</td>
+	<td width="60%">
+		{MESSAGE_MSG}
+	</td>
+	<td width="10%">
+	<!-- BEGIN add_new_block -->
+		{add_new_href}
+	<!-- END add_new_block -->
+	</td>
+</tr>
+<!-- BEGIN message_details -->
+<tr class="{row_style}"> 
+	<td>&nbsp;{constant_name}</td>
+	<td>{message_string}</td>
+	<td align="center">{message_edit_href}</td>
+</tr>
+<!-- END message_details -->
+</table>
+</fieldset>
+<!-- END message_block -->
+
+	<!-- BEGIN errors -->
+	<tr>
+		<td colspan="4">
+		&nbsp;<div align="center" class="error"><font style="font-size:8pt">{errors_list}</font></div>&nbsp;
+		</td>
+	</tr>
+	<!-- END errors -->
+
+
+{admin_footer}
+</body>
+</html>

@@ -1,0 +1,347 @@
+<div class="block-forum-topic">
+<!-- begin global_errors --><div class="errorbg" align="center">{errors_list}</div><br><!-- end global_errors -->
+
+<!-- begin topic_info -->
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{TOPIC_INFO_TITLE}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr> 
+		<td class="blockTD">
+	<table border="0" cellspacing="1" width="100%" class="padding6px">
+	<tr valign="top">
+		<td width="22%" class="middlebg">
+			&nbsp;{TOPIC_ADDED_BY_FIELD}
+		</td>
+		<td class="usualbg">
+			&nbsp;<span class="{thread_user_class}">{thread_user_name}</span>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="22%" class="middlebg">
+			&nbsp;{TOPIC_ADDED_DATE_FIELD}
+		</td>
+		<td class="usualbg">
+			&nbsp;{thread_added}
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="22%" class="middlebg">
+			&nbsp;{TOPIC_UPDATED_FIELD}
+		</td>
+		<td class="usualbg">
+			&nbsp;{thread_updated}
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="22%" class="middlebg">
+			&nbsp;{TOPIC_NAME_FIELD}
+		</td>
+		<td class="usualbg">
+			&nbsp;{topic}
+		</td>
+	</tr><!-- begin topic_attachments -->
+	<tr valign="top">
+		<td class="middlebg">
+			&nbsp;{ATTACHMENTS_MSG}
+		</td>
+		<td class="usualbg">
+			&nbsp;{attachments_files}
+		</td>
+	</tr><!-- end topic_attachments -->
+	<tr valign="top">
+		<td colspan="2" class="usualbg">
+			<div id="message_block_0">
+				{topic_description}
+				<input type="hidden" id="original_message_0" value="{original_topic}">
+				<!-- begin message_modified -->
+				<div>
+					<hr>
+					{FORUM_MESSAGE_LAST_MODIFIED_MSG} {date_modified}
+				</div>
+				<!-- end message_modified -->
+				<div align="right">
+					<!-- begin message_edit_link -->
+					<a href="#" onClick="editMessage('{message_id}'); return false;">{EDIT_MSG}</a><!-- end message_edit_link -->
+				</div>
+			</div>
+			<div id="message_edit_0" style="display: none;"></div>
+		</td>
+	</tr>
+	</table>	
+	</td>
+	</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+<!-- end topic_info -->
+
+<!-- begin message_form -->
+<a name="message_form"></a>
+<form action="{forum_thread_href}#message_form" name="message" method="POST">
+<input type="hidden" name="rnd" value="{rnd}">
+<input type="hidden" name="thread_id" value="{thread_id}">
+<input type="hidden" name="attachments_url" value="{user_forum_attachments_url}">
+<input type="hidden" name="action" value="save">
+<input type="hidden" name="page" value="{page}">
+<input type="hidden" name="u" value="{u}">
+
+<!-- begin topic_preview-->
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{PREVIEW_TITLE}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr> 
+		<td class="blockTD">
+			{message_text}
+			<INPUT TYPE="hidden" name="message_text" value="message_text">
+		</td>
+	</tr>
+	</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+<!-- end topic_preview-->
+
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{TOPIC_MESSAGE_TITLE}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr> 
+		<td class="blockTD">
+			<table border="0" cellspacing="1" width="100%" class="padding6px"><!-- BEGIN errors -->
+				<tr class="usualbg">
+					<td colspan="2" align="center">
+						<div class="errorbg">{errors_list}</div>
+					</td>
+				</tr><!-- END errors -->
+				<!-- begin user_name_block -->
+				<tr class="usualbg">
+					<td>
+						{TOPIC_NICKNAME_FIELD} *
+					</td>
+					<td>
+						<input class="text" type="text" name="user_name" size="60" maxlength="64" value="{user_name}">
+					</td>
+				</tr>
+				<!-- end user_name_block -->
+				<!-- begin user_email_block -->
+				<tr class="usualbg">
+					<td>
+						{TOPIC_EMAIL_FIELD} *
+					</td>
+					<td>
+						<input class="text" type="text" name="user_email" size="60" maxlength="128" value="{user_email}">
+					</td>
+				</tr>
+				<!-- end user_email_block -->
+				<!-- begin attachments_block -->
+				<tr class="usualbg">
+					<td>
+						<a href="#" onClick="attachFiles(document.message);return false;">{ATTACHMENTS_MSG}</a>
+						<a href="#" onClick="attachFiles(document.message);return false;"><img src="images/clip.gif" align="top" border="0" width="16" height="16"></a>
+					</td>
+					<td>
+						<div id="attachmentsBlock" style="{attachments_class}">
+							<a href="#" onClick="attachFiles(document.message);return false;">Attached Files</a>:&nbsp;
+							&nbsp;<span id="attachedFiles">{attached_files}</span>
+						</div>
+					</td>
+				</tr>
+				<!-- end attachments_block -->
+				<tr class="usualbg">
+					<td valign="top">
+						{TOPIC_MESSAGE_FIELD} *
+
+						<!-- begin icons_block -->
+						<div align="center">
+						<br>{EMOTICONS_MSG}
+						<table cellspacing="3" cellpadding="0" border="0">
+						<!-- begin icons_rows -->
+						<tr>
+							<!-- begin icons_cols -->
+							<td><a href="#" onClick="insertAtCaret('{icon_code_js}', document.message.message_text);return false;"><img src="{icon_src}" {icon_size} border="0" alt="{icon_alt}"></a></td>
+							<!-- end icons_cols -->
+						</tr>
+						<!-- end icons_rows -->
+						</table>
+						<!-- begin icons_more_link -->
+						<br><a href="#" onClick="openIconsWindow('{icon_select_href}', document.message.message_text);return false;">{VIEW_MORE_EMOTICONS_MSG}</a>
+						<!-- end icons_more_link -->
+						</div>
+						<!-- end icons_block -->
+
+					</td>
+					<td>
+						<textarea class="field" rows="15" cols="60" name="message_text" onSelect="storeCaret(this);" onClick="storeCaret(this);" onKeyUp="storeCaret(this);">{message_text}</textarea>
+					</td>
+				</tr>
+				<!-- begin validation_number_block -->
+				<tr class="usualbg">
+					<td class="usualbg">
+						{VALIDATION_CODE_FIELD} *
+					</td>
+					<td class="usualbg">
+						<input class="field" type="text" name="validation_number" size="4" value="{validation_number}">
+						&nbsp;<img src="validation_image.php" border="0" align="absmiddle">
+					</td>
+				</tr>
+				<!-- end validation_number_block -->
+
+				<tr class="middlebg">
+					<td>
+					</td>
+					<td>
+						<span class="submit"><input class="submit" type="submit" name="button" value="{TOPIC_MESSAGE_BUTTON}"></span>
+						<span class="submit"><input class="submit" id="preview" type="submit" name="button" value="{PREVIEW_BUTTON}"></span>
+						<span class="submit"><input class="submit" id="clear" type="button" value="{CLEAR_BUTTON}" onClick="document.message.message_text.value=''"></span>
+						<span class="submit"><input class="submit" id="reset" type="reset" value="{RESET_BUTTON}"></span>
+					</td>
+				</tr>
+			</table>	
+		</td>
+	</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+</form>
+<!-- end message_form -->
+
+<table width="100%" border="0" cellspacing="10" cellpadding="0">
+	<tr> 
+		<td class="blckTDforum">
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<!-- BEGIN records -->
+<tr valign="top">
+	<!-- BEGIN user_info_left -->
+	<td width="100" class="forumMessageLeft" align="center" valign="top">
+
+		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+		<tr>
+			<td align="center" class="{forum_user_class}">
+				{message_user_name}
+			</td>
+		</tr>
+		<tr>
+			<td align="center">
+				<!-- BEGIN user_image_block -->
+				<img src="{personal_image}" border="0" {image_size} alt="{message_user_name}">
+				<!-- END user_image_block -->
+			</td>
+		</tr>
+		</table>
+
+	</td>
+	<!-- END user_info_left -->
+	<td class="forumMessageRight">
+
+		<table border="0" cellpadding="5" cellspacing="0" width="100%">
+		<tr valign="top">
+			<td class="forumMessageTop">
+				<table width="100%" cellspacing="0" cellpadding="0" border="0">
+				<tr>
+					<!-- BEGIN user_info_top -->
+					<td width="90%">
+						<div class="{forum_user_class}">{message_user_name}</div>
+					</td>
+					<!-- END user_info_top -->
+					<td nowrap><div class="articleDate">{date_added}</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr><!-- begin message_attachments -->
+		<tr valign="top">
+			<td class="forumAttachments">
+				{attachments_files}
+			</td>
+		</tr><!-- end message_attachments -->
+		<tr valign="top">
+			<td class="usualbg">
+				<div id="message_block_{message_id}">
+					{message_text}
+					<input type="hidden" id="original_message_{message_id}" value="{original_message}">
+					<!-- begin message_modified -->
+					<div>
+						<hr>
+						{FORUM_MESSAGE_LAST_MODIFIED_MSG} {date_modified}
+					</div>
+					<!-- end message_modified -->
+					<div align="right">
+						<!-- begin message_edit_link -->
+						<a href="#" onClick="editMessage('{message_id}'); return false;">{EDIT_MSG}</a><!-- end message_edit_link -->
+					</div>
+				</div>
+				<div id="message_edit_{message_id}" style="display: none;"></div>
+			</td>
+		</tr>
+		</table>
+
+	</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+</tr>
+<!-- END records -->
+</table>
+
+	</td>
+</tr>
+</table>
+
+
+<!-- begin navigator_block -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<td><br>&nbsp;{navigator}&nbsp;</td>
+</tr>
+</table>
+<br>
+<!-- end navigator_block -->
+
+<br>
+{message_form_bottom}
+</div>
+
+<div id="message_edit_block" style="display: none;">
+<form action="{forum_thread_href}" name="message_edit" method="POST">
+<input type="hidden" name="rnd" value="{rnd}">
+<input type="hidden" name="operation" value="update">
+<input type="hidden" name="thread_id" value="{thread_id}">
+<input type="hidden" name="message_id" value="">
+<input type="hidden" name="page" value="{page}">
+	<textarea class="field" rows="10" cols="60" name="text_edit"></textarea>
+	<br>
+		<span class="submit"><input class="submit" type="submit" value="{UPDATE_BUTTON}"></span>
+		<span class="submit"><input class="submit" type="button" value="{CANCEL_BUTTON}" onClick="cancelMessageEdit();"></span>
+</form>
+</div>

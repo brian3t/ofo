@@ -1,0 +1,227 @@
+================================================================================
+ViArt v.3.3.2
+Copyright (c) 2007 ViArt Limited
+All Rights Reserved.
+
+Frequently Asked Questions 
+
+================================================================================
+* General Questions 
+
+- What is Online Shopping? 
+- What is ViArt Shop? 
+- What are ViArt Shop features? 
+- How ViArt Shop works? 
+- Why ViArt Shop? 
+- What server scripting languages does ViArt Shop support? 
+- What web-server do I need to install ViArt Shop? 
+- What databases does ViArt Shop support? 
+- How to get ViArt Shop? 
+- How and when updates are released? 
+- How to report bugs or problems? 
+ 
+* MySQL specific questions 
+
+- It tells me "ERROR 1049: Unknown database '... 
+- How to add a user for my database? 
+- How to populate my database with SQL script? 
+- How to make a backup of my database? 
+
+* PHP specific questions 
+
+- Database error: Invalid SQL: SELECT full_description ... 
+- Warning: Access denied for user ... 
+- Warning: Failed opening './includes/db_.php 
+
+* Tuning ViArt Shop 
+
+- How to change ViArt Shop look and feel? 
+- How to access ViArt Shop web-administration? 
+- How to add my products and categories? 
+- Why I don't receive email notifications when my users submit orders? 
+- How to place my text to the main page? 
+- Is there a way of hiding menu items from header? 
+- Is there a way of hiding menu items from footer? 
+- Is it possible to remove VAT from shopping basket? 
+- Why do Layout settings become active only after restarting browser? 
+
+================================================================================
+
+* General Questions 
+
+- What is Online Shopping? 
+In just a few short years, online shopping has grown to become a multi-billion 
+dollar industry. The projections for the future are for it to continue to 
+grow substantially. For the uninitiated, online shopping is the ability to 
+purchase goods and services from the comfort of your home or office via 
+your computer. User simply connects to a company's website, browse offerings, 
+selects the items that he wants to purchase by inserting them into your 
+"shopping cart", and then proceeding to "check-out", just as you would do 
+in a regular store. 
+
+- What is ViArt Shop? 
+ViArt Shop is an electronic commerce package available to install in PHP.
+It supports MySQL and PostgreSQL databases as well as ODBC connected databases.
+The goal of ViArt Shop is to create a system capable of performing all 
+of the functions needed to do business online. 
+
+- What are ViArt Shop features? 
+ViArt Shop is distributed as three different packages Light, Standard 
+and Enterprise. Therefore the list of features is different for each of them. 
+See section 1.2 for ViArt Shop features comparison spreadsheet 
+
+- How ViArt Shop works? 
+User simply connects to a company's website, browses your offerings, selects 
+the items that he wants to purchase by inserting them into your "shopping cart",
+and then proceeding to "check-out", just as he would do in a regular store. 
+See section 1.3 for ViArt Shop sales diagram. 
+
+- Why ViArt Shop? 
+ViArt Shop is has two main advantages: first it includes everything you 
+need to build a serious shipping portal, second it's flexible and highly 
+customizable. It means that you take ready-to-use solution and simply 'fit' 
+it to meet your needs. And it also means that you don't need to do ANY 
+programming at all - ViArt Shop allows changing everything via 
+powerful web-interface. 
+
+- What server scripting languages does ViArt Shop support? 
+Currently only PHP (www.php.net) version of ViArt Shop is available to 
+download. Future releases will include ASP and Perl versions. 
+
+- What web-server do I need to install ViArt Shop? 
+Actually any web server that allows running PHP scripts would be fine. 
+We would recommend using Apache web server (www.apache.org) as most reliable 
+one. 
+
+- What databases does ViArt Shop support? 
+Currently ViArt Shop has support for MySQL (www.mysql.org), 
+PostgreSQL (www.postgresql.org) and ODBC connected databases. Future releases 
+will include support for MsSQL and Oracle databases. 
+
+- How to get ViArt Shop? 
+ViArt Shop is distributed as three different packages Light, Standard 
+and Enterprise. They are available to purchase at www.viart.com 
+
+- How and when updates are released? 
+Users who bought ViArt Shop automatically receive email notifications 
+about new release. See also "Releases" section of Members Area at 
+www.viart.com 
+
+- How to report bugs or problems? 
+You could submit bug report or problem via our 24 hours-online Support System 
+at www.viart.com/support 
+
+================================================================================
+
+* MySQL specific questions 
+
+- It tells me "ERROR 1049: Unknown database '... 
+Please check your "includes/var_definition.php" file. 
+Variable $db_name should contain a valid database name, e.g. 
+$db_name = "c2s"; 
+Run your mysql client and perform "SHOW DATABASES" command and make sure 
+that the database you choosen as ViArt Shop database does exist. 
+ 
+- If the database does not exist then create it with "CREATE DATABASE" command. 
+Read more about CREATE DATABASE syntax at www.mysql.org. 
+
+- How to add a user for my database? 
+You could add a user using GRANT command. Note that user should have rights 
+to select, insert, update, delete. 
+A MySQL Grant statement for this user would look like this: 
+GRANT 
+  select, insert, update, create, alter, delete, drop 
+ON 
+ database.* 
+TO 
+ user@localhost 
+IDENTIFIED BY 
+ 'password'; 
+
+- How to populate my database with SQL script? 
+ViArt Shop distribution contains "DB" folder that includes SQL scripts 
+with database structure: 
+ - MySQL_VA_Shop.sql - for MySQL Database Server 
+ - PgSQL_VA_Shop.sql - for PostgreSQL 
+To populate your MySQL database with MySQL_VA_Shop.sql script run MySQL 
+client like the following: 
+
+mysql -u User -p Database < MySQL_VA_Shop.sql 
+
+- How to make a backup of my database? 
+You can make a backup for MySQL db using mysqldump program distributed with MySQL. 
+E.g.: 
+
+mysqldump --opt -u User -p Database > VA_Shop_Dump.sql 
+
+It should create file VA_Shop_Dump.sql that will contain the dump of database. 
+Read more about dumping MySQL database at www.mysql.org. 
+
+================================================================================
+
+* PHP specific questions 
+
+- Database error: Invalid SQL: SELECT full_description ... 
+Please check if you populate your database with sql scriptsprovided by ViArt Shop distrubution. 
+Read question above 
+
+- Warning: Access denied for user ... 
+Please check your "includes/var_definition.php" file. 
+Variable $db_user should contain a valid MySQL user that has rights to select, insert, update, delete. 
+Read question above 
+
+- Warning: Failed opening './includes/db_.php 
+Please check your "includes/var_definition.php" file. 
+Variable $db_type should contain either "mysql" or "pgsql" value. 
+E.g.: 
+// database parameters 
+$db_type = "mysql"; 
+$db_name = "c2s"; 
+
+
+================================================================================
+
+* Tuning ViArt Shop 
+
+- How to change ViArt Shop look and feel? 
+ViArt Shop allows changing the look and feel of the system in the following ways: 
+You could change the layout via administration web-interface see section 7.9 
+You could modify HTML templates as much as you want see section 6.2 
+
+- How to access ViArt Shop web-administration? 
+See section 7 for complete details how to use ViArt Shop web-administration. 
+
+- How to add my products and categories? 
+See section 7.8 for complete discussion how to add products and categories. 
+
+- Why I don't receive email notifications when my users submit orders? 
+Each step of "Check out" pro cess could send notifications to you if you 
+specify your email in Sales Orders settings. 
+See section 7.2.1 to read about setting email notifications. 
+
+- How to place my text to the main page? 
+You could place any HTML text to the Main or Categories or Product details 
+pages by specifying the content for any custom block available from layout 
+settings 
+See section 7.9 for details how to change the content for custom blocks. 
+
+- Is there a way of hiding menu items from header? 
+Yes, header menu is customizable; you could hide/show any menu items you want. 
+See section 7.9 for details how to customize header menu. 
+
+- Is there a way of hiding menu items from footer? 
+Yes, footer menu is customizable; you could hide/show any menu items you want. 
+It's a bit different mechanism for showing footer menu. 
+See section 7.10 for details how to customize footer menu. 
+
+- Is it possible to remove VAT from shopping basket? 
+For each order could be added a "Tax". The value of "tax" depends on tax 
+settings for specific countries.Please check "Static Tables" / "Taxes" section 
+of Administration. 
+See section 7.4 for details about Static Tables. 
+
+- Why do Layout settings become active only after restarting browser? 
+For getting the best performance ViArt Shop store Layout settings in 
+session. It means that to see changes at once you have to open both 
+Administration and User part in one session. In IE you could open second 
+window in the same session by pressing Ctrl+N. 

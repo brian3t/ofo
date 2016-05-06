@@ -1,0 +1,85 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {PRICE_CODE_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_lookup_tables_href}">{STATIC_TABLES_MSG}</a>&nbsp;&gt;
+			<a href="{admin_price_codes_href}">{PRICE_CODES_MSG}</a>&nbsp;&gt;&nbsp;<b>{PRICE_CODE_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<td>
+<fieldset>
+<legend>{PRICE_CODE_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<form action="{admin_price_code_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="price_id" value="{price_id}">
+<table border="0" cellpadding="6" cellspacing="1" width="100%"><!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{TITLE_MSG} *
+	</td>
+	<td>
+		&nbsp;<input class="field" type="text" name="price_title" size="50" maxlength="64" value="{price_title}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PRICE_MSG}
+	</td>
+	<td>
+		&nbsp;<input class="field" type="text" name="price_amount" size="50" value="{price_amount}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{DESCRIPTION_MSG}
+	</td>
+	<td>
+		&nbsp;<textarea cols="60" rows="5" name="price_description">{price_description}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</form>	
+
+	</td>
+</tr>
+</table>
+</fieldset>
+</td></tr></table>
+
+{admin_footer}
+</body>
+</html>

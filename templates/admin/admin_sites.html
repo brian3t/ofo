@@ -1,0 +1,98 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: Sites ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<b>{ADMIN_SITES_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{ADMIN_SITES_MSG}</legend>
+
+<table border="0" cellspacing="1" cellpadding="6" width="100%">
+<tr align="center" class="middle" valign="top">
+	<td>
+		{sorter_param_site_id}
+	</td>
+	<td>
+		{sorter_site_name}
+	</td>
+	<td>
+		{sorter_site_description}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- BEGIN records -->
+<tr class="usual">
+	<td align="center">
+		{param_site_id}
+	</td>
+	<td>
+		&nbsp;{site_name}
+	</td>
+	<td>
+		&nbsp;{site_description}
+	</td>
+	<td align="center">
+		<a href="{admin_site_href}?param_site_id={param_site_id}">{EDIT_MSG}</a>
+	</td>
+	<td align="center">
+		<a href="{admin_global_settings_href}?param_site_id={param_site_id}">{GLOBAL_SETTINGS_MSG}</a>
+		&nbsp;
+		<a href="{admin_cms_href}?param_site_id={param_site_id}">{PAGE_SETTINGS_MSG}</a>
+	</td>
+	<td align="center">
+		<a href="{admin_site_items_href}?param_site_id={param_site_id}">{PRODUCTS_MSG}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="6">
+		{NO_RECORDS_MSG}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="5">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+		<tr class="middle">
+			<td>
+				&nbsp;<!-- begin new_site_link -->
+				<a href="{admin_site_href}">{ADD_NEW_MSG}</a>&nbsp;
+				<!-- end new_site_link -->
+			</td><!-- begin navigator_block -->
+			<td align="right">
+				&nbsp;{navigator}&nbsp;
+			</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+	<td align="center">
+		<a href="{admin_site_items_href}">{ON_ALL_SITES_MSG}</a>
+	</td>
+</tr>
+</table>	
+
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

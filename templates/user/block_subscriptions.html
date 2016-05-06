@@ -1,0 +1,76 @@
+<div class="block-products-list">
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><h1>{SUBSCRIPTIONS_MSG}</h1></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr> 
+		<td class="blockTD">
+
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<!-- BEGIN subscriptions_items -->
+			<!-- BEGIN subscription_group -->
+			<tr class="middlebg"> 
+				<td style="padding: 5px 5px 5px 10px;">
+					<b>&nbsp;{group_name}</b>
+				</td>
+			</tr><!-- END subscription_group -->
+			<tr>
+				<td valign="top" class="padding10px {class_item_td}">
+					<a name="f{form_id}"></a>
+					<!-- BEGIN subscription_added --><div class="message" align="center">{added_message}</div><!-- END subscription_added -->
+					<!-- BEGIN sc_errors --><div class="error" align="center">{errors_list}</div><!-- END sc_errors -->
+					<form name="form_{form_id}" method="post" action="{subscriptions_href}#f{form_id}">
+					<input type="hidden" name="group_id" value="{group_id}">
+					<input type="hidden" name="rp" value="{rp}">
+					<input type="hidden" name="rnd" value="{rnd}">
+					<input type="hidden" name="cart" value="SUBSCRIPTION">
+					<table width="100%" border="0" cellspacing="0" cellpadding="3">
+					<tr>
+						<td>
+							<!-- begin subscription_value -->
+							<input type="hidden" name="subscription_id" value="{subscription_id_value}">
+							<span class="title">{subscription_name}</span> - <span class="ourprice">{subscription_fee}</span> ({subscription_period})<br>
+							<!-- end subscription_value -->
+							<!-- begin subscription_id -->
+							<input type="radio" name="subscription_id" {subscription_id_checked} value="{subscription_id_value}">
+							<span class="title">{subscription_name}</span> - <span class="ourprice">{subscription_fee}</span> ({subscription_period})<br><!-- end subscription_id -->
+
+						</td>
+					</tr>
+					<tr>
+						<td align="left" valign="top">
+
+							<!-- begin add_button -->
+							<a class="button button-add" id="add_{form_id}" href="{buy_href}" onClick="return confirmSubscription(document.form_{form_id});"><span>{ADD_TO_CART_MSG}</span><img src="images/tr.gif" alt="{ADD_TO_CART_MSG}"></a> 
+							<!-- end add_button -->
+							<!-- begin view_button -->
+							<a class="button button-view" id="view_{form_id}" href="{basket_href}?rp={rp_url}"><span>{VIEW_CART_MSG}</span><img src="images/tr.gif" alt="{VIEW_CART_MSG}"></a> 
+							<!-- end view_button -->
+							<!-- begin checkout_button -->
+							<a class="button button-check" id="check_{form_id}" href="{checkout_href}?rp={rp_url}"><span>{GOTO_CHECKOUT_MSG}</span><img src="images/tr.gif" alt="{GOTO_CHECKOUT_MSG}"></a>
+							<!-- end checkout_button -->
+						</td>
+					</tr>
+					</table>
+					</form>
+
+				</td>
+			</tr>
+			<!-- END subscriptions_items -->
+			</table>
+
+	</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>

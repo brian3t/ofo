@@ -1,0 +1,99 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {MESSAGE_MSG} ::..</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td align="center">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a href="{admin_forum_href}">{ADMIN_FORUM_TITLE}</a>&nbsp;&gt;&nbsp;<a href="{admin_forum_href}?category_id={category_id}">{current_category}</a>&nbsp;&gt;&nbsp;<a href="{admin_forum_href}?forum_id={forum_id}">{current_forum}</a>&nbsp;&gt;&nbsp;<a href="{admin_forum_thread_href}?thread_id={thread_id}">{topic}</a>&nbsp;&gt;&nbsp;<b>{EDIT_MESSAGE_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr>
+</table>
+<br>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<td>
+<fieldset>
+<legend>{EDIT_MESSAGE_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+<form action="{admin_forum_message_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="message_id" value="{message_id}">
+
+<table border="0" cellspacing="1" cellpadding="4" width="100%"><!-- begin errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- end errors -->
+<tr class="usual">
+	<td width="22%">
+		&nbsp;{TOPIC_NICKNAME_FIELD} *
+	</td>
+	<td>
+		<input class="field" type="text" name="user_name" size="60" value="{user_name}">
+	</td>
+</tr>
+<tr class="usual">
+	<td width="22%">
+		&nbsp;{EMAIL_FIELD} *
+	</td>
+	<td>
+		<input class="field" type="text" name="user_email" size="60" value="{user_email}">
+	</td>
+</tr>
+<tr class="usual">
+	<td width="22%">
+		&nbsp;{IP_ADDRESS_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="remote_address" readonly size="20" value="{remote_address}">
+	</td>
+</tr>
+<tr class="usual">
+	<td width="22%">
+		&nbsp;{MESSAGE_MSG} *
+	</td>
+	<td>
+		<textarea name="message_text" cols="100" rows="10">{message_text}</textarea>
+	</td>
+</tr>
+
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onclick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete'">
+	</td>
+</tr>
+</table>
+</form>	
+
+	</td>
+</tr>
+</table>
+</fieldset>
+</td></tr></table>
+
+{admin_footer}
+
+</body>
+</html>

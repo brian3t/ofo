@@ -1,0 +1,36 @@
+<ul class="categories">
+<!-- BEGIN catalog_rows -->
+<li>
+<!-- BEGIN catalog_top -->
+<a href="{list_url}">
+<!-- begin catalog_image -->
+<img src="{src}" alt="{alt}">
+<!-- end catalog_image -->
+{catalog_top_name}
+<!--begin restricted_image--><img src="images/tr.gif" alt="" class="{restricted_class}"><!--end restricted_image-->
+</a>
+<!-- BEGIN category_rss -->
+<a class="h4" href="{rss_href}?category_id={catalog_top_id}"><img src="images/ico-rss.gif" alt="RSS" border="0"></a>
+<!-- END category_rss -->
+	<!-- begin catalog_description -->
+	<div class="comment">{short_description}</div>
+	<!-- end catalog_description -->
+	<!-- begin catalog_sub -->
+	<a class="smallText cat_{class_sub_selected} {restricted_sub_class}" href="{list_url}">{catalog_sub_name}
+	<!--begin restricted_sub_image--><img src="images/tr.gif" alt="" class="{restricted_class}">	<!--end restricted_sub_image-->
+	</a>
+	<!-- begin catalog_sub_separator -->
+	,
+	<!-- end catalog_sub_separator -->
+	<!-- end catalog_sub -->
+	<!-- begin catalog_sub_more -->
+	<a class="smallText" href="{list_url}">{MORE_MSG}</a>
+	<!-- begin sub_separator -->
+	,
+	<!-- end sub_separator -->
+	<!-- end catalog_sub_more -->
+<!-- END catalog_top -->
+</li>
+<!-- END catalog_rows -->
+</ul>
+<div class="clear"></div>

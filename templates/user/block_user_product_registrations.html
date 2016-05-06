@@ -1,0 +1,74 @@
+<div class="block-user-product-registrations">
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{MY_PRODUCT_REGISTRATIONS_MSG}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr class="headerbg"> 
+		<td class="blockTD">
+
+		<table border="0" cellspacing="1" width="100%" class="padding6px"><!-- begin sorters -->
+		<tr class="middlebg" align="center">
+			<td>{sorter_id}</td>
+			<td>{sorter_status}</td>
+			<!--begin category_id_title--><td>{sorter_category_id}</td><!--end category_id_title-->
+			<!--begin item_id_title--><td>{sorter_item_id}</td><!--end item_id_title-->
+			<!--begin item_code_title--><td>{sorter_item_code}</td><!--end item_code_title-->
+			<!--begin item_name_title--><td>{sorter_item_name}</td><!--end item_name_title-->			
+			<!--begin serial_number_title--><td>{sorter_serial_number}</td><!--end serial_number_title-->
+			<!--begin invoice_number_title--><td>{sorter_invoice_number}</td><!--end invoice_number_title-->
+			<!--begin store_name_title--><td>{sorter_store_name}</td><!--end store_name_title-->
+			<!--begin purchased_day_title--><td>{sorter_purchased_day}</td><!--end purchased_day_title-->
+			<!--begin purchased_month_title--><td>{sorter_purchased_month}</td><!--end purchased_month_title-->
+			<!--begin purchased_year_title--><td>{sorter_purchased_year}</td><!--end purchased_year_title-->
+		</tr><!-- end sorters --><!-- begin records -->
+		<tr class="usualbg" valign="top" align="center">
+			<td>{registration_id}</td>
+			<td>{is_approved}</td>
+			<!--begin category_id_block--><td>{category_name}</td><!--end category_id_block-->
+			<!--begin item_id_block--><td>{item_id_name}</td><!--end item_id_block-->
+			<!--begin item_code_block--><td>{item_code}</td><!--end item_code_block-->
+			<!--begin item_name_block--><td>{item_name}</td><!--end item_name_block-->
+			<!--begin serial_number_block--><td>{serial_number}</td><!--end serial_number_block-->
+			<!--begin invoice_number_block--><td>{invoice_number}</td><!--end invoice_number_block-->
+			<!--begin store_name_block--><td>{store_name}</td><!--end store_name_block-->
+			<!--begin purchased_day_block--><td>{purchased_day}</td><!--end purchased_day_block-->
+			<!--begin purchased_month_block--><td>{purchased_month}</td><!--end purchased_month_block-->
+			<!--begin purchased_year_block--><td>{purchased_year}</td><!--end purchased_year_block-->
+		</tr><!-- end records --><!-- begin no_records -->
+		<tr class="usualbg">
+			<td colspan="{total_cols}">&nbsp;{NO_PRODUCT_REGISTRATIONS_MSG}</td>
+		</tr><!-- end no_records -->
+		<tr class="middlebg">
+			<td colspan="{total_cols}">
+				<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td>
+						<!-- BEGIN add_product_registration_block -->
+						{delimiter}<a href="{user_product_registration_href}">{REGISTER_PRODUCT_MSG}</a>
+						<!-- END add_product_registration_block -->
+					</td><!-- begin navigator_block -->
+					<td align="right">
+						&nbsp;{navigator}&nbsp;
+					</td>
+				</tr><!-- end navigator_block -->
+				</table>
+			</td>
+		</tr>
+		</table>	
+
+	</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+</div>

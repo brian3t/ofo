@@ -1,0 +1,57 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {FILES_DIFFERENCES_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+<body class="commonbg">
+{admin_header}
+<TABLE width="100%" border="0" cellspacing="1" cellpadding="4">
+<!-- BEGIN err -->
+<TR class=error>
+	<TD align=center>{error_msg}</TD>
+</TR>
+<!-- END err -->
+<!-- BEGIN diff_file -->
+<TR align="left">
+	<TD colspan=3>
+		<TABLE  width="100%" border="0" cellspacing="1" cellpadding="4">
+		<TR  class="middle">
+			<TD colspan=4>Info</TD>
+		</TR>
+		<TR class="usual">
+			<TD class=diff_change>&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+			<TD>{CHANGED_STRING_MSG}</TD>
+			<TD class=diff_delete>&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+			<TD>{DELETED_STRING_MSG}</TD>
+		</TR>
+		</TABLE>
+	</TD>
+</TR>
+<TR align="center" class="middle">
+	<TD colspan=3>{diff_file}</TD>
+</TR>
+<TR align="center" class="middle">
+	<TD>#</TD>
+	<TD>{ADMIN_CURRENT_VERSION_MSG}</TD>
+	<TD>{COMPARED_VERSION_MSG}</TD>
+</TR>
+<!-- BEGIN lines-->
+<TR class="{class_status}">
+	<TD align=right>{line_number}</TD>
+	<TD width=48%>{current_line}</TD>
+	<TD width=48%>{ver_line}</TD>
+</TR>
+<!-- END lines-->
+<TR align="center">
+	<TD>#</TD>
+	<TD>{ADMIN_CURRENT_VERSION_MSG}</TD>
+	<TD>{COMPARED_VERSION_MSG}</TD>
+</TR>
+<TR align="center" class="middle">
+<TD colspan=3>{diff_file}</TD>
+</TR>
+<!-- END diff_file -->
+</TABLE>
+<br>
+{admin_footer}
+</body>
+</html> 

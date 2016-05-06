@@ -1,0 +1,140 @@
+<html><head><title>{ADMINISTRATION_MSG} :: {EDIT_ICON_MSG}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+	function openWindow(pagename, filetype)
+	{
+		var uploadWin = window.open (pagename + '?filetype=' + filetype, 'uploadWindow', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=500,height=400');
+		uploadWin.focus();
+	}
+
+	function setFileName(filename, filetype)
+	{
+		var siteUrl = '{site_url}';
+		if (filename != "" && filetype == "emoticon")
+		{
+			document.record.icon_image.value = siteUrl + "images/emoticons/" + filename;
+			document.record.icon_image.focus();
+		}
+	}
+
+//-->
+</script>
+
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5" align="center">
+<tr><td align="center">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_lookup_tables_href}">{STATIC_TABLES_MSG}</a>&nbsp;&gt;
+			<a href="{admin_icons_href}">{EMOTION_ICONS_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_ICON_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<td>
+<fieldset>
+<legend>{EDIT_ICON_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<form action="{admin_icon_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="icon_id" value="{icon_id}">
+<table border="0" cellspacing="1" cellpadding="6" width="100%"><!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+
+
+<tr class="usual">
+	<td>
+		&nbsp;{IS_ACTIVE_MSG}
+	</td>
+	<td colspan="5">
+		<input type="checkbox" name="is_active" {is_active} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SHOW_FOR_USER_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="show_for_user" {show_for_user} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ICON_ORDER_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" size="20" name="icon_order" value="{icon_order}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ICON_CODE_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" size="20" name="icon_code" value="{icon_code}">
+		&nbsp; {FOR_EXAMPLE_MSG}: <b>|:-)</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ICON_IMAGE_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" name="icon_image" value="{icon_image}" size="80" maxlength="255"> 
+		&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'emoticon')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+		&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'emoticon')"><b>{SELECT_IMAGE_MSG}</b></a>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ICON_NAME_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="icon_name" value="{icon_name}">
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onclick="document.record.operation.value='save'"> &nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('Are you sure you want delete this icon?');"> &nbsp; <!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</form>	
+
+	</td>
+</tr>
+</table>
+</fieldset>
+</td></tr></table>
+
+{admin_footer}
+</body>
+</html>

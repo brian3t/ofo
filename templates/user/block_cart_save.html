@@ -1,0 +1,21 @@
+<div class="block-cart-save">
+	<div class="titleTopCenter">{SAVE_CART_TITLE}</div>
+	<form name="record" action="{cart_save_href}">
+		<input type="hidden" name="operation" value="save">
+		<input type="hidden" name="rnd" value="{random_value}">
+		<input type="hidden" name="rp" value="{rp}">
+		<p>{SAVE_CART_INFO_MSG}</p>
+		<!-- begin success_block -->
+		<p class="messagebg">{success_message}</p>
+		<!-- end success_block -->
+		<!-- begin errors -->
+		<p class="errorbg">{errors_list}</p>
+		<!-- end errors -->
+		{CART_NAME_FIELD}&nbsp;
+		<input type="text" class="text" name="cart_name" value="{cart_name}">
+		<p>
+			<input class="button" type="submit" value="{SAVE_CART_BUTTON}" onCLick="document.record.operation.value='save'">
+			<input class="button" id="cancel" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+		</p>
+	</form>
+</div>

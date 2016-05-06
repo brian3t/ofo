@@ -1,0 +1,116 @@
+<script language="JavaScript" type="text/javascript">
+<!--
+
+	function openProductWindow(formId)
+	{
+		var productWin = window.open ('{user_product_select_href}?form_id=' + formId, 'subproductWin', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=600,height=500');
+		productWin.focus();
+	}
+
+	function setProduct(itemId, itemName, itemPrice, formId)
+	{
+		document.record.sub_item_id.value = itemId;
+		document.record.property_name.value = itemName;
+		var basicPrice = document.getElementById("basic_price");
+		if (basicPrice) {
+			basicPrice.innerHTML = "&nbsp;&ndash;&nbsp;" + itemPrice;
+		}
+	}
+
+//-->
+</script>
+
+<div class="block-user-product-subcomponent">
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+<tr> 
+	<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+	<td class="titleTopCenter">
+		<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{EDIT_SUBCOMP_MSG}</div></td></tr></table>
+	</td>
+	<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+<tr><td class="blockTD">
+
+<table width="100%" border="0" cellspacing="1" class="padding4px">
+<form action="{admin_component_single_href}" name="record" method="post">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="property_id" value="{property_id}">
+<input type="hidden" name="item_id" value="{item_id}">
+<input type="hidden" name="sort_dir" value="{sort_dir}">
+<input type="hidden" name="sort_ord" value="{sort_ord}">
+<input type="hidden" name="page" value="{page}">
+
+<!-- BEGIN errors -->
+<tr>
+	<td colspan="2" class="usualbg" align="center">
+		<div class="errorbg">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usualbg">
+	<td>
+		{SUBCOMP_ID_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" name="sub_item_id" value="{sub_item_id}" size="20">
+		&nbsp;<a href="#" onClick="openProductWindow(''); return false;"><b>{SELECT_PRODUCT_MSG}</b></a>
+
+	</td>
+</tr>
+<tr class="usualbg">
+	<td>
+		{SUBCOMP_NAME_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" name="property_name" value="{property_name}" size="60">
+	</td>
+</tr>
+<tr class="usualbg">
+	<td>
+		{QUANTITY_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" name="quantity" value="{quantity}" size="20">
+	</td>
+</tr>
+<tr class="usualbg">
+	<td>
+		{SUBCOMP_PRICE_MSG} 
+	</td>
+	<td>
+		<input class="field" type="text" name="additional_price" value="{additional_price}" size="20">
+		({SUBCOMP_PRICE_NOTE}<b><span id="basic_price">{basic_price}</span></b>)
+	</td>
+</tr>
+<!-- begin trade_additional_price_block -->
+<tr class="usualbg">
+	<td>
+		Subcomponent Trade Price  
+	</td>
+	<td>
+		<input class="field" type="text" name="trade_additional_price" value="{trade_additional_price}" size="20">
+	</td>
+</tr>
+<!-- end trade_additional_price_block -->
+<tr class="middlebg">
+	<td></td>
+	<td>
+		<span class="submit"><input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'"> &nbsp; </span><!-- BEGIN delete -->
+		<span class="submit"><input class="submit" type="submit" value="{DELETE_BUTTON}" onCLick="document.record.operation.value='delete';return confirm('{DELETE_QUESTION_MSG} &quot;{property_name}&quot; component?');"> &nbsp; </span><!-- END delete -->
+		<span class="submit"><input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">&nbsp;</span>
+	</td>
+</tr>
+
+</form>
+</table>
+
+</td></tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+</div>

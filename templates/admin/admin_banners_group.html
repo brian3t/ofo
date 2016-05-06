@@ -1,0 +1,185 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_GROUP_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript">
+<!--
+
+	var banners = new Array();
+	var selectedBanners = new Array(); // <!-- BEGIN banners -->
+	banners["{banner_id}"] = "{banner_title}"; // <!-- END banners -->	// <!-- BEGIN selected_banners -->
+	selectedBanners["{banner_id}"] = 1; // <!-- END selected_banners -->
+
+	function initValues()
+	{
+		clearOptions();
+		setOptions();
+	}
+
+	function setOptions()
+	{
+		for(var countryCode in banners) {
+			var optionNumber = (selectedBanners[countryCode] == 1) ? document.record.selected.length : document.record.not_selected.length;
+			if(selectedBanners[countryCode])
+				document.record.selected.options[optionNumber] = new Option(banners[countryCode], countryCode);
+			else
+				document.record.not_selected.options[optionNumber] = new Option(banners[countryCode], countryCode);
+		}
+	}
+
+	function clearOptions()
+	{
+		var totalOptions = document.record.not_selected.length;
+		for(var i = totalOptions - 1; i >= 0; i--)
+			document.record.not_selected.options[i] = null;
+
+		var totalOptions = document.record.selected.length;
+		for(var i = totalOptions - 1; i >= 0; i--)
+			document.record.selected.options[i] = null;
+	}
+
+	function addValues()
+	{
+		var totalOptions = document.record.not_selected.length;
+		for(var i = 0; i < totalOptions; i++)
+			if(document.record.not_selected.options[i].selected == true)
+				selectedBanners[document.record.not_selected.options[i].value] = 1;
+
+		clearOptions();
+		setOptions();
+	}
+
+	function removeValues()
+	{
+		var totalOptions = document.record.selected.length;
+
+		for(var i = 0; i < totalOptions; i++)
+			if(document.record.selected.options[i].selected == true)
+				selectedBanners[document.record.selected.options[i].value] = 0;
+
+		clearOptions();
+		setOptions();
+	}
+
+	function selectValues()
+	{
+		var totalOptions = document.record.selected.length;
+		var bannersValues = "";
+		for(var i = 0; i < totalOptions; i++) {
+			document.record.selected.options[i].selected = true;
+			if(i > 0) bannersValues += ","
+			bannersValues += document.record.selected.options[i].value;
+		}
+		document.record.banners.value = bannersValues;
+	}
+
+//-->
+</script>
+</head>
+<body class="commonbg" onLoad="initValues();">
+
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_banners_href}">{BANNERS_MANAGEMENT_MSG}</a>&nbsp;&gt;
+			<a href="{admin_banners_groups_href}">{BANNERS_GROUPS_MSG}</a>&nbsp;&gt;
+			<b>{EDIT_GROUP_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_GROUP_MSG}</legend>
+
+<table border="0" cellpadding="6" cellspacing="1" width="100%">
+<form action="{admin_banners_group_href}" name="record" onSubmit="selectValues();" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="page" value="{page}">
+<input type="hidden" name="sort_dir" value="{sort_dir}">
+<input type="hidden" name="sort_ord" value="{sort_ord}">
+<input type="hidden" name="group_id" value="{group_id}">
+<input type="hidden" name="banners" value="">
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="4" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{IS_ACTIVE_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="is_active" {is_active} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{GROUP_NAME_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" name="group_name" value="{group_name}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{GROUP_DESCRIPTION_MSG}
+	</td>
+	<td>
+		<textarea name="group_desc" cols="80" rows="10">{group_desc}</textarea>
+	</td>
+</tr>
+</table>
+
+<table width="100%" border="0" cellspacing="1" cellpadding="4">
+<tr align="center" class="middle">
+	<td width="40%">{AVAILABLE_ACTIVE_BANNERS_MSG}</td>
+	<td width="20%">{OPERATIONS_MSG}</td>
+	<td width="40%">{SELECTED_BANNERS_MSG}</td>
+</tr>	
+<tr align="center" class="usual">
+	<td width="40%">
+		<select name="not_selected" MULTIPLE size="10" style="width: 250px;">
+			<option>{AVAILABLE_BANNERS_MSG}
+		</select>
+	</td>
+	<td width="20%">
+
+		<input class="submit" type="button" name="add" value="&nbsp;&nbsp; {ADD_BUTTON}  -> &nbsp;&nbsp;" onClick="addValues();"><br><br>
+		<input class="submit" type="button" name="remove" value="<- {REMOVE_BUTTON}" onClick="removeValues();">
+	</td>
+	<td width="40%">
+
+		<select name="selected" MULTIPLE size="10" style="width: 250px;">
+			<option>{SELECTED_BANNERS_MSG}
+		</select>
+	</td>
+</tr>
+</table>
+
+
+<table width="100%" border="0" cellspacing="1" cellpadding="4">
+<tr class="middle">
+	<td align="right">
+		<input class="submit" type="submit" value="{save_button}" onclick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</form>	
+</table>
+
+</fieldset>
+
+
+{admin_footer}
+
+</body>
+</html>

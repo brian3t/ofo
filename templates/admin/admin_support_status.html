@@ -1,0 +1,110 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_STATUS_MSG} ::..</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_support_href}">{HELPDESK_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_support_statuses_href}">{SUPPORT_STATUSES_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_STATUS_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_STATUS_MSG}</legend>
+
+<table border="0" cellspacing="1" cellpadding="6" width="100%">
+<form action="{admin_support_status_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="status_id" value="{status_id}">
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{STATUS_NAME_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" size="50" name="status_name" value="{status_name}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{STATUS_CAPTION_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" size="50" name="status_caption" value="{status_caption}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PROPERTIES_MSG}
+	</td>
+	<td>
+		<input type="checkbox" {is_user_new} name="is_user_new" value="1"> {IS_USER_NEW_NOTE}<br>
+		<input type="checkbox" {is_user_reply} name="is_user_reply" value="1"> {IS_USER_REPLY_NOTE}<br>
+		<input type="checkbox" {is_closed} name="is_closed" value="1"> {IS_TICKET_CLOSED_NOTE}<br>
+		<input type="checkbox" {is_operation} name="is_operation" value="1"> {IS_TICKET_OPERATED_NOTE}<br>
+		<input type="checkbox" {is_reassign} name="is_reassign" value="1"> {IS_TICKET_REASSIGNED_NOTE}<br>
+		<input type="checkbox" {is_internal} name="is_internal" value="1"> {IS_TICKET_INTERNAL_NOTE}<br>
+		<input type="checkbox" {is_list} name="is_list" value="1"> {IS_TICKET_DEFAULT_NOTE}<br>
+		<input type="checkbox" {is_add_knowledge} name="is_add_knowledge" value="1"> {IS_ADDED_KNOWLEDGE_NOTE}<br>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{HTML_TAG_BEFORE_SUMMARY_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="50" name="html_start" value="{html_start}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{HTML_TAG_AFTER_SUMMARY_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="50" name="html_end" value="{html_end}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{STATUS_ICON_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="50" name="status_icon" value="{status_icon}">&nbsp;({EG_MSG} '../images/icon/status_new.gif')
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onclick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</form>	
+</table>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

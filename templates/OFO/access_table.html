@@ -1,0 +1,92 @@
+<!--begin table-->
+<table border="0" cellpadding="6" cellspacing="1" width="100%">
+	<!--begin header_block-->
+	<tr class="middle">
+		<td>
+			&nbsp;
+		</td>
+		<!--begin header_level_block-->
+		<td onmouseover="showTip(event, '{level_fullname}')" onmousemove="showTip(event, '{level_fullname}')" onmouseout="hideTip()" style="cursor: default;" align="center">
+			{level_name}
+		</td>
+		<!--end header_level_block-->
+	</tr>
+	<!--end header_block-->
+	<!--begin guest_block-->
+	<tr class="row2">
+		<td>
+			{NON_REGISTERED_USERS_MSG}
+		</td>
+		<!--begin guest_level_block-->
+		<td align="center">
+			<input id="{field_id}_guest_{level_value}" name="{field_id}_guest_{level_value}" type="checkbox" {checked} value="1"> 
+		</td>
+		<!--end guest_level_block-->
+	</tr>
+	<!--end guest_block-->
+	<!--begin all_block-->
+	<tr class="row1">
+		<td>
+			{REGISTERED_CUSTOMERS_MSG}
+		</td>
+		<!--begin all_level_block-->
+		<td align="center">
+			<input id="{field_id}_all_{level_value}" name="{field_id}_all_{level_value}" type="checkbox" {checked} value="1"
+				onclick="onAllClick('{field_id}', {field_id}_ids, {level_value})";
+			> 
+		</td>
+		<!--end all_level_block-->
+	</tr>
+	<!--end all_block-->
+	<!--begin type_block-->
+		<!--begin type_header_block-->
+		<tr class="{row_class}">
+			<td>
+				{type_name}
+			</td>
+			<!--begin type_level_block-->
+			<td align="center">
+				<input id="{field_id}_t_{type_id}_{level_value}" name="{field_id}_t_{type_id}_{level_value}" type="checkbox" {checked} value="1"
+					onclick="onTypeClick('{field_id}', {field_id}_ids, {type_id}, {level_value})";
+				>
+			</td>
+			<!--end type_level_block-->
+		</tr>
+		<!--end type_header_block-->
+		<!--begin other_type_header_block-->
+		<tr class="{row_class}">
+			<td>
+				{type_name}
+			</td>
+			<!--begin other_type_level_block-->
+			<td align="center">
+				&nbsp;
+			</td>
+			<!--end other_type_level_block-->
+		</tr>
+		<!--end other_type_header_block-->
+		<!--begin subscription_block-->
+		<tr class="{row_class}">
+			<td>
+				&nbsp;&nbsp;&nbsp;
+				{subscription_name}
+			</td>
+			<!--begin level_block-->
+			<td align="center">
+				<input id="{field_id}_s_{subscription_id}_{level_value}" name="{field_id}_s_{subscription_id}_{level_value}" type="checkbox" {checked} value="1">
+			</td>
+			<!--end level_block-->
+		</tr>
+		<!--end subscription_block-->	
+	<!--end type_block-->		
+</table>
+<script language="JavaScript">
+	<!--
+	{js}
+	window.onload = function() { 
+		enableTableCells('{field_id}', {field_id}_ids); 
+	};
+	-->
+</script>
+
+<!--end table-->

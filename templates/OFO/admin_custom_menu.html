@@ -1,0 +1,87 @@
+<html><head><title>..::{ADMINISTRATION_MSG} :: {EDIT_MENU_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_custom_menus_href}">{CUSTOM_MENUS_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_MENU_MSG}</legend>
+<table border="0" cellpadding="6" cellspacing="1" width="100%">
+<form action="{admin_custom_menu_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="menu_id" value="{menu_id}">
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{GENERAL_INFO_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SHOW_TITLE_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="show_title" value="1" {show_title}>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_TITLE_MSG} *
+	</td>
+	<td class="small">
+		<input class="field" type="text" name="menu_title" value="{menu_title}" size="80">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{NAME_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" name="menu_name" size="80" value="{menu_name}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{NOTES_MSG}
+	</td>
+	<td>
+		<textarea name="menu_notes" cols="80" rows="5">{menu_notes}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</form>	
+</table>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

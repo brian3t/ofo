@@ -1,0 +1,16 @@
+<div class="block-categories-list">
+		<ul id="categories">
+		<!-- BEGIN categories_rows --> 
+		<!-- BEGIN categories -->
+			<li class="{category_tr_class} {manufacturers_flag}">
+				<!-- begin category_image -->
+				<!-- end category_image -->
+				<a class="title {restricted_class}" href="{list_url}">{category_name}</a>
+				<!-- BEGIN category_rss -->
+				<a class="h4" href="{rss_href}?category_id={category_id}"><img src="images/ico-rss.gif" alt="RSS" width="26" height="12" border="0"></a>
+				<!-- END category_rss -->
+			</li>
+		<!-- END categories --> 
+		<!-- END categories_rows --> 
+		</ul>
+</div>

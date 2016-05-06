@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{html_title}</title>
+<meta name="description" content="{meta_description}">
+<base href="{absolute_url}">
+<link type="text/css" rel="stylesheet" href="{css_file}">
+<script language="JavaScript" type="text/javascript">
+<!--
+var compareMinAllowed = "{COMPARE_MIN_ALLOWED_MSG}";
+var compareMaxAllowed = "{COMPARE_MAX_ALLOWED_MSG}";
+//-->
+</script>
+<script type="text/javascript" src="js/compare.js"></script>
+<!--[if lte IE 6]><style>.png { behavior: url("/css/iepngfix.htc") }</style><![endif]-->
+<!--[if gte IE 7]><link type="text/css" rel="stylesheet" href="/css/IEcorners.css"><![endif]-->
+</head>
+
+<body class="commonbg">
+
+{header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="mainTable">
+<tr>
+	<!-- begin left_column -->
+	<td width="{left_column_width}" valign="top" class="mainTableCellLeft">
+		<!-- begin left -->
+		{block_body}
+		<!-- end left -->
+	</td>
+	<!-- end left_column -->
+	<!-- begin middle_column -->
+	<td width="{middle_column_width}" valign="top" class="mainTableCellCenter">
+		<!-- begin middle -->
+		{block_body}
+		<!-- end middle -->
+	</td>
+	<!-- end middle_column -->
+	<!-- begin right_column -->
+	<td width="{right_column_width}" valign="top" class="mainTableCellRight">
+		<!-- begin right -->
+		{block_body}
+		<!-- end right -->
+	</td>
+	<!-- end right_column -->
+</tr>
+</table>
+
+{footer}
+
+</body>
+</html>

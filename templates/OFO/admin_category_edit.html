@@ -1,0 +1,393 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {CATEGORY_EDIT_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/editor.css" type="text/css">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+	function openWindow(pagename, filetype)
+	{
+		var uploadWin = window.open (pagename + '?filetype=' + filetype, 'uploadWin', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=400,height=300');
+		uploadWin.focus();
+  }
+
+	function setFileName(filename, filetype)
+	{
+		var siteUrl = '{site_url}';
+
+		if(filename != "" && filetype == "category")
+		{
+			document.record.image.value = siteUrl + "images/categories/" + filename;
+			document.record.image.focus();
+		} else if(filename != "" && filetype == "category_large")
+		{
+			document.record.image_large.value = siteUrl + "images/categories/large/" + filename;
+			document.record.image_large.focus();
+		}
+	}
+//-->
+</script>
+<script language="JavaScript" type= "text/javascript" src="../js/list_fields.js"></script>
+<script language="JavaScript" type= "text/javascript" src="../js/access_table.js"></script>
+<script language="JavaScript" type= "text/javascript" src="../js/tips.js"></script>
+<script language="JavaScript" type= "text/javascript" src="../js/editor.js"></script>
+<script language="JavaScript">
+<!--
+var list_fields_names = new Array('sites');
+//-->
+</script>
+
+
+</head>
+
+<body class="commonbg">
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header">
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_items_list_href}">{PRODUCTS_MSG}</a>&nbsp;&gt;&nbsp;<!-- BEGIN tree --><a
+			href="{admin_items_list_href}?category_id={tree_cat_id}">{tree_cat_name}</a>&nbsp;&gt;&nbsp;<!-- END tree --><a
+			href="{admin_items_list_href}?category_id={tree_current_id}">{tree_current_name}</a>&nbsp;&gt;&nbsp;<b>{EDIT_CATEGORY_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<!-- BEGIN success -->
+	<div class="message">{success_message}</div>
+<!-- END success -->
+<!-- BEGIN errors -->
+	<div class="error">{errors_list}</div>
+<!-- END errors -->
+
+<table cellspacing="0" cellpadding="0" border="0">
+<tr><!-- BEGIN tabs -->
+	<td onClick="changeTab('{tab_name}'); return false;"><div id="{tab_id}" class="{tab_class}"><a class="blackSm" href="#" onClick="changeTab('{tab_name}'); return false;">{tab_title}</a></td><!-- END tabs -->
+</tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border: 1px solid #999;">
+<tr align="center">
+	<td class="">
+
+<form action="{admin_category_edit_href}" name="record"  onSubmit="selectListFieldsAll(); submit_editor(Array('editor_sd','editor_fd'));" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="category_id" value="{category_id}">
+<input type="hidden" name="tab" value="{tab}">
+<input type="hidden" name="sites" value="">
+<input type="hidden" name="apply" value="">
+
+<div id="data_general" style="{general_style}">
+	<table width="100%" border="0" cellspacing="1" cellpadding="6">
+		<tr class="middle">
+			<td colspan="2" class="middle">
+				&nbsp;{ADMIN_GENERAL_MSG}
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{SHOW_ON_SITE_MSG}
+			</td>
+			<td>
+				<input type="checkbox" name="is_showing" {is_showing} value="1">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{CATEGORY_ORDER_MSG} *
+			</td>
+			<td>
+				<input type="text" class="field" name="category_order" value="{category_order}" size="10" maxlength="10">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{TOTAL_VIEWS_MSG}
+			</td>
+			<td class="small">
+			  <input readonly class="field" type="text" name="total_views" value="{total_views}" size="10" maxlength="10">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{CATEGORY_NAME_MSG} *
+			</td>
+			<td>
+				<input type="text" class=field name="category_name" value="{category_name}" size="80" maxlength="255">
+			</td>
+		</tr>
+		<!-- BEGIN friendly_url_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{FRIENDLY_URL_MSG}
+			</td>
+			<td>
+				<input class="field" type="text" name="friendly_url" value="{friendly_url}" size="80" maxlength="255">
+			</td>
+		</tr>
+		<!-- END friendly_url_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{PARENT_CATEGORY_MSG} *
+			</td>
+			<td>
+				<select name="parent_category_id"><!-- begin parent_category_id -->
+					<option {parent_category_id_selected} value="{parent_category_id_value}">{parent_category_id_description}<!-- end parent_category_id -->
+				</select>
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{AD_SHORT_DESC_MSG}
+			</td>
+			<td>
+				<textarea class="text" name="short_description" style="display: block; width: 560px; height: 75px;">{short_description}</textarea>
+				<script language= "JavaScript" type= "text/javascript">
+				<!--
+					var editor_sd = new VA_HTMLeditor('content_sd','../','{html_editor}');
+					editor_sd.text_field_name = 'short_description';
+					editor_sd.formname = 'record';
+					editor_sd.css_file = '{css_file}';
+					editor_sd.editor_type = 'category_editor';
+					editor_sd.displayEditor('editor_sd', 560, 75);
+				//-->
+				</script>
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{FULL_DESCRIPTION_MSG}
+			</td>
+			<td>
+				<textarea class="text" name="full_description" style="display: block; width: 560px; height: 170px;">{full_description}</textarea>
+				<script language= "JavaScript" type= "text/javascript">
+				<!--
+					var editor_fd = new VA_HTMLeditor('content_fd','../','{html_editor}');
+					editor_fd.text_field_name = 'full_description';
+					editor_fd.formname = 'record';
+					editor_fd.css_file = '{css_file}';
+					editor_fd.editor_type = 'category_editor';
+					editor_fd.displayEditor('editor_fd', 560, 170);
+				//-->
+				</script>
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{SUBCATEGORIES_PRODUCTS_MSG}
+			</td>
+			<td>
+				<input type="checkbox" name="show_sub_products" {show_sub_products} value="1">
+				({SUBCATEGORIES_PRODUCTS_NOTE})
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{ALLOWED_POST_SUB_MSG}
+			</td>
+			<td colspan="3">
+				<input type="checkbox" name="allowed_post_subcategories" {allowed_post_subcategories} value="1">
+				({ALLOWED_POST_SUB_NOTE})
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{GOOGLE_BASE_PRODUCT_TYPE_MSG}
+			</td>
+			<td>
+				<select name="google_base_type_id"><!-- begin google_base_type_id -->
+					<option {google_base_type_id_selected} value="{google_base_type_id_value}">{google_base_type_id_description}<!-- end google_base_type_id -->
+				</select>
+			</td>
+		</tr>				
+		<tr class="middle">
+			<td colspan="2" class="middle">
+				&nbsp;{IMAGES_MSG}
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{LIST_IMAGE_MSG}
+			</td>
+			<td>
+				<input class="field" type="text" name="image" value="{image}" size="80" maxlength="255">
+				&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'category')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+				&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'category')"><b>{SELECT_IMAGE_MSG}</b></a>
+				<br>({SHOWN_ON_CATEGORIES_NOTE})
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{LIST_IMAGE_ALT_MSG}
+			</td>
+			<td>
+				<input class="field" type="text" name="image_alt" value="{image_alt}" size="80" maxlength="255">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{IMAGE_LARGE_MSG}
+			</td>
+			<td>
+				<input class="field" type="text" name="image_large" value="{image_large}" size="80" maxlength="255">
+				&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'category_large')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+				&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'category_large')"><b>{SELECT_IMAGE_MSG}</b></a>
+				<br>({SHOWN_WITH_DESCRIPTION_NOTE})
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{IMAGE_LARGE_ALT_MSG}
+			</td>
+			<td>
+				<input class="field" type="text" name="image_large_alt" value="{image_large_alt}" size="80" maxlength="255">
+			</td>
+		</tr>
+		<tr class="middle">
+			<td colspan="2">
+				&nbsp;{PROD_APPEARANCE_MSG}
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{PRODUCTS_LIST_TEMPLATES_MSG}
+			</td>
+			<td>
+				<input class="field" type="text" name="list_template" value="{list_template}" size="50" maxlength="255">
+				&nbsp;({PRODUCTS_LIST_TEMPLATES_NOTE})
+			</td>
+		</tr>
+		<tr class="middle">
+			<td colspan="2" class="middle">
+				&nbsp;{META_DATA_MSG}
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{META_TITLE_MSG}
+			</td>
+			<td>
+				<input class="field" type="text" name="meta_title" value="{meta_title}" size="80" maxlength="255">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{META_KEYWORDS_MSG}
+			</td>
+			<td>
+				<input class="field" type="text" name="meta_keywords" value="{meta_keywords}" size="80" maxlength="255">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{META_DESCRIPTION_MSG}
+			</td>
+			<td>
+				<textarea name="meta_description" cols="80" rows="3">{meta_description}</textarea>
+			</td>
+		</tr>
+		<tr class="middle">
+			<td></td>
+			<td>
+				<!-- BEGIN save -->
+				<input class="submit" type="submit" value="{APPLY_BUTTON}" onClick="document.record.operation.value='save'; document.record.apply.value=1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<!-- END save -->
+				<!-- BEGIN delete -->
+				<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<!-- END delete -->
+				<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+
+			</td>
+		</tr>
+	</table>
+</div>
+
+
+<div id="data_sites" style="{sites_style}">
+	<table cellspacing="0" cellpadding="0" border="0" width="100%">
+	<tr class="usual">
+		<td>
+			{sites_table}
+		</td>
+	</tr>
+	<tr class="usual">
+		<td colspan="3">
+			&nbsp; <input type="checkbox" name="save_nested_sites" value="1">
+			{SAVE_SITE_SETTINGS_SUB_MSG}
+		</td>
+	</tr>
+	<tr class="usual">
+		<td colspan="3">
+			&nbsp; <input type="checkbox" name="save_products_sites" value="1">
+			{SAVE_SITE_SETTINGS_CAT_MSG}
+	 	</td>
+	</tr>
+	<tr class="usual">
+		<td colspan="3">
+			&nbsp; <input type="checkbox" name="save_nested_products_sites" value="1">
+			{SAVE_SITE_SETTINGS_PRODUCTS_MSG}
+		</td>
+	</tr>
+	<tr class="middle">
+		<td align="right">
+			{save}
+		</td>
+	</tr>
+	</table>
+</div>
+
+<div id="data_subscriptions" style="{subscriptions_style}">
+	<table cellspacing="0" cellpadding="0" border="0" width="100%">
+	<tr class="usual">
+		<td>
+			{subscriptions_table}
+		</td>
+	</tr>
+	<tr class="usual">
+		<td colspan="3">
+			&nbsp; <input type="checkbox" name="save_nested_subscriptions" value="1">
+			{SAVE_SUBSCRIPTIONS_SETTINGS_SUB_MSG}
+		</td>
+	</tr>
+	<tr class="usual">
+		<td colspan="3">
+			&nbsp; <input type="checkbox" name="save_products_subscriptions" value="1">
+			{SAVE_SUBSCRIPTIONS_SETTINGS_CAT_MSG}
+	 	</td>
+	</tr>
+	<tr class="usual">
+		<td colspan="3">
+			&nbsp; <input type="checkbox" name="save_nested_products_subscriptions" value="1">
+			{SAVE_SUBSCRIPTIONS_SETTINGS_PRODUCTS_MSG}
+		</td>
+	</tr>
+	<tr class="middle">
+		<td align="right">
+			{save}
+		</td>
+	</tr>
+	</table>
+</div>
+
+</form>
+
+	</td>
+</tr>
+</table>
+
+{admin_footer}
+<script language="JavaScript">
+<!--
+	checkListFieldsAll();
+//-->
+</script>
+</body>
+</html>

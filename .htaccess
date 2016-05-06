@@ -1,0 +1,38 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /friendly_url.php [L]
+</IfModule>
+
+Order allow,deny
+deny from 201.242.228.79
+deny from 107.194.33.105
+deny from 114.79.16.67
+deny from 114.79.63.149
+deny from 125.167.36.44
+deny from 168.61.2.145
+deny from 176.9.47.143
+deny from 187.153.187.178
+deny from 190.142.114.66
+deny from 190.142.117.21
+deny from 192.96.203.101
+deny from 199.255.213.192
+deny from 200.53.156.195
+deny from 201.209.15.197
+deny from 201.209.196.205
+deny from 208.115.194.116
+deny from 209.208.79.29
+deny from 209.252.31.241
+deny from 50.58.79.150
+deny from 76.232.24.191
+deny from 76.25.145.76
+deny from 99.177.126.165
+deny from 68.193.209.193
+deny from 204.42.255.207
+deny from 208.167.231.212
+deny from 70.90.93.210
+deny from 95.143.193.61
+deny from 86.108.84.17
+deny from 82.223.9.47
+Allow from all

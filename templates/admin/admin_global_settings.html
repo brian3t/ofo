@@ -1,0 +1,883 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {GLOBAL_SETTINGS_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script type="text/javascript" src="../js/admin.js"></script>
+<script language="JavaScript">
+<!--
+	function openWindow(pagename, filetype)
+	{
+		var uploadWin = window.open (pagename + '?filetype=' + filetype, 'uploadWin', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=400,height=300');
+		uploadWin.focus();
+	}
+
+	function setFileName(filename, filetype)
+	{
+		if(filename != "")
+		{
+			if(filetype == "logo")
+			{
+				document.record.logo_image.value = "images/" + filename;
+				document.record.logo_image.focus();
+			}
+		}
+	}
+//-->
+</script>
+</head>
+<body class="mainbg">
+
+{admin_header}
+
+<form action="{admin_global_settings_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="rp" value="{rp}">
+<input type="hidden" name="tab" value="{tab}">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+
+			<table cellspacing="0" cellpadding="0" border="0" width="100%" align="center">
+			<tr>
+				<td class="usual">
+					&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<b>{GLOBAL_SETTINGS_MSG}</b>
+				</td>
+				<!-- begin sitelist -->
+				<td class="usual" align="right">
+					{SELECT_SITE_MSG}&nbsp;
+					<select name="param_site_id" onchange="reloadSite(this.form)"><!-- begin param_site_id -->
+						<option {param_site_id_selected} value="{param_site_id_value}">{param_site_id_description}<!-- end param_site_id -->
+					</select>		
+				</td>
+				<!-- end sitelist -->
+			</tr>
+			</table>
+
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<table cellspacing="0" cellpadding="0" border="0">
+<tr><!-- BEGIN tabs -->
+	<td onClick="changeTab('{tab_name}'); return false;"><div id="{tab_id}" class="{tab_class}"><a class="blackSm" href="#" onClick="changeTab('{tab_name}'); return false;">{tab_title}</a></td><!-- END tabs -->
+</tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border: 1px solid #999;">
+<tr align="center"> 
+	<td class="">
+
+
+<div id="data_general" style="{general_style}">
+<table width="100%" border="0" cellspacing="1" cellpadding="4">
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{SITE_SETTINGS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SITE_NAME_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="site_name" value="{site_name}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SITE_URL_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="site_url" value="{site_url}">
+		<div class="small">({EG_MSG} <b>http://www.yoursite.com/</b>)</div>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{USE_FULL_URL_IMAGES_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="full_image_url" {full_image_url} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_EMAIL_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="admin_email" value="{admin_email}">
+		<div class="small">({EG_MSG} <b>admin@yoursite.com</b>)</div>
+	</td>
+</tr>
+<tr>
+	<td class="usual">
+		&nbsp;{DEFAULT_COUNTRY_MSG}
+	</td>
+	<td class="usual">
+		
+		<select name="country_id"><!-- begin country_id -->
+			<option {country_id_selected} value="{country_id_value}">{country_id_description}<!-- end country_id -->
+		</select>
+
+	</td>
+</tr>
+<tr>
+	<td class="usual">
+		&nbsp;{DEFAULT_STATE_MSG}
+	</td>
+	<td class="usual">
+
+		<select name="state_id"><!-- begin state_id -->
+			<option {state_id_selected} value="{state_id_value}">{state_id_description}<!-- end state_id -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ACTIVE_LAYOUT_MSG}
+	</td>
+	<td>
+		<select name="layout_id"><!-- begin layout_id -->
+			<option {layout_id_selected} value="{layout_id_value}">{layout_id_description}<!-- end layout_id -->
+		</select>
+		{layout_scheme}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{USER_PASSWORD_ENCRYPTION_MSG}
+	</td>
+	<td><!-- begin password_encrypt -->
+		<input type="radio" name="password_encrypt" {password_encrypt_checked} {password_encrypt_disabled} value="{password_encrypt_value}">{password_encrypt_description}<!-- end password_encrypt -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_PASSWORD_ENCRYPTION_MSG}
+	</td>
+	<td><!-- begin admin_password_encrypt -->
+		<input type="radio" name="admin_password_encrypt" {admin_password_encrypt_checked} {admin_password_encrypt_disabled} value="{admin_password_encrypt_value}">{admin_password_encrypt_description}<!-- end admin_password_encrypt -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{WEIGHT_MEASURE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="10" name="weight_measure" value="{weight_measure}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADMINISTRATOR_HTML_EDITOR_MSG}
+	</td>
+	<td><!-- begin html_editor -->
+		<input type="radio" name="html_editor" {html_editor_checked} {html_editor_disabled} value="{html_editor_value}">{html_editor_description}<!-- end html_editor -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ALLOW_RUN_PHP_CODE_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="php_in_index_greetings" {php_in_index_greetings} value="1"> {GREETINGS_INTRODUCTION_MSG}
+		<input type="checkbox" name="php_in_footer_body" {php_in_footer_body} value="1"> {FOOTER_BODY_MSG} 
+		<input type="checkbox" name="php_in_custom_blocks" {php_in_custom_blocks} value="1"> {CUSTOM_BLOCKS_MSG}
+		<input type="checkbox" name="php_in_custom_pages" {php_in_custom_pages} value="1"> {CUSTOM_PAGES_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{TEMP_FOLDER_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="tmp_dir" value="{tmp_dir}">
+		<div class="small">(Unix {EG_MSG} <b>/tmp/</b>, Windows {EG_MSG} <b>C:\WINNT\TEMP\</b>)</div>
+	</td>
+</tr>
+ 
+
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{LOGO_SETTINGS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{LOGO_IMAGE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="logo_image" value="{logo_image}">
+		&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'logo')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+		&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'logo')"><b>{SELECT_IMAGE_MSG}</b></a>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{LOGO_IMAGE_ALT_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="logo_image_alt" value="{logo_image_alt}">
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{CUSTOMER_IMAGES_MSG} & {SMS_TITLE}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CUSTOMER_IMAGE_UPLOAD_MSG} 
+	</td>
+	<td>
+		<input type="checkbox" name="user_image_upload" {user_image_upload} value="1"> ({ALLOW_USERS_UPLOAD_IMAGES_MSG})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CUSTOMER_IMAGE_RESTRICTIONS_MSG}
+	</td>
+	<td>
+		{FILESIZE_IN_BYTES_MSG}&nbsp;
+		<input class="field" type="text" name="user_image_size" value="{user_image_size}" size="12" maxlength="12">
+		&nbsp;&nbsp;
+		{WIDTH_IN_PIXELS_MSG}&nbsp;
+		<input class="field" type="text" name="user_image_width" value="{user_image_width}" size="12" maxlength="12">
+		&nbsp;&nbsp;
+		{HEIGHT_IN_PIXELS_MSG}&nbsp;
+		<input class="field" type="text" name="user_image_height" value="{user_image_height}" size="12" maxlength="12">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SHOW_PREVIEW_ADMIN_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="show_preview_image_admin" {show_preview_image_admin} value="1"> {SHOW_PREVIEW_ADMIN_NOTE}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SHOW_PREVIEW_USER_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="show_preview_image_client" {show_preview_image_client} value="1"> {SHOW_PREVIEW_USER_NOTE}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SMS_NOTIFICATION_UNREGISTERED_MSG}
+	</td>
+	<td>
+		<select name="is_sms_allowed"><!-- begin is_sms_allowed -->
+			<option {is_sms_allowed_selected} value="{is_sms_allowed_value}">{is_sms_allowed_description}<!-- end is_sms_allowed -->
+		</select>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{SECURE_SITE_SETTINGS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SECURE_SITE_URL_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="secure_url" value="{secure_url}">
+		<div class="small">({EG_MSG} <b>https://www.yoursite.com/</b>)</div>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CUSTOMER_SSL_MSG} 
+	</td>
+	<td>
+		<input type="checkbox" name="secure_user_login" {secure_user_login} value="1"> {ON_USER_LOGIN_MSG} &nbsp;
+		<input type="checkbox" name="secure_user_profile" {secure_user_profile} value="1"> {ON_USER_PROFILE_PAGE_MSG} &nbsp;
+		<!-- begin secure_order_profile_block -->
+		<input type="checkbox" name="secure_order_profile" {secure_order_profile} value="1"> {ON_ORDER_PROFILE_PAGE_MSG} &nbsp;
+		<!-- end secure_order_profile_block -->
+		<!-- begin secure_payments_block -->
+		<input type="checkbox" name="secure_payments" {secure_payments} value="1"> {ON_PAYMENT_DETAILS_PAGES_MSG} &nbsp;
+		<!-- end secure_payments_block -->
+		<!-- begin secure_merchant_order_block -->
+		<nobr><input type="checkbox" name="secure_merchant_order" {secure_merchant_order} value="1"> {ON_MERCHANT_ORDER_MSG} &nbsp; </nobr>
+		<!-- end secure_merchant_order_block -->
+		<!-- begin secure_user_tickets_block -->
+		<nobr><input type="checkbox" name="secure_user_tickets" {secure_user_tickets} value="1"> {ON_HELPDESK_TICKETS_LIST_MSG} &nbsp; </nobr>
+		<!-- end secure_user_tickets_block -->
+		<!-- begin secure_user_ticket_block -->
+		<nobr><input type="checkbox" name="secure_user_ticket" {secure_user_ticket} value="1"> {ON_HELPDESK_TICKETS_MSG} &nbsp; </nobr>
+		<!-- end secure_user_ticket_block -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADMINISTRATOR_SSL_MSG} 
+	</td>
+	<td>
+		<input type="checkbox" name="secure_admin_login" {secure_admin_login} value="1"> {ON_ADMIN_LOGIN_MSG}
+		<!-- begin ssl_admin_order_details_block -->
+		<nobr><input type="checkbox" name="ssl_admin_order_details" {ssl_admin_order_details} value="1"> {ON_ORDER_DETAILS_MSG}</nobr>
+		<!-- end ssl_admin_order_details_block -->
+		<!-- begin secure_admin_order_create_block -->
+		<input type="checkbox" name="secure_admin_order_create" {secure_admin_order_create} value="1"> {ON_ORDER_CREATION_MSG}
+		<!-- end secure_admin_order_create_block -->
+		<!-- begin ssl_admin_orders_list_block -->
+		<nobr><input type="checkbox" name="ssl_admin_orders_list" {ssl_admin_orders_list} value="1"> {ON_ORDERS_LIST_MSG}</nobr>
+		<!-- end ssl_admin_orders_list_block -->
+		<!-- begin ssl_admin_orders_pages_block -->
+		<nobr><input type="checkbox" name="ssl_admin_orders_pages" {ssl_admin_orders_pages} value="1"> {OTHER_ORDERS_PAGES_MSG}</nobr>
+		<!-- end ssl_admin_orders_pages_block -->
+		<!-- begin ssl_admin_tickets_block -->
+		<nobr><input type="checkbox" name="ssl_admin_tickets" {ssl_admin_tickets} value="1"> {ON_HELPDESK_TICKETS_LIST_MSG}</nobr>
+		<!-- end ssl_admin_tickets_block -->
+		<!-- begin ssl_admin_ticket_block -->
+		<nobr><input type="checkbox" name="ssl_admin_ticket" {ssl_admin_ticket} value="1"> {ON_HELPDESK_TICKETS_MSG}</nobr>
+		<!-- end ssl_admin_ticket_block -->
+		<!-- begin ssl_admin_helpdesk_block -->
+		<nobr><input type="checkbox" name="ssl_admin_helpdesk" {ssl_admin_helpdesk} value="1"> {OTHER_HELPDESK_PAGES_MSG}</nobr>
+		<!-- end ssl_admin_helpdesk_block -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{REDIRECT_TO_SSL_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="secure_redirect" {secure_redirect} value="1"> {REDIRECT_TO_SSL_NOTE}
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{FRIENDLY_URLS_SETTINGS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{APACHE_SETTINGS_MSG}<br><br>
+
+		&nbsp;({APACHE_SETTINGS_URL_MSG})
+	</td>
+	<td>
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+					<b>
+					&lt;IfModule mod_rewrite.c&gt;<br>
+					RewriteEngine On<br>
+					RewriteCond %&#123;REQUEST_FILENAME&#125; !-f<br>
+					RewriteCond %&#123;REQUEST_FILENAME&#125; !-d<br>
+					RewriteRule . {friendly_path}friendly_url.php [L]<br>
+					&lt;/IfModule&gt;<br>
+					</b>
+				</td>
+				<td width="20">
+					&nbsp;
+				</td>
+				<td>
+					or
+				</td>
+				<td width="20">
+					&nbsp;
+				</td>
+				<td>
+					<b>ErrorDocument 404 {friendly_path}friendly_url.php</b>
+				</td>
+			</tr>
+		</table>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ACTIVATE_FRIENDLY_URLS_MSG} 
+	</td>
+	<td>
+		<input type="checkbox" name="friendly_urls" {friendly_urls} value="1"> ({TURN_ON_FRIENDLY_URLS_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{REDIRECT_TO_FRIENDLY_URL_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="friendly_url_redirect" {friendly_url_redirect} value="1"> ({REDIRECT_TO_FRIENDLY_URL_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{AUTO_GENERATE_FRIENDLY_URLS_MSG} 
+	</td>
+	<td>
+		<select name="friendly_auto"><!-- begin friendly_auto -->
+			<option {friendly_auto_selected} value="{friendly_auto_value}">{friendly_auto_description}<!-- end friendly_auto -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{FRIENDLY_EXTENSION_MSG}
+	</td>
+	<td><!-- begin friendly_extension -->
+		<input type="radio" name="friendly_extension" {friendly_extension_checked} {friendly_extension_disabled} value="{friendly_extension_value}">{friendly_extension_description}<!-- end friendly_extension -->
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{TRACKING_SETTINGS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ONLINE_TIME_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="20" name="online_time" value="{online_time}"> 
+		 ({ONLINE_TIME_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{VIART_TRACKING_MSG} 
+	</td>
+	<td>
+		<input type="checkbox" name="tracking_visits" {tracking_visits} value="1"> {SITE_VISITS_MSG}
+		<input type="checkbox" name="tracking_pages" {tracking_pages} value="1"> {PAGE_VIEWS_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{GOOGLE_ANALYTICS_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="google_analytics" {google_analytics} value="1"> ({TURN_ON_GOOGLE_TRACKING_MSG})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{GOOGLE_TRACKING_CODE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="20" name="google_tracking_code" value="{google_tracking_code}"> 
+		{PLEASE_SPECIFY_THE_CODE_MSG} '<b>UA-xxxxx-x</b>' {WITH_YOUR_ACTUAL_GOOGLE_MSG}
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{TOP_RATED_SETTINGS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{MINIMAL_RATING_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="10" name="min_rating" value="{min_rating}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{MINIMAL_NUMBER_OF_VOTES_MSG} 
+	</td>
+	<td>
+		<input class="field" type="text" size="10" name="min_votes" value="{min_votes}">
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{HTML_SETTINGS_ON_MAIN_PAGE_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{HTML_TITLE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="index_title" value="{index_title}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{META_KEYWORDS_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="index_keywords" value="{index_keywords}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{META_DESCRIPTION_MSG}
+	</td>
+	<td>
+		<textarea name="index_description" cols="80" rows="3">{index_description}</textarea>
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;{GREETINGS_INTRODUCTION_MSG}
+	</td>
+	<td>
+		<textarea name="html_on_index" cols="80" rows="10">{html_on_index}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{FOOTER_SETTINGS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;{FOOTER_BODY_MSG}
+	</td>
+	<td>
+		<textarea name="html_below_footer" cols="80" rows="10">{html_below_footer}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td></td>
+	<td>
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</div>
+
+<div id="data_smtp" style="{smtp_style}">
+<table width="100%" border="0" cellspacing="1" cellpadding="4">
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{SMTP_SETTINGS_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ENABLE_SMTP_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="smtp_mail" {smtp_mail} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{HOST_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="smtp_host" value="{smtp_host}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_PORT_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="10" name="smtp_port" value="{smtp_port}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{TIMEOUT_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="10" name="smtp_timeout" value="{smtp_timeout}">
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{AUTHENTICATION_PARAMETERS_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{LOGIN_FIELD}
+	</td>
+	<td>
+		<input class="field" type="text" size="40" name="smtp_username" value="{smtp_username}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PASSWORD_FIELD}
+	</td>
+	<td>
+		<input class="field" type="password" size="40" name="smtp_password" value="{smtp_password}">
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{PHP_MAIL_FUNCTION_PARAMETERS}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_ADDITIONAL_HEADERS_MSG}
+	</td>
+	<td>
+		<textarea name="email_additional_headers" cols="80" rows="3">{email_additional_headers}</textarea>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_ADDITIONAL_PARAMETERS_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="40" name="email_additional_parameters" value="{email_additional_parameters}">
+	</td>
+</tr>
+<tr class="middle">
+	<td width="20%">&nbsp;</td>
+	<td>
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'"> &nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">&nbsp;
+	</td>
+</tr>
+</table>
+</div>
+
+
+<div id="data_site_map" style="{site_map_style}">
+<table width="100%" border="0" cellspacing="1" cellpadding="4">
+<!-- begin success_build_xml -->
+<tr class="usual" align="center">
+	<td colspan="2">
+ 		<div class="message">{message_build_xml}</div>
+ 	</td>
+</tr>
+<!-- end success_build_xml -->
+<tr class="middle">
+	<td>
+		&nbsp;<b>{SM_SETTINGS_MSG}</b>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{SM_BUILD_BUTTON}" onCLick="document.record.operation.value='build_xml'">
+	</td>
+</tr>
+<!--begin site_map_folder_block-->
+<tr class="middle">
+	<td>
+		&nbsp;<b>{SM_FOLDER_MSG}</b>
+	</td>
+	<td>
+		<input class="field" type="text" size="40" name="site_map_folder" value="{site_map_folder}">
+	</td>
+</tr>
+<!--end site_map_folder_block-->
+<tr class="usual">
+	<td>
+		&nbsp;{SM_SHOW_CUSTOM_PAGES_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="site_map_custom_pages" {site_map_custom_pages} value="1">
+	</td>
+</tr>
+<!-- begin site_map_items_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{SM_SHOW_PRODUCT_CAT_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="site_map_categories" {site_map_categories} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SM_SHOW_PRODUCTS_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="site_map_items" {site_map_items} value="1">
+	</td>
+</tr>
+<!-- end site_map_items_block -->
+<!-- begin map_articles_settings -->
+<tr class="usual">
+	<td>
+		&nbsp;{SM_SHOW_ARTICLES_CAT_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="site_map_articles_categories_{row_cat_id}" {site_map_articles_categories} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SM_SHOW_ARTICLES_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="site_map_articles_{row_cat_id}" {site_map_articles} value="1">
+	</td>
+</tr>
+<!-- end map_articles_settings -->
+<!-- begin site_map_forum_categories_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{SM_SHOW_FORUM_CAT_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="site_map_forum_categories" {site_map_forum_categories} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SM_SHOW_FORUMS_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="site_map_forums" {site_map_forums} value="1">
+	</td>
+</tr>
+<!-- end site_map_forum_categories_block -->
+<!-- begin site_map_ads_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{SM_SHOW_AD_CAT_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="site_map_ad_categories" {site_map_ad_categories} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SM_SHOW_ADS_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="site_map_ads" {site_map_ads} value="1">
+	</td>
+</tr>
+<!-- end site_map_ads_block -->
+<!-- begin site_map_manual_categories_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{SM_SHOW_MANUAL_CAT_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="site_map_manual_categories" {site_map_manual_categories} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SM_SHOW_MANUALS_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="site_map_manuals" {site_map_manuals} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SM_SHOW_MANUAL_ARTICLES_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="site_map_manual_articles" {site_map_manual_articles} value="1">
+	</td>
+</tr>
+<!-- end site_map_manual_categories_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{SM_SHOW_RECORDS_PER_PAGE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="3" name="site_map_records_per_page" value="{site_map_records_per_page}">
+	</td>
+</tr>
+<tr class="middle">
+	<td width="20%">&nbsp;</td>
+	<td>
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'"> &nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">&nbsp;
+		<input class="submit" type="submit" value="{SM_BUILD_BUTTON}" onCLick="document.record.operation.value='build_xml'">
+	</td>
+</tr>
+</table>
+</div>
+
+<div id="data_pgp" style="{pgp_style}">
+<table width="100%" border="0" cellspacing="1" cellpadding="4">
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{PGP_SETTINGS_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{GNUPG_BINARY_PATH_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="pgp_binary" value="{pgp_binary}">
+		<div class="small">(Unix {EG_MSG} <b>./gpg</b>, Windows {EG_MSG} <b>C:\Program Files\GNU\GnuPG\gpg.exe</b>)</div>
+		<div class="small"><a href='http://www.gnupg.org'>{GNUPG_DOWNLOAD_LINK_MSG}</a></div>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PGP_HOME_FOLDER_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="pgp_home" value="{pgp_home}">
+		<div class="small">(Unix {EG_MSG} <b>/home/$user/.gnupg</b>, Windows {EG_MSG} <b>C:\Documents and Settings\$user\Application Data\gnupg</b>)</div>		
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PGP_TEMP_FOLDER_MSG}<br/>({PGP_TEMP_FOLDER_NOTE})
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="pgp_tmp" value="{pgp_tmp}">
+		<div class="small">(Unix {EG_MSG} <b>/home/$user/gnupg_temp</b>, Windows {EG_MSG} <b>C:\gnupg_temp</b>)</div>		
+	</td>
+</tr>
+<!-- begin pgp_keyserver_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{PGPKEYKEYSERVER_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="pgp_keyserver" value="{pgp_keyserver}">
+		<div class="small">(standart server {EG_MSG} <b>pgp.mit.edu</b>, ubuntu server {EG_MSG} <b>keyserver.ubuntu.com</b>)</div>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PGP_PROXY_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="pgp_proxy" value="{pgp_proxy}">
+		<div class="small">({EG_MSG} <b>http://PROXY:PORT</b> or <b>http://USER:PASSWORD@PROXY:PORT</b>)</div>
+	</td>
+</tr>
+<!-- end pgp_keyserver_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{CREATE_ASCII_ARMORED_OUTPUT_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="pgp_ascii" {pgp_ascii} value="1">
+	</td>
+</tr>
+<tr class="middle">
+	<td width="20%">&nbsp;</td>
+	<td>
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'"> &nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">&nbsp;
+	</td>
+</tr>
+</table>
+</div>
+
+</form>
+
+
+</td></tr></table>
+
+{admin_footer}
+
+</body>
+</html>

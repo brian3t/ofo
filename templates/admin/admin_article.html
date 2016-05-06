@@ -1,0 +1,487 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_ARTICLE_MSG} ::..</title>
+<link rel="stylesheet" href="../styles/editor.css" type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<SCRIPT LANGUAGE="JavaScript" SRC="../js/calendar.js"></SCRIPT> 
+<script language="JavaScript">
+<!--
+	function openWindow(pagename, filetype)
+	{
+		var uploadWin = window.open (pagename + '?filetype=' + filetype, 'uploadWin', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=400,height=300');
+		uploadWin.focus();
+	}
+
+	function setFileName(filename, filetype)
+	{
+		var siteUrl = '{site_url}';
+
+		if(filename != "")
+		{
+			if(filetype == "article_small")
+			{
+				document.frmArticle.image_small.value = siteUrl + "images/articles/small/" + filename;
+				document.frmArticle.image_small.focus();
+			}
+			else if(filetype == "article_large")
+			{
+				document.frmArticle.image_large.value = siteUrl + "images/articles/large/" + filename;
+				document.frmArticle.image_large.focus();
+			}
+			else if(filetype == "article_video")
+			{
+				if (filename.lastIndexOf(".flv") > 0){
+					document.frmArticle.stream_video.value = "../video/article/" + filename;
+				} else {
+					document.frmArticle.stream_video.value = siteUrl + "video/article/" + filename;
+				}
+				document.frmArticle.stream_video.focus();
+			}
+			else if(filetype == "preview_video")
+			{
+				document.frmArticle.stream_video_preview.value = siteUrl + "images/video/preview/" + filename;
+				document.frmArticle.stream_video_preview.focus();
+			}
+		}
+	}
+//-->
+</script>
+<link rel="stylesheet" href="../styles/editor.css" type="text/css">
+<script language= "JavaScript" type= "text/javascript" src= "../js/editor.js"></script>
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_articles_top_href}">{ARTICLES_TITLE}</a>&nbsp;&gt;&nbsp;<!-- BEGIN tree --><a 
+			href="{admin_articles_href}?category_id={tree_cat_id}">{tree_cat_name}</a>&nbsp;&gt;&nbsp;<!-- END tree --><a 
+			href="{admin_articles_href}?category_id={tree_current_id}">{tree_current_name}</a>&nbsp;&gt;&nbsp;<b>{EDIT_ARTICLE_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_ARTICLE_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<form action="{article_href}" name="frmArticle" method="POST" onSubmit="submit_editor(Array('editor_hd','editor_sd','editor_fd'));">
+	<input type="hidden" name="operation" value="save">
+	<input type="hidden" name="article_id" value="{article_id}">
+	<input type="hidden" name="category_id" value="{category_id}">
+	<input type="hidden" name="apply" value="0">
+	<table width="100%" border="0" cellspacing="1" cellpadding="4"><!-- BEGIN success -->
+		<tr class="usual">
+			<td colspan="2" align="center">
+				<div class="message">{success_message}</div>
+			</td>
+		</tr><!-- END success --><!-- BEGIN errors -->
+		<tr class="usual">
+			<td colspan="2" align="center">
+				<div class="error">{errors_list}</div>
+			</td>
+		</tr><!-- END errors -->
+		<tr class="usual">
+			<td colspan="2" align="right">
+				<font class="small">{ASTERISK_MSG}</font>
+		    </td>
+		</tr>
+		
+		<tr class="middle">
+			<td colspan="2" class="middle">
+				&nbsp;{GENERAL_INFO_MSG}
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{ADMIN_ORDER_NUMBER_MSG} *
+			</td>
+			<td>
+				<input class="field" type="text" name="article_order" value="{article_order}" size="10" maxlength="10">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{TOTAL_VIEWS_MSG}
+			</td>
+			<td class="small">
+			  <input class="field" type="text" readonly name="total_views" value="{total_views}" size="10" maxlength="10">
+			</td>
+		</tr>
+		<!-- begin article_date_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{DATE_MSG} {article_date_required}
+			</td>
+			<td>
+				<input class="field" type="text" name="article_date" value="{article_date}" size="20" maxlength="20">
+				({USE_FOLLOWING_FORMAT_MSG} <b>{datetime_format}</b>)
+			</td>
+		</tr><!-- end article_date_block --><!-- begin date_end_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{DATE_END_MSG} {date_end_required}
+			</td>
+			<td>
+				<input class="field" type="text" name="date_end" value="{date_end}" size="20" maxlength="20">
+				({USE_FOLLOWING_FORMAT_MSG} <b>{datetime_format}</b>)		
+			</td>
+		</tr><!-- end date_end_block --><!-- begin article_title_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{ADMIN_TITLE_MSG} {article_title_required}
+			</td>
+			<td>
+				<input class="field" type="text" name="article_title" value="{article_title}" size="80" maxlength="255">
+			</td>
+		</tr><!-- end article_title_block -->
+		<!-- BEGIN friendly_url_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{FRIENDLY_URL_MSG}
+			</td>
+			<td>
+				<input class="field" type="text" name="friendly_url" value="{friendly_url}" size="80" maxlength="255">
+			</td>
+		</tr>
+		<!-- END friendly_url_block -->
+		
+		<!-- BEGIN author_title -->
+		<tr class="middle">
+			<td colspan="2" class="middle">
+				&nbsp;{AUTHOR_INFO_MSG}
+			</td>
+		</tr><!-- END author_title --><!-- begin author_name_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{AUTHOR_NAME_MSG} {author_name_required}
+			</td>
+			<td>
+				<input class="field" type="text" name="author_name" value="{author_name}" size="80" maxlength="255">
+			</td>
+		</tr><!-- end author_name_block --><!-- begin author_email_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{AUTHOR_EMAIL_MSG} {author_email_required}
+			</td>
+			<td>
+				<input class="field" type="text" name="author_email" value="{author_email}" size="80" maxlength="255">
+			</td>
+		</tr><!-- end author_email_block -->
+		<tr class="middle">
+			<td colspan="2" class="middle">
+				&nbsp;{REMOTE_RSS_MSG}
+			</td>
+		</tr>
+		<tr class="usual">
+			<td >
+				&nbsp;{IS_REMOTE_RSS_MSG}
+			</td>
+			<td >
+				<input type="checkbox" name="is_remote_rss" {is_remote_rss} value="1">
+			</td>
+		</tr>	
+		<tr class="usual">
+			<td>
+				&nbsp;{DETAILS_REMOTE_LINK_MSG}
+			</td>
+			<td>
+				<input class="field" type="text" name="details_remote_url" value="{details_remote_url}" size="80" maxlength="255">
+			</td>
+		</tr>
+		<!-- begin author_url_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{AUTHOR_URL_MSG} {author_url_required}
+			</td>
+			<td>
+				<input class="field" type="text" name="author_url" value="{author_url}" size="80" maxlength="255">
+			</td>
+		</tr><!-- end author_url_block -->
+		
+		<tr class="middle">
+			<td colspan="2" class="middle">
+				&nbsp;{STATUSES_MSG}
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{STATUS_MSG} *
+			</td>
+			<td>
+				<select name="status_id" style="width:120px">
+					<!-- BEGIN status_id --><option {status_id_selected} value="{status_id_value}">{status_id_description}<!-- END status_id -->
+				</select>
+			</td>
+		</tr>
+		<tr class="usual">
+			<td >
+				&nbsp;{ALOOW_RATE_MSG} 
+			</td>
+			<td >
+				<input type="checkbox" name="allowed_rate" {allowed_rate} value="1">
+			</td>
+		</tr>		
+		<!-- BEGIN links_title -->		
+		<tr class="middle">
+			<td colspan="2" class="middle">
+				&nbsp;{PROD_DOWNLOAD_COLUMN}
+			</td>
+		</tr>
+		<!-- END links_title -->		
+		<!-- begin link_url_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{LINK_URL_MSG} {link_url_required}
+			</td>
+			<td>
+				<input class="field" type="text" name="link_url" value="{link_url}" size="80" maxlength="255">
+			</td>
+		</tr><!-- end link_url_block --><!-- begin download_url_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{DOWNLOAD_URL_MSG} {download_url_required}
+			</td>
+			<td>
+				<input class="field" type="text" name="download_url" value="{download_url}" size="80" maxlength="255">
+			</td>
+		</tr><!-- end download_url_block --><!-- begin image_small_block -->
+
+		<tr class="middle">
+			<td colspan="2" class="middle">
+				&nbsp;{IMAGES_MSG}
+			</td>
+		</tr>
+		<tr class="usual">
+			<td colspan="2">
+				<font class="small">
+						&nbsp;{SMALL_IMAGE_IS_SHOWN_MSG} <br>
+						&nbsp;{LARGE_ONE_DETAILS_PAGE_MSG}
+				</font>
+			</td>
+		</tr>
+		<tr class="usual">
+			<td valign="top">
+				&nbsp;{IMAGE_SMALL_MSG} {image_small_required}
+			</td>
+			<td>
+				<input class="field" type="text" size="60" maxlength="255" name="image_small" value="{image_small}"> 
+				&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'article_small')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+				&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'article_small')"><b>{SELECT_IMAGE_MSG}</b></a>
+			</td>
+		</tr><!-- end image_small_block -->		
+		<!-- begin image_small_alt_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{IMAGE_SMALL_ALT_MSG}
+			</td>
+			<td>
+				<input class="field" type="text" name="image_small_alt" value="{image_small_alt}" size="60" maxlength="255">
+			</td>
+		</tr><!-- end image_small_alt_block -->
+		<!-- begin image_large_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{IMAGE_LARGE_MSG} {image_large_required}
+			</td>
+			<td>
+				<input class="field" type="text" size="60" maxlength="255" name="image_large" value="{image_large}"> 
+				&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'article_large')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+				&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'article_large')"><b>{SELECT_IMAGE_MSG}</b></a>
+			</td>
+		</tr><!-- end image_large_block -->
+		<!-- begin image_large_alt_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{IMAGE_LARGE_ALT_MSG}
+			</td>
+			<td colspan="3">
+				<input class="field" type="text" name="image_large_alt" value="{image_large_alt}" size="60" maxlength="255">
+			</td>
+		</tr><!-- end image_large_alt_block -->
+		<!-- begin stream_video_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{STREAM_VIDEO_MSG}
+			</td>
+			<td>
+				<input class="field" type="text" name="stream_video" value="{stream_video}" size="60" maxlength="255"> 
+				&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'article_video')"><b>Upload video</b></a>
+				&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'article_video')"><b>Select video</b></a>
+			</td>
+		</tr>
+		<!-- end stream_video_block -->
+		<!-- begin stream_video_width_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{STREAM_VIDEO_MSG} ({WIDTH_MSG} x {HEIGHT_MSG})
+			</td>
+			<td colspan="3">
+				<input class="field" type="text" name="stream_video_width" value="{stream_video_width}" size="5" maxlength="5"> x <!-- end stream_video_width_block --><!-- begin stream_video_height_block --><input class="field" type="text" name="stream_video_height" value="{stream_video_height}" size="5" maxlength="5">
+			</td>
+		</tr>
+		<!-- end stream_video_height_block -->
+		<!-- begin stream_video_preview_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{PREVIEW_BUTTON}
+			</td>
+			<td>
+				<input class="field" type="text" name="stream_video_preview" value="{stream_video_preview}" size="60" maxlength="255"> 
+				&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'preview_video')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+				&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'preview_video')"><b>{SELECT_IMAGE_MSG}</b></a>
+			</td>
+		</tr>
+		<!-- end stream_video_preview_block -->
+		
+		<tr class="middle">
+			<td colspan="2" class="middle">
+				&nbsp;{DESCRIPTIONS_MSG}
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{HOT_ARTICLE_MSG}<br>({SHOWN_ON_MAIN_PAGE_NOTE})
+			</td>
+			<td>
+				<input type="checkbox" name="is_hot" {is_hot} value="1">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{HOT_DESCRIPTION_TEXT_MSG}<br>
+			</td>
+			<td>
+				<textarea class="text" name="hot_description" style="display: block; width: 565px; height: 100px;">{hot_description}</textarea>
+				<script language= "JavaScript" type= "text/javascript">
+				<!--
+					var editor_hd = new VA_HTMLeditor('content_hd','../','{html_editor}');
+					editor_hd.text_field_name = 'hot_description';
+					editor_hd.formname = 'frmArticle';
+					editor_hd.css_file = '{css_file}';
+					editor_hd.editor_type = 'article_editor';
+					editor_hd.displayEditor('editor_hd', 565, 100);
+				//-->
+				</script>
+			</td>
+		</tr><!-- begin short_description_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{SHORT_DESCRIPTION_TEXT_MSG} {short_description_required}
+			</td>
+			<td>
+				<textarea class="text" name="short_description" style="display: block; width: 565px; height: 100px;">{short_description}</textarea>
+				<script language= "JavaScript" type= "text/javascript">
+				<!--
+					var editor_sd = new VA_HTMLeditor('content_sd','../','{html_editor}');
+					editor_sd.text_field_name = 'short_description';
+					editor_sd.formname = 'frmArticle';
+					editor_sd.css_file = '{css_file}';
+					editor_sd.editor_type = 'article_editor';
+					editor_sd.displayEditor('editor_sd', 565, 100);
+				//-->
+				</script>
+			</td>
+		</tr><!-- end short_description_block --><!-- begin is_html_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{FULL_DESCRIPTION_MODE_MSG}
+			</td>
+		  <td valign="bottom"><!-- begin is_html -->
+				<input type="radio" name="is_html" {is_html_checked} value="{is_html_value}">&nbsp;{is_html_description}&nbsp;<!-- end is_html -->
+    	</td>
+		</tr><!-- end is_html_block --><!-- begin full_description_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{FULL_DESCRIPTION_TEXT_MSG} {full_description_required}
+			</td>
+			<td>
+				<textarea class="text" name="full_description" style="display: block; width: 565px; height: 200px;">{full_description}</textarea>
+				<script language= "JavaScript" type= "text/javascript">
+				<!--
+					var editor_fd = new VA_HTMLeditor('content_fd','../','{html_editor}');
+					editor_fd.text_field_name = 'full_description';
+					editor_fd.formname = 'frmArticle';
+					editor_fd.css_file = '{css_file}';
+					editor_fd.editor_type = 'article_editor';
+					editor_fd.displayEditor('editor_fd', 565, 200);
+				//-->
+				</script>
+			</td>
+		</tr><!-- end full_description_block --><!-- begin keywords_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{KEYWORDS_MSG} {keywords_required}
+			</td>
+			<td>
+				<textarea name="keywords" cols="80" rows="2">{keywords}</textarea>
+			</td>
+		</tr><!-- end keywords_block --><!-- begin notes_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{NOTES_MSG} {notes_required}
+			</td>
+			<td>
+				<textarea name="notes" cols="80" rows="5">{notes}</textarea>
+			</td>
+		</tr><!-- end notes_block -->
+		<tr class="middle">
+			<td colspan="2" class="middle">
+				&nbsp;{META_DATA_MSG}
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{META_TITLE_MSG}
+			</td>
+			<td>
+				<input class="field" type="text" name="meta_title" value="{meta_title}" size="80" maxlength="255">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{META_KEYWORDS_MSG}
+			</td>
+			<td>
+				<input class="field" type="text" name="meta_keywords" value="{meta_keywords}" size="80" maxlength="255">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{META_DESCRIPTION_MSG}
+			</td>
+			<td>
+				<textarea name="meta_description" cols="80" rows="3">{meta_description}</textarea>
+			</td>
+		</tr>
+		
+		<tr class="middle">
+			<td>
+			</td>
+			<td>
+				<input class="submit" type="submit" value="{APPLY_BUTTON}" onClick="document.frmArticle.operation.value='save'; document.frmArticle.apply.value=1">&nbsp;&nbsp;
+				<input class="submit" type="submit" value="{save_button}" onCLick="document.frmArticle.operation.value='save';"> &nbsp; &nbsp; <!-- BEGIN delete -->
+				<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.frmArticle.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');"> &nbsp; &nbsp; <!-- END delete -->
+				<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.frmArticle.operation.value='cancel'">
+			</td>
+		</tr>
+	</table>
+</form>
+
+	</td>
+</tr>
+</table>
+</fieldset>
+	
+{admin_footer}
+</body>
+</html>

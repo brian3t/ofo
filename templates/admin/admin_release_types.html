@@ -1,0 +1,73 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {RELEASE_TYPES_MSG} ::..</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_lookup_tables_href}">{STATIC_TABLES_MSG}</a>&nbsp;&gt;&nbsp;<b>{RELEASE_TYPES_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{RELEASE_TYPES_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<table border="0" cellspacing="1" cellpadding="6" width="100%">
+<tr align="center" class="middle">
+	<td>
+		{sorter_type_id}
+	</td>
+	<td>
+		{sorter_type_name}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- BEGIN records -->
+<tr class="usual" align="center">
+	<td>
+		{type_id}
+	</td>
+	<td align="left">
+		&nbsp;{type_name}
+	</td>
+	<td>
+		<a href="{admin_release_type_href}?type_id={type_id}">{EDIT_RELEASE_TYPE_MSG}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="3">
+		&nbsp;{NO_RECORDS}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="3">
+		&nbsp;<a href="{admin_release_type_href}">{NEW_RELEASE_TYPE_MSG}</a><!-- begin navigator_block -->&nbsp;{navigator}&nbsp;<!-- end navigator_block -->
+	</td>
+</tr>
+</table>	
+
+	</td>
+</tr>
+</table>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

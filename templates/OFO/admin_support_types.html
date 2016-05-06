@@ -1,0 +1,65 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {SUPPORT_TYPES_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_support_href}">{HELPDESK_MSG}</a>&nbsp;&gt;&nbsp;<b>{SUPPORT_TYPES_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{SUPPORT_TYPES_MSG}</legend>
+
+<table border="0" cellspacing="1" cellpadding="6" width="100%">
+<tr align="center" class="middle">
+	<td>
+		{sorter_type_id}
+	</td>
+	<td>
+		{sorter_type_name}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- BEGIN records -->
+<tr class="usual" align="center">
+	<td>
+		{type_id}
+	</td>
+	<td align="left">
+		&nbsp;{type_name}
+	</td>
+	<td>
+		<a href="{admin_support_type_href}?type_id={type_id}">{EDIT_TYPE_MSG}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="3">
+		&nbsp;{NO_RECORDS}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="2">&nbsp;<a href="{admin_support_type_href}">{NEW_TYPE_MSG}</a></td>
+	<td align=center><!-- begin navigator_block -->&nbsp;{navigator}&nbsp;<!-- end navigator_block --></td>
+</tr>
+</table>	
+
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

@@ -1,0 +1,245 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {PRODUCTS_REGISTRATIONS_MSG} :: {EDIT_PRODUCT_REGISTRATION_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript" type= "text/javascript" src="../js/ajax.js"></script>
+<script language="JavaScript">
+<!--
+function searchUsers(user_name) {
+	loadAjax("user_select", "?operation=get_users&is_ajax=1&user_name=" + user_name, afterUserSearch);
+}
+function afterUserSearch(response) {
+	var div = document.getElementById("user_select");
+	div.style.display = "block";
+}
+function selectUser(user_id, user_name) {
+	var div = document.getElementById("user_select");
+	div.style.display = "none";
+	document.record.user_name.value = user_name;
+	document.record.user_id.value = user_id;
+}
+//-->
+</script>
+</head>
+
+<body class="commonbg">
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header">
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_registrations_href}">{PRODUCTS_REGISTRATIONS_MSG}</a>&nbsp;&gt;&nbsp;
+			<b>{EDIT_PRODUCT_REGISTRATION_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_PRODUCT_REGISTRATION_MSG}</legend>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr align="center">
+	<td class="">
+
+<form action="{admin_registration_edit_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="">
+<input type="hidden" name="registration_id" value="{registration_id}">
+<input type="hidden" name="user_id" value="{user_id}">
+<input type="hidden" name="apply" value="">
+<input type="hidden" name="get_users" value="">
+
+<table width="100%" border="0" cellspacing="1" cellpadding="6">
+
+		<!-- BEGIN success -->
+		<tr class="usual">
+			<td colspan="2" align="center">
+				<div class="message">{success_message}</div>
+			</td>
+		</tr>
+		<!-- END success -->
+		<!-- BEGIN errors -->
+		<tr class="usual">
+			<td colspan="2" align="center">
+				<div class="error">{errors_list}</div>
+			</td>
+		</tr>
+		<!--END errors-->
+		<tr>
+			<td colspan="2" class="usual" align="right">
+				<font class="small">{ASTERISK_MSG}</font>
+			</td>
+		</tr>
+		<tr class="middle">
+			<td colspan="2" class="middle">
+				&nbsp;{GENERAL_INFO_MSG}
+			</td>
+		</tr>
+		<!--begin user_name_block-->
+		<tr class="usual">
+			<td width="300px">
+				&nbsp;{USER_NAME_MSG}
+			</td>
+			<td>
+				<input class="field" type="text" name="user_name" value="{user_name}" size="20" maxlength="255" onchange="searchUsers(this.value);">
+				<input type="button" class="submit" value="{SELECT_MSG}" onclick="searchUsers(document.record.user_name.value);">
+				<div id="user_select" style="position:absolute; cursor: pointer; background:#ffffff; border:1px solid #333333; display:none;">
+					<!--begin user_select_block-->
+					<table cellpadding="6" cellspacing="0" width="100%">
+						<!--begin user_name_row-->
+						<tr onclick="selectUser({user_id}, '{login}')" style="background-color:{bgcolor}" onmousemove="this.style.background='#ddffff'" onmouseout="this.style.background='{bgcolor}'">
+							<td>{login}</td>
+							<td>{name}</td>
+							<td>{first_name}</td>
+							<td>{last_name}</td>
+						</tr>						
+						<!--end user_name_row-->
+					</table>
+					<!--end user_select_block-->
+				</div>			
+			</td>
+		</tr>
+		<!--end user_name_block-->
+		<tr class="usual">
+			<td>
+				&nbsp;{IS_APPROVED_MSG}
+			</td>
+			<td><!-- BEGIN is_approved -->
+				<input type="radio" name="is_approved" {is_approved_checked} value="{is_approved_value}">{is_approved_description}<!-- END is_approved -->
+			</td>
+		</tr>		
+		<!--BEGIN registration_categories_block-->	
+		<!--BEGIN registration_category_block-->	
+		<tr class="usual">
+			<td>&nbsp;<!--BEGIN registration_categories_title-->{SELECT_CATEGORY_MSG} <span class="required">*</span><!--END registration_categories_title--></td>
+			<td>			
+				<select name="category_id_{category_number}" onchange="document.record.operation.value='get_categories'; document.record.submit();"><!-- BEGIN category_id -->
+					<option {category_id_selected} value="{category_id_value}">{category_id_description}<!-- END category_id -->
+				</select>				
+			</td>
+		</tr>	
+		<!--END registration_category_block-->		
+		<!--END registration_categories_block-->
+		<!-- BEGIN item_id_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{SELECT_PRODUCT_MSG} <span class="required">{item_id_required}</span>
+			</td>
+			<td>
+				<select name="item_id"><!-- BEGIN item_id -->
+					<option {item_id_selected} value="{item_id_value}">{item_id_description}<!-- END item_id -->
+				</select>
+			</td>
+		</tr>
+		<!-- END item_id_block -->
+		<!-- BEGIN item_name_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{PROD_NAME_MSG} <span class="required">{item_name_required}</span>
+			</td>
+			<td>
+				<input class="field" type="text" name="item_name" value="{item_name}" size="20" maxlength="255">
+			</td>
+		</tr>
+		<!-- END item_name_block -->
+		<!-- BEGIN item_code_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{PROD_CODE_MSG} <span class="required">{item_code_required}</span>
+			</td>
+			<td>
+				<input class="field" type="text" name="item_code" value="{item_code}" size="20" maxlength="64">
+			</td>
+		</tr>
+		<!-- END item_code_block -->
+		<!-- BEGIN serial_number_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{SERIAL_NUMBER_MSG} <span class="required">{serial_number_required}</span>
+			</td>
+			<td>
+				<input class="field" type="text" name="serial_number" value="{serial_number}" size="20" maxlength="128">
+			</td>
+		</tr>
+		<!-- END serial_number_block -->
+		<!-- BEGIN invoice_number_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{INVOICE_NUMBER_MSG} <span class="required">{invoice_number_required}</span>
+			</td>
+			<td>
+				<input class="field" type="text" name="invoice_number" value="{invoice_number}" size="20" maxlength="128">
+			</td>
+		</tr>
+		<!-- END invoice_number_block -->
+		<!-- BEGIN store_name_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{STORE_NAME_FORM_MSG} <span class="required">{store_name_required}</span>
+			</td>
+			<td>
+				<input class="field" type="text" name="store_name" value="{store_name}" size="20" maxlength="128">
+			</td>
+		</tr>
+		<!-- END store_name_block -->
+		<!-- BEGIN purchased_date_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{DATE_OF_PURCHASE_MSG} <span class="required">{purchased_date_required}</span>
+			</td>
+			<td>
+				<!-- BEGIN purchased_day_block -->
+				<input class="field" type="text" name="purchased_day" value="{purchased_day}" size="2" maxlength="2">
+				<!-- END purchased_day_block -->
+				<!-- BEGIN purchased_month_block -->
+				<select name="purchased_month"><!-- begin purchased_month -->
+						<option {purchased_month_selected} value="{purchased_month_value}">{purchased_month_description}<!-- end purchased_month -->
+				</select><!-- END purchased_month_block -->	
+				<!-- BEGIN purchased_year_block -->
+				<select name="purchased_year"><!-- begin purchased_year -->
+						<option {purchased_year_selected} value="{purchased_year_value}">{purchased_year_description}<!-- end purchased_year -->
+				</select><!-- END purchased_year_block -->
+				
+			</td>
+		</tr>
+		<!-- END purchased_date_block -->
+		<!-- begin custom_properties_title -->
+		<tr class="middle">
+			<td colspan="2" class="middle">
+				&nbsp;{CUSTOM_FIELDS_MSG}
+			</td>
+		</tr>
+		<!-- end custom_properties_title -->
+		<!-- begin custom_properties -->
+		<tr id="pp_block_{property_id}" class="usual">
+			<td style="{property_style}" class="{property_class}">
+				&nbsp;{property_name} <span class="required">{property_required}</span>
+			</td>
+			<td style="{property_style}" class="{property_class}">
+				{property_control} 
+			</td>
+		</tr><!-- end custom_properties -->
+		<tr class="middle">
+			<td>&nbsp;</td>
+			<td>				
+				<input class="submit" type="submit" value="{save_button}" onClick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input class="submit" type="submit" value="{APPLY_BUTTON}" onClick="document.record.operation.value='save'; document.record.apply.value=1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;				
+				<!-- BEGIN delete -->
+				<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<!-- END delete -->
+				<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">	
+			</td>
+		</tr>
+		</table>
+</form>
+	</td>
+</tr>
+</table>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

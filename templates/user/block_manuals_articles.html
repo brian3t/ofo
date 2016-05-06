@@ -1,0 +1,76 @@
+<div class="block-manuals-articles">
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{manual_title}</div></td></tr></table>
+		</td>
+		<td class="titleTopCenter" align="right">
+			<!-- BEGIN manuals_list -->
+			<script type="text/javascript">
+				function manuals_go_to() {
+					form_obj = document.getElementById("manuals_list_form");
+					if (form_obj != null) {
+						index = form_obj.manuals.selectedIndex;
+						url = form_obj.manuals[index].value;
+						if (url != "") {
+							window.location = url;
+						}
+					}
+				}
+			</script>
+			<form name="manuals_list" method="POST" id="manuals_list_form">
+			<table cellspacing="0">
+			<tr>
+				<td>
+					<select class="field" name="manuals">
+					<!-- BEGIN manuals_list_option -->
+					<option {selected} value="{manual_url}">{list_manual_title}</option>
+					<!-- END manuals_list_option -->
+					</select>
+					<span class="submit"><input class="submit" type="button" name="go_to_manual" value="View" onclick="javascript: manuals_go_to();"></span>
+				</td>
+			</tr>
+			</table>
+			</form>
+			<!-- END manuals_list -->
+		</td>
+		
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr> 
+		<td class="blockTD">
+			<table border="0" cellspacing="0" cellpadding="6" width="100%">
+				<!-- BEGIN manual_full_description_block -->
+				<tr class="usualbg">
+					<td class="title">{manual_full_description}</td>
+				</tr>
+				<!-- END manual_full_description_block -->
+				<!-- BEGIN no_contents -->
+				<tr class="usualbg">
+					<td class="messagebg">{NO_MANUAL_ARTICLES_MSG}</td>
+				</tr>
+				<!-- END no_contents -->
+				<!-- begin no_manuals -->
+				<tr class="usualbg">
+					<td class="messagebg">{NO_MANUALS_MSG}</td>
+				</tr>
+				<!-- end no_manuals -->
+				<!-- BEGIN articles -->
+				<tr>
+					<td class="level{level}"><a href="{article_href}" class="{restricted_class}">{section_number}.&nbsp;{article_title}<!--begin restricted_image--><img src="images/tr.gif" alt="" class="{restricted_class}"><!--end restricted_image--></a></td>
+				</tr>
+				<!-- END articles -->
+			</table>
+		</td>
+	</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+</div>

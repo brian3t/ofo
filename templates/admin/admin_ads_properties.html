@@ -1,0 +1,115 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {CUSTOM_PROPERTIES_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="">
+<!--
+
+function setDefaultValue(propertyNumber)
+{
+	var defaultValue = document.record.elements["default_value_" + propertyNumber].options[document.record.elements["default_value_" + propertyNumber].selectedIndex].value;
+	document.record.elements["property_value_" + propertyNumber].value = defaultValue;
+}
+
+//-->
+</script>
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_ads_href}">{ADS_TITLE}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_ads_edit_href}?item_id={item_id}">{item_title}</a>&nbsp;&gt;&nbsp;<b>{CUSTOM_PROPERTIES_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{PROPERTIES_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<form action="{admin_ads_properties_href}" name="record" method="post">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="item_id" value="{item_id}">
+<input type="hidden" name="category_id" value="{category_id}">
+<input type="hidden" name="more_properties" value="0">
+<input type="hidden" name="number_properties" value="{number_properties}">
+<input type="hidden" name="rp" value="{rp}">
+<table border="0" cellpadding="4" cellspacing="1" align="center" width="100%">
+<tr class="middle" align="center">
+	<td>
+		#
+	</td>
+	<td>
+		{GROUP_AND_NAME_MSG}
+	</td>
+	<td>
+		{VALUE_MSG}
+	</td>
+	<td>
+		{DELETE_BUTTON}
+	</td>
+</tr>
+<!-- begin properties --><!-- begin properties_errors -->
+<tr class="usual" align="center">
+	<td>&nbsp;</td>
+	<td colspan="2">
+		<div class="error">{errors_list}</div>
+	</td>
+	<td>&nbsp;</td>	
+</tr><!-- end properties_errors -->
+<tr class="usual" valign="top">
+	<td align="center">
+		&nbsp;{row_number}&nbsp;
+		<input type="hidden" name="property_id_{properties_number}" value="{property_id}">
+		<input type="hidden" name="item_id_{properties_number}" value="{item_id}">
+	</td>
+	<td width="250" valign="bottom">
+		<input size=20 type="text" name="property_name_{properties_number}" value="{property_name}" style="width: 200px;"> 
+	</td>
+	<td valign="bottom">
+		<!-- begin default_value_block -->
+		<input type="hidden" name="property_values_{properties_number}" value="{property_values}">
+		<select name="default_value_{properties_number}" onChange="setDefaultValue({properties_number});"
+			style="width: 400px; color: #303030;"><!-- begin default_value -->
+			<option {default_value_selected} value="{default_value_value}">{default_value_description}<!-- end default_value -->
+		</select><br><!-- end default_value_block --> 
+		<input type="text" name="property_value_{properties_number}" value="{property_value}" size="50" style="width: 400px;">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="properties_delete_{properties_number}" {properties_delete} value="1">
+	</td>
+</tr><!-- END properties -->
+<tr class="usual">
+	<td colspan="4" align="right">
+		{ADD_MORE_PROPERTIES_QST} <input type="submit" value=" {ADD_BUTTON} " onClick="document.record.more_properties.value=1">&nbsp;
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="4" align="right">
+		<input type="submit" value=" {UPDATE_BUTTON} " onCLick="document.record.operation.value='save'">
+		<input type="submit" value="{DELETE_ALL_BUTTON}" onCLick="document.record.operation.value='delete';return confirm('{DELETE_ALL_QST} {AD_PROPERTIES_MSG}?');">
+		<input type="submit" value=" {CANCEL_BUTTON} " onCLick="document.record.operation.value='cancel'">&nbsp;
+	</td>
+</tr>
+</table>	
+</form>
+
+	</td>
+</tr>
+</table>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

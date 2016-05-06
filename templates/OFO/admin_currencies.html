@@ -1,0 +1,124 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {CURRENCIES_MSG} ::..</title>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+ 
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_lookup_tables_href}">{STATIC_TABLES_MSG}</a>&nbsp;&gt;&nbsp;<b>{CURRENCIES_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+	<!-- begin success -->
+	<table width="100%" border="0" cellspacing="1" cellpadding="5" class="headerbg">
+	<tr><td class="usual" align="center">
+		<div class="message">{success_message}</div>
+	</td></tr>
+	</table>
+	<br><!-- end success -->
+
+	<!-- begin errors -->
+	<table width="100%" border="0" cellspacing="1" cellpadding="5" class="errorbg">
+	<tr><td class="error" align="center">
+		{errors_list}
+	</td></tr>
+	</table>
+	<br><!-- end errors -->
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<td>
+<fieldset>
+<legend>{CURRENCIES_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<table border="0" cellpadding="6" cellspacing="1" width="100%"><!-- begin sorters -->
+<tr class="middle" align="center">
+	<td>
+		{sorter_currency_id}
+	</td>
+	<td>
+		{sorter_currency_title}
+	</td>
+	<td>
+		{sorter_currency_code}
+	</td>
+	<td>
+		{sorter_exchange_rate}
+	</td>
+	<td>
+		{sorter_is_default}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- end sorters --><!-- BEGIN records -->
+<tr class="usual" align="center">
+	<td>
+		{currency_id}
+	</td>
+	<td align="left">
+		&nbsp;{currency_title}
+	</td>
+	<td>
+		&nbsp;{currency_code}&nbsp;
+	</td>
+	<td>
+		{exchange_rate}
+	</td>
+	<td>
+		{is_default}
+	</td>
+	<td>
+		&nbsp;<a href="{admin_currency_href}?currency_id={currency_id}">{EDIT_MSG}</a>&nbsp;
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr>
+	<td colspan="6" class="usual">
+		&nbsp;{NO_RECORDS_MSG}
+	</td>
+</tr><!-- END no_records -->
+<tr>
+	<td colspan="6" class="middle" align="right">
+	<table width="100%" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td>
+			<a href="{admin_currency_href}?discount_type=1">{ADD_NEW_MSG}</a> | 
+			<a href="{admin_currencies_href}?operation=currencysource">{UPDATE_FROM_MSG} currencysource.com</a>
+		</td><!-- begin navigator_block -->
+		<td align="right">
+			&nbsp;{navigator}&nbsp;
+		</td><!-- end navigator_block -->
+	</tr>
+	</table>
+	</td>
+</tr>
+</table>	
+
+	</td>
+</tr>
+</table>
+</fieldset>
+
+</td>
+</tr></table>
+{admin_footer}
+</body>
+</html>

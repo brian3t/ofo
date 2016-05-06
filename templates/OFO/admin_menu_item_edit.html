@@ -1,0 +1,201 @@
+<html><head><title>..::{ADMINISTRATION_MSG} :: {EDIT_MENU_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+
+<script type="text/javascript">
+var menu_item_ids = new Array();
+var menu_item_titles = new Array();
+{script_code}
+
+function initValues() {
+	changeOrderSelect();
+}
+
+function changeOrderSelect() {
+	parent_id_select = document.getElementById("parent_menu_item_id");
+	order_select = document.getElementById("order_select");
+	before_menu_item_id = document.getElementById("before_menu_item_id");
+
+	if (parent_id_select != null && order_select != null) {
+		parent_id = parent_id_select.value;
+		order_select.options.length = 0;
+		var i = 0;
+		if (menu_item_ids[parent_id]) {
+			for(i = 0; i < menu_item_ids[parent_id].length; i++) {
+				order_select.options[i] = new Option("Before " + menu_item_titles[parent_id][i], menu_item_ids[parent_id][i]);
+				if (before_menu_item_id != null && before_menu_item_id.value == menu_item_ids[parent_id][i]) {
+					order_select.options[i].selected = true;
+				}
+			}
+		}
+		order_select.options[i] = new Option("At The End", 0);
+		if (before_menu_item_id != null && before_menu_item_id.value == 0) {
+			order_select.options[i].selected = true;
+		}
+	}
+}
+</script>
+
+<body class="commonbg" onload="initValues()">
+{admin_header} 
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_custom_menus_href}">{CUSTOM_MENUS_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_custom_menu_href}?menu_id={parent_menu_id}">{parent_menu_title}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_menu_items_href}?menu_id={parent_menu_id}">{MENU_ITEMS_MSG}</a>&nbsp;&gt;
+			<b>{EDIT_MENU_ITEM_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_MENU_ITEM_MSG}</legend>
+<table border="0" cellpadding="6" cellspacing="1" width="100%">
+<form action="{admin_menu_item_edit_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="menu_id" value="{menu_id}">
+<input type="hidden" name="menu_item_id" value="{menu_item_id}">
+<input type="hidden" name="menu_order" value="{menu_order}">
+<input type="hidden" name="before_menu_item_id" value="{before_menu_item_id}" id="before_menu_item_id">
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td colspan="2" class="usual">
+		<table cellpadding="0" cellspacing="0" width="100%">
+		<tr>
+			<td nowrap>
+				<input type="checkbox" name="show_logged" {show_logged} value="1"> 
+				{SHOW_MENU_FOR_VISITORS_MSG}
+				<br><input type="checkbox" name="show_non_logged" {show_non_logged} value="1"> 
+				{SHOW_MENU_FOR_NOT_LOGGED_MSG}
+			</td>
+			<td align="right">
+				<font class="small">asterisk (*) — required fields</font>
+      </td>
+		</tr>
+    </table>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{GENERAL_INFO_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_TITLE_MSG}
+	</td>
+	<td class="small">
+		<input class="field" type="text" name="menu_title" value="{menu_title}" size="50">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PARENT_ITEM_MSG}
+	</td>
+	<td>
+		<select id="parent_menu_item_id" name="parent_menu_item_id" onchange="changeOrderSelect()">
+			<option value="0"></option><!-- begin parent_menu_item_id -->
+			<option {parent_menu_item_id_selected} value="{parent_menu_item_id_value}">{parent_menu_item_id_description}<!-- end parent_menu_item_id -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_TARGET_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" name="menu_url" size="80" value="{menu_url}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_ORDER_NUMBER_MSG}
+	</td>
+	<td>
+	<select id="order_select" name="order_select">
+	</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_OPEN_MSG}
+	</td>
+	<td>
+	<select id="menu_target" name="menu_target">
+		<!-- BEGIN menu_target -->
+		<option {menu_target_selected} value="{menu_target_value}">{menu_target_description}
+		<!-- END menu_target -->
+	</select>
+	
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{IMAGES_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ACTIVE_IMAGE_MSG}
+	</td>
+	<td class="small">
+		<input class="field" type="text" name="menu_image_active" value="{menu_image_active}" size="50">
+		<a href="#" onClick="document.record.menu_image_active.value=''">{CLEAR_BUTTON}</a>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{NOT_ACTIVE_IMAGE_MSG}
+	</td>
+	<td class="small">
+		<input class="field" type="text" name="menu_image" value="{menu_image}" size="50">
+		<a href="#" onClick="document.record.menu_image.value=''">{CLEAR_BUTTON}</a>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ACTIVE_PREFIX_IMAGE_MSG}
+	</td>
+	<td class="small">
+		<input class="field" type="text" name="menu_prefix_active" value="{menu_prefix_active}" size="50">
+		<a href="#" onClick="document.record.menu_prefix.value=''">{CLEAR_BUTTON}</a>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{NON_ACTIVE_PREFIX_IMAGE_MSG}
+	</td>
+	<td class="small">
+		<input class="field" type="text" name="menu_prefix" value="{menu_prefix}" size="50">
+		<a href="#" onClick="document.record.menu_prefix_active.value=''">{CLEAR_BUTTON}</a>
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</form>	
+</table>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

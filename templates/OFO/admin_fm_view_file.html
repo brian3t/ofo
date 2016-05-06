@@ -1,0 +1,31 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {FILE_MANAGER_MSG} :: {UPLOAD_FILE_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ </head>
+<body class="commonbg">
+{admin_header} 
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a href="{admin_filemanager_href}?op=1&root_dir={dir_path}">{FILE_MANAGER_MSG}</a>&nbsp;&gt;&nbsp;<b>{VIEW_FILE_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+<br>
+<fieldset>
+<legend>{view_file}</legend>
+<table  border="0" cellspacing="1" cellpadding="0" width="100%">
+<TR>
+	<TD align=center>{view_content}</TD>
+</TR>
+<TR>
+	<TD align=center><BR><FORM method=post action="{admin_filemanager_href}?op=1&root_dir={dir_path}"><INPUT TYPE="submit" name=button value="{BACK_BUTTON}"></FORM></TD>
+</TR>
+</table>
+</fieldset>
+{admin_footer}
+</body>
+</html>

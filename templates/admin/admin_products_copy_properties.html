@@ -1,0 +1,375 @@
+<html><head><title>{ADMINISTRATION_MSG} :: {PRODUCT_SELECTION_MSG}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript" type= "text/javascript" src="../js/select.js"></script>
+<script language="JavaScript">
+<!--
+
+function clearSearch() {
+	document.item_list.sw.value = "";
+	document.item_list.submit();
+}
+	function changeStatus(x)
+	{
+		if (x == 1){
+			var checkedStatus = document.item_list.all_items.checked;
+			var itemsNumber = document.item_list.items_number.value;
+			for (var i = 1; i <= itemsNumber; i++) {
+				document.item_list.elements["id_item_" + i].checked = checkedStatus;
+			}
+		} else {
+			var checkedStatus = document.item_list.all_options.checked;
+			var optionsNumber = document.item_list.options_number.value;
+			for (var i = 1; i <= optionsNumber; i++) {
+				document.item_list.elements["id_option_" + i].checked = checkedStatus;
+			}
+		}
+		checkproducts();
+	}
+	
+	function err()
+	{
+		<!-- begin err_products -->alert('{SELECT_ONE_PRODUCT_MSG}');<!-- end err_products -->
+		<!-- begin err_product_types -->alert('{SELECT_ONE_PRODUCT_TYPE_MSG}');<!-- end err_product_types -->
+	}
+	
+	function checkproducts()
+	{
+		var itemId = "";
+		var itemsIds = "";
+		var orderId = "";
+		var ordersIds = "";
+		var itemsNumber = document.item_list.items_number.value;
+		var optionsNumber = document.item_list.options_number.value;
+		var totalSelected = 0; 
+		for (var i = 1; i <= itemsNumber; i++) {
+			if (document.item_list.elements["id_item_" + i].checked) {
+				document.getElementById("item_" + i).className = "SelectedRow";
+				totalSelected++;
+				itemId = document.item_list.elements["id_item_" + i].value;
+				if(itemsIds != "") { itemsIds += ","; }
+				itemsIds += itemId;
+			} else {
+				document.getElementById("item_" + i).className = "usual";
+			}
+		}
+		for (var i = 1; i <= optionsNumber; i++) {
+			if (document.item_list.elements["id_option_" + i].checked) {
+				document.getElementById("option_" + i).className = "SelectedRow";
+				//totalSelected++;
+				orderId = document.item_list.elements["id_option_" + i].value;
+				if(ordersIds != "") { ordersIds += ","; }
+				ordersIds += orderId;
+			} else {
+				document.getElementById("option_" + i).className = "usual";
+			}
+		}
+		var copyLink = document.getElementById("copy_link");
+		if (copyLink) {
+			<!-- begin copy_products -->
+			if (itemsIds == "") {
+				copyLink.href = "javascript:err()";
+				copyLink.innerHTML = "Copy components to selected Products";
+			} else {
+				copyLink.innerHTML = "Copy components to selected Products (" + totalSelected + ")";
+				copyLink.href = "{admin_copy_component_selection_href}?operation=copy&category_id={category_id_1}&item_type_id={item_type_id}&item_id={product_id}&options_ids=" + ordersIds + "&options_all={options_all}&items_ids=" + itemsIds + "&rnd={rnd}";
+			}<!-- end copy_products -->
+			<!-- begin copy_product_types -->
+			if (itemsIds == "") {
+				copyLink.href = "javascript:err()";
+				copyLink.innerHTML = "Copy components to selected Product Types";
+			} else {
+				copyLink.innerHTML = "Copy components to selected Product Types (" + totalSelected + ")";
+				copyLink.href = "{admin_copy_component_selection_href}?operation=copy&category_id={category_id_1}&item_type_id={item_type_id}&item_id={product_id}&options_ids=" + ordersIds + "&options_all={options_all}&items_ids=" + itemsIds + "&rnd={rnd}";
+			}<!-- end copy_product_types -->
+		}
+	}
+
+//-->
+</script>
+</head>
+
+<body class="commonbg" <!-- begin onload -->onload="checkproducts();"<!-- end onload -->>
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			<!-- BEGIN product_path -->
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_items_list_href}">{PRODUCTS_MSG}</a>&nbsp;&gt;&nbsp;<!-- BEGIN tree --><a 
+			href="{admin_items_list_href}?category_id={tree_cat_id}">{tree_cat_name}</a>&nbsp;&gt;&nbsp;<!-- END tree --><a 
+			href="{admin_items_list_href}?category_id={category_id_1}">{tree_current_name}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_product_href}?category_id={category_id_1}&item_id={product_id}">{item_name}</a>&nbsp;&gt;&nbsp;<b>{OPTIONS_AND_COMPONENTS_MSG}</b>
+			<!-- END product_path -->
+			<!-- BEGIN type_path -->
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_items_list_href}">{PRODUCTS_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_item_types_href}">{PRODUCTS_MSG} {TYPES_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_item_type_href}?item_type_id={item_type_id}">{item_type_name}</a>&nbsp;&gt;&nbsp;<b>{OPTIONS_AND_COMPONENTS_MSG}</b>
+			<!-- END type_path -->
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<form action="{admin_copy_component_selection_href}" name="item_list">
+<input type="hidden" name="operation" value="1">
+<input type="hidden" name="category_id" value="{category_id_1}">
+<input type="hidden" name="item_id" value="{product_id}">
+<input type="hidden" name="item_type_id" value="{item_type_id}">
+<input type="hidden" name="options_ids" value="{options_ids}">
+<input type="hidden" name="form_id" value="{form_id}">
+<input type="hidden" name="items_number" value="{onpage}">
+<input type="hidden" name="options_number" value="{onpage_options}">
+
+<fieldset>
+<legend>{OPTIONS_AND_COMPONENTS_MSG}</legend>
+
+	<table cellspacing="1" cellpadding="5" border="0" width="100%" align="center">
+	<!-- begin options_title_copy -->
+	<tr class="middle" align="center">
+		<td>
+			<input type="checkbox" name="all_options" value="1" onClick="changeStatus(2);">
+		</td>
+		<td>
+			&nbsp;{ID_MSG}
+		</td>
+		<td>
+			&nbsp;{OPTION_NAME_MSG}
+		</td>
+		<td>
+			&nbsp;{ADMIN_ORDER_MSG}
+		</td>
+		<td>
+			&nbsp;{TYPE_MSG}
+		</td>
+	</tr>
+	<!-- end options_title_copy -->
+
+	<!-- begin options_title_add -->
+	<tr class="SelectedRow" align="center">
+		<td align="left" colspan="4">
+		<b>The below options and components:</b>
+		</td>
+	</tr>
+	<tr class="middle" align="center">
+		<td>
+			&nbsp;{ID_MSG}
+		</td>
+		<td>
+			&nbsp;{OPTION_NAME_MSG}
+		</td>
+		<td>
+			&nbsp;{ADMIN_ORDER_MSG}
+		</td>
+		<td>
+			&nbsp;{TYPE_MSG}
+		</td>
+	</tr>
+	<!-- end options_title_add -->
+
+	<!-- begin options_copy -->
+	<tr class="usual" id="option_{onpage_id_opt}">
+		<td align="center" width="5%">
+			<input type="checkbox" checked name="id_option_{onpage_id_opt}" value="{property_id}" onClick="checkproducts();" >
+		</td>
+		<td align="center">
+			&nbsp;{property_id}&nbsp;
+		</td>
+		<td>
+			&nbsp;{property_name}
+		</td>
+		<td align="center">
+			&nbsp;{property_order}
+		</td>
+		<td align="center">
+			&nbsp;{property_type}
+		</td>
+	</tr>
+	<!-- end options_copy -->
+	
+	<!-- begin options_add -->
+	<tr class="usual" id="option_{onpage_id_opt}">
+		<td align="center">
+			&nbsp;{property_id}&nbsp;
+		</td>
+		<td>
+			&nbsp;{property_name}
+		</td>
+		<td align="center">
+			&nbsp;{property_order}
+		</td>
+		<td align="center">
+			&nbsp;{property_type}
+		</td>
+	</tr>
+	<!-- end options_add -->
+</table>
+</fieldset>
+	
+<br><br>
+
+	<!-- begin search_results -->
+	<div class="message" align="center">{found_message}</div>
+	<!-- end search_results -->
+	<!-- begin block_search -->
+	<table cellspacing="1" cellpadding="5" border="0" width="100%" align="center">
+	<tr>
+		<td align="center">
+			<input type="text" name="sw" value="{sw}" size="40" class="field">&nbsp;
+			<input type="submit" value="Search" class="submit">&nbsp;
+			<input type="submit" value="{CLEAR_BUTTON}" class="submit" onClick="clearSearch()">
+		</td>
+	</tr>
+	</table>
+	<!-- end block_search -->
+
+<fieldset>
+<legend>{types_or_products}</legend>
+	<table cellspacing="1" cellpadding="5" border="0" width="100%" align="center">
+	
+	<!-- begin products_title_add -->
+	<tr class="SelectedRow" align="center">
+		<td align="left" colspan="6">
+			<b>{message_copy_or_error}</b>
+		</td>
+	</tr>
+	<tr class="middle" align="center">
+		<td>{ID_MSG}</td>
+		<!-- begin add_items_top -->
+		<td>{PROD_NAME_MSG}</td>
+		<td>{PROD_CODE_MSG}</td>
+		<td>{MANUFACTURER_CODE_MSG}</td>
+		<td>{PRICE_MSG}</td>
+		<!-- end add_items_top -->
+		<!-- begin add_item_types_top -->
+		<td colspan="4">{TYPE_NAME_MSG}</td>
+		<!-- end add_item_types_top -->
+	</tr>
+	<!-- end products_title_add -->
+	
+	<!-- begin products_sorters -->
+	<tr class="middle" align="center">
+		<td width="3%"><input type="checkbox" name="all_items" value="1" onClick="changeStatus(1);"></td>
+		<td width="5%">{sorter_item_id}</td>
+		<!-- begin sorter_items_top -->
+		<td>{sorter_item_name}</td>
+		<td>{sorter_item_code}</td>
+		<td>{sorter_manufacturer_code}</td>
+		<td>{sorter_price}</td>
+		<!-- end sorter_items_top -->
+		<!-- begin sorter_item_types_top -->
+		<td colspan="4">{sorter_item_type_name}</td>
+		<!-- end sorter_item_types_top -->
+	</tr><!-- end products_sorters -->
+	
+	<!-- begin products_copy -->
+	<tr class="usual" id="item_{onpage_id}">
+		<td align="center" class="small">
+			<input name="id_item_{onpage_id}" type="checkbox" value="{item_id}" onClick="checkproducts();">
+		</td>
+		<td align="center">
+			{item_id}
+		</td>
+		<!-- begin record_items_top -->
+		<td >&nbsp;{item_name}</td>
+		<td>&nbsp;{item_code}</td>
+		<td >&nbsp;{manufacturer_code}</td>
+		<td align="right">&nbsp;{price}</td>
+		<!-- end record_items_top -->
+		<!-- begin record_item_types_top -->
+		<td align="left" colspan="4">{item_name}</td>
+		<!-- end record_item_types_top -->
+	</tr><!-- end products_copy -->
+	
+	<!-- begin products_add -->
+	<tr class="usual" align="center">
+		<td align="center">
+			{item_id}
+		</td>
+		<td align="left">
+			&nbsp;<a href="admin_product.php?category_id={category_id_2}&item_id={item_id}">{product_copy}</a><br>
+			<span style="color: black; font-size: 8pt">
+			&nbsp;<a class="small" href="admin_properties.php?category_id={category_id_2}&item_id={item_id}">{OPTIONS_AND_COMPONENTS_MSG}</a>
+			</span>
+		</td>
+		<td>
+			&nbsp;{item_code}
+		</td>
+		<td >
+			&nbsp;{manufacturer_code}
+		</td>
+		<td align="right">
+			&nbsp;{price}
+		</td>
+	</tr>
+	<!-- end products_add -->
+	
+	<!-- begin types_add -->
+	<tr class="usual" align="center">
+		<td align="center">
+			{item_id_type}
+		</td>
+		<td align="left" colspan="4">
+			&nbsp;<a href="admin_item_type.php?item_type_id={item_id_type}">{product_copy}</a><br>
+			<span style="color: black; font-size: 8pt">
+			&nbsp;<a class="small" href="admin_properties.php?item_type_id={item_id_type}">{OPTIONS_AND_COMPONENTS_MSG}</a>
+			</span>
+		</td>
+	</tr>
+	<!-- end types_add -->
+
+	<!-- begin error_copy -->
+	<tr>
+		<td colspan="5" class="middle" align="left"><a href="{admin_copy_component_selection_href}?category_id={category_id_1}&item_type_id={item_type_id}&item_id={product_id}&options_ids={options_all}">{ADD_COMPONENTS_TO_PRODUCTS_MSG}</a></td>
+	</tr>
+	<!-- end error_copy -->
+	<!-- begin error_copy_types -->
+	<tr>
+		<td colspan="5" class="middle" align="left"><a href="{admin_copy_component_selection_href}?category_id={category_id_1}&item_type_id={item_type_id}&item_id={product_id}&options_ids={options_all}">{ADD_COMPONENTS_TO_PRODUCT_TYPES_MSG}</a></td>
+	</tr>
+	<!-- end error_copy_types -->
+	
+	<!-- begin copy_selected -->
+	<tr class="middle">
+		<td colspan="6" align="left">&nbsp;<a href="jabascript:err()" id="copy_link">{COPY_COMPONENTS_TO_PRODUCTS_MSG}</a>&nbsp;</td>
+	</tr>
+	<!-- end copy_selected -->
+	
+	<!-- begin copy_add -->
+	<tr class="middle">
+		<td colspan="5" align="left">&nbsp;<a href="{admin_products_copy_properties_href}?category_id={category_id_1}&item_type_id={item_type_id}&item_id={product_id}&options_ids={options_all}" id="add_link">{ADD_COMPONENTS_TO_PRODUCTS_MSG}</a>&nbsp;</td>
+	</tr>
+	<!-- end copy_add -->
+	
+	<!-- begin copy_selected_types -->
+	<tr class="middle">
+		<td colspan="6" align="left">&nbsp;<a href="jabascript:err()" id="copy_link">{COPY_COMPONENTS_TO_PRODUCT_TYPES_MSG}</a>&nbsp;</td>
+	</tr>
+	<!-- end copy_selected_types -->
+	
+	<!-- begin copy_add_types -->
+	<tr class="middle">
+		<td colspan="5" align="left">&nbsp;<a href="{admin_products_copy_properties_href}?category_id={category_id_1}&item_type_id={item_type_id}&item_id={product_id}&options_ids={options_all}" id="add_link">{ADD_COMPONENTS_TO_PRODUCT_TYPES_MSG}</a>&nbsp;</td>
+	</tr>
+	<!-- end copy_add_types -->
+
+	<!-- begin navigator_block -->
+	<tr class="middle">
+		<td colspan="6">&nbsp;{navigator}&nbsp;</td>
+	</tr>
+	<!-- end navigator_block -->
+	
+	</table>
+
+</form>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

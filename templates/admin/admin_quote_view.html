@@ -1,0 +1,218 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {ADMIN_QUOTE_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+
+<!--
+body, td { font-family:  "Verdana", "Tahoma", "Arial"; font-size: 10pt; }
+//-->
+</style>
+
+<script language="javascript">
+<!--
+
+function changeLocation() {
+  
+  window.location = "admin_quote.php?quote_id={quote_id}";
+}
+
+function sendMail()
+{
+  var send_mail = document.getElementById("send_mail");
+  //alert (flag_mail);
+  if (confirm("Are you sure you want to send this mail???"))
+  {
+  	send_mail.value = "1";
+  	document.admin_quote_form.send_mail.checked=true;
+  }	else {
+  	send_mail.value = "0";
+  document.admin_quote_form.send_mail.checked=false;
+  }	
+
+// 	document.admin_quote_form.submit();
+}
+
+function ask_for()
+{
+  var send_mail = document.getElementById("operation");
+	if (confirm('Are you sure you want to submit this quote?'))
+	{
+  	send_mail.value = "save";
+		document.admin_quote_form.submit();
+	}
+}
+-->
+</script>
+
+</head>
+<body>
+{admin_header}
+<form name="admin_quote_form" action="admin_quote_view.php" method="GET">
+<input type="hidden" name="quote_id" id="quote_id" value="{quote_id}">
+<input type="hidden" name="operation" id="operation" value="">
+<div align=right> <a href="admin_quote_print.php?quote_id={quote_id}"><img src="../images/ico-print.gif" border="0"> Printer Friendly</a></div>
+
+
+<!-- begin packing -->
+
+<!-- begin page_break -->
+<br style="page-break-after: always;">
+<!-- end page_break -->
+
+<div align="center">
+&nbsp;<br>
+
+<table width="600" cellspacing="0" cellpadding="0" border="0" align="center">
+<tr>
+	<td valign="top">
+		<!-- begin packing_logo -->		
+		<img align="right" src="{image_path}" {image_width} {image_height} width="242" height="72">
+		<!-- end packing_logo -->		
+
+		{packing_header}
+		
+	</td>
+</tr>
+</table>
+
+<!-- begin error1 -->
+		<center><font color=red>Please insert at the least one feature!</font></center>
+<!-- end error1 -->
+<!-- begin error2 -->
+		<center><font color=red>There is no quote with such id!</font></center>
+<!-- end error2 -->
+<!-- begin for_letter -->
+&nbsp;
+<!--begin info_block -->
+<table cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+<tr valign="top">
+	<td width="50%">
+		<b>{ADMIN_QUOTE_MSG} {DATE_MSG}</b>: {date_added}
+	</td>
+</tr>
+<tr>
+	<td width="50%">
+		<b>{ADMIN_QUOTE_MSG} No</b>: {quote_id}
+	</td>
+</tr>
+</table>
+&nbsp;
+
+<table cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+<tr valign="top">
+	<td>
+		<b><u>{ADMIN_QUOTE_MSG} to:</u></b><br><br>
+		{USER_NAME_MSG}: &nbsp;&nbsp;{user_name}<br>
+		{USER_EMAIL_MSG}: &nbsp;&nbsp;{user_email}<br>
+	</td>
+</tr>
+</table>
+<!-- end info_block -->
+<br>
+&nbsp;
+<!-- begin items_table -->
+<table width="600" cellspacing="1" cellpadding="3" border="1" align="center">
+<tr align="center">
+	<td width="10%" bgcolor="white">
+		<b>#</b>
+	</td>
+	<td width="60%" bgcolor="white">
+		<b>Feature</b>
+	</td>
+	<td width="20%" bgcolor="white">
+		<b>{PRICE_MSG}</b>
+	</td>
+	<td width="20%" bgcolor="white">
+		<b>{DATE_DUE_MSG}</b>
+	</td>
+</tr><!-- BEGIN items -->
+<tr bgcolor="white" valign="top">
+	<td width="10%" align="center">
+		{counter}
+	</td>
+	<td width="60%">
+		{feature_description}
+	</td>
+	<td width="20%" align="center">
+		&nbsp;{price}&nbsp;
+	</td>
+	<td width="20%" align="center">
+		{date_due}
+	</td>
+	
+</tr>
+
+<!-- END items -->
+
+<!-- end items_table -->
+<!-- end for_letter -->
+</table>
+<br>
+<br>
+<!-- begin quote_history_header -->
+	<table cellpadding="2" cellspacing="2" border="0">
+		<tr class="middle">
+			<td>
+				{OLD_STATUS_MSG}
+			</td>
+			<td>
+				{NEW_STATUS_MSG}
+			</td>
+			<td>
+				{MODIFICATION_DATE_MSG}
+			</td>
+			<td>
+				{CHANGED_BY_MSG}
+			</td>
+		</tr>
+<!-- end quote_history_header -->
+<!-- begin quote_history-->
+		<tr class="usual" align=center>
+			<td>
+				{old_status}
+			</td>
+			<td>
+				{new_status}
+			</td>
+			<td>
+				{date_added}
+			</td>
+			<td>
+				{admin_name}
+			</td>
+		</tr>	
+<!-- end quote_history-->
+</table>
+<table align=center>
+	<tr class="usual">
+		<td colspan=4 >
+		&nbsp;{ADMIN_QUOTE_MSG} {STATUS_MSG}: <select name="quote_status_id"><!-- begin quote_status_id -->
+							<option {quote_status_id_selected} value="{quote_status_id_value}">{quote_status_id_description}
+							<!-- end quote_status_id -->
+						</select>
+		</td>
+	</tr>
+</table>
+
+<!-- begin items_footer -->
+<table align=center>
+<tr align=center>
+<td>
+&nbsp;<br>&nbsp;
+Send quote to customer: &nbsp;&nbsp;
+<input type="checkbox" name="send_mail" id="send_mail" value="{send_mail}" onClick="sendMail();">  
+<br>
+<br>
+<input type="button" value="Submit {ADMIN_QUOTE_MSG}" onClick="ask_for();">
+<input type="button" value="Back to {EDIT_MSG}ing" onClick="changeLocation();">
+<!--<a href="admin_quote_view.php" onClick="sendMail(); return false;">Send</a>-->
+</td>
+</tr>
+</table>
+<!-- end items_footer -->
+
+
+<!-- end packing -->
+</form>
+{admin_footer}
+</body>
+</html>

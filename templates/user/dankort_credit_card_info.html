@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{CHECKOUT_PAYMENT_TITLE}</title></head>
+<base href="{absolute_url}">
+<link type="text/css" rel="stylesheet" href="{css_file}">
+<body class="commonbg">
+
+<div class="block-order-payment-form">
+
+<a name="payment_form"></a>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{CHECKOUT_PAYMENT_TITLE}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr class="headerbg"> 
+		<td class="blockTD">
+
+<form action="{payment_url}" name="payment" method="POST">
+<!-- begin parameters -->
+<input type="hidden" name="{parameter_name}" value="{parameter_value}">
+<!-- end parameters -->
+<table cellspacing="1" width="100%" border="0" class="padding6px"><!-- BEGIN errors -->
+<tr>
+	<td colspan="2" class="usualbg" align="center">
+		<div class="errorbg">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr>
+	<td colspan="{sc_colspan}" align="right"><b>{CART_TOTAL_MSG}</b></td>
+	<td align="right">
+		<span class="orderprice" id="order_total_desc">{order_total}</span>
+	</td>
+</tr>
+<tr>
+	<td class="usualbg">
+		{CC_NUMBER_FIELD}&nbsp;<span class="required"></span>
+	</td>
+	<td class="usualbg">
+		<input class="text" type="text" name="CardNumber" size="50" value="">
+	</td>
+</tr>
+<tr>
+	<td class="usualbg">
+		{CC_EXPIRY_DATE_FIELD}&nbsp;<span class="required"></span>
+	</td>
+	<td class="usualbg">
+		<select class="text" name="ExpireMonth"><!-- begin cc_expiry_month -->
+			<option {cc_expiry_month_selected} value="{cc_expiry_month_value}">{cc_expiry_month_description}<!-- end cc_expiry_month -->
+		</select>
+
+		<select class="text" name="ExpireYear"><!-- begin cc_expiry_year -->
+			<option {cc_expiry_year_selected} value="{cc_expiry_year_value}">{cc_expiry_year_description}<!-- end cc_expiry_year -->
+		</select>
+		</font>
+	</td>
+</tr>
+<tr>
+	<td class="usualbg">
+		{CC_SECURITY_CODE_FIELD}&nbsp;<span class="required"></span>
+	</td>
+	<td class="usualbg">
+		<input class="text" type=text name="CardCVC" width=10 value=""> 
+	</td>
+</tr>
+<tr>
+	<td colspan="2" class="middlebg" align="right">
+		<span class="submit"><input class="submit" id="continue" type="submit" value="{CONTINUE_BUTTON}"></span>
+	</td>
+</tr>
+</table>
+</form>
+
+	</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+</div>
+
+</body>
+</html>

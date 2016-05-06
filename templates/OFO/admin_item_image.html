@@ -1,0 +1,146 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_IMAGE_MSG} ::..</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript">
+<!--
+	function openWindow(pagename, filetype)
+	{
+		var uploadWin = window.open (pagename + '?filetype=' + filetype, 'uploadWin', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=400,height=300');
+		uploadWin.focus();
+	}
+
+	function setFileName(filename, filetype)
+	{
+		var siteUrl = '{site_url}';
+		if(filename != "")
+		{
+			if(filetype == "small_image") {
+				document.record.image_small.value = siteUrl + "images/small/" + filename;
+				document.record.image_small.focus();
+			} else if(filetype == "big_image") {
+				document.record.image_large.value = siteUrl + "images/big/" + filename;
+				document.record.image_large.focus();
+			} else if(filetype == "super_image") {
+				document.record.image_super.value = siteUrl + "images/super/" + filename;
+				document.record.image_super.focus();
+			}
+		}
+	}
+//-->
+</script> 
+
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_items_list_href}">{PRODUCTS_MSG}</a>&nbsp;&gt;&nbsp;<!-- BEGIN tree --><a 
+			href="{admin_items_list_href}?category_id={tree_cat_id}">{tree_cat_name}</a>&nbsp;&gt;&nbsp;<!-- END tree --><a 
+			href="{admin_items_list_href}?category_id={tree_current_id}">{tree_current_name}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_product_href}?category_id={category_id}&item_id={item_id}">{item_name}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_item_images_href}?category_id={category_id}&item_id={item_id}">{ADMIN_PRODUCT_MSG} {IMAGES_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_IMAGE_MSG}</b>
+
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_IMAGE_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<form action="{admin_item_image_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="image_id" value="{image_id}">
+<input type="hidden" name="item_id" value="{item_id}">
+<input type="hidden" name="category_id" value="{category_id}">
+<table border="0" cellspacing="1" cellpadding="6" width="100%"><!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_TITLE_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" size="60" name="image_title" value="{image_title}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_POSITION_MSG} *
+	</td>
+	<td><!-- begin image_position -->
+		<input type="radio" name="image_position" {image_position_checked} value="{image_position_value}">{image_position_description}<!-- end image_position -->
+</tr>	
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_SMALL_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" size="60" name="image_small" value="{image_small}">
+		&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'small_image')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+		&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'small_image')"><b>{SELECT_IMAGE_MSG}</b></a>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_LARGE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="60" name="image_large" value="{image_large}">
+		&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'big_image')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+		&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'big_image')"><b>{SELECT_IMAGE_MSG}</b></a>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_SUPER_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="60" name="image_super" value="{image_super}">
+		&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'super_image')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+		&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'super_image')"><b>{SELECT_IMAGE_MSG}</b></a>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{AD_IMAGE_DESC_MSG} 
+	</td>
+	<td>
+		<textarea rows="5" cols="60" name="image_description">{image_description}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onclick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</form>	
+
+	</td>
+</tr>
+</table>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

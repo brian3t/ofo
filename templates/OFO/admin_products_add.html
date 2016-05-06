@@ -1,0 +1,161 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_PRODUCT_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<link rel="stylesheet" href="../styles/editor.css" type="text/css">
+</head>
+
+<body class="commonbg">
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header">
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_items_list_href}">{PRODUCTS_MSG}</a>&nbsp;&gt;&nbsp;<!-- BEGIN tree --><a
+			href="{admin_items_list_href}?category_id={tree_cat_id}">{tree_cat_name}</a>&nbsp;&gt;&nbsp;<!-- END tree --><a
+			href="{admin_items_list_href}?category_id={tree_current_id}">{tree_current_name}</a>&nbsp;&gt;&nbsp;<b>{EDIT_PRODUCT_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br/>
+
+<fieldset>
+<legend>{EDIT_PRODUCT_MSG}</legend>
+
+<form action="{admin_products_add_href}" name="record" method="POST" enctype="multipart/form-data">
+<input type="hidden" name="operation" value="save">
+
+
+<table width="100%" border="0" cellspacing="1" cellpadding="6">
+<tr class="middle">
+	<td colspan="4">
+		{PROD_NAME_MSG}*
+	</td>
+	<td colspan="3">
+		{IMAGE_MSG}*
+	</td>	
+</tr>
+<tr class="middle">
+	<td>
+		{PROD_TYPE_MSG}*
+	</td>
+	<td>
+		{PROD_CODE_MSG}
+	</td>
+	<td>
+		{MANUFACTURER_NAME_MSG}
+	</td>
+	<td>
+		{MANUFACTURER_CODE_MSG}
+	</td>
+	<td>
+		{PROD_LIST_PRICE_MSG}*
+	</td>
+	<td>
+		{PROD_TRADE_PRICE_MSG}
+	</td>
+	<td>
+		{PROD_BUYING_PRICE_MSG}
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="3">
+		{SHORT_DESCRIPTION_MSG}*
+	</td>
+	<td colspan="4">
+		{FULL_DESCRIPTION_MSG}*
+	</td>	
+</tr
+<tr class="middle">
+	<td colspan="3">		
+		{HIGHLIGHTS_MSG}
+	</td>	
+	<td colspan="4">		
+		{SPECIAL_OFFER_MSG}
+	</td>
+</tr>
+<!-- BEGIN items-->
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="7" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td colspan="4">
+		<input class="field" type="text" name="item_name_{items_number}" value="{item_name}" size="120" maxlength="255">
+	</td>
+	<td colspan="3">
+		<input class="field" type="file" name="file_{items_number}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		<select name="item_type_id_{items_number}"><!-- begin item_type_id -->
+			<option {item_type_id_selected} value="{item_type_id_value}">{item_type_id_description}<!-- end item_type_id -->
+		</select>
+	</td>
+	<td>
+		<input class="field" type="text" name="item_code_{items_number}" value="{item_code}" size="40" maxlength="64">
+	</td>
+	<td>
+		<select name="manufacturer_id_{items_number}"><!-- begin manufacturer_id -->
+			<option {manufacturer_id_selected} value="{manufacturer_id_value}">{manufacturer_id_description}<!-- end manufacturer_id -->
+		</select>
+	</td>
+	<td>
+		<input class="field" type="text" name="manufacturer_code_{items_number}" value="{manufacturer_code}" size="20" maxlength="255">
+	</td>
+	<td>
+		<input class="field" type="text" name="price_{items_number}" value="{price}" size="10" maxlength="16">
+	</td>
+	<td>
+		<input class="field" type="text" name="trade_price_{items_number}" value="{trade_price}" size="10" maxlength="16">
+	</td>
+	<td>
+		<input class="field" type="text" name="buying_price_{items_number}" value="{buying_price}" size="10" maxlength="16">
+	</td>
+</tr>
+<tr class="usual">
+	<td colspan="3">
+		<textarea class="text" name="short_description_{items_number}" style="display: block; width: 100%; height: 100px;">{short_description}</textarea>
+	</td>
+	<td colspan="4">
+		<textarea class="text" name="full_description_{items_number}" style="display: block; width: 100%; height: 100px;">{full_description}</textarea>
+	</td>
+</tr>
+<tr class="usual">
+	<td colspan="3">
+		<textarea class="text" name="features_{items_number}" style="display: block; width: 100%; height: 100px;">{features}</textarea>
+	</td>
+	<td colspan="4">
+		<textarea class="text" name="special_offer_{items_number}" style="display: block; width: 100%; height: 100px;">{special_offer}</textarea>
+	</td>
+</tr>
+
+<tr>
+	<td colspan="7">
+		&nbsp;
+	</td>
+</tr>
+<!-- END items-->
+<tr class="middle">
+	<td colspan="7" align="left">
+		<input class="submit" type="submit" value="{APPLY_MSG}" onCLick="document.record.operation.value='apply';"> &nbsp; &nbsp;
+		<input class="submit" type="submit" value="{SAVE_AND_PROCESS_MSG}" onCLick="document.record.operation.value='save';"> &nbsp; &nbsp;
+	</td>
+</tr>
+</table>
+
+
+
+</form>
+</fieldset>
+
+
+{admin_footer}
+</html>

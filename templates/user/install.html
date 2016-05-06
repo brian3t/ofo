@@ -1,0 +1,686 @@
+<!-- BEGIN page_header -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{INSTALL_TITLE}</title>
+<link rel="stylesheet" href="{css_file}" type="text/css">
+
+<script language="JavaScript" type="text/javascript">
+<!--
+
+	function changeLibrary() 
+	{
+		var dbLibrary = document.installation.db_library.options[document.installation.db_library.selectedIndex].value;
+		var dbType = document.getElementById("db_type_id").style;
+		if (dbLibrary == 'odbc') 	{
+			dbType.display = 'block'; 
+		} else {
+			dbType.display = 'none'; 
+		}
+	}
+
+	function selectFormat(textControl, selectControl)
+	{
+		var formatValue = selectControl.options[selectControl.selectedIndex].value;
+		if(formatValue != "") {
+			textControl.value = formatValue;
+		}
+	}
+
+	function openWindow(pagename, formatType)
+	{
+		var dateFormatWin = window.open (pagename + '?format_type=' + formatType, formatType, 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=450,height=350');
+		dateFormatWin.focus();
+	}
+
+	function setDateFormat(dateFormat, formatType)
+	{
+		if(dateFormat != '')
+		{
+			if(formatType == 'datetime_show')
+			{
+				document.installation.datetime_show_format.value = dateFormat;
+				document.installation.datetime_show_format.focus();
+			}
+			else if(formatType == 'date_show')
+			{
+				document.installation.date_show_format.value = dateFormat;
+				document.installation.date_show_format.focus();
+			}
+			else if(formatType == 'datetime_edit')
+			{
+				document.installation.datetime_edit_format.value = dateFormat;
+				document.installation.datetime_edit_format.focus();
+			}
+			else if(formatType == 'date_edit')
+			{
+				document.installation.date_edit_format.value = dateFormat;
+				document.installation.date_edit_format.focus();
+			}
+		}
+	}
+
+	function updateProgress(percents)
+	{
+		document.populate_db.db_progress.value = percents + '%';
+		var populateBlock = document.getElementById('populate_block');
+		if (populateBlock) {
+			if(percents > 0 && percents < 100) {
+				populateBlock.style.display = 'block'; 
+			} else {
+				populateBlock.style.display = 'none'; 
+			}
+		}
+	}
+	
+	function checkPopulate()
+	{
+		var checked = document.installation.db_populate.checked;
+		if (!checked) {
+			document.installation.db_test_data.checked = false;
+		}
+	}
+
+	function checkTestData()
+	{
+		var checked = document.installation.db_test_data.checked;
+		if (checked) {
+			document.installation.db_populate.checked = true;
+		}
+	}
+	function mouseX(evt) {
+		if (evt.pageX) { 
+			return evt.pageX; 
+		} else if (evt.clientX) {
+			return evt.clientX + (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
+		} else { 
+			return null;
+		}
+	}
+
+	function mouseY(evt) {
+		if (evt.pageY) { 
+			return evt.pageY;
+		} else if (evt.clientY) {
+			return evt.clientY + (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
+		} else { 
+			return null;
+		}
+	}
+
+	function showDescription(event, block_name)
+	{
+		// Hide all help notes
+		var helpNotes = new Array('db_type', 'db_host', 'db_name', 'db_user_pass');
+		for (i = 0; i < helpNotes.length; i++) {
+			var blockId = document.getElementById(helpNotes[i] + '_desc');
+			if (blockId) {
+				blockId.style.display = 'none';
+			}
+		}
+
+		var blockId = document.getElementById(block_name + '_desc');
+		if (blockId) {
+			/*
+			var leftPos = mouseX(event) + 15;
+			var topPos  = mouseY(event) + 15;
+			blockId.style.left = leftPos;
+			blockId.style.top = topPos;
+			*/
+			blockId.style.display = 'block';
+		}
+		
+	}
+
+	function hideDescription(event, block_name)
+	{
+		var blockId = document.getElementById(block_name + '_desc');
+		if (blockId) {
+			//blockId.style.display = 'none';
+		}
+	}
+
+//-->
+</script>
+</head>
+
+<body>
+
+<div id="populate_block" style="display: none;">
+<table width="900" align="center" cellspacing="0" cellpadding="0" border="0" class="mainTable75"><tr><td>
+	<table width=100% cellspacing="0" cellpadding="0" border="0" class="installTitleTop">
+	<form name="populate_db">
+	<tr><td></td></tr>
+	<tr>
+		<td>
+			<font class="bigText">{DB_PROGRESS_MSG}: &nbsp; <input type="text" class="db-progr" name="db_progress" value="0%" style="border:none; color: blue;"></font>
+		</td>
+	</tr>
+	</form>
+	</table>
+</tr></td>
+</table>
+</div>
+
+<!--table width="700" align="center" cellspacing="0" cellpadding="0" border="0">
+<tr>
+	<td><a href="http://www.viart.com/" target="_blank"><img src="images/installation/install-logo.gif" width="65" height="79" border="0" alt=""></a></td>
+	<td align="right" valign="top"><a href="http://www.viart.com/online_store_installation_wizard" target="_blank"><img src="images/installation/install-help.gif" width="43" height="14" border="0" alt=""></a></td>
+</tr>
+</table-->
+
+<!-- <table width="75%" align="center">
+<tr>
+	<td>
+		<h2>{INSTALL_TITLE}</h2>
+	</td>
+</tr>
+</table> -->
+
+<!-- END page_header -->
+
+<!-- BEGIN page_body -->
+<form action="{install_href}" name="installation" method="post">
+<input type="hidden" name="step" value="{step}">
+<input type="hidden" name="operation" value="save">
+
+<table width="900" align="center" cellspacing="0" cellpadding="0" border="0" class="mainTable75">
+<tr><td>
+
+<!-- BEGIN step_1 -->
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="installTitleTop">
+	<tr> 
+		<td rowspan="2" width="65"><a href="http://www.viart.com/" target="_blank"><img src="images/installation/install-logo.gif" width="65" height="79" border="0" alt=""></a></td>
+		<td>&nbsp;</td>
+		<td width="143"><img src="images/installation/install-db-setup-a.gif" width="143" height="18" alt="{INSTALL_STEP_1_TITLE}"></td>
+		<td>&nbsp;</td>
+		<td width="141"><img src="images/installation/install-admin-options.gif" width="141" height="18" alt="{INSTALL_STEP_2_TITLE}"></td>
+		<td>&nbsp;</td>
+		<td width="161"><img src="images/installation/install-choose-template.gif" width="161" height="18" alt="{INSTALL_STEP_3_TITLE}"></td>
+		<td>&nbsp;</td>
+		<td width="149"><img src="images/installation/install-final.gif" width="149" height="18" alt="{INSTALL_FINAL_TITLE}"></td>
+	</tr>
+	<tr>
+		<td align="right" valign="bottom" colspan="8">
+			<a href="mailto:support@viart.com"><img src="images/installation/install-support.gif" width="92" height="24" border="0" alt="" style="margin-right: 15px;"></a>
+			<a href="http://www.viart.com/online_store_installation_wizard" target="_blank"><img src="images/installation/install-help.gif" width="43" height="14" vspace="5" border="0" alt=""></a>
+		</td>
+	</tr>
+</table>
+
+	<h5>
+		{INSTALL_STEP_1_DESC}<br>
+		<!-- language selection -->
+		&nbsp;<a href="{install_href}?language_code=en"><img border="0" src="images/flags/gb.gif" width="18" height="12" alt="English" title="English"></a>
+		&nbsp;<a href="{install_href}?language_code=es"><img border="0" src="images/flags/es.gif" width="18" height="12" alt="Spanish" title="Spanish"></a>
+		&nbsp;<a href="{install_href}?language_code=nl"><img border="0" src="images/flags/nl.gif" width="18" height="12" alt="Dutch" title="Dutch"></a>
+		&nbsp;<a href="{install_href}?language_code=el"><img border="0" src="images/flags/gr.gif" width="18" height="12" alt="Greek" title="Greek"></a>
+		&nbsp;<a href="{install_href}?language_code=ar"><img border="0" src="images/flags/sa.gif" width="18" height="12" alt="Arabic" title="Arabic"></a>
+		&nbsp;<a href="{install_href}?language_code=sv"><img border="0" src="images/flags/se.gif" width="18" height="12" alt="Swedish" title="Swedish"></a>
+		&nbsp;<a href="{install_href}?language_code=lv"><img border="0" src="images/flags/lv.gif" width="18" height="12" alt="Latvian" title="Latvian"></a>
+		&nbsp;<a href="{install_href}?language_code=uk"><img border="0" src="images/flags/ua.gif" width="18" height="12" alt="Ukrainian" title="Ukrainian"></a>
+		&nbsp;<a href="{install_href}?language_code=ru"><img border="0" src="images/flags/ru.gif" width="18" height="12" alt="Russian" title="Russian"></a>
+		&nbsp;<a href="{install_href}?language_code=sk"><img border="0" src="images/flags/sk.gif" width="18" height="12" alt="Slovak" title="Slovak"></a>
+		&nbsp;<a href="{install_href}?language_code=cs"><img border="0" src="images/flags/cz.gif" width="18" height="12" alt="Czech" title="Czech"></a>
+		&nbsp;<a href="{install_href}?language_code=tr"><img border="0" src="images/flags/tr.gif" width="18" height="12" alt="Turkish" title="Turkish"></a>
+		&nbsp;<a href="{install_href}?language_code=pl"><img border="0" src="images/flags/pl.gif" width="18" height="12" alt="Polish" title="Polish"></a>
+		&nbsp;<a href="{install_href}?language_code=pt"><img border="0" src="images/flags/pt.gif" width="18" height="12" alt="Portuguese" title="Portuguese"></a>
+		&nbsp;<a href="{install_href}?language_code=lt"><img border="0" src="images/flags/lt.gif" width="18" height="12" alt="Lithuanian" title="Lithuanian"></a>
+		&nbsp;<a href="{install_href}?language_code=de"><img border="0" src="images/flags/de.gif" width="18" height="12" alt="German" title="German"></a>
+		&nbsp;<a href="{install_href}?language_code=it"><img border="0" src="images/flags/it.gif" width="18" height="12" alt="Italian" title="Italian"></a>
+		&nbsp;<a href="{install_href}?language_code=fi"><img border="0" src="images/flags/fi.gif" width="18" height="12" alt="Finnish" title="Finnish"></a>
+		&nbsp;<a href="{install_href}?language_code=hu"><img border="0" src="images/flags/hu.gif" width="18" height="12" alt="Hungarian" title="Hungarian"></a>
+		&nbsp;<a href="{install_href}?language_code=fr"><img border="0" src="images/flags/fr.gif" width="18" height="12" alt="French" title="French"></a>
+		&nbsp;<a href="{install_href}?language_code=no"><img border="0" src="images/flags/no.gif" width="18" height="12" alt="Norwegian" title="Norwegian"></a>
+		&nbsp;<a href="{install_href}?language_code=br"><img border="0" src="images/flags/br.gif" width="18" height="12" alt="Brazilian" title="Brazilian"></a>
+	</h5>
+
+<input type="hidden" name="site_name" value="{site_name}">
+<input type="hidden" name="site_url" value="{site_url}">
+<input type="hidden" name="admin_email" value="{admin_email}">
+<input type="hidden" name="admin_login" value="{admin_login}">
+<input type="hidden" name="admin_password" value="{admin_password}">
+<input type="hidden" name="admin_password_confirm" value="{admin_password_confirm}">
+
+<input type="hidden" name="datetime_show_format" value="{datetime_show_format}">
+<input type="hidden" name="date_show_format" value="{date_show_format}">
+<input type="hidden" name="datetime_edit_format" value="{datetime_edit_format}">
+<input type="hidden" name="date_edit_format" value="{date_edit_format}">
+
+<table border="0" cellpadding="4" cellspacing="1" width="100%" class="block">
+<tr class=middle>
+	<td colspan="2"><b>{DB_SETTINGS_MSG}</b></td>
+</tr><!-- BEGIN step_1_errors -->
+<tr class="usualbg">
+	<td colspan="3" align="center">
+		<div class="errorbg">{errors_list}</div>
+	</td>
+</tr><!-- END step_1_errors -->	
+<tr class="usualbg">
+	<td>&nbsp;{DB_TYPE_FIELD}</td>
+	<td width="50%">
+		<table border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td>
+				<select name="db_library" onChange="changeLibrary();" onmouseover="showDescription(event, 'db_type')" onmousemove="showDescription(event, 'db_type')"  onmouseout="hideDescription(event, 'db_type')"><!-- begin db_library -->
+					<option {db_library_selected} value="{db_library_value}">{db_library_description}<!-- end db_library -->
+				</select>&nbsp;
+			</td>
+			<td>
+				<div id="db_type_id" style="display: none;">
+					<select name="db_type"><!-- begin db_type -->
+						<option {db_type_selected} value="{db_type_value}">{db_type_description}<!-- end db_type -->
+					</select>
+				</div>
+			</td>
+		</tr>
+		</table>
+	</td>
+	<td rowspan="8" align="left" valign="top">
+		<div id="db_type_desc" style="display: none; position: absolute; width: 225px;">
+			<table width=100% cellspacing=1 cellpadding=0 border=0 bgcolor="gray"><tr><td>
+			<table width=100% cellspacing=1 cellpadding=0 border=0 bgcolor="#FFFFCC">
+				<tr><td>{DB_TYPE_DESC}</td></tr>
+			</table></td></tr>
+			</table>
+		</div>
+		<div id="db_host_desc" style="display: none; position: absolute; width: 225px;">
+			<table width=100% cellspacing=1 cellpadding=0 border=0 bgcolor="gray"><tr><td>
+			<table width=100% cellspacing=1 cellpadding=0 border=0 bgcolor="#FFFFCC">
+				<tr><td>{DB_HOST_DESC}</td></tr>
+			</table></td></tr>
+			</table>
+		</div>
+		<div id="db_name_desc" style="display: none; position: absolute; width: 225px;">
+			<table width=100% cellspacing=1 cellpadding=0 border=0 bgcolor="gray"><tr><td>
+			<table width=100% cellspacing=1 cellpadding=0 border=0 bgcolor="#FFFFCC">
+				<tr><td>{DB_NAME_DESC}</td></tr>
+			</table></td></tr>
+			</table>
+		</div>
+		<div id="db_user_pass_desc" style="display: none; position: absolute; width: 225px;">
+			<table width=100% cellspacing=1 cellpadding=0 border=0 bgcolor="gray"><tr><td>
+			<table width=100% cellspacing=1 cellpadding=0 border=0 bgcolor="#FFFFCC">
+				<tr><td>{DB_USER_PASS_DESC}</td></tr>
+			</table></td></tr>
+			</table>
+		</div>
+	</td>
+</tr>
+<tr class="usualbg">
+	<td width="200">&nbsp;{DB_HOST_FIELD}</td>
+	<td width="50%">
+		<table cellspacing="0" cellpadding="0" border="0">
+		<tr>
+			<td>
+				<input size="30" type="text" name="db_host" value="{db_host}" onmouseover="showDescription(event, 'db_host')" onmousemove="showDescription(event, 'db_host')" onmouseout="hideDescription(event, 'db_host')">
+			</td>
+			<td>&nbsp;{DB_PORT_FIELD}&nbsp;</td>
+			<td><input size="10" type="text" name="db_port" value="{db_port}"></td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr class="usualbg">
+	<td>&nbsp;{DB_NAME_FIELD}</td>
+	<td width="50%">
+		<input size="30" type="text" name="db_name" value="{db_name}" onmouseover="showDescription(event, 'db_name')" onmousemove="showDescription(event, 'db_name')" onmouseout="hideDescription(event, 'db_name')">
+	</td>
+</tr>
+<tr class="usualbg">
+	<td>&nbsp;{DB_USER_FIELD}</td>
+	<td width="50%">
+		<input size="30" type="text" name="db_user" value="{db_user}" onmouseover="showDescription(event, 'db_user_pass')" onmousemove="showDescription(event, 'db_user_pass')" onmouseout="hideDescription(event, 'db_user_pass')">
+	</td>
+</tr>
+<tr class="usualbg">
+	<td>&nbsp;{DB_PASS_FIELD}</td>
+	<td><input size="30" type="password" name="db_password" value="{db_password}" onmouseover="showDescription(event, 'db_user_pass')" onmousemove="showDescription(event, 'db_user_pass')" onmouseout="hideDescription(event, 'db_user_pass')"></td>
+</tr>
+<tr class="usualbg">
+	<td>&nbsp;{DB_PERSISTENT_FIELD}</td>
+	<td width="50%">
+		<input class="checkbox" type="checkbox" name="db_persistent" {db_persistent} value="1">({DB_PERSISTENT_DESC})
+	</td>
+</tr>
+<tr class="usualbg">
+	<td>&nbsp;{DB_CREATE_DB_FIELD}</td>
+	<td width="50%">
+		<input class="checkbox" type="checkbox" name="db_create_db" {db_create_db} value="1">({DB_CREATE_DB_DESC})
+	</td>
+</tr>
+<tr class="usualbg">
+	<td>&nbsp;{DB_POPULATE_FIELD}</td>
+	<td width="50%">
+		<input class="checkbox" type="checkbox" name="db_populate" {db_populate} value="1" onClick="checkPopulate();">({DB_POPULATE_DESC})
+	</td>
+</tr>
+<tr class="usualbg">
+	<td>&nbsp;{DB_TEST_DATA_FIELD}</td>
+	<td width="50%">
+		<input class="checkbox" type="checkbox" name="db_test_data" {db_test_data} value="1" onClick="checkTestData();">({DB_TEST_DATA_DESC})
+	</td>
+</tr>
+<tr class="usualbg">
+	<td></td>
+	<td></td>
+</tr>
+<tr class="middlebg">
+	<td></td>
+	<td><a onClick="document.installation.operation.value='save';document.installation.submit();return false;" href="#"><img src="images/installation/install-button-next.gif" width="92" height="27" border="0" alt="{NEXT_BUTTON}" title="{NEXT_BUTTON}"></a>&nbsp;</td>
+</tr>
+</table>
+
+<script language="JavaScript" type="text/javascript">
+<!--
+changeLibrary();
+//-->
+</script>
+
+</td></tr></table>
+
+<!-- END step_1 -->
+
+
+<!-- BEGIN step_2 -->
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="installTitleTop">
+	<tr> 
+		<td rowspan="2" width="65"><a href="http://www.viart.com/" target="_blank"><img src="images/installation/install-logo.gif" width="65" height="79" border="0" alt=""></a></td>
+		<td>&nbsp;</td>
+		<td width="143"><img src="images/installation/install-db-setup.gif" width="143" height="18" alt="{INSTALL_STEP_1_TITLE}" title="{INSTALL_STEP_1_TITLE}"></td>
+		<td>&nbsp;</td>
+		<td width="141"><img src="images/installation/install-admin-options-a.gif" width="141" height="18" alt="{INSTALL_STEP_2_TITLE}" title="{INSTALL_STEP_2_TITLE}"></td>
+		<td>&nbsp;</td>
+		<td width="161"><img src="images/installation/install-choose-template.gif" width="161" height="18" alt="{INSTALL_STEP_3_TITLE}" title="{INSTALL_STEP_3_TITLE}"></td>
+		<td>&nbsp;</td>
+		<td width="149"><img src="images/installation/install-final.gif" width="149" height="18" alt="{INSTALL_FINAL_TITLE}" title="{INSTALL_FINAL_TITLE}"></td>
+	</tr>
+	<tr>
+		<td align="right" valign="bottom" colspan="6">
+			<!--{SUGGEST_HELP_MSG}-->
+		</td>
+		<td align="right" valign="bottom" colspan="2">
+			<a href="mailto:support@viart.com"><img src="images/installation/install-support.gif" width="92" height="24" border="0" alt="" style="margin-right: 15px;"></a>
+			<a href="http://www.viart.com/online_store_installation_wizard" target="_blank"><img src="images/installation/install-help.gif" width="43" height="14" vspace="5" border="0" alt=""></a>
+		</td>
+	</tr>
+</table>
+
+	<h5>
+		{INSTALL_STEP_2_DESC}
+	</h5>
+
+<input type="hidden" name="db_library"    value="{db_library}">
+<input type="hidden" name="db_type"       value="{db_type}">
+<input type="hidden" name="db_host"       value="{db_host}">
+<input type="hidden" name="db_name"       value="{db_name}">
+<input type="hidden" name="db_port"       value="{db_port}">
+<input type="hidden" name="db_user"       value="{db_user}">
+<input type="hidden" name="db_password"   value="{db_password}">
+<input type="hidden" name="db_persistent" value="{db_persistent}">
+<input type="hidden" name="db_populate"   value="{db_populate}">
+
+<table border="0" cellpadding="4" cellspacing="1" width="100%" class="block">
+<!-- BEGIN step_2_errors -->
+<tr class=middle>
+	<td colspan="2">&nbsp;{ERRORS_MSG}</td>
+</tr>
+<tr class="usualbg">
+	<td colspan="2" align="center">
+		<div class="errorbg">{errors_list}</div>
+	</td>
+</tr><!-- END step_2_errors -->	
+<tr class=middle>
+	<td colspan="2"><b>&nbsp;{ADMIN_SETTINGS_MSG}</b></td>
+</tr>
+<tr class="usualbg">
+	<td>&nbsp;{SITE_NAME_MSG}</td>
+	<td><input size="60" type="text" name="site_name" value="{site_name}"></td>
+</tr>
+<tr class="usualbg">
+	<td>&nbsp;{SITE_URL_MSG}</td>
+	<td><input size="60" type="text" name="site_url" value="{site_url}"></td>
+</tr>
+<tr class="usualbg">
+	<td>&nbsp;{ADMIN_EMAIL_FIELD}</td>
+	<td><input size="40" type="text" name="admin_email" value="{admin_email}"></td>
+</tr>
+<tr class="usualbg">
+	<td>&nbsp;{ADMIN_LOGIN_FIELD}</td>
+	<td><input size="40" type="text" name="admin_login" value="{admin_login}"></td>
+</tr>
+<tr class="usualbg">
+	<td>&nbsp;{ADMIN_PASS_FIELD}</td>
+	<td><input size="40" type="password" name="admin_password" value="{admin_password}"></td>
+</tr>
+<tr class="usualbg">
+	<td>&nbsp;{ADMIN_CONF_FIELD}</td>
+	<td><input size="40" type="password" name="admin_password_confirm" value="{admin_password_confirm}"></td>
+</tr>
+<tr class=middle>
+	<td colspan="2">&nbsp;{DATE_SETTINGS_MSG}</td>
+</tr>
+<tr class="usualbg">
+	<td>&nbsp;{DATETIME_SHOWN_FIELD}</td>
+	<td>
+		<input size="30" type="text" name="datetime_show_format" value="{datetime_show_format}">
+			<a href="#" onClick="javascript:openWindow('{select_date_format_href}', 'datetime_show'); return false;">{SELECT_FROM_LIST_MSG}</a>
+	</td>
+</tr>
+<tr class="usualbg">
+	<td>&nbsp;{DATE_SHOWN_FIELD}</td>
+	<td>
+		<input size="30" type="text" name="date_show_format" value="{date_show_format}">
+		<a href="#" onClick="javascript:openWindow('{select_date_format_href}', 'date_show'); return false;">{SELECT_FROM_LIST_MSG}</a>
+	</td>
+</tr>
+<tr class="usualbg">
+	<td>&nbsp;{DATETIME_EDIT_FIELD}</td>
+	<td>
+		<input size="30" type="text" name="datetime_edit_format" value="{datetime_edit_format}">
+		<a href="#" onClick="javascript:openWindow('{select_date_format_href}', 'datetime_edit'); return false;">{SELECT_FROM_LIST_MSG}</a>
+	</td>
+</tr>
+<tr class="usualbg">
+	<td>&nbsp;{DATE_EDIT_FIELD}</td>
+	<td>
+		<input size="30" type="text" name="date_edit_format" value="{date_edit_format}">
+		<a href="#" onClick="javascript:openWindow('{select_date_format_href}', 'date_edit'); return false;">{SELECT_FROM_LIST_MSG}</a>
+	</td>
+</tr>
+<tr class="usualbg">
+	<td></td>
+	<td></td>
+</tr>
+<tr class="middlebg">
+	<td>&nbsp;<a onClick="document.installation.operation.value='back';document.installation.submit();return false;" href="#"><img src="images/installation/install-button-back.gif" width="59" height="27" border="0" alt="{BACK_BUTTON}" title="{BACK_BUTTON}"></a></td>
+	<td><a onClick="document.installation.operation.value='save';document.installation.submit();return false;" href="#"><img src="images/installation/install-button-next.gif" width="92" height="27" border="0" alt="{NEXT_BUTTON}" title="{NEXT_BUTTON}"></a>&nbsp;</td>
+</tr>
+
+</table>
+
+</td></tr></table>
+<!-- END step_2 -->
+
+
+<!-- BEGIN step_3 -->
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="installTitleTop">
+	<tr> 
+		<td rowspan="2" width="65"><a href="http://www.viart.com/" target="_blank"><img src="images/installation/install-logo.gif" width="65" height="79" border="0" alt=""></a></td>
+		<td>&nbsp;</td>
+		<td width="143"><img src="images/installation/install-db-setup.gif" width="143" height="18" alt="{INSTALL_STEP_1_TITLE}" title="{INSTALL_STEP_1_TITLE}"></td>
+		<td>&nbsp;</td>
+		<td width="141"><img src="images/installation/install-admin-options.gif" width="141" height="18" alt="{INSTALL_STEP_2_TITLE}" title="{INSTALL_STEP_2_TITLE}"></td>
+		<td>&nbsp;</td>
+		<td width="161"><img src="images/installation/install-choose-template-a.gif" width="161" height="18" alt="{INSTALL_STEP_3_TITLE}" title="{INSTALL_STEP_3_TITLE}"></td>
+		<td>&nbsp;</td>
+		<td width="149"><img src="images/installation/install-final.gif" width="149" height="18" alt="{INSTALL_FINAL_TITLE}" title="{INSTALL_FINAL_TITLE}"></td>
+	</tr>
+	<tr>
+		<td align="right" valign="bottom" colspan="6">
+			<!--{SUGGEST_HELP_MSG}-->
+		</td>
+		<td align="right" valign="bottom" colspan="2">
+			<a href="mailto:support@viart.com"><img src="images/installation/install-support.gif" width="92" height="24" border="0" alt="" style="margin-right: 15px;"></a>
+			<a href="http://www.viart.com/online_store_installation_wizard" target="_blank"><img src="images/installation/install-help.gif" width="43" height="14" vspace="5" border="0" alt=""></a>
+		</td>
+	</tr>
+</table>
+
+	<h5 align=center>
+		{INSTALL_STEP_3_DESC}
+	</h5>
+
+<table border="0" cellpadding="5" cellspacing="1" width="100%" class="block">
+<!-- BEGIN step_3_errors -->
+<tr class=middle>
+	<td colspan="2">&nbsp;{ERRORS_MSG}</td>
+</tr>
+<tr class="usualbg">
+	<td colspan="2" align="center">
+		<div class="errorbg">{errors_list}</div>
+	</td>
+</tr><!-- END step_3_errors -->	
+<tr class="usualbg">
+	<td colspan="2">
+		<table border="0" cellpadding="5" cellspacing="0" width="100%">
+		<tr class="usualbg" align="center">
+			<td>
+				<a href="install.php?step=3&operation=save&layout=default"><img src="images/layout_default.jpg" width="205" height="167" border="0"></a>
+				<br><a class=title href="install.php?step=3&operation=save&layout=default">Default</a>
+			</td>
+			<td>
+				<a href="install.php?step=3&operation=save&layout=curved"><img src="images/layout_curved.jpg" width="205" height="170" border="0"></a>
+				<br><a class=title href="install.php?step=3&operation=save&layout=curved">Curved</a>
+			</td>
+			<td>
+				<a href="install.php?step=3&operation=save&layout=silver"><img src="images/layout_silver.jpg" width="205" height="175" border="0"></a>
+				<br><a class=title href="install.php?step=3&operation=save&layout=silver">Silver</a>
+			</td>
+		</tr>
+		<tr class="usualbg" align="center">
+			<td>
+				<a href="install.php?step=3&operation=save&layout=convex"><img src="images/layout_convex.jpg" width="205" height="167" border="0"></a>
+				<br><a class=title href="install.php?step=3&operation=save&layout=convex">Convex</a>
+			</td>
+			<td>
+				<a href="install.php?step=3&operation=save&layout=fashion"><img src="images/layout_fashion.jpg" width="205" height="170" border="0"></a>
+				<br><a class=title href="install.php?step=3&operation=save&layout=fashion">Fashion</a>
+			</td>
+			<td>
+				<a href="install.php?step=3&operation=save&layout=rainbow"><img src="images/layout_rainbow.jpg" width="205" height="175" border="0"></a>
+				<br><a class=title href="install.php?step=3&operation=save&layout=rainbow">Rainbow</a>
+			</td>
+		</tr>
+		<tr class="usualbg" align="center">
+			<td>
+				<a href="install.php?step=3&operation=save&layout=classic"><img src="images/layout_classic.jpg" width="205" height="167" border="0"></a>
+				<br><a class=title href="install.php?step=3&operation=save&layout=classic">Classic</a>
+			</td>
+			<td>
+				<a href="install.php?step=3&operation=save&layout=marine"><img src="images/layout_marine.jpg" width="205" height="170" border="0"></a>
+				<br><a class=title href="install.php?step=3&operation=save&layout=marine">Marine</a>
+			</td>
+			<td>
+				<a href="install.php?step=3&operation=save&layout=ecommerce"><img src="images/layout_ecommerce.jpg" width="205" height="175" border="0"></a>
+				<br><a class=title href="install.php?step=3&operation=save&layout=ecommerce">E-commerce</a>
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<!--
+<tr class="middlebg">
+	<td><img src="images/tr.gif" width="150" height="1" alt=""></td>
+	<td width="80%">
+		<a onClick="document.installation.operation.value='save';document.installation.submit();return false;"
+		href="#"><img src="images/installation/install-button-next.gif" width="92" height="27" border="0" alt="{NEXT_BUTTON}"></a>&nbsp;
+	</td>
+</tr>
+-->
+</table>
+
+</td></tr></table>
+<!-- END step_3 -->
+
+<!-- BEGIN step_4 -->
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="installTitleTop">
+	<tr> 
+		<td rowspan="2" width="65"><a href="http://www.viart.com/" target="_blank"><img src="images/installation/install-logo.gif" width="65" height="79" border="0" alt=""></a></td>
+		<td>&nbsp;</td>
+		<td width="143"><img src="images/installation/install-db-setup.gif" width="143" height="18" alt="{INSTALL_STEP_1_TITLE}" title="{INSTALL_STEP_1_TITLE}"></td>
+		<td>&nbsp;</td>
+		<td width="141"><img src="images/installation/install-admin-options.gif" width="141" height="18" alt="{INSTALL_STEP_2_TITLE}" title="{INSTALL_STEP_2_TITLE}"></td>
+		<td>&nbsp;</td>
+		<td width="161"><img src="images/installation/install-choose-template.gif" width="161" height="18" alt="{INSTALL_STEP_3_TITLE}" title="{INSTALL_STEP_3_TITLE}"></td>
+		<td>&nbsp;</td>
+		<td width="149"><img src="images/installation/install-final-a.gif" width="149" height="18" alt="{INSTALL_FINAL_TITLE}" title="{INSTALL_FINAL_TITLE}"></td>
+	</tr>
+	<tr>
+		<td align="right" valign="bottom" colspan="6">
+			<!--{SUGGEST_HELP_MSG}-->
+		</td>
+		<td align="right" valign="bottom" colspan="2">
+			<a href="mailto:support@viart.com"><img src="images/installation/install-support.gif" width="92" height="24" border="0" alt="" style="margin-right: 15px;"></a>
+			<a href="http://www.viart.com/online_store_installation_wizard" target="_blank"><img src="images/installation/install-help.gif" width="43" height="14" vspace="5" border="0" alt=""></a>
+		</td>
+	</tr>
+</table>
+
+<img src="http://www.viart.com/final.png" width="1" height="1" border="0">
+<table border="0" cellpadding="5" cellspacing="1" width="100%" class="block">
+<!-- BEGIN step_4_errors -->
+<tr class=middle>
+	<td colspan="2">&nbsp;{ERRORS_MSG}</td>
+</tr>
+<tr class="usualbg">
+	<td colspan="2" align="center">
+		<div class="errorbg">{errors_list}</div>
+	</td>
+</tr><!-- END step_4_errors -->	
+<tr class="middlebg">
+	<td>&nbsp;</td>
+</tr>
+<tr class="usualbg">
+	<td>
+		<table border="0" cellpadding="15" cellspacing="0" width="100%">
+		<tr class="usualbg">
+			<td>
+				<div align="justify" class="bigText">
+				{INSTALL_FINISHED_MSG}
+				<a href="admin/admin.php">{ACCESS_ADMIN_MSG}</a>.
+				<br><br><table border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td align="right"><div class="bigText">{ADMIN_URL_MSG}:&nbsp;</div></td>
+					<td><div class="bigText"><a href="admin/admin.php">{site_url}admin/admin.php</a></div></td>
+				</tr>
+				<tr>
+					<td align="right"><div class="bigText">{SITE_URL_MSG}:&nbsp;</div></td>
+					<td><div class="bigText"><a href="index.php">{site_url}index.php</a></div></td>
+				</tr>
+				<tr>
+					<td align="right"><div class="bigText">{MANUAL_URL_MSG}:&nbsp;</div></td>
+					<td><div class="bigText"><a href="http://www.viart.com/manuals.php">http://www.viart.com/manuals.php</a></div></td>
+				</tr>
+				</table>
+
+				<br><br>{THANKS_MSG}
+				</div>
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr class="middlebg">
+	<td>&nbsp;
+	</td>
+</tr>
+</table>
+
+</td></tr></table>
+<!-- END step_4 -->
+
+</form>
+</body>
+</html>
+<!-- END page_body -->

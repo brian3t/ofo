@@ -1,0 +1,217 @@
+<table cellpadding="3" cellspacing="1" width="100%" border="0">
+<tr style="background-color: #E9E9E9;" align="center">
+	<!-- begin item_name_header -->
+	<th>{PROD_TITLE_COLUMN}</th><!-- end item_name_header -->
+	<!-- begin item_price_header -->
+	<th>{PROD_PRICE_COLUMN} {tax_note_excl}</th><!-- end item_price_header -->
+	<!-- begin item_tax_percent_header -->
+	<th>{tax_name} (%)</th><!-- end item_tax_percent_header -->
+	<!-- begin item_tax_header -->
+	<th>{tax_name}</th><!-- end item_tax_header -->
+	<!-- begin item_price_incl_tax_header -->
+	<th>{PROD_PRICE_COLUMN} {tax_note}</th><!-- end item_price_incl_tax_header -->
+	<!-- begin item_quantity_header -->
+	<th>{PROD_QTY_COLUMN}</th><!-- end item_quantity_header -->
+	<!-- begin item_price_total_header -->
+	<th>{PROD_TOTAL_COLUMN} {tax_note_excl}</th><!-- end item_price_total_header -->
+	<!-- begin item_tax_total_header -->
+	<th>{tax_name} {PROD_TAX_TOTAL_COLUMN}</th><!-- end item_tax_total_header -->
+	<!-- BEGIN item_price_incl_tax_total_header -->
+	<th>{PROD_TOTAL_COLUMN} {tax_note}</th><!-- END item_price_incl_tax_total_header -->
+</tr><!-- begin items -->
+<tr valign="top">
+	<!-- begin item_name_column -->
+	<td>
+		{item_name}
+		<!-- begin item_code_block -->
+		<br>{PROD_CODE_MSG}: <b>{item_code}</b><!-- end item_code_block -->	
+		<!-- begin manufacturer_code_block -->
+		<br>{MANUFACTURER_CODE_MSG}: <b>{manufacturer_code}</b><!-- end manufacturer_code_block -->	
+		<span>{item_properties}</span>
+			<!-- begin components_block -->
+			<div><b>{PROD_SUBCOMPONENTS_MSG}:</b></div>
+			<!-- begin components -->
+			<div>{component_quantity} x {component_name} {component_price} {component_icon}</div>
+			<!-- end components -->
+			<!-- end components_block -->
+		<!-- begin points_price_block -->
+		<div>{POINTS_PRICE_MSG}:&nbsp;<b>{points_price}</b></div><!-- end points_price_block -->
+		<!-- begin reward_points_block -->
+		<div>{REWARD_POINTS_MSG}:&nbsp;<b>{reward_points}</b></div><!-- end reward_points_block -->
+		<!-- begin reward_credits_block -->
+		<div>{REWARD_CREDITS_MSG}:&nbsp;<b>{reward_credits}</b></div><!-- end reward_credits_block -->
+	</td><!-- end item_name_column -->
+	<!-- begin item_price_excl_tax_column -->
+	<td align="right">
+		{price_excl_tax}&nbsp;
+	</td><!-- end item_price_excl_tax_column -->
+	<!-- begin item_tax_percent_column -->
+	<td align="right">
+		{item_tax_percent}&nbsp;
+	</td><!-- end item_tax_percent_column -->
+	<!-- begin item_tax_column -->
+	<td align="right">{item_tax}&nbsp;</td><!-- end item_tax_column -->
+	<!-- begin item_price_incl_tax_column -->
+	<td align="right">{price_incl_tax}&nbsp;</td><!-- end item_price_incl_tax_column -->
+	<!-- begin item_quantity_column -->
+	<td align="center">{quantity}</td><!-- end item_quantity_column -->
+	<!-- begin item_price_excl_tax_total_column -->
+	<td align="right">{price_excl_tax_total}&nbsp;</td><!-- end item_price_excl_tax_total_column -->
+	<!-- begin item_tax_total_column -->
+	<td align="right">{item_tax_total}&nbsp;</td><!-- end item_tax_total_column -->
+	<!-- begin item_price_incl_tax_total_column -->
+	<td align="right">{price_incl_tax_total}&nbsp;</td><!-- end item_price_incl_tax_total_column -->
+</tr><!-- end items -->
+<tr style="background-color: #E9E9E9;">
+	<!-- begin goods_name_column -->
+	<td colspan="{goods_colspan}" align="right">
+		<b>{GOODS_TOTAL_MSG}&nbsp;</b>
+	</td>
+	<!-- end goods_name_column -->
+	<!-- begin goods_total_excl_tax_column -->
+	<td align="right">
+		<b>{goods_total_excl_tax}&nbsp;</b>
+	</td>
+	<!-- end goods_total_excl_tax_column -->
+	<!-- BEGIN goods_tax_total_column -->
+	<td align="right">
+		{goods_tax_total}&nbsp;
+	</td><!-- END goods_tax_total_column -->
+	<!-- BEGIN goods_total_incl_tax_column -->
+	<td align="right">
+		{goods_total_incl_tax}&nbsp;
+	</td><!-- END goods_total_incl_tax_column -->
+</tr><!-- begin discount -->
+<tr style="background-color: #E9E9E9;">
+	<!-- BEGIN total_discount_name_column -->
+	<td colspan="{goods_colspan}" align="right">
+		<b>{TOTAL_DISCOUNT_MSG}&nbsp;</b>
+	</td><!-- END total_discount_name_column -->
+	<!-- BEGIN total_discount_amount_excl_tax_column -->
+	<td align="right"><b>{total_discount_excl_tax}&nbsp;</b></td><!-- END total_discount_amount_excl_tax_column -->
+	<!-- BEGIN total_discount_tax_column -->
+	<td align="right"><b>{total_discount_tax_amount}&nbsp;</b></td><!-- END total_discount_tax_column -->
+	<!-- BEGIN total_discount_amount_incl_tax_column -->
+	<td align="right"><b>{total_discount_incl_tax}&nbsp;</b></td><!-- END total_discount_amount_incl_tax_column -->
+</tr>
+<tr style="background-color: #E9E9E9;">
+	<!-- BEGIN discounted_name_column -->
+	<td colspan="{goods_colspan}" align="right">
+		<b>{GOODS_WITH_DISCOUNT_MSG}&nbsp;</b>
+	</td><!-- end discounted_name_column -->
+	<!-- BEGIN discounted_amount_excl_tax_column -->
+	<td align="right"><b>{discounted_amount_excl_tax}&nbsp;</b></td><!-- END discounted_amount_excl_tax_column -->
+	<!-- BEGIN discounted_tax_column -->
+	<td align="right"><b>{discounted_tax_amount}&nbsp;</b></td><!-- END discounted_tax_column -->
+	<!-- BEGIN discounted_amount_incl_tax_column -->
+	<td align="right"><b>{discounted_amount_incl_tax}&nbsp;</b></td><!-- END discounted_amount_incl_tax_column -->
+</tr><!-- end discount -->
+<!-- begin cart_properties -->
+<tr>
+	<td colspan="{goods_colspan}" align="right">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">	
+		<tr valign="top">
+			<td>
+				<!-- begin property_points_price_block -->
+				<div>{POINTS_PRICE_MSG}: <b>{property_points_price}</b></div><!-- end property_points_price_block -->
+			</td>
+			<td align="right">
+				{property_name} ({property_value})&nbsp;
+			</td>
+		</tr>
+		</table>
+	</td>
+	<!-- BEGIN property_price_excl_tax_column -->
+	<td align="right">
+		{property_price_excl_tax}&nbsp;
+	</td><!-- END property_price_excl_tax_column -->
+	<!-- BEGIN property_tax_column -->
+	<td align="right">
+		{property_tax}&nbsp;
+	</td><!-- END property_tax_column -->
+	<!-- BEGIN property_price_incl_tax_column -->
+	<td align="right">
+		{property_price_incl_tax}&nbsp;
+	</td><!-- END property_price_incl_tax_column -->
+</tr><!-- end cart_properties -->
+<!-- begin shipping_type -->
+<tr>
+	<td colspan="{goods_colspan}" align="right">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">	
+		<tr valign="top">
+			<td>
+				<!-- begin shipping_points_price_block -->
+				<div>{POINTS_PRICE_MSG}: <b>{shipping_points_price}</b></div><!-- end shipping_points_price_block -->
+			</td>
+			<td align="right">
+				{shipping_type_desc}&nbsp;
+			</td>
+		</tr>
+		</table>
+	</td>
+	<!-- BEGIN shipping_cost_excl_tax_column -->
+	<td align="right">
+		{shipping_cost_excl_tax}&nbsp;
+	</td><!-- END shipping_cost_excl_tax_column -->
+	<!-- BEGIN shipping_tax_column -->
+	<td align="right">
+		{shipping_tax}&nbsp;
+	</td><!-- END shipping_tax_column -->
+	<!-- BEGIN shipping_cost_incl_tax_column -->
+	<td align="right">
+		{shipping_cost_incl_tax}&nbsp;
+	</td><!-- END shipping_cost_incl_tax_column -->
+</tr><!-- end shipping_type --><!-- begin taxes -->
+<tr class="usualbg">
+	<td colspan="{sc_colspan}" align="right">
+		{tax_name}&nbsp;
+	</td>
+	<td align="right">
+		{tax_cost}&nbsp;
+	</td>
+</tr><!-- end taxes --><!-- begin vouchers_block -->
+<tr class="middlebg">
+	<td colspan="{total_columns}">{USED_VOUCHERS_MSG}</td>
+</tr>
+<!-- begin used_vouchers -->
+<tr class="usualbg">
+	<td colspan="{sc_colspan}">{voucher_title}</td>
+	<td align="right">{voucher_amount}</td>
+</tr><!-- end used_vouchers -->
+<!-- end vouchers_block -->
+<!-- begin fee -->
+<tr>
+	<td colspan="{sc_colspan}" align="right">
+		{PROCESSING_FEE_MSG}&nbsp;
+	</td>
+	<td align="right">
+		{processing_fee_cost}&nbsp;
+	</td>
+</tr><!-- end fee --><!-- begin credit_amount_block -->
+<tr>
+	<td colspan="{sc_colspan}" align="right">
+		{CREDIT_AMOUNT_MSG}&nbsp;
+	</td>
+	<td align="right">
+		{credit_amount_cost}&nbsp;
+	</td>
+</tr><!-- end credit_amount_block -->
+<tr style="background-color: #E9E9E9;">
+	<td colspan="{sc_colspan}" align="right">
+		<b>{CART_TOTAL_MSG}&nbsp;</b>
+	</td>
+	<td align="right">
+		<b>{order_total}&nbsp;</b>
+	</td>
+</tr>
+<!-- begin total_points_block -->
+<tr style="background-color: #E9E9E9;">
+	<td colspan="{sc_colspan}" align="right">
+		<b>{TOTAL_POINTS_MSG}&nbsp;</b>
+	</td>
+	<td align="right">
+		<b>{total_points_amount}&nbsp;</b>
+	</td>
+</tr>
+<!-- end total_points_block -->
+</table>

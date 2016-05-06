@@ -1,0 +1,170 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {PRODUCTS_REGISTRATIONS_MSG} :: {PRODUCT_REGISTRATION_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<body class="commonbg">
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header">
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_registrations_href}">{PRODUCTS_REGISTRATIONS_MSG}</a>&nbsp;&gt;&nbsp;
+			<b>{PRODUCT_REGISTRATION_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{PRODUCT_REGISTRATION_MSG}</legend>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr align="center">
+	<td class="">
+
+<table width="100%" border="0" cellspacing="1" cellpadding="6">
+		<tr class="middle">
+			<td colspan="2" class="middle">
+				&nbsp;{GENERAL_INFO_MSG}
+			</td>
+		</tr>
+		<tr class="usual">
+			<td width="300px">
+				&nbsp;{USER_NAME_MSG}
+			</td>
+			<td>
+				{user_name}
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{IS_APPROVED_MSG}
+			</td>
+			<td>
+				{is_approved}
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{DATE_ADDED_MSG}
+			</td>
+			<td>
+				{date_added}
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{MODIFIED_DATE_MSG}
+			</td>
+			<td>
+				{date_modified}
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>&nbsp;{CATEGORY_NAME_MSG}</td>
+			<td>			
+				{category_name}			
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{SELECTED_PRODUCT_MSG}
+			</td>
+			<td>
+				{item_id_name}
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{PROD_NAME_MSG}
+			</td>
+			<td>
+				{item_name}
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{PROD_CODE_MSG}
+			</td>
+			<td>
+				{item_code}
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{SERIAL_NUMBER_MSG}
+			</td>
+			<td>
+				{serial_number}
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{INVOICE_NUMBER_MSG}
+			</td>
+			<td>
+				{invoice_number}
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{STORE_NAME_MSG}
+			</td>
+			<td>
+				{store_name}
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{YEAR_OF_PURCHASE_MSG}
+			</td>
+			<td>
+				{purchased_year}
+			</td>
+		</tr
+		<tr class="usual">
+			<td>
+				&nbsp;{MONTH_OF_PURCHASE_MSG}
+			</td>
+			<td>
+				{purchased_month}	
+			</td>
+		</tr
+		<tr class="usual">
+			<td>
+				&nbsp;{DAY_OF_PURCHASE_MSG}
+			</td>
+			<td>
+				{purchased_day}	
+			</td>
+		</tr>
+		<!-- begin custom_properties_title -->
+		<tr class="middle">
+			<td colspan="2" class="middle">
+				&nbsp;{CUSTOM_FIELDS_MSG}
+			</td>
+		</tr>
+		<!-- end custom_properties_title -->
+		<!-- begin custom_properties -->
+		<tr id="pp_block_{property_id}" class="usual">
+			<td style="{property_style}">
+				&nbsp;{property_name}
+			</td>
+			<td style="{property_style}" >
+				{property_value} 
+			</td>
+		</tr><!-- end custom_properties -->
+		</table>
+</form>
+	</td>
+</tr>
+</table>
+</fieldset>
+
+
+{admin_footer}
+</body>
+</html>

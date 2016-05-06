@@ -1,0 +1,119 @@
+<div class="block-user-reminder">
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr class="usualbg"> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft"></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>Edit Reminder</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight"></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr class="headerbg"> 
+		<td class="blockTD">
+
+<table width="100%" border="0" cellspacing="1" align="center" class="padding6px">
+<form action="{user_reminder_href}" name="reminder" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="reminder_id" value="{reminder_id}">
+<tr>
+	<td colspan="2" class="usualbg" align="right">
+		<font class="smallText">{ASTERISK_MSG}</font>
+	</td>
+</tr>
+<!-- BEGIN errors -->
+<tr class="usualbg">
+	<td colspan="2" align="center">
+		<div class="errorbg">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usualbg">
+	<td>
+		&nbsp;Reminder Title *
+	</td>
+	<td>
+		<input class="text" type="text" name="reminder_title" value="{reminder_title}" size="50" maxlength="255">
+	</td>
+</tr>
+<tr class="usualbg">
+	<td>
+		&nbsp;Reminder Notes
+	</td>
+	<td>
+		<textarea name="reminder_notes" cols="60" rows="5">{reminder_notes}</textarea>
+	</td>
+</tr>
+<tr class="usualbg">
+	<td>
+		&nbsp;Start Date
+	</td>
+	<td>
+		<input class="text" type="text" name="start_date" value="{start_date}" size="20" maxlength="20">
+		<A HREF="#"
+			onClick="setDateField(document.reminder.start_date, '{date_edit_format}');
+			top.newWin = window.open('js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+		<IMG SRC="images/calendar.gif" BORDER=0><font size=1>{CALENDAR_MSG}</font></A>
+		({date_format_msg})
+	</td>
+</tr>
+<tr class="usualbg">
+	<td>
+		&nbsp;End Date
+	</td>
+	<td>
+		<input class="text" type="text" name="end_date" value="{end_date}" size="20" maxlength="20">
+		<A HREF="#"
+			onClick="setDateField(document.reminder.end_date, '{date_edit_format}');
+			top.newWin = window.open('js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+		<IMG SRC="images/calendar.gif" BORDER=0><font size=1>{CALENDAR_MSG}</font></A>
+		({date_format_msg})
+	</td>
+</tr>
+<tr class="usualbg">
+	<td>
+		&nbsp;Reminder Date 
+	</td>
+	<td>
+		<!-- begin reminder_month_block -->
+		<select name="reminder_month"><!-- begin reminder_month -->
+			<option {reminder_month_selected} value="{reminder_month_value}">{reminder_month_description}<!-- end reminder_month -->
+		</select><!-- end reminder_month_block -->
+		<input class="text" type="text" name="reminder_day" value="{reminder_day}" size="2" maxlength="2">&nbsp;
+		<input class="text" type="text" name="reminder_year" value="{reminder_year}" size="4" maxlength="4">
+	</td>
+</tr>
+<tr class="usualbg">
+	<td>
+		&nbsp;Reminder Weekdays 
+	</td>
+	<td>
+		<!-- begin weekdays-->
+		
+		<input type="checkbox" {weekdays_checked} name="weekdays_{weekdays_index}" value="{weekdays_value}">{weekdays_description}&nbsp;&nbsp;&nbsp;
+		<!-- end weekdays-->
+		<input type="hidden" name="weekdays" value="7">
+	</td>
+</tr>
+<tr class="middlebg">
+	<td>
+	</td>
+	<td>
+		<!-- begin save_button --><span class="submit"><input class="submit" type="submit" value="{save_button_title}" onCLick="document.reminder.operation.value='save';"></span><!-- end save_button -->
+		<!-- BEGIN delete --><span class="submit"><input class="submit" id="delete" type="submit" value="{DELETE_BUTTON}" onclick="document.reminder.operation.value='delete';return confirm('Are you sure you want to delete this reminder?');"></span><!-- END delete -->
+		<span class="submit"><input class="submit" id="cancel" type="submit" value="{CANCEL_BUTTON}" onCLick="document.reminder.operation.value='cancel'"></span>
+	</td>
+</tr>
+
+</form>
+</table>
+
+	</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr class="usualbg"> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft"></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight"></td>
+	</tr>
+</table>
+</div>

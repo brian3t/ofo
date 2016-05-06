@@ -1,0 +1,227 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {UPGRADE_TITLE} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript">
+<!--
+	var isUpgraded = false;
+	var stepNumber = 0;
+	var queriesSuccess = 0;
+	var queriesFailed = 0;
+
+	function updateBlockInfo(message, controlName, append)
+	{
+		var controlObject = document.getElementById(controlName);
+		var controlBlock = document.getElementById(controlName + "Block");
+		if (controlObject) {
+			if (append) {
+				controlObject.innerHTML += message;
+			} else {
+				controlObject.innerHTML = message;
+			}
+			if (controlBlock) {
+				controlBlock.style.display = "block";
+			}
+		}
+		if (controlName == "queriesSuccess") {
+			var queriesInt = parseInt(message);
+			if (!isNaN(queriesInt)) {
+				queriesSuccess = queriesInt;
+				updateBlockInfo((queriesSuccess + queriesFailed), "queriesTotal", false);
+			}
+		} else if (controlName == "queriesFailed") {
+			var queriesInt = parseInt(message);
+			if (!isNaN(queriesInt)) {
+				queriesFailed = queriesInt;
+				updateBlockInfo((queriesSuccess + queriesFailed), "queriesTotal", false);
+			}
+		}
+	}
+
+	function databaseUpgraded()
+	{
+		isUpgraded = true;
+		var message = "{VERSION_UPGRADED_MSG} {latest_version}";
+		var processObject = document.getElementById("processInfo");
+		processObject.innerHTML = message;
+	}
+
+	function upgradingProcess()
+	{
+		if (!isUpgraded) {
+			stepNumber++;
+			var message = "Database upgrading process ";
+			for (var s = 0; s < (stepNumber % 15) + 1; s++) {
+				message += " . ";
+			}
+			var processObject = document.getElementById("processInfo");
+			processObject.innerHTML = message;
+			setTimeout("upgradingProcess()", 500);
+		}
+	}
+
+
+//-->
+</script>
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" align="center">
+<tr>
+	<td>
+		<h2>{UPGRADE_TITLE}</h2>
+	</td>
+</tr>
+<!-- begin connection_error -->
+<tr>
+	<td>
+		<div class="comment">{NO_XML_CONNECTION}</div>
+	</td>
+</tr>
+<!-- end connection_error -->
+</table>
+
+
+<form action="{admin_upgrade_href}" name="upgrade" method="post">
+<input type="hidden" name="operation" value="upgrade">
+<input type="hidden" name="ct" value="{ct}">
+
+<table width="100%" align="center" cellspacing="0" cellpadding="0" border="0">
+<tr><td>
+
+<!-- BEGIN upgrade_available -->
+
+<fieldset>
+<legend>{UPGRADE_AVAILABLE_MSG}</legend>
+
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+<!-- BEGIN upgrade_available_errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END upgrade_available_errors -->	
+<tr class=usual>
+	<td width="200">&nbsp;{ADMIN_CURRENT_VERSION_MSG}</td>
+	<td>{current_version}</td>
+</tr>
+<tr class=usual>
+	<td width="200">&nbsp;{LATEST_VERSION_MSG}</td>
+	<td>{latest_version}</td>
+</tr>
+<tr>
+	<td colspan="2" align="right">
+		<table width="100%" cellspacing="0" cellpadding="0" border="0">
+		<tr>
+		<td colspan="3"><div class="comment">{UPGRADE_NOTE}</div></td>
+		</tr>
+		<tr>
+			<td><input type="image" src="../images/tr.gif" width="1" height="1"></td>
+			<td>
+				<input type="submit" class="submit" value="{UPGRADE_BUTTON}">
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>
+
+</fieldset>
+</td></tr></table>
+
+<!-- END upgrade_available -->
+
+
+<!-- BEGIN upgrade_result -->
+<fieldset>
+<legend>{UPGRADE_RESULTS_MSG}</legend>
+
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+<tr class="middle">
+	<td>
+		&nbsp;&nbsp;<span id="processInfo" class="message">Database upgrading process </span>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		<!-- queries_success -->
+		<div id="queriesSuccessBlock" style="display: none;">
+		<table border="0" cellpadding="3" cellspacing="0">
+		<tr>
+			<td width="30%"><font color="blue">&nbsp;{SQL_SUCCESS_MSG}:&nbsp;</font></td>
+			<td width="70%"><font color="blue"><div id="queriesSuccess">0</div></font></td>
+		</tr>
+		</table>
+		</div>
+
+		<!-- queries_failed -->
+		<div id="queriesFailedBlock" style="display: none;">
+		<table border="0" cellpadding="3" cellspacing="0">
+		<tr>
+			<td width="30%"><font color="red">&nbsp;{SQL_FAILED_MSG}:&nbsp;</font></td>
+			<td width="70%"><font color="red"><div id="queriesFailed">0</div></font></td>
+		</tr>
+		</table>
+		</div>
+
+		<table border="0" cellpadding="3" cellspacing="0">
+		<tr>
+			<td width="30%">&nbsp;{SQL_TOTAL_MSG}:&nbsp;</td>
+			<td width="70%"><div id="queriesTotal">0</div></td>
+		</tr>
+		</table>
+
+		<!-- upgrade_result_errors -->
+		<div align="center" id="queriesErrors" class="error">{errors_list}</div>
+
+	</td>
+</tr>
+</table>
+
+</fieldset>
+</td></tr></table>
+
+<!-- END upgrade_result -->
+
+
+<!-- BEGIN no_upgrades -->
+<fieldset>
+<legend>{ALREADY_LATEST_MSG}</legend>
+
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+<tr class=usual>
+	<td width="200">&nbsp;{ADMIN_CURRENT_VERSION_MSG}</td>
+	<td>{current_version}</td>
+</tr>
+</table>
+
+</fieldset>
+</td></tr></table>
+<!-- END no_upgrades -->
+
+<!-- BEGIN download_new -->
+<br><fieldset>
+<legend>{DOWNLOAD_NEW_MSG}</legend>
+
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+<tr>
+	<td class=middle>{DOWNLOAD_FOUND_MSG}</td>
+</tr>
+<tr>
+	<td><input type="button" class="submit" value="{DOWNLOAD_NOW_MSG}" onclick="window.open('http://www.viart.com/Free_Evaluation')"></button></td>
+</tr>
+</table>
+
+</fieldset>
+</td></tr></table>
+<!-- END download_new -->
+
+
+</form>
+
+<br>
+{admin_footer}
+
+<!-- begin page_end -->
+</body></html><!-- end page_end -->

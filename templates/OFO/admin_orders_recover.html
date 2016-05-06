@@ -1,0 +1,368 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {ORDERS_RECOVER_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript" src="../js/calendar.js"></script>
+<script language="JavaScript" type= "text/javascript" src="../js/select.js"></script>
+<script language= "JavaScript" type= "text/javascript">
+<!--
+	function changeStatus()
+	{
+		var checkedStatus = document.orders.all_orders.checked;
+		var ordersNumber = document.orders.orders_number.value;
+		for (var i = 1; i <= ordersNumber; i++) {
+			document.orders.elements["id_" + i].checked = checkedStatus;
+		}
+		checkOrders();
+	}
+	
+	function showOrderItems(event, orderID)	{
+		var orderItems = document.getElementById("order_items_" + orderID);
+		if (orderItems) {
+  	  var leftPos = mouseX(event) + 15;
+	    var topPos  = mouseY(event) + 15;
+			orderItems.style.left = leftPos;
+			orderItems.style.top = topPos;
+
+			orderItems.style.display = "block";
+		}
+
+	}
+
+	function hideOrderItems(event, orderID)	{
+
+		var orderItems = document.getElementById("order_items_" + orderID);
+		if (orderItems) {
+			orderItems.style.display = 'none';
+		}
+	}
+	
+	function checkOrders()
+	{
+		var orderId = "";
+		var ordersIds = "";
+		var ordersNumber = document.orders.orders_number.value;
+		var totalSelected = 0;
+
+		for (var i = 1; i <= ordersNumber; i++) {
+			if (document.orders.elements["id_" + i].checked) {
+				document.getElementById("tr_order_" + i).className = "SelectedRow";
+				totalSelected++;
+				orderId = document.orders.elements["id_" + i].value;
+				if(ordersIds != "") { ordersIds += ","; }
+				ordersIds += orderId;
+			} else {
+				document.getElementById("tr_order_" + i).className = mas[i];
+			}
+		}
+		var sendReminderLink = document.getElementById("send_reminder");
+		if (sendReminderLink) {
+			if (ordersIds == "") {
+				sendReminderLink.innerHTML = "{SEND_ALL_ORDERS_REMINDER_MSG}";
+				sendReminderLink.href = "{admin_orders_reminder_href}";
+			} else {
+				sendReminderLink.innerHTML = "{SEND_ORDERS_REMINDER_MSG} (" + totalSelected + ")";
+				sendReminderLink.href = "{admin_orders_reminder_href}&ids=" + ordersIds;
+			}
+		}
+	}
+//-->
+</script>
+<script language= "JavaScript" type= "text/javascript">
+<!--
+	var select_form = new select();
+		select_form.object_name = 'select_form';
+		select_form.name_prefix = 'id_';
+		select_form.formname = 'orders';
+		select_form.final_action = 'checkOrders();';
+		select_form.create_event_click();
+//-->
+</script>
+</head>
+<body class="commonbg" onload="start_event_select();">
+<script language= "JavaScript" type= "text/javascript">
+<!--
+	function start_event_select(){
+		create_event_listener(select_form);
+		var ordersNumber = document.orders.orders_number.value;
+		mas = new Array();
+		for (var i = 1; i <= ordersNumber; i++) {
+			mas[i] = document.getElementById("tr_order_" + i).className;
+		}
+	}
+//-->
+</script>
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header">
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>
+			&nbsp;&gt;&nbsp;<a href="{admin_orders_href}">{ORDERS_MAINTENANCE_MSG}</a>
+			&nbsp;&gt;&nbsp;<b>{ORDERS_RECOVER_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+	<tr>
+		<td valign="top">
+
+		<table border="0" cellpadding="2" cellspacing="2">
+		<form action="{admin_orders_recover_href}" name="search_form">
+			<input type="hidden" name="s_form" value="1">
+		<!-- BEGIN errors -->
+		<tr><td colspan="2">
+			&nbsp;<div align="center" class="error"><font style="font-size:8pt">{errors_list}</font></div>&nbsp;
+		</td></tr>
+		<!-- END errors -->
+		<tr>
+			<td colspan="2"><b>{SEARCH_ORDERS_MSG}:</b></td>
+		</tr>
+		<tr>
+			<td>{ORDER_TYPE_MSG}:</td>
+			<td>
+				<!-- BEGIN s_ot -->
+				<input type="radio" name="s_ot" {s_ot_checked} value="{s_ot_value}">{s_ot_description}
+				<!-- END s_ot -->
+			</td>
+		</tr>
+		<tr>
+			<td>{TIME_PERIOD_MSG}:</td>
+			<td>
+				<select name="s_tp" class="search" onChange="setDatePeriod(document.search_form, 's_tp', 's_sd', 's_ed', '{date_edit_format}');">
+					<!-- BEGIN s_tp --><option {s_tp_selected} value="{s_tp_value}">{s_tp_description}<!-- END s_tp -->
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>{FROM_DATE_MSG} ({date_edit_format}):</td>
+			<td>
+				<input type="text" name="s_sd" value="{s_sd}" class="search">
+				<A HREF="#"
+					onClick="setDateField(document.search_form.s_sd, '{date_edit_format}');
+					top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+				<IMG SRC="../images/calendar.gif" BORDER=0><font size=1>{CALENDAR_MSG}</font></A>
+			</td>
+		</tr>
+		<tr>
+			<td>{TO_DATE_MSG} ({date_edit_format}):</td>
+			<td>
+				<input type="text" name="s_ed" value="{s_ed}" class="search">
+				<A HREF="#"
+					onClick="setDateField(document.search_form.s_ed, '{date_edit_format}');
+					top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+				<IMG SRC="../images/calendar.gif" BORDER=0><font size=1>{CALENDAR_MSG}</font></A>
+			</td>
+		</tr>
+		<tr>
+			<td>{ADMIN_WHERE_STATUS_IS_MSG}:</td>
+			<td>
+				<select name="s_os" class="search">
+					<!-- BEGIN s_os -->
+						<option {s_os_selected} value="{s_os_value}">{s_os_description}
+					<!-- END s_os -->
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>{REMINDER_SEND_MSG}:</td>
+			<td>
+				<!-- BEGIN s_rs -->
+				<input type="radio" name="s_rs" {s_rs_checked} value="{s_rs_value}">{s_rs_description}
+				<!-- END s_rs -->
+			</td>
+		</tr>
+		<tr>
+			<td>{SEND_DATE_FROM_MSG} ({date_edit_format}):</td>
+			<td>
+				<input type="text" name="s_ssd" value="{s_ssd}" class="search">
+				<A HREF="#"
+					onClick="setDateField(document.search_form.s_ssd, '{date_edit_format}');
+					top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+				<IMG SRC="../images/calendar.gif" BORDER=0><font size=1>{CALENDAR_MSG}</font></A>
+			</td>
+		</tr>
+		<tr>
+			<td>{SEND_DATE_TO_MSG} ({date_edit_format}):</td>
+			<td>
+				<input type="text" name="s_sed" value="{s_sed}" class="search">
+				<A HREF="#"
+					onClick="setDateField(document.search_form.s_sed, '{date_edit_format}');
+					top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+				<IMG SRC="../images/calendar.gif" BORDER=0><font size=1>{CALENDAR_MSG}</font></A>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2"><input type="submit" value="Search" class="submit">&nbsp;<input type="button" value="{CLEAR_BUTTON}" class="submit" onClick="clearSearch()"></td>
+		</tr>
+		</form>
+		</table>
+
+	</td>
+	<td valign="top" align="right" valign="top">
+		<table cellpadding="2" cellspacing="2" border="0">
+		<tr>
+			<td colspan="5">&nbsp;<b>{STATS_MSG}:</b></td>
+		</tr>
+		<tr class="middle">
+			<td></td>
+			<!-- begin stats_titles -->
+			<td><a href="{admin_orders_href}?s_sd={start_date}&s_ed={end_date}">{stat_title}</a></td><!-- end stats_titles -->
+		</tr>
+		<!-- begin statuses_stats -->
+		<tr class="usual" align="center">
+			<td align="left"><a href="{admin_orders_href}?s_os={status_id}">{status_name}</a></td>
+			<!-- begin stats_periods -->
+			<td>{period_orders}</td><!-- end stats_periods -->
+		</tr>
+		<!-- end statuses_stats -->
+		<tr class="middle" align="center">
+			<td align="right">{TOTAL_MSG}:&nbsp;</td>
+			<!-- begin stats_totals -->
+			<td>{period_total}</td><!-- end stats_totals -->
+		</tr>
+		</table>
+	</td></tr>
+</table>
+
+<br>
+
+<!-- BEGIN orders_errors -->
+&nbsp;<div align="center" class="error">{errors_list}</div>&nbsp;
+<!-- END orders_errors -->
+
+<!-- BEGIN orders_messages -->
+&nbsp;<div align="center" class="message">{messages_list}</div>&nbsp;
+<!-- END orders_messages -->
+
+
+<fieldset>
+<legend>{ORDERS_MAINTENANCE_MSG}</legend>
+
+<form name="orders" action="{admin_orders_recover_href}" method="POST">
+<input type="hidden" name="orders_number" value="{orders_number}">
+<input type="hidden" name="operation" value="send_filtered">
+<input type="hidden" name="s_ot" value="{ss_ot}">
+<input type="hidden" name="s_tp" value="{ss_tp}">
+<input type="hidden" name="s_sd" value="{s_sd}">
+<input type="hidden" name="s_ed" value="{s_ed}">
+<input type="hidden" name="s_os" value="{ss_os}">
+<input type="hidden" name="s_rs" value="{ss_rs}">
+<input type="hidden" name="s_ssd" value="{s_ssd}">
+<input type="hidden" name="s_sed" value="{s_sed}">
+
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+<!-- begin sorters -->
+<tr class="middle" align="center">
+	<td>
+		<input type="checkbox" name="all_orders" value="1" onClick="changeStatus();">
+	</td>
+	<td>
+		{sorter_id}
+	</td>
+	<td>
+		<b>{CUSTOMER_NAME_MSG}</b>
+	</td>
+	<td>
+		{sorter_status}
+	</td>
+	<td>
+		{sorter_date}
+	</td>
+	<td>
+		{sorter_total}
+	</td>
+	<td>
+		{sorter_ship_to}
+	</td>
+	<td>
+		{sorter_reminder_send_date}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- end sorters --><!-- BEGIN records -->
+<tr id="tr_order_{order_index}" valign="top" align="center" class="{row_style}" {send_style}>
+	<td>
+		<input type="checkbox" name="id_{order_index}" value="{order_id}" onClick="checkOrders();">
+	</td>
+	<td onmouseover="showOrderItems(event, {order_id})" onmousemove="showOrderItems(event, {order_id})"
+		onmouseout="hideOrderItems(event, {order_id})" style="cursor: default;">
+		{order_id}
+		<div id="order_items_{order_id}" style="display: none; position: absolute; width: 225px">
+
+			<table width=100% cellspacing=1 cellpadding=0 border=0 bgcolor="gray">
+			<tr><td>
+
+			<table width=100% cellspacing=1 cellpadding=0 border=0 bgcolor="#FFFFCC">
+			<tr>
+				<td><b>&nbsp;{PROD_TITLE_COLUMN}</b></td><td align="center">&nbsp;<b>{PROD_QTY_COLUMN}</b>&nbsp;</td><td align="right"><b>{PROD_PRICE_COLUMN}&nbsp;</b></td>
+			</tr>
+			<tr>
+				<td height="1" bgcolor="gray" colspan="3"><img src="../images/tr.gif" width="1" height="1"></td>
+			</tr><!-- BEGIN order_items -->
+			<tr valign="top"><td>&nbsp;{item_name}</td><td align=center>{quantity}</td><td align=right>{price}&nbsp;</td></tr>
+			<!-- END order_items -->
+			<tr>
+				<td height="1" bgcolor="gray" colspan="3"><img src="../images/tr.gif" width="1" height="1"></td>
+			</tr>
+			<tr><td align="right"><b>&nbsp;{GOODS_TOTAL_MSG}&nbsp;</b></td><td align=center>{total_quantity}</td><td align=right>{total_price}&nbsp;</td></tr>
+			<tr>
+				<td colspan="3">&nbsp;</td>
+			</tr>
+			</table>
+
+			</td></tr></table>
+
+		</div>
+	</td>
+	<td align="left">
+		&nbsp;{user_name}&nbsp;
+	</td>
+	<td>
+		{order_status}
+	</td>
+	<td>
+		&nbsp;{order_placed_date}&nbsp;
+	</td>
+	<td onmouseover="showOrderItems(event, {order_id})" onmousemove="showOrderItems(event, {order_id})"
+		onmouseout="hideOrderItems(event, {order_id})" style="cursor: default;" align="right">
+		&nbsp;{order_total}&nbsp;
+	</td>
+	<td>
+		&nbsp;{ship_to}&nbsp;
+	</td>
+	<td>
+		&nbsp;{reminder_send_date}&nbsp;
+	</td>
+	<td>
+		&nbsp;<a href="{admin_order_url}">{VIEW_MSG}/{EDIT_MSG}</a>&nbsp;
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="9">
+		&nbsp;{NO_ORDERS_MSG}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="5">
+		&nbsp;<a id="send_reminder" href="{admin_orders_reminder_href}">{SEND_ALL_ORDERS_REMINDER_MSG}</a>
+		<!-- begin send_reminder_filtered -->
+		| <a href="#" onclick="document.orders.submit();">{SEND_FILTERED_ORDERS_REMINDER_MSG} ({total_filtered})</a>&nbsp;<!-- end send_reminder_filtered -->
+	</td>
+	<td colspan="4" align="right">
+		<a href="{admin_orders_recover_settings_href}?rp={admin_orders_recover_href}">{ORDERS_RECOVER_SETTINGS_MSG}</a>
+	</td>
+</tr>
+</table>
+</form>
+</fieldset>
+
+
+{admin_footer}
+</body>
+</html>

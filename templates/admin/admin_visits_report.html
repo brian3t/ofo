@@ -1,0 +1,262 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {VISITS_REPORTS_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<style type="text/css">
+<!--
+	.row1 { background-color:#f0f0f0; }
+	.row2 { background-color:#fffeee; }
+	.rowWarn { background-color: #FFd0d0; }
+
+//-->
+</style>
+<script language="JavaScript" src="../js/calendar.js"></script>
+<script language="JavaScript">
+<!--
+
+	function selectPeriod()
+	{
+		var theForm = document.forms['search_form'];
+		var period = theForm.s_tp.options[theForm.s_tp.selectedIndex].value;
+		var Statistic = ""; 
+		var endDate = "";
+		if(period == 1) {
+			Statistic = "{today_date}"; endDate = "{today_date}";
+		} else if(period == 2) {
+			Statistic = "{yesterday_date}"; endDate = "{yesterday_date}";
+		} else if (period == 3) {
+			Statistic = "{week_start_date}"; endDate = "{today_date}";
+		} else if (period == 4) {
+			Statistic = "{month_start_date}"; endDate = "{today_date}";
+		} else if (period == 5) {
+			Statistic = "{last_month_start_date}"; endDate = "{last_month_end_date}";
+		} else if (period == 6) {
+			Statistic = "{quarter_start_date}"; endDate = "{today_date}";
+		} else if (period == 7) {
+			Statistic = "{year_start_date}"; endDate = "{today_date}";
+		}
+		theForm.s_sd.value = Statistic;
+		theForm.s_ed.value = endDate;
+	}
+	
+	function clearSearch() {
+		var theForm = document.forms['search_form'];
+
+		theForm.s_tp.selectedIndex = 0;
+		theForm.s_sd.value = "";
+		theForm.s_ed.value = "";
+		theForm.s_os.selectedIndex = 0;
+		theForm.s_sti.selectedIndex = 0;
+		theForm.submit();
+	}
+
+	function showTip(tipName) {
+		var tip = document.getElementById(tipName);
+		if (tip) {
+  	  		var leftPos = event.x + document.body.scrollLeft + 15;
+	    	var topPos  = event.y + document.body.scrollTop + 15;
+			tip.style.left = leftPos;
+			tip.style.top = topPos;
+			tip.style.display = "block";
+		}
+
+	}
+
+	function hideTip(tipName) {		
+		var tip = document.getElementById(tipName);
+		if (tip) {
+			tip.style.display = 'none'; 
+		}
+	}
+
+//-->
+</script>
+</head>
+
+<body class="commonbg">
+
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<b>{VISITS_REPORTS_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<form action="{admin_visits_report_href}" name="search_form">
+<input type="hidden" name="s_form" value="1">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center"><tr valign="top"><td>
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+		<tr>
+			<td valign="top">
+	
+			<table border="0" cellpadding="2" cellspacing="2">
+			<!-- BEGIN errors -->
+			<tr><td colspan="2">
+				&nbsp;<div align="center" class="error"><font style="font-size:8pt">{errors_list}</font></div>&nbsp;
+			</td></tr>
+			<!-- END errors -->
+			<tr>
+				<td colspan="2"><b>{FILTER_STATS_MSG}:</b></td>
+			</tr>
+			<tr>
+				<td>{GROUP_BY_MSG}:</td>
+				<td>
+					<select name="s_gr" class="search">
+						<!-- BEGIN s_gr --><option {s_gr_selected} value="{s_gr_value}">{s_gr_description}<!-- END s_gr -->
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>{TIME_PERIOD_MSG}:</td>
+				<td>
+					<select name="s_tp" class="search" onChange="selectPeriod();">
+						<!-- BEGIN s_tp --><option {s_tp_selected} value="{s_tp_value}">{s_tp_description}<!-- END s_tp -->
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>{FROM_DATE_MSG} ({date_edit_format}):</td>
+				<td>
+					<input type="text" name="s_sd" value="{s_sd}" class="search">
+					<a href="#"
+						onClick="setDateField(document.search_form.s_sd, '{date_edit_format}');
+						top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+					<img src="../images/calendar.gif" border="0"><font size=1>{CALENDAR_MSG}</font></a>
+				</td>
+			</tr>
+			<tr>
+				<td>{TO_DATE_MSG} ({date_edit_format}):</td>
+				<td>
+					<input type="text" name="s_ed" value="{s_ed}" class="search">
+					<a href="#"
+						onClick="setDateField(document.search_form.s_ed, '{date_edit_format}');
+						top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+					<img src="../images/calendar.gif" border="0"><font size=1>{CALENDAR_MSG}</font></a>
+				</td>
+			</tr>
+			<!-- begin sitelist -->
+			<tr>
+				<td>{ADMIN_SITE_MSG}:</td>
+				<td>
+					<select name="s_sti" class="search">
+						<!-- BEGIN s_sti -->
+							<option {s_sti_selected} value="{s_sti_value}">{s_sti_description}
+						<!-- END s_sti -->
+					</select>
+				</td>
+			</tr>
+			<!-- end sitelist -->
+			<tr>
+				<td></td>
+				<td>
+					<input type="submit" name="filter" value="{FILTER_BUTTON}" class="submit">&nbsp;
+					<input type="button" value="{CLEAR_BUTTON}" class="submit" onClick="clearSearch();">
+				</td>
+			</tr>
+			</table>
+		</td>
+	</table>
+</td><td>
+
+	<br>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" align="right">
+	<tr align="center" class="middle"> 
+		<td>{SELECT_REPORT_MSG} <br>
+			<table width="100%" border="0" cellspacing="1" cellpadding="0" >
+				<tr class="usual">
+					<td>&nbsp;{USER_AGENTS_MSG}</td>
+					<td align="center"><input type="checkbox" name="user_agent" {user_agent} value="1"></td>
+				</tr>
+				<tr class="usual">
+					<td>&nbsp;{REFERRING_HOSTS_MSG}</td>
+					<td align="center"><input type="checkbox" name="referer_host" {referer_host} value="1"></td>
+				</tr>
+				<tr class="usual">
+					<td>&nbsp;{SEARCH_ENGINES_MSG}</td>
+					<td align="center"><input type="checkbox" name="referer_engine_id" {referer_engine_id} value="1"></td>
+				</tr>
+				<tr class="usual">
+					<td>&nbsp;Keywords</td>
+					<td align="center"><input type="checkbox" name="keywords" {keywords} value="1"></td>
+					</tr>
+				<tr class="usual">
+					<td>&nbsp;{START_PAGES_MSG}</td>
+					<td align="center"><input type="checkbox" name="request_page" {request_page} value="1"></td>
+				</tr>
+				<tr class="usual">
+					<td>&nbsp;{AFFILIATES_VISITS_MSG}</td>
+					<td align="center"><input type="checkbox" name="affiliate_code" {affiliate_code} value="1"></td>
+				</tr>
+				<tr class="usual">
+					<td>&nbsp;{ROBOTS_VISITS_MSG}</td>
+					<td align="center"><input type="checkbox" name="robot_engine_id" {robot_engine_id} value="1"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+</form>
+
+<br>
+
+<!-- BEGIN search_results -->
+<fieldset>
+<legend>{report_type}</legend>
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+<tr valign="top" align="center" class="middle">
+	<td width="10%">
+		{QUANTITY_MSG}
+	</td>
+	<td width="90%">
+		{report_type}		
+	</td>
+</tr>
+<!-- BEGIN date_block -->
+<tr valign="top" align="center" class="middle">
+	<td>{total_quantity}</td>
+	<td align="left">&nbsp;&nbsp;{date_group_by}</td>
+</tr>
+<!-- BEGIN records -->
+<tr valign="top" align="center" class="{row_style}">
+	<td>
+		{quantity}
+	</td>
+	<td align="left">
+		&nbsp;{stat_title}
+	</td>
+</tr>
+<!-- END records -->
+<!-- begin other_block -->
+<tr valign="top" align="center" class="{row_style}">
+	<td>
+		{other_quantity}
+	</td>
+	<td align="left">
+		&nbsp;Other &nbsp; <a href="{admin_report_other_url}">{SHOW_MORE_MSG}...</a>
+	</td>
+</tr>
+<!-- end other_block -->
+<!-- END date_block -->
+<!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="2">
+		&nbsp;{NO_DATA_WERE_FOUND_MSG}
+	</td>
+</tr><!-- END no_records -->
+</table>	
+</fieldset>
+<br>
+<!-- END search_results -->
+
+{admin_footer}
+
+</body>
+</html>

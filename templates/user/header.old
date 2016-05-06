@@ -1,0 +1,26 @@
+<div class="headerMenu">
+	<div>
+        <a href=""><img id="logoL" style="background: url('{logo_src}') no-repeat;" class="png" src="images/tr.gif" {logo_size} alt="{logo_alt}" title="{logo_alt}"></a>
+        <img src="/images/oil-filters/autolite-logo.gif" class="secondaryLogo" alt="Autolite Spark Plugs" title="Autolite Spark Plugs are your industry leader in quality and performance spark plugs for you car or truck"/>
+        <img src="/images/oil-filters/fram-filters-logo.gif" class="secondaryLogo" alt="FRAM Oil Filters, FRAM Air Filters, FRAM Fuel Filters" title="FRAM provides top quality oil filters, air filters, cabin air filters for your car, truck, motorcycle and heavy duty applications">
+        <a href="user_home.php" /><img src="/images/oil-filters/tellafriend.gif" border="0" class="tellafriend" alt="My Account" title="Visit your account to check on the status of your order or update your information"></a>
+	</div>
+    <div class="topnav">
+      <ul class="tabs">
+                <li>
+                  <a id="menu-home" href="{site_url}" alt="Oil Filters Online Home" title="Your #1 Source for all of your automotive parts, filters and car accessories!"></a>
+                </li>
+                <li>
+                  <a id="menu-buy-filters" href="{site_url}products.php" alt="Buy Fram Oil Filters, Air Filters and Autolite Spark Plugs" title="The fastest and easiest way to buy car parts and accessories"></a></li>
+                <li>
+                  <a id="menu-oil-recycling" href="{site_url}page.php?page=recycling" alt="Find an Oil Recycling Center" title="Use our Oil Recycling Location Finder to find the nearest oil recycling center"></a>
+                </li>
+                <li>
+                  <a id="menu-how-to-videos" href="{site_url}page.php?page=videos" alt="How To Change Your Oil Videos" title="Check out our automotive videos section to learn how to change your oil, air filter, and spark plugs"></a>
+                </li>
+                <li>
+                    <a id="menu-get-help" href="{site_url}articles.php?category_id=36" alt="Get Help With Your Filter Questions" title="Ask our expert staff about filter availability, filter applications and pretty much anything about filters and spark plugs!"></a>                                </li>
+      </ul>
+    </div>
+</div>
+

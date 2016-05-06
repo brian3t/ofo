@@ -1,0 +1,169 @@
+<div class="block-products-list">
+	<div class="titleTopCenter">
+		
+		
+		<h1>{current_category_name}</h1>
+	</div>
+	<!-- begin search_and_navigation -->
+	<!-- begin search_results -->
+	<div class="searchFindings">{FOUND_PRODUCTS_MSG}</div>
+	<!-- end search_results -->
+	<!-- end search_and_navigation -->
+	<div class="navigator">
+		<!-- begin products_sortings -->
+		{PROD_SORT_BY_MSG}: {sorter_default} | {sorter_price} | {sorter_name} | {sorter_manufacturer} | {sorter_code}
+		<!-- end products_sortings -->
+		<!-- begin navigator_block -->
+		<span class="right">{navigator}</span>
+		<!-- end navigator_block -->
+	</div>
+	<!-- begin no_items -->
+	<div id="noProducts">{NO_PRODUCTS_MSG}</div>
+	<!-- end no_items -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<!-- begin category_items -->
+		<!-- begin items_category_name -->
+		<tr>
+			<td colspan="{total_columns}" class="productsCategory">{category_name}</td>
+		</tr>
+		<!-- end items_category_name -->
+		<!-- BEGIN items_rows -->
+		<tr>
+			<!-- BEGIN items_cols -->
+			<td>
+				<div class="wrapper">
+					<a name="p{form_id}"></a>
+					<!-- BEGIN item_added -->
+					<div class="messagebg" align="center">{added_message}</div>
+					<!-- END item_added -->
+					<!-- BEGIN sc_errors -->
+					<div class="errorbg" align="center">{errors_list}</div>
+					<!-- END sc_errors -->
+					<form name="form_{form_id}" method="post" action="{products_form_url}#p{form_id}">
+						{hidden_parameters}
+						<input type="hidden" name="type" value="list">
+						<input type="hidden" name="rp" value="{rp}">
+						<input type="hidden" name="rnd" value="{rnd}">
+						<input type="hidden" name="cart" value="ADD">
+						<input type="hidden" name="add_id" value="{item_id}">
+						<input type="hidden" name="saved_type_id" value="">
+						<input type="hidden" name="tax_percent" value="{tax_percent}">
+						<input type="hidden" name="product_params" value="{product_params}">
+						<h2 class="listing {product_new_class} {restricted_class}"> <a class="bigtitle" href="{product_details_url}">{item_name}</a> </h2>
+						<div>
+							<!--begin product_new_image-->
+							<img src="images/tr.gif" alt="" class="{product_new_class}">
+							<!--end product_new_image-->
+							<!--begin restricted_image-->
+							<img src="images/tr.gif" alt="" class="{restricted_class}">
+							<!--end restricted_image-->
+							<!-- begin found_in_category -->
+							<div class="smallText">{FOUND_IN_MSG}:
+								<!-- BEGIN found_categories -->
+								<a class="smallText" href="{products_href}?category_id={ic_id}">{item_category}</a>{ic_separator}
+								<!-- END found_categories -->
+							</div>
+							<!-- end found_in_category -->
+						</div>
+						<div class="listImage">
+							<!-- begin small_image -->
+							<a href="{product_details_url}"> <img class="productImg" name="image_{form_id}" src="{src}" alt="{alt}"> </a>
+							<!-- end small_image -->
+							{product_previews}
+							<!-- begin compare -->
+							<div>
+								<input type="checkbox" name="compare" value="{item_id}">
+								<a href="#" onClick="return compareItems();"><b>{COMPARE_MSG}</b></a>
+							</div>
+							<!-- end compare -->
+						</div>
+						<!-- begin price_block -->
+						<div id="price_block_{item_id}" class="{price_block_class}"> {PRICE_MSG}:&nbsp;<span id="price_{item_id}" class="price">{price_control}</span> <span class="priceTax">{tax_price}</span> </div>
+						<!-- end price_block -->
+						<!-- begin sales -->
+						<div class="salesBlock">{OUR_PRICE_MSG}:&nbsp;<span id="sales_price_{item_id}" class="salesPrice">{sales_price_control}</span> <span class="salesTax">{tax_sales}</span></div>
+						<!-- end sales -->
+						<!-- begin save -->
+						<div class="priceSaveBlock">{YOU_SAVE_MSG}: <span class="price">{you_save}</span> <span class="percent">({discount_percent}%)</span></div>
+						<!-- end save -->
+						<!-- begin price_matrix -->
+						<table cellspacing="0" cellpadding="2" border="0" class="matrix">
+							<tr>
+								<th class="matrixTop">{QTY_MSG}</th>
+								<!-- begin matrix_quantities -->
+								<td class="matrixTop" align="center">{matrix_quantity}</td>
+								<!-- end matrix_quantities -->
+							</tr>
+							<tr>
+								<th class="matrixBottom">{PRICE_MSG}</th>
+								<!-- begin matrix_prices -->
+								<td class="matrixBottom" align="center"><span class="price">{matrix_price}</font> <span class="priceTax">{matrix_tax_price}</span></td>
+								<!-- end matrix_prices -->
+							</tr>
+						</table>
+						<!-- end price_matrix -->
+						<!-- begin points_price_block -->
+						<div class="pointsPriceBlock">{POINTS_PRICE_MSG}:&nbsp;<span id="points_price_{item_id}" class="points">{points_price}</span></div>
+						<!-- end points_price_block -->
+						<!-- begin reward_points_block -->
+						<div class="rewardPointsBlock">{REWARD_POINTS_MSG}:&nbsp;<span id="reward_points_{item_id}" class="points">{reward_points}</span></div>
+						<!-- end reward_points_block -->
+						<!-- begin reward_credits_block -->
+						<div class="rewardCreditsBlock">{REWARD_CREDITS_MSG}:&nbsp;<span id="reward_credits_{item_id}" class="credits">{reward_credits}</span></div>
+						<!-- end reward_credits_block -->
+						<!-- begin item_code_block -->
+						<b>{PROD_CODE_MSG}: </b>{item_code}<br>
+						<!-- end item_code_block -->
+						<!-- begin manufacturer_code_block -->
+						<b>{MANUFACTURER_CODE_MSG}: }</b>{manufacturer_code<br>
+						<!-- end manufacturer_code_block -->
+						<!-- begin reviews -->
+						<!-- end reviews -->
+						<!-- begin availability -->
+						<b>{PROD_AVAILABILITY_MSG}: </b><font class="smallText">{shipping_time_desc}</font><br>
+						<!-- end availability -->
+						<!-- begin stock_level_block -->
+						<b>{STOCK_LEVEL_MSG}: </b><span id="stock_level_{item_id}" class="stock_level">{stock_level}</span><br>
+						<!-- end stock_level_block -->
+						<div class="cart-button">
+							<!-- begin quantity -->
+							{PROD_QTY_COLUMN}: {quantity_control}
+							<!-- end quantity -->
+							<!-- begin add_button -->
+							<input type="submit" value="{ADD_TO_CART_MSG}" class="button">
+							<!-- end add_button -->
+							<!-- begin add_button_disabled -->
+							<a class="disabled" title="{PRODUCT_OUT_STOCK_MSG}" onClick="alert('{out_stock_alert}');">{ADD_TO_CART_MSG}</a>
+							<!-- end add_button_disabled -->
+							<!-- begin view_button -->
+							<a class="button button-view" id="view_{form_id}" href="{basket_href}?rp={rp_url}"><span>{VIEW_CART_MSG}</span><img src="images/tr.gif" alt="{VIEW_CART_MSG}"></a>
+							<!-- end view_button -->
+							<!-- begin checkout_button -->
+							<a class="button button-check" id="check_{form_id}" href="{checkout_href}?rp={rp_url}"><span>{GOTO_CHECKOUT_MSG}</span><img src="images/tr.gif" alt="{GOTO_CHECKOUT_MSG}"></a>
+							<!-- end checkout_button -->
+							<!-- begin wishlist_button -->
+							<a class="button button-wishlist" id="wishlist_{form_id}" href="{wishlist_href}" onClick="return confirmBuy(document.form_{form_id}, 'wishlist');"><span>Add to Wishlist</span><img src="images/tr.gif" alt="Add to Wishlist"></a>
+							<!-- end wishlist_button -->
+						</div>
+						<div style="clear:both"></div>
+						<!-- begin properties -->
+						<div id="{property_block_id}" style="{property_style}">{property_name}: {property_control}</div>
+						<!-- end properties -->
+					</form>
+				</div></td>
+			<!-- END items_cols -->
+		</tr>
+		<!-- begin delimiter -->
+		<!-- end delimiter -->
+		<!-- END items_rows -->
+		<!-- end category_items -->
+	</table>
+	<form name="compare_form" action="{compare_href}">
+		<input type="hidden" name="items" value="">
+	</form>
+	<form name="forms_names" action="{compare_href}">
+		<!-- begin forms -->
+		<input type="hidden" name="form_name" value="form_{form_id}">
+		<!-- end forms -->
+	</form>
+</div>

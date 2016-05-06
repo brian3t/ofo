@@ -1,0 +1,67 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {PRIVILEGE_TYPE_MSG} ::..</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<b>{PRIVILEGES_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{PRIVILEGES_MSG}</legend>
+
+<table border="0" cellspacing="1" cellpadding="6" width="100%"><!-- begin titles -->
+<tr align="center" class="middle">
+	<td>
+		{sorter_privilege_id}
+	</td>
+	<td>
+		{sorter_privilege_name}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- end titles --><!-- BEGIN records -->
+<tr class="usual" align="center">
+	<td>
+		{privilege_id}
+	</td>
+	<td align="left">
+		&nbsp;{privilege_name}
+	</td>
+	<td>
+		<a href="{admin_privileges_edit_href}?privilege_id={privilege_id}">{EDIT_MSG}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="3">
+		&nbsp;{NO_RECORDS}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="3">
+		&nbsp;<a href="{admin_privileges_edit_href}">{ADD_NEW_MSG}</a><!-- begin navigator_block -->&nbsp;{navigator}&nbsp;<!-- end navigator_block -->
+	</td>
+</tr>
+</table>	
+
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

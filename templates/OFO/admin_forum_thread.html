@@ -1,0 +1,274 @@
+<html><head><title>..:: {ADMIN_FORUM_TITLE} :: {topic} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script type="text/javascript" src="../js/icons.js"></script>
+<script type="text/javascript" src="../js/attachments.js"></script>
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td align="center">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a href="{admin_forum_href}">{ADMIN_FORUM_TITLE}</a>&nbsp;&gt;&nbsp;<a href="{admin_forum_href}?category_id={category_id}">{current_category}</a>&nbsp;&gt;&nbsp;<a href="{admin_forum_href}?forum_id={forum_id}">{current_forum}</a>&nbsp;&gt;&nbsp;<b>{topic}</b>
+		</td>
+	</tr>
+	</table>
+</td>
+</tr>
+</table>
+
+<br>
+
+<!-- begin global_errors -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual" align="center">
+			<div class="error">{errors_list}</div>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+<br>
+<!-- end global_errors -->
+<!-- begin topic_info -->
+<fieldset>
+<legend>{TOPIC_INFO_TITLE}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<table border="0" cellpadding="6" cellspacing="1" width="100%">
+<tr valign="top">
+	<td width="22%" class="middle">
+		&nbsp;{TOPIC_ADDED_BY_FIELD}
+	</td>
+	<td class="usual">
+		&nbsp;{topic_user_name} &lt;{topic_user_email}&gt;
+	</td>
+</tr>
+<tr valign="top">
+	<td width="22%" class="middle">
+		&nbsp;{IP_ADDRESS_MSG}
+	</td>
+	<td class="usual">
+		&nbsp;{topic_user_ip}
+	</td>
+</tr>
+<tr valign="top">
+	<td width="22%" class="middle">
+		&nbsp;{TOPIC_VIEWS_COLUMN}
+	</td>
+	<td class="usual">
+		&nbsp;{views}
+	</td>
+</tr>
+<tr valign="top">
+	<td width="22%" class="middle">
+		&nbsp;{TOPIC_REPLIES_COLUMN}
+	</td>
+	<td class="usual">
+		&nbsp;{replies}
+	</td>
+</tr>
+<tr valign="top">
+	<td width="22%" class="middle">
+		&nbsp;{ADMIN_TOPIC_ADDED_MSG}
+	</td>
+	<td class="usual">
+		&nbsp;{topic_added}
+	</td>
+</tr>
+<tr valign="top">
+	<td width="22%" class="middle">
+		&nbsp;{TOPIC_MODIFIED_MSG}
+	</td>
+	<td class="usual">
+		&nbsp;{topic_modified}
+	</td>
+</tr>
+<tr valign="top">
+	<td width="22%" class="middle">
+		&nbsp;{TOPIC_UPDATED_FIELD}
+	</td>
+	<td class="usual">
+		&nbsp;{thread_updated}
+	</td>
+</tr>
+<tr valign="top">
+	<td width="22%" class="middle">
+		&nbsp;{TOPIC_NAME_COLUMN}
+	</td>
+	<td class="usual">
+		&nbsp;{topic}
+	</td>
+</tr><!-- begin topic_attachments -->
+<tr valign="top">
+	<td class="middle">
+		&nbsp;{ATTACHMENTS_MSG}
+	</td>
+	<td class="usual">
+		&nbsp;{attachments_files}
+	</td>
+</tr><!-- end topic_attachments -->
+<tr valign="top">
+	<td colspan="2" class="usual">
+		{topic_description}
+		<p>
+			<a href="{admin_forum_topic_href}?thread_id={thread_id}"><b>{EDIT_TOPIC_MSG}</b></a> |
+			<a href="{admin_forum_topic_href}?thread_id={thread_id}&operation=delete" onClick="return confirm('{CONFIRM_DELETE_JS}');"><b>{DELETE_TOPIC_MSG}</b></a>
+		</p>
+	</td>
+</tr>
+</table>	
+	</td>
+</tr>
+</table>
+</fieldset>
+<!-- end topic_info -->
+<!-- begin topic_messages -->
+<br>
+<a name="message_form"></a>
+<form action="{admin_forum_thread_href}?thread_id={thread_id}&#message_form" name="message" method="POST">
+<input type="hidden" name="rnd" value="{rnd}">
+<input type="hidden" name="thread_id" value="{thread_id}">
+<input type="hidden" name="attachments_url" value="{admin_forum_attachments_url}">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="page" value="{page}">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<td>
+<fieldset>
+<legend>{MESSAGE_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<table border="0" cellpadding="4" cellspacing="1" width="100%"><!-- begin errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- end errors -->
+<!-- begin attachments_block -->
+<tr class="usual">
+	<td>
+		&nbsp;<a href="#" onClick="attachFiles(document.message);return false;">{ATTACHMENTS_MSG}</a>
+		<a href="#" onClick="attachFiles(document.message);return false;"><img src="../images/clip.gif" align="top" border="0" width="16" height="16"></a>
+	</td>
+	<td>
+		<div id="attachmentsBlock" style="{attachments_class}">
+			&nbsp;<a href="#" onClick="attachFiles(document.message);return false;">Attached Files</a>:&nbsp;
+			&nbsp;<span id="attachedFiles">{attached_files}</span>
+		</div>
+	</td>
+</tr>
+<!-- end attachments_block -->
+<tr class="usual" valign="top">
+	<td width="22%">
+		&nbsp;{MESSAGE_MSG} *
+
+		<!-- begin icons_block -->
+		<div align="center">
+		<br>{EMOTICONS_MSG}
+		<table cellspacing="3" cellpadding="0" border="0">
+		<!-- begin icons_rows -->
+		<tr>
+			<!-- begin icons_cols -->
+			<td>
+				<a href="#" onClick="insertAtCaret('{icon_code_js}', document.message.message_text);return false;"><img src="{icon_src}" {icon_size} border="0" alt="{icon_alt}"></a>
+			</td>
+			<!-- end icons_cols -->
+		</tr>
+		<!-- end icons_rows -->
+		</table>
+		<!-- begin icons_more_link -->
+		<br><a href="#" onClick="openIconsWindow('{icon_select_href}', document.message.message_text);return false;">{VIEW_MORE_EMOTICONS_MSG}</a>
+		<!-- end icons_more_link -->
+		</div>
+		<!-- end icons_block -->
+
+	</td>
+	<td>
+		<textarea name="message_text" cols="100" rows="10" onSelect="storeCaret(this);" onClick="storeCaret(this);" onKeyUp="storeCaret(this);">{message_text}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{POST_MESSAGE_MSG}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="button" value=" {CLEAR_BUTTON} " onClick="document.message.message_text.value=''">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="reset" value=" {RESET_BUTTON} ">
+	</td>
+</tr>
+</table>	
+
+	</td>
+</tr>
+</table>
+</form>
+</fieldset>
+
+<!-- begin records -->
+<br><br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header">
+
+<table border="0" cellpadding="5" cellspacing="1" width="100%">
+<tr valign="top">
+	<td class="middle" colspan="2"><a name="m{message_id}"></a>
+		<table width="100%" cellspacing="0" cellpadding="0" border="0">
+		<tr valign="top">
+			<td width=90%>
+				<!-- begin user_block --><b>{message_user_name} &lt;{message_user_email}&gt;</b><!-- end user_block -->
+				<!-- begin admin_block --><div class="message"><b>{message_user_name} &lt;{message_user_email}&gt;</b></div><!-- end admin_block -->
+				<div class="small">IP: {message_user_ip}</div>
+			</td>
+			<td align="right" nowrap valign=middle><div class=newsDate>{date_added}</div></td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<!-- begin message_attachments -->
+<tr valign="top" class="usual">
+	<td colspan="2">
+		{attachments_files}
+	</td>
+</tr><!-- end message_attachments -->
+<tr>
+	<td colspan="2" class="usual">
+		{message_text}
+		<p><a href="{admin_forum_message_href}?message_id={message_id}"><b>{EDIT_MESSAGE_MSG}</b></a>&nbsp;|&nbsp; 
+		<a href="admin_forum_message.php?message_id={message_id}&operation=delete" onClick="return confirm('{CONFIRM_DELETE_JS}');"><b>{DELETE_MESSAGE_MSG}</b></a></p>
+	</td>
+</tr>
+</table>	
+
+</td></tr></table>
+<!-- end records --><!-- begin navigator_block -->
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<td align="right">
+		&nbsp;{navigator}&nbsp;
+	</td>
+</tr>
+</table>
+<!-- end navigator_block -->
+<!-- end topic_messages -->
+</td>
+</tr></table>
+
+{admin_footer}
+
+</body>
+</html>

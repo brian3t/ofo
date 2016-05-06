@@ -1,0 +1,385 @@
+<script language="JavaScript" type= "text/javascript" src="js/tabs.js"></script>
+<script language="JavaScript" type="text/javascript">
+<!--
+
+	function openProductWindow(formId)
+	{
+		var productWin = window.open ('{user_product_select_href}?form_id=' + formId, 'uploadWin', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=600,height=500');
+		productWin.focus();
+	}
+
+	function setProduct(itemId, itemName, itemPrice, formId)
+	{
+		document.record.elements["sub_item_id_" + formId].value = itemId;
+		document.record.elements["property_value_" + formId].value = itemName;
+		var basicPrice = document.getElementById("price_" + formId);
+		if (basicPrice) {
+			basicPrice.innerHTML = itemPrice;
+		}
+	}
+
+//-->
+</script>
+
+<div class="block-user-product-subcomponents">
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop" id="user-home">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+<tr><td class="blockTD blockTDtabs">
+<table cellspacing="0" cellpadding="0" border="0">
+<tr>
+	<td class="beginTab">&nbsp;</td>
+	<!-- BEGIN tabs -->
+	<td id="td_{tab_id}" class="{tab_class}"><div id="{tab_id}" class="{tab_class}"><a class="blackSm" href="#" onClick="changeTab('{tab_name}'); return false;">{tab_title}</a></td>
+	<!-- END tabs -->
+	<td class="endTab">&nbsp;</td>
+</tr>
+</table>
+</td></tr>
+</table>
+
+<!-- {} -->
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+<tr><td class="blockTD">
+
+<form action="{user_product_subcomponents_href}" name="record" method="post">
+<input type="hidden" name="tab" value="{tab}">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="property_id" value="{property_id}">
+<input type="hidden" name="item_id" value="{item_id}">
+<input type="hidden" name="sort_dir" value="{sort_dir}">
+<input type="hidden" name="sort_ord" value="{sort_ord}">
+<input type="hidden" name="page" value="{page}">
+<input type="hidden" name="more_properties" value="0">
+<input type="hidden" name="number_properties" value="{number_properties}">
+
+<div id="data_general" style="{general_style}">
+<table width="100%" border="0" cellspacing="1" class="padding4px">
+<!-- BEGIN errors -->
+<tr>
+	<td colspan="2" class="usualbg" align="center">
+		<div class="errorbg">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usualbg">
+	<td nowrap>
+		{COMPONENT_ORDER_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" name="property_order" value="{property_order}" size="12">
+	</td>
+</tr>
+<tr class="usualbg">
+	<td nowrap>
+		{COMPONENT_NAME_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" name="property_name" value="{property_name}" size="60">
+	</td>
+</tr>
+<tr class="usualbg">
+	<td nowrap>
+		{COMPONENT_CONTROL_MSG} *
+	</td>
+	<td>
+		<select name="control_type"><!-- begin control_type -->
+			<option {control_type_selected} value="{control_type_value}">{control_type_description}<!-- end control_type -->
+		</select>
+		<font size=1>({COMPONENT_CONTROL_DESC})</font>
+	</td>
+</tr>
+<!-- begin property_style_block -->
+<tr class="usualbg">
+	<td>
+		{COMPONENT_STYLE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="property_style" value="{property_style}" size="60"> 
+		<font size=1>({USE_CSS_TO_CHANGE_MSG}, {EG_MSG} 'display: none;')</font>
+	</td>
+</tr><!-- end property_style_block -->
+<!-- begin show_component_block -->
+<tr class="usualbg">
+	<td>
+		{SHOW_COMPONENT_MSG}
+	</td>
+	<td>
+		<!-- begin use_on_list_block -->
+		<input type="checkbox" {use_on_list} name="use_on_list" value="1">
+		<font size="1">{ON_PROD_LIST_MSG}</font> &nbsp;<!-- end use_on_list_block -->
+		<!-- begin use_on_details_block -->
+		<input type="checkbox" {use_on_details} name="use_on_details" value="1">
+		<font size="1">{ON_PROD_DETAILS_MSG}</font> &nbsp;<!-- end use_on_details_block -->
+		<!-- begin use_on_table_block -->
+		<input type="checkbox" {use_on_table} name="use_on_table" value="1">
+		<font size="1">on table view</font> &nbsp;<!-- end use_on_table_block -->
+		<!-- begin use_on_grid_block -->
+		<input type="checkbox" {use_on_grid} name="use_on_grid" value="1">
+		<font size="1">on grid view</font> &nbsp;<!-- end use_on_grid_block -->
+		<!-- begin use_on_second_block -->
+		<input type="checkbox" {use_on_second} name="use_on_second" value="1">
+		<font size="1">{ON_SEPARATE_PAGE_MSG}</font> &nbsp;<!-- end use_on_second_block -->
+	</td>
+</tr>
+<!-- end show_component_block -->
+
+<tr class="usualbg">
+	<td>
+		{COMPONENT_REQUIRED_MSG}
+	</td>
+	<td>
+		<input type="checkbox" {required} name="required" value="1">
+	</td>
+</tr>
+<tr class="middlebg">
+	<td colspan="2">
+		List of {PROD_SUBCOMPONENTS_MSG}
+	</td>
+</tr>
+<tr class="usualbg">
+	<td colspan="2">
+
+<table width="100%" border="0" cellspacing="1" class="padding4px">
+<tr align="center" class="usualbg">
+	<td class="small">
+
+	</td>
+	<td class="small">
+		{PRODUCT_ID_MSG}
+	</td>
+	<td class="small">
+		Order
+	</td>
+	<td class="small">
+		{SUBCOMP_NAME_MSG}
+	</td>
+	<td class="small">
+		{QUANTITY_MSG}
+	</td>
+	<td class="small">
+		{OVERRIDE_PRICE_MSG}
+	</td>
+	<!-- begin trade_additional_price_title -->
+	<td class="small">
+		{PROD_TRADE_PRICE_MSG}
+	</td><!-- end trade_additional_price_title -->
+	<td class="small">
+		{REAL_PRICE_MSG}
+	</td>
+	<td class="small">
+		{DEFAULT_MSG}
+	</td>
+	<td class="small">
+		{HIDE_MSG}
+	</td>
+	<td class="small">
+		{DELETE_BUTTON}
+	</td>
+</tr><!-- begin properties --><!-- begin properties_errors -->
+<tr class="usualbg" align="center">
+	<td colspan="11">
+		<div class="errorbg">{errors_list}</div>
+	</td>
+</tr><!-- end properties_errors -->
+<tr class="usualbg" align="center" valign="top">
+	<td align="center">
+		<a href="#" onClick="openProductWindow('{properties_number}'); return false;">{SELECT_PRODUCT_MSG}</a>
+	</td>
+	<td>
+		<input type="hidden" name="item_property_id_{properties_number}" value="{item_property_id}">
+		<input type="hidden" name="property_id_{properties_number}" value="{property_id}">
+		<input class="fieldSmall" type="text" name="sub_item_id_{properties_number}" value="{sub_item_id}" size="5">
+	</td>
+	<td>
+		<input class="fieldSmall" type="text" name="value_order_{properties_number}" value="{value_order}" size="5">
+	</td>
+	<td>
+		<input class="fieldSmall" type="text" name="property_value_{properties_number}" value="{property_value}" size="50">
+	</td>
+	<td>
+		<input class="fieldSmall" type="text" name="quantity_{properties_number}" value="{quantity}" size="5" maxlength="10">
+	</td>
+	<td align="left">
+		<input class="fieldSmall" type="text" name="additional_price_{properties_number}" value="{additional_price}" size="10" maxlength="10" style="text-align:right;">
+	</td>
+	<!-- begin trade_additional_price_block -->
+	<td align="left">
+		<input class="fieldSmall" type="text" name="trade_additional_price_{properties_number}" value="{trade_additional_price}" size="10" maxlength="10" style="text-align:right;">
+	</td><!-- end trade_additional_price_block -->
+	<td align="right">
+		&nbsp;<b><span id="price_{properties_number}">{basic_price}</span></b>&nbsp;
+	</td>
+	<td>
+		<input type="checkbox" name="is_default_value_{properties_number}" {is_default_value} value="1">
+	</td>
+	<td>
+		<input type="checkbox" name="hide_value_{properties_number}" {hide_value} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="properties_delete_{properties_number}" {properties_delete} value="1">
+	</td>
+</tr><!-- end properties -->
+<tr class="usualbg">
+	<td colspan="11" align="right">
+		{ADD_MORE_SUBCOMP_QST}
+		<span class="submit"><input class="submit" type="submit" value=" {ADD_BUTTON} " onClick="document.record.more_properties.value=1"></span>
+	</td>
+</tr>
+</table>
+
+	</td>
+</tr>
+<tr class="middlebg">
+	<td></td>
+	<td>
+		<span class="submit"><input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'"> &nbsp; </span><!-- BEGIN delete -->
+		<span class="submit"><input class="submit" type="submit" value="{DELETE_BUTTON}" onCLick="document.record.operation.value='delete';return confirm('{confirm_delete_message}');"> &nbsp; </span><!-- END delete -->
+		<span class="submit"><input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">&nbsp;</span>
+	</td>
+</tr>
+</table>
+</div>
+
+<div id="data_html" style="{html_style}">
+<table width="100%" border="0" cellspacing="1" class="padding4px">
+<!-- begin apperance_block -->
+<tr class="middlebg">
+	<td colspan="2">
+		{COMPONENT_APPEARANCE_MSG}
+	</td>
+</tr>
+<!-- end apperance_block -->
+<!-- begin control_style_block -->
+<tr class="usualbg">
+	<td>
+		{CONTROL_STYLE_MSG}
+		<div class="smallText">({CONTROL_STYLE_NOTE}, {EG_MSG} 'color: green;')</div>
+	</td>
+	<td>
+		<textarea cols="60" rows="2" name="control_style">{control_style}</textarea>
+	</td>
+</tr><!-- end control_style_block -->
+<!-- begin start_html_block -->
+<tr class="usualbg">
+	<td>
+		{BEFORE_TITLE_HTML_MSG}
+		<div class="smallText">({BEFORE_TITLE_COMPONENT_NOTE})</div>
+	</td>
+	<td>
+		<textarea cols="60" rows="2" name="start_html">{start_html}</textarea>
+	</td>
+</tr><!-- end start_html_block -->
+<!-- begin middle_html_block -->
+<tr class="usualbg">
+	<td>
+		{AFTER_TITLE_HTML_MSG}
+		<div class="smallText">({AFTER_TITLE_COMPONENT_NOTE})</div>
+	</td>
+	<td>
+		<textarea cols="60" rows="2" name="middle_html">{middle_html}</textarea>
+	</td>
+</tr><!-- end middle_html_block -->
+<!-- begin before_control_html_block -->
+<tr class="usualbg">
+	<td>
+		{BEFORE_CONTROL_HTML_MSG}
+		<div class="smallText">({BEFORE_CONTROL_COMPONENT_NOTE})</div>
+	</td>
+	<td>
+		<textarea cols="60" rows="2" name="before_control_html">{before_control_html}</textarea>
+	</td>
+</tr><!-- end before_control_html_block -->
+<!-- begin after_control_html_block -->
+<tr class="usualbg">
+	<td>
+		{AFTER_CONTROL_HTML_MSG}
+		<div class="smallText">({AFTER_CONTROL_COMPONENT_NOTE})</div>
+	</td>
+	<td>
+		<textarea cols="60" rows="2" name="after_control_html">{after_control_html}</textarea>
+	</td>
+</tr>
+<!-- end after_control_html_block -->
+<!-- begin end_html_block -->
+<tr class="usualbg">
+	<td>
+		{END_HTML_MSG}
+		<div class="smallText">({END_COMPONENT_NOTE})</div>
+	</td>
+	<td>
+		<textarea cols="60" rows="2" name="end_html">{end_html}</textarea>
+	</td>
+</tr><!-- end end_html_block -->
+<tr class="middlebg">
+	<td></td>
+	<td>
+		<span class="submit"><input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'"> &nbsp; </span>
+	</td>
+</tr>
+</table>
+</div>
+
+<div id="data_js" style="{js_style}">
+<table width="100%" border="0" cellspacing="1" class="padding4px">
+<!-- begin js_block -->
+<tr class="middlebg">
+	<td colspan="2">
+		{JAVASCRIPT_SETTINGS_MSG}
+	</td>
+</tr><!-- end js_block -->
+<!-- begin onchange_code_block -->
+<tr class="usualbg">
+	<td>
+		{ONCHANGE_EVENT_MSG}
+		<div class="smallText">({EG_MSG} &lt;select onChange="<b>[your code here]</b>"&gt;)</div>
+	</td>
+	<td>
+		<textarea cols="60" rows="2" name="onchange_code">{onchange_code}</textarea>
+	</td>
+</tr><!-- end onchange_code_block -->
+<!-- begin onclick_code_block -->
+<tr class="usualbg">
+	<td>
+		{ONCLICK_EVENT_MSG}
+		<div class="smallText">({EG_MSG} &lt;input type="radio" onClick="<b>[your code here]</b>"&gt;)</div>
+	</td>
+	<td>
+		<textarea cols="60" rows="2" name="onclick_code">{onclick_code}</textarea>
+	</td>
+</tr><!-- end onclick_code_block -->
+<!-- begin control_code_block -->
+<tr class="usualbg">
+	<td>
+		{CONTROL_CODE_MSG}
+		<div class="smallText">({EG_MSG} &lt;input type="text" <b>[your code here]</b>&gt;)</div>
+	</td>
+	<td>
+		<textarea cols="60" rows="2" name="control_code">{control_code}</textarea>
+	</td>
+</tr><!-- end control_code_block -->
+<tr class="middlebg">
+	<td></td>
+	<td>
+		<span class="submit"><input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'"> &nbsp; </span>
+	</td>
+</tr>
+</table>
+</div>
+
+</form>
+
+</td></tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+</div>

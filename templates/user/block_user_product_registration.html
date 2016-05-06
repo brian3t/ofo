@@ -1,0 +1,162 @@
+<div class="block-user-product-registration">
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{REGISTER_PRODUCT_MSG}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+<tr><td class="blockTD">
+
+<form action="{user_product_registration_href}" name="record" method="POST">
+	<input type="hidden" name="operation" value="">
+	<input type="hidden" name="add_more" value="0">
+	<table border="0" cellspacing="1" width="100%" class="padding6px">
+		<!-- BEGIN errors -->
+		<tr class="usualbg">
+			<td colspan="2" align="center">
+				<div class="errorbg">{errors_list}</div>
+			</td>
+		</tr>
+		<!--END errors-->
+		<!-- BEGIN intro_text_block -->
+		<tr>
+			<td colspan="2" class="usualbg">
+				{intro_text}
+			</td>
+		</tr>
+		<!-- END intro_text_block -->
+		<tr>
+			<td colspan="2" class="usualbg">
+				<font class="small">{ASTERISK_MSG}</font>					
+			</td>
+		</tr>
+		<!--BEGIN registration_categories_block-->	
+		<!--BEGIN registration_category_block-->	
+		<tr class="usualbg">
+			<td><!--BEGIN registration_categories_title-->{SELECT_CATEGORY_MSG} <span class="required">*</span><!--END registration_categories_title-->&nbsp;</td>
+			<td>			
+				<select name="category_id_{category_number}" onchange="document.record.operation.value='get_categories'; document.record.submit();"><!-- BEGIN category_id -->
+					<option {category_id_selected} value="{category_id_value}">{category_id_description}<!-- END category_id -->
+				</select>				
+			</td>
+		</tr>	
+		<!--END registration_category_block-->		
+		<!--END registration_categories_block-->
+		<!-- BEGIN item_id_block -->
+		<tr class="usualbg">
+			<td>
+				{SELECT_PRODUCT_MSG} <span class="required">{item_id_required}</span>
+			</td>
+			<td>
+				<select name="item_id"><!-- BEGIN item_id -->
+					<option {item_id_selected} value="{item_id_value}">{item_id_description}<!-- END item_id -->
+				</select>
+			</td>
+		</tr>
+		<!-- END item_id_block -->
+		<!-- BEGIN item_name_block -->
+		<tr class="usualbg">
+			<td>
+				{PROD_NAME_MSG} <span class="required">{item_name_required}</span>
+			</td>
+			<td>
+				<input class="text" type="text" name="item_name" value="{item_name}" size="20" maxlength="255">
+			</td>
+		</tr>
+		<!-- END item_name_block -->
+		<!-- BEGIN item_code_block -->
+		<tr class="usualbg">
+			<td>
+				{PROD_CODE_MSG} <span class="required">{item_code_required}</span>
+			</td>
+			<td>
+				<input class="text" type="text" name="item_code" value="{item_code}" size="20" maxlength="64">
+			</td>
+		</tr>
+		<!-- END item_code_block -->
+		<!-- BEGIN serial_number_block -->
+		<tr class="usualbg">
+			<td>
+				{SERIAL_NUMBER_MSG} <span class="required">{serial_number_required}</span>
+			</td>
+			<td>
+				<input class="text" type="text" name="serial_number" value="{serial_number}" size="20" maxlength="128">
+			</td>
+		</tr>
+		<!-- END serial_number_block -->
+		<!-- BEGIN invoice_number_block -->
+		<tr class="usualbg">
+			<td>
+				{INVOICE_NUMBER_MSG} <span class="required">{invoice_number_required}</span>
+			</td>
+			<td>
+				<input class="text" type="text" name="invoice_number" value="{invoice_number}" size="20" maxlength="128">
+			</td>
+		</tr>
+		<!-- END invoice_number_block -->
+		<!-- BEGIN store_name_block -->
+		<tr class="usualbg">
+			<td>
+				{STORE_NAME_FORM_MSG} <span class="required">{store_name_required}</span>
+			</td>
+			<td>
+				<input class="text" type="text" name="store_name" value="{store_name}" size="20" maxlength="128">
+			</td>
+		</tr>
+		<!-- END store_name_block -->
+		<!-- BEGIN purchase_date_block -->
+		<tr class="usualbg">
+			<td>
+				{DATE_OF_PURCHASE_MSG} <span class="required">{purchase_date_required}</span>
+			</td>
+			<td>
+				<!-- BEGIN purchased_day_block -->
+				<input class="text" type="text" name="purchased_day" value="{purchased_day}" size="2" maxlength="2">
+				<!-- END purchased_day_block -->
+				<!-- BEGIN purchased_month_block -->
+				<select name="purchased_month"><!-- begin purchased_month -->
+						<option {purchased_month_selected} value="{purchased_month_value}">{purchased_month_description}<!-- end purchased_month -->
+				</select><!-- END purchased_month_block -->	
+				<!-- BEGIN purchased_year_block -->
+				<select name="purchased_year"><!-- begin purchased_year -->
+						<option {purchased_year_selected} value="{purchased_year_value}">{purchased_year_description}<!-- end purchased_year -->
+				</select><!-- END purchased_year_block -->
+				
+			</td>
+		</tr>
+		<!-- END purchase_date_block -->
+		<!-- begin custom_properties -->
+		<tr id="pp_block_{property_id}" class="usualbg">
+			<td style="{property_style}" class="{property_class}">
+				{property_name} <span class="required">{property_required}</span>
+			</td>
+			<td style="{property_style}" class="{property_class}">
+				{property_control} 
+			</td>
+		</tr><!-- end custom_properties -->
+		<!-- BEGIN final_text_block -->
+		<tr>
+			<td colspan="2" class="usualbg">
+				{final_text}
+			</td>
+		</tr>
+		<!-- END final_text_block -->
+		<tr class="middlebg">
+			<td>&nbsp;</td>
+			<td>
+			<span class="submit"><input class="submit" type="submit" value="{IM_DONE_REGISTERING_MSG}" onCLick="document.record.operation.value='save';"></span>
+			<span class="submit"><input class="submit" type="submit" value="{REGISTER_MORE_PRODUCTS_MSG}" onCLick="document.record.operation.value='save'; document.record.add_more.value='add_more'; "></span>
+			<span class="submit"><input class="submit" id="cancel" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'"></span>
+			</td>
+		</tr>
+	</table>
+</form>
+
+</td></tr>
+</table>
+	
+</div>

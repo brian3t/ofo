@@ -1,0 +1,494 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {PAYMENT_DETAILS_PAGE_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script type="text/javascript" src="../js/admin.js"></script>
+<script language="JavaScript">
+<!--
+	function openWindow(pagename)
+	{
+		var popupWin = window.open (pagename, 'popup', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');
+		popupWin.focus();
+	}
+//-->
+</script>
+</head>
+<body class="commonbg">
+
+{admin_header}
+
+<form action="{admin_credit_card_info_href}" name="record" method="POST">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_payment_systems_href}">{PAYMENT_SYSTEMS_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_payment_system_href}?payment_id={payment_id}">{payment_name}</a>&nbsp;&gt;&nbsp;<b>{PAYMENT_DETAILS_PAGE_MSG}</b>
+		</td>
+		<!-- begin sitelist -->
+		<td class="usual" align="right">
+			{SELECT_SITE_MSG}&nbsp;
+			<select name="param_site_id" onchange="reloadSite(this.form)"><!-- begin param_site_id -->
+				<option {param_site_id_selected} value="{param_site_id_value}">{param_site_id_description}<!-- end param_site_id -->
+			</select>
+		</td>
+		<!-- end sitelist -->
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{PAYMENT_DETAILS_PAGE_MSG}</legend>
+
+<table border="0" cellpadding="6" cellspacing="1" width="100%">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="rp" value="{rp}">
+<input type="hidden" name="payment_id" value="{payment_id}">
+<!-- BEGIN errors -->
+<tr>
+	<td class="usual" colspan="5" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="middle">
+	<td colspan="5">
+		&nbsp;<b>{ADMIN_HTML_SETTINGS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;{INTRO_TEXT_MSG}
+	</td>
+	<td colspan="4">
+		<textarea name="intro_text" cols="70" rows="10">{intro_text}</textarea>
+	</td>
+</tr>     
+<tr class="middle">
+	<td colspan="5">
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tr>
+			<td>&nbsp;<b>{CUSTOM_PAYMENT_FIELD_MSG}</b></td>
+			<td align="right">
+				<a href="{admin_order_property_href}?payment_id={payment_id}">{ADD_NEW_MSG}</a>&nbsp;
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<!-- begin properties -->
+<tr class="usual">
+	<td valign="top">
+		&nbsp;{property_name} (#{property_id})
+	</td>
+	<td align="center" colspan="2">
+		&nbsp;{property_type}
+	</td>
+	<td align="center" colspan="2">
+		&nbsp;<a href="{admin_order_property_href}?payment_id={payment_id}&property_id={property_id}">{EDIT_MSG}</a>
+	</td>
+</tr>
+<!-- end properties -->
+<!-- begin no_properties -->
+<tr class="usual">
+	<td colspan="5">
+		&nbsp;{NO_CUSTOM_FIELDS_MSG}
+	</td>
+</tr>
+<!-- end no_properties -->
+<tr class="middle">
+	<td>
+		&nbsp;
+	</td>
+	<td align="center" colspan="2">
+		{WEB_ORDERS_MSG}
+	</td>
+	<td align="center" colspan="2">
+		{CALL_CENTER_ORDERS}
+	</td>
+</tr>
+<tr class="middle">
+	<td width="36%">
+		&nbsp;<b>{PAYMENT_PARAMETERS_MSG}</b>
+	</td>
+	<td align="center" width="16%" class="small">
+		{ADMIN_SHOW_MSG}
+	</td>
+	<td align="center" width="16%" class="small">
+		{REQUIRED_MSG}
+	</td>
+	<td align="center" width="16%" class="small">
+		{ADMIN_SHOW_MSG}
+	</td>
+	<td align="center" width="16%" class="small">
+		{REQUIRED_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CC_NAME_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_cc_name" {show_cc_name} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="cc_name_required" {cc_name_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_cc_name" {call_center_show_cc_name} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_cc_name_required" {call_center_cc_name_required} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CC_FIRST_NAME_FIELD} 
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_cc_first_name" {show_cc_first_name} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="cc_first_name_required" {cc_first_name_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_cc_first_name" {call_center_show_cc_first_name} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_cc_first_name_required" {call_center_cc_first_name_required} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{LAST_NAME_FIELD} 
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_cc_last_name" {show_cc_last_name} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="cc_last_name_required" {cc_last_name_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_cc_last_name" {call_center_show_cc_last_name} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_cc_last_name_required" {call_center_cc_last_name_required} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CC_NUMBER_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_cc_number" {show_cc_number} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="cc_number_required" {cc_number_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_cc_number" {call_center_show_cc_number} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_cc_number_required" {call_center_cc_number_required} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CC_START_DATE_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_cc_start_date" {show_cc_start_date} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="cc_start_date_required" {cc_start_date_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_cc_start_date" {call_center_show_cc_start_date} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_cc_start_date_required" {call_center_cc_start_date_required} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EXPIRY_DATE_MSG}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_cc_expiry_date" {show_cc_expiry_date} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="cc_expiry_date_required" {cc_expiry_date_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_cc_expiry_date" {call_center_show_cc_expiry_date} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_cc_expiry_date_required" {call_center_cc_expiry_date_required} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CC_TYPE_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_cc_type" {show_cc_type} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="cc_type_required" {cc_type_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_cc_type" {call_center_show_cc_type} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_cc_type_required" {call_center_cc_type_required} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CC_ISSUE_NUMBER_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_cc_issue_number" {show_cc_issue_number} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="cc_issue_number_required" {cc_issue_number_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_cc_issue_number" {call_center_show_cc_issue_number} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_cc_issue_number_required" {call_center_cc_issue_number_required} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CC_SECURITY_CODE_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_cc_security_code" {show_cc_security_code} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="cc_security_code_required" {cc_security_code_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_cc_security_code" {call_center_show_cc_security_code} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_cc_security_code_required" {call_center_cc_security_code_required} value="1">
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="5">
+		&nbsp;<b>Credit Card {SETTINGS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ALLOWED_MSG} CC Numbers
+		<div class="small">
+		&nbsp;(use comma to separate different credit cards numbers)<br>
+		&nbsp;({EG_MSG}: <b>4111*, 45552222*, 450450*</b>)</div>
+	</td>
+	<td colspan="4">
+		<textarea name="cc_allowed" cols="80" rows="3">{cc_allowed}</textarea>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;Forbidden CC Numbers
+		<div class="small">
+		&nbsp;(use comma to separate different credit cards numbers)</div>
+	</td>
+	<td colspan="4">
+		<textarea name="cc_forbidden" cols="80" rows="3">{cc_forbidden}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="5">
+		&nbsp;<b>Secure {OPTIONS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;Cut off from credit card number four last digits
+	</td>
+	<td colspan="4">
+		<div class="small"><input type="checkbox" name="cc_number_split" {cc_number_split} value="1"> (<b>5405 4054 0540 ****</b>)</div>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CREDIT_CARD_NUMBER_MSG}
+	</td>
+	<td colspan="4"><!-- begin cc_number_security -->
+		<input type="radio" name="cc_number_security" {cc_number_security_checked} value="{cc_number_security_value}">{cc_number_security_description}<!-- end cc_number_security -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CC_SECURITY_CODE_FIELD}
+	</td>
+	<td colspan="4">
+		<!-- begin cc_code_security -->
+		<input type="radio" name="cc_code_security" {cc_code_security_checked} value="{cc_code_security_value}">{cc_code_security_description}<!-- end cc_code_security -->
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="5">
+		&nbsp;<b>{EMAIL_NOTIFICATION_ADMIN_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SEND_NOTIFICATION_ADMIN_MSG}
+	</td>
+	<td colspan="4">
+		<input type="checkbox" name="admin_notification" {admin_notification} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;Enable PGP encryption<br>
+		&nbsp;(<a href="{admin_global_settings_href}?tab=pgp">{CLICK_HERE_MSG}</a> to specify global PGP encryption parameters)
+	</td>
+	<td colspan="4">
+		<input type="checkbox" name="admin_notification_pgp" {admin_notification_pgp} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_TO_MSG}</b>
+		<div class="small">
+		&nbsp;(<a class="small" href="javascript:openWindow('{admin_email_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_FILEDS_NOTE})
+		</div>
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="admin_email" value="{admin_email}" size="80" maxlength="255">
+		<div class="small">({EG_MSG} <b>cc_info@yoursite.com</b>)</div>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_FROM_MSG}</b>
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="admin_mail_from" value="{admin_mail_from}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_CC_MSG}
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="cc_emails" value="{cc_emails}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_BCC_MSG}
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="admin_mail_bcc" value="{admin_mail_bcc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_REPLY_TO_MSG}
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="admin_mail_reply_to" value="{admin_mail_reply_to}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_RETURN_PATH_MSG}
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="admin_mail_return_path" value="{admin_mail_return_path}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_SUBJECT_MSG}</b>
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="admin_subject" value="{admin_subject}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_MESSAGE_TYPE_MSG}</b>
+	</td>
+	<td colspan="4"><!-- begin admin_message_type -->
+		<input type="radio" name="admin_message_type" {admin_message_type_checked} value="{admin_message_type_value}">{admin_message_type_description}<!-- end admin_message_type -->
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}?cc=1&payment_id={payment_id}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_SETTINGS_NOTE} 
+		<br>&nbsp;&nbsp;{LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td colspan="4">
+		<textarea name="admin_message" cols="80" rows="10">{admin_message}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="5">
+		&nbsp;<b>{SMS_NOTIFICATION_ADMIN_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SMS_SEND_ADMIN_MSF}
+	</td>
+	<td colspan="4">
+		<input type="checkbox" name="admin_sms_notification" {admin_sms_notification} value="1">
+		({SMS_NOTIFICATION_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{SMS_RECIPIENT_MSG}</b> ({SMS_RECIPIENT_ADMIN_DESC}) 
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="admin_sms_recipient" value="{admin_sms_recipient}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{SMS_ORIGINATOR_MSG}</b>
+	</td>
+	<td colspan="4">
+		<input class="field" type="text" name="admin_sms_originator" value="{admin_sms_originator}" size="80" maxlength="16">
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{SMS_MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}?cc=1&payment_id={payment_id}')">{CLICK_HERE_MSG}</a> to see all available {MESSAGE_TAGS_MSG})
+		</font>
+	</td>
+	<td colspan="4">
+		<textarea name="admin_sms_message" cols="80" rows="3">{admin_sms_message}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td></td>
+	<td colspan="4">
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</form>
+</table>
+</fieldset>
+
+
+
+{admin_footer}

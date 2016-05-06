@@ -1,0 +1,306 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {CSS_EDITOR_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<meta http-Equiv="Cache-Control" Content="no-cache">
+<meta http-Equiv="Pragma" Content="no-cache">
+<meta http-Equiv="Expires" Content="0">
+
+<script language="JavaScript">
+<!--
+var browser = navigator.userAgent.toLowerCase();
+var isIE = ((browser.indexOf("msie") != -1) && (browser.indexOf("opera") == -1) && (browser.indexOf("webtv") == -1));
+
+function displayContent(i,j)
+{
+	var divContent = document.getElementById("content");
+	contentValue2 = contentArr[i][j];
+	
+	divContent.innerHTML = contentValue2;
+	divContent.style.display = 'block';
+	
+}
+	function show_or_hide(i,block){
+		blockDiv = document.getElementById(i);
+		blockSub = document.getElementById(block+"_"+i);
+		if (blockSub && blockSub.style.display=="none") {
+			blockSub.style.display="block";
+			if (block == "param_block" && isIE) {
+				blockSub.style.display="block";
+				blockDiv.className ="selector_div selected";
+			}
+			else if (block == "param_block" && !isIE) 
+			{
+				blockSub.style.display="table-row";
+				blockDiv.className ="selector_div selected";
+			}
+			document.getElementById(block+"_img_more_"+i).src = "images/minus.gif"; 
+		} else {
+			blockSub.style.display="none";
+			if (block == "param_block") blockDiv.className ="selector_div";
+			document.getElementById(block+"_img_more_"+i).src = "images/plus.gif"; 
+		}
+	}
+	
+	function changeColor(color)
+	{
+		colorElement = document.getElementById('color_change').value;
+	//	alert(colorElement);
+		document.getElementById(colorElement).value = "#"+color;
+		document.getElementById(colorElement+"_img").style.background = "#"+color;
+		getCustomerInfo();
+	}
+	
+	function fontConstructor(fontNumber, fontQty)
+	{
+		fontFont = "";
+		for (i=1; i<=fontQty; i++)
+		{
+			getFont = "font_"+fontNumber+"_"+i;
+			if (i==3) fontFont += "|";
+			fontFont += document.getElementById(getFont).value;
+		}
+		document.getElementById("font_"+fontNumber).value = fontFont;
+		//alert(document.getElementById("font_"+fontNumber).value);	
+	}
+	
+//-->
+</script>
+
+<!-- AJAX coding-->
+
+<script language="javascript" type="text/javascript">
+   var request = false;
+   try {
+     request = new XMLHttpRequest();
+   } catch (trymicrosoft) {
+     try {
+       request = new ActiveXObject("Msxml2.XMLHTTP");
+     } catch (othermicrosoft) {
+       try {
+         request = new ActiveXObject("Microsoft.XMLHTTP");
+       } catch (failed) {
+         request = false;
+       }  
+     }
+   }
+
+   if (!request)
+     alert("Error initializing XMLHttpRequest!");
+
+   function getCustomerInfo() {
+   var categoryId = document.getElementById("category_id").value;
+   var subcategoryId = document.getElementById("subcategory_id").value;
+   var contentEx = document.getElementById("content_ex").value;
+   var replaceString = "";
+  
+   	for(i=0; i<contentEx; i++)
+	{
+   			special = document.getElementById("special_"+i).value;
+	 		subparam = document.getElementById("subparam_"+i).value;
+	 		contentArray = document.getElementById("content_array_"+i).value;
+	 		
+	 		contentTemp = contentArray.split(":");
+	 		getParamName = contentTemp[0]+"_name";
+	 		paramName = document.getElementById(getParamName).value;//param_name
+	 			if (special==1)
+	 			{
+	 				tempValue="";
+	 				for(s=0; s<subparam; s++)
+	 				{
+	 					
+	 					getParamValue = contentTemp[0]+"_"+s;
+	 					tempValue += document.getElementById(getParamValue).value;
+	 					tempValue += " ";
+	 				}
+	 				paramValue = tempValue;
+	 			}
+	 			else 
+	 			{
+	 				paramValue = document.getElementById(contentTemp[0]).value;//param_value
+	 			}
+	 			document.getElementById("param_value_main_"+i).innerHTML = "<a href=\"#\" onClick=\"show_or_hide('"+i+"','param_block');\" style=\"text-decoration:none;\">"+paramValue+"</a>";
+	 			replaceString += paramName+": "+paramValue+";";
+	 }
+	
+   
+ 	var url = "admin_css_editor.php?operation=save&"+"category_id="+categoryId+"&subcategory_id="+subcategoryId+"&replace="+escape(replaceString);
+ 	 //  var url = "admin_css_editor_save.php?category_id="+categoryId+"subcategory_id="+subcategoryId;
+    request.open("GET", url, true);
+    request.onreadystatechange = updatePage;
+    request.send(null);
+   }
+   
+   function updatePage() {
+     if (request.readyState == 4)
+       if (request.status == 200)
+       {
+       	//document.getElementById('update_button').style.display='none';
+       	if (parent.frames['preview_frame'])
+       	parent.frames['preview_frame'].window.location.reload();
+       //	alert(response[0]);
+        var response = request.responseText.split("||");
+        document.getElementById('css_definition').innerHTML = response[0];
+       }
+       else if (request.status == 404)
+         alert("Requested URL does not exist");
+       else
+         alert("Error: status code is " + request.status);
+   }
+</script>
+
+<style>
+.param {border: 1px solid gray; border-collapse: collapse;}
+.param td {border-bottom: 1px solid gray;}
+.param td td {border-bottom: none;}
+</style>
+
+</head>
+<!--body onload="document.getElementById('preview_frame').contentDocument.location.reload(true);"-->
+<body {preview_load}>
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<b>{CSS_EDITOR_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<form action="" method="POST" name="css_editor">
+<input type="hidden" name="operation" value="">
+<input type="hidden" name="content_ex" id="content_ex" value="{content_ex}">
+<input type="hidden" name="category_id" id="category_id" value="{category_id}">
+<input type="hidden" name="subcategory_id" id="subcategory_id" value="{subcategory_id}">
+<table width=100% border="0" cellpadding="2" cellspacing="0">
+	<tr>
+		<td width="30%" rowspan="2" valign="top"> 
+			<!--begin css_block -->
+			<table width="100%" class="preview_css">
+				<tr>
+					<td>
+						<div class="preview_title">{CSS_DEFINITION_MSG}</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div id="css_definition" name="css_definition" class="css_definition">{css_definition}</div>
+					</td>
+				</tr>
+			</table><br>
+			<!--end css_block -->
+			<div style="display: block; position: relative; z-index: 0; ">
+				<div class="categories_dropdown" style="height: 400px; display: block; z-index: 0;">
+				<table width="100%" cellpadding="2" cellspacing="0">
+					<!-- begin category_block -->
+					<tr bgcolor2="#E8E8E8" class="catList">
+						<td width="90%">
+							<a class="catFont" href="#" onClick="show_or_hide('{i}','subcategory_block');">{category}</a>
+						</td>
+						<td width="10%">	
+							<a href="#" onClick="show_or_hide('{i}','subcategory_block');"><img class="more" id="subcategory_block_img_more_{i}" src="{img_more}" border="0"></a>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+						<div style="display:{display};" id="subcategory_block_{i}">
+						<!-- begin subcategory_block -->
+						<a href="admin_css_editor.php?category_id={i}&subcategory_id={j}" class="subcatFont">{subcategory}</a><br>
+						<!-- end subcategory_block -->
+						</div>
+						</td>
+						</tr>
+					<!-- end category_block -->
+				</table>
+				</div>
+			</div>
+		</td>
+		<td width="70%" valign="top">
+		<!-- begin block_param_header -->
+		<div class="selector_title"><b>{category_name}</b>->{subcategory_name}</div>
+		<!-- end block_param_header -->
+			<!-- begin param_block -->
+			<div class="selector_div" id="{j}" name="{j}">
+				<input type="hidden" name="{param_name}_name" id="{param_name}_name" value="{param_name}">
+				<input type="hidden" name="special_{j}" id="special_{j}" value="{special}">
+				<input type="hidden" name="content_array_{j}" id="content_array_{j}" value="{content_array}">
+				<input type="hidden" name="subparam_{j}" id="subparam_{j}" value="{subparam}">
+				<div class="desc_title_div"><font color="black">{param_name_main}</font></div>
+				<div class="desc_show_or_hide_div"><a href="#" onClick="show_or_hide('{j}','param_block');"><img class="more" id="param_block_img_more_{j}" src="{img_more}" border="0"></a></div>
+				<div class="desc_div" id="param_value_main_{j}" name="param_value_main_{j}"><a href="#" onClick="show_or_hide('{j}','param_block');" style="text-decoration:none;">{param_value_main}</a></div>
+
+					
+				<!-- begin special_block -->
+				{special_value}
+				<!-- end special_block -->
+				
+				<!-- begin input_block -->
+				<div class="show_or_hide_div" id="param_block_{j}" name="param_block_{j}" style="display:none;">
+					<div class="desc_title_div">{param_name}</div>
+					<div class="desc_div">
+						<input type="text" name="{param_name}" id="{param_name}" value="{param_value}" onClick="document.getElementById('update_button').disabled=false;">
+						{img_icon}
+					</div>
+				</div>
+				<!-- end input_block -->
+				
+				<!-- begin select_block -->
+				<div class="show_or_hide_div" id="param_block_{j}" name="param_block_{j}" style="display:none;">
+					<div class="desc_title_div"><font color="black">{param_name}</font></div>
+					<div class="desc_div">
+						<select name="{param_name}" id="{param_name}" onClick="document.getElementById('update_button').disabled=false;">
+							<!-- begin select_row -->
+								<option value="{param_value}" {selected}>{param_value}</option>
+							<!-- end select_row -->
+						</select>
+					</div>
+				</div>
+				<!-- end select_block -->
+					
+			</div>
+			<!-- end param_block -->
+			<!-- begin param_block_end-->
+				<div class="end"></div>
+				<input class="submit" disabled type="button" value="Update" onclick="getCustomerInfo();" name="update_button" id="update_button"> &nbsp;
+			<!-- end param_block_end-->
+
+		</td>
+	</tr>
+	<tr>
+		<td valign="top">
+		<!-- begin preview_block-->
+		<table width="100%" class="preview_css" cellpadding="0" cellspacing="0">
+				<tr>
+					<td>
+						<div class="preview_title">{PREVIEW_TITLE}</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<iframe id="preview_frame" name="preview_frame" src="preview.php?style_name={style_name}"></iframe>
+					</td>
+				</tr>
+			</table>
+			<!--end preview_block-->
+			<br>
+		</td>
+	</tr>
+</table>
+
+</form>
+
+<div class="div_colors" id="div_colors" name="div_colors" style="display: none;">
+<input type="hidden" id="color_change" name="color_change" value="">
+<!-- begin div_colors -->
+<img src="../images/tr.gif" style="background:#{div_color};" hspace="2px" width="15px" height="15px" onclick="changeColor('{div_color}');">
+<!-- end div_colors-->
+<div  class="div_colors_close" onclick="document.getElementById('div_colors').style.display='none';">{CANCEL_BUTTON}<div>
+</div>
+		
+<!--{admin_footer}-->
+
+</body>
+</html>

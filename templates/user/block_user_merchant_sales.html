@@ -1,0 +1,164 @@
+<script language="JavaScript" type="text/javascript">
+<!--
+	function selectPeriod()
+	{
+		var theForm = document.forms['search_form'];
+		var period = theForm.s_tp.options[theForm.s_tp.selectedIndex].value;
+		var startDate = ""; 
+		var endDate = "";
+		if(period == 1) {
+			startDate = "{today_date}"; endDate = "{today_date}";
+		} else if(period == 2) {
+			startDate = "{yesterday_date}"; endDate = "{yesterday_date}";
+		} else if (period == 3) {
+			startDate = "{week_start_date}"; endDate = "{today_date}";
+		} else if (period == 4) {
+			startDate = "{month_start_date}"; endDate = "{today_date}";
+		} else if (period == 5) {
+			startDate = "{last_month_start_date}"; endDate = "{last_month_end_date}";
+		} else if (period == 6) {
+			startDate = "{quarter_start_date}"; endDate = "{today_date}";
+		} else if (period == 7) {
+			startDate = "{year_start_date}"; endDate = "{today_date}";
+		}
+		theForm.s_sd.value = startDate;
+		theForm.s_ed.value = endDate;
+	}
+	
+	function clearSearch() {
+		var theForm = document.forms['search_form'];
+
+		theForm.s_tp.selectedIndex = 0;
+		theForm.s_sd.value = "";
+		theForm.s_ed.value = "";
+		theForm.s_os.selectedIndex = 0;
+	
+		theForm.submit();
+	}
+				
+//-->
+</script>
+
+<div class="block-user-merchant-sales">
+<!-- filter form -->
+<br>
+		<table border="0" cellpadding="2" cellspacing="2">
+		<form action="{user_merchant_sales_href}" name="search_form">
+		<input type="hidden" name="s_form" value="1">
+		<!-- BEGIN errors -->
+		<tr><td colspan="2">
+			<div align="center" class="errorbg">{errors_list}</div>
+		</td></tr>
+		<!-- END errors -->
+		<tr>
+			<td>{GROUP_BY_MSG}:</td>
+			<td>
+				<select class="text" name="s_gr">
+					<!-- BEGIN s_gr --><option {s_gr_selected} value="{s_gr_value}">{s_gr_description}<!-- END s_gr -->
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>{TIME_PERIOD_MSG}:</td>
+			<td>
+				<select class="text" name="s_tp" onChange="selectPeriod();">
+					<!-- BEGIN s_tp --><option {s_tp_selected} value="{s_tp_value}">{s_tp_description}<!-- END s_tp -->
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>{FROM_DATE_MSG} ({date_edit_format}):</td>
+			<td>
+				<input type="text" name="s_sd" value="{s_sd}" class="text">
+				<a href="#"
+					onClick="setDateField(document.search_form.s_sd, '{date_edit_format}');
+					top.newWin = window.open('js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+				<img src="images/calendar.gif" border="0" alt="{CALENDAR_MSG}"><font size=1>{CALENDAR_MSG}</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td>{TO_DATE_MSG} ({date_edit_format}):</td>
+			<td>
+				<input type="text" name="s_ed" value="{s_ed}" class="text">
+				<a href="#"
+					onClick="setDateField(document.search_form.s_ed, '{date_edit_format}');
+					top.newWin = window.open('js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+				<img src="images/calendar.gif" border="0" alt="{CALENDAR_MSG}"><font size=1>{CALENDAR_MSG}</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td>{WHERE_STATUS_IS_MSG}:</td>
+			<td>
+				<select class="text" name="s_os">
+					<!-- BEGIN s_os --><option {s_os_selected} value="{s_os_value}">{s_os_description}<!-- END s_os -->
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<span class="submit"><input class="submit" type="submit" name="filter" value="{FILTER_BUTTON}"></span>
+				<span class="submit"><input class="submit" id="clear" type="button" value="{CLEAR_BUTTON}" onClick="clearSearch();"></span>
+			</td>
+		</tr>
+		</form>
+		</table>
+<br>
+
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop" id="user-home">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr class="headerbg"> 
+		<td class="blockTD">
+
+<!-- BEGIN search_results -->
+<table border="0" cellspacing="1" width="100%" class="padding6px">
+<!-- BEGIN sorters -->
+<tr class="middlebg" align="center">
+	<td nowrap>{sorter_time}</td>
+	<td>{sorter_products_qty}</td>
+	<td nowrap>{sorter_sales}</td>
+	<td nowrap>{sorter_fees}</td>
+	<td nowrap>{sorter_net_sales}</td>
+</tr><!-- END sorters --><!-- BEGIN summary -->
+<tr valign="top" align="center" class="middlebg">
+	<td align="center">{TOTAL_MSG}</td>
+	<td><a href="{user_merchant_items_href}?s_sd={s_sd}&s_ed={s_ed}&s_os={s_os_m}">{sum_products_qty}</a></td>
+	<td>{sum_sales}</td>
+	<td>{sum_fees}</td>
+	<td>{sum_net_sales}</td>
+</tr><!-- END summary --><!-- BEGIN records -->
+<tr valign="top" align="center" class="usualbg">
+	<td align="left">{time_period}</td>
+	<td><a href="{user_merchant_items_href}?s_sd={s_sd_m}&s_ed={s_ed_m}&s_os={s_os_m}">{products_qty}</a></td>
+	<td>{sales}</td>
+	<td>{fees}</td>
+	<td>{net_sales}</td>
+</tr><!-- END records --><!-- BEGIN summary_bottom -->
+<tr valign="top" align="center" class="middlebg">
+	<td align="center">{TOTAL_MSG}</td>
+	<td><a href="{user_merchant_items_href}?s_sd={s_sd}&s_ed={s_ed}&s_os={s_os_m}">{sum_products_qty}</a></td>
+	<td>{sum_sales}</td>
+	<td>{sum_fees}</td>
+	<td>{sum_net_sales}</td>
+</tr><!-- END summary_bottom --><!-- BEGIN no_records -->
+<tr class="usualbg">
+	<td colspan="5">&nbsp;{NO_ORDERS_MATCH_MSG}</td>
+</tr><!-- END no_records -->
+</table>	
+<!-- END search_results -->
+
+		</td>
+	</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+</div>

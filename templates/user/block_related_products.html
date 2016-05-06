@@ -1,0 +1,42 @@
+<div class="block-related-products">
+	<div class="titleTopCenter">
+		<h1>{related_products_title}</h1>
+	</div>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<!-- BEGIN ri_rows -->
+		<tr>
+			<!-- BEGIN ri_cols -->
+			<td width="{ri_column}">
+				<div class="wrapper">
+					<h2 class="listing"><a class="title {product_new_class} {restricted_class}" href="{details_url}">{item_name}</a></h2>
+					<!--begin product_new_image-->
+					<img src="images/tr.gif" alt="" class="{product_new_class}">
+					<!--end product_new_image-->
+					<!--begin restricted_image-->
+					<img src="images/tr.gif" alt="" class="{restricted_class}">
+					<!--end restricted_image-->
+					<div class="listImage">
+						<!-- begin ri_small_image -->
+						<a href="{details_url}"><img src="{src}" alt="{alt}"></a>
+						<!-- end ri_small_image -->
+					</div>
+					<!-- begin ri_price_block -->
+					<div class="{price_block_class}">{PRICE_MSG}: <span class="price">{ri_price}</span> <span class="priceTax">{ri_tax_price}</span></div>
+					<!-- end ri_price_block -->
+					<!-- begin ri_sales -->
+					<div class="salesBlock">{OUR_PRICE_MSG}: <span class="salesPrice">{ri_sales_price}</span> <span class="salesTax">{ri_tax_sales}</span></div>
+					<!-- end ri_sales -->
+					<!-- begin ri_availability -->
+					<b>{PROD_AVAILABILITY_MSG}:</b> {shipping_time_desc}
+					<!-- end ri_availability -->
+					<div> {short_description} <a class="buttonMore" href="{details_url}"><b>{READ_MORE_MSG}</b></a></div>
+					<div class="clear"></div>
+				</div></td>
+			<!-- END ri_cols -->
+		</tr>
+		<!-- END ri_rows -->
+	</table>
+	<!-- begin ri_navigator_block -->
+	<div class="right">&nbsp;{ri_navigator}&nbsp;</div>
+	<!-- end ri_navigator_block -->
+</div>

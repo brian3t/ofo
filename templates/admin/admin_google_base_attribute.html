@@ -1,0 +1,89 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {GOOGLE_BASE_ATTRIBUTE_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_lookup_tables_href}">{STATIC_TABLES_MSG}</a>&nbsp;&gt;
+			<a href="{admin_google_base_attributes_href}">{GOOGLE_BASE_ATTRIBUTE_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<td>
+<fieldset>
+<legend>{GOOGLE_BASE_ATTRIBUTE_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<form action="{admin_google_base_attribute_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="attribute_id" value="{attribute_id}">
+<table border="0" cellpadding="6" cellspacing="1" width="100%"><!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{NAME_MSG}
+	</td>
+	<td>
+		&nbsp;<input class="field" type="text" name="attribute_name" size="50" value="{attribute_name}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{TYPE_MSG}
+	</td>
+	<td>
+		<select name="attribute_type"><!-- begin attribute_type -->
+			<option {attribute_type_selected} value="{attribute_type_value}">{attribute_type_description}<!-- end attribute_type -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{VALUE_TYPE_MSG}
+	</td>
+	<td>
+		<select name="value_type"><!-- begin value_type -->
+			<option {value_type_selected} value="{value_type_value}">{value_type_description}<!-- end value_type -->
+		</select>
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</form>	
+
+	</td>
+</tr>
+</table>
+</fieldset>
+</td></tr></table>
+
+{admin_footer}
+</body>
+</html>

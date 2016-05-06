@@ -1,0 +1,97 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_CUSTOMER_RANK_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript" type= "text/javascript" src="../js/calendar.js"></script>
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_support_href}">{HELPDESK_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_support_ranks_href}">{CUSTOMERS_RANKS_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_CUSTOMER_RANK_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_CUSTOMER_RANK_MSG}</legend>
+
+<table border="0" cellspacing="1" cellpadding="6" width="100%">
+<form action="{admin_support_rank_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="user_priority_id" value="{user_priority_id}">
+<input type="hidden" name="page" value="{page}">
+<input type="hidden" name="s_ne" value="{s_ne}">
+<input type="hidden" name="s_pt" value="{s_pt}">
+<input type="hidden" name="s_ed" value="{s_ed}">
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{CUSTOMER_ID_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="10" name="user_id" value="{user_id}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CUSTOMER_EMAIL_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="user_email" value="{user_email}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PRIORITY_MSG} *
+	</td>
+	<td>
+		<select name="priority_id"><!-- begin priority_id -->
+			<option {priority_id_selected} value="{priority_id_value}">{priority_id_description}<!-- end priority_id -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EXPIRY_DATE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="priority_expiry" value="{priority_expiry}" size="20" maxlength="16">
+		<a href="#"
+			onClick="setDateField(document.record.priority_expiry, '{date_edit_format}');
+			top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+		<img src="../images/calendar.gif" border="0"><font size="1">{CALENDAR_MSG}</font></a>
+		({date_format_msg})
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onclick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</form>	
+</table>
+
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

@@ -1,0 +1,62 @@
+<html><head><title>{ADMINISTRATION_MSG} :: {CELL_PHONES_ALLOWED_NUMBERS_MSG} :: {EDIT_MSG}</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_allowed_cell_phones_href}">{CELL_PHONES_ALLOWED_NUMBERS_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_MSG}</legend>
+
+<form action="{admin_allowed_cell_phone_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="cell_phone_id" value="{cell_phone_id}">
+<table border="0" cellspacing="1" cellpadding="6" width="100%"><!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td width="20%">
+		&nbsp;{CELL_PHONE_NUMBER_MSG} *
+	</td>
+	<td width="80%">
+		<input class="field" type="text" size="30" name="cell_phone_number" value="{cell_phone_number}">
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onclick="document.record.operation.value='save'"> &nbsp; <!-- BEGIN delete -->
+		<input class="submit" type="submit" value="Delete" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="Cancel" onclick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</form>	
+
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

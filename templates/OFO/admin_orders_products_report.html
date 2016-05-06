@@ -1,0 +1,302 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {PRODUCTS_REPORT_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<style type="text/css">
+<!--
+	.row1 { background-color:#f0f0f0; }
+	.row2 { background-color:#fffeee; }
+	.rowWarn { background-color: #FFd0d0; }
+
+//-->
+</style>
+<script language="JavaScript" src="../js/calendar.js"></script>
+<script language="JavaScript">
+<!--
+
+	function selectPeriod()
+	{
+		var theForm = document.forms['search_form'];
+		var period = theForm.s_tp.options[theForm.s_tp.selectedIndex].value;
+		var startDate = ""; 
+		var endDate = "";
+		if(period == 1) {
+			startDate = "{today_date}"; endDate = "{today_date}";
+		} else if(period == 2) {
+			startDate = "{yesterday_date}"; endDate = "{yesterday_date}";
+		} else if (period == 3) {
+			startDate = "{week_start_date}"; endDate = "{today_date}";
+		} else if (period == 4) {
+			startDate = "{month_start_date}"; endDate = "{today_date}";
+		} else if (period == 5) {
+			startDate = "{last_month_start_date}"; endDate = "{last_month_end_date}";
+		} else if (period == 6) {
+			startDate = "{quarter_start_date}"; endDate = "{today_date}";
+		} else if (period == 7) {
+			startDate = "{year_start_date}"; endDate = "{today_date}";
+		}
+		theForm.s_sd.value = startDate;
+		theForm.s_ed.value = endDate;
+	}
+	
+	function clearSearch() {
+		var theForm = document.forms['search_form'];
+
+		theForm.s_tp.selectedIndex = 0;
+		theForm.s_sd.value = "";
+		theForm.s_ed.value = "";
+		theForm.s_os.selectedIndex = 0;
+		theForm.s_cct.selectedIndex = 0;
+	
+		theForm.submit();
+	}
+
+	function showTip(tipName) {
+		var tip = document.getElementById(tipName);
+		if (tip) {
+  	  		var leftPos = event.x + document.body.scrollLeft + 15;
+	    	var topPos  = event.y + document.body.scrollTop + 15;
+			tip.style.left = leftPos;
+			tip.style.top = topPos;
+			tip.style.display = "block";
+		}
+
+	}
+
+	function hideTip(tipName) {		
+		var tip = document.getElementById(tipName);
+		if (tip) {
+			tip.style.display = 'none'; 
+		}
+	}
+
+//-->
+</script>
+</head>
+
+<body class="commonbg">
+
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a href="{admin_orders_report_href}?s_tp={s_tp_url}&s_sd={s_sd}&s_ed={s_ed}&s_os={s_os_url}">{ORDERS_REPORT_MSG}</a>&nbsp;&gt;&nbsp;<b>{PRODUCTS_REPORT_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center"><tr valign="top"><td>
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+		<tr>
+			<td valign="top">
+	
+			<table border="0" cellpadding="2" cellspacing="2">
+			<form action="{admin_orders_products_report_href}" name="search_form">
+			<!-- BEGIN errors -->
+			<tr><td colspan="2">
+				&nbsp;<div align="center" class="error"><font style="font-size:8pt">{errors_list}</font></div>&nbsp;
+			</td></tr>
+			<!-- END errors -->
+			<tr>
+				<td colspan="2"><b>{FILTER_ORDERS_STATS_MSG}:</b></td>
+			</tr>
+			<tr>
+				<td>{TIME_PERIOD_MSG}:</td>
+				<td>
+					<select name="s_tp" class="search" onChange="selectPeriod();">
+						<!-- BEGIN s_tp --><option {s_tp_selected} value="{s_tp_value}">{s_tp_description}<!-- END s_tp -->
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>{FROM_DATE_MSG} ({date_edit_format}):</td>
+				<td>
+					<input type="text" name="s_sd" value="{s_sd}" class="search">
+					<a href="#"
+						onClick="setDateField(document.search_form.s_sd, '{date_edit_format}');
+						top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+					<img src="../images/calendar.gif" border="0"><font size=1>{CALENDAR_MSG}</font></a>
+				</td>
+			</tr>
+			<tr>
+				<td>{TO_DATE_MSG} ({date_edit_format}):</td>
+				<td>
+					<input type="text" name="s_ed" value="{s_ed}" class="search">
+					<a href="#"
+						onClick="setDateField(document.search_form.s_ed, '{date_edit_format}');
+						top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+					<img src="../images/calendar.gif" border="0"><font size=1>{CALENDAR_MSG}</font></a>
+				</td>
+			</tr>
+			<tr>
+				<td>{ADMIN_WHERE_STATUS_IS_MSG}:</td>
+				<td>
+					<select name="s_os" class="search">
+						<!-- BEGIN s_os --><option {s_os_selected} value="{s_os_value}">{s_os_description}<!-- END s_os -->
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Credit Card Type:</td>
+				<td>
+					<select name="s_cct" class="search">
+						<!-- BEGIN s_cct --><option {s_cct_selected} value="{s_cct_value}">{s_cct_description}<!-- END s_cct -->
+					</select>
+				</td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td colspan="1" align="left"><input type="submit" name="filter" value="{FILTER_BUTTON}" class="submit">&nbsp;
+				<input type="button" value="{CLEAR_BUTTON}" class="submit" onClick="clearSearch();"></td>
+			</tr>
+			</form>
+			</table>
+	
+		</td>
+	</table>
+</td></tr></table>
+
+<br>
+
+<!-- BEGIN search_results -->
+<fieldset>
+<legend>{PRODUCTS_REPORT_MSG}</legend>
+
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+<!-- BEGIN sorters -->
+<tr class="middle" align="center">
+	<td nowrap>
+		{sorter_id}
+	</td>
+	<td nowrap>
+		{sorter_item_code}
+	</td>
+	<td nowrap>
+		{sorter_manufacturer_code}
+	</td>
+	<td nowrap>
+		{sorter_name}
+	</td>
+	<td nowrap>
+		{sorter_avg_price}
+	</td>
+	<td nowrap>
+		{sorter_qty}
+	</td>
+	<td nowrap>
+		{sorter_sales}
+	</td>
+	<td nowrap>
+		{sorter_buying}
+	</td>
+	<td nowrap>
+		{sorter_margin}
+	</td>
+	<td nowrap>
+		% margin
+	</td>
+</tr><!-- END sorters --><!-- BEGIN summary -->
+<tr valign="top" align="center" class="middle">
+	<td align="right" colspan="4">
+		{TOTAL_STATS_MSG}: &nbsp;
+	</td>
+	<td>
+		{sum_avg_price}
+	</td>
+	<td>
+		{sum_qty}
+	</td>
+	<td>
+		{sum_sales}
+	</td>
+	<td>
+		{sum_buying}
+	</td>
+	<td>
+		{sum_margin}
+	</td>
+	<td>
+		{sum_margin_percent}
+	</td>
+</tr><!-- END summary --><!-- BEGIN records -->
+<tr valign="top" align="center" class="{row_style}">
+	<td>
+		{item_id}
+	</td>
+	<td>
+		{item_code}
+	</td>
+	<td>
+		{manufacturer_code}
+	</td>
+	<td align="left">
+		<a href="{admin_product_href}?item_id={item_id}">{item_name}</a>
+	</td>
+	<td>
+		{avg_price}
+	</td>
+	<td>
+		{item_qty}
+	</td>
+	<td>
+		{sales}
+	</td>
+	<td>
+		{buying}
+	</td>
+	<td>
+		{margin}
+	</td>
+	<td>
+		{margin_percent}
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="9">
+		&nbsp;{NO_PRODUCTS_MSG}
+	</td>
+</tr><!-- END no_records --><!-- BEGIN summary_bottom -->
+<tr valign="top" align="center" class="middle">
+	<td align="right" colspan="4">
+		{TOTAL_STATS_MSG}: &nbsp;
+	</td>
+	<td>
+		{sum_avg_price}
+	</td>
+	<td>
+		{sum_qty}
+	</td>
+	<td>
+		{sum_sales}
+	</td>
+	<td>
+		{sum_buying}
+	</td>
+	<td>
+		{sum_margin}
+	</td>
+	<td>
+		{sum_margin_percent}
+	</td>
+</tr><!-- END summary_bottom -->
+<!-- begin navigator_block -->
+<tr class="middle">
+	<td align="right" colspan="10">
+		&nbsp;{navigator}&nbsp;
+	</td>
+</tr>
+<!-- end navigator_block -->
+</table>	
+</fieldset>
+<!-- END search_results -->
+
+{admin_footer}
+
+</body>
+</html>

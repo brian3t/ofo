@@ -1,0 +1,56 @@
+<div class="block-forum-list">
+	<div class="titleTopCenter">{FORUM_TITLE}</div>
+	<table border="0" cellspacing="1" width="100%" class="padding6px">
+		<!-- begin no_forums -->
+		<tr class="usualbg">
+			<td align="left" colspan="5" class="messagebg">{NO_FORUMS_MSG}</td>
+		</tr>
+		<!-- end no_forums -->
+		<!-- begin categories -->
+		<tr class="middlebg" align="center">
+			<td align="left" colspan="5"><a href="{category_href}">{cat_name}</a></td>
+		</tr>
+		<tr class="usualbg">
+			<td>&nbsp;</td>
+			<td><B>{FORUM_NAME_COLUMN}</B></td>
+			<td align=center width="10%"><B>{FORUM_TOPICS_COLUMN}</B></td>
+			<td align=center width="10%"><B>{FORUM_REPLIES_COLUMN}</B></td>
+			<td align=center width="15%"><B>{FORUM_LAST_POST_COLUMN}</B></td>
+		</tr>
+		<!-- begin forums -->
+		<tr class="usualbg" valign="top">
+			<td width="1%"><!-- BEGIN small_image_block -->
+				<img src="{small_image}" border="0" {image_size} alt="{forum_name}">
+				<!-- END small_image_block -->
+			</td>
+			<td><div class="title">
+					<!--begin block_forum-->
+					<img src="./images/icons/closed.gif" alt="Restricted Forum" height="16" width="16" border="0">
+					<!--end block_forum-->
+					<a href="{forum_href}">{forum_name}</a></div>
+				<div class="comment">{short_description}</div>
+				<!-- begin moderators_block -->
+				<div>{FORUM_MODERATORS_MSG}: {moderators}</div>
+				<!-- end moderators_block -->
+			</td>
+			<td align="center">{threads_number}</td>
+			<td align="center">{messages_number}</td>
+			<td><span class="nobr">{last_post}</span>
+				<!-- begin last_post_in_block -->
+				<br>
+				<span class="nobr"><b>{LAST_POST_IN_SHORT_MSG}</b>
+				<!--begin block_topic-->
+				<img src="./images/icons/closed.gif" alt="Restricted Topic" height="16" width="16" border="0" align="absmiddle">
+				<!--end block_topic-->
+				<a href="{forum_thread_url}">{last_post_in}</a></span>
+				<!-- end last_post_in_block -->
+				<!-- begin last_post_by_block -->
+				<br>
+				<span class="nobr"><b>{LAST_POST_BY_SHORT_MSG}</b> <span class="{forum_user_class}">{last_post_by}</span></span>
+				<!-- end last_post_by_block -->
+			</td>
+		</tr>
+		<!-- end forums -->
+		<!-- end categories -->
+	</table>
+</div>

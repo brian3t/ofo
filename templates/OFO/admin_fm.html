@@ -1,0 +1,171 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {FILE_MANAGER_MSG} ::..</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ <script>
+function pokazi(dir){
+         alert(dir);
+         x=document.getElementById(dir);
+         if(x.style.display == "none"){
+               x.style.display = "";
+         }else{
+               x.style.display = "none";
+                 }
+
+}
+</script>
+<SCRIPT LANGUAGE="javascript">
+function refocus(path) {
+	parent.location='{host}{admin_filemanager_fm_href}?dir_root='+path;
+}
+function del(del_name, root_dir) {
+	if (confirm("Are you sure you wish to delete "+del_name+"?")) {
+		parent.location='{host}{admin_filemanager_fm_href}?del_name='+del_name+'&root_dir='+root_dir;
+	}
+}
+function ren(old_name, root_dir) {
+	if (file_rename = prompt("Rename file", old_name)) {
+		parent.location='{host}{admin_filemanager_fm_href}?file_rename='+file_rename+'&old_name='+old_name+'&root_dir='+root_dir;
+	}
+}
+function new_file(root_dir) {
+	if (new_fname = prompt("New file", "")) {
+		parent.location='{host}{admin_newfile_href}?new_file='+new_fname+'&dir_path='+root_dir;
+	}
+}
+function new_dir(root_dir) {
+	if (new_dname = prompt("{NEW_FOLDER_MSG}", "")) {
+		parent.location='{host}{admin_filemanager_fm_href}?new_dname='+new_dname+'&root_dir='+root_dir;
+	}
+}
+function ch_fmode(fmode, file_name, root_dir) {
+	if(new_mode = prompt("Change mode", fmode)) {
+		parent.location='{host}{admin_filemanager_fm_href}?new_mode='+new_mode+'&file_name='+file_name+'&root_dir='+root_dir;
+	}
+}
+function ch_dmode(fmode, root_dir) {
+	if(new_mode = prompt("Change mode", fmode)) {
+		parent.location='{host}{admin_filemanager_fm_href}?new_mode='+new_mode+'&root_dir='+root_dir;
+	}
+}
+</SCRIPT>
+</head>
+<body class="commonbg">
+{admin_header} 
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<b>{FILE_MANAGER_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+<fieldset>
+<legend>{FILE_MANAGER_MSG}</legend>
+<table  border="0" cellspacing="1" cellpadding="6" width="100%">
+	<FORM>
+	<tr valign=top>
+		<td width=30%>
+					<BR>
+					<select name="dir_tree" style="width: 100%" onchange="top.location.href = this.options[this.selectedIndex].value;"><!-- BEGIN dir_tree -->
+						<option {dir_tree_selected} value="?root_dir={dir_tree_value}">{dir_tree_description}<!-- END dir_tree -->
+					</select> 
+		</td>
+		<TD width=70%>
+			<TABLE border="0" cellspacing="1" cellpadding="6">
+				<TR>
+					<TD>{CURRENT_PATH_MSG}:</TD>
+					<TD>{dir_path}</TD>
+				</TR>
+				<TR>
+					<TD>{CURRENT_FODER_MSG}:</TD>
+					<TD>{curent_dir_name}</TD>
+				</TR>
+<!--
+				<TR>
+					<TD>{FOLDER_SIZE_MSG}:</TD>
+					<TD>{curent_dir_root}</TD>
+				</TR>
+				<TR>
+					<TD>{TOTAL_FILES_MSG}:</TD>
+					<TD>{curent_num_files}</TD>
+				</TR>
+-->
+				<TR>
+					<TD>{ATTRIBUTES_MSG}:</TD>
+					<TD><a href="javascript:ch_dmode('{digit_curent_dir_perm}', '{dir_path}')">{curent_dir_perm}</a></TD>
+				</TR>
+				</TABLE>		
+		</TD>
+	</tr>
+	</FORM>
+</table>
+</fieldset><BR>
+<!-- BEGIN Errors --><fieldset>
+<table  border="0" cellspacing="1" cellpadding="6" width="100%">
+	<tr>
+		<td class="error" align="center">{error}</td>
+	</tr>
+</table>
+</fieldset><BR><!-- END Errors -->
+<fieldset>
+<table  border="0" cellspacing="1" cellpadding="6" width="100%">
+	<tr align="center" class="middle">
+		<td><a href="{host}{admin_filemanager_fm_href}?name_sort={name_sort}&root_dir={dir_path}">{NAME_MSG}</a></td>
+		<td><a href="{host}{admin_filemanager_fm_href}?size_sort={size_sort}&root_dir={dir_path}"></a>{ADMIN_SIZE_MSG}</td>
+		<td>{ATTRIBUTES_MSG}</td>
+		<td>{VIEW_MSG}</td>
+		<td>{EDIT_MSG}</td>
+		<td>{DOWNLOAD_TITLE}</td>
+		<td>{RENAME_MSG}</td>
+		<td>{DELETE_BUTTON}</td>
+	</tr>
+	<!-- BEGIN records_dir -->
+	<tr class="usual">
+		<td>
+		{dir_id}
+		</td>
+		<td>{file_size}</td>
+		<td align=center><a href="javascript:ch_dmode('{dperm}', '{dir_path}')">{perm}</a></td>
+		<td align=center><a target=_blank href="{host}{admin_view_file_href}?view_file={dir_name}&dir_path={dir_path}&byte_size={byte_size}">{view}</a></td>
+		<td align=center><a href="{host}{admin_edit_file_href}?edit_file={dir_name}&dir_path={dir_path}">{edit}</a></td>
+		<td align=center><a href="{host}{admin_download_file_href}?download_file={dir_name}&dir_path={dir_path}&byte_size={byte_size}">{download}</a></td>
+		<td align=center>
+		<a href="javascript:ren('{dir_name}', '{dir_path}')">{rename}</a></td>
+		<td align=center>
+		<a href="{dir_delete}">{delete}</a></td>
+	</tr>
+	<!-- END records_dir -->
+	<!-- BEGIN records_file -->
+	<tr class="usual">
+		<td>
+		{file_id}
+		</td>
+		<td>{file_size}</td>
+		<td align=center><a href="javascript:ch_fmode('{dperm}', '{file_id}', '{dir_path}')">{perm}</a></td>
+		<td align=center><a href="{host}{admin_view_file_href}?view_file={file_name}&dir_path={dir_path}&byte_size={byte_size}">{view}</a></td>
+		<td align=center><a href="{host}{admin_edit_file_href}?edit_file={file_name}&dir_path={dir_path}">{edit}</a></td>
+		<td align=center><a href="{host}{admin_download_file_href}?download_file={file_name}&dir_path={dir_path}&byte_size={byte_size}">{download}</a></td>
+		<td align=center>
+		<a href="javascript:ren('{file_name}', '{dir_path}')">{RENAME_MSG}</a></td>
+		<td align=center>
+		<a href="{file_href}">{DELETE_BUTTON}</a></td>
+	</tr>
+	<!-- END records_file -->
+	<!-- BEGIN bottom -->
+<tr class="middle">
+	<td colspan="8">
+		&nbsp;<a href="{host}{admin_upload_href}?op=1&dir_root={dir_path}">{UPLOAD_FILE_MSG}</a>&nbsp;&nbsp;<a href="{host}{admin_upload_href}?op=2&dir_root={dir_path}">{UPLOAD_ARCHIVE_MSG}</a>&nbsp;&nbsp;<a href="javascript:new_dir('{dir_path}')">{NEW_FOLDER_MSG}</a>&nbsp;&nbsp;<a href="{host}{admin_newfile_href}?dir_path={dir_path}">{NEW_FILE_MSG}</a><!-- begin navigator_block -->&nbsp;{navigator}&nbsp;<!-- end navigator_block -->
+	</td>
+</tr>
+	<!-- END bottom -->
+</table>
+</fieldset>
+{admin_footer}
+
+</body>
+</html>

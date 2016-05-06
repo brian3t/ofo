@@ -1,0 +1,53 @@
+<div class="block-user-wishlist">
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{MY_WISHLIST_MSG}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr class="headerbg"> 
+		<td class="blockTD">
+
+<table border="0" cellspacing="1" width="100%" class="padding6px"><!-- begin sorters -->
+<tr class="middlebg" align="center">
+	<td>{sorter_item_name}</td>
+	<td>{sorter_price}</td>
+	<td>{sorter_quantity}</td>
+	<td>{sorter_quantity_bought}</td>
+	<td>{sorter_type}</td>
+	<td>{sorter_date}</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+</tr><!-- end sorters --><!-- BEGIN records -->
+<tr class="usualbg" valign="top" align="center">
+	<td align="left">&nbsp;{item_name}</td>
+	<td align="right">&nbsp;{price}&nbsp;</td>
+	<td>&nbsp;{quantity}&nbsp;</td>
+	<td>&nbsp;{quantity_bought}&nbsp;</td>
+	<td>&nbsp;{type_name}&nbsp;</td>
+	<td>&nbsp;{date_added}&nbsp;</td>
+	<td>&nbsp;<a href="{cart_url}">{ADD_TO_CART_MSG}</a>&nbsp;</td>
+	<td>&nbsp;<a href="{delete_url}" onClick="return confirm('Are you sure you want delete this wishlist item?');">{DELETE_BUTTON}</a>&nbsp;</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usualbg">
+	<td colspan="8">&nbsp;No wishlist items were found</td>
+</tr><!-- END no_records -->
+<tr class="middlebg">
+	<td colspan="8">&nbsp;<!-- begin navigator_block -->{navigator}<!-- end navigator_block -->&nbsp;</td>
+</tr>
+</table>	
+
+	</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+</div>

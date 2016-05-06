@@ -1,0 +1,1406 @@
+<script language="JavaScript" type="text/javascript" src="js/product.js"></script>
+<script language="JavaScript" type="text/javascript" src="js/editor.js"></script>
+<script language="JavaScript" type="text/javascript" src="js/list_fields.js"></script>
+<script language="JavaScript" type= "text/javascript" src="js/access_table.js"></script>
+<script language="JavaScript" type= "text/javascript" src="js/tips.js"></script>
+<script language="JavaScript" type="text/javascript">
+<!--
+	var list_fields_names = new Array('sites');
+	var site_url = "{site_url}";
+//-->
+</script>
+
+<div class="block-user-product">
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop" id="user-home">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+<tr><td class="blockTD blockTDtabs">
+<table cellspacing="0" cellpadding="0" border="0">
+<tr>
+	<td class="beginTab">&nbsp;</td>
+	<!-- BEGIN tabs -->
+	<td id="td_{tab_id}" class="{tab_class}"><div id="{tab_id}" class="{tab_class}"><a class="blackSm" href="#" onClick="changePane('{tab_name}'); return false;">{tab_title}</a></td>
+	<!-- END tabs -->
+	<td class="endTab">&nbsp;</td>
+</tr>
+</table>
+</td></tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+<tr><td class="blockTD">
+
+<form action="{user_product_href}" name="record" method="POST" onSubmit="selectListFieldsAll(); submit_editor(Array('editor_sd','editor_f','editor_fd','editor_so','editor_n'));">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="item_id" value="{item_id}">
+<input type="hidden" name="current_tab" value="{current_tab}">
+<input type="hidden" name="currency_left" value="{currency_left}">
+<input type="hidden" name="currency_right" value="{currency_right}">
+<input type="hidden" name="currency_rate" value="{currency_rate}">
+<!-- begin tiny_image_hidden_block --><input type="hidden" name="tiny_image_hidden" value="{tiny_image_hidden}"><!-- end tiny_image_hidden_block -->
+<!-- begin small_image_hidden_block --><input type="hidden" name="small_image_hidden" value="{small_image_hidden}"><!-- end small_image_hidden_block -->
+<!-- begin big_image_hidden_block --><input type="hidden" name="big_image_hidden" value="{big_image_hidden}"><!-- end big_image_hidden_block -->
+<input type="hidden" name="user_types" value="">
+<input type="hidden" name="sites" value="">
+<!-- general data -->
+<div id="data_general" style="{general_style}">
+<table width="100%" border="0" cellspacing="1" class="padding6px">
+<!-- BEGIN errors -->
+<tr class="usualbg">
+	<td colspan="2" align="center">
+		<div class="errorbg">{errors_list}</div>
+	</td>
+</tr>
+<!-- END errors -->
+<!-- begin is_showing_block -->
+<tr>
+	<td colspan="2" class="usualbg">
+		<table cellpadding="0" cellspacing="0" border="0" width="100%">
+		<tr>
+			<td nowrap>
+				<label><input type="checkbox" {is_showing} name="is_showing" value="1"> {PROD_SHOWN_MSG}</label>
+			</td>
+			<td align="right">
+				<font class="small">{ASTERISK_MSG}</font>
+			</td>
+		</tr>
+    </table>
+	</td>
+</tr>
+<!-- end is_showing_block -->
+<tr class="middlebg">
+	<td colspan="2" class="middlebg">
+		{PROD_GENERAL_INFO_MSG}
+	</td>
+</tr>
+<!-- begin categories -->
+<tr class="usualbg">
+	<td>
+		{CATEGORY_MSG} {category_index} <span class="required">{category_required}</span>
+	</td>
+	<td>
+		<select class="text" name="{category_param}"><!-- begin category_id -->
+			<option {category_id_selected} value="{category_id_value}">{category_id_description}<!-- end category_id -->
+		</select>
+	</td>
+</tr>
+<!-- end categories -->
+<!-- begin item_order_block -->
+<tr class="usualbg">
+	<td nowrap>
+		{PROD_ORDER_MSG} <span class="required">*</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="item_order" value="{item_order}" size="10" maxlength="10">
+	</td>
+</tr>
+<!-- end item_order_block -->
+<!-- begin item_type_id_block -->
+<tr class="usualbg">
+	<td>
+		{PROD_TYPE_MSG} <span class="required">*</span>
+	</td>
+	<td>
+		<select class="text" name="item_type_id"><!-- begin item_type_id -->
+			<option {item_type_id_selected} value="{item_type_id_value}">{item_type_id_description}<!-- end item_type_id -->
+		</select>
+	</td>
+</tr>
+<!-- end item_type_id_block -->
+<!-- begin item_code_block -->
+<tr class="usualbg">
+	<td>
+		{PROD_CODE_MSG} <span class="required">*</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="item_code" value="{item_code}" size="20" maxlength="255">
+	</td>
+</tr>
+<!-- end item_code_block -->
+<!-- begin item_name_block -->
+<tr class="usualbg">
+	<td>
+		{PROD_NAME_MSG} <span class="required">*</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="item_name" value="{item_name}" size="80" maxlength="255">
+	</td>
+</tr>
+<!-- end item_name_block -->
+<!-- BEGIN friendly_url_block -->
+<tr class="usualbg">
+	<td nowrap>
+		{FRIENDLY_URL_MSG} <span class="required">{friendly_url_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="friendly_url" value="{friendly_url}" size="80" maxlength="255">
+	</td>
+</tr>
+<!-- END friendly_url_block -->
+<!-- begin manufacturer_section -->
+<tr class="usualbg">
+	<td>
+		{PROD_MANUFACTURER_MSG} <span class="required">{manufacturer_id_required}</span>
+	</td>
+	<td>
+		<!-- begin manufacturer_id_block -->
+		<select class="text" name="manufacturer_id"><!-- begin manufacturer_id -->
+			<option {manufacturer_id_selected} value="{manufacturer_id_value}">{manufacturer_id_description}<!-- end manufacturer_id -->
+		</select>
+		<!-- end manufacturer_id_block -->
+		<!-- begin manufacturer_code_block -->
+		&nbsp; {MANUFACTURER_CODE_MSG} <span class="required">{manufacturer_code_required}</span>&nbsp; <input class="text" type="text" name="manufacturer_code" value="{manufacturer_code}" size="20" maxlength="255">
+		<!-- end manufacturer_code_block -->
+	</td>
+</tr>
+<!-- end manufacturer_section -->
+<!-- begin weight_block -->
+<tr class="usualbg">
+	<td>
+		{WEIGHT_MSG} <span class="required">{weight_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="weight" value="{weight}" size="20" maxlength="16">
+	</td>
+</tr>
+<!-- end weight_block -->
+<!-- begin issue_date_block -->
+<tr class="usualbg">
+	<td>
+		{PROD_ISSUE_DATE_MSG} <span class="required">{issue_date_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="issue_date" value="{issue_date}" size="20" maxlength="16">
+		<A HREF="#"
+			onClick="setDateField(document.record.issue_date, '{date_edit_format}');
+			top.newWin = window.open('js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+		<IMG SRC="images/calendar.gif" BORDER=0><font size=1>{CALENDAR_MSG}</font></A>
+		({date_format_msg})
+	</td>
+</tr>
+<!-- end issue_date_block -->
+<!-- begin additional_options_section -->
+<tr class="usualbg">
+	<td>
+		{PROD_ADDITIONAL_OPTIONS_MSG}
+	</td>
+	<td>
+		<!-- begin is_compared_block -->
+		<label><input type="checkbox" name="is_compared" {is_compared} value="1"> {PROD_ALLOWED_COMPARISON_MSG}&nbsp; &nbsp;</label>
+		<!-- end is_compared_block -->
+		<!-- begin tax_free_block -->
+		<label><input type="checkbox" name="tax_free" {tax_free} value="1"> {PROD_TAX_FREE_MSG}</label>
+		<!-- end tax_free_block -->
+	</td>
+</tr>
+<!-- end additional_options_section -->
+<!-- begin language_code_block -->
+<tr class="usualbg">
+	<td>
+		{PROD_LANGUAGE_MSG} <span class="required">{language_code_required}</span>
+	</td>
+	<td>
+		<select class="text" name="language_code"><!-- begin language_code -->
+			<option {language_code_selected} value="{language_code_value}">{language_code_description}<!-- end language_code -->
+		</select>
+		<font class="small">
+			({PROD_LANGUAGE_DESC})
+		</font>
+	</td>
+</tr>
+<!-- end language_code_block -->
+<!-- begin pricing_section -->
+<tr class="middlebg">
+	<td colspan="2">
+		{PROD_PRICING_MSG}
+	</td>
+</tr>
+<tr>
+	<td class="usualbg" colspan="2">
+
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr class="usualbg">
+	<td colspan="2" width="30%">
+		<!-- begin is_price_edit_block -->
+		<label><input type="checkbox" {is_price_edit} name="is_price_edit" value="1">{PROD_CHANGE_PRICE_MSG}</label>
+		<!-- end is_price_edit_block -->
+	</td>
+	<td colspan="2" width="30%">
+		<!-- begin is_sales_block -->
+		<label><input type="checkbox" {is_sales} name="is_sales" value="1" onClick="pricePreview();">{PROD_ACTIVATE_DISCOUNT_MSG}</label>
+		<!-- end is_sales_block -->
+	</td>
+	<td width="30%">
+	<!-- begin preview_price_title -->
+		{PROD_PRICE_PREVIEW_MSG} &nbsp;
+	<!-- end preview_price_title -->
+	</td>
+</tr>
+<tr class="usualbg">
+	<!-- begin price_block -->
+	<td>
+	  {PROD_LIST_PRICE_MSG} <span class="required">*</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="price" value="{price}" size="10" maxlength="16" onChange="pricePreview();" onKeyUp="pricePreview();">
+	</td>
+	<!-- end price_block -->
+	<!-- begin sales_price_block -->
+	<td>
+		&nbsp;{PROD_DISCOUNT_PRICE_MSG} <span class="required">{sales_price_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="sales_price" value="{sales_price}" size="10" maxlength="16" onChange="pricePreview();" onKeyUp="pricePreview();">
+	</td>
+	<!-- end sales_price_block -->
+	<!-- begin preview_price_block -->
+	<td rowspan="4" valign="top">
+    <div id="inline_price" style="font-size: 8pt; font-family: tahoma,verdana,sans-serif; border: 1px solid black;">
+			&nbsp;{PRICE_MSG}:&nbsp;<input readonly size="25" type="text" name="preview_price" value="200.00" style=" border:none; background-color: transparent; font-size: 8pt; font-family: tahoma,verdana,sans-serif;" class="usualbg"><br>
+			&nbsp;<br>&nbsp;
+		</div>
+		<div id="detail_price" style="font-size: 8pt; font-family: tahoma,verdana,sans-serif; border: 1px solid black;">
+	    &nbsp;{PRICE_MSG}:&nbsp;<input readonly size="25" type="text" name="preview_list_price" value="" style=" background-color: transparent; text-decoration: line-through; border:none;  font-size: 8pt; font-family: tahoma,verdana,sans-serif;" class="usualbg"><br>
+  	  &nbsp;{OUR_PRICE_MSG}:&nbsp;<input readonly type="text" name="preview_sales_price" value="" style=" background-color: transparent; border:none; color:red; font-size: 8pt; font-family: tahoma,verdana,sans-serif;" class="usualbg"><br>
+	    &nbsp;{YOU_SAVE_MSG}:&nbsp;<input  readonly type="text" name="preview_discount" value="" style=" background-color: transparent; border:none; font-size: 8pt; font-family: tahoma,verdana,sans-serif;" class="usualbg">
+		</div>
+	</td>
+	<!-- end preview_price_block -->
+</tr>
+<tr class="usualbg">
+	<!-- begin trade_price_block -->
+	<td>
+	  {PROD_TRADE_PRICE_MSG} <span class="required">{trade_price_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="trade_price" value="{trade_price}" size="10" maxlength="16">
+	</td>
+	<!-- end trade_price_block -->
+	<!-- begin trade_sales_block -->
+	<td>
+		&nbsp;{PROD_DISCOUNT_TRADE_MSG} <span class="required">{trade_sales_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="trade_sales" value="{trade_sales}" size="10" maxlength="16">
+	</td>
+	<!-- end trade_sales_block -->
+</tr>
+<tr class="usualbg">
+	<!-- begin buying_price_block -->
+	<td>
+	  {PROD_BUYING_PRICE_MSG} <span class="required">{buying_price_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="buying_price" value="{buying_price}" size="10" maxlength="16">
+	</td>
+	<!-- end buying_price_block -->
+	<!-- begin discount_percent_block -->
+	<td>
+		&nbsp;{PROD_SHOWN_DISCOUNT_MSG} <span class="required">{discount_percent_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="discount_percent" value="{discount_percent}" size="10" maxlength="10" onChange="pricePreview();" onKeyUp="pricePreview();">
+	</td>
+	<!-- end discount_percent_block -->
+</tr>
+<!-- begin properties_block -->
+<tr class="usualbg">
+	<!-- begin properties_price_block -->
+	<td>
+	  {PROD_OPTIONS_PRICE_MSG} <span class="required">{properties_price_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="properties_price" value="{properties_price}" size="10" maxlength="16">
+	</td>
+	<!-- end properties_price_block -->
+	<!-- begin trade_properties_price_block -->
+	<td>
+	  {OPTIONS_TRADE_PRICE_MSG} <span class="required">{trade_properties_price_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="trade_properties_price" value="{trade_properties_price}" size="10" maxlength="16">
+	</td>
+	<!-- end trade_properties_price_block -->
+</tr>
+<tr>
+	<td colspan="5">
+		({PROD_OPTIONS_PRICE_DESC})
+	</td>
+</tr>
+<!-- end properties_block -->
+</table>
+
+	</td>
+</tr>
+<!-- end pricing_section -->
+
+<!-- begin description_section -->
+<tr class="middlebg">
+	<td colspan="2" class="middlebg">
+		{DESCRIPTION_MSG}
+	</td>
+</tr>
+<!-- end description_section -->
+<!-- begin features_block -->
+<tr class="usualbg">
+	<td>
+		{HIGHLIGHTS_MSG} <span class="required">{features_required}</span>
+	</td>
+	<td>
+		<textarea class="text" name="features" style="display: block; width: 590px; height: 100px;">{features}</textarea>
+		<script language= "JavaScript" type= "text/javascript">
+		<!--
+			var editor_f = new VA_HTMLeditor('content_f','','{features_editor}');
+			editor_f.text_field_name = 'features';
+			editor_f.formname = 'record';
+			editor_f.css_file = '{css_file}';
+			editor_f.editor_type = 'product_editor';
+			editor_f.displayEditor('editor_f', 565, 100);
+		//-->
+		</script>
+	</td>
+</tr>
+<!-- end features_block -->
+<!-- begin short_description_block -->
+<tr class="usualbg">
+	<td nowrap>
+		{SHORT_DESCRIPTION_MSG} <span class="required">{short_description_required}</span>
+	</td>
+	<td>
+		<textarea class="text" name="short_description" style="display: block; width: 590px; height: 100px;">{short_description}</textarea>
+		<script language= "JavaScript" type= "text/javascript">
+		<!--
+			var editor_sd = new VA_HTMLeditor('content_sd','','{short_description_editor}');
+			editor_sd.text_field_name = 'short_description';
+			editor_sd.formname = 'record';
+			editor_sd.css_file = '{css_file}';
+			editor_sd.editor_type = 'product_editor';
+			editor_sd.displayEditor('editor_sd', 565, 100);
+		//-->
+		</script>
+	</td>
+</tr>
+<!-- end short_description_block -->
+<!-- begin full_description_block -->
+<tr class="usualbg">
+	<td>
+		{FULL_DESCRIPTION_MSG} <span class="required">{full_description_required}</span>
+	</td>
+	<td>
+		<textarea class="text" name="full_description" style="display: block; width: 590px; height: 200px;">{full_description}</textarea>
+		<script language= "JavaScript" type= "text/javascript">
+		<!--
+			var editor_fd = new VA_HTMLeditor('content_fd','','{full_description_editor}');
+			editor_fd.text_field_name = 'full_description';
+			editor_fd.formname = 'record';
+			editor_fd.css_file = '{css_file}';
+			editor_fd.editor_type = 'product_editor';
+			editor_fd.displayEditor('editor_fd', 565, 200);
+		//-->
+		</script>
+	</td>
+</tr>
+<!-- end full_description_block -->
+<!-- begin meta_section -->
+<tr class="middlebg">
+	<td colspan="2" class="middlebg">
+		{META_DATA_MSG}
+	</td>
+</tr>
+<!-- end meta_section -->
+<!-- begin meta_title_block -->
+<tr class="usualbg">
+	<td>
+		{META_TITLE_MSG} <span class="required">{meta_title_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="meta_title" value="{meta_title}" size="80" maxlength="255">
+	</td>
+</tr>
+<!-- end meta_title_block -->
+<!-- begin meta_keywords_block -->
+<tr class="usualbg">
+	<td>
+		{META_KEYWORDS_MSG} <span class="required">{meta_keywords_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="meta_keywords" value="{meta_keywords}" size="80" maxlength="255">
+	</td>
+</tr>
+<!-- end meta_keywords_block -->
+<!-- begin meta_description_block -->
+<tr class="usualbg">
+	<td>
+		{META_DESCRIPTION_MSG} <span class="required">{meta_description_required}</span>
+	</td>
+	<td>
+		<textarea class="text" name="meta_description" style="width: 590px; height: 100px;">{meta_description}</textarea>
+	</td>
+</tr>
+<!-- end meta_description_block -->
+<!-- begin images_section -->
+<tr class="middlebg">
+	<td colspan="2">
+		{IMAGES_MSG}
+	</td>
+</tr>
+<!-- end images_section -->
+<!-- begin tiny_image_block -->
+<tr class="usualbg">
+	<td>
+		{IMAGE_TINY_MSG} <span class="required">{tiny_image_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" size="50" maxlength="255" name="tiny_image" value="{tiny_image}"> 
+		&nbsp;<a href="javascript:openWindow('{user_upload_href}', 'product_tiny')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+		&nbsp;|&nbsp; <a href="javascript:openWindow('{user_select_href}', 'product_tiny')"><b>{SELECT_IMAGE_MSG}</b></a>
+		<br>({IMAGE_TINY_DESC})
+	</td>
+</tr>
+<!-- end tiny_image_block -->
+<!-- begin tiny_image_alt_block -->
+<tr class="usualbg">
+	<td>
+		{IMAGE_TINY_ALT_MSG} <span class="required">{tiny_image_alt_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" size="50" maxlength="255" name="tiny_image_alt" value="{tiny_image_alt}"> 
+	</td>
+</tr>
+<!-- end tiny_image_alt_block -->
+<!-- begin small_image_block -->
+<tr class="usualbg">
+	<td>
+		{IMAGE_SMALL_MSG} <span class="required">{small_image_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" size="50" maxlength="255" name="small_image" value="{small_image}"> 
+		&nbsp;<a href="javascript:openWindow('{user_upload_href}', 'product_small')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+		&nbsp;|&nbsp; <a href="javascript:openWindow('{user_select_href}', 'product_small')"><b>{SELECT_IMAGE_MSG}</b></a>
+		<br>({IMAGE_SMALL_DESC})
+	</td>
+</tr>
+<!-- end small_image_block -->
+<!-- begin small_image_alt_block -->
+<tr class="usualbg">
+	<td>
+		{IMAGE_SMALL_ALT_MSG} <span class="required">{small_image_alt_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" size="50" maxlength="255" name="small_image_alt" value="{small_image_alt}"> 
+	</td>
+</tr>
+<!-- end small_image_alt_block -->
+<!-- begin big_image_block -->
+<tr class="usualbg">
+	<td>
+		{IMAGE_LARGE_MSG} <span class="required">{big_image_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" size="50" maxlength="255" name="big_image" value="{big_image}"> 
+		&nbsp;<a href="javascript:openWindow('{user_upload_href}', 'product_large')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+		&nbsp;|&nbsp; <a href="javascript:openWindow('{user_select_href}', 'product_large')"><b>{SELECT_IMAGE_MSG}</b></a>
+		<br>({IMAGE_LARGE_DESC})
+	</td>
+</tr>
+<!-- end big_image_block -->
+<!-- begin big_image_alt_block -->
+<tr class="usualbg">
+	<td>
+		{IMAGE_LARGE_ALT_MSG} <span class="required">{big_image_alt_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" size="50" maxlength="255" name="big_image_alt" value="{big_image_alt}"> 
+	</td>
+</tr>
+<!-- end big_image_alt_block -->
+<!-- begin super_image_block -->
+<tr class="usualbg">
+	<td>
+		{IMAGE_SUPER_MSG} <span class="required">{super_image_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" size="50" maxlength="255" name="super_image" value="{super_image}"> 
+		&nbsp;<a href="javascript:openWindow('{user_upload_href}', 'product_super')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+		&nbsp;|&nbsp; <a href="javascript:openWindow('{user_select_href}', 'product_super')"><b>{SELECT_IMAGE_MSG}</b></a>
+		<br>({IMAGE_SUPER_DESC})
+	</td>
+</tr>
+<!-- end super_image_block -->
+
+<!-- begin appearance_section -->
+<tr class="middlebg">
+	<td colspan="2">
+		{PROD_APPEARANCE_MSG}
+	</td>
+</tr>
+<!-- end appearance_section -->
+<!-- begin template_name_block -->
+<tr class="usualbg">
+	<td>
+		{CUSTOM_TEMPLATE_MSG} <span class="required">{template_name_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="template_name" value="{template_name}" size="50" maxlength="255">
+	</td>
+</tr>
+<!-- end template_name_block -->
+<!-- begin hide_add_section -->
+<tr class="usualbg">
+	<td nowrap>
+		{HIDE_ADD_BUTTON_MSG}
+	</td>
+	<td>
+		<!-- begin hide_add_list_block -->
+		<label><input type="checkbox" {hide_add_list} name="hide_add_list" value="1"><font size="1">{ON_PROD_LIST_MSG}</font> &nbsp;</label>
+		<!-- end hide_add_list_block -->
+		<!-- begin hide_add_details_block -->
+		<label><input type="checkbox" {hide_add_details} name="hide_add_details" value="1"><font size="1">{ON_PROD_DETAILS_MSG}</font> &nbsp;</label>
+		<!-- end hide_add_details_block -->
+		<!-- begin hide_add_table_block -->
+		<label><input type="checkbox" {hide_add_table} name="hide_add_table" value="1"><font size="1">on table view</font> &nbsp;</label>
+		<!-- end hide_add_table_block -->
+		<!-- begin hide_add_grid_block -->
+		<label><input type="checkbox" {hide_add_grid} name="hide_add_grid" value="1"><font size="1">on grid view</font> &nbsp;</label>
+		<!-- end hide_add_grid_block -->
+	</td>
+</tr>
+<!-- end hide_add_section -->
+<!-- begin preview_url_section -->
+<tr class="usualbg">
+	<td>
+		{PROD_PREVIEW_URL_MSG} <span class="required">{preview_url_required}</span>
+	</td>
+	<td>
+		<!-- begin preview_url_block -->
+		<input class="text" type="text" name="preview_url" value="{preview_url}" size="50" maxlength="255">
+		<!-- end preview_url_block -->
+		<!-- begin preview_width_block -->
+		&nbsp; {WIDTH_MSG} <span class="required">{preview_width_required}</span> <input class="text" type="text" name="preview_width" value="{preview_width}" size="10" maxlength="255">
+		<!-- end preview_width_block -->
+		<!-- begin preview_height_block -->
+		&nbsp; {HEIGHT_MSG} <span class="required">{preview_height_required}</span> <input class="text" type="text" name="preview_height" value="{preview_height}" size="10" maxlength="255">
+		<!-- end preview_height_block -->
+	</td>
+</tr>
+<!-- end preview_url_section -->
+<!-- begin stock_section -->
+<tr class="middlebg">
+	<td colspan="2">
+		{PROD_STOCK_MSG}
+	</td>
+</tr>
+<!-- end stock_section -->
+<!-- begin use_stock_level_block -->
+<tr class="usualbg">
+	<td>
+		{USE_STOCK_MSG} <span class="required">{use_stock_level_required}</span>
+	</td>
+	<td>
+		<input type="checkbox" name="use_stock_level" {use_stock_level} value="1" onClick="updateStockProperty();">
+	</td>
+</tr>
+<!-- end use_stock_level_block -->
+<!-- begin stock_level_block -->
+<tr class="usualbg">
+	<td>
+		{STOCK_QUANTITY_MSG} <span class="required">{stock_level_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="stock_level" value="{stock_level}" size="10" maxlength="16">
+	</td>
+</tr>
+<!-- end stock_level_block -->
+<!-- begin hide_out_of_stock_block -->
+<tr class="usualbg">
+	<td>
+		{HIDE_OUT_STOCK_MSG} <span class="required">{hide_out_of_stock_required}</span>
+	</td>
+	<td>
+		<label><input type="checkbox" name="hide_out_of_stock" {hide_out_of_stock} value="1" onClick="checkUseStock();"> ({HIDE_OUT_STOCK_DESC})</label>
+	</td>
+</tr>
+<!-- end hide_out_of_stock_block -->
+<!-- begin disable_out_of_stock_block -->
+<tr class="usualbg">
+	<td>
+		{DISABLE_OUT_STOCK_MSG} <span class="required">{disable_out_of_stock_required}</span>
+	</td>
+	<td>
+		<label><input type="checkbox" name="disable_out_of_stock" {disable_out_of_stock} value="1" onClick="checkUseStock();"> ({DISABLE_OUT_STOCK_DESC})</label>
+	</td>
+</tr>
+<!-- end disable_out_of_stock_block -->
+<!-- begin min_quantity_block -->
+<tr class="usualbg">
+	<td>
+		{MINIMUM_ITEMS_QTY_MSG} <span class="required">{min_quantity_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="min_quantity" value="{min_quantity}" size="10" maxlength="16">
+	</td>
+</tr>
+<!-- end min_quantity_block -->
+<!-- begin max_quantity_block -->
+<tr class="usualbg">
+	<td>
+		{MAXIMUM_ITEMS_QTY_MSG} <span class="required">{max_quantity_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="max_quantity" value="{max_quantity}" size="10" maxlength="16">
+	</td>
+</tr>
+<!-- end max_quantity_block -->
+<!-- begin quantity_increment_block -->
+<tr class="usualbg">
+	<td>
+		{QTY_INCREMENT_MSG} <span class="required">{quantity_increment_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="quantity_increment" value="{quantity_increment}" size="10" maxlength="16">
+	</td>
+</tr>
+<!-- end quantity_increment_block -->
+
+<!-- begin shipping_section -->
+<tr class="middlebg">
+	<td colspan="2">
+		{PROD_SHIPPING_MSG}
+	</td>
+</tr>
+<!-- end shipping_section -->
+
+<!-- begin is_shipping_free_block -->
+<tr class="usualbg">
+	<td>
+		{FREE_SHIPPING_MSG} <span class="required">{is_shipping_free_required}</span>
+	</td>
+	<td>
+		<input type="checkbox" name="is_shipping_free" {is_shipping_free} value="1">
+	</td>
+</tr>
+<!-- end is_shipping_free_block -->
+<!-- begin shipping_cost_block -->
+<tr class="usualbg">
+	<td>
+		{SHIPPING_COST_MSG} <span class="required">{shipping_cost_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="shipping_cost" value="{shipping_cost}" size="10" maxlength="16">
+	</td>
+</tr>
+<!-- end shipping_cost_block -->
+<!-- begin shipping_in_stock_block -->
+<tr class="usualbg">
+	<td>
+		{IN_STOCK_AVAILABILITY_MSG} <span class="required">{shipping_in_stock_required}</span>
+	</td>
+	<td>
+		<select class="text" name="shipping_in_stock"><!-- begin shipping_in_stock -->
+			<option {shipping_in_stock_selected} value="{shipping_in_stock_value}">{shipping_in_stock_description}<!-- end shipping_in_stock -->
+		</select>
+		&nbsp;<font class="small">({IN_STOCK_AVAILABILITY_DESC})</font>
+	</td>
+</tr>
+<!-- end shipping_in_stock_block -->
+<!-- begin shipping_out_stock_block -->
+<tr class="usualbg">
+	<td>
+		{OUT_STOCK_AVAILABILITY_MSG} <span class="required">{shipping_out_stock_required}</span>
+	</td>
+	<td>
+		<select class="text" name="shipping_out_stock"><!-- begin shipping_out_stock -->
+			<option {shipping_out_stock_selected} value="{shipping_out_stock_value}">{shipping_out_stock_description}<!-- end shipping_out_stock -->
+		</select>
+		&nbsp;<font class="small">({OUT_STOCK_AVAILABILITY_DESC})</font>
+	</td>
+</tr>
+<!-- end shipping_out_stock_block -->
+<!-- begin shipping_rule_id_block -->
+<tr class="usualbg">
+	<td>
+		{SHIPPING_RESTRICTIONS_MSG} <span class="required">{shipping_rule_id_required}</span>
+	</td>
+	<td>
+		<select class="text" name="shipping_rule_id"><!-- begin shipping_rule_id -->
+			<option {shipping_rule_id_selected} value="{shipping_rule_id_value}">{shipping_rule_id_description}<!-- end shipping_rule_id -->
+		</select>
+	</td>
+</tr>
+<!-- end shipping_rule_id_block -->
+<!-- begin terms_block -->
+<tr class="middlebg">
+	<td colspan="2">
+		{PROD_TERMS_MSG}
+	</td>
+</tr>
+<tr class="usualbg">
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		<input type="checkbox" name="terms" {terms} value="1">
+		(<a href="#" onClick="openTermsWindow('{user_product_terms_href}'); return false;">{PROD_TERMS_USER_DESC}</a>)
+	</td>
+</tr>
+<!-- end terms_block -->
+
+<tr class="middlebg">
+	<td>
+	</td>
+	<td>
+		<!-- begin save_button --><span class="submit"><input class="submit" type="submit" value="{save_button_title}" onCLick="document.record.operation.value='save';"></span><!-- end save_button -->
+		<!-- BEGIN delete --><span class="submit"><input class="submit" id="delete" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{PROD_DELETE_CONFIRM_MSG}?');"></span><!-- END delete -->
+		<span class="submit"><input class="submit" id="cancel" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'"></span>
+	</td>
+</tr>
+<!-- BEGIN duplicate -->
+<tr class="usualbg">
+	<td></td>
+	<td align="right">
+		<table cellpadding="0" cellspacing="0" border="0">
+		<tr>
+			<td>
+				<input type="checkbox" name="duplicate_properties" {duplicate_properties} value="1">{OPTIONS_AND_COMPONENTS_MSG} &nbsp;
+			</td>
+			<td>
+				<span class="submit"><input class="submit" type="submit" value="Duplicate" onclick="document.record.operation.value='duplicate';return confirm('{CONFIRM_PRODUCT_COPY_MSG}?');"></span>
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr><!-- END duplicate -->
+</table>
+</div>
+
+<!-- downloads block -->
+<div style="{downloads_style}" id="data_downloads">
+<table width="100%" border="0" cellspacing="1" class="padding6px">
+<!-- BEGIN downloads_errors -->
+<tr class="usualbg">
+	<td colspan="4" align="center">
+		<div class="errorbg">{errors_list}</div>
+	</td>
+</tr><!-- END downloads_errors -->
+<!-- begin download_section -->
+<tr class="middlebg">
+	<td colspan="4">
+		{DOWNLOAD_OPTIONS_MSG}
+	</td>
+</tr>
+<!-- end download_section -->
+<!-- begin download_show_terms_block -->
+<tr class="usualbg">
+	<td>
+		{DOWNLOAD_SHOW_TERMS_MSG}
+	</td>
+	<td colspan="3">
+		<input type="checkbox" name="download_show_terms" {download_show_terms} value="1">
+		<font class="small">({DOWNLOAD_SHOW_TERMS_DESC})</font>
+	</td>
+</tr>
+<!-- end download_show_terms_block -->
+<!-- begin download_terms_text_block -->
+<tr class="usualbg">
+	<td>
+		{DOWNLOAD_TERMS_MSG}
+	</td>
+	<td colspan="3">
+		<textarea class="text" name="download_terms_text" style="width: 590px; height: 200px;">{download_terms_text}</textarea>
+	</td>
+</tr>
+<!-- end download_terms_text_block -->
+
+<!-- begin downloadable_files -->
+<tr class="middlebg">
+	<td colspan="4">
+		{DOWNLOADABLE_FILES_MSG}
+	</td>
+</tr>
+<tr class="usualbg">
+	<td colspan="4">
+
+	<input type="hidden" name="number_files" value="{number_files}">
+	<table width="100%" class="padding4px" cellpadding="0" cellspacing="1" border="0">
+	<tr class="middlebg" align="center">
+		<td rowspan="2">
+			#
+		</td>
+		<td>
+			{DOWNLOAD_TYPE_MSG}
+		</td>
+		<td>
+			{DOWNLOAD_TITLE_MSG}
+		</td>
+		<td>
+			{DOWNLOAD_PATH_MSG}
+		</td>
+		<td>
+			{DOWNLOAD_PERIOD_MSG}
+		</td>
+		<td>
+			{DOWNLOAD_LIMIT_MSG}
+		</td>
+		<td rowspan="2">
+			{SERIAL_DELETE_COLUMN}
+		</td>
+	</tr>
+	<tr class="usualbg" align="center">
+		<td>
+			{PREVIEW_TYPE_MSG}
+		</td>
+		<td>
+			{PREVIEW_TITLE_MSG}
+		</td>
+		<td>
+			{PREVIEW_PATH_MSG}
+		</td>
+		<td>
+			{PREVIEW_IMAGE_MSG}
+		</td>
+		<td>
+			{PREVIEW_POSITION_MSG}
+		</td>
+	</tr>
+	<!-- begin files --><!-- begin files_errors -->
+	<tr class="usualbg" align="center">
+		<td>&nbsp;</td>
+		<td colspan="5">
+			<div class="errorbg">{errors_list}</div>
+		</td>
+		<td>&nbsp;</td>
+	</tr><!-- end files_errors -->
+	<tr class="middlebg">
+		<td align="center" rowspan="2">
+			&nbsp;{row_number}&nbsp;
+			<input type="hidden" name="file_id_{row_number}" value="{file_id}">
+		</td>
+		<td align="center" valign="top">
+			<select name="download_type_{row_number}" style="width: 125px;"><!-- begin download_type -->
+				<option {download_type_selected} value="{download_type_value}">{download_type_description}<!-- end download_type -->
+			</select>
+		</td>
+		<td valign="top">
+			<input class="field" size=20 type="text" name="download_title_{row_number}" value="{download_title}">
+		</td>
+		<td valign="top">
+			<input class="field" size=30 type="text" name="download_path_{row_number}" value="{download_path}">
+			<a href="javascript:openWindow('{user_upload_href}', 'downloads', '{row_number}')"><b>{UPLOAD_MSG}</b></a>
+			| <a href="javascript:openWindow('{user_select_href}', 'downloads', '{row_number}')"><b>{SELECT_MSG}</b></a>
+		</td>
+		<td valign="top">
+			<input class="field" type="text" name="download_interval_{row_number}" value="{download_interval}" size="4" maxlength="10"> 
+			<select name="download_period_{row_number}"><!-- begin download_period -->
+				<option {download_period_selected} value="{download_period_value}">{download_period_description}<!-- end download_period -->
+			</select>
+		</td>
+		<td valign="top">
+			<input class="field" size=10 type="text" name="download_limit_{row_number}" value="{download_limit}">
+		</td>
+		<td align="center" rowspan="2">
+			<input type="checkbox" name="files_delete_{row_number}" {files_delete} value="1">
+		</td>
+	</tr>
+	<tr class="usualbg" valign="top">
+		<td align="center" valign="top">
+			<select name="preview_type_{row_number}" style="width: 125px;"><!-- begin preview_type -->
+				<option {preview_type_selected} value="{preview_type_value}">{preview_type_description}<!-- end preview_type -->
+			</select>
+		</td>
+		<td valign="top">
+			<input class="field" size=20 type="text" name="preview_title_{row_number}" value="{preview_title}">
+		</td>
+		<td valign="top">
+			<input class="field" size=30 type="text" name="preview_path_{row_number}" value="{preview_path}">
+			<a href="javascript:openWindow('{user_upload_href}', 'previews', '{row_number}')"><b>{UPLOAD_MSG}</b></a>
+			| <a href="javascript:openWindow('{user_select_href}', 'previews', '{row_number}')"><b>{SELECT_MSG}</b></a>
+		</td>
+		<td valign="top">
+			<input class="field" size=30 type="text" name="preview_image_{row_number}" value="{preview_image}">
+			<a href="javascript:openWindow('{user_upload_href}', 'preview_image', '{row_number}')"><b>{UPLOAD_MSG}</b></a>
+			| <a href="javascript:openWindow('{user_select_href}', 'preview_image', '{row_number}')"><b>{SELECT_MSG}</b></a>
+		</td>
+		<td>
+			<select name="preview_position_{row_number}"><!-- begin preview_position -->
+				<option {preview_position_selected} value="{preview_position_value}">{preview_position_description}<!-- end preview_position -->
+			</select>
+		</td>
+	</tr>
+	<!-- END files -->
+	<tr class="usualbg">
+		<td colspan="7" align="right">
+		{MORE_FILES_MSG} 
+		<span class="submit"><input class="submit" type="submit" value=" {ADD_BUTTON} " onClick="document.record.operation.value='more_files';"></span>
+		</td>
+	</tr>
+	</table>
+
+	</td>
+</tr>
+<!-- end downloadable_files -->
+
+<!-- begin serial_section -->
+<tr class="middlebg">
+	<td colspan="4">
+		{ACTIVATION_OPTIONS_MSG}
+	</td>
+</tr>
+<!-- end serial_section -->
+<!-- begin generate_serial_block -->
+<tr class="usualbg">
+	<td>
+		{SERIAL_GENERATE_MSG} <span class="required">{generate_serial_required}</span>
+	</td>
+	<td colspan="3" valign="bottom">
+  		<!-- begin generate_serial -->
+		<label><input type="radio" name="generate_serial" {generate_serial_checked} value="{generate_serial_value}">&nbsp;{generate_serial_description}&nbsp;</label>
+		<!-- end generate_serial -->
+	</td>
+</tr>
+<!-- end generate_serial_block -->
+<!-- begin serial_period_block -->
+<tr class="usualbg">
+	<td>
+		{SERIAL_PERIOD_MSG} <span class="required">{serial_period_required}</span>
+	</td>
+	<td colspan="3">
+		<input class="text" type="text" name="serial_period" value="{serial_period}" size="10" maxlength="10"> ({DAYS_MSG})
+	</td>
+</tr>
+<!-- end serial_period_block -->
+<!-- begin activations_number_block -->
+<tr class="usualbg">
+	<td>
+		{ACTIVATION_MAX_NUMBER_MSG} <span class="required">{activations_number_required}</span>
+	</td>
+	<td colspan="3">
+		<input class="text" type="text" name="activations_number" value="{activations_number}" size="10" maxlength="10">
+	</td>
+</tr>
+<!-- end activations_number_block -->
+<!-- begin serial_predefined_section -->
+<tr class="middlebg">
+	<td colspan="4">
+		{SERIAL_PREDEFINED_MSG}
+	</td>
+</tr>
+
+<input type="hidden" name="number_serials" value="{number_serials}">
+
+<tr class="middlebg" align="center">
+	<td>
+		#
+	</td>
+	<td>
+		{SERIAL_NUMBER_COLUMN}
+	</td>
+	<td>
+		{SERIAL_USED_COLUMN}
+	</td>
+	<td>
+		{SERIAL_DELETE_COLUMN}
+	</td>
+</tr>
+<!-- begin serials --><!-- begin serials_errors -->
+<tr class="usualbg" align="center">
+	<td>&nbsp;</td>
+	<td colspan="2">
+		<div class="errorbg">{errors_list}</div>
+	</td>
+	<td>&nbsp;</td>	
+</tr><!-- end serials_errors -->
+<tr class="usualbg" valign="top">
+	<td align="center">
+		&nbsp;{row_number}&nbsp;
+		<input type="hidden" name="serial_id_{serials_number}" value="{serial_id}">
+	</td>
+	<td>
+		<input class="text" size=60 type="text" name="serial_number_{serials_number}" value="{serial_number}"> 
+	</td>
+	<td align="center">
+		<input type="checkbox" name="used_{serials_number}" {used} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="serials_delete_{serials_number}" {serials_delete} value="1">
+	</td>
+</tr><!-- END serials -->
+<tr class="usualbg">
+	<td colspan="4" align="right">
+	{SERIAL_MORE_MSG} 
+	<span class="submit"><input class="submit" type="submit" value=" {ADD_BUTTON} " onClick="document.record.operation.value='more_serials';"></span>
+	</td>
+</tr>
+<!-- end serial_predefined_section -->
+
+<tr class="middlebg">
+	<td>
+		&nbsp;
+	</td>
+	<td colspan="3">
+		<!-- begin save_button --><span class="submit"><input class="submit" type="submit" value="{save_button_title}" onCLick="document.record.operation.value='save';"></span><!-- end save_button -->
+	</td>
+</tr>
+</table>
+</div>
+
+<!-- special offer block -->
+<div style="{special_offer_style}" id="data_special_offer">
+<table width="100%" border="0" cellspacing="1" class="padding6px">
+<tr class="middlebg">
+	<td colspan="2">
+		{SPECIAL_OFFER_MSG}
+	</td>
+</tr>
+<!-- begin is_special_offer_block -->
+<tr class="usualbg">
+	<td colspan="2">
+		<label><input type="checkbox" name="is_special_offer" {is_special_offer} value="1"> {PROD_OFFER_ACTIVATE_MSG}</label>
+	</td>
+</tr>
+<!-- end is_special_offer_block -->
+<!-- begin special_offer_block -->
+<tr class="usualbg">
+	<td>
+		{SPECIAL_OFFER_MSG} <span class="required">{special_offer_required}</span>
+	</td>
+	<td>
+		<textarea class="text" name="special_offer" style="display: block; width: 590px; height: 200px;">{special_offer}</textarea>
+		<script language= "JavaScript" type= "text/javascript">
+		<!--
+			var editor_so = new VA_HTMLeditor('content_so','','{special_offer_editor}');
+			editor_so.text_field_name = 'special_offer';
+			editor_so.formname = 'record';
+			editor_so.css_file = '{css_file}';
+			editor_so.editor_type = 'product_editor';
+			editor_so.displayEditor('editor_so', 565, 200);
+		//-->
+		</script>
+	</td>
+</tr>
+<!-- end special_offer_block -->
+<tr class="middlebg">
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		<!-- begin save_button --><span class="submit"><input class="submit" type="submit" value="{save_button_title}" onCLick="document.record.operation.value='save';"></span><!-- end save_button -->
+	</td>
+</tr>
+</table>
+</div>
+
+<!-- notification block -->
+<div style="{notifications_style}" id="data_notifications">
+<table width="100%" border="0" cellspacing="1" class="padding6px">
+<!-- begin email_notify_section -->
+<tr class="middlebg">
+	<td colspan="2">
+		<b>{EMAIL_NOTIFICATION_MSG}</b>
+	</td>
+</tr>
+<!-- end email_notify_section -->
+<!-- begin mail_notify_block -->
+<tr class="usualbg">
+	<td>
+		{EMAIL_USER_IF_STATUS_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="mail_notify" {mail_notify} value="1">
+	</td>
+</tr>
+<!-- end mail_notify_block -->
+<!-- begin mail_to_block -->
+<tr class="usualbg">
+	<td nowrap>
+		{EMAIL_TO_MSG} <span class="required">{mail_to_required}</span> 
+		({EMAIL_TO_USER_DESC})
+	</td>
+	<td>
+		<input class="text" type="text" name="mail_to" value="{mail_to}" size="80" maxlength="255">
+	</td>
+</tr>
+<!-- end mail_to_block -->
+<!-- begin mail_from_block -->
+<tr class="usualbg">
+	<td>
+		<b>{EMAIL_FROM_MSG}</b> <span class="required">{mail_from_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="mail_from" value="{mail_from}" size="80" maxlength="255">
+		<div class="small">(e.g. <b>sales@yoursite.com</b>)</div>
+	</td>
+</tr>
+<!-- end mail_from_block -->
+<!-- begin mail_cc_block -->
+<tr class="usualbg">
+	<td>
+		{EMAIL_CC_MSG} <span class="required">{mail_cc_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="mail_cc" value="{mail_cc}" size="80" maxlength="255">
+	</td>
+</tr>
+<!-- end mail_cc_block -->
+<!-- begin mail_bcc_block -->
+<tr class="usualbg">
+	<td>
+		{EMAIL_BCC_MSG} <span class="required">{mail_bcc_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="mail_bcc" value="{mail_bcc}" size="80" maxlength="255">
+	</td>
+</tr>
+<!-- end mail_bcc_block -->
+<!-- begin mail_reply_to_block -->
+<tr class="usualbg">
+	<td>
+		{EMAIL_REPLY_TO_MSG} <span class="required">{mail_reply_to_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="mail_reply_to" value="{mail_reply_to}" size="80" maxlength="255">
+	</td>
+</tr>
+<!-- end mail_reply_to_block -->
+<!-- begin mail_return_path_block -->
+<tr class="usualbg">
+	<td>
+		{EMAIL_RETURN_PATH_MSG} <span class="required">{mail_return_path_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="mail_return_path" value="{mail_return_path}" size="80" maxlength="255">
+	</td>
+</tr>
+<!-- end mail_return_path_block -->
+<!-- begin mail_subject_block -->
+<tr class="usualbg">
+	<td>
+		<b>{EMAIL_SUBJECT_MSG}</b> <span class="required">{mail_subject_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="mail_subject" value="{mail_subject}" size="80" maxlength="255">
+	</td>
+</tr>
+<!-- end mail_subject_block -->
+<!-- begin mail_type_block -->
+<tr class="usualbg">
+	<td>
+		<b>{EMAIL_MESSAGE_TYPE_MSG}</b> <span class="required">{mail_type_required}</span>
+	</td>
+	<td>
+		<!-- begin mail_type -->
+		<label><input type="radio" name="mail_type" {mail_type_checked} value="{mail_type_value}">{mail_type_description}</label>
+		<!-- end mail_type -->
+	</td>
+</tr>
+<!-- end mail_type_block -->
+<!-- begin mail_body_block -->
+<tr class="usualbg">
+	<td valign="top">
+		<b>{EMAIL_MESSAGE_MSG}</b> <span class="required">{mail_body_required}</span>
+	</td>
+	<td>
+		<textarea class="text" name="mail_body" style="width: 590px; height: 200px;">{mail_body}</textarea>
+	</td>
+</tr>
+<!-- end mail_body_block -->
+<!-- begin sms_notify_section -->
+<tr class="middlebg">
+	<td colspan="2">
+		<b>{SMS_NOTIFICATION_MSG}</b>
+	</td>
+</tr>
+<!-- end sms_notify_section -->
+<!-- begin sms_notify_block -->
+<tr class="usualbg">
+	<td>
+		{SMS_USER_IF_STATUS_MSG} <span class="required">{sms_notify_required}</span>
+	</td>
+	<td>
+		<input type="checkbox" name="sms_notify" {sms_notify} value="1">
+	</td>
+</tr>
+<!-- end sms_notify_block -->
+<!-- begin sms_recipient_block -->
+<tr class="usualbg">
+	<td>
+		<b>{SMS_RECIPIENT_MSG}</b> <span class="required">{sms_recipient_required}</span> ({SMS_RECIPIENT_USER_DESC})
+	</td>
+	<td>
+		<input class="text" type="text" name="sms_recipient" value="{sms_recipient}" size="80" maxlength="255">
+	</td>
+</tr>
+<!-- end sms_recipient_block -->
+<!-- begin sms_originator_block -->
+<tr class="usualbg">
+	<td>
+		<b>{SMS_ORIGINATOR_MSG}</b> <span class="required">{sms_originator_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="sms_originator" value="{sms_originator}" size="80" maxlength="16">
+	</td>
+</tr>
+<!-- end sms_originator_block -->
+<!-- begin sms_message_block -->
+<tr class="usualbg">
+	<td valign="top">
+		<b>{SMS_MESSAGE_MSG}</b> <span class="required">{sms_message_required}</span>
+	</td>
+	<td>
+		<textarea class="text" name="sms_message" style="width: 590px; height: 60px;">{sms_message}</textarea>
+	</td>
+</tr>
+<!-- end sms_message_block -->
+<tr class="middlebg">
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		<!-- begin save_button --><span class="submit"><input class="submit" type="submit" value="{save_button_title}" onCLick="document.record.operation.value='save';"></span><!-- end save_button -->
+	</td>
+</tr>
+</table>
+</div>
+
+<!-- other block -->
+<div style="{other_style}" id="data_other">
+<table width="100%" border="0" cellspacing="1" class="padding6px">
+<!-- begin rating_section -->
+<tr class="middlebg">
+	<td colspan="2">
+		{PROD_RATING_MSG}
+	</td>
+</tr>
+<!-- end rating_section -->
+<!-- begin votes_block -->
+<tr class="usualbg">
+	<td>
+		{TOTAL_VOTES_MSG} <span class="required">{votes_required}</span>
+	</td>
+	<td class="small">
+	  <input class="text" type="text" name="votes" value="{votes}" size="10" maxlength="10" readonly>
+	</td>
+</tr>
+<!-- end votes_block -->
+<!-- begin points_block -->
+<tr class="usualbg">
+	<td>
+		{TOTAL_POINTS_MSG} <span class="required">{votes_required}</span>
+	</td>
+	<td class="small">
+		<input class="text" type="text" name="points" value="{points}" size="10" maxlength="10" readonly>
+	</td>
+</tr>
+<!-- end points_block -->
+<!-- begin other_section -->
+<tr class="middlebg">
+	<td colspan="2">
+		{OTHER_MSG}
+	</td>
+</tr>
+<!-- end other_section -->
+<!-- begin notes_block -->
+<tr class="usualbg">
+	<td>
+		{NOTES_MSG} <span class="required">{notes_required}</span>
+	</td>
+	<td>
+		<textarea class="text" name="notes" style="display: block; width: 590px; height: 200px;">{notes}</textarea>
+		<script language= "JavaScript" type= "text/javascript">
+		<!--
+			var editor_n = new VA_HTMLeditor('content_n','','{notes_editor}');
+			editor_n.text_field_name = 'notes';
+			editor_n.formname = 'record';
+			editor_n.css_file = '{css_file}';
+			editor_n.editor_type = 'product_editor';
+			editor_n.displayEditor('editor_n', 565, 200);
+		//-->
+		</script>
+	</td>
+</tr>
+<!-- end notes_block -->
+<!-- begin buy_link_block -->
+<tr class="usualbg">
+	<td>
+		{PROD_DIRECT_LINK_MSG} <span class="required">{buy_link_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="buy_link" value="{buy_link}" size="80" maxlength="255">
+	</td>
+</tr>
+<!-- end buy_link_block -->
+<tr class="middlebg">
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		<!-- begin save_button --><span class="submit"><input class="submit" type="submit" value="{save_button_title}" onCLick="document.record.operation.value='save';"></span><!-- end save_button -->
+	</td>
+</tr>
+</table>
+</div>
+
+<div id="data_sites" style="{sites_style}">
+	<table cellspacing="0" cellpadding="0" border="0" width="100%">
+	<tr class="usual">
+		<td colspan="2">
+			{sites_table}
+		</td>
+	</tr>
+	<tr class="middlebg">
+		<td align="left">
+			<input type="checkbox" name="save_sites_by_category" value="1" {default_checked}>
+			{SAVE_SITES_SETTINGS_BY_CATEGORY_MSG}			
+		</td>
+		<td align="right">
+			<!-- begin save_button --><span class="submit"><input class="submit" type="submit" value="{save_button_title}" onCLick="document.record.operation.value='save';"></span><!-- end save_button -->
+			<!-- BEGIN delete --><span class="submit"><input class="submit" id="delete" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{PROD_DELETE_CONFIRM_MSG}?');"></span><!-- END delete -->
+			<span class="submit"><input class="submit" id="cancel" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'"></span>
+		</td>
+	</tr>
+	</table>
+</div>
+
+<div id="data_subscriptions" style="{subscriptions_style}">
+	<table cellspacing="0" cellpadding="0" border="0" width="100%">
+	<tr class="usual">
+		<td colspan="2">
+			{subscriptions_table}
+		</td>
+	</tr>
+	<tr class="middlebg">
+		<td align="left">
+			<input type="checkbox" name="save_subscriptions_by_category" value="1" {default_checked}>
+			{SAVE_SUBSCRIPTIONS_SETTINGS_BY_CATEGORY_MSG}
+		</td>
+		<td align="right">
+			<!-- begin save_button --><span class="submit"><input class="submit" type="submit" value="{save_button_title}" onCLick="document.record.operation.value='save';"></span><!-- end save_button -->
+			<!-- BEGIN delete --><span class="submit"><input class="submit" id="delete" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{PROD_DELETE_CONFIRM_MSG}?');"></span><!-- END delete -->
+			<span class="submit"><input class="submit" id="cancel" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'"></span>
+		</td>
+	</tr>
+	</table>
+</div>
+
+</form>
+       
+</td></tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+</div>
+
+<script language="JavaScript" type="text/javascript">
+<!--
+	checkListFieldsAll();
+	pricePreview();
+//-->
+</script>

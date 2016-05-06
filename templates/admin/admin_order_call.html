@@ -1,0 +1,995 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: Retail Mail {ADMIN_ORDER_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript" src="../js/calendar.js"></script>
+	
+<style>
+	.cmbOrdersCall {width: 170px;}
+</style>
+
+<script language="JavaScript">
+<!--
+function checkSame()
+{
+	var orderForm = document.record;
+	var sameChecked = document.record.same_as_personal.checked;
+	var refreshPage = false;
+	if (sameChecked) {
+		if (orderForm.country_id && orderForm.delivery_country_id) {
+			if (orderForm.country_id.selectedIndex != orderForm.delivery_country_id.selectedIndex) {
+				orderForm.delivery_country_id.selectedIndex = orderForm.country_id.selectedIndex;
+				refreshPage = true;
+			}
+		}
+		if (orderForm.state_id && (orderForm.state_id.selectedIndex != orderForm.delivery_state_id.selectedIndex)) {
+			orderForm.delivery_state_id.selectedIndex = orderForm.state_id.selectedIndex;
+			refreshPage = true;
+		}
+
+		var fieldName = "";
+		var fields = new Array("name", "first_name", "last_name", "company_id", "company_name", "email", 
+			"address1", "address2", "city", "province", "address1", "address2", "zip", 
+			"phone", "daytime_phone", "evening_phone", "cell_phone", "fax");
+		for (var i = 0; i < fields.length; i++) {
+			fieldName = fields[i];
+			if (orderForm.elements[fieldName] && orderForm.elements["delivery_" + fieldName]) {
+				orderForm.elements["delivery_" + fieldName].value = orderForm.elements[fieldName].value;
+			}
+		}
+		if (refreshPage) {
+			orderForm.operation.value = "refresh";
+			orderForm.submit();
+		}
+	}
+}
+function uncheckSame()
+{
+	if (document.record.same_as_personal) {
+		document.record.same_as_personal.checked = false;
+	}
+}
+function openProductWindow(formId)
+{
+	var productWin = window.open ('{admin_order_product_select_href}?form_id=' + formId, 'productWin', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=600,height=500');
+	productWin.focus();
+}
+
+function setProduct(formId, itemId, itemTypeId, itemName, itemCode, manufacturerCode, itemBuyingPrice, itemPrice, itemWeight, itemTaxFree, itemUseStockLevel, itemStockLevel)
+{
+	document.record.elements["item_id_" + formId].value           = itemId;
+	document.record.elements["item_type_id_" + formId].value      = itemTypeId;
+	document.record.elements["item_name_" + formId].value         = itemName;
+	document.record.elements["item_code_" + formId].value         = itemCode;
+	document.record.elements["manufacturer_code_" + formId].value = manufacturerCode;
+	document.record.elements["quantity_" + formId].value          = 1;
+	document.record.elements["buying_price_" + formId].value      = itemBuyingPrice;
+	document.record.elements["price_" + formId].value             = itemPrice;
+	document.record.elements["weight_" + formId].value            = itemWeight;	
+	if(itemTaxFree>0)
+		document.record.elements["tax_free_" + formId].checked = true;
+	else
+		document.record.elements["tax_free_" + formId].checked = false;
+	document.record.elements["use_stock_level_" + formId].value   = itemUseStockLevel;	
+	document.record.elements["stock_level_" + formId].value       = itemStockLevel;		
+	orderReload();
+}
+
+
+function clearQuantity(formId)
+{
+	checked = document.record.elements["items_delete_" + formId].checked;
+	if (checked) {
+		document.record.elements["quantity_" + formId].value = "";
+	} else {
+		document.record.elements["quantity_" + formId].value = 1;
+	}
+}
+
+function clearDelete(formId)
+{
+	quantity = parseInt(document.record.elements["quantity_" + formId].value);
+	if (isNaN(quantity)) quantity = 0;
+	if (quantity > 0) {
+		document.record.elements["items_delete_" + formId].checked = false;
+	} else {
+		document.record.elements["items_delete_" + formId].checked = true;
+		document.record.elements["quantity_" + formId].value = "";
+	}
+}
+
+function openUserWindow()
+{
+	var userWin = window.open ('{admin_order_user_select_href}', 'userWin', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=600,height=500');
+	userWin.focus();
+}
+
+function setUser(userInfo)
+{
+	var orderForm = document.record;
+	for (var key in userInfo)
+	{
+		if (orderForm.elements[key]) {
+			orderForm.elements[key].value = userInfo[key];
+		}
+	}
+	orderForm.operation.value = "refresh";
+	orderForm.submit();
+}
+
+function orderReload()
+{
+	var orderForm = document.record;
+	orderForm.operation.value = "refresh";
+	orderForm.submit();
+}
+
+function changeProperty()
+{
+	var orderForm = document.record;
+	orderForm.operation.value = "refresh";
+	orderReload();
+}
+
+function lastCustomer(value) {
+	var orderForm = document.record;
+	orderForm.last_customer.value = value;
+	orderForm.operation.value = "refresh";
+	orderForm.submit();
+}
+//-->
+</script>
+</head>
+
+<body class="commonbg">
+
+{admin_header}
+
+<form action="{admin_order_call_href}" name="record" style="margin-top: 0px;" method="POST">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			<table cellspacing="0" cellpadding="0" border="0" width="100%" align="center">
+			<tr>
+			<td>
+				&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+				<a href="{admin_orders_href}">{ORDERS_MAINTENANCE_MSG}</a>&nbsp;&gt;&nbsp;<b>{CREATE_ORDER_MSG}</b>
+			</td>
+			</tr></table>
+		</td>
+		<!-- begin sitelist -->
+		<td class="usual" align="right">
+			{SELECT_CURRENT_SITE_MSG}&nbsp;
+			<select name="site_id" onchange="orderReload()"><!-- begin site_id -->
+				<option {site_id_selected} value="{site_id_value}">{site_id_description}<!-- end site_id -->
+			</select>
+		</tr>
+		<!-- end sitelist -->
+	</tr>
+	</table>
+</td></tr></table>
+<br>
+
+<!-- BEGIN errors --><div align="center" class="error">{errors_list}</div><br><!-- END errors -->
+
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="order_id" value="{order_id}">
+<input type="hidden" name="user_id" value="{user_id}">
+<input type="hidden" name="is_placed" value="{is_placed}">
+<input type="hidden" name="is_call_center" value="{is_call_center}">
+<input type="hidden" name="payment_id" value="{payment_id}">
+<input type="hidden" name="more_items" value="0">
+<input type="hidden" name="number_items" value="{number_items}">
+
+<input type="hidden" name="tax_name" value="{tax_name}">
+<input type="hidden" name="tax_percent" value="{tax_percent}">
+<input type="hidden" name="tax_total" value="{tax_total}">
+
+<input type="hidden" name="goods_total" value="{goods_total}">
+<input type="hidden" name="total_buying" value="{total_buying}">
+<input type="hidden" name="total_quantity" value="{total_quantity}">
+
+<input type="hidden" name="goods_taxable" value="{goods_taxable}">
+<input type="hidden" name="goods_tax" value="{goods_tax}">
+
+<input type="hidden" name="weight_total" value="{weight_total}">
+<input type="hidden" name="tax_total" value="{tax_total}">
+<input type="hidden" name="order_total" value="{order_total}">
+
+<input type="hidden" name="default_currency_code" value="{default_currency_code}">
+<input type="hidden" name="currency_rate" value="{currency_rate}">
+<input type="hidden" name="currency_code" value="{currency_code}">
+
+<input type="hidden" name="shipping_code" value="{shipping_type_code}">
+<input type="hidden" name="shipping_desc" value="{shipping_type_desc}">
+<input type="hidden" name="shipping_cost" value="{shipping_cost}">
+<input type="hidden" name="shipping_taxable" value="{shipping_taxable}">
+
+<input type="hidden" name="properties_total" value="{properties_total}">
+<input type="hidden" name="properties_taxable" value="{properties_taxable}"> 	
+
+<input type="hidden" name="processing_fee" value="{processing_fee}">
+
+<input type="hidden" name="last_customer" value="0">
+
+<table border="0" cellspacing="1" cellpadding="0" width="100%" align="center">
+<tr>
+	<td align="right">
+		<!-- begin packing_slip -->
+		{ADMIN_PACKING_SLIP_MSG} 
+		<a href="{admin_packing_html_href}?order_id={order_id}" target="_blank"><img src="../images/html_icon.gif" width="28" height="16" border="0" align=""></a>
+		<a href="{admin_packing_pdf_href}?order_id={order_id}"><img src="../images/pdf_icon.gif" width="28" height="16" border="0"></a><!-- end packing_slip -->
+		<!-- begin notes -->
+		&nbsp;|<a style="{notes_style}" href="{admin_order_notes_href}?order_id={order_id}">{ORDER_NOTES_MSG} ({total_notes})</a><!-- end notes -->
+		<!-- begin downloadable_links -->
+		|&nbsp;<a href="{admin_order_links_href}?order_id={order_id}">{DOWNLOAD_LINKS_MSG}</a>
+		|&nbsp;<a href="{admin_order_serials_href}?order_id={order_id}">{ADMIN_SERIAL_NUMBERS_MSG}</a><!-- end downloadable_links -->
+		<!-- begin vouchers_link -->
+		|&nbsp;<a href="{admin_order_vouchers_href}?order_id={order_id}">{GIFT_VOUCHERS_MSG}</a><!-- end vouchers_link -->
+		<!-- begin remove_order_link-->
+		|&nbsp;<a href="javascript:document.record.submit();" 
+			onCLick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">{DELETE_BUTTON} {ADMIN_ORDER_MSG}</a>&nbsp;
+		<!-- end remove_order_link -->
+	</td>
+</tr>
+</table>
+&nbsp;
+<!-- begin order_details -->
+<fieldset>
+<legend>{PERSONAL_DETAILS_MSG}</legend>
+
+<table cellspacing="2" cellpadding="1" border="0" width="100%">
+<tr class="usual" valign="top"><!-- begin personal -->
+	<td width="38%"><table cellspacing="1" cellpadding="1" border="0" width="100%">
+		<tr class="middle">
+			<td colspan="1">
+				{INVOICE_TO_MSG}:
+			</td>
+			<td class="usual">
+				<a href="#" onClick="openUserWindow(); return false;">{SELECT_CUSTOMER_MSG}</a>
+			</td>
+		</tr>
+		<tr class="middle">
+			<td class="usual" colspan="2" align="right">
+			<a href="#" onClick="lastCustomer(1); return false;">Last Customer</a>
+			<a href="#" onClick="lastCustomer(2); return false;">Last Registered Customer</a>
+			</td>
+		</td>
+		<!-- begin name_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{NAME_MSG} <font class=asterix>{name_required}</font>
+			</td>
+			<td>
+				<input class="field" type="text" name="name" value="{name}" size="30" maxlength="128" onChange="uncheckSame();">
+			</td>
+		</tr><!-- end name_block --><!-- begin first_name_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{FIRST_NAME_FIELD} <font class=asterix>{first_name_required}</font>
+			</td>
+			<td>
+				<input class="field" type="text" name="first_name" value="{first_name}" size="30" maxlength="64" onChange="uncheckSame();">
+			</td>
+		</tr><!-- end first_name_block --><!-- begin last_name_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{LAST_NAME_FIELD} <font class=asterix>{last_name_required}</font>
+			</td>
+			<td>
+				<input class="field" type="text" name="last_name" value="{last_name}" size="30" maxlength="64" onChange="uncheckSame();">
+			</td>
+		</tr><!-- end last_name_block --><!-- begin company_id_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{COMPANY_SELECT_FIELD} <font class=asterix>{company_id_required}</font>
+			</td>
+			<td>
+				<select name="company_id" class="cmbOrdersCall" onChange="uncheckSame();"><!-- begin company_id -->
+					<option {company_id_selected} value="{company_id_value}">{company_id_description}<!-- end company_id -->
+				</select>
+			</td>
+		</tr><!-- end company_id_block --><!-- begin company_name_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{COMPANY_NAME_FIELD} <font class=asterix>{company_name_required}</font>
+			</td>
+			<td>
+				<input class="field" type="text" name="company_name" value="{company_name}" size="30" maxlength="128" onChange="uncheckSame();">
+			</td>
+		</tr><!-- end company_name_block --><!-- begin address1_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{STREET_FIRST_FIELD} <font class=asterix>{address1_required}</font>
+			</td>
+			<td>
+				<input class="field" type="text" name="address1" value="{address1}" size="30" maxlength="255" onChange="uncheckSame();">
+			</td>
+		</tr><!-- end address1_block --><!-- begin address2_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{STREET_SECOND_FIELD} <font class=asterix>{address2_required}</font>
+			</td>
+			<td>
+				<input class="field" type="text" name="address2" value="{address2}" size="30" maxlength="255" onChange="uncheckSame();">
+			</td>
+		</tr><!-- end address2_block --><!-- begin city_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{CITY_FIELD} <font class=asterix>{city_required}</font>
+			</td>
+			<td>
+				<input class="field" type="text" name="city" value="{city}" size="30" maxlength="128" onChange="uncheckSame();">
+			</td>
+		</tr><!-- end city_block --><!-- begin state_id_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{STATE_FIELD} <font class=asterix>{state_id_required}</font>
+			</td>
+			<td>
+				<select name="state_id" class="cmbOrdersCall" onChange="uncheckSame();orderReload();"><!-- begin state_id -->
+					<option {state_id_selected} value="{state_id_value}">{state_id_description}<!-- end state_id -->
+				</select>
+			</td>
+		</tr><!-- end state_id_block --><!-- begin zip_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{ZIP_FIELD} <font class=asterix>{zip_required}</font>
+			</td>
+			<td>
+				<input class="field" type="text" name="zip" value="{zip}" size="10" maxlength="16">
+			</td>
+		</tr><!-- end zip_block --><!-- begin country_id_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{COUNTRY_FIELD} <font class=asterix>{country_id_required}</font>
+			</td>
+			<td>
+				<select name="country_id" class="cmbOrdersCall" onChange="uncheckSame();orderReload();"><!-- begin country_id -->
+					<option {country_id_selected} value="{country_id_value}">{country_id_description}<!-- end country_id -->
+				</select>
+			</td>
+		</tr><!-- end country_id_block --><!-- begin province_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{PROVINCE_FIELD} <font class=asterix>{province_required}</font>
+			</td>
+			<td>
+				<input class="field" type="text" name="province" value="{province}" size="30" maxlength="128" onChange="uncheckSame();">
+			</td>
+		</tr><!-- end province_block --><!-- begin email_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{EMAIL_FIELD} <font class=asterix>{email_required}</font>
+			</td>
+			<td>
+				<input class="field" type="text" name="email" value="{email}" size="30" maxlength="128" onChange="uncheckSame();">
+			</td>
+		</tr><!-- end email_block --><!-- begin phone_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{PHONE_FIELD} <font class=asterix>{phone_required}</font>
+			</td>
+			<td>
+				<input class="field" type="text" name="phone" value="{phone}" size="30" maxlength="32" onChange="uncheckSame();">
+			</td>
+		</tr><!-- end phone_block --><!-- begin daytime_phone_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{DAYTIME_PHONE_FIELD} <font class=asterix>{daytime_phone_required}</font>
+			</td>
+			<td>
+				<input class="field" type="text" name="daytime_phone" value="{daytime_phone}" size="30" maxlength="32" onChange="uncheckSame();">
+			</td>
+		</tr><!-- end daytime_phone_block --><!-- begin evening_phone_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{EVENING_PHONE_FIELD} <font class=asterix>{evening_phone_required}</font>
+			</td>
+			<td>
+				<input class="field" type="text" name="evening_phone" value="{evening_phone}" size="30" maxlength="32" onChange="uncheckSame();">
+			</td>
+		</tr><!-- end evening_phone_block --><!-- begin cell_phone_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{CELL_PHONE_FIELD} <font class=asterix>{cell_phone_required}</font>
+			</td>
+			<td>
+				<input class="field" type="text" name="cell_phone" value="{cell_phone}" size="30" maxlength="32" onChange="uncheckSame();"> 
+			</td>
+		</tr><!-- end cell_phone_block --><!-- begin fax_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{FAX_FIELD} <font class=asterix>{fax_required}</font>
+			</td>
+			<td>
+				<input class="field" type="text" name="fax" value="{fax}" size="30" maxlength="32" onChange="uncheckSame();">
+			</td>
+		</tr><!-- end fax_block --><!-- begin personal_properties -->
+		<tr id="op_block_{property_id}" class="usual">
+			<td class="middle" style="{property_style}" colspan="2">
+				&nbsp;{property_name} {property_required}
+			</td>
+		</tr>
+		<tr>
+			<td style="{property_style}" colspan="2">
+				{property_control} 
+			</td>
+		</tr><!-- end personal_properties -->
+	</table></td><!-- end personal --><!-- begin delivery -->
+	<td width="38%"><table cellspacing="1" cellpadding="1" border="0" width="100%">
+		<tr class="middle">
+			<td colspan="2" valign="top">
+				{DELIVERY_TO_MSG}:
+			</td>
+		</tr>
+		<!-- begin delivery_name_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{NAME_MSG} {delivery_name_required}
+			</td>
+			<td>
+				<input class="field" type="text" name="delivery_name" value="{delivery_name}" size="30" maxlength="128" onChange="uncheckSame();">
+			</td>
+		</tr><!-- end delivery_name_block --><!-- begin delivery_first_name_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{FIRST_NAME_FIELD} {delivery_first_name_required}
+			</td>
+			<td>
+				<input class="field" type="text" name="delivery_first_name" value="{delivery_first_name}" size="30" maxlength="64" onChange="uncheckSame();">
+			</td>
+		</tr><!-- end delivery_first_name_block --><!-- begin delivery_last_name_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{LAST_NAME_FIELD} {delivery_last_name_required}
+			</td>
+			<td>
+				<input class="field" type="text" name="delivery_last_name" value="{delivery_last_name}" size="30" maxlength="64" onChange="uncheckSame();">
+			</td>
+		</tr><!-- end delivery_last_name_block --><!-- begin delivery_company_id_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{COMPANY_SELECT_FIELD} {delivery_company_id_required}
+			</td>
+			<td>
+				<select name="delivery_company_id" class="cmbOrdersCall" onChange="uncheckSame();"><!-- begin delivery_company_id -->
+					<option {delivery_company_id_selected} value="{delivery_company_id_value}">{delivery_company_id_description}<!-- end delivery_company_id -->
+				</select>
+			</td>
+		</tr><!-- end delivery_company_id_block --><!-- begin delivery_company_name_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{COMPANY_NAME_FIELD} {delivery_company_name_required}
+			</td>
+			<td>
+				<input class="field" type="text" name="delivery_company_name" value="{delivery_company_name}" size="30" maxlength="128" onChange="uncheckSame();">
+			</td>
+		</tr><!-- end delivery_company_name_block --><!-- begin delivery_address1_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{STREET_FIRST_FIELD} {delivery_address1_required}
+			</td>
+			<td>
+				<input class="field" type="text" name="delivery_address1" value="{delivery_address1}" size="30" maxlength="255" onChange="uncheckSame();">
+			</td>
+		</tr><!-- end delivery_address1_block --><!-- begin delivery_address2_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{STREET_SECOND_FIELD} {delivery_address2_required}
+			</td>
+			<td>
+				<input class="field" type="text" name="delivery_address2" value="{delivery_address2}" size="30" maxlength="255" onChange="uncheckSame();">
+			</td>
+		</tr><!-- end delivery_address2_block --><!-- begin delivery_city_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{CITY_FIELD} {delivery_city_required}
+			</td>
+			<td>
+				<input class="field" type="text" name="delivery_city" value="{delivery_city}" size="30" maxlength="128" onChange="uncheckSame();">
+			</td>
+		</tr><!-- end delivery_city_block --><!-- begin delivery_state_id_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{STATE_FIELD} {delivery_state_id_required}
+			</td>
+			<td>
+				<select name="delivery_state_id" class="cmbOrdersCall" onChange="uncheckSame();orderReload();"><!-- begin delivery_state_id -->
+					<option {delivery_state_id_selected} value="{delivery_state_id_value}">{delivery_state_id_description}<!-- end delivery_state_id -->
+				</select>
+			</td>
+		</tr><!-- end delivery_state_id_block --><!-- begin delivery_zip_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{ZIP_FIELD} {delivery_zip_required}
+			</td>
+			<td>
+				<input class="field" type="text" name="delivery_zip" value="{delivery_zip}" size="10" maxlength="16" onChange="uncheckSame();">
+			</td>
+		</tr><!-- end delivery_zip_block --><!-- begin delivery_country_id_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{COUNTRY_FIELD} {delivery_country_id_required}
+			</td>
+			<td>
+				<select name="delivery_country_id" class="cmbOrdersCall" onChange="uncheckSame();orderReload();"><!-- begin delivery_country_id -->
+					<option {delivery_country_id_selected} value="{delivery_country_id_value}">{delivery_country_id_description}<!-- end delivery_country_id -->
+				</select>
+			</td>
+		</tr><!-- end delivery_country_id_block --><!-- begin delivery_province_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{PROVINCE_FIELD} {delivery_province_required}
+			</td>
+			<td>
+				<input class="field" type="text" name="delivery_province" value="{delivery_province}" size="30" maxlength="128" onChange="uncheckSame();">
+			</td>
+		</tr><!-- end delivery_province_block --><!-- begin delivery_email_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{EMAIL_FIELD} {delivery_email_required}
+			</td>
+			<td>
+				<input class="field" type="text" name="delivery_email" value="{delivery_email}" size="30" maxlength="128" onChange="uncheckSame();">
+			</td>
+		</tr><!-- end delivery_email_block --><!-- begin delivery_phone_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{PHONE_FIELD} {delivery_phone_required}
+			</td>
+			<td>
+				<input class="field" type="text" name="delivery_phone" value="{delivery_phone}" size="30" maxlength="32" onChange="uncheckSame();">
+			</td>
+		</tr><!-- end delivery_phone_block --><!-- begin delivery_daytime_phone_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{DAYTIME_PHONE_FIELD} {delivery_daytime_phone_required}
+			</td>
+			<td>
+				<input class="field" type="text" name="delivery_daytime_phone" value="{delivery_daytime_phone}" size="30" maxlength="32" onChange="uncheckSame();">
+			</td>
+		</tr><!-- end delivery_daytime_phone_block --><!-- begin delivery_evening_phone_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{EVENING_PHONE_FIELD} {delivery_evening_phone_required}
+			</td>
+			<td>
+				<input class="field" type="text" name="delivery_evening_phone" value="{delivery_evening_phone}" size="30" maxlength="32" onChange="uncheckSame();">
+			</td>
+		</tr><!-- end delivery_evening_phone_block --><!-- begin delivery_cell_phone_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{CELL_PHONE_FIELD} {delivery_cell_phone_required}
+			</td>
+			<td>
+				<input class="field" type="text" name="delivery_cell_phone" value="{delivery_cell_phone}" size="30" maxlength="32" onChange="uncheckSame();"> 
+			</td>
+		</tr><!-- end delivery_cell_phone_block --><!-- begin delivery_fax_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{FAX_FIELD} {delivery_fax_required}
+			</td>
+			<td>
+				<input class="field" type="text" name="delivery_fax" value="{delivery_fax}" size="30" maxlength="32" onChange="uncheckSame();">
+			</td>
+		</tr><!-- end delivery_fax_block --><!-- begin delivery_properties -->
+		<tr id="op_block_{property_id}" class="usual">
+			<td class="middle" style="{property_style}" colspan="2">
+				&nbsp;{property_name} {property_required}
+			</td>
+		</tr>
+		<tr>
+			<td style="{property_style}" colspan="2">
+				{property_control} 
+			</td>
+		</tr><!-- end delivery_properties -->
+	</table></td><!-- end delivery -->
+	<td width="24%"><table cellspacing="1" cellpadding="1" border="0" width="100%">
+		<tr class="usual">
+			<td> 
+				&nbsp;{ORDER_NUMBER_MSG} 
+			</td>
+			<td>
+				<input class="field" size="16" value="{order_id}" readonly>
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{ORDER_DATE_MSG} 
+			</td>
+			<td>
+				<input class="field" size="16" value="{order_placed_date}" readonly>
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{ADMIN_ORDER_MSG} {STATUS_MSG} {order_status_required}
+			</td>
+			<td>
+				<select name="order_status"><!-- begin order_status -->
+					<option {order_status_selected} value="{order_status_value}">{order_status_description}<!-- end order_status -->
+				</select>
+			</td>
+		</tr>
+	</table></td>
+</tr>
+<tr>
+	<td class="middle2bg" colspan="3">
+		<table cellpadding=0 cellspacing=0 border=0>
+		<tr>
+			<td>&nbsp;</td>
+			<td>
+				<font class="small">{DELIVERY_DETAILS_SAME_MSG}</font>
+			</td>
+			<td valign="top">
+				<input type="checkbox" name="same_as_personal" {same_as_personal} value="1" onClick="checkSame();"><br>
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr></table>
+</fieldset>
+&nbsp;
+
+
+<br>
+<fieldset>
+<legend>{PRODUCTS_TITLE}</legend>
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+	<tr>
+		<td colspan="2">
+			<table cellspacing="0" cellpadding="1" border="0" width="100%">
+				<tr align="center" class="middle">
+					<td class="small">
+					</td>
+					<td class="small" nowrap>
+						{ITEM_ID_MSG}
+					</td>
+					<td class="small" nowrap>
+						{ITEM_NAME_MSG}
+					</td>
+					<td class="small" nowrap>
+						{PROD_CODE_MSG}
+					</td>
+					<td class="small" nowrap>
+						{MANUFACTURER_CODE_MSG}
+					</td>
+					<td class="small" nowrap>
+						{QTY_MSG}
+					</td>
+					<td class="small" nowrap>
+						{PRICE_EACH_MSG}
+					</td>
+					<td class="small" nowrap>
+						{EXTENDED_PRICE_MSG}
+					</td>
+					<td class="small">
+						Tax free
+					</td>
+					<td class="small">
+						{DELETE_BUTTON}
+					</td>
+				</tr><!-- begin items --><!-- begin items_errors -->
+				<tr class="usual" align="center">
+					<td colspan="10">
+						<div class="error">{errors_list}</div>
+					</td>
+				</tr><!-- end items_errors -->
+				<tr class="usual" align="center" valign="top">
+					<td align="center" nowrap>
+						<a href="#" onClick="openProductWindow('{items_number}'); return false;">{SELECT_PRODUCT_MSG}</a>
+						<input type="hidden" name="order_item_id_{items_number}" value="{order_item_id}">
+						<input type="hidden" name="item_type_id_{items_number}" value="{item_type_id}">
+						<input type="hidden" name="order_id_{items_number}" value="{order_id}">
+						<input type="hidden" name="buying_price_{items_number}" value="{buying_price}">
+						<input type="hidden" name="weight_{items_number}" value="{weight}">
+						<input type="hidden" name="use_stock_level_{items_number}" value="{use_stock_level}">
+						<input type="hidden" name="stock_level_{items_number}" value="{stock_level}">
+					</td>
+					<td>
+						<input class="field" type="text" name="item_id_{items_number}" value="{item_id}" size="10">
+					</td>
+					<td>
+						<input class="field" type="text" name="item_name_{items_number}" value="{item_name}" size="40">
+					</td>
+					<td align="center">
+						<input class="field" type="text" name="item_code_{items_number}" value="{item_code}" size="10">
+					</td>
+					<td align="center">
+						<input class="field" type="text" name="manufacturer_code_{items_number}" value="{manufacturer_code}" size="10">
+					</td>
+					<td align="center">
+						<input class="field" type="text" name="quantity_{items_number}" value="{quantity}" size="10" onChange="clearDelete('{items_number}'); orderReload();">
+						<i>{stock_level_text}</i>
+					</td>
+					<td align="center">
+						<input class="field" type="text" name="price_{items_number}" value="{price}" size="12" onChange="orderReload();">
+ 					</td>
+					<td align="center" width="60">
+						&nbsp;<b><span id="cost_{items_number}">{cost_text}</span></b>&nbsp;
+					</td>
+					<td align="center">
+						<input type="checkbox" name="tax_free_{items_number}" {tax_free} value="1" onChange="orderReload();">
+					</td>
+					<td align="center">
+						<input type="checkbox" name="items_delete_{items_number}" {items_delete} value="1" onClick="clearQuantity('{items_number}'); orderReload();">
+					</td>					
+				</tr><!-- end items -->
+				<tr class="usual">
+					<td colspan="10" align="right">
+						{ADD_MORE_ITEMS_QST} <input class="submit" type="submit" value={ADD_BUTTON} onClick="document.record.more_items.value=1">&nbsp;
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<table cellspacing="0" cellpadding="1" border="0" width="100%">
+				<!-- begin cart_properties -->
+				<tr id="op_block_{property_id}" class="usual">
+					<td style="{property_style}">
+						{property_name} {property_required}
+ 					</td>
+					<td style="{property_style}">
+ 						{property_control}&nbsp;
+					</td>
+					<td align="right">
+						<input readonly class="usualprice" type="text" size="10" name="op_price_{property_id}" value="{op_price}">&nbsp;
+					</td>
+				</tr><!-- end cart_properties -->
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="usual">
+			<!-- begin shipping -->
+			<table cellspacing="0" cellpadding="1" border="0" width="100%"><!-- begin shipping_types -->
+				<tr class="usual">
+					<td align="right">
+						{shipping_type_desc}&nbsp;({shipping_cost_desc})&nbsp;<input type="radio" onClick="orderReload();" name="shipping_type_id" {shipping_type_checked} value="{shipping_type_id}">
+					</td>
+				</tr><!-- end shipping_types -->
+				<!-- begin shipping_type -->
+				<tr class="usual">
+					<td align="right">
+						{shipping_type_desc}&nbsp;({shipping_cost_desc})
+					</td>
+				</tr><!-- end shipping_type -->
+				<tr>
+					<td align="right">
+						{SHIPPING_EXPECTING_MSG}&nbsp;
+						<input class="field" type="text" name="shipping_expecting_date" value="{shipping_expecting_date}" size="10">
+						<a href="#" 
+							onClick="setDateField(document.record.shipping_expecting_date, '{date_edit_format}'); top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+							<img src="../images/calendar.gif" border="0"><font size=1>{CALENDAR_MSG}</font></a>
+						<br>({USE_FOLLOWING_FORMAT_MSG} <b>{date_edit_format}</b>)
+					</td>
+				</tr>
+			</table>
+			<!-- end shipping -->
+		</td>
+	</tr>
+	<tr class="usual">
+		<td colspan="2"><br></td>
+	</tr>
+	<tr class="usual">
+		<td align="right">
+			{SHIPPING_WT_MSG}&nbsp;
+		</td>
+		<td align="right" width="1%" nowrap>
+			<input readonly class="usualprice" type="text" style="text-align:right;" size="10" name="weight_total_desc" value="{weight_total_desc}">&nbsp;
+		</td>
+	</tr>
+	<tr class="usual">
+		<td align="right">
+			{PROCESSING_FEE_MSG} ({payment_name})&nbsp;
+		</td>
+		<td align="right" width="1%" nowrap>
+			<input readonly class="usualprice" type="text" size="10" name="processing_fee_desc" value="{processing_fee_desc}">&nbsp;
+		</td>
+	</tr>
+
+	<tr class="usual">
+		<td align="right">
+			{tax_name}&nbsp;
+		</td>
+		<td align="right" width="1%" nowrap>
+			<input readonly class="usualprice" type="text" size="10" name="tax_total_desc" value="{tax_total_desc}">&nbsp;
+		</td>
+	</tr>
+	<tr class="usual">
+		<td align="right">
+			<b>{CART_TOTAL_MSG}&nbsp;</b>
+		</td>
+		<td align="right" width="1%" nowrap>
+			<input readonly class="orderprice" type="text" size="10" name="order_total_desc" value="{order_total_desc}">&nbsp;
+		</td>
+	</tr>
+</table>
+</fieldset>
+&nbsp;
+
+<!-- begin payment -->
+<br>
+<fieldset>
+<legend>{PAYMENT_DETAILS_MSG}</legend>
+<table cellspacing="2" cellpadding="1" border="0" width="100%">
+	<tr class="usual" valign="top">
+		<td width="100%"><table cellspacing="1" cellpadding="1" border="0" width="100%">
+			<!-- begin pay_without_cc_checkbox -->
+			<tr>
+				<td colspan="2" class="middle2">
+					<font class="small">&nbsp;{PAY_WITHOUT_CC_MSG}</font>
+					<input type="checkbox" name="pass_cc" value="1" {pass_cc} onClick="javascript:changePassCC(document.record);">
+				</td>
+			</tr><!-- end pay_without_cc_checkbox --><!-- begin payment_info_block -->
+			<tr>
+				<td class="usual" colspan="2">
+					{payment_info}
+				</td>
+			</tr><!-- end payment_info_block -->
+			<tr>
+				<td colspan="2">
+				<div id="cc_info">
+				<table cellspacing="2" cellpadding="1" border="0" width="100%">
+				    <!-- begin cc_number_block -->
+					<tr>
+						<td class="usual">
+							&nbsp;{CC_NUMBER_FIELD}&nbsp;<font class=asterix>{cc_number_required}</font>
+						</td>
+						<td class="usual">
+							<input class="field" type="text" name="cc_number" size="50" value="{cc_number}">
+						</td>
+					</tr><!-- end cc_number_block --><!-- begin cc_type_block -->
+					<tr>
+						<td class="usual">
+							&nbsp;{CC_TYPE_FIELD}&nbsp;<font class=asterix>{cc_type_required}</font>
+						</td>
+						<td class="usual">
+							<select name="cc_type"><!-- begin cc_type -->
+								<option {cc_type_selected} value="{cc_type_value}">{cc_type_description}<!-- end cc_type -->
+							</select>
+						</td>
+					</tr><!-- end cc_type_block --><!-- begin cc_name_block -->
+					<tr>
+						<td class="usual">
+							&nbsp;{CC_NAME_FIELD}&nbsp;<font class=asterix>{cc_name_required}</font>
+							<div class="small">&nbsp;({CC_NAME_DESC})</div>
+						</td>
+						<td class="usual" width=70%>
+							<input class="field" type="text" name="cc_name" size="50" value="{cc_name}">
+						</td>
+					</tr><!-- end cc_name_block --><!-- begin cc_first_name_block -->
+					<tr>
+						<td class="usual">
+							&nbsp;{CC_FIRST_NAME_FIELD}&nbsp;{cc_first_name_required}
+						</td>
+						<td class="usual">
+							<input class="field" type="text" name="cc_first_name" size="50" value="{cc_first_name}">
+						</td>
+					</tr><!-- end cc_first_name_block --><!-- begin cc_last_name_block -->
+					<tr>
+						<td class="usual">
+							&nbsp;{CC_LAST_NAME_FIELD}&nbsp;{cc_last_name_required}
+						</td>
+						<td class="usual">
+							<input class="field" type="text" name="cc_last_name" size="50" value="{cc_last_name}">
+						</td>
+					</tr><!-- end cc_last_name_block --><!-- begin cc_start_date_block -->
+					<tr>
+						<td class="usual">
+							&nbsp;{CC_START_DATE_FIELD}&nbsp;<font class=asterix>{cc_start_date_required}</font>
+						</td>
+						<td class="usual">
+							<select name="cc_start_month"><!-- begin cc_start_month -->
+								<option {cc_start_month_selected} value="{cc_start_month_value}">{cc_start_month_description}<!-- end cc_start_month -->
+							</select>
+					
+							<select name="cc_start_year"><!-- begin cc_start_year -->
+								<option {cc_start_year_selected} value="{cc_start_year_value}">{cc_start_year_description}<!-- end cc_start_year -->
+							</select>
+							</font>
+						</td>
+					</tr><!-- end cc_start_date_block --><!-- begin cc_expiry_date_block -->
+					<tr>
+						<td class="usual">
+							&nbsp;{CC_EXPIRY_DATE_FIELD}&nbsp;<font class=asterix>{cc_expiry_date_required}</font>
+						</td>
+						<td class="usual">
+							<select name="cc_expiry_month"><!-- begin cc_expiry_month -->
+								<option {cc_expiry_month_selected} value="{cc_expiry_month_value}">{cc_expiry_month_description}<!-- end cc_expiry_month -->
+							</select>
+					
+							<select name="cc_expiry_year"><!-- begin cc_expiry_year -->
+								<option {cc_expiry_year_selected} value="{cc_expiry_year_value}">{cc_expiry_year_description}<!-- end cc_expiry_year -->
+							</select>
+							</font>
+						</td>
+					</tr><!-- end cc_expiry_date_block --><!-- begin cc_issue_number_block -->
+					<tr>
+						<td class="usual">
+							&nbsp;{CC_ISSUE_NUMBER_FIELD}&nbsp;<font class=asterix>{cc_issue_number_required}</font>
+						</td>
+						<td class="usual">
+						<select name="cc_issue_number" width=20><!-- begin cc_issue_number -->
+								<option {cc_issue_number_selected} value="{cc_issue_number_value}">{cc_issue_number_description}<!-- end cc_issue_number -->
+						</select>
+						&nbsp;
+						({CC_ISSUE_NUMBER_DESC})
+						</td>
+					</tr><!-- end cc_issue_number_block --><!-- begin cc_security_code_block -->
+					<tr>
+						<td class="usual">
+							&nbsp;{CC_SECURITY_CODE_FIELD}&nbsp;<font class=asterix>{cc_security_code_required}</font>
+						</td>
+						<td class="usual">
+							<input class="field" type=text name="cc_security_code" size="5" value="{cc_security_code}"> 
+								<a href="{cc_security_code_help_href}" target="_blank" 
+									onClick="window.open('{cc_security_code_help_href}', 'cc_security_code_help', 'width=400,height=300,location=no,menubar=no,status=no,toolbar=no');return false;" class="tocreverse">{CC_SECURITY_CODE_HELP_MSG}
+								</a>
+						</td>
+					</tr><!-- end cc_security_code_block --><!-- begin pay_without_cc_block -->
+					<tr class="usual" align="right">
+						<td valign="top">
+							&nbsp;{PAY_WITHOUT_CC_FIELD}<font class=asterix>{pay_without_cc_required}</font>&nbsp;
+							<div class="small">&nbsp;({PAY_WITHOUT_CC_DESC})</div>
+							<textarea name="pay_without_cc" cols="40" rows="4">{pay_without_cc}</textarea>
+						</td>
+				</tr><!-- end pay_without_cc_block --><!-- begin payment_properties -->
+					<tr id="op_block_{property_id}" class="usual">
+						<td style="{property_style}">
+							&nbsp;{property_name} {property_required}
+						</td>
+						<td style="{property_style}">
+							{property_control}
+						</td>
+					</tr><!-- end payment_properties -->
+				</table>
+				</div>
+				</td>
+			</tr>
+		</table>
+		</td>
+<!-- 		<td width="40%">
+			<table align=center cellspacing="1" cellpadding="1" border="0" width="100%">
+				<tr class="usual">
+					<td>
+						&nbsp;{COUPON_CODE_FIELD}
+					</td>
+					<td>
+						<input class="field" size="16" type="text" name="coupon_code" value="{coupon_code}">
+					</td>
+				</tr>
+			</table>
+		</td>
+ -->
+ 	</tr>
+</table>
+</fieldset>
+&nbsp;
+<!-- end payment -->
+
+<br>
+<table border="0" cellspacing="0" cellpadding="3" width="100%">
+<tr class="middle">
+	<td align="center">
+		<!-- begin save_button_block --><div id="buttonSave" style="display: inline;"><input class="submit" type="submit" value="{save_button}" onclick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+		<div id="buttonProcess" style="display: inline;"><!-- end save_button_block --><!-- begin process_button_block --><input class="submit" type="submit" value="{process_button}" onclick="document.record.operation.value='process';return confirm('Do you want process this {ADMIN_ORDER_MSG}?');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- end process_button_block --></div>
+		<!-- begin delete --><input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- end delete -->
+		<input class="submit" type="reset" value="{CLEAR_BUTTON}" onclick="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+
+</form>
+<!-- end order_details -->
+
+{admin_footer}
+
+</body>
+</html>

@@ -1,0 +1,234 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{ADMINISTRATION_MSG} :: {PREDEFINED_REPLIES_MSG}</title>
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script type="text/javascript" src="../js/ajax.js"></script>
+<script language="JavaScript">
+<!--
+
+var userAgent = navigator.userAgent.toLowerCase();
+var isIE = ((userAgent.indexOf("msie") != -1) && (userAgent.indexOf("opera") == -1) && (userAgent.indexOf("webtv") == -1));
+var isFirefox = (userAgent.indexOf("firefox") != -1);
+
+function closeWindow()
+{
+	window.opener.focus();
+	window.close();
+}
+
+var requestReceived = false;
+function closeAfterRequest()
+{
+	if (requestReceived) {
+		window.opener.focus();
+		window.close();
+	} else {
+		setTimeout('closeAfterRequest()', 100);
+	}
+}
+
+function insertReply(replyID)
+{
+	requestReceived = false;
+	var url = "{admin_support_prereply_href}?operation=use&reply_id=" + replyID;
+	callAjax(url, passReply, replyID);
+	if (isFirefox) {
+		// close for window for Firefox2 with delay as it doesn't work within AJAX event
+		setTimeout('closeAfterRequest()', 100);
+	}
+}	
+
+function passReply(answerText, replyID)
+{
+	requestReceived = true;
+	var replyBody = document.getElementById("reply_body_" + replyID);
+	if (replyBody) {
+		var body = replyBody.value;
+		window.opener.insertAtCaret(body);
+		if (!isFirefox) {
+			// for non Firefox browsers just close the window
+			window.opener.focus();
+			window.close();
+		}
+	}
+}	
+
+
+function clearSearch() {
+	document.search_form.s_kw.value = "";
+	document.search_form.s_type.selectedIndex = 0;
+	document.search_form.submit();
+}
+
+function mouseX(evt) {
+	if (evt.pageX) {
+		return evt.pageX;
+	} else if (evt.clientX) {
+		return evt.clientX + (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
+	} else {
+		return null;
+	}
+}
+
+function mouseY(evt) {
+	if (evt.pageY) {
+		return evt.pageY;
+	} else if (evt.clientY) {
+		return evt.clientY + (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
+	} else {
+		return null;
+	}
+}
+
+function showReplyPreview(event, replyID)	
+{
+	var replyPreview = document.getElementById("reply_preview_" + replyID);
+	if (replyPreview) {
+	  var leftPos = mouseX(event) + 15;
+    var topPos  = mouseY(event) + 15;
+		replyPreview.style.left = leftPos;
+		replyPreview.style.top = topPos;
+
+		replyPreview.style.display = "block";
+	}
+}
+
+function hideReplyPreview(replyID)	
+{
+	var replyPreview = document.getElementById("reply_preview_" + replyID);
+	if (replyPreview) {
+		replyPreview.style.display = 'none';
+	}
+}
+//-->
+</script>
+</head>
+
+<body class="popup">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5" align="center">
+<tr>
+	<td class="header">
+		{PREDEFINED_REPLIES_MSG}
+	</td>
+</tr>
+</table>
+
+<br>
+
+<!-- BEGIN errors -->
+&nbsp;<div align="center" class="error"><font style="font-size:8pt">{errors_list}</font></div>&nbsp;
+<!-- END errors -->
+<form action="{admin_support_prereplies_href}" name="search_form">
+<input type="hidden" name="is_popup" value="{is_popup}">
+<table border="0" cellspacing="0" cellpadding="1" align="center">
+	<tr>
+		<td>
+			<input type="text" name="s_kw" value="{s_kw}" class="search">
+		</td>
+		<td>
+			<select name="s_type"><!-- BEGIN s_type -->
+				<option {s_type_selected} value="{s_type_value}">{s_type_description}<!-- END s_type -->
+			</select>
+		</td>
+		<td>
+			<input type="submit" value="Search" class="submit">&nbsp;<input type="button" value="Clear" class="submit" onClick="clearSearch()">
+		</td>
+	</td>
+</tr>
+</table>
+</form>
+
+<!-- begin types_filter -->
+<table cellspacing="0" cellpadding="2" border="0" style="margin-left: 5px;">
+<tr>
+	<td valign="top"><b>{BY_TYPE_MSG}</b>:</td>
+<!-- begin types_cols -->
+	<td>
+		<!-- begin types_recs -->
+		<a style="{type_style}" href="{filter_prereplies_url}">{type_name} ({type_replies})</a><br>
+		<!-- end types_recs -->
+	</td><!-- end types_cols -->
+</tr>
+</table>
+<!-- end types_filter -->
+
+<br>
+
+<table border="0" cellspacing="1" cellpadding="6" width="100%" class="headerbg"><!-- begin sorters -->
+<tr align="center" class="middle">
+	<td width="5%">
+		<nobr>{sorter_reply_id}</nobr>
+	</td>
+	<td width="45%">
+		<nobr>{sorter_subject}</nobr>
+	</td>
+	<td width="5%">
+		<nobr>{sorter_uses}</nobr>
+	</td>
+	<td width="5%">
+		<nobr>{sorter_type}</nobr>
+	</td>
+	<td width="5%">
+		<nobr>{sorter_added_by}</nobr>
+	</td>
+	<td width="15%">
+		&nbsp;
+	</td>
+	<td width="10%">
+		&nbsp;
+	</td>
+</tr><!-- end sorters --><!-- begin records -->
+<tr class="usual" align="center">
+	<td>
+		{reply_id}
+		<div id="reply_preview_{reply_id}" class="preview">{reply_preview}</div>
+		<input type="hidden" id="reply_body_{reply_id}" value="{reply_body}">
+	</td>
+	<td align="left" 
+		onmouseover="showReplyPreview(event, {reply_id})" onmousemove="showReplyPreview(event, {reply_id})"
+		onmouseout="hideReplyPreview({reply_id})" style="cursor: default;">
+		&nbsp;<a href="#" onClick="insertReply({reply_id})">{subject}</a>
+	</td>
+	<td>
+		{total_uses}
+	</td>
+	<td>
+		{type_name}
+	</td>
+	<td>
+		{added_by}
+	</td>
+	<td>
+		<a href="#" onClick="insertReply({reply_id})">{INSERT_REPLY_MSG}</a>
+	</td>
+	<td>
+		<a href="{admin_support_prereply_edit_url}">{EDIT_MSG}</a>
+	</td>
+</tr><!-- end records --><!-- begin no_records -->
+<tr class="usual">
+	<td colspan="7">
+		&nbsp;{NO_RECORDS_MSG}
+	</td>
+</tr><!-- end no_records -->
+<tr class="middle">
+	<td colspan="7">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+		<tr class="middle">
+			<td>&nbsp;<a href="{admin_support_prereply_new_url}">{NEW_PREDEFINED_REPLY_MSG}</a></td>
+			<!-- begin navigator_block -->
+			<td align="right">&nbsp;{navigator}&nbsp;</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>	
+
+<br>
+<div align="right">
+	<b><a href="javascript:closeWindow();">{CLOSE_WINDOW_MSG}</a></b>&nbsp;&nbsp;
+</div>
+
+</body>
+</html>

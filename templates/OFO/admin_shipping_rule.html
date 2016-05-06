@@ -1,0 +1,189 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_SHIPPING_RULE_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+	var countries = new Array();
+	var selectedCountries = new Array(); // <!-- BEGIN countries -->
+	countries["{country_id}"] = "{country_name}"; // <!-- END countries -->	// <!-- BEGIN selected_countries -->
+	selectedCountries["{country_id}"] = 1; // <!-- END selected_countries -->
+
+	function initValues()
+	{
+		clearOptions();
+		setOptions();
+		countryRestriction();
+	}
+
+	function setOptions()
+	{
+		for(var countryCode in countries) {
+			var optionNumber = (selectedCountries[countryCode] == 1) ? document.record.selected.length : document.record.not_selected.length;
+			if(selectedCountries[countryCode])
+				document.record.selected.options[optionNumber] = new Option(countries[countryCode], countryCode);
+			else
+				document.record.not_selected.options[optionNumber] = new Option(countries[countryCode], countryCode);
+		}
+	}
+
+	function clearOptions()
+	{
+		var totalOptions = document.record.not_selected.length;
+		for(var i = totalOptions - 1; i >= 0; i--)
+			document.record.not_selected.options[i] = null;
+
+		var totalOptions = document.record.selected.length;
+		for(var i = totalOptions - 1; i >= 0; i--)
+			document.record.selected.options[i] = null;
+	}
+
+	function addValues()
+	{
+		var totalOptions = document.record.not_selected.length;
+		for(var i = 0; i < totalOptions; i++)
+			if(document.record.not_selected.options[i].selected == true)
+				selectedCountries[document.record.not_selected.options[i].value] = 1;
+
+		clearOptions();
+		setOptions();
+	}
+
+	function removeValues()
+	{
+		var totalOptions = document.record.selected.length;
+
+		for(var i = 0; i < totalOptions; i++)
+			if(document.record.selected.options[i].selected == true)
+				selectedCountries[document.record.selected.options[i].value] = 0;
+
+		clearOptions();
+		setOptions();
+	}
+
+	function selectValues()
+	{
+		var totalOptions = document.record.selected.length;
+		var countriesValues = "";
+		for(var i = 0; i < totalOptions; i++) {
+			document.record.selected.options[i].selected = true;
+			if(i > 0) countriesValues += ","
+			countriesValues += document.record.selected.options[i].value;
+		}
+		document.record.countries.value = countriesValues;
+	}
+
+	function countryRestriction()
+	{
+		var isCountryRestriction = document.record.is_country_restriction.checked;
+		if (isCountryRestriction) {
+			document.record.not_selected.disabled = false;
+			document.record.selected.disabled = false;
+			document.record.add.disabled = false;
+			document.record.remove.disabled = false;
+		} else {
+			document.record.not_selected.disabled = true;
+			document.record.selected.disabled = true;
+			document.record.add.disabled = true;
+			document.record.remove.disabled = true;
+		}	
+	}
+
+//-->
+</script>
+
+</head>
+<body class="commonbg" onLoad="initValues();">
+ 
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_lookup_tables_href}">{STATIC_TABLES_MSG}</a>&nbsp;&gt;
+			<a href="{admin_shipping_rules_href}">{SHIPPING_RULES_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_SHIPPING_RULE_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_SHIPPING_RULE_MSG}</legend>
+
+<table border="0" cellspacing="1" cellpadding="4" width="100%">
+<form action="{admin_shipping_rule_href}" name="record" onSubmit="selectValues();" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="shipping_rule_id" value="{shipping_rule_id}">
+<input type="hidden" name="countries" value="">
+<input type="hidden" name="page" value="{page}">
+
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{SHIPPING_RULE_MSG} *
+	</td>
+	<td>
+		<textarea cols="80" rows="3" name="shipping_rule_desc">{shipping_rule_desc}</textarea>
+	</td>
+</tr>
+<tr class="usual">
+	<td colspan="2">
+		&nbsp;<input type="checkbox" name="is_country_restriction" {is_country_restriction} onClick="countryRestriction();" value="1">
+		{ALLOW_PRODUCT_DELIVERY_MSG}
+	</td>
+</tr>	
+</table>
+
+<table width="100%" border="0" cellspacing="1" cellpadding="4">
+<tr align="center" class="middle">
+	<td width="40%">{AVAILABLE_COUNTRIES_MSG}</td>
+	<td width="20%">{OPERATIONS_MSG}</td>
+	<td width="40%">{TYPE_FOR_COUNTRIES_NOTE}</td>
+</tr>	
+<tr align="center" class="usual">
+	<td width="40%">
+		<select name="not_selected" MULTIPLE size="10" style="width: 250px;">
+			<option>{AVAILABLE_COUNTRIES_MSG}
+		</select>
+	</td>
+	<td width="20%">
+
+		<input class="submit" type="button" name="add" value="&nbsp;&nbsp; Add  -> &nbsp;&nbsp;" onClick="addValues();"><br><br>
+		<input class="submit" type="button" name="remove" value="<- Remove" onClick="removeValues();">
+	</td>
+	<td width="40%">
+
+		<select name="selected" MULTIPLE size="10" style="width: 250px;">
+			<option>{SELECTED_COUNTRIES_MSG}
+		</select>
+	</td>
+</tr>
+</table>
+
+<table width="100%" border="0" cellspacing="1" cellpadding="4">
+<tr class="middle">
+	<td align="right">
+		<input class="submit" type="submit" value="{save_button}" onclick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</form>	
+</table>
+
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!--begin tree--><!--begin treeinit_block--><script language="JavaScript">
+	<!--		
+	window.onload = function() { 
+		markSelectedLeafes('{tree_name}'); 
+	};
+	//-->
+	</script><!--end treeinit_block--><!--begin leaftostock_block-->
+		<input type="hidden" id="{tree_name}_action_object_id" value="{action_object_id}">
+		<input type="hidden" id="{tree_name}_action_object_type" value="{action_object_type}">
+	<!--end leaftostock_block--><ul class="tree"><!--begin branch-->	
+		<li class="tree_branch">
+			<div id="{tree_name}_branch_title_{id}" name="{tree_name}_branch_title_{id}" class="tree_branch_title closed"
+				onClick="processBranch('{id}', '{tree_name}', '{response_url}', 0)"
+				onMouseOver="addClassName(this, 'tree_branch_title_hover')"
+				onMouseOut="removeClassName(this, 'tree_branch_title_hover')"
+				>
+				{name} {branches_count} / {leaves_count}
+			</div>
+			<div id='{tree_name}_branch_{id}' name='{tree_name}_branch_{id}' class='tree_subtree'></div>
+		</li><!--end branch--><!--begin leaf-->
+		<li class='tree_leaf'><!--begin current-->
+			<div name="{tree_name}_leaf_title_{id}" id="{tree_name}_leaf_title_{id}" class="tree_leaf_title current">
+				{name}
+			</div><!--end current--><!--begin leaftostock_action-->
+			<div name="{tree_name}_leaf_title_{id}" id="{tree_name}_leaf_title_{id}" class="tree_leaf_title plus"
+				onClick="processLeaf('{id}', '{name}', '{tree_name}')"
+				onMouseOver="addClassName(this, 'tree_leaf_title_hover')"
+				onMouseOut="removeClassName(this, 'tree_leaf_title_hover')"
+				>
+				{name}
+			</div>
+			<!--end leaftostock_action-->	
+		</li><!--end leaf-->
+	</ul>
+	{navigator}
+	<!--end tree-->

@@ -1,0 +1,79 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {BANNED_CONTENT} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<b>{BANNED_CONTENT}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{BANNED_CONTENT}</legend>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+</tr>
+<tr align="center"> 
+	<td>
+
+<table border="0" cellspacing="1" cellpadding="6" width="100%"><!-- begin sorters -->
+<tr align="center" class="middle">
+	<td>
+		{sorter_content_id}
+	</td>
+	<td>
+		{sorter_content_text}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- end sorters --><!-- BEGIN records -->
+<tr class="usual" align="center">
+	<td>
+		{content_id}
+	</td>
+	<td align="left">
+		&nbsp;{content_text}
+	</td>
+	<td>
+		<a href="{admin_banned_content_href}?content_id={content_id}">{EDIT_MSG}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="3">
+		&nbsp;{NO_RECORDS_MSG}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="3">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td>
+				&nbsp;<a href="{admin_banned_content_href}">{ADD_NEW_TEXT_MSG}</a>
+			</td>
+			<!-- begin navigator_block -->
+			<td align="right">&nbsp;{navigator}&nbsp;</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>	
+
+	</td>
+</tr>
+</table>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

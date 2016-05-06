@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{product_title}</title>
+<meta name="description" content="{meta_description}">
+<base href="{absolute_url}">
+<link rel="stylesheet" href="{css_file}" type="text/css">
+</head>
+
+<body class="commonbg">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr class="usualWhite">
+        <td valign="top">
+
+        <!-- begin no_item -->
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr><td align="center" class="padding10px"><div class="errorbg">{NO_ARTICLE_MSG}</div></td></tr>
+			</table>
+		<!-- end no_item -->
+		<!-- BEGIN item -->
+                        <table width="100%" border="0" cellspacing="0" cellpadding="10">
+                        <tr>
+                                <td>
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                                <td width="85%">
+                                                <span class="h5" style="text-decoration: underline;">{article_title}</span>
+                                                                </td>
+                                                                <td width="15%" align="right" valign="top">
+                                                                        <a href="javascript:print()"><img src="images/ico-print.gif" alt="{PRINT_PAGE_MSG}" width="20" height="20" border="0" align="middlebg" hspace=5><b>{PRINT_PAGE_MSG}</b></a>
+                                                                </td>
+                                                        </tr>
+                                                </table>
+                                </td>
+                        </tr>
+                        <tr>
+                                <td>
+                                                <br>
+
+                                                <!-- begin author_block -->
+                                                <!-- begin author_name_block --><b>{author_name}</b> <!-- end author_name_block -->
+                                                <!-- begin author_email_block -->&lt;{author_email}&gt;<!-- end author_email_block -->
+                                                <!-- begin author_url_block --> <a href="{author_url}">{author_url}</a><!-- end author_url_block -->
+                                                <!-- end author_block -->
+
+                                                <!-- begin date_block -->
+                                                <div class="articleDate">
+                                                <!-- begin article_date_block -->{article_date}<!-- end article_date_block -->
+                                                <!-- begin date_end_block --> &ndash; {date_end}<!-- end date_end_block -->
+                                                </div>
+                                                <!-- end date_block -->
+
+
+                                                <div align=justify>
+                                                <!-- begin image_large_block -->
+                                                <img src="{src}" {width} {height} border="0" hspace="5" align="left" alt="{alt}"><!-- end image_large_block -->
+                                                <!-- begin image_small_block -->
+                                                <img src="{src}" {width} {height} border="0" hspace="5" align="left" alt="{alt}"><!-- end image_small_block -->
+                                                <!-- begin short_description_block -->
+                                                {short_description}
+                                                <!-- end short_description_block -->
+                                                {full_description}
+                                                </div>
+
+            <!-- begin link_url_block -->
+                                                <div align=justify><b>{LINK_URL_MSG}</b>: <a href="{link_url}">{link_url}</a></div><!-- end link_url_block -->
+            <!-- begin download_url_block -->
+                                                <div align=justify><b>{DOWNLOAD_URL_MSG}</b>: <a href="{download_url}">{download_url}</a></div><!-- end download_url_block -->
+            <!-- begin notes_block -->
+                                                <div align=justify><b>{NOTES_MSG}</b>: {notes}</div><!-- end notes_block -->
+            <!-- begin keywords_block -->
+                                                <div align=justify><b>{KEYWORDS_MSG}</b>: {keywords}</div><!-- end keywords_block -->
+
+                                </td>
+                        </tr>
+                        </table>
+                        <br>
+                        <!-- END item -->
+
+        </td>
+</tr>
+</table>
+<br>
+
+</body>
+</html>

@@ -1,0 +1,266 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {PRODUCTS_REGISTRATIONS_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+<body class="commonbg">
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header">
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;
+			<b>{PRODUCTS_REGISTRATION_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr>	
+	<td height="190px" valign="top">
+		<fieldset>
+		<legend>{LATEST_ADDED_PRODUCTS_REGISTRATIONS_MSG}</legend>
+		
+		<table border="0" cellpadding="3" cellspacing="1" width="100%">
+		<!-- begin reg_added_sorters -->
+		<tr class="middle" align="center">
+			<td width="60px">
+				{ORDER_NUMBER_COLUMN}
+			</td>
+			<td>
+				{CUSTOMER_NAME_MSG}
+			</td>
+			<td>
+				{STATUS_MSG}
+			</td>
+			<td>
+				{DATE_ADDED_MSG}
+			</td>
+			<td>
+				&nbsp;
+			</td>
+		</tr><!-- end reg_added_sorters --><!-- BEGIN reg_added_records -->
+		<tr valign="top" align="center" class="{row_style}">
+			<td>
+				{registration_id}
+			</td>
+			<td>
+				{username}
+			</td>
+			<td>
+				{is_approved}
+			</td>
+			<td>
+				{date_added}
+			</td>
+			<td>
+				&nbsp;<a href="{admin_registration_view_href}?registration_id={registration_id}">{VIEW_MSG}</a>
+				<!--begin update_list_priv-->
+				/ <a href="{admin_registration_edit_href}?registration_id={registration_id}">{EDIT_MSG}</a>
+				<!--end update_list_priv-->
+			</td>
+		</tr><!-- END reg_added_records --><!-- BEGIN reg_added_no_records -->
+		<tr class="usual">
+			<td colspan="5">
+				&nbsp;{NO_PRODUCT_REGISTRATIONS_MSG}
+			</td>
+		</tr><!-- END reg_added_no_records -->
+		<tr class="middle">
+			<td colspan="5">
+				<table width="100%" cellpadding="0" cellspacing="0" border="0">
+				<tr class="middle">
+					<td>			
+					&nbsp;<!--begin registration_add_block-->
+					<a href="{admin_registration_edit_href}">{REGISTER_PRODUCT_MSG}</a>	
+					<!--end registration_add_block-->&nbsp;
+					</td><td align="right">			
+					&nbsp;<a href="{admin_registrations_href}">{PRODUCTS_REGISTRATIONS_MSG}</a>&nbsp;
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		</table>
+		</fieldset>	
+	</td>
+	<td valign="top">
+		<fieldset>
+		<legend>{LATEST_ADDED_REGISTRATION_PRODUCTS_MSG}</legend>
+		<table border="0" cellpadding="3" cellspacing="1" width="100%">
+		<!-- begin prod_added_sorters -->
+		<tr class="middle" align="center">
+			<td width="60px">
+				{ORDER_NUMBER_COLUMN}
+			</td>
+			<td>
+				{REGISTRATION_PROD_TITLE_COLUMN}
+			</td>
+			<td>
+				{ADMINISTRATOR_NAME_MSG}
+			</td>
+			<td>
+				{DATE_ADDED_MSG}
+			</td>
+			<td>
+				&nbsp;
+			</td>
+		</tr><!-- end prod_added_sorters --><!-- BEGIN prod_added_records -->
+		<tr valign="top" align="center" class="{row_style}">
+			<td>
+				{item_id}
+			</td>
+			<td>
+				{item_name}				
+			</td>
+			<td>
+				{admin_name}
+			</td>
+			<td>
+				{date_added}
+			</td>
+			<td>
+				<!-- BEGIN update_products_priv -->
+				<a href="{admin_registration_product_href}?item_id={item_id}">{EDIT_MSG}</a>
+				<!-- END update_products_priv -->
+			</td>
+		</tr><!-- END prod_added_records --><!-- BEGIN prod_added_no_records -->
+		<tr class="usual">
+			<td colspan="5">
+				&nbsp;{NO_REGISTRATION_PRODUCTS_MSG}
+			</td>
+		</tr><!-- END prod_added_no_records -->
+		<tr class="middle">
+			<td colspan="5">
+				<table width="100%" cellpadding="0" cellspacing="0" border="0">
+				<tr class="middle">
+					<td>			
+					&nbsp;<!-- BEGIN products_edit_block -->
+						<a href="{admin_registration_product_href}?category_id=0">{ADD_NEW_MSG}</a>
+						<!-- END products_edit_block -->&nbsp;
+					</td><td align="right">			
+					&nbsp;<a href="{admin_registration_products_href}">{REGISTRATION_PRODUCTS_MSG}</a>&nbsp;
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		</table>
+		</fieldset>	
+	</td>
+</tr>
+<tr>
+	<td valign="top">
+		<!-- begin latest_reg_modified-->
+		<fieldset>
+		<legend>{LATEST_MODIFIED_PRODUCTS_REGISTRATIONS_MSG}</legend>
+		
+		<table border="0" cellpadding="3" cellspacing="1" width="100%">
+		<!-- begin reg_modified_sorters -->
+		<tr class="middle" align="center">
+			<td width="60px">
+				{ORDER_NUMBER_COLUMN}
+			</td>
+			<td>
+				{CUSTOMER_NAME_MSG}
+			</td>
+			<td>
+				{STATUS_MSG}
+			</td>
+			<td>
+				{MODIFIED_DATE_MSG}
+			</td>
+			<td>
+				&nbsp;
+			</td>
+		</tr><!-- end reg_modified_sorters --><!-- BEGIN reg_modified_records -->
+		<tr valign="top" align="center" class="{row_style}">
+			<td>
+				{registration_id}
+			</td>
+			<td>
+				{username}
+			</td>
+			<td>
+				{is_approved}
+			</td>
+			<td>
+				{date_modified}
+			</td>
+			<td>
+				&nbsp;<a href="{admin_registration_view_href}?registration_id={registration_id}">{VIEW_MSG}</a>
+				<!--begin update_list_priv-->
+				/ <a href="{admin_registration_edit_href}?registration_id={registration_id}">{EDIT_MSG}</a>
+				<!--end update_list_priv-->
+			</td>
+		</tr><!-- END reg_modified_records -->
+		<tr class="middle">
+			<td colspan="5">
+				&nbsp;
+			</td>
+		</tr>
+		</table>
+		</fieldset>	
+		<!-- end latest_reg_modified-->
+	</td>
+	<td valign="top">
+		<!-- begin latest_prod_modified-->
+		<fieldset>
+		<legend>{LATEST_MODIFIED_REGISTRATION_PRODUCTS_MSG}</legend>
+		<table border="0" cellpadding="3" cellspacing="1" width="100%">
+		<!-- begin prod_modified_sorters -->
+		<tr class="middle" align="center">
+			<td width="60px">
+				{ORDER_NUMBER_COLUMN}
+			</td>
+			<td>
+				{REGISTRATION_PROD_TITLE_COLUMN}
+			</td>
+			<td>
+				{ADMINISTRATOR_NAME_MSG}
+			</td>
+			<td>
+				{MODIFIED_DATE_MSG}
+			</td>
+			<td>
+				&nbsp;
+			</td>
+		</tr><!-- end prod_modified_sorters --><!-- BEGIN prod_modified_records -->
+		<tr valign="top" align="center" class="{row_style}">
+			<td>
+				{item_id}
+			</td>
+			<td>
+				{item_name}				
+			</td>
+			<td>
+				{admin_name}
+			</td>
+			<td>
+				{date_modified}
+			</td>
+			<td>
+				<!-- BEGIN update_products_priv -->
+				<a href="{admin_registration_product_href}?item_id={item_id}">{EDIT_MSG}</a>
+				<!-- END update_products_priv -->
+			</td>
+		</tr><!-- END prod_modified_records -->
+		<tr class="middle">
+			<td colspan="5">
+				&nbsp;
+			</td>
+		</tr>
+		</table>
+		</fieldset>	
+		<!-- END latest_prod_modified-->
+	</td>
+</tr>
+
+</table>
+
+{admin_footer}
+</body>
+</html>

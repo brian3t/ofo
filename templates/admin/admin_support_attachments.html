@@ -1,0 +1,123 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {UPLOAD_TITLE} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+function closeWindow(attachmentsFiles)
+{
+	window.opener.updateAttachments(attachmentsFiles);
+	window.opener.focus();
+	window.close();
+}
+
+//-->
+</script>
+</head>
+
+<body class="popup">
+<form name="upload" action="{admin_support_attachments_href}" enctype="multipart/form-data" method="post">
+<input type="hidden" name="operation" value="upload">
+<input type="hidden" name="support_id" value="{support_id}">
+<input type="hidden" name="dep_id" value="{dep_id}">
+<table width="100%" border="0" cellspacing="1" cellpadding="0" align="center" class="header">
+<tr><td class="header"> 
+
+	<table cellspacing="0" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td colspan="3" class="header">
+			<table cellspacing="0" cellpadding="0" border="0" width="100%">
+			<tr align="center">
+				<td>
+					<a class="header" href="javascript:closeWindow('{attachments_files}');"><b>{CLOSE_WINDOW_MSG}</b></a>
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3" class="usual">
+		<br>
+		</td>
+	</tr><!-- BEGIN errors -->
+	<tr>
+		<td align="center" class="usual">
+			<div class="error"><b>
+			{errors_list}</b></div>
+		</td>
+	</tr><!-- END errors -->
+	<tr>
+		<td class="usual" align="center">
+			<table><tr><td>&nbsp;&nbsp;&nbsp;{UPLOAD_FILE_DESC}<br>
+			</td></tr>
+			<tr><td>
+				&nbsp;&nbsp;&nbsp;<input size="40" class="submit" type="file" name="newfile">&nbsp;&nbsp;
+				<input class="submit" type="submit" name="submit" value="Upload">
+				
+			</td></tr></table>
+		</td>
+	</tr>
+	<!-- begin attachments_block -->
+	<tr>
+		<td class="usual">
+
+			<br>
+			<table width="380" cellspacing="1" cellpadding="3" border="0" align="center" class="headerbg">
+			<tr class="middle" align="center">
+				<td>
+    			File
+				</td>
+				<td>
+    			Size
+				</td>
+				<td>
+					&nbsp;
+				</td>
+			</tr>
+			<!-- begin attachments -->
+			<tr class="usual">
+				<td>
+    			&nbsp;{filename}&nbsp;
+				</td>
+				<td align="center">
+    			{filesize}
+				</td>
+				<td align="center">
+					&nbsp;<a href="{admin_support_attachments_href}?operation=remove&support_id={support_id}&dep_id={dep_id}&atid={attachment_id}" onClick="return confirm('Do you want to delete this attachment?');">Remove</a>
+				</td>
+			</tr>
+			<!-- end attachments -->
+			</table>
+
+	
+		</td>
+	</tr>
+	<!-- end attachments_block -->
+	<tr>
+		<td colspan="3" class="usual">
+		<br>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3" class="header">
+			<table cellspacing="0" cellpadding="0" border="0" width="100%">
+			<tr align="center">
+				<td>
+					<a class="header" href="javascript:closeWindow('{attachments_files}');"><b>{CLOSE_WINDOW_MSG}</b></a>
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+
+</td></tr></table>
+</form>	
+
+
+
+
+
+</body>
+</html>

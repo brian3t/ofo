@@ -1,0 +1,1172 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{ADMINISTRATION_MSG} :: {RECURRING_SETTINGS_MSG}</title>
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script type="text/javascript" src="../js/admin.js"></script>
+<script language="JavaScript">
+<!--
+	function changeBlockStatus(checkboxObj, blockName)
+	{
+		var checkedValue = checkboxObj.checked;
+		var sectionBlock = document.getElementById(blockName);
+		if (sectionBlock) {
+			if (checkedValue) {
+				sectionBlock.style.display = "block";
+			} else {
+				sectionBlock.style.display = "none";
+			}
+		}
+	}
+
+	function changePane(newTabName)
+	{
+		var currentTabName = document.record.current_tab.value;
+
+		if (currentTabName != newTabName) {
+			currentTab = document.getElementById("tab_" + currentTabName);
+			newTab = document.getElementById("tab_" + newTabName);
+
+			currentData = document.getElementById("data_" + currentTabName);
+			newData = document.getElementById("data_" + newTabName);
+    
+			if (currentData && newData) {
+				currentTab.className = "adminTab";
+				newTab.className = "adminTabActive";
+		  
+     	 	currentData.style.display = "none";
+     	 	newData.style.display = "block";
+      
+				document.record.current_tab.value = newTabName;
+			}
+		}
+	}
+
+	function openWindow(pagename)
+	{
+		var popupWin = window.open (pagename + "?cc=1", 'popup', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');
+		popupWin.focus();
+	}
+//-->
+</script>
+</head>
+<body class="mainbg">
+
+{admin_header}
+
+<form action="{admin_recurring_settings_href}" name="record" method="POST">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="breadcrumb"> 
+
+	<table width="100%" cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_payment_systems_href}">{PAYMENT_SYSTEMS_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_payment_system_href}?payment_id={payment_id}">{payment_name}</a>&nbsp;&gt;&nbsp;<b>{RECURRING_SETTINGS_MSG}</b>
+		</td>
+		<!-- begin sitelist -->
+		<td class="usual" align="right">
+			{SELECT_SITE_MSG}&nbsp;
+			<select name="param_site_id" onchange="reloadSite(this.form)"><!-- begin param_site_id -->
+				<option {param_site_id_selected} value="{param_site_id_value}">{param_site_id_description}<!-- end param_site_id -->
+			</select>		
+		</td>
+		<!-- end sitelist -->
+	</tr>
+	</table>
+
+</td></tr></table>
+
+<br>
+
+<div id="tabs">
+	<!-- BEGIN tabs_rows -->
+	<div id="{row_id}" class="tabRow"><!-- BEGIN tabs -->
+		<div id="{tab_id}" class="{tab_class}"><a class="blackSm" href="#" onClick="changeTab('{tab_name}'); return false;">{tab_title}</a></div>{br}<!-- END tabs -->
+	</div>
+	<!-- END tabs_rows -->
+</div>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tabTable">
+<tr align="center"> 
+	<td>
+
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="rp" value="{rp}">
+<input type="hidden" name="tab" value="{tab}">
+<input type="hidden" name="payment_id" value="{payment_id}">
+
+<div id="data_general" style="{general_style}">
+<table width="100%" border="0" cellspacing="1" cellpadding="4">
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{ADMIN_GENERAL_MSG} {RECURRING_SETTINGS_MSG}&nbsp;
+	</td>
+</tr>
+<tr class="usual">
+	<td width="35%">
+		&nbsp;{RECURRING_ORDERS_STATUS_MSG}
+	</td>
+	<td width="65%">
+		<select name="new_status_id"><!-- begin new_status_id -->
+			<option {new_status_id_selected} value="{new_status_id_value}">{new_status_id_description}<!-- end new_status_id -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ATTEMPTS_AFTER_ORDER_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="recurring_attempts" value="{recurring_attempts}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{NEXT_ATTEMPT_FAILED_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="recurring_next_attempt" value="{recurring_next_attempt}"> ({DAYS_MSG})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;Preserve Product Options
+	</td>
+	<td>
+		<input type="checkbox" name="preserve_item_options" {preserve_item_options} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;Preserve Cart Custom Fields
+	</td>
+	<td>
+		<input type="checkbox" name="preserve_cart_options" {preserve_cart_options} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;Preserve Shipping Method
+	</td>
+	<td>
+		<input type="checkbox" name="preserve_shipping" {preserve_shipping} value="1">
+	</td>
+</tr>
+<tr class="middle">
+	<td></td>
+	<td>
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tr><td class="middle">
+			<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'"> &nbsp;
+			<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+		</td></tr>
+		</table>
+	</td>
+</tr>
+</table>
+</div>
+
+<div id="data_notify_new" style="{notify_new_style}">
+	<table width="100%" border="0" cellspacing="1" cellpadding="4">
+	<tr class="middle">
+		<td colspan="2">
+			<input type="checkbox" name="admin_notify_new" {admin_notify_new} value="1"> 
+			&nbsp;{EMAIL_SEND_ADMIN_MSF} {WHEN_NEW_RECURRING_ORDER_MSG}&nbsp;
+		</td>
+	</tr>
+	<tr class="usual">
+		<td width="35%">
+			&nbsp;<b>To</b>
+			<div class="small">
+			&nbsp;(<a href="javascript:openWindow('{admin_email_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_FILEDS_NOTE})
+			</div>
+		</td>
+		<td width="65%">
+			<input class="field" type="text" name="admin_mail_to_new" value="{admin_mail_to_new}" size="80" maxlength="255">
+			<div class="small">({EG_MSG} <b>sales@yoursite.com</b>)</div>
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;<b>{EMAIL_FROM_MSG}</b>
+		</td>
+		<td>
+			<input class="field" type="text" name="admin_mail_from_new" value="{admin_mail_from_new}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_CC_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="admin_mail_cc_new" value="{admin_mail_cc_new}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_BCC_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="admin_mail_bcc_new" value="{admin_mail_bcc_new}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_REPLY_TO_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="admin_mail_reply_to_new" value="{admin_mail_reply_to_new}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_RETURN_PATH_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="admin_mail_return_path_new" value="{admin_mail_return_path_new}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;<b>{EMAIL_SUBJECT_MSG}</b>
+		</td>
+		<td>
+			<input class="field" type="text" name="admin_mail_subject_new" value="{admin_mail_subject_new}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;<b>{EMAIL_MESSAGE_TYPE_MSG}</b>
+		</td>
+		<td><!-- begin admin_mail_type_new -->
+			<input type="radio" name="admin_mail_type_new" {admin_mail_type_new_checked} value="{admin_mail_type_new_value}">{admin_mail_type_new_description}<!-- end admin_mail_type_new -->
+		</td>
+	</tr>
+	<tr class="usual">
+		<td valign="top">
+			&nbsp;<b>{MESSAGE_MSG}</b>
+			<font class="small">
+			<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}?payment_id={payment_id}&final=1')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_SETTINGS_NOTE} 
+			<br>&nbsp;&nbsp;{LEARN_MORE_AND_SEE_NOTE})
+			</font>
+		</td>
+		<td>
+			<textarea name="admin_mail_body_new" cols="80" rows="10">{admin_mail_body_new}</textarea>
+		</td>
+	</tr>
+	<tr class="middle">
+		<td colspan="2">
+			<input type="checkbox" name="user_notify_new" {user_notify_new} value="1"> 
+			&nbsp;{EMAIL_SEND_USER_MSG} {WHEN_NEW_RECURRING_ORDER_MSG}&nbsp;
+		</td>
+	</tr>
+	<tr class="usual">
+		<td width="35%">
+			&nbsp;<b>{EMAIL_FROM_MSG}</b>
+			<div class="small">
+			&nbsp;(<a href="javascript:openWindow('{admin_email_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_FILEDS_NOTE})
+			</div>
+		</td>
+		<td width="65%">
+			<input class="field" type="text" name="user_mail_from_new" value="{user_mail_from_new}" size="80" maxlength="255">
+			<div class="small">({EG_MSG} <b>sales@yoursite.com</b>)</div>
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_CC_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="user_mail_cc_new" value="{user_mail_cc_new}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_BCC_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="user_mail_bcc_new" value="{user_mail_bcc_new}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_REPLY_TO_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="user_mail_reply_to_new" value="{user_mail_reply_to_new}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_RETURN_PATH_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="user_mail_return_path_new" value="{user_mail_return_path_new}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;<b>{EMAIL_SUBJECT_MSG}</b>
+		</td>
+		<td>
+			<input class="field" type="text" name="user_mail_subject_new" value="{user_mail_subject_new}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;<b>{EMAIL_MESSAGE_TYPE_MSG}</b>
+		</td>
+		<td><!-- begin user_mail_type_new -->
+			<input type="radio" name="user_mail_type_new" {user_mail_type_new_checked} value="{user_mail_type_new_value}">{user_mail_type_new_description}<!-- end user_mail_type_new -->
+		</td>
+	</tr>
+	<tr class="usual">
+		<td valign="top">
+			&nbsp;<b>{MESSAGE_MSG}</b>
+			<font class="small">
+			<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}?payment_id={payment_id}&final=1')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_SETTINGS_NOTE} 
+			<br>&nbsp;&nbsp;{LEARN_MORE_AND_SEE_NOTE})
+			</font>
+		</td>
+		<td>
+			<textarea name="user_mail_body_new" cols="80" rows="10">{user_mail_body_new}</textarea>
+		</td>
+	</tr>
+	<tr class="middle">
+		<td colspan="2">
+			<input type="checkbox" name="admin_sms_new" {admin_sms_new} value="1"> 
+			&nbsp;{SMS_SEND_ADMIN_MSF} {WHEN_NEW_RECURRING_ORDER_MSG}&nbsp;
+		</td>
+	</tr>
+	<tr class="usual">
+		<td width="35%">
+			&nbsp;<b>{SMS_RECIPIENT_MSG}</b> ({SMS_RECIPIENT_ADMIN_DESC}) 
+		</td>
+		<td width="65%">
+			<input class="field" type="text" name="admin_sms_recipient_new" value="{admin_sms_recipient_new}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;<b>{SMS_ORIGINATOR_MSG}</b>
+		</td>
+		<td>
+			<input class="field" type="text" name="admin_sms_originator_new" value="{admin_sms_originator_new}" size="80" maxlength="16">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td valign="top">
+			&nbsp;<b>{SMS_MESSAGE_MSG}</b>
+			<font class="small">
+			<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}?payment_id={payment_id}&final=1')">{CLICK_HERE_MSG}</a> {LEARN_MORE_AND_SEE_NOTE})
+			</font>
+		</td>
+		<td>
+			<textarea name="admin_sms_message_new" cols="80" rows="3">{admin_sms_message_new}</textarea>
+		</td>
+	</tr>
+	<tr class="middle">
+		<td colspan="2">
+			<input type="checkbox" name="user_sms_new" {user_sms_new} value="1"> 
+			&nbsp;{SMS_SEND_USER_MSG} {WHEN_NEW_RECURRING_ORDER_MSG}&nbsp;
+		</td>
+	</tr>
+	<tr class="usual">
+		<td width="35%">
+			&nbsp;<b>{SMS_RECIPIENT_MSG}</b> ('{CELL_PHONE_FIELD}' {FIELD_USED_IF_EMPTY_MSG})
+		</td>
+		<td width="65%">
+			<input class="field" type="text" name="user_sms_recipient_new" value="{user_sms_recipient_new}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;<b>{SMS_ORIGINATOR_MSG}</b>
+		</td>
+		<td>
+			<input class="field" type="text" name="user_sms_originator_new" value="{user_sms_originator_new}" size="80" maxlength="16">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td valign="top">
+			&nbsp;<b>{SMS_MESSAGE_MSG}</b>
+			<font class="small">
+			<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}?payment_id={payment_id}&final=1')">{CLICK_HERE_MSG}</a> {LEARN_MORE_AND_SEE_NOTE})
+			</font>
+		</td>
+		<td>
+			<textarea name="user_sms_message_new" cols="80" rows="3">{user_sms_message_new}</textarea>
+		</td>
+	</tr>
+	<tr class="middle">
+		<td></td>
+		<td>
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr><td class="middle">
+				<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'"> &nbsp;
+				<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+			</td></tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+</div>
+
+
+<div id="data_notify_success" style="{notify_success_style}">
+	<table width="100%" border="0" cellspacing="1" cellpadding="4">
+	<tr class="middle">
+		<td colspan="2">
+			<input type="checkbox" name="admin_notify_success" {admin_notify_success} value="1"> 
+			&nbsp;{EMAIL_SEND_ADMIN_MSF} {WHEN_RECURRING_ORDER_SUCCESS_MSG}&nbsp;
+		</td>
+	</tr>
+	<tr class="usual">
+		<td width="35%">
+			&nbsp;<b>To</b>
+			<div class="small">
+			&nbsp;(<a href="javascript:openWindow('{admin_email_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_FILEDS_NOTE})
+			</div>
+		</td>
+		<td width="65%">
+			<input class="field" type="text" name="admin_mail_to_success" value="{admin_mail_to_success}" size="80" maxlength="255">
+			<div class="small">({EG_MSG} <b>sales@yoursite.com</b>)</div>
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;<b>{EMAIL_FROM_MSG}</b>
+		</td>
+		<td>
+			<input class="field" type="text" name="admin_mail_from_success" value="{admin_mail_from_success}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_CC_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="admin_mail_cc_success" value="{admin_mail_cc_success}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_BCC_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="admin_mail_bcc_success" value="{admin_mail_bcc_success}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_REPLY_TO_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="admin_mail_reply_to_success" value="{admin_mail_reply_to_success}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_RETURN_PATH_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="admin_mail_return_path_success" value="{admin_mail_return_path_success}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;<b>{EMAIL_SUBJECT_MSG}</b>
+		</td>
+		<td>
+			<input class="field" type="text" name="admin_mail_subject_success" value="{admin_mail_subject_success}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;<b>{EMAIL_MESSAGE_TYPE_MSG}</b>
+		</td>
+		<td><!-- begin admin_mail_type_success -->
+			<input type="radio" name="admin_mail_type_success" {admin_mail_type_success_checked} value="{admin_mail_type_success_value}">{admin_mail_type_success_description}<!-- end admin_mail_type_success -->
+		</td>
+	</tr>
+	<tr class="usual">
+		<td valign="top">
+			&nbsp;<b>{MESSAGE_MSG}</b>
+			<font class="small">
+			<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}?payment_id={payment_id}&final=1')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_SETTINGS_NOTE} 
+			<br>&nbsp;&nbsp;{LEARN_MORE_AND_SEE_NOTE})
+			</font>
+		</td>
+		<td>
+			<textarea name="admin_mail_body_success" cols="80" rows="10">{admin_mail_body_success}</textarea>
+		</td>
+	</tr>
+	<tr class="middle">
+		<td colspan="2">
+			<input type="checkbox" name="user_notify_success" {user_notify_success} value="1"> 
+			&nbsp;{EMAIL_SEND_USER_MSG} {WHEN_RECURRING_ORDER_SUCCESS_MSG}&nbsp;
+		</td>
+	</tr>
+	<tr class="usual">
+		<td width="35%">
+			&nbsp;<b>{EMAIL_FROM_MSG}</b>
+			<div class="small">
+			&nbsp;(<a href="javascript:openWindow('{admin_email_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_FILEDS_NOTE})
+			</div>
+		</td>
+		<td width="65%">
+			<input class="field" type="text" name="user_mail_from_success" value="{user_mail_from_success}" size="80" maxlength="255">
+			<div class="small">({EG_MSG} <b>sales@yoursite.com</b>)</div>
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_CC_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="user_mail_cc_success" value="{user_mail_cc_success}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_BCC_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="user_mail_bcc_success" value="{user_mail_bcc_success}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_REPLY_TO_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="user_mail_reply_to_success" value="{user_mail_reply_to_success}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_RETURN_PATH_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="user_mail_return_path_success" value="{user_mail_return_path_success}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;<b>{EMAIL_SUBJECT_MSG}</b>
+		</td>
+		<td>
+			<input class="field" type="text" name="user_mail_subject_success" value="{user_mail_subject_success}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;<b>{EMAIL_MESSAGE_TYPE_MSG}</b>
+		</td>
+		<td><!-- begin user_mail_type_success -->
+			<input type="radio" name="user_mail_type_success" {user_mail_type_success_checked} value="{user_mail_type_success_value}">{user_mail_type_success_description}<!-- end user_mail_type_success -->
+		</td>
+	</tr>
+	<tr class="usual">
+		<td valign="top">
+			&nbsp;<b>{MESSAGE_MSG}</b>
+			<font class="small">
+			<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}?payment_id={payment_id}&final=1')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_SETTINGS_NOTE} 
+			<br>&nbsp;&nbsp;{LEARN_MORE_AND_SEE_NOTE})
+			</font>
+		</td>
+		<td>
+			<textarea name="user_mail_body_success" cols="80" rows="10">{user_mail_body_success}</textarea>
+		</td>
+	</tr>
+	<tr class="middle">
+		<td colspan="2">
+			<input type="checkbox" name="admin_sms_success" {admin_sms_success} value="1"> 
+			&nbsp;{SMS_SEND_ADMIN_MSF} {WHEN_RECURRING_ORDER_SUCCESS_MSG}&nbsp;
+		</td>
+	</tr>
+	<tr class="usual">
+		<td width="35%">
+			&nbsp;<b>{SMS_RECIPIENT_MSG}</b> ({SMS_RECIPIENT_ADMIN_DESC}) 
+		</td>
+		<td width="65%">
+			<input class="field" type="text" name="admin_sms_recipient_success" value="{admin_sms_recipient_success}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;<b>{SMS_ORIGINATOR_MSG}</b>
+		</td>
+		<td>
+			<input class="field" type="text" name="admin_sms_originator_success" value="{admin_sms_originator_success}" size="80" maxlength="16">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td valign="top">
+			&nbsp;<b>{SMS_MESSAGE_MSG}</b>
+			<font class="small">
+			<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}?payment_id={payment_id}&final=1')">{CLICK_HERE_MSG}</a> {LEARN_MORE_AND_SEE_NOTE})
+			</font>
+		</td>
+		<td>
+			<textarea name="admin_sms_message_success" cols="80" rows="3">{admin_sms_message_success}</textarea>
+		</td>
+	</tr>
+	<tr class="middle">
+		<td colspan="2">
+			<input type="checkbox" name="user_sms_success" {user_sms_success} value="1"> 
+			&nbsp;{SMS_SEND_USER_MSG} {WHEN_RECURRING_ORDER_SUCCESS_MSG}&nbsp;
+		</td>
+	</tr>
+	<tr class="usual">
+		<td width="35%">
+			&nbsp;<b>{SMS_RECIPIENT_MSG}</b> ('{CELL_PHONE_FIELD}' {FIELD_USED_IF_EMPTY_MSG})
+		</td>
+		<td width="65%">
+			<input class="field" type="text" name="user_sms_recipient_success" value="{user_sms_recipient_success}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;<b>{SMS_ORIGINATOR_MSG}</b>
+		</td>
+		<td>
+			<input class="field" type="text" name="user_sms_originator_success" value="{user_sms_originator_success}" size="80" maxlength="16">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td valign="top">
+			&nbsp;<b>{SMS_MESSAGE_MSG}</b>
+			<font class="small">
+			<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}?payment_id={payment_id}&final=1')">{CLICK_HERE_MSG}</a> {LEARN_MORE_AND_SEE_NOTE})
+			</font>
+		</td>
+		<td>
+			<textarea name="user_sms_message_success" cols="80" rows="3">{user_sms_message_success}</textarea>
+		</td>
+	</tr>
+	<tr class="middle">
+		<td></td>
+		<td>
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr><td class="middle">
+				<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'"> &nbsp;
+				<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+			</td></tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+</div>
+
+
+<div id="data_notify_pending" style="{notify_pending_style}">
+	<table width="100%" border="0" cellspacing="1" cellpadding="4">
+	<tr class="middle">
+		<td colspan="2">
+			<input type="checkbox" name="admin_notify_pending" {admin_notify_pending} value="1"> 
+			&nbsp;{EMAIL_SEND_ADMIN_MSF} {WHEN_RECURRING_ORDER_WAITING_MSG}&nbsp;
+		</td>
+	</tr>
+	<tr class="usual">
+		<td width="35%">
+			&nbsp;<b>To</b>
+			<div class="small">
+			&nbsp;(<a href="javascript:openWindow('{admin_email_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_FILEDS_NOTE})
+			</div>
+		</td>
+		<td width="65%">
+			<input class="field" type="text" name="admin_mail_to_pending" value="{admin_mail_to_pending}" size="80" maxlength="255">
+			<div class="small">({EG_MSG} <b>sales@yoursite.com</b>)</div>
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;<b>{EMAIL_FROM_MSG}</b>
+		</td>
+		<td>
+			<input class="field" type="text" name="admin_mail_from_pending" value="{admin_mail_from_pending}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_CC_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="admin_mail_cc_pending" value="{admin_mail_cc_pending}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_BCC_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="admin_mail_bcc_pending" value="{admin_mail_bcc_pending}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_REPLY_TO_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="admin_mail_reply_to_pending" value="{admin_mail_reply_to_pending}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_RETURN_PATH_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="admin_mail_return_path_pending" value="{admin_mail_return_path_pending}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;<b>{EMAIL_SUBJECT_MSG}</b>
+		</td>
+		<td>
+			<input class="field" type="text" name="admin_mail_subject_pending" value="{admin_mail_subject_pending}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;<b>{EMAIL_MESSAGE_TYPE_MSG}</b>
+		</td>
+		<td><!-- begin admin_mail_type_pending -->
+			<input type="radio" name="admin_mail_type_pending" {admin_mail_type_pending_checked} value="{admin_mail_type_pending_value}">{admin_mail_type_pending_description}<!-- end admin_mail_type_pending -->
+		</td>
+	</tr>
+	<tr class="usual">
+		<td valign="top">
+			&nbsp;<b>{MESSAGE_MSG}</b>
+			<font class="small">
+			<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}?payment_id={payment_id}&final=1')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_SETTINGS_NOTE} 
+			<br>&nbsp;&nbsp;{LEARN_MORE_AND_SEE_NOTE})
+			</font>
+		</td>
+		<td>
+			<textarea name="admin_mail_body_pending" cols="80" rows="10">{admin_mail_body_pending}</textarea>
+		</td>
+	</tr>
+	<tr class="middle">
+		<td colspan="2">
+			<input type="checkbox" name="user_notify_pending" {user_notify_pending} value="1"> 
+			&nbsp;{EMAIL_SEND_USER_MSG} {WHEN_RECURRING_ORDER_WAITING_MSG}&nbsp;
+		</td>
+	</tr>
+	<tr class="usual">
+		<td width="35%">
+			&nbsp;<b>{EMAIL_FROM_MSG}</b>
+			<div class="small">
+			&nbsp;(<a href="javascript:openWindow('{admin_email_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_FILEDS_NOTE})
+			</div>
+		</td>
+		<td width="65%">
+			<input class="field" type="text" name="user_mail_from_pending" value="{user_mail_from_pending}" size="80" maxlength="255">
+			<div class="small">({EG_MSG} <b>sales@yoursite.com</b>)</div>
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_CC_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="user_mail_cc_pending" value="{user_mail_cc_pending}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_BCC_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="user_mail_bcc_pending" value="{user_mail_bcc_pending}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_REPLY_TO_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="user_mail_reply_to_pending" value="{user_mail_reply_to_pending}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_RETURN_PATH_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="user_mail_return_path_pending" value="{user_mail_return_path_pending}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;<b>{EMAIL_SUBJECT_MSG}</b>
+		</td>
+		<td>
+			<input class="field" type="text" name="user_mail_subject_pending" value="{user_mail_subject_pending}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;<b>{EMAIL_MESSAGE_TYPE_MSG}</b>
+		</td>
+		<td><!-- begin user_mail_type_pending -->
+			<input type="radio" name="user_mail_type_pending" {user_mail_type_pending_checked} value="{user_mail_type_pending_value}">{user_mail_type_pending_description}<!-- end user_mail_type_pending -->
+		</td>
+	</tr>
+	<tr class="usual">
+		<td valign="top">
+			&nbsp;<b>{MESSAGE_MSG}</b>
+			<font class="small">
+			<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}?payment_id={payment_id}&final=1')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_SETTINGS_NOTE} 
+			<br>&nbsp;&nbsp;{LEARN_MORE_AND_SEE_NOTE})
+			</font>
+		</td>
+		<td>
+			<textarea name="user_mail_body_pending" cols="80" rows="10">{user_mail_body_pending}</textarea>
+		</td>
+	</tr>
+	<tr class="middle">
+		<td colspan="2">
+			<input type="checkbox" name="admin_sms_pending" {admin_sms_pending} value="1"> 
+			&nbsp;{SMS_SEND_ADMIN_MSF} {WHEN_RECURRING_ORDER_WAITING_MSG}&nbsp;
+		</td>
+	</tr>
+	<tr class="usual">
+		<td width="35%">
+			&nbsp;<b>{SMS_RECIPIENT_MSG}</b> ({SMS_RECIPIENT_ADMIN_DESC}) 
+		</td>
+		<td width="65%">
+			<input class="field" type="text" name="admin_sms_recipient_pending" value="{admin_sms_recipient_pending}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;<b>{SMS_ORIGINATOR_MSG}</b>
+		</td>
+		<td>
+			<input class="field" type="text" name="admin_sms_originator_pending" value="{admin_sms_originator_pending}" size="80" maxlength="16">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td valign="top">
+			&nbsp;<b>{SMS_MESSAGE_MSG}</b>
+			<font class="small">
+			<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}?payment_id={payment_id}&final=1')">{CLICK_HERE_MSG}</a> {LEARN_MORE_AND_SEE_NOTE})
+			</font>
+		</td>
+		<td>
+			<textarea name="admin_sms_message_pending" cols="80" rows="3">{admin_sms_message_pending}</textarea>
+		</td>
+	</tr>
+	<tr class="middle">
+		<td colspan="2">
+			<input type="checkbox" name="user_sms_pending" {user_sms_pending} value="1"> 
+			&nbsp;{SMS_SEND_USER_MSG} {WHEN_RECURRING_ORDER_WAITING_MSG}&nbsp;
+		</td>
+	</tr>
+	<tr class="usual">
+		<td width="35%">
+			&nbsp;<b>{SMS_RECIPIENT_MSG}</b> ('{CELL_PHONE_FIELD}' {FIELD_USED_IF_EMPTY_MSG})
+		</td>
+		<td width="65%">
+			<input class="field" type="text" name="user_sms_recipient_pending" value="{user_sms_recipient_pending}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;<b>{SMS_ORIGINATOR_MSG}</b>
+		</td>
+		<td>
+			<input class="field" type="text" name="user_sms_originator_pending" value="{user_sms_originator_pending}" size="80" maxlength="16">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td valign="top">
+			&nbsp;<b>{SMS_MESSAGE_MSG}</b>
+			<font class="small">
+			<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}?payment_id={payment_id}&final=1')">{CLICK_HERE_MSG}</a> {LEARN_MORE_AND_SEE_NOTE})
+			</font>
+		</td>
+		<td>
+			<textarea name="user_sms_message_pending" cols="80" rows="3">{user_sms_message_pending}</textarea>
+		</td>
+	</tr>
+	<tr class="middle">
+		<td></td>
+		<td>
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr><td class="middle">
+				<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'"> &nbsp;
+				<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+			</td></tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+</div>
+
+<div id="data_notify_failure" style="{notify_failure_style}">
+	<table width="100%" border="0" cellspacing="1" cellpadding="4">
+	<tr class="middle">
+		<td colspan="2">
+			<input type="checkbox" name="admin_notify_failure" {admin_notify_failure} value="1"> 
+			&nbsp;{EMAIL_SEND_ADMIN_MSF} {WHEN_RECURRING_ORDER_ERRORS_MSG}&nbsp;
+		</td>
+	</tr>
+	<tr class="usual">
+		<td width="35%">
+			&nbsp;<b>To</b>
+			<div class="small">
+			&nbsp;(<a href="javascript:openWindow('{admin_email_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_FILEDS_NOTE})
+			</div>
+		</td>
+		<td width="65%">
+			<input class="field" type="text" name="admin_mail_to_failure" value="{admin_mail_to_failure}" size="80" maxlength="255">
+			<div class="small">({EG_MSG} <b>sales@yoursite.com</b>)</div>
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;<b>{EMAIL_FROM_MSG}</b>
+		</td>
+		<td>
+			<input class="field" type="text" name="admin_mail_from_failure" value="{admin_mail_from_failure}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_CC_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="admin_mail_cc_failure" value="{admin_mail_cc_failure}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_BCC_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="admin_mail_bcc_failure" value="{admin_mail_bcc_failure}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_REPLY_TO_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="admin_mail_reply_to_failure" value="{admin_mail_reply_to_failure}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_RETURN_PATH_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="admin_mail_return_path_failure" value="{admin_mail_return_path_failure}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;<b>{EMAIL_SUBJECT_MSG}</b>
+		</td>
+		<td>
+			<input class="field" type="text" name="admin_mail_subject_failure" value="{admin_mail_subject_failure}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;<b>{EMAIL_MESSAGE_TYPE_MSG}</b>
+		</td>
+		<td><!-- begin admin_mail_type_failure -->
+			<input type="radio" name="admin_mail_type_failure" {admin_mail_type_failure_checked} value="{admin_mail_type_failure_value}">{admin_mail_type_failure_description}<!-- end admin_mail_type_failure -->
+		</td>
+	</tr>
+	<tr class="usual">
+		<td valign="top">
+			&nbsp;<b>{MESSAGE_MSG}</b>
+			<font class="small">
+			<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}?payment_id={payment_id}&final=1')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_SETTINGS_NOTE} 
+			<br>&nbsp;&nbsp;{LEARN_MORE_AND_SEE_NOTE})
+			</font>
+		</td>
+		<td>
+			<textarea name="admin_mail_body_failure" cols="80" rows="10">{admin_mail_body_failure}</textarea>
+		</td>
+	</tr>
+	<tr class="middle">
+		<td colspan="2">
+			<input type="checkbox" name="user_notify_failure" {user_notify_failure} value="1"> 
+			&nbsp;{EMAIL_SEND_USER_MSG} {WHEN_RECURRING_ORDER_ERRORS_MSG}&nbsp;
+		</td>
+	</tr>
+	<tr class="usual">
+		<td width="35%">
+			&nbsp;<b>{EMAIL_FROM_MSG}</b>
+			<div class="small">
+			&nbsp;(<a href="javascript:openWindow('{admin_email_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_FILEDS_NOTE})
+			</div>
+		</td>
+		<td width="65%">
+			<input class="field" type="text" name="user_mail_from_failure" value="{user_mail_from_failure}" size="80" maxlength="255">
+			<div class="small">({EG_MSG} <b>sales@yoursite.com</b>)</div>
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_CC_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="user_mail_cc_failure" value="{user_mail_cc_failure}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_BCC_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="user_mail_bcc_failure" value="{user_mail_bcc_failure}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_REPLY_TO_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="user_mail_reply_to_failure" value="{user_mail_reply_to_failure}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{EMAIL_RETURN_PATH_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="user_mail_return_path_failure" value="{user_mail_return_path_failure}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;<b>{EMAIL_SUBJECT_MSG}</b>
+		</td>
+		<td>
+			<input class="field" type="text" name="user_mail_subject_failure" value="{user_mail_subject_failure}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;<b>{EMAIL_MESSAGE_TYPE_MSG}</b>
+		</td>
+		<td><!-- begin user_mail_type_failure -->
+			<input type="radio" name="user_mail_type_failure" {user_mail_type_failure_checked} value="{user_mail_type_failure_value}">{user_mail_type_failure_description}<!-- end user_mail_type_failure -->
+		</td>
+	</tr>
+	<tr class="usual">
+		<td valign="top">
+			&nbsp;<b>{MESSAGE_MSG}</b>
+			<font class="small">
+			<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}?payment_id={payment_id}&final=1')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_SETTINGS_NOTE} 
+			<br>&nbsp;&nbsp;{LEARN_MORE_AND_SEE_NOTE})
+			</font>
+		</td>
+		<td>
+			<textarea name="user_mail_body_failure" cols="80" rows="10">{user_mail_body_failure}</textarea>
+		</td>
+	</tr>
+	<tr class="middle">
+		<td colspan="2">
+			<input type="checkbox" name="admin_sms_failure" {admin_sms_failure} value="1"> 
+			&nbsp;{SMS_SEND_ADMIN_MSF} {WHEN_RECURRING_ORDER_ERRORS_MSG}&nbsp;
+		</td>
+	</tr>
+	<tr class="usual">
+		<td width="35%">
+			&nbsp;<b>{SMS_RECIPIENT_MSG}</b> ({SMS_RECIPIENT_ADMIN_DESC}) 
+		</td>
+		<td width="65%">
+			<input class="field" type="text" name="admin_sms_recipient_failure" value="{admin_sms_recipient_failure}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;<b>{SMS_ORIGINATOR_MSG}</b>
+		</td>
+		<td>
+			<input class="field" type="text" name="admin_sms_originator_failure" value="{admin_sms_originator_failure}" size="80" maxlength="16">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td valign="top">
+			&nbsp;<b>{SMS_MESSAGE_MSG}</b>
+			<font class="small">
+			<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}?payment_id={payment_id}&final=1')">{CLICK_HERE_MSG}</a> {LEARN_MORE_AND_SEE_NOTE})
+			</font>
+		</td>
+		<td>
+			<textarea name="admin_sms_message_failure" cols="80" rows="3">{admin_sms_message_failure}</textarea>
+		</td>
+	</tr>
+	<tr class="middle">
+		<td colspan="2">
+			<input type="checkbox" name="user_sms_failure" {user_sms_failure} value="1"> 
+			&nbsp;{SMS_SEND_USER_MSG} {WHEN_RECURRING_ORDER_ERRORS_MSG}&nbsp;
+		</td>
+	</tr>
+	<tr class="usual">
+		<td width="35%">
+			&nbsp;<b>{SMS_RECIPIENT_MSG}</b> ('{CELL_PHONE_FIELD}' {FIELD_USED_IF_EMPTY_MSG})
+		</td>
+		<td width="65%">
+			<input class="field" type="text" name="user_sms_recipient_failure" value="{user_sms_recipient_failure}" size="80" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;<b>{SMS_ORIGINATOR_MSG}</b>
+		</td>
+		<td>
+			<input class="field" type="text" name="user_sms_originator_failure" value="{user_sms_originator_failure}" size="80" maxlength="16">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td valign="top">
+			&nbsp;<b>{SMS_MESSAGE_MSG}</b>
+			<font class="small">
+			<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}?payment_id={payment_id}&final=1')">{CLICK_HERE_MSG}</a> {LEARN_MORE_AND_SEE_NOTE})
+			</font>
+		</td>
+		<td>
+			<textarea name="user_sms_message_failure" cols="80" rows="3">{user_sms_message_failure}</textarea>
+		</td>
+	</tr>
+	<tr class="middle">
+		<td></td>
+		<td>
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr><td class="middle">
+				<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'"> &nbsp;
+				<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+			</td></tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+</div>
+
+
+</form>
+</td></tr></table>
+
+{admin_footer}
+
+</body>
+</html>                                                    

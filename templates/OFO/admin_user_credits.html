@@ -1,0 +1,199 @@
+<html><head><title>{CREDITS_MSG}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<style type="text/css">
+<!--
+	.row1 { background-color:#f0f0f0; }
+	.row2 { background-color:#fffeee; }
+	.rowWarn { background-color: #FFd0d0; }
+
+//-->
+</style>
+<script language="JavaScript" src="../js/calendar.js"></script>
+<script language="JavaScript">
+<!--
+	function clearSearch() {
+		document.search_form.credits_sd.value = "";
+		document.search_form.credits_ed.value = "";
+		document.search_form.credits_tp.selectedIndex = 0;
+	
+		document.search_form.submit();
+
+	}
+//-->
+</script>
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_users_href}">{SITE_USERS_MSG}</a>&nbsp;&gt;
+			<a href="{admin_user_href}?user_id={user_id}">{user_name}</a>&nbsp;&gt;
+			<b>{CREDITS_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+	<tr>
+		<td valign="top">
+
+			<table border="0" cellpadding="2" cellspacing="2">
+				<form action="{admin_user_credits_href}" name="search_form">
+				<input type="hidden" name="user_id" value="{user_id}">
+				<!-- BEGIN errors -->
+				<tr>
+					<td colspan="2">
+					&nbsp;<div align="center" class="error"><font style="font-size:8pt">{errors_list}</font></div>&nbsp;
+					</td>
+				</tr>
+				<!-- END errors -->
+				<tr>
+					<td colspan="2"><b>{SEARCH_TITLE}:</b></td>
+				</tr>
+				<tr>
+					<td>{FROM_DATE_MSG} ({date_edit_format}):</td>
+					<td>
+					<input type="text" name="credits_sd" value="{credits_sd}" class="search">
+					<A HREF="#"
+					onClick="setDateField(document.search_form.credits_sd, '{date_edit_format}');
+					top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+					<IMG SRC="../images/calendar.gif" BORDER=0><font size=1>{CALENDAR_MSG}</font></A>
+					</td>
+				</tr>
+				<tr>
+					<td>{TO_DATE_MSG} ({date_edit_format}):</td>
+					<td>
+					<input type="text" name="credits_ed" value="{credits_ed}" class="search">
+					<A HREF="#"
+					onClick="setDateField(document.search_form.credits_ed, '{date_edit_format}');
+					top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+					<IMG SRC="../images/calendar.gif" BORDER=0><font size=1>{CALENDAR_MSG}</font></A>
+					</td>
+				</tr>
+				<tr>
+					<td>{TYPE_MSG}:</td>
+					<td>
+						<select name="credits_tp"><!-- begin credits_tp -->
+							<option {credits_tp_selected} value="{credits_tp_value}">{credits_tp_description}<!-- end credits_tp -->
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" value="Search" class="submit">&nbsp;<input type="button" value="{CLEAR_BUTTON}" class="submit" onClick="clearSearch()"></td>
+				</tr>
+				</form>
+			</table>
+
+		</td>
+		<td valign="top" align="right" valign="top">
+			<table cellpadding="2" cellspacing="2" border="0">
+				<tr>
+					<td colspan="5">&nbsp;<b>Credits Stats:</b></td>
+				</tr>
+				<tr class="middle" align="center">
+					<td></td>
+					<td><a href="{admin_user_credits_href}?user_id={user_id}&credits_sd={today_date}&credits_ed={today_date}">{TODAY_MSG}</a></td>
+					<td><a href="{admin_user_credits_href}?user_id={user_id}&credits_sd={yesterday_date}&credits_ed={yesterday_date}">{YESTERDAY_MSG}</a></td>
+					<td><a href="{admin_user_credits_href}?user_id={user_id}&credits_sd={week_date}&credits_ed={today_date}">{LAST_SEVEN_DAYS_MSG}</a></td>
+					<td><a href="{admin_user_credits_href}?user_id={user_id}&credits_sd={month_date}&credits_ed={today_date}">{THIS_MONTH_FMSG}</a></td>
+				</tr>
+				<!-- begin types_stats -->
+				<tr class="usual" align="right">
+					<td align="left">&nbsp;<a href="{admin_users_credits_href}?user_id={user_id}&credits_tp={type_id}">{type_name}</a>&nbsp;</td>
+					<td>{credits_today}</td>
+					<td>{credits_yesterday}</td>
+					<td>{credits_week}</td>
+					<td>{credits_month}</td>
+				</tr>
+				<!-- end types_stats -->
+				<tr class="middle" align="right">
+					<td>{TOTAL_MSG}:&nbsp;</td>
+					<td>{credits_total_today}</td>
+					<td>{credits_total_yesterday}</td>
+					<td>{credits_total_week}</td>
+					<td>{credits_total_month}</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+<br>
+
+<fieldset>
+<legend>{CREDITS_MSG}</legend>
+
+<table border="0" cellspacing="1" cellpadding="3" width="100%">
+<form name="credits" action="{admin_user_credits_href}" method="POST">
+<!-- begin sorters -->
+<tr align="center" class="middle" valign="top">
+	<td>
+		{sorter_credit_amount}
+	</td>
+	<td>
+		{sorter_date_added}
+	</td>
+	<td>
+		{sorter_order_id}
+	</td>
+	<td>
+		{sorter_credit_type}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- end sorters --><!-- BEGIN records -->
+<tr class="{row_style}">
+	<td align="right">
+		&nbsp;{credit_amount}&nbsp;
+	</td>
+	<td align="center">
+		&nbsp;{date_added}
+	</td>
+	<td align="center">
+		<!-- begin order_link -->
+		&nbsp;<a href="{admin_order_href}?order_id={order_id}">{order_id}</a>
+		<!-- end order_link -->
+	</td>
+	<td align="center">
+		&nbsp;{credit_type}&nbsp;
+	</td>
+	<td align="center">
+		<a href="{admin_user_credit_url}">{EDIT_MSG}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="5">
+		&nbsp; {NO_RECORDS_MSG}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="5">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+		<tr class="middle">
+			<td>&nbsp;
+				<a href="{admin_user_credit_new_url}">Add Credits</a>
+			</td><!-- begin navigator_block -->
+			<td align="right">&nbsp;{navigator}&nbsp;</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</form>
+</table>	
+
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

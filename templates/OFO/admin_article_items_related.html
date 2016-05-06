@@ -1,0 +1,126 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {ARTICLE_RELATED_PRODUCTS_TITLE} ::..</title>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript" type= "text/javascript" src="../js/ajax.js"></script>
+<script language="JavaScript" type= "text/javascript" src="../js/ajax_list_tree.js"></script>
+<script language="JavaScript">
+<!--
+function addLeafFormat(id, text, tree_name, action_object_id) {
+	
+	var return_text = "<div class='tree_leaf_button' ";
+		return_text += " onClick=\"removeListItem('" + id + "', '" + tree_name +"', '" +  action_object_id + "')\"";
+		return_text += "><img src='../images/icons/minus_small.gif'></div>";
+		return_text += "<div class=\"tree_leaf_title\"";
+		return_text += " onClick=\"selectListItem('" + id + "', '" + tree_name +"', '" +  action_object_id + "')\"";
+		return_text += " onMouseOver=\"addClassName(this, 'tree_leaf_title_hover')\"";
+		return_text += " onMouseOut=\"removeClassName(this, 'tree_leaf_title_hover')\"";
+		return_text += " >";
+	    return_text += text;
+		return_text += "</div>";
+	return return_text;
+}
+//-->
+</script>
+</head>
+
+<body class="commonbg">
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header">
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_articles_top_href}">{ARTICLES_TITLE}</a>&nbsp;&gt;&nbsp;<!-- BEGIN tree --><a
+			href="{admin_articles_href}?category_id={tree_cat_id}">{tree_cat_name}</a>&nbsp;&gt;&nbsp;<!-- END tree --><a
+			href="{admin_articles_href}?category_id={tree_current_id}">{tree_current_name}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_article_href}?category_id={category_id}&article_id={article_id}">{article_title}</a>&nbsp;&gt;&nbsp;<b>{ARTICLE_RELATED_PRODUCTS_TITLE}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<table cellspacing="0" cellpadding="0" border="0">
+	<tr><!-- BEGIN tabs -->
+			<td><div id="{tab_id}" class="{tab_class}"><a class="blackSm" href="{tab_url}">{tab_title}</a></td><!-- END tabs -->
+	</tr>
+</table>
+
+<!-- begin errors -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr align="center">
+	<td>
+		<div class="error">{errors_list}</div>
+	</td>
+</tr>
+</table><!-- end errors -->
+					
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border: 1px solid #999;">
+<tr align="center">
+	<td>
+		<form action="{admin_item_related_href}" name="record" method="POST" onSubmit="saveListItems('related_ids', 'products_ajax_tree', 'selected_related_ids');">
+			<input type="hidden" name="operation" value="save">
+			<input type="hidden" name="item_id" value="{item_id}">
+			<input type="hidden" name="category_id" value="{category_id}">
+			<input type="hidden" name="related_ids" value="">
+			
+	  		<table width="100%" border="0" cellspacing="1" cellpadding="4">
+	  			
+			<tr align="center" class="middle">
+				<td width="450">{AVAILABLE_PRODCUTS_MSG}</td>
+				<td width="450" colspan="2">{ARTICLE_RELATED_PRODUCTS_TITLE}</td>
+			</tr>
+			<tr class="usual" align="center">
+				<td align="left" valign="top" width="450">										
+					<div id="products" class="browseProducts">
+						{products_ajax_tree}			
+					</div>
+				</td>			
+				<td align="left" valign="top" width="400">
+					<div class='tree_outer' style="width:400px;">
+						<ul id='selected_related_ids' class='tree'><!-- begin related_items -->
+						<li class='tree_leaf' id='selected_related_ids_{related_id}'>
+							<div class='tree_leaf_button'
+								onClick="removeListItem('{related_id}', 'products_ajax_tree', 'selected_related_ids')"
+							>
+								<img src='../images/icons/minus_small.gif'>
+							</div>
+							<div class="tree_leaf_title" 
+								onClick="selectListItem('{related_id}', 'products_ajax_tree', 'selected_related_ids');"
+								onMouseOver="addClassName(this, 'tree_leaf_title_hover')"
+								onMouseOut="removeClassName(this, 'tree_leaf_title_hover')">								
+								{related_name}
+							</div>
+						</li><!-- end related_items --></ul>
+					</div>
+				</td>
+				<td align="left" valign="top" width="25">
+						<a onClick="moveSelectedListItem(-1, 'products_ajax_tree', 'selected_related_ids'); return false;"><img src='../images/icons/up.jpg' border='0' width='16' height='16' alt='{MOVE_MSG} Up'></a>
+						<br/>
+						<a onClick="moveSelectedListItem(1, 'products_ajax_tree', 'selected_related_ids'); return false;"><img src='../images/icons/down.jpg' border='0' width='16' height='16' alt='{MOVE_MSG} Down'></a>				
+				</td>
+			</tr>
+			<tr align="right" class="middle">
+				<td colspan="3">
+					<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;
+					<input class="submit" type="submit" value="{APPLY_BUTTON}" onCLick="document.record.operation.value='apply'">&nbsp;&nbsp;
+					<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">&nbsp;&nbsp;
+				</td>
+			</tr>
+			</table>
+		</form>
+		
+	</td>
+</tr>
+</table>
+<script language="JavaScript">
+<!--
+document.onmousedown = mouseDown;
+//-->
+</script>
+{admin_footer}
+</body>
+</html>

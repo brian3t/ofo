@@ -1,0 +1,112 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_CUSTOM_FIELD_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+
+<body class="commonbg">
+{admin_header}
+
+<form action="{admin_orders_bom_column_href}" name="record" method="post">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="column_id" value="{column_id}">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+
+			<table cellspacing="0" cellpadding="0" border="0" width="100%" align="center">
+			<tr>
+				<td class="usual">
+					&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+					href="{admin_orders_href}">{ORDERS_MAINTENANCE_MSG}</a>&nbsp;&gt;&nbsp;<a
+					href="{admin_orders_bom_settings_href}?tab=custom_columns">{BOM_SETTINGS_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_CUSTOM_FIELD_MSG}</b>
+				</td>
+				<!-- begin sitelist -->
+				<td class="usual" align="right">
+					{SELECT_CURRENT_SITE_MSG}&nbsp;
+					<select name="site_id"><!-- begin site_id -->
+						<option {site_id_selected} value="{site_id_value}">{site_id_description}<!-- end site_id -->
+					</select>		
+				</td>
+				<!-- end sitelist -->
+			</tr>
+			</table>
+
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_CUSTOM_COLUMN_MSG}</legend>
+<table cellspacing="1" cellpadding="4" border="0" align="center" width="100%">
+
+<!-- BEGIN errors -->
+<tr>
+	<td colspan="8" class="usual" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{SHOW_COLUMN_MSG}
+	</td>
+	<td><!-- begin column_show -->
+		<input type="radio" name="column_show" {column_show_checked} value="{column_show_value}">{column_show_description}<!-- end column_show -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{COLUMN_ORDER_MSG} *
+	</td>
+	<td>
+		&nbsp;<input class="field" type="text" name="column_order" value="{column_order}" size="12">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{COLUMN_NAME_MSG} *
+	</td>
+	<td>
+		&nbsp;<input class="field" type="text" name="column_name" value="{column_name}" size="60">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SOURCE_TYPE_MSG} *
+	</td>
+	<td>
+		&nbsp;<select name="source_type"><!-- begin source_type -->
+			<option {source_type_selected} value="{source_type_value}">{source_type_description}<!-- end source_type -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SOURCE_NAME_MSG} *
+	</td>
+	<td>
+		&nbsp;<input class="field" type="text" name="source_name" value="{source_name}" size="60">
+	</td>
+</tr>
+<tr class="middle">
+	<td></td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onCLick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">&nbsp;
+	</td>
+</tr>
+
+</form>
+</table>
+</fieldset>
+
+	
+{admin_footer}
+</body>
+</html>

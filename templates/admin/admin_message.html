@@ -1,0 +1,81 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_MESSAGE_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_messages_href}?language_code={language_code}&section={section}&message_search={message_search}">{MESSAGES_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_MESSAGE_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+<!-- BEGIN block_edit_message -->
+<fieldset>
+<legend>{EDIT_MESSAGE_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<form action="{admin_message_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="section" value="{section}">
+<input type="hidden" name="language_code" value="{language_code}">
+<input type="hidden" name="add_new" value="{add_new}">
+<input type="hidden" name="message_search" value="{message_search}">
+<input type="hidden" name="constant_name" value="{constant_name}">
+<input type="hidden" name="return_page" value="{return_page}">
+
+
+<table width="100%" border="0" cellspacing="1" cellpadding="6" align="center">
+<!-- BEGIN errors -->
+<tr>
+	<td colspan="2" class="usual" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr>
+<!-- END errors -->
+<tr class="usual">
+	<td width="70">
+		&nbsp;<b>{ADMIN_CONSTANT_MSG}</b>
+	</td>
+	<td>
+		<input class="field" type="text" name="constant_text" value="{constant_text}" size="40" maxlength="128">
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{MESSAGE_MSG}</b>
+	</td>
+	<td>
+		<textarea class="field" cols="60" rows="5" name="message_text">{message_text}</textarea>
+	</td>
+</tr>
+<tr>
+	<td class="middle" colspan="2" align="center">
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onclick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</form>
+
+	</td>
+</tr>
+</table>
+</fieldset>
+<!-- END block_edit_message -->
+
+{admin_footer}
+
+</body></html>

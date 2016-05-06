@@ -1,0 +1,71 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{PREDEFINED_TYPES_MSG}</title>
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<b>{PREDEFINED_TYPES_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+<fieldset>
+<legend>{PREDEFINED_TYPES_MSG}</legend>
+<table border="0" cellspacing="1" cellpadding="6" width="100%"><!-- begin titles -->
+<tr align="center" class="middle">
+	<td width="10%">
+		{sorter_type_id}
+	</td>
+	<td width="70%">
+		{sorter_type_name}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- end titles --><!-- BEGIN records -->
+<tr class="usual" align="center">
+	<td>
+		{type_id}
+	</td>
+	<td align="left">
+		&nbsp;{type_name}
+	</td>
+	<td>
+		<a href="{admin_support_pretype_url}">{EDIT_MSG}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="3">
+		&nbsp;{NO_RECORDS}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="3">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+		<tr class="middle">
+			<td>
+				&nbsp;<a href="{admin_support_pretype_new_url}">{ADD_NEW_MSG}</a>
+			</td><!-- begin navigator_block -->
+			<td align="right">&nbsp;{navigator}&nbsp;</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>	
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

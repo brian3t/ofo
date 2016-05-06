@@ -1,0 +1,56 @@
+
+<table>
+<tr>
+	<td colspan="2" align="right">
+		<form name="google_checkout" action="{order_info_url}" method="POST" onSubmit="return checkGoogleDetails();">
+		<input type="hidden" name="operation" value="google_checkout">
+		<input type="hidden" name="postcode_required" value="{postcode_required}">
+		<input type="hidden" name="state_required" value="{state_required}">
+		<input type="hidden" name="country_required" value="{country_required}">
+		<table cellspacing="3" cellpadding="0" border="0">
+		<tr>
+			<td></td><td align="center">&ndash;&ndash; or use &ndash;&ndash;</td>
+		</tr>
+		<tr>
+			<td valign="top">
+
+				<!-- begin google_country_select -->
+				<span id="google_country_name">Country</span> <span class="asterix">{country_required}</span> 
+				<select style="font-size: 8pt; width: 200px;" name="google_country_id"><!-- begin google_country_id -->
+					<option {google_country_id_selected} value="{google_country_id_value}">{google_country_id_description}<!-- end google_country_id -->
+				</select>
+				<!-- end google_country_select -->
+				<!-- begin google_country_hidden -->
+				<input type="hidden" name="google_country_id" value="{google_country_id_value}">
+				<!-- end google_country_hidden -->
+	    
+				<!-- begin google_state_select -->
+				<span id="google_state_name">State</span> <span class="asterix">{state_required}</span>
+				<select style="font-size: 8pt;" name="google_state_id"><!-- begin google_state_id -->
+					<option {google_state_id_selected} value="{google_state_id_value}">{google_state_id_description}<!-- end google_state_id -->
+				</select>
+				<!-- end google_state_select -->
+				<!-- begin google_state_hidden -->
+				<input type="hidden" name="google_state_id" value="{google_state_id_value}">
+				<!-- end google_state_hidden -->
+	    
+				<!-- begin google_postcode_textbox -->
+				<span id="google_postcode_name">Postcode</span> <span class="asterix">{postcode_required}</span>
+				<input style="font-size: 8pt;" class="text" type="text" name="google_postcode" value="{google_postcode}" size="8" maxlength="16">
+				<!-- end google_postcode_textbox  -->
+				<!-- begin google_postcode_hidden -->
+				<input type="hidden" name="google_postcode" value="{google_postcode_value}">
+				<!-- end google_postcode_hidden -->
+
+			</td>
+			<td>
+				<input type="image" name="Google Checkout" alt="Google Checkout" height="43" width="160" 
+					src="http://checkout.google.com/buttons/checkout.gif?merchant_id={google_merchant_id}&w=160&h=43&style=white&variant=text&loc=en_US">
+			</td>
+		</tr>
+		</table>
+		</form>
+	</td>
+</tr>
+</table>
+

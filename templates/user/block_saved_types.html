@@ -1,0 +1,49 @@
+<div id="saved_types_shadow" class="wishlist-opacity" style="display: none;" onClick="hideSavedTypes();return false;">
+</div>
+
+<div id="saved_types_win" class="wishlist-shadow" style="display: none;">
+<div class="wishlist-block">
+<div class="wishlist-img-close" align="right"><a href="#" onClick="hideSavedTypes();return false;"><img src="images/icons/close.gif" border="0" alt=""></a></div>
+
+<div class="wishlist-descr">
+
+<form name="saved_types">
+<input type="hidden" name="saved_types_total" value="{saved_types_total}">
+<input type="hidden" name="prev_type_id" value="{prev_type_id}">
+<input type="hidden" name="form_id" value="">
+
+<!-- begin saved_types_selection -->
+<div>
+	Please select a type for selected product:<br>
+	<select name="type_id" onChange="changeSavedType();"><!-- begin saved_types_options -->
+		<option {type_id_selected} value="{type_id}">{type_name}</option><!-- end saved_types_options -->
+	</select>
+
+	<span class="submit"><input class="submit" type="button" value="{ADD_TO_WISHLIST_MSG}" onClick="addToWishlist();"></span>
+</div>
+
+<br>
+
+<!-- begin saved_types_descs -->
+<div id="type_desc_{type_id}" style="{type_desc_style}">{type_desc}</div>
+<!-- end saved_types_descs -->
+
+<!-- end saved_types_selection -->
+
+<!-- begin saved_type_info -->
+<div>{type_desc}</div>
+<br>
+<input type="hidden" name="type_id" value="{type_id}">
+<div>
+	<span class="submit"><input class="submit" type="button" value="{ADD_TO_WISHLIST_MSG}" onClick="addToWishlist();"></span>
+</div>
+
+<!-- end saved_type_info -->
+
+</form>
+
+</div>
+
+</div>
+</div>
+

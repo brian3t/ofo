@@ -1,0 +1,147 @@
+StartInserted aaia id: 1976 OLDSMOBILE Cutlass Tiara. 
+Inserted aaia id: 1980 DODGE RD200. 
+Inserted aaia id: 1978 PONTIAC Laurentian. 
+Inserted aaia id: 1979 PONTIAC Laurentian. 
+Inserted aaia id: 1980 DODGE RD200. 
+Inserted aaia id: 1980 DODGE D400. 
+Inserted aaia id: 1981 DODGE D400. 
+Inserted aaia id: 1980 DODGE D450. 
+Inserted aaia id: 1981 DODGE D450. 
+Inserted aaia id: 1998 PLYMOUTH Voyager. 
+Model not found, nothing to print so am exitingInserted aaia id: 2013 LINCOLN MKT. 
+Inserted aaia id: 2015 FORD Taurus. 
+Inserted aaia id: 2015 FORD Explorer. 
+Inserted aaia id: 2015 FORD Special Service Police Sedan. 
+Inserted aaia id: 2015 LINCOLN MKT. 
+Inserted aaia id: 2015 FORD Edge. 
+Inserted aaia id: 2016 FORD Special Service Police Sedan. 
+Inserted aaia id: 2016 LINCOLN MKT. 
+Inserted aaia id: 2016 FORD Taurus. 
+Inserted aaia id: 2016 FORD Explorer. 
+Inserted aaia id: 2002 FORD E-550 Econoline Super Duty. 
+Inserted aaia id: 2015 FORD E-350 Super Duty. 
+Inserted aaia id: 2015 FORD E-450 Super Duty. 
+Inserted aaia id: 2016 FORD E-350 Super Duty. 
+Inserted aaia id: 2016 FORD E-450 Super Duty. 
+Inserted aaia id: 2009 FORD F-450 Super Duty. 
+Inserted aaia id: 2014 FORD F-550 Super Duty. 
+Inserted aaia id: 2015 FORD F-550 Super Duty. 
+Inserted aaia id: 2016 FORD F-450 Super Duty. 
+Inserted aaia id: 2016 FORD F-550 Super Duty. 
+Inserted aaia id: 2015 FORD F-150. 
+Inserted aaia id: 2015 FORD Edge. 
+Inserted aaia id: 2016 FORD F-150. 
+Inserted aaia id: 2015 RAM 1500. 
+Inserted aaia id: 2016 RAM 1500. 
+Inserted aaia id: 2014 FORD Police Interceptor Utility. 
+Inserted aaia id: 2015 FORD F-150. 
+Inserted aaia id: 2015 FORD Flex. 
+Inserted aaia id: 2015 FORD Taurus. 
+Inserted aaia id: 2015 FORD Expedition. 
+Inserted aaia id: 2015 FORD Explorer. 
+Inserted aaia id: 2015 NISSAN Murano. 
+Inserted aaia id: 2015 INFINITI QX60. 
+Inserted aaia id: 2015 FORD Police Interceptor Sedan. 
+Inserted aaia id: 2015 FORD Police Interceptor Utility. 
+Inserted aaia id: 2015 LINCOLN MKT. 
+Inserted aaia id: 2015 NISSAN Pathfinder. 
+Inserted aaia id: 2015 NISSAN Quest. 
+Inserted aaia id: 2015 LINCOLN MKS. 
+Inserted aaia id: 2015 FORD Edge. 
+Inserted aaia id: 2016 FORD Explorer. 
+Inserted aaia id: 2016 FORD Edge. 
+Inserted aaia id: 2016 LINCOLN Navigator. 
+Inserted aaia id: 2016 FORD Expedition. 
+Inserted aaia id: 2016 FORD Police Interceptor Utility. 
+Inserted aaia id: 2016 FORD Police Interceptor Sedan. 
+Inserted aaia id: 2016 NISSAN Maxima. 
+Inserted aaia id: 2016 FORD F-150. 
+Inserted aaia id: 2016 FORD Flex. 
+Inserted aaia id: 2016 LINCOLN MKS. 
+Inserted aaia id: 2016 LINCOLN MKT. 
+Inserted aaia id: 2016 FORD Taurus. 
+Inserted aaia id: 2015 RAM 1500. 
+Inserted aaia id: 2016 RAM 1500. 
+Inserted aaia id: 2015 FORD Police Interceptor Sedan. 
+Inserted aaia id: 2015 FORD Police Interceptor Utility. 
+Inserted aaia id: 2015 LINCOLN MKX. 
+Inserted aaia id: 2015 LINCOLN MKT. 
+Inserted aaia id: 2015 MAZDA CX-9. 
+Inserted aaia id: 2015 LINCOLN MKS. 
+Inserted aaia id: 2016 FORD Police Interceptor Utility. 
+Inserted aaia id: 2016 FORD Police Interceptor Sedan. 
+Inserted aaia id: 2016 LINCOLN MKS. 
+Inserted aaia id: 2016 LINCOLN MKT. 
+Inserted aaia id: 2015 NISSAN NV1500. 
+Inserted aaia id: 2015 NISSAN NV2500. 
+Inserted aaia id: 2015 NISSAN NV3500. 
+Inserted aaia id: 2015 NISSAN Xterra. 
+Inserted aaia id: 2015 NISSAN Frontier. 
+Inserted aaia id: 2016 NISSAN Frontier. 
+Inserted aaia id: 2016 NISSAN NV1500. 
+Inserted aaia id: 2016 NISSAN NV2500. 
+Inserted aaia id: 2016 NISSAN NV3500. 
+Inserted aaia id: 2014 CHEVROLET Silverado 1500. 
+Inserted aaia id: 2014 GMC Sierra 1500. 
+Inserted aaia id: 2015 CHEVROLET Silverado 1500. 
+Inserted aaia id: 2015 GMC Sierra 1500. 
+Inserted aaia id: 2016 CHEVROLET Silverado 1500. 
+Model not found, nothing to print so am exitingModel not found, nothing to print so am exitingModel not found, nothing to print so am exitingInserted aaia id: 1993 CADILLAC Commercial Chassis. 
+Inserted aaia id: 2015 FORD F-150. 
+Inserted aaia id: 2016 FORD F-150. 
+Inserted aaia id: 2015 CHEVROLET Suburban. 
+Inserted aaia id: 2015 GMC Yukon XL. 
+Inserted aaia id: 2015 CHEVROLET Silverado 1500. 
+Inserted aaia id: 2015 GMC Sierra 1500. 
+Inserted aaia id: 2016 CHEVROLET Silverado 1500. 
+Inserted aaia id: 2016 CHEVROLET Suburban. 
+Inserted aaia id: 2016 CHEVROLET Tahoe. 
+Inserted aaia id: 2016 GMC Yukon. 
+Inserted aaia id: 2016 GMC Yukon XL. 
+Model not found, nothing to print so am exitingModel not found, nothing to print so am exitingInserted aaia id: 2003 FORD E-450 Super Duty. 
+Inserted aaia id: 2000 FORD Mustang. 
+Inserted aaia id: 2015 FORD E-350 Super Duty. 
+Inserted aaia id: 2015 FORD E-450 Super Duty. 
+Inserted aaia id: 1999 FORD E-350 Super Duty. 
+Inserted aaia id: 2000 FORD E-350 Super Duty. 
+Inserted aaia id: 2001 FORD E-350 Super Duty. 
+Inserted aaia id: 2002 FORD E-350 Super Duty. 
+Inserted aaia id: 2003 FORD E-350 Super Duty. 
+Inserted aaia id: 2016 FORD E-350 Super Duty. 
+Inserted aaia id: 2016 FORD E-450 Super Duty. 
+Inserted aaia id: 2015 NISSAN NV2500. 
+Inserted aaia id: 2015 NISSAN NV3500. 
+Inserted aaia id: 2015 NISSAN Armada. 
+Inserted aaia id: 2015 NISSAN Titan. 
+Inserted aaia id: 2016 NISSAN NV2500. 
+Inserted aaia id: 2016 NISSAN NV3500. 
+Inserted aaia id: 1994 BUICK Commercial Chassis. 
+Inserted aaia id: 1995 BUICK Commercial Chassis. 
+Inserted aaia id: 1996 BUICK Commercial Chassis. 
+Inserted aaia id: 2013 RAM 2500. 
+Inserted aaia id: 2013 RAM 3500. 
+Inserted aaia id: 2015 RAM 2500. 
+Inserted aaia id: 2015 RAM 3500. 
+Inserted aaia id: 2015 RAM 1500. 
+Inserted aaia id: 2016 RAM 1500. 
+Inserted aaia id: 2016 RAM 2500. 
+Inserted aaia id: 2016 RAM 3500. 
+Inserted aaia id: 2009 CADILLAC Escalade. 
+Inserted aaia id: 2016 CHEVROLET Silverado 2500 HD. 
+Inserted aaia id: 2016 CHEVROLET Silverado 3500 HD. 
+Model not found, nothing to print so am exitingModel not found, nothing to print so am exitingModel not found, nothing to print so am exitingModel not found, nothing to print so am exitingModel not found, nothing to print so am exitingModel not found, nothing to print so am exitingInserted aaia id: 2014 CHEVROLET Silverado 1500. 
+Inserted aaia id: 2014 GMC Sierra 1500. 
+Inserted aaia id: 2015 GMC Yukon. 
+Inserted aaia id: 2015 CADILLAC Escalade. 
+Inserted aaia id: 2015 CADILLAC Escalade ESV. 
+Inserted aaia id: 2015 GMC Yukon XL. 
+Inserted aaia id: 2015 CHEVROLET Silverado 1500. 
+Inserted aaia id: 2015 GMC Sierra 1500. 
+Inserted aaia id: 2016 CADILLAC Escalade. 
+Inserted aaia id: 2016 CADILLAC Escalade ESV. 
+Inserted aaia id: 2016 CHEVROLET Silverado 1500. 
+Inserted aaia id: 2016 GMC Yukon. 
+Inserted aaia id: 2016 GMC Yukon XL. 
+Inserted aaia id: 2016 FORD F-250 Super Duty. 
+Inserted aaia id: 2016 FORD F-350 Super Duty. 
+No enginebase found, No enginebase found, No enginebase found, No enginebase found, No enginebase found, No enginebase found, No enginebase found, No enginebase found, No enginebase found, No enginebase found, No enginebase found, No enginebase found, No enginebase found, No enginebase found, No enginebase found, No enginebase found, No enginebase found, No enginebase found, No enginebase found, No enginebase found, Model not found, nothing to print so am exitingModel not found, nothing to print so am exitingModel not found, nothing to print so am exitingModel not found, nothing to print so am exiting

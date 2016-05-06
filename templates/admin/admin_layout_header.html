@@ -1,0 +1,167 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {LAYOUT_MSG} {HEADER_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<style>
+<!--
+.topTab {font-size:11px; border-bottom:#919b9c 1px solid; border-left:#91a7b4 1px solid; border-right:#91a7b4 1px solid; border-top:#91a7b4 1px solid; padding-top:3px; padding-right:8px; padding-left:8px; padding-bottom:2px; margin:3px 3px 0px 0px; cursor:hand; font-family:Verdana, sans-serif; background:#F5F3EB; moz-border-radius:4px 4px 0px 0px; whitespace:nowrap}
+.topTabActive {font-size:11px; border-right:#919b9c 1px solid; border-left:#919b9c 1px solid; border-top:#FF8200 2px solid; border-bottom:0px solid; padding-top:5px; padding-bottom:4px; padding-right:9px; padding-left:9px; margin:3px 3px 0px 0px; font-weight:bold; cursor:default; font-family:Verdana, sans-serif; background-color:#FCFFD5; moz-border-radius:4px 4px 0px 0px; whitespace:nowrap}
+//-->
+</style>
+
+<script language="JavaScript">
+<!--
+
+	function moveRow(direction, rowNumber) {
+		var totalLinks = document.record.number_links.value;
+		if (direction == "up" && rowNumber == 1) {
+			alert("You are at the top.");
+		} else if (direction == "down" && rowNumber == totalLinks) {
+			alert("You are at the bottom.");
+		} else {
+			var newRowNumber = (direction == "up") ? (rowNumber - 1) : (rowNumber + 1);
+			var textboxes = new Array("menu_title", "menu_url", "menu_image", "menu_image_active");
+			var checkboxes = new Array("show_non_logged", "show_logged", "links_delete");
+			for(var i = 0; i < textboxes.length; i++) {
+				var controlValue = eval("document.record." + textboxes[i] + "_" + rowNumber + ".value");
+				eval("document.record." + textboxes[i] + "_" + rowNumber + ".value = document.record." + textboxes[i] + "_" + newRowNumber + ".value");
+				eval("document.record." + textboxes[i] + "_" + newRowNumber + ".value = '" + controlValue + "'");
+			}
+			for(var i = 0; i < checkboxes.length; i++) {
+				var checkedValue = eval("document.record." + checkboxes[i] + "_" + rowNumber + ".checked");
+				eval("document.record." + checkboxes[i] + "_" + rowNumber + ".checked = document.record." + checkboxes[i] + "_" + newRowNumber + ".checked");
+				eval("document.record." + checkboxes[i] + "_" + newRowNumber + ".checked = " + checkedValue);
+			}
+		}
+	}
+
+//-->
+</script>
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_layouts_href}">{LAYOUTS_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_layout_href}?layout_id={layout_id}">{layout_name}</a>&nbsp;&gt;
+			<b>{SITE_NAVIGATION_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<!-- tabs -->
+<table height=10 cellspacing=0 cellpadding=0 border=0>
+<tr height=10>
+	<td><div id="tab{SUPPORT_REPLY_FORM_TITLE}" class=topTabActive><a class=blackSm href="#" >{DATASHEET_VIEW_MSG}</a></td>
+	<td><div id="tabAssign"  class=topTab><a class=blackSm href="{admin_header_menus_href}?set_default=1&layout_id={layout_id}" >{TREE_VIEW_MSG}</a></td>
+</tr>
+</table>
+<!-- end of tabs -->
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border: 1px solid #999;">
+<tr align="center"> 
+	<td>
+
+<form action="{admin_layout_header_href}" name="record" method="post">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="layout_id" value="{layout_id}">
+<input type="hidden" name="more_links" value="0">
+<input type="hidden" name="number_links" value="{number_links}">
+<input type="hidden" name="rp" value="{rp}">
+<table border="0" cellpadding="4" cellspacing="1" align="center" width="100%">
+<tr class="middle" align="center">
+	<td>
+		#
+	</td>
+	<td>
+		{MENU_TITLE_MSG}
+	</td>
+	<td>
+		{MENU_URL_MSG}
+	</td>
+	<td>
+		{MENU_IMAGE_MSG}
+	</td>
+	<td>
+		<font size=1>
+			{ADMIN_SHOW_MSG}<br>for<br>non-<br>logged<br>users</font>
+	</td>
+	<td>
+		<font size=1>
+			{ADMIN_SHOW_MSG}<br>for<br>logged<br>users</font>
+	</td>
+	<td>
+		{DELETE_BUTTON}
+	</td>
+</tr>
+<!-- begin links --><!-- begin links_errors -->
+<tr class="usual" align="center">
+	<td>&nbsp;</td>
+	<td colspan="6">
+		<div class="error">{errors_list}</div>
+	</td>
+	<td>&nbsp;</td>	
+</tr><!-- end links_errors -->
+<tr class="usual" valign="top">
+	<td align="center">
+		&nbsp;{row_number}&nbsp;
+		<input class="field" type="hidden" name="menu_id_{links_number}" value="{menu_id}">
+		<input class="field" type="hidden" name="layout_id_{links_number}" value="{layout_id}">
+		<input class="field" type="hidden" name="menu_order_{links_number}" value="{row_number}">
+	</td>
+	<td>
+		<input class="field" size="30" type="text" name="menu_title_{links_number}" value="{menu_title}">
+	</td>
+	<td>
+		<input class="field" size="30" type="text" name="menu_url_{links_number}" value="{menu_url}">
+	</td>
+	<td>
+		<table cellspacing="0" cellpadding="0" border="0">
+		<tr>
+			<td class=small>{INACTIVE_MSG}&nbsp;</td><td><input class="field" type="text" name="menu_image_{links_number}" size="40" value="{menu_image}"></td>
+		</tr>
+		<tr>
+			<td class=small>{ACTIVE_MSG}</td><td><input class="field" type="text" name="menu_image_active_{links_number}" size="40" value="{menu_image_active}"></td>
+		</tr>
+		</table>
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_non_logged_{links_number}" {show_non_logged} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_logged_{links_number}" {show_logged} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="links_delete_{links_number}" {links_delete} value="1">
+	</td>
+</tr><!-- END links -->
+<tr class="usual">
+	<td colspan="7" align="right">
+		{ADD_MORE_MENU_LINKS_QST} <input type="submit" value=" {ADD_BUTTON} " onClick="document.record.more_links.value=1">&nbsp;
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="7" align="right">
+		<input type="submit" value=" {UPDATE_BUTTON} " onCLick="document.record.operation.value='save'">
+		<input type="submit" value="{DELETE_ALL_BUTTON}" onCLick="document.record.operation.value='delete';return confirm('{DELETE_ALL_QST} {MENU_ITEMS_MSG}?');">
+		<input type="submit" value=" {CANCEL_BUTTON} " onCLick="document.record.operation.value='cancel'">&nbsp;
+	</td>
+</tr>
+</table>	
+</form>
+
+	</td>
+</tr>
+</table>
+
+{admin_footer}
+</body>
+</html>

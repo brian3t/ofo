@@ -1,0 +1,78 @@
+<div class="block-forums-related">
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr>
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{RELATED_FORUMS_MSG}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr>
+		<td class="blockTD">
+
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<!-- BEGIN forums_related_rows -->
+			<tr>
+				<!-- BEGIN forums_related_cols -->
+				<td align="left" valign="top" width="{forums_related_column}" class="padding10px">
+				
+				
+					<div><!--begin block_topic-->
+					<img src="./images/icons/closed.gif" alt="Restricted Topic" height="16" width="16" border="0" align="absmiddle">
+					<!--end block_topic-->
+					<a href="{forum_topic_url}"><b>{topic_title}</b></a></div>
+					<table border="0" cellpadding="0" cellspacing="0" width="100%">
+					<tr>					
+					<!-- BEGIN forums_related_user_info_block -->
+						<td width="100" align="center" valign="top">				
+							<table border="0" cellpadding="3" cellspacing="0" width="100%">
+							<tr>
+								<td align="center" class="{thread_user_class}">
+									{thread_user_name}
+								</td>
+							</tr>
+							<tr>
+								<td align="center">
+									<!-- BEGIN user_image_block -->
+									<img src="{personal_image}" border="0" {image_size} alt="{thread_user_name}">
+									<!-- END user_image_block -->
+								</td>
+							</tr>
+							</table>
+					
+						</td>
+					<!-- END forums_related_user_info_block-->
+					<!-- BEGIN topic_desc_block-->
+						<td>
+							<div align="justify">
+								{topic_desc} <a class="buttonMore" href="{forum_message_page_url}"><span><b>{READ_MORE_MSG}</b>.</span><img src="images/tr.gif" alt="{READ_MORE_MSG}"></a>
+							</div>				
+							
+						</td>
+					<!-- END topic_desc_block-->
+					</tr>
+					</table>
+				</td>
+				<!-- END forums_related_cols -->
+			</tr>
+			<!-- END forums_related_rows -->
+			</table>
+
+			<!-- begin forums_related_navigator_block -->
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr><td align="right" class="padding10px">&nbsp;{forums_related_navigator}&nbsp;</td></tr>
+			</table>
+			<!-- end forums_related_navigator_block -->
+
+		</td>
+	</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr>
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+</div>

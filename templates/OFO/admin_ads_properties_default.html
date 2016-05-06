@@ -1,0 +1,98 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {DEFAULT_PROPERTIES_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_ads_href}">{ADS_TITLE}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_ads_types_href}">{TYPES_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_ads_type_href}?type_id={type_id}">{type_name}</a>&nbsp;&gt;&nbsp;<b>{DEFAULT_PROPERTIES_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{DEFAULT_PROPERTIES_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<form action="{admin_ads_properties_default_href}" name="record" method="post">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="type_id" value="{type_id}">
+<input type="hidden" name="more_properties" value="0">
+<input type="hidden" name="number_properties" value="{number_properties}">
+<input type="hidden" name="rp" value="{rp}">
+<table border="0" cellpadding="4" cellspacing="1" align="center" width="100%">
+<tr class="middle" align="center">
+	<td>
+		#
+	</td>
+	<td>
+		{PROPERTY_NAME_MSG}
+	</td>
+	<td>
+		{PREDEFINED_VALUES_MSG}
+	</td>
+	<td>
+		{DELETE_BUTTON}
+	</td>
+</tr>
+<!-- begin properties --><!-- begin properties_errors -->
+<tr class="usual" align="center">
+	<td>&nbsp;</td>
+	<td colspan="2">
+		<div class="error">{errors_list}</div>
+	</td>
+	<td>&nbsp;</td>	
+</tr><!-- end properties_errors -->
+<tr class="usual" valign="top">
+	<td align="center">
+		&nbsp;{row_number}&nbsp;
+		<input type="hidden" name="property_id_{properties_number}" value="{property_id}">
+		<input type="hidden" name="type_id_{properties_number}" value="{type_id}">
+	</td>
+	<td>
+		<input class="field" size="30" type="text" name="property_name_{properties_number}" value="{property_name}" style="width: 200px;">
+	</td>
+	<td>
+		<textarea rows="4" cols="55" name="property_value_{properties_number}">{property_value}</textarea>
+	</td>
+	<td align="center">
+		<input type="checkbox" name="properties_delete_{properties_number}" {properties_delete} value="1">
+	</td>
+</tr><!-- END properties -->
+<tr class="usual">
+	<td colspan="4" align="right">
+		{ADD_MORE_PROPERTIES_QST} <input class="submit" type="submit" value=" {ADD_BUTTON} " onClick="document.record.more_properties.value=1">&nbsp;
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="4" align="right">
+		<input class="submit" type="submit" value=" {UPDATE_BUTTON} " onCLick="document.record.operation.value='save'">&nbsp;
+		<input class="submit" type="submit" value="{DELETE_ALL_BUTTON}" onCLick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;
+		<input class="submit" type="submit" value=" {CANCEL_BUTTON} " onCLick="document.record.operation.value='cancel'">&nbsp;
+	</td>
+</tr>
+</table>	
+</form>
+
+	</td>
+</tr>
+</table>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

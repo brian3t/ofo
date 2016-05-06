@@ -1,0 +1,287 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {SUPPORT_REQUEST_EDIT_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script type="text/javascript" src="../js/attachments.js"></script> 
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_support_href}">{HELPDESK_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_REQUEST_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_REQUEST_MSG}</legend>
+
+<table border="0" cellspacing="1" cellpadding="6" width="100%">
+<form action="{admin_support_request_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="support_id" value="{support_id}">
+<input type="hidden" name="attachments_url" value="{admin_support_attachments_url}">
+<input type="hidden" name="rp" value="{rp}">
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="middle">
+	<td colspan="2">&nbsp;{CUSTOMER_DETAILS_MSG}</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CUSTOMER_ID_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="10" name="user_id" value="{user_id}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CUSTOMER_NAME_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" size="40" name="user_name" value="{user_name}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CUSTOMER_EMAIL_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" size="40" name="user_email" value="{user_email}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_CC_MSG} {EMAIL_FIELD}
+	</td>
+	<td>
+		<input class="field" type="text" size="40" name="mail_cc" value="{mail_cc}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_BCC_MSG} {EMAIL_FIELD}
+	</td>
+	<td>
+		<input class="field" type="text" size="40" name="mail_bcc" value="{mail_bcc}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SUPPORT_IDENTIFIER_FIELD}
+	</td>
+	<td>
+		<input class="field" type="text" size="40" name="identifier" value="{identifier}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SUPPORT_ENVIRONMENT_FIELD}
+	</td>
+	<td>
+		<input class="field" type="text" size="40" name="environment" value="{environment}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CUSTOMER_IP_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="40" name="remote_address" value="{remote_address}">
+	</td>
+</tr><!-- begin support_product_id_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{SUPPORT_PRODUCT_FIELD} *
+	</td>
+	<td>
+		<select name="support_product_id"><!-- begin support_product_id -->
+			<option {support_product_id_selected} value="{support_product_id_value}">{support_product_id_description}<!-- end support_product_id -->
+		</select>
+	</td>
+</tr><!-- end support_product_id_block -->
+<tr class="middle">
+	<td colspan="2">&nbsp;{REQUEST_DETAILS_MSG}</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SUPPORT_DEPARTMENT_FIELD} *
+	</td>
+	<td>
+		<select name="dep_id" style="width:262px" onChange="setUsers(0)">
+			<!-- begin dep_id -->
+			<option {dep_id_selected} value="{dep_id_value}">{dep_id_description}
+			<!-- end dep_id -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ASSIGN_TO_MSG}
+	</td>
+	<td>
+		<select name="admin_id_assign_to" style="width:262px"><!-- begin admin_id_assign_to -->
+			<option {admin_id_assign_to_selected} value="{admin_id_assign_to_value}">{admin_id_assign_to_description}<!-- end admin_id_assign_to -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{TYPE_MSG} *
+	</td>
+	<td>
+		<select name="support_type_id" style="width:262px"><!-- begin support_type_id -->
+			<option {support_type_id_selected} value="{support_type_id_value}">{support_type_id_description}<!-- end support_type_id -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{STATUS_MSG} *
+	</td>
+	<td>
+		<select name="support_status_id" style="width:262px"><!-- begin support_status_id -->
+			<option {support_status_id_selected} value="{support_status_id_value}">{support_status_id_description}<!-- end support_status_id -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PRIORITY_MSG} *
+	</td>
+	<td>
+		<select name="support_priority_id" style="width:262px"><!-- begin support_priority_id -->
+			<option {support_priority_id_selected} value="{support_priority_id_value}">{support_priority_id_description}<!-- end support_priority_id -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SUPPORT_SUMMARY_COLUMN} *
+	</td>
+	<td>
+		<input class="field" type="text" size="100" name="summary" value="{summary}">
+	</td>
+</tr><!-- begin attachments_block -->
+<tr class="usual">
+	<td>
+		<a href="#" onClick="attachFiles(document.record);return false;"><img src="../images/clip.gif" border="0" width="16" height="16"></a>
+		&nbsp;<a href="#" onClick="attachFiles(document.record);return false;">{ATTACHMENTS_MSG}</a>
+	</td>
+	<td>
+		<div id="attachmentsBlock" style="{attachments_class}">
+			&nbsp;<a href="#" onClick="attachFiles(document.record);return false;">{ATTACHED_FILES_MSG}</a>:&nbsp;
+			&nbsp;<span id="attachedFiles">{attached_files}</span>
+		</div>
+	</td>
+</tr><!-- end attachments_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{DESCRIPTION_MSG} *
+	</td>
+	<td>
+		<textarea name="description" cols="100" rows="14">{description}</textarea>
+	</td>
+</tr>
+<!-- begin send_mail -->
+<tr class="usual">
+	<td>
+		&nbsp;{SEND_NOTIFICATION_TO_CLIENT_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="send_mail" value="1">
+	</td>
+</tr><!-- end send_mail -->
+<!-- begin support_properties -->
+<tr id="pp_block_{property_id}" class="usual">
+	<td style="{property_style}" class="{property_class}">
+		&nbsp;{property_name} {property_required}
+	</td>
+	<td style="{property_style}" class="{property_class}">
+		{property_control} 
+	</td>
+</tr><!-- end support_properties -->
+
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<!-- BEGIN add_button -->
+		<input class="submit" type="submit" value="{ADD_NEW_MSG}" onclick="document.record.operation.value='save'"> &nbsp; <!-- END add_button -->
+		<!-- BEGIN update_button -->
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onclick="document.record.operation.value='save'"> &nbsp; <!-- END update_button -->
+		<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}')"> &nbsp; <!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</form>	
+</table>
+
+</fieldset>
+
+{admin_footer}
+</body>
+
+<script language="javascript">
+<!--
+var arrDepsUsers = new Array();
+{deps_users}
+
+function setUsers(adminId) {	
+	var depId = document.record.dep_id.options[document.record.dep_id.selectedIndex].value;
+	var adminSelect = document.record.admin_id_assign_to;
+	adminSelect.options.length = 0;	
+	if (depId != null && depId > 0) 
+	{
+		adminSelect.options.length = 1;	
+		adminSelect.options[0] = new Option("{SELECT_RESPONSIBLE_MSG}", 0);
+		var j = 1;
+		for (var i=0; i < arrDepsUsers.length; i++)
+		{
+			if (arrDepsUsers[i][0] == depId)
+			{
+				var op = new Option(arrDepsUsers[i][2], arrDepsUsers[i][1]);
+				adminSelect.options[j] = op;
+				if (arrDepsUsers[i][1] == adminId)
+				{
+					adminSelect.options[j].selected = true;
+				}
+				j++;
+			}
+		}
+		if(j == 1) {
+			var depName = document.record.dep_id.options[document.record.dep_id.selectedIndex].text;
+			adminSelect.options[0] = new Option("No assigned managers for '" + depName + "' department", 0);
+		}
+	}
+	else 
+	{
+		adminSelect.options[0] = new Option("{SUPPORT_SELECT_DEP_MSG}", 0);
+		adminSelect.selectedIndex = 0;
+	}
+}
+//-->
+</script>
+
+<script language="javascript">
+<!--
+	window.onload = function() { 
+		setUsers({cur_admin_id});
+	};
+//-->
+</script>
+</html>

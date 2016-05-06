@@ -1,0 +1,78 @@
+<div class="block-login">
+<a name="block_login"></a>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{LOGIN_TITLE}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr> 
+		<td class="blockTD">
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+				<td class="padding10px">
+
+<form action="{login_form_url}#block_login" name="login" method="POST">
+<input type="hidden" name="login_action" value="{login_action}">
+<input type="hidden" name="return_page" value="{return_page}">
+{hidden_parameters}
+
+<table align="center" border="0">
+<!-- BEGIN login_errors -->
+<tr>
+	<td colspan="2" align="center">
+		<div class="errorbg">{errors_list}</div>
+	</td>
+</tr>
+<!-- END login_errors -->
+<!-- BEGIN login_form -->
+<tr>
+	<td align="right">{LOGIN_FIELD}&nbsp;</td>
+	<td><input class="text" type="text" name="user_login" value="{user_login}" size="15" maxlength="64"></td>
+</tr>
+<tr>
+	<td align="right">{PASSWORD_FIELD}&nbsp;</td>
+	<td><input class="text" type="password" name="user_password" value="" size="15" maxlength="32"></td>
+</tr>
+<tr>
+	<td></td>
+	<td align="right">
+		<span class="submit"><input class="submit" type="submit" value=" {LOGIN_BUTTON} "></span>
+	</td>
+</tr>
+<tr class="usualbg">
+  <td colspan="2" align="right">&nbsp;<a href="{forgot_password_href}">{FORGOT_PASSWORD_MSG}</a></td>
+</tr>
+<!-- END login_form --><!-- BEGIN logout_form -->
+<tr>
+	<td colspan="2" align="right">{LOGIN_AS_MSG} <b>{user_login}</b></td>
+</tr>
+<tr>
+	<td colspan="2" align="right">{ACCESS_HOME_MSG} <a href="{user_home_href}">{CLICK_HERE_MSG}</a></td>
+</tr>
+<tr>
+	<td colspan="2" align="right">
+		<span class="submit"><input class="submit" type="submit" value=" {LOGOUT_BUTTON} "></span>
+	</td>
+</tr>
+<!-- END logout_form -->
+</table>
+</form>
+
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+</div>

@@ -1,0 +1,360 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{ADMINISTRATION_MSG} :: {DOWNLOADS_SETTINGS_MSG}</title>
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script type="text/javascript" src="../js/admin.js"></script>
+<script language="JavaScript">
+<!--
+	function openWindow(pagename)
+	{
+		var popupWin = window.open (pagename + "?links=1", 'popup', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');
+		popupWin.focus();
+	}
+//-->
+</script>
+</head>
+<body class="mainbg">
+
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="breadcrumb"> 
+
+	<table width="100%" cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<b>{DOWNLODABLE_PRODUCTS_SETTINGS}</b>
+		</td>
+		<!-- begin sitelist -->
+		<td class="usual" align="right">
+			<form method="GET" name="reloadform">
+			<input type="hidden" name="operation" value="">
+				{SELECT_SITE_MSG}&nbsp;
+				<select name="param_site_id" onchange="reloadSite(this.form)"><!-- begin param_site_id -->
+					<option {param_site_id_selected} value="{param_site_id_value}">{param_site_id_description}<!-- end param_site_id -->
+				</select>		
+			</form>
+		</td>
+		<!-- end sitelist -->
+	</tr>
+	</table>
+
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{DOWNLODABLE_PRODUCTS_SETTINGS}</legend>
+
+<table border="0" cellpadding="6" cellspacing="1" width="100%">
+<form action="{admin_download_info_href}" name="settings" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="rp" value="{rp}">
+
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{DOWNLOADS_SETTINGS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_UPLOAD_DIR_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="downloads_admins_dir" value="{downloads_admins_dir}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{FILES_ADMIN_UPLOAD_MSG}<br>
+		&nbsp;({EG_MSG}: <b>*.mp3, *.zip, *.jpeg</b>)<br>
+		{FILES_ADMIN_UPLOAD_NOTE}
+	</td>
+	<td>
+		<textarea name="downloads_admins_mask" cols="80" rows="3">{downloads_admins_mask}</textarea>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{USERS_UPLOAD_DIR_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="downloads_users_dir" value="{downloads_users_dir}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{FILES_USERS_UPLOAD_MSG}<br>
+		&nbsp;({EG_MSG}: <b>*.mp3, *.zip, *.jpeg</b>)
+	</td>
+	<td>
+		<textarea name="downloads_users_mask" cols="80" rows="3">{downloads_users_mask}</textarea>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{MAXIMUM_DOWNLOADS_NOTE}
+	</td>
+	<td>
+		<input class="field" type="text" name="max_downloads" value="{max_downloads}" size="10" maxlength="5">
+	</td>
+</tr>
+
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{DEFAULT_EMAIL_DOWNLOAD_LINKS}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_FROM_MSG}</b>
+		<div class="small">
+		&nbsp;(<a href="javascript:openWindow('{admin_email_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_FILEDS_NOTE})
+		</div>
+	</td>
+	<td>
+		<input class="field" type="text" name="links_from" value="{links_from}" size="80" maxlength="255">
+		<div class="small">({EG_MSG} <b>sales@yoursite.com</b>)</div>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_CC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="links_cc" value="{links_cc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_BCC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="links_bcc" value="{links_bcc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_REPLY_TO_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="links_reply_to" value="{links_reply_to}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_RETURN_PATH_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="links_return_path" value="{links_return_path}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_SUBJECT_MSG}</b>
+	</td>
+	<td>
+		<input class="field" type="text" name="links_subject" value="{links_subject}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_MESSAGE_TYPE_MSG}</b>
+	</td>
+	<td><!-- begin links_message_type -->
+		<input type="radio" name="links_message_type" {links_message_type_checked} value="{links_message_type_value}">{links_message_type_description}<!-- end links_message_type -->
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_NOTE}
+		<br>&nbsp;&nbsp;{LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td>
+		<textarea name="links_message" cols="80" rows="10">{links_message}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{DEFAULT_EMAIL_SERIAL_NUMBERS}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_FROM_MSG}</b>
+		<div class="small">
+		&nbsp;(<a href="javascript:openWindow('{admin_email_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_FILEDS_NOTE})
+		</div>
+	</td>
+	<td>
+		<input class="field" type="text" name="serials_from" value="{serials_from}" size="80" maxlength="255">
+		<div class="small">({EG_MSG} <b>sales@yoursite.com</b>)</div>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_CC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="serials_cc" value="{serials_cc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_BCC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="serials_bcc" value="{serials_bcc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_REPLY_TO_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="serials_reply_to" value="{serials_reply_to}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_RETURN_PATH_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="serials_return_path" value="{serials_return_path}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_SUBJECT_MSG}</b>
+	</td>
+	<td>
+		<input class="field" type="text" name="serials_subject" value="{serials_subject}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_MESSAGE_TYPE_MSG}</b>
+	</td>
+	<td><!-- begin serials_message_type -->
+		<input type="radio" name="serials_message_type" {serials_message_type_checked} value="{serials_message_type_value}">{serials_message_type_description}<!-- end serials_message_type -->
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_NOTE}
+		<br>&nbsp;&nbsp;{LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td>
+		<textarea name="serials_message" cols="80" rows="10">{serials_message}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{DEFAULT_EMAIL_GIFT_VOUCHERS}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_FROM_MSG}</b>
+		<div class="small">
+		&nbsp;(<a href="javascript:openWindow('{admin_email_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_FILEDS_NOTE})
+		</div>
+	</td>
+	<td>
+		<input class="field" type="text" name="vouchers_from" value="{vouchers_from}" size="80" maxlength="255">
+		<div class="small">({EG_MSG} <b>sales@yoursite.com</b>)</div>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_CC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="vouchers_cc" value="{vouchers_cc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_BCC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="vouchers_bcc" value="{vouchers_bcc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_REPLY_TO_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="vouchers_reply_to" value="{vouchers_reply_to}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_RETURN_PATH_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="vouchers_return_path" value="{vouchers_return_path}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_SUBJECT_MSG}</b>
+	</td>
+	<td>
+		<input class="field" type="text" name="vouchers_subject" value="{vouchers_subject}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_MESSAGE_TYPE_MSG}</b>
+	</td>
+	<td><!-- begin vouchers_message_type -->
+		<input type="radio" name="vouchers_message_type" {vouchers_message_type_checked} value="{vouchers_message_type_value}">{vouchers_message_type_description}<!-- end vouchers_message_type -->
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_NOTE}
+		<br>&nbsp;&nbsp;{LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td>
+		<textarea name="vouchers_message" cols="80" rows="10">{vouchers_message}</textarea>
+	</td>
+</tr>
+
+<tr class="middle">
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.settings.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.settings.operation.value='cancel'">
+	</td>
+</tr>
+</form>
+</table>
+
+</fieldset>
+
+
+{admin_footer}
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<style>
+body,td,tr,input,textarea {font-family:Arial,sans-serif; font-size:12px;}
+</style>
+
+<script>
+function delete_manual(manual_id)
+{
+	if (confirm("Delete manual?"))
+	{
+		window.location = "manual.php?product_id={product_id}&operation=delete&manual_id=" + manual_id;
+	}
+
+}
+
+function getPriorityObject(id)
+{
+		objPriority = document.getElementById("divTD2" + "_" + id);
+		txt = objPriority.innerHTML;
+		p = "divOrder_(\\d+)";
+		var exp = new RegExp(p,'g');
+		result = txt.match(exp);
+
+		if (result != null)
+		{
+			objPriority = document.getElementById(result[0]);
+			return objPriority;
+		}
+		else return null;
+}
+
+function changePriority(id,direction)
+{	
+	numbColumns = 7;
+	totalRows   = {totalRows};
+//	alert(direction);
+	if (totalRows > 1 && ((direction == "up" && id > 1) || (direction == "down" && id < totalRows)))
+	{
+		step = 1;
+		if (direction == "up") step = -1;
+		objPriorityFrom = getPriorityObject(id);
+		objPriorityTo   = getPriorityObject(id+step);
+		
+		if (objPriorityFrom != null && objPriorityTo != null)
+		{
+			objPriorityFrom.value = id + step;
+			objPriorityTo.value   = id;
+		}
+
+
+		for (i = 1; i <= numbColumns; i++)
+		{
+			//alert("divTD" + i + "_" + id + "_" + user_id);
+			objFrom = document.getElementById("divTD" + i + "_" + id );
+			objTo   = document.getElementById("divTD" + i + "_" + (id + step));
+
+			tmpHTML           = objTo.innerHTML;
+			objTo.innerHTML   = objFrom.innerHTML;
+			objFrom.innerHTML = tmpHTML;
+		}
+	}
+}
+
+function closeWindow()
+{
+	window.opener.window.location = "client_cats.php?product_id={product_id}";
+//	alert (window.opener.window.location);
+	window.opener.focus();
+	window.close();
+}
+
+</script>
+<body class="commonbg">
+<h2>{ADMIN_MANUAL_MSG}</h2>
+<a href="manual.php?product_id={product_id}">{ADD_MANUAL_MSG}</a> |
+<a href="#" onClick="closeWindow()">{CLOSE_WINDOW_MSG}</a>
+<form name="frmSearch" action="manuals.php" method="POST">
+<input type="hidden" name="operation" value="save">
+
+<table>
+<tr>
+	<td bgcolor="navy"><b><font color="white">#</font></b></td>
+	<td bgcolor="navy"><font color="white">{ARTICLE_TITLE_MSG}</font></td>
+	<td bgcolor="navy"><font color="white">{ARTICLE_CODE_MSG}</font></td>
+	<td bgcolor="navy"><font color="white">{ADMIN_ORDER_NUMBER_MSG}</font></td>
+	<td bgcolor="navy"><font color="white">{ADMIN_SECTION_MSG}</font></td>
+	<td bgcolor="navy">{CONTENTS_QST}</td>
+	<td bgcolor="navy"></td>
+	<td bgcolor="navy"></td>
+</tr>
+<!-- BEGIN manuals -->
+<tr>
+	<td id="divTD1_{id}">{id}</td>
+	<td id="divTD2_{id}">{manual_name}
+	<input id="divOrder_{manual_id}" type="hidden" size="3" name="priority_{manual_id}" value="{id}">
+	</td>
+	<td id="divTD3_{id}">{manual_page}</td>
+	<td><a href="javascript:changePriority({id},'down')"><img width="16" height="16" border="0" src="images/move_down.gif"></a><a href="javascript:changePriority({id},'up');"><img width="16" height="16" border="0"src="images/move_up.gif"></a></td>
+	<td id="divTD4_{id}">{section_number}</td>
+	<td id="divTD7_{id}">{is_shown_contents}</td>
+	<td id="divTD5_{id}"><a href="manual.php?manual_id={manual_id}&search_site_id={search_site_id}&product_id={product_id}" >Amend</a></td>
+	<td id="divTD6_{id}"><a href="#" onClick="delete_manual({manual_id});">{DELETE_BUTTON}</a></td>
+</tr>
+<!-- END manuals -->
+</table>
+<input type="submit">
+</form>
+
+<a href="manual.php">{ADD_MANUAL_MSG}</a> |
+<a href="#" onClick="closeWindow()">{CLOSE_WINDOW_MSG}</a>
+</body></html>

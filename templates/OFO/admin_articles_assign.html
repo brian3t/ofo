@@ -1,0 +1,201 @@
+<html><head><title>..:: {ARTICLES_TITLE} :: {ASSIGN_CATEGORIES_MSG} ::..</title>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+ 
+<script language="JavaScript">
+<!--
+
+	var categories = new Array();
+	var selectedCategories = new Array();
+	categories[0] = new Array("", "Top", Array()); // <!-- BEGIN categories -->
+	categories[{category_id}] = new Array({parent_category_id}, "{category_name}", Array()); // <!-- END categories -->
+	// <!-- BEGIN selected_categories -->
+	selectedCategories[{category_id}] = 1; // <!-- END selected_categories -->
+
+	function initValues()
+	{
+		clearOptions();
+
+		for(var i in categories)
+		{
+			var parentCategoryID = categories[i][0];
+			if(parentCategoryID.toString() != "")
+			{
+				var childNumber = categories[parentCategoryID][2].length;
+				categories[parentCategoryID][2][childNumber] = i;
+			}
+		}
+		
+		setOptions({top_id}, 0);
+	}
+
+	function setOptions(categoryID, indent)
+	{
+		var indentString = "";
+		for(var i = 0; i < indent; i++) { indentString += "   "; }
+
+		//* {ADMIN_SHOW_MSG} full categories with full path
+		indentString = "";
+		parentCategoryID = categories[categoryID][0];
+		while(parentCategoryID.toString() != "")
+		{
+			if(parentCategoryID != 0) {
+				indentString = categories[parentCategoryID][1] + " > " + indentString;
+			}
+			parentCategoryID = categories[parentCategoryID][0];
+		}//*/
+
+		var optionNumber = (selectedCategories[categoryID] == 1) ? document.categories.selected.length : document.categories.not_selected.length;
+		if(selectedCategories[categoryID])
+			document.categories.selected.options[optionNumber] = new Option(indentString + categories[categoryID][1], categoryID);
+		else
+			document.categories.not_selected.options[optionNumber] = new Option(indentString + categories[categoryID][1], categoryID);
+
+		var childCategories = categories[categoryID][2];
+		for(var i = 0; i < childCategories.length; i++)
+			setOptions(childCategories[i], (indent + 1));
+	}
+
+	function clearOptions()
+	{
+		var totalOptions = document.categories.not_selected.length;
+		for(var i = totalOptions - 1; i >= 0; i--)
+			document.categories.not_selected.options[i] = null;
+
+		var totalOptions = document.categories.selected.length;
+		for(var i = totalOptions - 1; i >= 0; i--)
+			document.categories.selected.options[i] = null;
+	}
+
+	function addValues()
+	{
+		var totalOptions = document.categories.not_selected.length;
+		for(var i = 0; i < totalOptions; i++)
+			if(document.categories.not_selected.options[i].selected == true)
+				selectedCategories[document.categories.not_selected.options[i].value] = 1;
+
+		clearOptions();
+		setOptions({top_id}, 0);
+	}
+
+	function removeValues()
+	{
+		var totalOptions = document.categories.selected.length;
+
+		var selectedOptions = 0;
+		for(var i = 0; i < totalOptions; i++)
+			if(document.categories.selected.options[i].selected == true)
+				selectedOptions++;
+		
+		if(selectedOptions == totalOptions)
+		{
+			alert("You can't remove all categories!")
+			return;
+		}
+
+		for(var i = 0; i < totalOptions; i++)
+			if(document.categories.selected.options[i].selected == true)
+				selectedCategories[document.categories.selected.options[i].value] = 0;
+
+		clearOptions();
+		setOptions({top_id}, 0);
+	}
+
+	function selectValues()
+	{
+		var totalOptions = document.categories.selected.length;
+		var categoriesValues = "";
+		for(var i = 0; i < totalOptions; i++) {
+			document.categories.selected.options[i].selected = true;
+			if(i > 0) categoriesValues += ","
+			categoriesValues += document.categories.selected.options[i].value;
+		}
+		document.categories.categories.value = categoriesValues;
+	}
+
+//-->
+</script>
+</head>
+
+<body class="commonbg" onLoad="initValues();">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_articles_top_href}">{ARTICLES_TITLE}</a>&nbsp;&gt;&nbsp;<!-- BEGIN tree --><a 
+			href="{admin_articles_href}?category_id={tree_cat_id}">{tree_cat_name}</a>&nbsp;&gt;&nbsp;<!-- END tree --><a 
+			href="{admin_articles_href}?category_id={tree_current_id}">{tree_current_name}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_article_href}?category_id={category_id}&item_id={item_id}">{article_title}</a>&nbsp;&gt;&nbsp;<b>{ASSIGN_CATEGORIES_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{ASSIGN_CATEGORIES_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+		<form action="{admin_articles_assign_href}" name="categories" method="POST" onSubmit="selectValues();">
+		<input type="hidden" name="operation" value="save">
+		<input type="hidden" name="article_id" value="{article_id}">
+		<input type="hidden" name="category_id" value="{category_id}">
+		<input type="hidden" name="categories" value="">
+  	<table width="100%" border="0" cellspacing="1" cellpadding="4"><!-- BEGIN errors -->
+		<tr class="usual">
+			<td colspan="3" align="center">
+				<div class="error">{errors_list}</div>
+			</td>
+		</tr><!-- END errors -->		
+		<tr align="center" class="middle">
+			<td width="45%">{AVAILABLE_CATEGORIES_MSG}</td>
+			<td width="10%">{OPERATIONS_MSG}</td>
+			<td width="45%">{SELECTED_CATEGORIES_MSG}</td>
+		</tr>	
+		<tr align="center" class="usual">
+			<td width="45%">
+				<select name="not_selected" MULTIPLE size="15" style="width: 300px;">
+					<option>{AVAILABLE_CATEGORIES_MSG}
+				</select>
+			</td>
+			<td width="10%">
+
+				<input class="submit" type="button" name="add" value="&nbsp;&nbsp; {ADD_BUTTON}  -> &nbsp;&nbsp;" onClick="addValues();"><br><br>
+				<input class="submit" type="button" name="remove" value="<- {REMOVE_BUTTON}" onClick="removeValues();">
+			</td>
+			<td width="45%">
+
+				<select name="selected" MULTIPLE size="15" style="width: 300px;">
+					<option>{SELECTED_CATEGORIES_MSG}
+				</select>
+			</td>
+		</tr>
+		<tr align="right" class="middle">
+			<td colspan="3">
+				<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.categories.operation.value='save'">&nbsp;&nbsp;&nbsp;
+				<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.categories.operation.value='cancel'">
+			</td>
+		</tr>	
+		</table>
+		</form>
+		
+	</td>
+</tr>
+</table>
+</fieldset>
+
+
+        
+{admin_footer}
+</body>
+</html>

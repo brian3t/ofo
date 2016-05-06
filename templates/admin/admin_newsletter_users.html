@@ -1,0 +1,246 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {NEWSLETTER_USERS_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript" src="../js/calendar.js"></script>
+<script language="JavaScript" type= "text/javascript" src="../js/select.js"></script>
+<script language="JavaScript">
+<!--
+	function updateemails(operation)
+	{
+		var itemId = "";
+		var emailsIds = "";
+		var emailsNumber = document.emails.emails_number.value;
+		var totalemails = 0;
+		for (var i = 1; i <= emailsNumber; i++) {
+			if (document.emails.elements["id_" + i].checked) {
+				totalemails++;
+				itemId = document.emails.elements["id_" + i].value;
+				if(totalemails > 1) { emailsIds += ","; }
+				emailsIds += itemId;
+			}
+		}
+
+		if (totalemails == 0) {
+			alert("Please select emails first.");
+			window.event.returnValue=false;
+		} else if (operation == "delete_emails") {
+			if (confirm("Are you sure you want to delete " + totalemails + " selected emails?")) {
+				document.emails.emails_ids.value = emailsIds;
+				document.emails.operation.value = "delete";
+				document.emails.submit();
+			}
+		}
+	}
+	
+	function clearSearch() {
+		document.search_form.s_ne.value = "";
+		document.search_form.s_sd.value = "";
+		document.search_form.s_ed.value = "";
+	
+		document.search_form.submit();
+
+	}
+	
+	function changeStatus()
+	{
+		var checkedStatus = document.emails.all_emails.checked;
+		var emailsNumber = document.emails.emails_number.value;
+		for (var i = 1; i <= emailsNumber; i++) {
+			document.emails.elements["id_" + i].checked = checkedStatus;
+		}
+		checkemails();
+	}
+	
+	function checkemails()
+	{
+		var itemId = "";
+		var emailsIds = "";
+		var emailsNumber = document.emails.emails_number.value;
+		var totalSelected = 0;
+		for (var i = 1; i <= emailsNumber; i++) {
+			if (document.emails.elements["id_" + i].checked) {
+				document.getElementById("tr_user_" + i).className = "SelectedRow";
+				totalSelected++;
+				itemId = document.emails.elements["id_" + i].value;
+				if(emailsIds != "") { emailsIds += ","; }
+				emailsIds += itemId;
+			} else {
+				document.getElementById("tr_user_" + i).className = mas[i];
+			}
+		}
+		var deleteLink = document.getElementById("delete_emails");
+		if (deleteLink) {
+			if (emailsIds == "") {
+				deleteLink.innerHTML = "Delete Selected";
+				deleteLink.href = "{admin_newsletter_users_href}{page}";
+			} else {
+				deleteLink.innerHTML = "Delete Selected (" + totalSelected + ")";
+				deleteLink.href = "{admin_newsletter_users_href}?operation=delete&emails_ids=" + emailsIds + "{and_page}";
+			}
+		}
+		var editLink = document.getElementById("edit_emails");
+		if (editLink) {
+			if (emailsIds == "") {
+				editLink.innerHTML = "Edit Selected";
+				editLink.href = "{admin_newsletter_users_href}{page}";
+			} else {
+				editLink.innerHTML = "Edit Selected (" + totalSelected + ")";
+				editLink.href = "{admin_newsletter_users_edit_href}?emails_ids="+emailsIds+"{and_page}";
+				
+			}
+		}
+	}
+
+//-->
+</script>
+<script language= "JavaScript" type= "text/javascript">
+<!--
+	var select_form = new select();
+		select_form.object_name = 'select_form';
+		select_form.name_prefix = 'id_';
+		select_form.formname = 'emails';
+		select_form.final_action = 'checkemails();';
+		select_form.create_event_click();
+//-->
+</script>
+</head>
+<body class="commonbg" onload="start_event_select();">
+<script language= "JavaScript" type= "text/javascript">
+<!--
+	function start_event_select(){
+		create_event_listener(select_form);
+		var emails_number = document.emails.emails_number.value;
+		mas = new Array();
+		for (var i = 1; i <= emails_number; i++) {
+			mas[i] = document.getElementById("tr_user_" + i).className;
+		}
+	}
+//-->
+</script>
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<b>{NEWSLETTER_USERS_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+<table border="0" cellpadding="2" cellspacing="2">
+				<form action="{admin_newsletter_users_href}" name="search_form">
+				<!-- BEGIN errors -->
+				<tr>
+					<td colspan="2">
+					&nbsp;<div align="center" class="error"><font style="font-size:8pt">{errors_list}</font></div>&nbsp;
+					</td>
+				</tr>
+				<!-- END errors -->
+				<tr>
+					<td colspan="2"><b>{SEARCH_USERS_MSG}:</b></td>
+				</tr>
+				<tr>
+					<td>{BY_NAME_EMAIL_MSG}:</td>
+					<td><input type="text" name="s_ne" value="{s_ne}" class="search"></td>
+				</tr>
+				<tr>
+					<td>{FROM_DATE_MSG} ({date_edit_format}):</td>
+					<td>
+					<input type="text" name="s_sd" value="{s_sd}" class="search">
+					<A HREF="#"
+					onClick="setDateField(document.search_form.s_sd, '{date_edit_format}');
+					top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+					<IMG SRC="../images/calendar.gif" BORDER=0><font size=1>{CALENDAR_MSG}</font></A>
+					</td>
+				</tr>
+				<tr>
+					<td>{TO_DATE_MSG} ({date_edit_format}):</td>
+					<td>
+					<input type="text" name="s_ed" value="{s_ed}" class="search">
+					<A HREF="#"
+					onClick="setDateField(document.search_form.s_ed, '{date_edit_format}');
+					top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+					<IMG SRC="../images/calendar.gif" BORDER=0><font size=1>{CALENDAR_MSG}</font></A>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" value="Search" class="submit">&nbsp;<input type="button" value="{CLEAR_BUTTON}" class="submit" onClick="clearSearch()"></td>
+				</tr>
+				</form>
+			</table>
+<br>
+<form action='{admin_newsletter_users_href}' method = "GET" name = 'emails'>
+<input type="hidden" name="operation" value="delete">
+<input type="hidden" name="page" value="{p}">
+<input type="hidden" name="emails_number" value="{count}">
+<input type="hidden" name="emails_ids" value="">
+<fieldset>
+<legend>{NEWSLETTER_USERS_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<table border="0" cellspacing="1" cellpadding="3" width="100%"><!-- begin sorters -->
+<tr align="center" class="middle" valign="top">
+	<td>
+		<input type="checkbox" name="all_emails" value="1" onClick="changeStatus();">
+	</td>
+	<td nowrap>
+		{sorter_email_id}
+	</td>
+	<td>
+		{sorter_email}
+	</td>
+	<td>
+		{sorter_date_added}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- end sorters --><!-- BEGIN records -->
+<tr class="{row_style}" id="tr_user_{onpage_id}">
+	<td align="center" width="5%">
+		<input type = "checkbox" name = "id_{onpage_id}" value = "{newsletter_id}" onClick="checkemails();">
+	</td>
+	<td align="center" width="5%">
+		{newsletter_id}
+	</td>
+	<td width="50%">
+		&nbsp;{newsletter_subject}
+	</td>
+	<td align="center" width="20%">
+		&nbsp;{newsletter_date}
+	</td>
+	<td align="center" width="10%">
+		<a href = "admin_newsletter_users_edit.php?emails_ids={newsletter_id}{and_page}">{EDIT_BUTTON}</a>
+	</td>
+</tr><!-- END records --></form><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="5">
+		&nbsp;{NO_RECORDS}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="5">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+		<tr class="middle">
+			<td><a href="{admin_newsletter_users_edit_href}">{ADD_NEW_MSG}</a>&nbsp;<!-- begin count_null -->|&nbsp;<a id="edit_emails" href="{admin_newsletter_users_href}{page}" onClick="updateemails('')">Edit Selected</a>&nbsp;|&nbsp;<a id="delete_emails" href="{admin_newsletter_users_href}{page}" onClick="updateemails('delete_emails');return false;">Delete Selected</a>&nbsp;|&nbsp;<a href="admin_export.php?table=newsletters_users">{EXPORT_MSG}</a>&nbsp;<!-- end count_null -->|&nbsp;<a href="admin_import.php?table=newsletters_users">{IMPORT_MSG}</a></td><!-- begin navigator_block -->
+			<td>&nbsp;{navigator}&nbsp;</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>	
+
+	</td>
+</tr>
+</table>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

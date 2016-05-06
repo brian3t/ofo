@@ -1,0 +1,101 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {ADMIN_PAGES_MSG} ::..</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript">
+function clearSearch() {
+		document.search_pages.search_page.value = "";
+		document.search_pages.submit();
+
+	}
+</script>
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<b>{WEB_PAGES_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+<form name="search_pages">
+<b>Search for page:</b> <input type="text" name="search_page" id="search_page" value="{search_page}">
+<input type="submit" value="Search">
+<input type="button" value="Clear" onclick="clearSearch();">
+</form>
+<br><br>
+
+<fieldset>
+<legend>{WEB_PAGES_MSG}</legend>
+
+<table width="100%" border="0" cellpadding="6" cellspacing="1" align="center">
+<tr class="middle" align="center">
+	<td>
+		{sorter_page_id}
+	</td>
+	<td>
+		{sorter_page_title}
+	</td>
+	<td>
+		{sorter_page_code}
+	</td>
+	<td>
+		{sorter_is_showing}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- BEGIN records -->
+<tr align="center" class="usual">
+	<td>
+		{page_id}
+	</td>
+	<td align="left">
+		&nbsp;{page_title}
+	</td>
+	<td align="left">
+		&nbsp;{page_code}
+	</td>
+	<td>
+		{is_showing}
+	</td>
+	<td>
+		<a href="{admin_page_href}?page_id={page_id}">{EDIT_PAGE_MSG}</a>
+	</td>
+	<td>
+		<a href="{admin_layout_page_href}?page_name=custom_page_{page_id}&rp={rp_url}">Custom Layout</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr>
+	<td colspan="6" class="usual">
+		{NO_RECORDS}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="6">
+	  <table width="100%" cellspacing="0" cellpadding="0" border="0">
+		<tr>
+			<td>&nbsp;<a href="{admin_page_href}">{NEW_PAGE_MSG}</a>&nbsp;</td><!-- begin navigator_block -->
+			<td align="right">&nbsp;{navigator}&nbsp;</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>	
+</fieldset>
+
+
+{admin_footer}
+</body>
+</html>

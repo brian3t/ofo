@@ -1,0 +1,176 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_COMPANY_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript">
+<!--
+
+	function openWindow(pagename, filetype)
+	{
+		var uploadWin = window.open (pagename + '?filetype=' + filetype, 'uploadWin', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=400,height=300');
+		uploadWin.focus();
+  	}
+	
+	function setFileName(filename, filetype)
+	{
+		var siteUrl = '{site_url}';
+
+		if(filename != "")
+		{
+			if(filetype == "company_small")
+			{
+				document.record.image_small.value = siteUrl + "images/companies/" + filename;
+				document.record.image_small.focus();
+			}
+			else if(filetype == "company_large")
+			{
+				document.record.image_large.value = siteUrl + "images/companies/" + filename;
+				document.record.image_large.focus();
+			}
+		}
+	}
+
+//-->
+</script>
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_lookup_tables_href}">{STATIC_TABLES_MSG}</a>&nbsp;&gt;
+			<a href="{admin_companies_href}">{COMPANIES_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_COMPANY_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<td>
+<fieldset>
+<legend>{EDIT_COMPANY_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<form action="{admin_company_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="company_id" value="{company_id}">
+<table border="0" cellpadding="6" cellspacing="1" width="100%"><!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{COMPANY_NAME_FIELD} *
+	</td>
+	<td>
+		<input type="text" name="company_name" size="60" value="{company_name}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_SMALL_MSG}
+	</td>
+	<td colspan="3">
+		<input type="text" name="image_small" value="{image_small}" size="60" maxlength="255"> 
+		&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'company_small')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+		&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'company_small')"><b>{SELECT_IMAGE_MSG}</b></a>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_LARGE_MSG}
+	</td>
+	<td colspan="3">
+		<input type="text" name="image_large" value="{image_large}" size="60" maxlength="255"> 
+		&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'company_large')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+		&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'company_large')"><b>{SELECT_IMAGE_MSG}</b></a>
+	</td>
+</tr>
+<tr class="usual" valign="top">
+	<td>
+		&nbsp;{ADDRESS_INFORMATION_MSG}
+	</td>
+	<td>
+		<textarea cols="45" rows="3" name="address_info">{address_info}</textarea>
+	</td>
+</tr>
+<tr class="usual" valign="top">
+	<td>
+		&nbsp;{PHONE_NUMBER_MSG}
+	</td>
+	<td>
+		<input type="text" name="phone_number" size="30" value="{phone_number}">
+	</td>
+</tr>
+<tr class="usual" valign="top">
+	<td>
+		&nbsp;{FAX_NUMBER_MSG}
+	</td>
+	<td>
+		<input type="text" name="fax_number" size="30" value="{fax_number}">
+	</td>
+</tr>
+<tr class="usual" valign="top">
+	<td>
+		&nbsp;{SITE_URL_MSG}
+	</td>
+	<td>
+		<input type="text" name="site_url" size="60" value="{site_url}">
+	</td>
+</tr>
+<tr class="usual" valign="top">
+	<td>
+		&nbsp;{CONTACT_EMAIL_ADDRESS_MSG}
+	</td>
+	<td>
+		<input type="text" name="contact_email" size="60" value="{contact_email}">
+	</td>
+</tr>
+<tr class="usual" valign="top">
+	<td>
+		&nbsp;{AD_SHORT_DESC_MSG}
+	</td>
+	<td>
+		<textarea cols="60" rows="3" name="short_description">{short_description}</textarea>
+	</td>
+</tr>
+<tr class="usual" valign="top">
+	<td>
+		&nbsp;{FULL_DESCRIPTION_MSG}
+	</td>
+	<td>
+		<textarea cols="60" rows="6" name="full_description">{full_description}</textarea>
+	</td>
+</tr>
+
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</form>	
+
+	</td>
+</tr>
+</table>
+</fieldset>
+</td></tr></table>
+
+{admin_footer}
+</body>
+</html>

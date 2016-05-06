@@ -1,0 +1,86 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {DELETE_PRODUCTS_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+ 
+<script language="JavaScript">
+<!--
+	function checkOptions()
+	{
+		var operation = document.record.operation.value;
+		var isSubmit = true;
+		if (operation == "delete") {
+			isSubmit = document.record.is_delete.checked;
+			if(!isSubmit) {
+				alert("You need tick the checkbox first to procced.");
+			} else {
+				isSubmit = confirm('Now all of your products will be deleted - do you want to proceed?');
+			}
+		}
+		return isSubmit;
+	}				
+
+//-->
+</script>
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_items_list_href}">{PRODUCTS_MSG}</a>&nbsp;&gt;&nbsp;<b>{DELETE_PRODUCTS_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<td>
+<fieldset>
+<legend>{DELETE_PRODUCTS_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<form action="{admin_product_href}" name="record" method="POST" onSubmit="return checkOptions();">
+<input type="hidden" name="operation" value="">
+<table width="100%" border="0" cellspacing="1" cellpadding="5"><!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr>
+	<td colspan="2" class="usual">
+		<input type="checkbox" {is_delete} name="is_delete" value="1">
+    {DELETE_PRODUCTS_NOTE}
+	</td>
+</tr>
+
+
+<tr class="middle">
+	<td>
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onClick="document.record.operation.value='delete';"> &nbsp; &nbsp; 
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel';">
+	</td>
+</tr>
+</table>
+</form>
+
+	</td>
+</tr>
+</table>
+</fieldset>
+</td></tr></table>
+
+	
+{admin_footer}
+</body>
+</html>

@@ -1,0 +1,201 @@
+<div class="block-support-reply">
+
+<!-- begin global_errors -->
+<div class="errorbg" align="center">{errors_list}</div>
+<!-- end global_errors -->
+
+<!-- begin request_info -->
+<div class="bigTitle">{SUPPORT_REQUEST_INF_TITLE}</div>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr class="headerbg"> 
+		<td class="blockTD">
+
+<table border="0" cellspacing="1" width="100%" class="padding6px">
+<tr valign="top">
+	<td width="25%" class="middlebg">
+		<b>{SUPPORT_TYPE_FIELD}:</b>	</td>
+	<td class="usualbg">
+		{type}	</td>
+</tr>
+<tr valign="top">
+	<td width="25%" class="middlebg">
+		<b>{SUPPORT_CURRENT_STATUS_FIELD}:</b>	</td>
+	<td class="usualbg">
+		{current_status}	</td>
+</tr>
+<tr valign="top">
+	<td width="25%" class="middlebg">
+		<b>{SUPPORT_ADDED_FIELD}:</b>	</td>
+	<td class="usualbg">
+		{request_added}	</td>
+</tr>
+<tr valign="top">
+	<td width="25%" class="middlebg">
+		<b>{SUPPORT_UPDATED_FIELD}:</b>	</td>
+	<td class="usualbg">
+		{date_modified}	</td>
+</tr>
+<tr valign="top">
+	<td width="25%" class="middlebg">
+		<b>{SUPPORT_SUMMARY_FIELD}:</b>	</td>
+	<td class="usualbg">
+		{summary}	</td>
+</tr>
+</table>	
+
+
+	</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+<!-- end request_info -->
+
+<!-- begin reply_form -->
+<a name="reply_form"></a>
+<form action="{support_messages_href}?support_id={support_id}&vc={vc}#reply_form" name="reply" method="POST">
+<input type="hidden" name="rnd" value="{rnd}">
+<input type="hidden" name="support_id" value="{support_id}">
+<input type="hidden" name="action" value="save">
+<input type="hidden" name="attachments_url" value="{user_support_attachments_url}">
+<input type="hidden" name="page" value="{page}">
+
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{SUPPORT_REPLY_FORM_TITLE}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr class="headerbg"> 
+		<td class="blockTD">
+
+<table border="0" cellspacing="1" width="100%" class="padding6px"><!-- BEGIN errors -->
+<tr class="usualbg">
+	<td colspan="2" align="center">
+		<div class="errorbg">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<!-- begin attachments_block -->
+<tr class="usualbg">
+	<td>
+		<a href="#" onClick="attachFiles(document.reply);return false;">{ATTACHMENTS_MSG}</a>
+		<a href="#" onClick="attachFiles(document.forum);return false;"><img src="images/clip.gif" align="top" border="0" width="16" height="16"></a>
+	</td>
+	<td>
+		<div id="attachmentsBlock" style="{attachments_class}">
+			<a href="#" onClick="attachFiles(document.reply);return false;">Attached Files</a>:&nbsp;
+			&nbsp;<span id="attachedFiles">{attached_files}</span>
+		</div>
+	</td>
+</tr><!-- end attachments_block -->
+<tr class="usualbg">
+	<td>
+		<b>{SUPPORT_MESSAGE_FIELD}</b> *
+	</td>
+	<td>
+		<textarea class="text" name="message_text" cols="60" rows="10">{response_message}</textarea>
+	</td>
+</tr>
+<tr class="middlebg">
+	<td>
+	</td>
+	<td>
+		<span class="submit"><input class="submit" type="submit" value="{SUPPORT_REPLY_BUTTON}"></span>
+		<span class="submit"><input class="submit" id="clear" type="button" value="{CLEAR_BUTTON}" onClick="document.reply.message_text.value=''"></span>
+		<span class="submit"><input class="submit" id="reset" type="reset" value="{RESET_BUTTON}"></span>
+	</td>
+</tr>
+</table>	
+
+	</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+</form>
+<!-- end reply_form -->
+
+<!-- BEGIN records -->
+<br><hr />
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr class="headerbg"> 
+		<td class="blockTD">
+<table border="0" cellspacing="1" width="100%" class="padding6px">
+<tr valign="top">
+	<td width="25%" class="middlebg"><strong>
+		{STATUS_MSG}:	</strong></td>
+	<td class="usualbg">
+		{status}
+	</td>
+</tr>
+<tr valign="top">
+	<td class="middlebg"><strong>
+		{SUPPORT_ADDED_BY_FIELD}:	</strong></td>
+	<td class="usualbg">
+		{posted_by}
+	</td>
+</tr>
+<tr valign="top">
+	<td class="middlebg"><strong>
+		{SUPPORT_ADDED_FIELD}:	</strong></td>
+	<td class="usualbg">
+		{date_added}
+	</td>
+</tr>
+<tr valign="top">
+	<td class="middlebg"><strong>
+		{viewed_by}:	</strong></td>
+	<td class="usualbg">
+		{date_viewed}
+	</td>
+</tr>
+<!-- begin message_attachments -->
+<tr valign="top">
+	<td class="middlebg">
+		{ATTACHMENTS_MSG}
+	</td>
+	<td class="usualbg">
+		{attachments_files}
+	</td>
+</tr>
+<!-- end message_attachments -->
+<tr>
+	<td colspan="2" class="usualbg"><hr />
+		{message_text}
+	</td>
+</tr>
+</table>
+	</td>
+</tr>
+</table>
+<!-- END records -->
+
+<!-- begin navigator_block -->
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr class="headerbg"> 
+		<td class="blockTD">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<td align="right">
+		&nbsp;{navigator}&nbsp;
+	</td>
+</tr>
+</table>
+	</td>
+</tr>
+</table>
+<!-- end navigator_block -->
+</div>

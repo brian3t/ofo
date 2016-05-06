@@ -1,0 +1,112 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_BLOCK_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<link rel="stylesheet" href="../styles/editor.css" type="text/css">
+<script language= "JavaScript" type= "text/javascript" src= "../js/editor.js"></script>
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_custom_blocks_url}">{CUSTOM_BLOCKS_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_BLOCK_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_BLOCK_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="6" align="center">
+<form action="{admin_custom_block_href}" name="record" method="POST" onSubmit="submit_editor(Array('editor_bd'));">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="block_id" value="{block_id}">
+<input type="hidden" name="sort_ord" value="{sort_ord}">
+<input type="hidden" name="sort_dir" value="{sort_dir}">
+<input type="hidden" name="page" value="{page}">
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="middle">
+	<td colspan="2">{ADMINISTRATIVE_INFO_MSG}</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{BLOCK_NAME} *
+	</td>
+	<td>
+		<input class="field" type="text" name="block_name" size="100" value="{block_name}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{BLOCK_NOTES_MSG}
+	</td>
+	<td>
+		<textarea name="block_notes" cols="100" rows="5">{block_notes}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">{APPEARANCE_ON_PAGE_MSG}</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{BLOCK_TITLE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="block_title" size="100" value="{block_title}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{GET_CONTENT_FROM_FILE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="block_path" size="100" value="{block_path}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{BLOCK_CONTENT_MSG}
+	</td>
+	<td>
+		<textarea class="text" name="block_desc" style="display: block; width: 565px; height: 300px;">{block_desc}</textarea>
+		<script language= "JavaScript" type= "text/javascript">
+		<!--
+			var editor_bd = new VA_HTMLeditor('content_bd','../','{html_editor}');
+			editor_bd.text_field_name = 'block_desc';
+			editor_bd.formname = 'record';
+			editor_bd.css_file = '{css_file}';
+			editor_bd.displayEditor('editor_bd', 565, 300);
+		//-->
+		</script>
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</form>	
+</table>
+
+</fieldset>
+
+{admin_footer}
+
+</body>
+</html>

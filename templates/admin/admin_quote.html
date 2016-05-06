@@ -1,0 +1,382 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {ADMIN_QUOTES_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript" src="../js/calendar.js"></script>
+<script language="">
+<!--
+function FlagSubmit()
+{
+	var flag_submit = document.getElementById("flag_submit");
+	flag_submit.value = "1";
+	window.location = "admin_quote.php?flag_submit=1"
+	document.record.submit();
+}
+
+function changeLocation() {
+  
+  window.location = "admin_quote_view.php?quote_id={quote_id}";
+}
+
+//copy text
+function getSelText_my(TxtName)
+{
+  	var textbox = document.getElementById(TxtName);	
+  	if (navigator.appName == 'Netscape')
+  	{
+		var sl = (document.record.request_description.value).substring(document.record.request_description.selectionStart,document.record.request_description.selectionEnd); 	
+		textbox.value =  sl;	 	   
+	}
+		else {
+		 	document.record.request_description.focus();
+		 	sl = document.selection.createRange().text;
+			textbox.value =  sl;	 	
+		}
+}
+
+//clear textbox
+function MyClear(ItemId)
+{
+  var Item = document.getElementById(ItemId);	
+  Item.value = "";
+}
+
+//return value
+function MyReset()
+{
+  var description = document.getElementById("request_description");	
+  var copy_item = document.getElementById("copy_descr");    
+  //alert(copy_item.value);                                                                                                                                                                                                   
+  description.value = copy_item.value;
+  return true;  
+}
+
+//set total price
+function setPrice()
+{
+  	number_features = document.getElementById('number_features');
+  	var quoted_price = document.getElementById('quoted_price');
+	var t_p = 0;
+  price= new Array();
+  //alert (number_features.value);
+  for (i=0;i<number_features.value;i++)
+  {
+    //alert (i);
+    var name = "price_".concat(i+1);
+    qqq= document.getElementById(name);
+    price[i] = qqq.value;
+	if (price[i]) t_p = t_p + parseFloat(price[i]);
+	}
+	
+  t_p = Math.round(1000*t_p)/1000;
+  quoted_price.value = t_p;
+}
+
+function ChangeDate(dateId)
+{
+  alert(dateId);
+	thisDate = document.getElementById(dateId);
+	  if (isDate(thisDate.value))
+  {
+	  setDateDue2();
+	}
+}
+	
+function setDateDue2()
+{
+ // alert("111");
+	dates = new Array;
+  var date_due = document.getElementById('date_due');
+  //var format = "MMM d, y";
+  //var format = "yyyy-MM-dd";
+  number_features = document.getElementById('number_features');
+  max_date = "1970-01-01";
+  
+  for (i=0;i<number_features.value;i++)
+  {
+    var name = "date_".concat(i+1);
+    qqq= document.getElementById(name);
+    dates[i] = qqq.value;
+	if (dates[i]!="" && isDate(dates[i])) 
+		{
+	  		//flag = compareDates(max_date,format,dates[i],format)
+	  	if (dates[i] > max_date)
+	  		max_date = dates[i];
+		}
+		else
+		{
+		  isDate(dates[i]);
+		  document.record.name.focus();
+		  exit;
+		}
+	}
+	date_due.value = max_date;
+  
+}
+
+var dtCh= "-";
+var minYear=1900;
+var maxYear=2100;
+
+function isInteger(s){
+	var i;
+    for (i = 0; i < s.length; i++){   
+        // Check that current character is number.
+        var c = s.charAt(i);
+        if (((c < "0") || (c > "9"))) return false;
+    }
+    // All characters are numbers.
+    return true;
+}
+
+function stripCharsInBag(s, bag){
+	var i;
+    var returnString = "";
+    // Search through string's characters one by one.
+    // If character is not in bag, append to returnString.
+    for (i = 0; i < s.length; i++){   
+        var c = s.charAt(i);
+        if (bag.indexOf(c) == -1) returnString += c;
+    }
+    return returnString;
+}
+
+function daysInFebruary (year){
+	// February has 29 days in any year evenly divisible by four,
+    // EXCEPT for centurial years which are not also divisible by 400.
+    return (((year % 4 == 0) && ( (!(year % 100 == 0)) || (year % 400 == 0))) ? 29 : 28 );
+}
+function DaysArray(n) {
+	for (var i = 1; i <= n; i++) {
+		this[i] = 31
+		if (i==4 || i==6 || i==9 || i==11) {this[i] = 30}
+		if (i==2) {this[i] = 29}
+   } 
+   return this
+}
+
+function isDate(id)
+{
+  var dateForm = document.getElementById(id);
+  dateDate = dateForm.value;
+  var dateArr = dateDate.split("-");
+  dateYear = dateArr[0];
+//  alert(dateYear);
+  dateMonth = dateArr[1];
+ // alert(dateMonth);
+	dateDay = dateArr[2];
+//	alert(dateDay);
+	if (dateYear && dateMonth && dateDay)
+	{
+		dteDate=new Date(dateYear,dateMonth,dateDay);
+		 if ((dateDay==dteDate.getDate()) && (dateMonth==dteDate.getMonth()) && (dateYear==dteDate.getFullYear()))
+		 return true;
+		 else
+		 {
+		   alert("Please check your date!");
+	  dateForm.focus();
+	  return false;
+			}  
+	}
+	
+	else
+	{
+	  alert("Please check your date!");
+	  dateForm.focus();
+	  return false;
+	} 
+}
+
+function isPrice(id)
+{
+  var priceForm = document.getElementById(id);
+  price = priceForm.value;
+  if (/^[-+]?\d+(\.\d+)?$/.test(price))
+  return true;
+
+	else
+	{
+	  alert("Please check your price!");
+	  priceForm.focus();
+	  return false;
+	} 
+}
+//-->
+</script>
+<style>
+<!--
+table.quote_details {border-collapse: collapse;}
+table.quote_details td {
+	border: 1px solid #000000;
+}
+-->
+</style>
+</head>
+
+<!--body class="commonbg"-->
+<body>
+{admin_header} 
+
+
+<br>
+
+<fieldset>
+<legend>{ADMIN_QUOTE_MSG}</legend>
+<table cellspacing="4" cellpadding="4" border="0" align="center" width="100%">
+<form action="admin_quote.php" name="record" method="post">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="quote_id" value="{quote_id}">
+<input type="hidden" name="sort_dir" value="{sort_dir}">
+<input type="hidden" name="sort_ord" value="{sort_ord}">
+<input type="hidden" name="page" value="{page}">
+<input type="hidden" name="more_features" value="0">
+<input type="hidden" name="number_features" id="number_features" value="{number_features}">
+<input type="hidden" name="copy_descr" id="copy_descr" value="{copy_descr}">
+
+<!--table width="100%" border="0" cellspacing="2" cellpadding="2">
+<form name="form_admin_quote" id="admin_quote" method="post"-->
+<input type="hidden" name="dates" id="dates" value="{dates}">
+<!-- BEGIN errors -->
+<tr>
+	<td colspan="7" class="usual" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+
+
+				<tr align="left">
+					<td>
+					<table width=300 cellspacing="2" cellpadding="2" class="quote_details">
+						<tr bgcolor="#BFBDBD">
+							<td colspan=2>
+								<b>{CUSTOMER_DETAILS_MSG}</b>
+							</td>
+						</tr>
+						<tr>
+							<td bgcolor = "#E2DDDD">
+							{CUSTOMER_NAME_MSG}
+							</td>
+							<td>
+							{user_name}
+							</td>
+						</tr>
+						<tr>
+							<td bgcolor = "#E2DDDD">
+							{CUSTOMER_EMAIL_MSG}
+							</td>
+							<td>
+							{user_email}
+							</td>
+						</tr>
+						<tr>
+							<td bgcolor = "#E2DDDD">
+							{DATE_ADDED_MSG}
+							</td>
+							<td>
+							{date_added}
+							</td>
+						</tr>
+					</table>
+					</td>
+					<td align=right>
+						<table width=50%>
+							<tr>
+								<td align=left>
+									{TOTAL_PRICE_MSG}: 
+								</td>
+								<td align=right>
+									<input type="text" name="quoted_price" id="quoted_price" value="{quoted_price}" onChange="isPrice('quoted_price');">
+								</td>
+							</tr>
+							<tr>
+								<td align=left>
+									{DATE_DUE_MSG}: 
+								</td>
+								<td align=right>
+									<input type="text" name="date_due" id="date_due" value="{date_due}" onChange="isDate('date_due');"><br>
+										<A HREF="#" onClick="setDateField(document.record.date_due);
+      top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes')">
+      <IMG SRC="../images/calendar.gif" BORDER=0><font size=1>{CALENDAR_MSG}</font></A>	
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr class="usual"> 
+						<td align="center" colspan=2>
+							<table width=100% border=0 cellspacing="4" cellpadding="4">
+								<tr>
+									<td rowspan="{number_features}" valign=top>
+										<input type="hidden" name="changed_descr" id="changed_descr" value="{changed_descr}">
+										<input type="hidden" name="copy_descr" id="copy_descr" value="{copy_descr}">
+										<textarea name="request_description" id="request_description" cols=50 rows=30 onChange="Change{DESC_MSG}r();">{request_description}</textarea> 
+								<br>
+										<input type="button" value="{CLEAR_BUTTON}" onClick="MyClear('request_description');">
+										<input type="button" value="Reset" onClick="MyReset();">
+									</td>
+									
+										<!-- BEGIN features -->
+									<td bgcolor="#E2DDDD">
+									<input type="hidden" name="feature_id_{features_number}" value="{feature_id}">
+										<input type="button" name="copy_{features_number}" id="copy_{features_number}" Value="Copy -> " onmousedown="getSelText_my('feature_{features_number}')">	<br>
+										<input type="button" value="{CLEAR_BUTTON}" onClick="MyClear('feature_{features_number}')">
+									</td>
+									<td>
+																										<!-- begin features_errors -->
+									<font color=red>{errors_list}</font>
+								<!-- end features_errors -->
+										Feature #{features_number}: <br><textarea name="feature_description_{features_number}" id="feature_{features_number}" rows=3>{feature_description}</textarea>	
+									</td>
+									<td>
+										<table>
+											<tr>
+												<td>
+													{PRICE_MSG}: 
+												</td>
+												<td>
+													<input type="text" name="price_{features_number}" id="price_{features_number}" onChange="setPrice();" value="{price}">
+												</td>
+											</tr>
+											<tr>
+												<td>
+													{DATE_DUE_MSG}: 
+												</td>
+												<td>
+													<!--font size=1>(example: January 1, 2006)</font><br-->
+													<input type="text" name="date_due_{features_number}" id="date_{features_number}" value="{date_due}">													
+													<A HREF="#" onClick="setDateField(document.record.date_{features_number});
+      top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes')">
+      <IMG SRC="../images/calendar.gif" BORDER=0><font size=1>{CALENDAR_MSG}</font></A>	
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+					<!-- END features-->
+					<tr>
+					<td colspan="7" align="right">
+		{ADD_MORE_OPTIONS_QST} <input class="submit" type="submit" value={ADD_BUTTON} onClick="document.record.more_features.value=1">&nbsp;
+	</td>
+								</tr>
+								<tr>
+									<td align=right colspan=3>
+										<input type="hidden" name="flag_submit" id="flag_submit" value="{flag_submit}">
+										<!--input type="button" value="Preview" onClick="return CheckDate_2(); FlagSubmit(); return false;"-->
+										<!--input type="button" value="{DELETE_BUTTON}" onClick="changeLocation();"-->
+									<!-- begin buttons -->	<input class="submit" type="submit" value="Preview" onCLick="document.record.operation.value='save';">
+										<input class="submit" type="submit" value="{DELETE_BUTTON}" onCLick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!-- end buttons -->
+										{add_button}
+										<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+									</td>
+								</tr>
+							</table>
+						
+						</td>
+				</tr>
+				</form>
+				</table>
+</fieldset>
+
+	
+{admin_footer}
+</body>
+</html>

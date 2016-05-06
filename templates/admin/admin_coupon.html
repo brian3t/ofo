@@ -1,0 +1,682 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_COUPON_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript" type= "text/javascript" src="../js/calendar.js"></script>
+<script language="JavaScript" type= "text/javascript" src="../js/users.js"></script>
+<script language="JavaScript">
+<!--
+	var removeButton = "{REMOVE_BUTTON}";
+
+	var products = new Array(); // <!-- BEGIN selected_items_js -->
+	products["{related_id}"] = new Array("{item_name_js}");// <!-- END selected_items_js -->
+
+	var users = new Array(); // <!-- BEGIN selected_users_js -->
+	users["{user_id}"] = new Array("{user_name_js}");// <!-- END selected_users_js -->
+
+	var friends = new Array(); // <!-- BEGIN selected_friends_js -->
+	friends["{user_id}"] = new Array("{user_name_js}");// <!-- END selected_friends_js -->
+
+	function openProductWindow()
+	{
+		var itemsAll = document.record.items_all.checked;
+		if (itemsAll) {
+			alert ("{UNTICK_CHECKBOX_TO_SELECT_NOTE}");
+		} else {
+			var productWin = window.open ('{admin_product_select_href}', 'productWin', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=600,height=500');
+			productWin.focus();
+		}
+	}
+
+	function setProduct(itemId, itemName, itemPrice, formId)
+	{
+		var productAdded = false;
+		for(var id in products)
+		{
+			if (id == itemId) {
+				productAdded = true;
+			}
+		}
+		
+		if (!productAdded) {
+			products[itemId] = new Array(itemName);
+			generateSelected();
+		}
+	}
+
+	function removeProduct(removeId)
+	{
+		delete products[removeId];
+		generateSelected();
+	}
+
+	function generateSelected()
+	{
+		var itemsIds = "";
+  
+		var selectedDiv = document.getElementById("selectedProducts");
+		selectedDiv.innerHTML = "";
+		for(var id in products)
+		{
+			var productName = products[id];
+			var productInfo = "<li class=selectedCategory>" + productName;
+			productInfo += " | <a href=\"#\" onClick=\"removeProduct(" + id + "); return false;\">{REMOVE_BUTTON}</a>";
+			if (selectedDiv.insertAdjacentHTML) {
+				selectedDiv.insertAdjacentHTML("beforeEnd", productInfo);
+			} else {
+				selectedDiv.innerHTML += productInfo;
+			}
+			if (itemsIds != "") { itemsIds += "," }
+			itemsIds += id;
+		}
+		document.record.items_ids.value = itemsIds;
+	}
+
+	function changeFriendsDiscount()
+	{
+		var formObj = document.record;
+		var friendsDiscount = formObj.friends_discount_type.options[formObj.friends_discount_type.selectedIndex].value;
+		var controls = new Array();
+		controls["friends_period"] = "disabled";
+		controls["friends_interval"] = "disabled";
+		controls["friends_min_goods"] = "disabled";
+		controls["friends_max_goods"] = "disabled";
+		controls["friends_all"] = "disabled";
+		controls["friends_users"] = "none";
+
+		if (friendsDiscount == 1) {
+			controls["friends_period"] = "active";
+			controls["friends_interval"] = "active";
+			controls["friends_min_goods"] = "active";
+			controls["friends_max_goods"] = "active";
+		} else if (friendsDiscount == 2) {
+			controls["friends_all"] = "active";
+			controls["friends_users"] = "table-row";
+		}
+
+		for (var controlName in controls) {
+			var controlType = controls[controlName];
+			if (controlType == "active") {
+				formObj.elements[controlName].disabled = false;
+			} else if (controlType == "disabled") {
+				formObj.elements[controlName].disabled = true;
+			} else if (controlType == "none") {
+				var trObj = document.getElementById(controlName);
+				trObj.style.cssText = "display: none";
+			} else if (controlType == "table-row") {
+				var trObj = document.getElementById(controlName);
+				trObj.style.cssText = "display: table-row";
+			}
+		}
+	}
+
+//-->
+</script>
+<script language="JavaScript" type= "text/javascript" src="../js/list_fields.js"></script>
+<script language="JavaScript">
+<!--
+var list_fields_names = new Array('sites');
+//-->
+</script>
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			<!-- BEGIN orders_path -->
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_orders_href}">{ORDERS_MAINTENANCE_MSG}</a>&nbsp;&gt;
+			<a href="{admin_order_href}?order_id={order_id}">{ADMIN_ORDER_MSG}</a>&nbsp;&gt;
+			<a href="{admin_order_vouchers_href}?order_id={order_id}">{GIFT_VOUCHERS_MSG}</a>&nbsp;&gt;
+			<b>{EDIT_GIFT_VOUCHER_MSG}</b>
+			<!-- END orders_path -->
+
+			<!-- BEGIN coupons_path -->
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_coupons_href}?s={s}&s_a={s_a}">{COUPONS_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_COUPON_MSG}</b>
+			<!-- END coupons_path -->
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+	<div id="tabs">
+		<!-- BEGIN tabs_rows -->
+		<div id="{row_id}" class="tabRow"><!-- BEGIN tabs -->
+			<div id="{tab_id}" class="{tab_class}"><a class="blackSm" href="#" onClick="changeTab('{tab_name}'); return false;">{tab_title}</a></div>{br}<!-- END tabs -->
+		</div>
+		<!-- END tabs_rows -->
+	</div>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tabTable">
+<tr align="center">
+	<td class="">
+
+<form action="{admin_coupon_href}" name="record" onSubmit="selectListFieldsAll();" method="POST">
+<input type="hidden" name="s" value="{s}">
+<input type="hidden" name="s_a" value="{s_a}">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="coupon_id" value="{coupon_id}">
+<input type="hidden" name="order_id" value="{order_id}">
+<input type="hidden" name="tab" value="{tab}">
+<input type="hidden" name="sites" value=""><!-- BEGIN discount_type_text_block -->
+<input type="hidden" name="discount_type" size="50" value="{discount_type_text}"><!-- END discount_type_text_block -->     
+
+<div id="data_general" style="{general_style}"> 
+	<table border="0" cellpadding="6" cellspacing="1" width="100%"><!-- BEGIN errors -->
+	<tr class="usual">
+		<td colspan="2" align="center">
+			<div class="error">{errors_list}</div>
+		</td>
+	</tr><!-- END errors -->
+	<tr class="usual">
+		<td nowrap>
+			&nbsp;{IS_ACTIVE_MSG}?
+		</td>
+		<td><!-- begin is_active -->
+			<input type="radio" name="is_active" {is_active_checked} value="{is_active_value}">{is_active_description}<!-- end is_active -->
+		</td>
+	</tr>
+	<tr class="usual">
+		<td nowrap>
+			&nbsp;{AUTO_APPLY_COUPON_MSG}
+		</td>
+		<td><!-- begin is_auto_apply -->
+			<input type="radio" name="is_auto_apply" {is_auto_apply_checked} value="{is_auto_apply_value}">{is_auto_apply_description}<!-- end is_auto_apply -->
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{APPLY_ORDER_MSG} *
+		</td>
+		<td>
+			<input class="field" type="text" name="apply_order" size="10" maxlength="10" value="{apply_order}">
+			({APPLY_ORDER_DESC})
+		</td>
+	</tr>
+	<tr class="middle">
+		<td colspan="2">
+			&nbsp;<b>{COUPON_INFO_MSG}</b>
+		</td>
+	</tr>
+	<!-- begin order_item_id_block -->
+	<tr class="usual">
+		<td>
+			&nbsp;{ORDER_ITEM_MSG} *
+		</td>
+		<td>
+			<select name="order_item_id"><!-- begin order_item_id -->
+				<option {order_item_id_selected} value="{order_item_id_value}">{order_item_id_description}<!-- end order_item_id -->
+			</select>
+		</td>
+	</tr>
+	<!-- end order_item_id_block -->
+	<tr class="usual">
+		<td>
+			&nbsp;{COUPON_CODE_MSG} *
+		</td>
+		<td>
+			<input class="field" type="text" name="coupon_code" size="20" value="{coupon_code}">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{COUPON_TITLE_MSG} *
+		</td>
+		<td>
+			<input class="field" type="text" name="coupon_title" size="50" value="{coupon_title}">
+		</td>
+	</tr><!-- begin discount_type_block -->
+	<tr class="usual">
+		<td>
+			&nbsp;{DISCOUNT_TYPE_MSG} *
+		</td>
+		<td><!-- begin discount_type -->
+			<input type="radio" name="discount_type" {discount_type_checked} value="{discount_type_value}">{discount_type_description}<!-- end discount_type -->
+		</td>
+	</tr><!-- end discount_type_block -->
+	<tr class="usual">
+		<td>
+			&nbsp;{DISCOUNT_AMOUNT_MSG} *
+		</td>
+		<td>
+			<input class="field" type="text" name="discount_amount" size="10" value="{discount_amount}">
+		</td>
+	</tr><!-- begin discount_quantity_block -->
+	<tr class="usual">
+		<td>
+			&nbsp;{DISCOUNT_MULTIPLE_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="discount_quantity" size="10" value="{discount_quantity}">
+			&nbsp; ({DISCOUNT_MULTIPLE_DESC})  
+		</td>
+	</tr><!-- end discount_quantity_block -->
+<!-- begin free_postage_block -->
+	<tr class="usual">
+		<td>
+			&nbsp;{FREE_POSTAGE_MSG}
+		</td>
+		<td>
+			<input type="checkbox" name="free_postage" {free_postage} value="1">
+		</td>
+	</tr><!-- end free_postage_block --><!-- begin coupon_tax_free_block -->
+	<tr class="usual">
+		<td>
+			&nbsp;{COUPON_TAX_FREE_MSG}
+		</td>
+		<td>
+			<input type="checkbox" name="coupon_tax_free" {coupon_tax_free} value="1">
+		</td>
+	</tr><!-- end coupon_tax_free_block --><!-- begin order_tax_free_block -->
+	<tr class="usual">
+		<td>
+			&nbsp;{ORDER_TAX_FREE_MSG}
+		</td>
+		<td>
+			<input type="checkbox" name="order_tax_free" {order_tax_free} value="1">
+		</td>
+	</tr><!-- end order_tax_free_block -->
+	<tr class="middle">
+		<td>
+		</td>
+		<td>
+			<input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+			<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+			<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+		</td>
+	</tr>
+	</table>
+
+</div>
+
+<!-- select restrictions -->
+<div id="data_restrictions" style="{restrictions_style}">
+	<table cellspacing="1" cellpadding="4" border="0" width="100%">
+	<tr class="middle">
+		<td colspan="2">
+			&nbsp;<b>{COUPON_RESTRICTIONS_MSG}</b>
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{START_DATE_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="start_date" size="10" value="{start_date}">
+			<a href="#"
+				onClick="setDateField(document.record.start_date, '{date_edit_format}');
+				top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+			<img src="../images/calendar.gif" border="0">{CALENDAR_MSG}</a>
+			({date_format_msg})
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{ADMIN_EXPIRY_DATE_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="expiry_date" size="10" value="{expiry_date}">
+			<a href="#"
+				onClick="setDateField(document.record.expiry_date, '{date_edit_format}');
+				top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+			<img src="../images/calendar.gif" border="0">{CALENDAR_MSG}</a>
+			({date_format_msg})
+		</td>
+	</tr><!-- begin min_quantity_block -->
+	<tr class="usual">
+		<td>
+			&nbsp;{MINIMUM_ITEMS_QTY_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="min_quantity" size="10" value="{min_quantity}">
+			&nbsp;({min_quantity_desc})
+		</td>
+	</tr><!-- end min_quantity_block --><!-- begin max_quantity_block -->
+	<tr class="usual">
+		<td>
+			&nbsp;{MAXIMUM_ITEMS_QTY_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="max_quantity" size="10" value="{max_quantity}">
+			&nbsp;({max_quantity_desc})
+		</td>
+	</tr><!-- end max_quantity_block --><!-- begin minimum_amount_block -->
+	<tr class="usual">
+		<td>
+			&nbsp;{minimum_amount_title}
+		</td>
+		<td>
+			<input class="field" type="text" name="minimum_amount" size="10" value="{minimum_amount}">
+		</td>
+	</tr><!-- end minimum_amount_block --><!-- begin maximum_amount_block -->
+	<tr class="usual">
+		<td>
+			&nbsp;{maximum_amount_title}
+		</td>
+		<td>
+			<input class="field" type="text" name="maximum_amount" size="10" value="{maximum_amount}">
+		</td>
+	</tr><!-- end maximum_amount_block -->
+
+	<!-- begin is_exclusive_block -->
+	<tr class="usual">
+		<td>
+			&nbsp;{EXCLUSIVE_MSG}
+		</td>
+		<td>
+			<input type="checkbox" name="is_exclusive" {is_exclusive} value="1">
+			&nbsp;({COUPON_CANNOT_BE_USED_MSG})
+		</td>
+	</tr><!-- end is_exclusive_block -->
+	<!-- begin users_use_limit_block -->
+	<tr class="usual">
+		<td>
+			&nbsp;{USERS_USE_LIMIT_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="users_use_limit" size="10" value="{users_use_limit}">
+			&nbsp; ({USERS_USE_LIMIT_DESC})
+		</td>
+	</tr><!-- end users_use_limit_block -->
+	<!-- begin quantity_limit_block -->
+	<tr class="usual">
+		<td>
+			&nbsp;{TIMES_COUPON_CAN_BE_USED}
+		</td>
+		<td>
+			<input class="field" type="text" name="quantity_limit" size="10" value="{quantity_limit}">
+			&nbsp; ({COUPON_LIMIT_DESC})
+		</td>
+	</tr><!-- end quantity_limit_block -->
+	<tr class="usual">
+		<td>
+			&nbsp;{TIMES_COUPON_HAS_BEEN_USED}
+		</td>
+		<td>
+			<input class="field" type="text" name="coupon_uses" size="10" value="{coupon_uses}">
+			&nbsp; ({FIELD_UPDATED_BY_SYSTEM})
+		</td>
+	</tr>
+	<tr class="usual">
+		<td colspan="2" class="middle">
+			&nbsp;{PAST_ORDERS_RESTRICTIONS_MSG}
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{ORDERS_PERIOD_MSG}
+		</td>
+		<td>
+			<table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td>
+					<input class="field" type="text" name="orders_interval" value="{orders_interval}" size="10" maxlength="10"> &nbsp;
+				</td>
+				<td>
+					<select name="orders_period"><!-- begin orders_period -->
+						<option {orders_period_selected} value="{orders_period_value}">{orders_period_description}<!-- end orders_period -->
+					</select>
+				</td>
+				<td>
+					&nbsp; ({ORDERS_PERIOD_DESC})
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{MINIMUM_GOODS_COST_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="orders_min_goods" value="{orders_min_goods}" size="10" maxlength="10">
+			({ORDERS_MIN_GOODS_DESC})
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{MAXIMUM_GOODS_COST_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="orders_max_goods" value="{orders_max_goods}" size="10" maxlength="10">
+			({ORDERS_MAX_GOODS_DESC})
+		</td>
+	</tr>
+	<tr class="middle">
+		<td colspan="2">
+			&nbsp; <input class="submit" type="submit" value=" {save_button} " onCLick="document.record.operation.value='save'"> &nbsp;
+		</td>
+	</tr>
+	</table>
+</div>
+
+<!-- select products -->
+<div id="data_products" style="{products_style}">
+	<table cellspacing="1" cellpadding="4" border="0" width="100%">
+	<!-- begin items_ids_block -->
+	<tr class="usual">
+		<td colspan="2">
+			<input type="hidden" name="items_ids" value="{items_ids}">
+			&nbsp;<input type="checkbox" name="items_all" {items_all} value="1">{APPLY_TO_ALL_PRODUCTS_MSG} ({UNTICK_CHECKBOX_TO_SELECT_NOTE})
+		</td>
+	</tr>	
+	<tr class="usual">
+		<td colspan="2">
+			<table cellspacing="0" cellpadding="5" border="0" width="100%">
+			<tr>
+				<td>
+					<div id="selectedProducts"><!-- BEGIN selected_items -->
+						<li class="selectedCategory">{item_name} | <a href="#" onClick="removeProduct('{related_id}'); return false;">{REMOVE_BUTTON}</a><!-- END selected_items -->
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a class=title href="#" onClick="openProductWindow(); return false;">{SELECT_PRODUCT_MSG}</a>
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<!-- end items_ids_block -->
+	<tr class="middle">
+		<td colspan="2">
+			&nbsp; <input class="submit" type="submit" value=" {save_button} " onCLick="document.record.operation.value='save'"> &nbsp;
+		</td>
+	</tr>
+	</table>
+</div>
+
+<!-- users list -->
+<div id="data_users" style="{users_style}">
+	<table cellspacing="1" cellpadding="4" border="0" width="100%">
+	<tr class="usual">
+		<td colspan="2">
+			<input type="hidden" name="users_ids" value="{users_ids}">
+			&nbsp;<input type="checkbox" name="users_all" {users_all} value="1">{USERS_ALL_MSG} ({USERS_ALL_UNTICK_MSG})
+		</td>
+	</tr>	
+	<tr class="usual">
+		<td colspan="2">
+			<table cellspacing="0" cellpadding="5" border="0" width="100%">
+			<tr>
+				<td>
+					<div id="selectedUsers"><!-- BEGIN selected_users -->
+						<li class="selectedCategory">{user_name} - <a href="#" onClick="removeUser('{user_id}', 'record', 'users_ids'); return false;">{REMOVE_BUTTON}</a><!-- END selected_users -->
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a class=title href="#" onClick="openUsersWindow('{admin_users_select_href}', 'record', 'users_ids', 'multiple'); return false;">{SELECT_USER_MSG}</a>
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<tr class="middle">
+		<td colspan="2">
+			&nbsp; <input class="submit" type="submit" value=" {save_button} " onCLick="document.record.operation.value='save'"> &nbsp;
+		</td>
+	</tr>
+	</table>
+</div>
+
+<!-- friends visits options -->
+<div id="data_friends" style="{friends_style}">
+	<table cellspacing="1" cellpadding="4" border="0" width="100%">
+	<!-- begin friends_discount_type_block -->
+	<tr class="usual">
+		<td colspan="2" class="middle">
+			&nbsp;{FRIENDS_VISITS_MSG}
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{FRIENDS_DISCOUNT_TYPE_MSG} 
+		</td>
+		<td>
+			<select name="friends_discount_type" onChange="changeFriendsDiscount();"><!-- begin friends_discount_type -->
+				<option {friends_discount_type_selected} value="{friends_discount_type_value}">{friends_discount_type_description}<!-- end friends_discount_type -->
+			</select>
+		</td>
+	</tr><!-- end friends_discount_type_block -->
+	<tr class="usual" id="friends_period_tr" style="{friends_period_tr_style}">
+		<td>
+			&nbsp;{FRIENDS_PERIOD_MSG}
+		</td>
+		<td>
+			<table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td>
+					<input class="field" type="text" name="friends_interval" value="{friends_interval}" {friends_interval_disabled} size="10" maxlength="10"> &nbsp;
+				</td>
+				<td>
+					<select name="friends_period" {friends_period_disabled}><!-- begin friends_period -->
+						<option {friends_period_selected} value="{friends_period_value}">{friends_period_description}<!-- end friends_period -->
+					</select>
+				</td>
+				<td>
+					&nbsp; ({FRIENDS_PERIOD_DESC})
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<tr class="usual" id="friends_min_goods_tr" style="{friends_min_goods_tr_style}">
+		<td>
+			&nbsp;{MINIMUM_GOODS_COST_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="friends_min_goods" value="{friends_min_goods}" {friends_min_goods_disabled} size="10" maxlength="10">
+			({FRIENDS_MIN_GOODS_DESC})
+		</td>
+	</tr>
+	<tr class="usual" id="friends_max_goods_tr" style="{friends_max_goods_tr_style}">
+		<td>
+			&nbsp;{MAXIMUM_GOODS_COST_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="friends_max_goods" value="{friends_max_goods}" {friends_max_goods_disabled} size="10" maxlength="10">
+			({FRIENDS_MAX_GOODS_DESC})
+		</td>
+	</tr>
+	<tr class="usual" id="friends_ids_tr" style="{friends_ids_tr_style}">
+		<td colspan="2">
+			<input type="hidden" name="friends_ids" value="{friends_ids}">
+			&nbsp;<input type="checkbox" name="friends_all" {friends_all} {friends_all_disabled} value="1">{FRIENDS_ALL_MSG} ({FRIENDS_ALL_UNTICK_MSG})
+		</td>
+	</tr>	
+	<tr class="usual" id="friends_users" style="{friends_users_style}">
+		<td colspan="2">
+			<table cellspacing="0" cellpadding="5" border="0" width="100%">
+			<tr>
+				<td>
+					<div id="selectedFriends"><!-- BEGIN selected_friends -->
+						<li class="selectedCategory">{user_name} - <a href="#" onClick="removeUser('{user_id}', 'record', 'friends_ids'); return false;">{REMOVE_BUTTON}</a><!-- END selected_friends -->
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a class=title href="#" onClick="openUsersWindow('{admin_users_select_href}', 'record', 'friends_ids', 'multiple'); return false;">{SELECT_USER_MSG}</a>
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<tr class="middle">
+		<td colspan="2">
+			&nbsp; <input class="submit" type="submit" value=" {save_button} " onCLick="document.record.operation.value='save'"> &nbsp;
+		</td>
+	</tr>
+	</table>
+</div>
+
+<!-- begin sitelist-->
+<div id="data_sites" style="{sites_style}">
+	<table cellspacing="1" cellpadding="4" border="0" width="100%">
+	<tr class="usual">
+		<td colspan="3">
+			&nbsp; <input type="checkbox" name="sites_all" {sites_all} onClick="checkListFields('sites');" value="1">
+			{SITES_ALL_MSG} ({SITES_ALL_UNTICK_MSG})
+		</td>
+	</tr>
+	<tr class="usual">
+		<td colspan="2">
+	
+			<table width="100%" border="0" cellspacing="1" cellpadding="3">
+			<tr align="center" class="usual">
+				<td width="40%"><b>{AVAILABLE_SITES_MSG}</b></td>
+				<td width="20%"><b>{OPERATIONS_MSG}</b></td>
+				<td width="40%"><b>{APPLY_FOR_SITES_MSG}</b></td>
+			</tr>
+			<tr align="center" class="usual">
+				<td width="40%">
+					<select name="available_sites" MULTIPLE size="10"  style="width: 300px;"><!-- begin available_sites -->
+						<option value="{site_id}">{site_name}<!-- end available_sites-->
+					</select>
+				</td>
+				<td width="20%">
+	
+					<input class="submit" readonly type="button" name="add_sites" value="&nbsp;&nbsp; {ADD_BUTTON}  -> &nbsp;&nbsp;" onClick="addListFields('sites');">
+					<br><br>
+					<input class="submit" type="button" name="remove_sites" value="<- {REMOVE_BUTTON}" onClick="removeListFields('sites');">
+				</td>
+				<td width="40%">
+	
+					<select name="selected_sites" MULTIPLE size="10" style="width: 300px;"><!-- begin selected_sites -->
+						<option value="{site_id}">{site_name}<!-- end selected_sites -->
+					</select>
+				</td>
+			</tr>
+			</table>
+	
+		</td>
+	</tr>
+	<tr class="middle">
+		<td colspan="3">
+			&nbsp; <input class="submit" type="submit" value=" {save_button} " onCLick="document.record.operation.value='save'"> &nbsp;
+		</td>
+	</tr>
+	</table>
+</div>
+<!-- end sitelist-->
+
+</form>	
+
+{admin_footer}
+<script language="JavaScript">
+<!--
+	checkListFieldsAll();
+//-->
+</script>
+</body>
+</html>

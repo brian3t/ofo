@@ -1,0 +1,79 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{ADMINISTRATION_MSG} :: {EDIT_DAY_MSG}</title>
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script type="text/javascript" src="../js/admin.js"></script>
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_ads_href}">{ADS_TITLE}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_ads_hot_days_href}">{ADS_DAYS_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_DAY_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_DAY_MSG}</legend>
+
+<form action="{admin_ads_hot_day_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="days_id" value="{days_id}">
+<table border="0" cellspacing="1" cellpadding="6" width="100%"><!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{DAYS_NUMBER_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" size="50" name="days_number" value="{days_number}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{DAYS_TITLE_MSG} 
+	</td>
+	<td>
+		<input class="field" type="text" size="50" name="days_title" value="{days_title}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADS_PUBLISH_PRICE_MSG} 
+	</td>
+	<td>
+		<input class="field" type="text" size="50" name="publish_price" value="{publish_price}">
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onclick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{AD_TYPE_DELETE_CONFIRM_MSG}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</form>	
+
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

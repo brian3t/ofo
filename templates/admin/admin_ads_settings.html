@@ -1,0 +1,266 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{ADMINISTRATION_MSG} :: {ADS_SETTINGS_MSG}</title>
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script type="text/javascript" src="../js/admin.js"></script>
+</head>
+<body class="commonbg">
+
+{admin_header}
+
+<form action="{admin_ads_settings_href}" name="record" method="POST">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="breadcrumb"> 
+
+	<table width="100%" cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_ads_href}">{ADS_TITLE}</a>&nbsp;&gt;
+			<b>{IMAGE_SETTINGS_MSG}</b>
+		</td>
+		<!-- begin sitelist -->
+		<td class="usual" align="right">
+			{SELECT_SITE_MSG}&nbsp;
+			<select name="param_site_id" onchange="reloadSite(this.form)"><!-- begin param_site_id -->
+				<option {param_site_id_selected} value="{param_site_id_value}">{param_site_id_description}<!-- end param_site_id -->
+			</select>		
+		</td>
+		<!-- end sitelist -->
+	</tr>
+	</table>
+
+</td></tr></table>
+
+<br>
+
+<div id="tabs">
+	<!-- BEGIN tabs_rows -->
+	<div id="{row_id}" class="tabRow"><!-- BEGIN tabs -->
+		<div id="{tab_id}" class="{tab_class}"><a class="blackSm" href="#" onClick="changeTab('{tab_name}'); return false;">{tab_title}</a></div>{br}<!-- END tabs -->
+	</div>
+	<!-- END tabs_rows -->
+</div>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tabTable">
+<tr align="center"> 
+	<td>
+
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="rp" value="{rp}">
+<input type="hidden" name="tab" value="{tab}">
+
+<!-- general -->
+<div id="data_general" style="{general_style}">
+
+<table width="100%" border="0" cellspacing="1" cellpadding="4">
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td align="center" colspan="2">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{USER_ADS_LIMIT_MSG}
+	</td>
+	<td>
+		<input type="text" class="field" name="ads_limit" value="{ads_limit}" size="10" maxlength="9">
+		({USER_ADS_LIMIT_DESC})
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{PRICE_LIMITS_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{MIN_ALLOWED_ADS_PRICE_MSG}
+	</td>
+	<td>
+		<input type="text" class="field" name="min_price_limit" value="{min_price_limit}" size="10" maxlength="9">
+		({MIN_ALLOWED_ADS_PRICE_NOTE}) 
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{MAX_ALLOWED_ADS_PRICE_MSG}
+	</td>
+	<td>
+		<input type="text" class="field" name="max_price_limit" value="{max_price_limit}" size="10" maxlength="9">
+		({MAX_ALLOWED_ADS_PRICE_NOTE}) 
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{ADS_ACTIVATION_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ACTIVATE_ADS_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="activate_ads" {activate_ads} value="1">
+		({ACTIVATE_ADS_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{DEACTIVATE_ADS_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="deactivate_ads" {deactivate_ads} value="1">
+		({DEACTIVATE_ADS_NOTE})
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{ADS_TERMS_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADS_SHOW_TERMS_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="show_terms" {show_terms} value="1">
+		({ADS_SHOW_TERMS_DESC})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADS_TERMS_MSG}
+	</td>
+	<td>
+		<textarea name="terms_text" cols="80" rows="10">{terms_text}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">        
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tr><td class="middle" align="center">
+			<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+		</td></tr>
+		</table>
+	</td>
+</tr>
+</table>
+</div>
+<!-- general data end -->
+
+
+<!-- fields data begin -->
+<div id="data_fields" style="{fields_style}">
+<table border="0" cellpadding="4" cellspacing="1" width="100%"><!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td width="20%">
+		&nbsp;{HOT_OFFER_MSG} 
+	</td>
+	<td width="80%">
+		<input type="checkbox" name="hot_offer" {hot_offer} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SPECIAL_OFFER_MSG} 
+	</td>
+	<td>
+		<input type="checkbox"  name="special_offer" {special_offer} value="1">
+	</td>
+</tr>
+<tr class="middle">
+	<td></td>
+	<td>        
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</div>
+
+<div id="data_images" style="{images_style}">
+<table border="0" cellpadding="4" cellspacing="1" width="100%"><!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{CUSTOMERS_IMAGES_RESTRICTIONS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_SMALL_MSG} 
+	</td>
+	<td>
+		<input class="field" type="text" size="5" name="image_small_width" value="{image_small_width}">
+		x
+		<input class="field" type="text" size="5" name="image_small_height" value="{image_small_height}">
+    ,&nbsp;
+		<input class="field" type="text" size="8" name="image_small_size" value="{image_small_size}">
+    &nbsp;&nbsp;
+    <input type="checkbox" name="image_small_resize" {image_small_resize} value="1">
+		{ALWAYS_RESIZE_IMAGE_NOTE}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_LARGE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="5" name="image_large_width" value="{image_large_width}">
+		x
+		<input class="field" type="text" size="5" name="image_large_height" value="{image_large_height}">
+		,&nbsp;
+		<input class="field" type="text" size="8" name="image_large_size" value="{image_large_size}">
+    &nbsp;&nbsp;
+		<input type="checkbox" name="image_large_resize" {image_large_resize} value="1">
+		{ALWAYS_RESIZE_IMAGE_NOTE}
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{MORE_PICTURES_SETTINGS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{MORE_PICTURES_SETTINGS_NOTE}
+	</td>
+	<td >
+		<input class="field" type="text" name="images_number" value="{images_number}" size="20" maxlength="255">
+	</td>
+</tr>
+
+<tr class="middle">
+	<td></td>
+	<td >
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</div>
+
+</td></tr></table>
+
+</form>
+
+
+
+{admin_footer}
+
+</body>
+</html>

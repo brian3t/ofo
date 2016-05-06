@@ -1,0 +1,185 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_SHIPPING_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_shipping_modules_href}">{SHIPPING_MODULES_MSG}</a>&nbsp;&gt;
+			<b>{EDIT_SHIPPING_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+
+<fieldset>
+<legend>{EDIT_SHIPPING_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center">  
+	<td>
+
+<form action="{admin_shipping_module_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="shipping_module_id" value="{shipping_module_id}">
+<input type="hidden" name="more_parameters" value="0">
+<input type="hidden" name="number_parameters" value="{number_parameters}">
+
+<table cellspacing="1" cellpadding="6" border="0" width="100%"><!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="6" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{IS_ACTIVE_MSG}
+	</td>
+	<td colspan="5">
+		<input type="checkbox" name="is_active" {is_active} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SHIPPING_MODULE_NAME_MSG} *
+	</td>
+	<td colspan="5">
+		<input type="text" class="field" name="shipping_module_name" value="{shipping_module_name}" size="100">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{NOTES_MSG}
+	</td>
+	<td colspan="5">
+		<textarea cols="100" rows="15" name="module_notes">{module_notes}</textarea>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+	  &nbsp;{COST_ADD_PERCENT_MSG} 
+	</td>
+	<td colspan="5">
+		<input type="text" class="field" name="cost_add_percent" value="{cost_add_percent}" size="10">
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="6">
+		&nbsp;{OTHER_PARAMETERS_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+	  &nbsp;{IS_EXTERNAL_MSG} 
+	</td>
+	<td colspan="5">
+		<input type="checkbox" name="is_external" {is_external} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+	  &nbsp;{PHP_EXTERNAL_LIBRARY_MSG}
+	</td>
+	<td colspan="5">
+		<input type="text" class="field" name="php_external_lib" value="{php_external_lib}" size="70"> 
+		&nbsp; ({CALCULATE_SHIPPING_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EXTERNAL_URL_MSG} 
+	</td>
+	<td colspan="5">
+		<input type="text" class="field" name="external_url" value="{external_url}" size="70">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{TRACKING_URL_MSG} 
+	</td>
+	<td colspan="5">
+		<input type="text" class="field" name="tracking_url" value="{tracking_url}" size="70"> 
+		&nbsp; ({TRACKING_URL_NOTE})
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="5">
+		&nbsp;{PARAMETERS_LIST_MSG}
+	</td>
+</tr>
+<tr align="center" class="usual">
+	<td class="small">
+		#
+	</td>
+	<td class="small">
+		{PARAMETER_NAME_MSG}
+	</td>
+	<td class="small">
+		{PARAMETER_SOURCE_MSG}
+	</td>
+	<td class="small">
+		{NOT_PASSED_MSG}
+	</td>
+	<td class="small">
+		{DELETE_BUTTON}
+	</td>
+</tr><!-- begin parameters --><!-- begin parameters_errors -->
+<tr class="usual" align="center">
+	<td>&nbsp;</td>
+	<td colspan="3">
+		<div class="error">{errors_list}</div>
+	</td>
+	<td>&nbsp;</td>	
+</tr><!-- end parameters_errors -->
+<tr class="usual" align="center">
+	<td class="small">
+		&nbsp;{row_number}&nbsp;
+		<input type="hidden" name="parameter_id_{parameters_number}" value="{parameter_id}">
+		<input type="hidden" name="shipping_module_id_{parameters_number}" value="{shipping_module_id}">
+	</td>
+	<td>
+		<input type="text" class="field"  name="parameter_name_{parameters_number}" value="{parameter_name}" size="40">
+	</td>
+	<td>
+		<input type="text" class="field"  name="parameter_source_{parameters_number}" value="{parameter_source}" size="40">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="not_passed_{parameters_number}" {not_passed} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="parameters_delete_{parameters_number}" {parameters_delete} value="1">
+	</td>
+</tr><!-- end parameters -->
+<tr class="usual">
+	<td colspan="5" align="right">
+		{ADD_MORE_PARAMETERS_QST} <input class="submit" type="submit" value={ADD_BUTTON} onClick="document.record.more_parameters.value=1">&nbsp;
+	</td>
+</tr>
+<tr class="middle">
+	<td></td>
+	<td colspan="5">
+		<input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onCLick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">&nbsp;
+	</td>
+</tr>
+</table>
+</form>
+
+	</td>
+</tr>
+</table>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

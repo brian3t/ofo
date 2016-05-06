@@ -1,0 +1,273 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {UPGRADE_TITLE} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<SCRIPT LANGUAGE='JavaScript'>
+<!--
+
+	function sel_type1() {
+		document.diff.folder_name.disabled = true;
+	}
+	
+	function sel_type3() {
+		document.diff.folder_name.disabled = false;
+	}
+
+	function sel_type4() {
+		document.diff.not_selected.disabled = true;
+		document.diff.selected.disabled = true;
+		document.diff.button_add.disabled = true;
+		document.diff.button_remove.disabled = true;
+		document.diff.rf1.disabled = false;
+		document.diff.rf2.disabled = false;
+	}
+
+	function sel_type5() {
+		document.diff.not_selected.disabled = false;
+		document.diff.selected.disabled = false;
+		document.diff.button_add.disabled = false;
+		document.diff.button_remove.disabled = false;
+		document.diff.rf1.disabled = true;
+		document.diff.rf2.disabled = true;
+	}
+//-->
+</SCRIPT>
+<script language="JavaScript">
+<!--
+
+	var files = new Array();
+	var selectedFiles = new Array();
+	files[0] = new Array("", "root", Array()); 
+	// <!-- BEGIN files -->
+	files["{file_id}"] = new Array({parent_file_id}, "{file_name}", Array()); // <!-- END files -->
+	// <!-- BEGIN selected_files -->
+	selectedFiles[{file_id}] = 1; // <!-- END selected_files -->
+
+	function initValues()
+	{
+		clearOptions();
+
+		for(var i in files)
+		{
+			var parentFileID = files[i][0];
+			if(parentFileID.toString() != "" && files[parentFileID] != undefined)
+			{
+				var childNumber = files[parentFileID][2].length;
+				files[parentFileID][2][childNumber] = i;
+			}
+		}
+		
+		setOptions(0, 0);
+	}
+
+	function setOptions(fileID, indent)
+	{
+		var indentString = "";
+		parentFileID = files[fileID][0];
+		while(parentFileID.toString() != "")
+		{
+			if (parentFileID != 0) {
+				indentString = files[parentFileID][1] + " > " + indentString;
+			}
+			parentFileID = files[parentFileID][0];
+		}//*/
+
+		var optionNumber = (selectedFiles[fileID] == 1) ? document.diff.selected.length : document.diff.not_selected.length;
+		if(selectedFiles[fileID]) {
+			document.diff.selected.options[optionNumber] = new Option(indentString + files[fileID][1], fileID);
+		} else {
+			document.diff.not_selected.options[optionNumber] = new Option(indentString + files[fileID][1], fileID);
+		}
+
+		var childFiles = files[fileID][2];
+		for(var i = 0; i < childFiles.length; i++)
+			setOptions(childFiles[i], (indent + 1));
+	}
+
+	function clearOptions()
+	{
+		var totalOptions = document.diff.not_selected.length;
+		for(var i = totalOptions - 1; i >= 0; i--)
+			document.diff.not_selected.options[i] = null;
+
+		var totalOptions = document.diff.selected.length;
+		for(var i = totalOptions - 1; i >= 0; i--)
+			document.diff.selected.options[i] = null;
+	}
+
+	function addValues()
+	{
+		var totalOptions = document.diff.not_selected.length;
+		for(var i = 0; i < totalOptions; i++) 
+			if(document.diff.not_selected.options[i].selected == true)
+				selectedFiles[document.diff.not_selected.options[i].value] = 1;
+
+		clearOptions();
+		setOptions(0, 0);
+	}
+
+	function removeValues()
+	{
+		var totalOptions = document.diff.selected.length;
+
+		var selectedOptions = 0;
+		for(var i = 0; i < totalOptions; i++)
+			if(document.diff.selected.options[i].selected == true)
+				selectedOptions++;
+		
+		if(selectedOptions == totalOptions)
+		{
+			alert("You can't remove all files!")
+			return;
+		}
+
+		for(var i = 0; i < totalOptions; i++)
+			if(document.diff.selected.options[i].selected == true)
+				selectedFiles[document.diff.selected.options[i].value] = 0;
+
+		clearOptions();
+		setOptions(0, 0);
+	}
+
+	function selectValues()
+	{
+		var totalOptions = document.diff.selected.length;
+		var filesValues = "";
+
+		for(var i = 0; i < totalOptions; i++) {
+			document.diff.selected.options[i].selected = true;
+			if(i > 0) filesValues += ","
+			filesValues += document.diff.selected.options[i].value;
+		}
+		if(document.diff.rf0[1].checked) {
+			if(i > 0) {
+				document.diff.files.value = filesValues;
+			}
+			else {
+				alert("Please select file or files for compare");
+				return false;
+			}
+		}
+		if(document.diff.compare_type[1].checked) {
+			if(document.diff.folder_name.value == '') {
+				alert('Please enter path to  specified folder');
+				return false;
+			}
+		}
+	}
+
+//-->
+</script>
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" align="center">
+<tr>
+	<td>
+		<h2>{UPGRADE_TITLE}</h2>
+	</td>
+</tr>
+<tr>
+	<td>
+		<div class="comment">{NO_XML_CONNECTION}</div>
+	</td>
+</tr>
+</table>
+<!-- BEGIN err_block-->
+<TABLE width="100%" border="0" cellspacing="1" cellpadding="4">
+<TR class=error>
+	<TD align=center>{error_msg}</TD>
+</TR>
+</TABLE>
+<!-- END err_block-->
+<FORM NAME="diff" onSubmit="return selectValues();" method=post action="admin_upgrade_diff_files.php">
+		<input type="hidden" name="operation" value="save">
+		<input type="hidden" name="item_id" value="{item_id}">
+		<input type="hidden" name="file_id" value="{file_id}">
+		<input type="hidden" name="files" value="">
+<table width="100%" align="center" cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<td>
+			<fieldset>
+			<legend>{COMPARE_TYPE_MSG}:</legend>
+			<table border="0" cellpadding="4" cellspacing="1" width="100%">
+				<tr class="usual">
+					<td>
+					<B>{COMPARE_LOCAL_COPY_MSG} {version_number}</B><BR>
+					<INPUT checked TYPE="radio" NAME="compare_type" id=rt1 onClick="sel_type1();" value=1><label for=rt1>{AGAINST_THE_REMOTE_VERSION_MSG} {last_version}</label><INPUT TYPE="hidden" name="last_version" value="{last_version}"><BR>
+					<INPUT TYPE="radio" NAME="compare_type" id=rt3 onClick="sel_type3();" value=3><label for=rt3>{AGAINST_THE_FOLDER_MSG}: </label><INPUT class="field"  size="40" TYPE="text" NAME="folder_name" disabled> {FOR_EXAMPLE_MSG}: <B>tmp_dir/vesion_dir</B><BR>
+					</td>
+				</tr>
+			</table>
+			</fieldset>
+		</td>
+	</tr>
+</table>
+<br>
+<table width="100%" align="center" cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<td>
+			<fieldset>
+			<legend>{COMPARE_FILES_MSG}:</legend>
+			<table border="0" cellpadding="4" cellspacing="1" width="100%">
+				<tr class="usual">
+					<td>
+						<INPUT TYPE="radio" NAME="rf0" value=1 id=rf0 onClick="sel_type4();" checked><label for=rf0> {SELECTED_TYPES_MSG}</label><BR>
+						<UL><INPUT TYPE="checkbox" NAME="rf1" id=rf1 checked onClick="sel_type4();"><label for=rf1>{SCRIPTS_FILES_MSG}</label><BR>
+						<INPUT TYPE="checkbox" NAME="rf2" id=rf2 onClick="sel_type4();"><label for=rf2>{TEMPLATES_FILES_MSG}</label><BR></UL>
+						<INPUT TYPE="radio" NAME="rf0" value=2 id=rf4 onClick="sel_type5();"><label for=rf4> {SELECTED_FILES_MSG}</label><BR>
+					</td>
+				</tr>
+			</table>
+			</fieldset>
+		</td>
+	</tr>
+</table>
+
+ 	<table width="100%" border="0" cellspacing="1" cellpadding="4"><!-- BEGIN errors -->
+		<tr class="usual">
+			<td colspan="3" align="center">
+				<div class="error">{errors_list}</div>
+			</td>
+		</tr><!-- END errors -->		
+		<tr align="center" class="middle">
+			<td width="345">{AVAILABLE_FILES_MSG}</td>
+			<td width="85">{OPERATIONS_MSG}</td>
+			<td width="345">{SELECTED_FILES_MSG}</td>
+		</tr>	
+		<tr align="center" class="usual">
+			<td width="345">
+				<select name="not_selected" MULTIPLE size="10" style="width: 325px;" disabled>
+					<option>{AVAILABLE_FILES_MSG}
+				</select>
+			</td>
+			<td width="85">
+				<input name="button_add" class="submit" style="width: 80px;" type="button" name="add" value="&nbsp;&nbsp; Add  -> &nbsp;&nbsp;" onClick="addValues();" disabled><br><br>
+				<input name="button_remove" class="submit" style="width: 80px;" type="button" name="remove" value="<- Remove" onClick="removeValues();" disabled>
+			</td>
+			<td width="345">
+
+				<select name="selected" MULTIPLE size="10" style="width: 325px;" disabled>
+					<option>{SELECTED_FILES_MSG}
+				</select>
+			</td>
+		</tr>
+		<tr align="center" class="middle">
+			<td colspan="3">
+				<input class="submit" type="submit" value="Submit" onCLick="document.diff.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.diff.operation.value='cancel'">
+			</td>
+		</tr>	
+		</table>
+
+</FORM>
+<script language="JavaScript">
+<!--
+	initValues();
+//-->
+</script>
+<br>
+{admin_footer}
+</body>
+</html> 

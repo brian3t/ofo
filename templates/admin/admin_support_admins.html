@@ -1,0 +1,83 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {SUPPORT_USERS_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_support_href}">{HELPDESK_MSG}</a>&nbsp;&gt;&nbsp;<b>{SUPPORT_USERS_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset class="normargin">
+<legend>{SUPPORT_USERS_MSG}</legend>
+
+<table border="0" cellspacing="1" cellpadding="6" width="100%"><!-- BEGIN sorters -->
+<tr align="center" class="middle">
+	<td>
+		{sorter_admin_id}
+	</td>
+	<td>
+		{sorter_admin_login}
+	</td>
+	<td>
+		{sorter_admin_name}
+	</td>
+	<td>
+		{sorter_admin_privilege}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- END sorters --><!-- BEGIN records -->
+<tr class="usual" align="center">
+	<td>
+		{admin_id}
+	</td>
+	<td align="left">
+		{admin_login}
+	</td>
+	<td align="left">
+		&nbsp;{admin_name}
+	</td>
+	<td align="center">
+		{admin_privilege}
+	</td>
+	<td>
+		<a href="{admin_support_admin_edit_href}?admin_id={admin_id}">{EDIT_USER_MSG}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="5">
+		&nbsp;{HELPDESK_USERS_WERENT_FOUND_MSG}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="5">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td>&nbsp;<a href="{admin_support_admin_edit_href}">{NEW_USER_MSG}</a></td>
+			<!-- begin navigator_block -->
+			<td>&nbsp;{navigator}&nbsp;</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>	
+
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

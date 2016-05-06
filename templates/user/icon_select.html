@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{EMOTICONS_MSG}</title>
+<base href="{absolute_url}">
+<link rel="stylesheet" href="{css_file}" type="text/css">
+ 
+<script language="JavaScript" type="text/javascript">
+<!--
+
+function selectIcon(iconCode)
+{
+	if (window.opener) {
+		window.opener.insertAtCaret(iconCode, "");
+		window.opener.focus();
+	}
+	window.close();
+}
+
+function closeWindow()
+{
+	if (window.opener) {
+		window.opener.focus();
+	}
+	window.close();
+}
+
+//-->
+</script>
+</head>
+
+<body class="popup">
+
+<form action="{icon_select_href}" name="icons">
+
+
+	<table cellspacing="1" cellpadding="5" border="0" width="100%" align="center">
+	<tr>
+		<td align="center" class="middlebg">
+			{EMOTICONS_MSG}
+		</td>
+	</tr>
+	<tr>
+		<td align="center" class="usualbg">
+		  <!-- begin icons_block -->
+			<table cellspacing="6" cellpadding="0" border="0">
+			<!-- begin icons_rows -->
+			<tr>
+				<!-- begin icons_cols -->
+				<td>
+					<a href="#" onClick="selectIcon('{icon_code_js}');return false;"><img src="{icon_src}" {icon_size} border="0" alt="{icon_alt}"></a>
+				</td>
+				<!-- end icons_cols -->
+			</tr>
+			<!-- end icons_rows -->
+			</table>
+		  <!-- end icons_block -->
+
+		</td>
+	</tr>
+	<tr>
+		<td class="middlebg" align="center">
+			<a href="javascript:closeWindow();"><b>{CLOSE_WINDOW_MSG}</b></a>
+		</td>
+	</tr>
+	</table>
+
+</form>
+
+</body>
+</html>

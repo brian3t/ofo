@@ -1,0 +1,690 @@
+<html><head><title>..:: {ARTICLES_TITLE} :: {action_title} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<link rel="stylesheet" href="../styles/editor.css" type="text/css">
+
+<script language="JavaScript" type= "text/javascript" src="../js/editor.js"></script>
+<script language="JavaScript">
+<!--
+
+	function openWindow(pagename, filetype)
+	{
+		var uploadWin = window.open (pagename + '?filetype=' + filetype, 'uploadWin', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=400,height=300');
+		uploadWin.focus();
+  	}
+
+	function setFileName(filename, filetype)
+	{
+		var siteUrl = '{site_url}';
+
+		if(filename != "")
+		{
+			if(filetype == "category_small")
+			{
+				document.record.image_small.value = siteUrl + "images/categories/" + filename;
+				document.record.image_small.focus();
+			}
+			else if(filetype == "category_large")
+			{
+				document.record.image_large.value = siteUrl + "images/categories/large/" + filename;
+				document.record.image_large.focus();
+			}
+		}
+	}
+
+//-->
+</script>
+<script language="JavaScript" type= "text/javascript" src="../js/list_fields.js"></script>
+<script language="JavaScript" type= "text/javascript" src="../js/access_table.js"></script>
+<script language="JavaScript" type= "text/javascript" src="../js/tips.js"></script>
+<script language="JavaScript" type= "text/javascript" src="../js/editor.js"></script>
+<script language="JavaScript">
+<!--
+var list_fields_names = new Array('sites');
+//-->
+</script>
+
+</head>
+
+<body class="commonbg">
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header">
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+				<td>
+					&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;
+					<a href="{admin_articles_top_href}">{ARTICLES_TITLE}</a>&nbsp;&gt;&nbsp;					
+					<!-- BEGIN tree --><a href="{admin_articles_href}?category_id={tree_cat_id}">{tree_cat_name}</a>&nbsp;&gt;&nbsp;<!-- END tree -->
+					<a href="{admin_articles_href}?category_id={tree_current_id}">{tree_current_name}</a>
+					&nbsp;&gt;&nbsp;<b>{action_title}</b>
+				</td>			
+				<!-- BEGIN view_live -->
+				<td class="usual" align="right">
+					<a href="{live_href}" target=new>{VIEW_ON_LIVE_MSG}</a>&nbsp;
+				</td>
+				<!-- END view_live -->				
+			</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+<!-- BEGIN success -->
+	<div class="message">{success_message}</div>
+<!-- END success -->
+<!-- BEGIN errors -->
+	<div class="error">{errors_list}</div>
+<!-- END errors -->
+
+<table cellspacing="0" cellpadding="0" border="0">
+<tr><!-- BEGIN tabs -->
+	<td onClick="changeTab('{tab_name}'); return false;"><div id="{tab_id}" class="{tab_class}"><a class="blackSm" href="#" onClick="changeTab('{tab_name}'); return false;">{tab_title}</a></td><!-- END tabs -->
+</tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border: 1px solid #999;">
+<tr align="center">
+	<td class="">
+
+
+<form action="{admin_articles_category_href}" name="record" method="POST" onSubmit="selectListFieldsAll(); submit_editor(Array('editor_sd','editor_fd'));">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="category_id" value="{category_id}">
+<input type="hidden" name="tab" value="{tab}">
+<input type="hidden" name="sites" value="">
+<input type="hidden" name="apply" value="0">
+
+<div id="data_general" style="{general_style}">
+		<table width="100%" border="0" cellspacing="1" cellpadding="6">
+		<tr class="usual">
+			<td colspan="4" align="right">
+				<font class="small">{ASTERISK_MSG}</font>
+		    </td>
+		</tr>
+		<!-- begin category_order_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{CATEGORY_ORDER_MSG} *
+			</td>
+			<td colspan="3">
+				<input class="field" type="text" name="category_order" value="{category_order}" size="10" maxlength="10">
+			</td>
+		</tr><!-- end category_order_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{TOTAL_VIEWS_MSG}
+			</td>
+			<td colspan="3">
+			  <input class="field" type="text" readonly name="total_views" value="{total_views}" size="10" maxlength="10">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{CATEGORY_NAME_MSG} *
+			</td>
+			<td colspan="3">
+				<input class="field" type="text" name="category_name" value="{category_name}" size="80" maxlength="255">
+			</td>
+		</tr>
+		<!-- BEGIN friendly_url_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{FRIENDLY_URL_MSG}
+			</td>
+			<td colspan="3">
+				<input class="field" type="text" name="friendly_url" value="{friendly_url}" size="80" maxlength="255">
+			</td>
+		</tr>
+		<!-- END friendly_url_block -->
+		
+		<!-- BEGIN parent_category_id_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{PARENT_CATEGORY_MSG} *
+			</td>
+			<td>
+				<select name="parent_category_id"><!-- begin parent_category_id -->
+					<option {parent_category_id_selected} value="{parent_category_id_value}">{parent_category_id_description}<!-- end parent_category_id -->
+				</select>
+			</td>
+		</tr>
+		<!-- END parent_category_id_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{ALLOWED_TO_RATE_ARTICLES}
+			</td>
+			<td colspan="3">
+				<input type="checkbox" name="allowed_rate" {allowed_rate} value="1"> ({USED_AS_DEFAULT_VALUE_MSG})
+			</td>
+		</tr>
+		<!-- begin short_description_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{AD_SHORT_DESC_MSG}
+			</td>
+			<td colspan="3">
+				<textarea name="short_description" style="display: block; width: 565px; height: 100px;">{short_description}</textarea>
+				<script language= "JavaScript" type= "text/javascript">
+				<!--
+					var editor_sd = new VA_HTMLeditor('content_sd','../','{html_editor}');
+					editor_sd.text_field_name = 'short_description';
+					editor_sd.formname = 'record';
+					editor_sd.css_file = '{css_file}';
+					editor_sd.editor_type = 'articles_category_editor';
+					editor_sd.displayEditor('editor_sd', 565, 100);
+				//-->
+				</script>
+			</td>
+		</tr><!-- end short_description_block --><!-- begin full_description_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{FULL_DESCRIPTION_MSG}
+			</td>
+			<td colspan="3">
+				<textarea name="full_description" style="display: block; width: 565px; height: 150px;">{full_description}</textarea>
+				<script language= "JavaScript" type= "text/javascript">
+				<!--
+					var editor_fd = new VA_HTMLeditor('content_fd','../','{html_editor}');
+					editor_fd.text_field_name = 'full_description';
+					editor_fd.formname = 'record';
+					editor_fd.css_file = '{css_file}';
+					editor_fd.editor_type = 'articles_category_editor';
+					editor_fd.displayEditor('editor_fd', 565, 150);
+				//-->
+				</script>
+			</td>
+		</tr><!-- end full_description_block -->
+		<tr class="middle">
+			<td colspan="4" class="middle">
+				&nbsp;{CATEGORY_IMAGES_MSG}
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{IMAGE_SMALL_MSG}
+			</td>
+			<td colspan="3">
+				<input class="field" type="text" name="image_small" value="{image_small}" size="60" maxlength="255">
+				&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'category_small')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+				&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'category_small')"><b>{SELECT_IMAGE_MSG}</b></a>
+				<br>({SHOWN_ON_CATEGORIES_NOTE})
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{IMAGE_SMALL_ALT_MSG}
+			</td>
+			<td colspan="3">
+				<input class="field" type="text" name="image_small_alt" value="{image_small_alt}" size="60" maxlength="255">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{IMAGE_LARGE_MSG}
+			</td>
+			<td colspan="3">
+				<input class="field" type="text" name="image_large" value="{image_large}" size="60" maxlength="255">
+				&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'category_large')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+				&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'category_large')"><b>{SELECT_IMAGE_MSG}</b></a>
+				<br>({SHOWN_WITH_DESCRIPTION_NOTE})
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{IMAGE_LARGE_ALT_MSG}
+			</td>
+			<td colspan="3">
+				<input class="field" type="text" name="image_large_alt" value="{image_large_alt}" size="60" maxlength="255">
+			</td>
+		</tr>
+		<tr class="middle">
+			<td colspan="4" class="middle">
+				&nbsp;{META_DATA_MSG}
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{META_TITLE_MSG}
+			</td>
+			<td colspan="3">
+				<input class="field" type="text" name="meta_title" value="{meta_title}" size="80" maxlength="255">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{META_KEYWORDS_MSG}
+			</td>
+			<td colspan="3">
+				<input class="field" type="text" name="meta_keywords" value="{meta_keywords}" size="80" maxlength="255">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{META_DESCRIPTION_MSG}
+			</td>
+			<td colspan="3">
+				<textarea name="meta_description" cols="80" rows="3">{meta_description}</textarea>
+			</td>
+		</tr>
+		<tr class="middle">
+			<td colspan="4">&nbsp;{RSS_SETTINGS_MSG}</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{ACTIVATE_RSS_MSG}
+			</td>
+			<td colspan="3">
+				&nbsp;<input type="checkbox" name="is_rss" {is_rss} value="1">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{SHOW_RSS_LINK_MSG}
+			</td>
+			<td colspan="3">
+				<table>
+					<tr>
+						<td>
+							<input type="checkbox" name="rss_on_breadcrumb" {rss_on_breadcrumb} value="1"> {ON_BREADCRUMB_MSG}&nbsp;
+						</td>
+						<td>
+							<input type="checkbox" name="rss_on_list" {rss_on_list} value="1"> {ON_CATEGORIES_LIST_MSG}&nbsp;
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{NUMBER_OF_ARTICLES_MSG}
+			</td>
+			<td colspan="3">
+				<input class="field" type="text" name="rss_limit" value="{rss_limit}" size="20" maxlength="20">&nbsp;
+				({NUMBER_OF_ARTICLES_NOTE})
+			</td>
+		</tr>
+		<tr class="middle">
+			<td colspan="4">&nbsp;{REMOTE_RSS_MSG}</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{ACTIVATE_REMOTE_RSS_MSG}
+			</td>
+			<td colspan="3">
+				<input type="checkbox" name="is_remote_rss" {is_remote_rss} value="1">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{REMOTE_RSS_URL_MSG}
+			</td>
+			<td colspan="3">
+				<input class="field" type="text" name="remote_rss_url" value="{remote_rss_url}" size="60" maxlength="100">&nbsp;
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{REMOTE_RSS_TIME_TO_LIVE_MSG}
+			</td>
+			<td colspan="3">
+				<input class="field" type="text" name="remote_rss_ttl" value="{remote_rss_ttl}" size="60" maxlength="100" readonly>&nbsp; ({FIELD_UPDATED_BY_SYSTEM})
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{REMOTE_RSS_DATE_UPDATED_MSG}
+			</td>
+			<td colspan="3">
+				<input class="field" type="text" name="remote_rss_date_updated" value="{remote_rss_date_updated}" size="20" maxlength="100" readonly>&nbsp; ({FIELD_UPDATED_BY_SYSTEM})
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{REMOTE_RSS_REFRESH_RATE_MSG}
+			</td>
+			<td colspan="3">
+				<input class="field" type="text" name="remote_rss_refresh_rate" value="{remote_rss_refresh_rate}" size="10" maxlength="20">&nbsp;
+			</td>
+		</tr>
+
+		<!-- begin layout_properties -->
+		<tr class="middle">
+			<td colspan="4">&nbsp;{TEMPLATES_PROPERTIES_MSG}</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{LIST_TEMPLATES_MSG}
+			</td>
+			<td colspan="3">
+				<input class="field" type="text" name="articles_list_template" value="{articles_list_template}" size="80" maxlength="255">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{DETAILS_TEMPLATES_MSG}
+			</td>
+			<td colspan="3">
+				<input class="field" type="text" name="articles_details_template" value="{articles_details_template}" size="80" maxlength="255">
+			</td>
+		</tr>
+		<tr class="middle">
+			<td colspan="4">&nbsp;{FIELDS_PROPERTIES_MSG}</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{DEFAULT_ORDER_MSG}
+			</td>
+			<td colspan="3">
+				<select name="articles_order_column"><!-- BEGIN articles_order_column -->
+					<option {articles_order_column_selected} value="{articles_order_column_value}">{articles_order_column_description}<!-- END articles_order_column -->
+				</select>
+				<select name="articles_order_direction"><!-- BEGIN articles_order_direction -->
+					<option {articles_order_direction_selected} value="{articles_order_direction_value}">{articles_order_direction_description}<!-- END articles_order_direction -->
+				</select>
+			</td>
+		</tr>
+		<tr class="middle" align="center">
+			<td><font size=1>{FIELD_NAME_MSG}</font></td>
+			<td><font size=1>{SHOW_ONLIST_PAGE_MSG}</font></td>
+			<td><font size=1>{SHOW_ON_DETAILED_PAGE_MSG}</font></td>
+			<td><font size=1>{REQUIRED_FIELD_MSG}</font></td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{DATE_MSG}
+			</td>
+			<td align="center">
+				<input type="checkbox" name="list_article_date" {list_article_date} value="1">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="details_article_date" {details_article_date} value="1">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="required_article_date" {required_article_date} value="1">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{DATE_END_MSG}
+			</td>
+			<td align="center">
+				<input type="checkbox" name="list_date_end" {list_date_end} value="1">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="details_date_end" {details_date_end} value="1">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="required_date_end" {required_date_end} value="1">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{ADMIN_TITLE_MSG}
+			</td>
+			<td align="center">
+				<input type="checkbox" name="list_article_title" {list_article_title} value="1">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="details_article_title" {details_article_title} value="1">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="required_article_title" {required_article_title} value="1">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{AUTHOR_NAME_MSG}
+			</td>
+			<td align="center">
+				<input type="checkbox" name="list_author_name" {list_author_name} value="1">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="details_author_name" {details_author_name} value="1">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="required_author_name" {required_author_name} value="1">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{AUTHOR_EMAIL_MSG}
+			</td>
+			<td align="center">
+				<input type="checkbox" name="list_author_email" {list_author_email} value="1">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="details_author_email" {details_author_email} value="1">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="required_author_email" {required_author_email} value="1">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{AUTHOR_URL_MSG}
+			</td>
+			<td align="center">
+				<input type="checkbox" name="list_author_url" {list_author_url} value="1">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="details_author_url" {details_author_url} value="1">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="required_author_url" {required_author_url} value="1">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{LINK_URL_MSG}
+			</td>
+			<td align="center">
+				<input type="checkbox" name="list_link_url" {list_link_url} value="1">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="details_link_url" {details_link_url} value="1">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="required_link_url" {required_link_url} value="1">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{DOWNLOAD_URL_MSG}
+			</td>
+			<td align="center">
+				<input type="checkbox" name="list_download_url" {list_download_url} value="1">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="details_download_url" {details_download_url} value="1">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="required_download_url" {required_download_url} value="1">
+			</td>
+		</tr>
+
+		<tr class="usual">
+			<td>
+				&nbsp;{IMAGE_SMALL_MSG}
+			</td>
+			<td align="center">
+				<input type="checkbox" name="list_image_small" {list_image_small} value="1">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="details_image_small" {details_image_small} value="1">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="required_image_small" {required_image_small} value="1">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{IMAGE_LARGE_MSG}
+			</td>
+			<td align="center">
+				<input type="checkbox" name="list_image_large" {list_image_large} value="1">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="details_image_large" {details_image_large} value="1">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="required_image_large" {required_image_large} value="1">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{STREAM_VIDEO_MSG}
+			</td>
+			<td align="center">
+				<input type="checkbox" name="list_stream_video" {list_stream_video} value="1">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="details_stream_video" {details_stream_video} value="1">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="required_stream_video" {required_stream_video} value="1">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{AD_SHORT_DESC_MSG}
+			</td>
+			<td align="center">
+				<input type="checkbox" name="list_short_description" {list_short_description} value="1">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="details_short_description" {details_short_description} value="1">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="required_short_description" {required_short_description} value="1">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{DETAILED_DESCRIPTION_MSG}
+			</td>
+			<td align="center">
+				<input type="checkbox" name="list_full_description" {list_full_description} value="1">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="details_full_description" {details_full_description} value="1">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="required_full_description" {required_full_description} value="1">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{KEYWORDS_MSG}
+			</td>
+			<td align="center">
+				<input type="checkbox" name="list_keywords" {list_keywords} value="1">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="details_keywords" {details_keywords} value="1">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="required_keywords" {required_keywords} value="1">
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{NOTES_MSG}
+			</td>
+			<td align="center">
+				<input type="checkbox" name="list_notes" {list_notes} value="1">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="details_notes" {details_notes} value="1">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="required_notes" {required_notes} value="1">
+			</td>
+		</tr>
+		<!-- end layout_properties -->
+
+		<tr class="middle">
+			<td></td>
+			<td colspan="3">
+				<input class="submit" type="submit" value="{APPLY_BUTTON}" onClick="document.record.operation.value='save'; document.record.apply.value=1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input class="submit" type="submit" value="{save_button}"  onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+				<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+				<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+			</td>
+		</tr>
+		</table>
+</div>
+
+
+<div id="data_sites" style="{sites_style}">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr class="usual">
+	<td>
+		{sites_table}
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+		<table cellspacing="1" cellpadding="4" border="0" width="100%">
+			<tr>
+				<td align="left">
+					<input type="checkbox" name="save_nested_sites" value="1">
+					{SAVE_SITE_SETTINGS_SUB_MSG}					
+				</td>
+				<td align="right">	
+					<input class="submit" type="submit" value="{APPLY_BUTTON}" onClick="document.record.operation.value='save'; document.record.apply.value=1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+					<input class="submit" type="submit" value="{save_button}"  onCLick="document.record.operation.value='save'">
+				</td>
+			</tr>
+		</table>
+	</td>
+</tr>
+</table>
+</div>
+
+<div id="data_subscriptions" style="{subscriptions_style}">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr class="usual">
+	<td>
+		{subscriptions_table}
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+		<table cellspacing="1" cellpadding="4" border="0" width="100%">
+			<tr>
+				<td align="left">
+					<input type="checkbox" name="save_nested_subscriptions" value="1">
+					{SAVE_SUBSCRIPTIONS_SETTINGS_SUB_MSG}					
+				</td>
+				<td align="right">
+					<input class="submit" type="submit" value="{APPLY_BUTTON}" onClick="document.record.operation.value='save'; document.record.apply.value=1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input class="submit" type="submit" value="{save_button}"  onCLick="document.record.operation.value='save'">
+				</td>
+			</tr>
+		</table>
+	</td>
+</tr>
+</table>
+</div>
+
+</form>
+
+	</td>
+</tr>
+</table>
+
+{admin_footer}
+<script language="JavaScript">
+<!--
+	checkListFieldsAll();
+//-->
+</script>
+</body>
+</html>

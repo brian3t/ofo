@@ -1,0 +1,35 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {FILE_MANAGER_MSG} :: {UPLOAD_FILE_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+</head>
+<body class="commonbg">
+{admin_header} 
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a href="{admin_filemanager_href}?root_dir={dir_root}">{FILE_MANAGER_MSG}</a>&nbsp;&gt;&nbsp<b>{ADMIN_CONFIGURE_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+<br>
+<fieldset>
+<legend>{FILE_MANAGER_MSG}</legend>
+<table  border="0" cellspacing="1" cellpadding="6" width="100%">
+	<form action="{admin_conf_href}" method="post">
+	<tr class="usual">
+		<TD width=20%><B>{COMMAND_FOR_ARCHIVE_MSG}</B></TD>
+		<td>
+			<input class="submit" type="text" name=conf_arch value="{conf_arch}" style="width:50%">
+			<INPUT TYPE="hidden" name=op value=1>
+			<input type=submit name=button value="Save" class="submit"><INPUT TYPE="button" value="{CANCEL_BUTTON}" name=button_reset onclick="parent.location='http://{host}{admin_filemanager_href}?op=1&root_dir={dir_root}'"  class="submit"><INPUT TYPE="hidden" name=dir_root value="{dir_root}">
+		</TR>
+	</form>
+</table>
+</fieldset>
+{admin_footer}
+</body>
+</html>

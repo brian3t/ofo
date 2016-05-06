@@ -1,0 +1,193 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{section_name} {TELL_FRIEND_SETTINGS_MSG}</title>
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script type="text/javascript" src="../js/admin.js"></script>
+<script language="JavaScript">
+<!--
+	function openWindow(pagename)
+	{
+		var popupWin = window.open (pagename, 'popup', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');
+		popupWin.focus();
+	}
+//-->
+</script>
+</head>
+<body class="commonbg">
+
+{admin_header}
+
+<form action="{admin_tell_friend_href}" name="record" method="POST">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+
+			<table cellspacing="0" cellpadding="0" border="0" width="100%" align="center">
+			<tr>
+				<td class="usual">
+					&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+					<a href="{admin_section_url}">{admin_section_name}</a>&nbsp;&gt;<!-- begin articles_category -->
+					<a href="{admin_articles_href}?category_id={art_cat_id}">{category_name}</a>&nbsp;&gt;<!-- end articles_category -->
+					<b>{TELL_FRIEND_SETTINGS_MSG}</b>
+				</td>
+				<!-- begin sitelist -->
+				<td class="usual" align="right">
+					{SELECT_SITE_MSG}&nbsp;
+					<select name="param_site_id" onchange="reloadSite(this.form)"><!-- begin param_site_id -->
+						<option {param_site_id_selected} value="{param_site_id_value}">{param_site_id_description}<!-- end param_site_id -->
+					</select>		
+				</td>
+				<!-- end sitelist -->
+			</tr>
+			</table>
+
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{TELL_FRIEND_SETTINGS_MSG}</legend>
+<table border="0" cellpadding="6" cellspacing="1" width="100%">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="type" value="{type}">
+<input type="hidden" name="art_cat_id" value="{art_cat_id}">
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{DEFAULT_SETTINGS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{DEFAULT_COMMENT_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a class="small" href="javascript:openWindow('{admin_help_url}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td>
+		<textarea name="default_comment" cols="80" rows="10">{default_comment}</textarea>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{RANDOM_IMAGE_VALIDATION_MSG}
+	</td>
+	<td><!-- begin use_random_image -->
+		<input type="radio" name="use_random_image" {use_random_image_checked} value="{use_random_image_value}">{use_random_image_description}<!-- end use_random_image -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{TELL_FRIEND_PARAM_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="tell_friend_param" {tell_friend_param} value="1">
+		({TELL_FRIEND_PARAM_DESC})
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{USER_EMAIL_NOTIFICATION_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_FROM_MSG}</b>
+		<div class="small">
+		&nbsp;(<a class="small" href="javascript:openWindow('{admin_email_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_FILEDS_NOTE})
+		</div>
+	</td>
+	<td>
+		<input class="field" type="text" name="user_mail_from" value="{user_mail_from}" size="60" maxlength="255">
+		<br>({LIVE_BLANK_MSG})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_CC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="user_mail_cc" value="{user_mail_cc}" size="60" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_BCC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="user_mail_bcc" value="{user_mail_bcc}" size="60" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_REPLY_TO_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="user_mail_reply_to" value="{user_mail_reply_to}" size="60" maxlength="255">
+	</td>                  
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_RETURN_PATH_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="user_mail_return_path" value="{user_mail_return_path}" size="60" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_SUBJECT_MSG}</b>
+	</td>
+	<td>
+		<input class="field" type="text" name="user_subject" value="{user_subject}" size="60" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_MESSAGE_TYPE_MSG}</b>
+	</td>
+	<td><!-- begin user_message_type -->
+		<input type="radio" name="user_message_type" {user_message_type_checked} value="{user_message_type_value}">{user_message_type_description}<!-- end user_message_type -->
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a class="small" href="javascript:openWindow('{admin_help_url}?type=tell_friend')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_SETTINGS_NOTE} 
+		<br>&nbsp;&nbsp;{LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td>
+		<textarea name="user_message" cols="80" rows="10">{user_message}</textarea>
+	</td>
+</tr>
+
+<tr class="middle">
+	<td></td>
+	<td>
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</form>
+</table>
+</fieldset>
+
+
+{admin_footer}
+
+</body>
+</html>

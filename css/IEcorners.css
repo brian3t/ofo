@@ -1,0 +1,28 @@
+@charset "utf-8";
+/* IE Rounded Corners */
+.rounded .tl, .rounded .tr, .rounded .bl, .rounded .br {
+  width: 10px;
+  height: 10px;
+  position: absolute;
+}
+.rounded .tl {
+  background: url(/images/tl.png) top left no-repeat;
+  top: -1px;
+  left: -1px;
+}
+.rounded .tr {
+  background: url(/images/tr.png) top right no-repeat;
+  top: -1px;
+  right: -1px;
+}
+.rounded .bl {
+  background: url(/images/bl.png) bottom left no-repeat;
+  bottom: -1px;
+  left: -1px;
+}
+.rounded .br {
+  background: url(/images/br.png) bottom right no-repeat;
+  bottom: -1px;
+  right: -1px;
+}
+

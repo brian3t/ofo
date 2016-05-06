@@ -1,0 +1,1245 @@
+<html><head><title>{ADMINISTRATION_MSG} :: {ORDER_PROFILE_PAGE_MSG}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script type="text/javascript" src="../js/admin.js"></script>
+<script language="JavaScript">
+<!--
+	function openWindow(pagename)
+	{
+		var popupWin = window.open (pagename, 'popup', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');
+		popupWin.focus();
+	}
+//-->
+</script>
+</head>
+<body class="commonbg">
+
+{admin_header}
+
+
+<form action="{admin_order_info_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="rp" value="{rp}">
+<input type="hidden" name="tab" value="{tab}">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+
+			<table cellspacing="0" cellpadding="0" border="0" width="100%" align="center">
+			<tr>
+				<td class="usual">
+					&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<b>{ORDER_PROFILE_PAGE_MSG} {SETTINGS_MSG}</b>
+				</td>
+				<!-- begin sitelist -->
+				<td class="usual" align="right">
+					{SELECT_SITE_MSG}&nbsp;
+					<select name="param_site_id" onchange="reloadSite(this.form)"><!-- begin param_site_id -->
+						<option {param_site_id_selected} value="{param_site_id_value}">{param_site_id_description}<!-- end param_site_id -->
+					</select>
+				</td>
+				<!-- end sitelist -->
+			</tr>
+			</table>
+
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+	<div id="tabs">
+		<!-- BEGIN tabs_rows -->
+		<div id="{row_id}" class="tabRow"><!-- BEGIN tabs -->
+			<div id="{tab_id}" class="{tab_class}"><a class="blackSm" href="#" onClick="changeTab('{tab_name}'); return false;">{tab_title}</a></div>{br}<!-- END tabs -->
+		</div>
+		<!-- END tabs_rows -->
+	</div>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tabTable">
+<tr align="center"> 
+	<td class="">
+
+<div id="data_general" style="{general_style}">
+<table border="0" cellpadding="4" cellspacing="1" width="100%"><!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="9" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="middle">
+	<td colspan="9">
+		&nbsp;<b>{ADMIN_HTML_SETTINGS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;{INTRO_TEXT_MSG}
+	</td>
+	<td colspan="8">
+		<textarea name="intro_text" cols="80" rows="10">{intro_text}</textarea>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SHOW_SUBCOMPONENTS_MSG}
+	</td>
+	<td colspan="8"><!-- begin subcomponents_show_type -->
+		<input type="radio" name="subcomponents_show_type" {subcomponents_show_type_checked} value="{subcomponents_show_type_value}">{subcomponents_show_type_description}<!-- end subcomponents_show_type -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CURRENCY_BLOCK_MSG}
+	</td>
+	<td colspan="8"><!-- begin currency_block -->
+		<input type="radio" name="currency_block" {currency_block_checked} value="{currency_block_value}">{currency_block_description}<!-- end currency_block -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;Shipping Control Type
+	</td>
+	<td colspan="8"><!-- begin shipping_block -->
+		<input type="radio" name="shipping_block" {shipping_block_checked} value="{shipping_block_value}">{shipping_block_description}<!-- end shipping_block -->
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="9">
+		&nbsp;<b>{PAYMENT_SETTINGS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PAYMENT_CONTROL_TYPE_MSG}
+	</td>
+	<td colspan="8"><!-- begin payment_control_type -->
+		<input type="radio" name="payment_control_type" {payment_control_type_checked} value="{payment_control_type_value}">{payment_control_type_description}<!-- end payment_control_type -->
+	</td>
+</tr>
+<tr>
+	<td class="usual">
+		&nbsp;{PAYMENT_IMAGE_MSG}
+	</td>
+	<td class="usual">
+
+		<select name="payment_image"><!-- begin payment_image -->
+			<option {payment_image_selected} value="{payment_image_value}">{payment_image_description}<!-- end payment_image -->
+		</select>
+
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="9">
+		&nbsp;<b>{ORDER_RESTRICTIONS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;{PRODUCT_COST_PER_ORDER_MSG}
+	</td>
+	<td colspan="8">
+		{MINIMUM_MSG} <input class="field" type="text" name="order_min_goods_cost" value="{order_min_goods_cost}" size="10" maxlength="10">
+		&nbsp; &nbsp;
+		{MAXIMUM_MSG} <input class="field" type="text" name="order_max_goods_cost" value="{order_max_goods_cost}" size="10" maxlength="10">
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;{PROD_WEIGHT_MSG}
+	</td>
+	<td colspan="8">
+		{MINIMUM_MSG} <input class="field" type="text" name="order_min_weight" value="{order_min_weight}" size="10" maxlength="10">
+		&nbsp; &nbsp;
+		{MAXIMUM_MSG} <input class="field" type="text" name="order_max_weight" value="{order_max_weight}" size="10" maxlength="10">
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;{PREVENT_REPURCHASE_MSG}
+	</td>
+	<td colspan="8">
+		<input type="checkbox" name="prevent_repurchase" {prevent_repurchase} value="1"> {PREVENT_PRODUCT_REPURCHASE_MSG} 
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;{REPURCHASE_PERIOD_MSG}
+	</td>
+	<td colspan="8">
+		<input class="field" type="text" name="repurchase_period" value="{repurchase_period}" size="10" maxlength="10"> &nbsp; <b>{days_msg}</b>
+		({REPURCHASE_PERIOD_DESC})
+	</td>
+</tr>
+<tr class="middle">
+	<td></td>
+	<td colspan="8">
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</div>
+
+<div id="data_predefined_fields" style="{predefined_fields_style}">
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+<tr>
+	<td class="middle">
+		&nbsp;
+	</td>
+	<td class="middle"  align="center" colspan="4">
+		<b>{WEB_ORDERS_MSG}</b>
+	</td>
+	<td class="middle"  align="center" colspan="4">
+		<b>{CALL_CENTER_ORDERS}</b>
+	</td>
+</tr>
+<tr>
+	<td class="middle">
+		&nbsp;
+	</td>
+	<td class="middle"  align="center" colspan="2">
+		<b>{PERSONAL_DETAILS_MSG}</b>
+	</td>
+	<td class="middle"  align="center" colspan="2">
+		<b>{DELIVERY_DETAILS_MSG}</b>
+	</td>
+	<td class="middle"  align="center" colspan="2">
+		<b>{PERSONAL_DETAILS_MSG}</b>
+	</td>
+	<td class="middle"  align="center" colspan="2">
+		<b>{DELIVERY_DETAILS_MSG}</b>
+	</td>
+</tr>
+<tr>
+	<td class="middle" width="32%">
+		&nbsp;
+	</td>
+	<td class="middle"  align="center" width="9%" class="small">
+		{ADMIN_SHOW_MSG}
+	</td>
+	<td class="middle"  align="center" width="9%" class="small">
+		{REQUIRED_MSG}
+	</td>
+	<td class="middle"  align="center" width="9%" class="small">
+		{ADMIN_SHOW_MSG}
+	</td>
+	<td class="middle"  align="center" width="9%" class="small">
+		{REQUIRED_MSG}
+	</td>
+	<td class="middle"  align="center" width="9%" class="small">
+		{ADMIN_SHOW_MSG}
+	</td>
+	<td class="middle"  align="center" width="9%" class="small">
+		{REQUIRED_MSG}
+	</td>
+	<td class="middle"  align="center" width="9%" class="small">
+		{ADMIN_SHOW_MSG}
+	</td>
+	<td class="middle"  align="center" width="9%" class="small">
+		{REQUIRED_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{NAME_MSG}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_name" {show_name} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="name_required" {name_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_name" {show_delivery_name} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_name_required" {delivery_name_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_name" {call_center_show_name} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_name_required" {call_center_name_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_delivery_name" {call_center_show_delivery_name} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_delivery_name_required" {call_center_delivery_name_required} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{FIRST_NAME_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_first_name" {show_first_name} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="first_name_required" {first_name_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_first_name" {show_delivery_first_name} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_first_name_required" {delivery_first_name_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_first_name" {call_center_show_first_name} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_first_name_required" {call_center_first_name_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_delivery_first_name" {call_center_show_delivery_first_name} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_delivery_first_name_required" {call_center_delivery_first_name_required} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{LAST_NAME_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_last_name" {show_last_name} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="last_name_required" {last_name_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_last_name" {show_delivery_last_name} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_last_name_required" {delivery_last_name_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_last_name" {call_center_show_last_name} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_last_name_required" {call_center_last_name_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_delivery_last_name" {call_center_show_delivery_last_name} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_delivery_last_name_required" {call_center_delivery_last_name_required} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{COMPANY_SELECTION_MSG} <div class="comment">&nbsp;({FROM_PREDEFINED_COMPANIES_MSG})</div>
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_company_id" {show_company_id} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="company_id_required" {company_id_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_company_id" {show_delivery_company_id} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_company_id_required" {delivery_company_id_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_company_id" {call_center_show_company_id} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_company_id_required" {call_center_company_id_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_delivery_company_id" {call_center_show_delivery_company_id} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_delivery_company_id_required" {call_center_delivery_company_id_required} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{COMPANY_NAME_FIELD} <div class="comment">&nbsp;({TYPE_IN_TEXT_BOX_MSG})</div>
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_company_name" {show_company_name} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="company_name_required" {company_name_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_company_name" {show_delivery_company_name} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_company_name_required" {delivery_company_name_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_company_name" {call_center_show_company_name} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_company_name_required" {call_center_company_name_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_delivery_company_name" {call_center_show_delivery_company_name} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_delivery_company_name_required" {call_center_delivery_company_name_required} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_email" {show_email} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="email_required" {email_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_email" {show_delivery_email} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_email_required" {delivery_email_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_email" {call_center_show_email} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_email_required" {call_center_email_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_delivery_email" {call_center_show_delivery_email} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_delivery_email_required" {call_center_delivery_email_required} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{STREET_ADDRESS_MSG} 1
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_address1" {show_address1} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="address1_required" {address1_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_address1" {show_delivery_address1} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_address1_required" {delivery_address1_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_address1" {call_center_show_address1} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_address1_required" {call_center_address1_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_delivery_address1" {call_center_show_delivery_address1} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_delivery_address1_required" {call_center_delivery_address1_required} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{STREET_ADDRESS_MSG} 2
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_address2" {show_address2} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="address2_required" {address2_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_address2" {show_delivery_address2} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_address2_required" {delivery_address2_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_address2" {call_center_show_address2} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_address2_required" {call_center_address2_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_delivery_address2" {call_center_show_delivery_address2} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_delivery_address2_required" {call_center_delivery_address2_required} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CITY_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_city" {show_city} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="city_required" {city_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_city" {show_delivery_city} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_city_required" {delivery_city_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_city" {call_center_show_city} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_city_required" {call_center_city_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_delivery_city" {call_center_show_delivery_city} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_delivery_city_required" {call_center_delivery_city_required} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PROVINCE_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_province" {show_province} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="province_required" {province_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_province" {show_delivery_province} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_province_required" {delivery_province_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_province" {call_center_show_province} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_province_required" {call_center_province_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_delivery_province" {call_center_show_delivery_province} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_delivery_province_required" {call_center_delivery_province_required} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{STATE_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_state_id" {show_state_id} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="state_id_required" {state_id_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_state_id" {show_delivery_state_id} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_state_id_required" {delivery_state_id_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_state_id" {call_center_show_state_id} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_state_id_required" {call_center_state_id_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_delivery_state_id" {call_center_show_delivery_state_id} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_delivery_state_id_required" {call_center_delivery_state_id_required} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ZIP_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_zip" {show_zip} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="zip_required" {zip_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_zip" {show_delivery_zip} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_zip_required" {delivery_zip_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_zip" {call_center_show_zip} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_zip_required" {call_center_zip_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_delivery_zip" {call_center_show_delivery_zip} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_delivery_zip_required" {call_center_delivery_zip_required} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{COUNTRY_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_country_id" {show_country_id} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="country_id_required" {country_id_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_country_id" {show_delivery_country_id} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_country_id_required" {delivery_country_id_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_country_id" {call_center_show_country_id} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_country_id_required" {call_center_country_id_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_delivery_country_id" {call_center_show_delivery_country_id} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_delivery_country_id_required" {call_center_delivery_country_id_required} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PHONE_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_phone" {show_phone} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="phone_required" {phone_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_phone" {show_delivery_phone} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_phone_required" {delivery_phone_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_phone" {call_center_show_phone} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_phone_required" {call_center_phone_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_delivery_phone" {call_center_show_delivery_phone} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_delivery_phone_required" {call_center_delivery_phone_required} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{DAYTIME_PHONE_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_daytime_phone" {show_daytime_phone} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="daytime_phone_required" {daytime_phone_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_daytime_phone" {show_delivery_daytime_phone} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_daytime_phone_required" {delivery_daytime_phone_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_daytime_phone" {call_center_show_daytime_phone} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_daytime_phone_required" {call_center_daytime_phone_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_delivery_daytime_phone" {call_center_show_delivery_daytime_phone} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_delivery_daytime_phone_required" {call_center_delivery_daytime_phone_required} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EVENING_PHONE_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_evening_phone" {show_evening_phone} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="evening_phone_required" {evening_phone_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_evening_phone" {show_delivery_evening_phone} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_evening_phone_required" {delivery_evening_phone_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_evening_phone" {call_center_show_evening_phone} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_evening_phone_required" {call_center_evening_phone_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_delivery_evening_phone" {call_center_show_delivery_evening_phone} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_delivery_evening_phone_required" {call_center_delivery_evening_phone_required} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CELL_PHONE_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_cell_phone" {show_cell_phone} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="cell_phone_required" {cell_phone_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_cell_phone" {show_delivery_cell_phone} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_cell_phone_required" {delivery_cell_phone_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_cell_phone" {call_center_show_cell_phone} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_cell_phone_required" {call_center_cell_phone_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_delivery_cell_phone" {call_center_show_delivery_cell_phone} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_delivery_cell_phone_required" {call_center_delivery_cell_phone_required} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{FAX_FIELD}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_fax" {show_fax} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="fax_required" {fax_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="show_delivery_fax" {show_delivery_fax} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="delivery_fax_required" {delivery_fax_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_fax" {call_center_show_fax} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_fax_required" {call_center_fax_required} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_show_delivery_fax" {call_center_show_delivery_fax} value="1">
+	</td>
+	<td align="center">
+		<input type="checkbox" name="call_center_delivery_fax_required" {call_center_delivery_fax_required} value="1">
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="9" height="1"></td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SUBSCRIBE_BLOCK_MSG}
+	</td>
+	<td align="center">
+		<input type="checkbox" name="subscribe_block" {subscribe_block} value="1">
+	</td>
+	<td align="center">
+	</td>
+	<td align="center">
+	</td>
+	<td align="center">
+	</td>
+	<td align="center">
+	</td>
+	<td align="center">
+	</td>
+	<td align="center">
+	</td>
+	<td align="center">
+	</td>
+</tr>
+<tr class="middle">
+	<td></td>
+	<td colspan="8">
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</div>
+
+<!-- custom fields -->
+<div id="data_custom_fields" style="{custom_fields_style}">
+<table border="0" cellpadding="4" cellspacing="1" width="100%"><!-- begin name_properties -->
+<tr class="middle" align="center">
+	<td valign="top">
+		&nbsp;{ID_MSG}
+	</td>
+	<td valign="top">
+		&nbsp;{FIELD_NAME_MSG}
+	</td>
+	<td valign="top">
+		&nbsp;{TYPE_MSG}
+	</td>
+	<td>
+		&nbsp;{SHOW_FIELD_MSG}
+	</td>
+	<td>
+		&nbsp;{FIELD_CONTROL_MSG}
+	</td>
+	<td align="center">
+		&nbsp;
+	</td>
+</tr><!-- end name_properties -->
+<!-- begin properties -->
+<tr class="usual">
+	<td align="center">
+		&nbsp;{property_id}
+	</td>
+	<td>
+		&nbsp;{property_name}
+	</td>
+	<td align="center">
+		&nbsp;{property_type}
+	</td>
+	<td align="center">
+		&nbsp;{property_show}
+	</td>
+	<td align="center">
+		&nbsp;{control_type}
+	</td>
+	<td align="center">
+		&nbsp;<a href="{admin_order_property_href}?property_id={property_id}">{EDIT_MSG}</a>
+	</td>
+</tr>
+<!-- end properties -->
+<!-- begin no_properties -->
+<tr class="usual">
+	<td colspan="6">
+		&nbsp;{NO_CUSTOM_FIELDS_MSG}
+	</td>
+</tr>
+<!-- end no_properties -->
+<tr class="middle">
+	<td colspan="6">
+		&nbsp;<a href="{admin_order_property_href}">{ADD_NEW_MSG}</a>&nbsp;
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="6">
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</div>
+
+
+<!-- notification email -->
+<div id="data_notification_email" style="{notification_email_style}">
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{EMAIL_NOTIFICATION_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SEND_NOTIFICATION_ADMIN_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="admin_notification" {admin_notification} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>To</b>
+		<div class="small">
+		&nbsp;(<a href="javascript:openWindow('{admin_email_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_FILEDS_NOTE})
+		</div>
+	</td>
+	<td>
+		<input class="field" type="text" name="admin_email" value="{admin_email}" size="80" maxlength="255">
+		<div class="small">({EG_MSG} <b>sales@yoursite.com</b>)</div>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_FROM_MSG}</b>
+	</td>
+	<td>
+		<input class="field" type="text" name="admin_mail_from" value="{admin_mail_from}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_CC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="cc_emails" value="{cc_emails}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_BCC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="admin_mail_bcc" value="{admin_mail_bcc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_REPLY_TO_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="admin_mail_reply_to" value="{admin_mail_reply_to}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_RETURN_PATH_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="admin_mail_return_path" value="{admin_mail_return_path}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_SUBJECT_MSG}</b>
+	</td>
+	<td>
+		<input class="field" type="text" name="admin_subject" value="{admin_subject}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_MESSAGE_TYPE_MSG}</b>
+	</td>
+	<td><!-- begin admin_message_type -->
+		<input class="field" type="radio" name="admin_message_type" {admin_message_type_checked} value="{admin_message_type_value}">{admin_message_type_description}<!-- end admin_message_type -->
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_SETTINGS_NOTE}
+		<br>&nbsp;&nbsp;{LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td>
+		<textarea name="admin_message" cols="80" rows="10">{admin_message}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{EMAIL_NOTIFICATION_USER_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SEND_NOTIFICATION_USER_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="user_notification" {user_notification} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_FROM_MSG}</b>
+		<div class="small">
+		&nbsp;(<a href="javascript:openWindow('{admin_email_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_FILEDS_NOTE})
+		</div>
+	</td>
+	<td>
+		<input class="field" type="text" name="user_mail_from" value="{user_mail_from}" size="80" maxlength="255">
+		<div class="small">({EG_MSG} <b>sales@yoursite.com</b>)</div>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_CC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="user_mail_cc" value="{user_mail_cc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_BCC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="user_mail_bcc" value="{user_mail_bcc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_REPLY_TO_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="user_mail_reply_to" value="{user_mail_reply_to}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_RETURN_PATH_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="user_mail_return_path" value="{user_mail_return_path}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_SUBJECT_MSG}</b>
+	</td>
+	<td>
+		<input class="field" type="text" name="user_subject" value="{user_subject}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_MESSAGE_TYPE_MSG}</b>
+	</td>
+	<td><!-- begin user_message_type -->
+		<input type="radio" name="user_message_type" {user_message_type_checked} value="{user_message_type_value}">{user_message_type_description}<!-- end user_message_type -->
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_SETTINGS_NOTE}
+		<br>&nbsp;&nbsp;{LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td>
+		<textarea name="user_message" cols="80" rows="10">{user_message}</textarea>
+	</td>
+</tr>
+
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{SMS_NOTIFICATION_ADMIN_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SMS_SEND_ADMIN_MSF}
+	</td>
+	<td>
+		<input type="checkbox" name="admin_sms_notification" {admin_sms_notification} value="1">
+		({SMS_NOTIFICATION_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{SMS_RECIPIENT_MSG}</b> ({SMS_RECIPIENT_ADMIN_DESC})
+	</td>
+	<td>
+		<input class="field" type="text" name="admin_sms_recipient" value="{admin_sms_recipient}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{SMS_ORIGINATOR_MSG}</b>
+	</td>
+	<td>
+		<input class="field" type="text" name="admin_sms_originator" value="{admin_sms_originator}" size="80" maxlength="16">
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{SMS_MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td>
+		<textarea name="admin_sms_message" cols="80" rows="3">{admin_sms_message}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{USER_SMS_NOTIFICATION_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SEND_SMS_NOTIFICATION_USER_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="user_sms_notification" {user_sms_notification} value="1">
+		({SMS_NOTIFICATION_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{SMS_RECIPIENT_MSG}</b> ('{CELL_PHONE_FIELD}' {FIELD_USED_IF_EMPTY_MSG})
+	</td>
+	<td>
+		<input class="field" type="text" name="user_sms_recipient" value="{user_sms_recipient}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{SMS_ORIGINATOR_MSG}</b>
+	</td>
+	<td>
+		<input class="field" type="text" name="user_sms_originator" value="{user_sms_originator}" size="80" maxlength="16">
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{SMS_MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td>
+		<textarea name="user_sms_message" cols="80" rows="3">{user_sms_message}</textarea>
+	</td>
+</tr>
+
+<tr class="middle">
+	<td></td>
+	<td>
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</div>
+
+
+<!-- predefined email -->
+<div id="data_predefined_email" style="{predefined_email_style}">
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{PREDEFINED_ORDER_EMAIL_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_FROM_MSG}</b>
+		<div class="small">
+		&nbsp;(<a href="javascript:openWindow('{admin_email_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_FILEDS_NOTE})
+		</div>
+	</td>
+	<td>
+		<input class="field" type="text" name="predefined_mail_from" value="{predefined_mail_from}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_CC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="predefined_mail_cc" value="{predefined_mail_cc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_BCC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="predefined_mail_bcc" value="{predefined_mail_bcc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_REPLY_TO_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="predefined_mail_reply_to" value="{predefined_mail_reply_to}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_RETURN_PATH_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="predefined_mail_return_path" value="{predefined_mail_return_path}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_SUBJECT_MSG}</b>
+	</td>
+	<td>
+		<input class="field" type="text" name="predefined_mail_subject" value="{predefined_mail_subject}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_MESSAGE_TYPE_MSG}</b>
+	</td>
+	<td><!-- begin predefined_mail_type -->
+		<input class="field" type="radio" name="predefined_mail_type" {predefined_mail_type_checked} value="{predefined_mail_type_value}">{predefined_mail_type_description}<!-- end predefined_mail_type -->
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openWindow('{admin_order_help_href}')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_SETTINGS_NOTE}
+		<br>&nbsp;&nbsp;{LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td>
+		<textarea name="predefined_mail_body" cols="80" rows="10">{predefined_mail_body}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td></td>
+	<td>
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</div>
+
+</form>
+
+	</td>
+</tr>
+</table>
+
+
+{admin_footer}
+
+</body>
+</html>

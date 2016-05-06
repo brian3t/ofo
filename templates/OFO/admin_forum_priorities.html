@@ -1,0 +1,77 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} ::  {ADMIN_FORUM_TITLE} :: {PRIORITIES_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_forum_href}">{ADMIN_FORUM_TITLE}</a>&nbsp;&gt;&nbsp;<b>{PRIORITIES_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{PRIORITIES_MSG}</legend>
+
+<table border="0" cellspacing="1" cellpadding="6" width="100%">
+<tr align="center" class="middle">
+	<td>
+		{sorter_priority_id}
+	</td>
+	<td>
+		{sorter_priority_name}
+	</td>
+	<td>
+		{sorter_is_default}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- BEGIN records -->
+<tr class="usual" align="center">
+	<td>
+		{priority_id}
+	</td>
+	<td align="left">
+		&nbsp;{priority_name}
+	</td>
+	<td>
+		{is_default}
+	</td>
+	<td>
+		<a href="{admin_forum_priority_href}?priority_id={priority_id}">{EDIT_PRIORITY_MSG}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="4">
+		&nbsp;{NO_RECORDS}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="4">
+		<table cellpadding="0" cellspacing="0" border="0" width="100%">
+		<tr>
+			<td>&nbsp;<a href="{admin_forum_priority_href}">{NEW_PRIORITY_MSG}</a></td>
+			<!-- begin navigator_block -->
+			<td align="right">&nbsp;{navigator}&nbsp;</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>	
+
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

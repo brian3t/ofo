@@ -1,0 +1,617 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {VIEW_REPLY_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<style>
+<!--
+.usual_message {background-color:#eeeeee;}
+.internal_message {background-color:#fffddd;}
+.initial_message {background-color:#e0ffe0;}
+.topTab {font-size:11px; border-bottom:#919b9c 1px solid; border-left:#91a7b4 1px solid; border-right:#91a7b4 1px solid; border-top:#91a7b4 1px solid; padding-top:3px; padding-right:8px; padding-left:8px; padding-bottom:2px; margin:3px 3px 0px 0px; cursor:hand; font-family:Verdana, sans-serif; background:#F5F3EB; moz-border-radius:4px 4px 0px 0px; whitespace:nowrap}
+.topTabActive {font-size:11px; border-right:#919b9c 1px solid; border-left:#919b9c 1px solid; border-top:#FF8200 2px solid; border-bottom:0px solid; padding-top:5px; padding-bottom:4px; padding-right:9px; padding-left:9px; margin:3px 3px 0px 0px; font-weight:bold; cursor:default; font-family:Verdana, sans-serif; background-color:#FCFFD5; moz-border-radius:4px 4px 0px 0px; whitespace:nowrap}
+//-->
+</style>
+
+<script language="JavaScript">
+<!--
+
+function openDataWindow(pageURL)
+{
+	var popupWin = window.open (pageURL, 'popupWin', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=640,height=480');
+	popupWin.focus();
+}
+
+function storeCaret (textEl)
+{
+	if (textEl.createTextRange) textEl.caretPos = document.selection.createRange().duplicate();
+}
+
+function insertAtCaret(text)
+{	
+	var textEl = document.forms['reply'].elements['message_text'];
+	if (textEl.selectionStart >= 0) {
+		var pos = textEl.selectionStart;
+		var textBody = textEl.value;
+		var textBefore = textBody.substr(0,pos);
+		var textAfter = textBody.substr(pos);
+		textEl.value = textBefore + text + textAfter;
+	}else{
+		textEl = document.reply.message_text;
+		if (textEl.createTextRange && textEl.caretPos)
+		{
+			var caretPos = textEl.caretPos;
+			caretPos.text = caretPos.text.charAt(caretPos.text.length - 1) == ' ' ? text + ' ' : text;
+		}
+		else textEl.value = textEl.value + "\n" + text;
+	}
+}
+
+
+function addSignature()
+{
+	var signature = "{user_signature}";
+	insertAtCaret(signature);
+}
+
+
+function openPredefined()
+{
+	var PredefinedWindow = window.open ('admin_support_prereplies.php?is_popup=1', 'predefinedWindow', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=600,height=475');
+	PredefinedWindow.focus();
+}
+
+
+function attachFiles()
+{
+	var attachWin = window.open ("{admin_support_attachments_url}", 'attachWin', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=500,height=400');
+	attachWin.focus();
+}
+
+
+function closeTicket()
+{
+	return confirm("{CLOSE_CONFIRM_QST} {ADMIN_TICKET_MSG}?");
+} 
+
+function changeHelpdeskTab(newTabName, newTabTitle)
+{
+	var currentTabName = document.reply.operation.value;
+	if (currentTabName != newTabName) {
+		//reset select controls data
+		document.reply.support_status_id.selectedIndex = 0;
+		document.reply.admin_id_assign_to.selectedIndex = 0;
+		document.reply.knowledge_category.selectedIndex = 0;
+
+		currentTab = document.getElementById("tab_" + currentTabName);
+		newTab = document.getElementById("tab_" + newTabName);
+
+		currentData = document.getElementById("data_" + currentTabName);
+		newData = document.getElementById("data_" + newTabName);
+
+		currentTab.className = "adminTab";
+		newTab.className = "adminTabActive";
+
+		if (currentData) {
+			currentData.style.display = "none";
+		}
+		if (newData) {
+			newData.style.display = "block";
+		}
+
+		document.reply.operation.value = newTabName;
+		document.reply.btnReply.value = newTabTitle;
+
+		// check if we need change the rows
+		var rowObj = newTab.parentNode;
+		if (rowObj && rowObj.id && rowObj.id.substring(0, 7) == "tab_row") {
+			var tabs = "";
+			var activeRowId = rowObj.id;
+			var rowId = 1;
+			while ((rowObj = document.getElementById("tab_row_" + rowId))) {
+				if (rowObj.id == activeRowId) {
+					tabs += "<div id='"+rowObj.id+"' class='tabRow'>" + rowObj.innerHTML + "</div>";
+				} else {
+					tabs = "<div id='"+rowObj.id+"' class='tabRow'>" + rowObj.innerHTML + "</div>" + tabs;
+				}
+				rowId++;
+			}
+			var tabsObj = document.getElementById("tabs");
+			if (tabsObj && tabs != "") {
+				tabsObj.innerHTML = tabs;
+			}
+		}
+	}
+
+}
+
+function updateAttachments(attachmentsFiles)
+{
+	var ab = document.getElementById("attachmentsBlock");
+	var af = document.getElementById("attachedFiles");
+	if (attachmentsFiles == "") {
+		ab.style.display = "none";
+	} else {
+		af.innerHTML = attachmentsFiles;
+		ab.style.display = "block";
+	}
+
+}
+
+//-->
+</script>
+ 
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_support_href}">{HELPDESK_MSG}</a>&nbsp;&gt;&nbsp;<b>{VIEW_REPLY_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<a name="reply_form"></a>
+<fieldset>
+<legend>{summary}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+	
+<form action="{admin_support_reply_href}?support_id={support_id}#reply_form" name="reply" method="POST">
+<input type="hidden" name="rnd" value="{rnd}">
+<input type="hidden" name="operation" value="{operation}">
+<input type="hidden" name="page" value="{page}">
+<input type="hidden" name="support_id" value="{support_id}">
+<input type="hidden" name="has_knowledge_base" value="{has_knowledge_base}">
+<table border="0" cellpadding="2" cellspacing="1" width="100%">
+<tr>
+	<td valign="top" width="33%">	<!-- begin user info -->
+		<table border="0" cellpadding="2" cellspacing="1" width="100%" bgcolor="#999999">
+    <tr valign="top" >
+    	<td colspan="2" class="title">&nbsp;{CUSTOMER_DETAILS_MSG}</td>
+    </tr>
+    <tr valign="top">
+    	<td width="30%" class="middle" nowrap>
+    		&nbsp;{CUSTOMER_NAME_MSG}
+    	</td>
+    	<td class="usual">
+    		&nbsp;{user_name}
+    	</td>
+    </tr>
+    <tr valign="top">
+    	<td class="middle">
+    		&nbsp;{CUSTOMER_EMAIL_MSG}
+    	</td>
+    	<td class="usual">
+    		&nbsp;{user_email}
+    	</td>
+    </tr>
+    <tr valign="top">
+    	<td class="middle">
+    		&nbsp;{EMAIL_CC_MSG} {EMAIL_FIELD}
+    	</td>
+    	<td class="usual">
+    		&nbsp;{mail_cc}
+    	</td>
+    </tr>
+    <tr valign="top">
+    	<td class="middle">
+    		&nbsp;{IDENTIFIER_MSG}
+    	</td>
+    	<td class="usual">
+    		&nbsp;{identifier}
+    	</td>
+    </tr>
+    <tr valign="top">
+    	<td class="middle">
+    		&nbsp;{ENVIRONMENT_MSG}
+    	</td>
+    	<td class="usual">
+    		&nbsp;{environment}
+    	</td>
+    </tr>
+    <tr valign="top">
+    	<td class="middle">
+    		&nbsp;{CUSTOMER_IP_MSG}
+    	</td>
+    	<td class="usual">
+    		&nbsp;{remote_address}
+    	</td>
+    </tr>
+    <tr valign="top">
+    	<td class="middle">
+    		&nbsp;{ADMIN_PRODUCT_MSG}
+    	</td>
+    	<td class="usual">
+    		&nbsp;{product_name}
+    	</td>
+    </tr>
+	<!-- begin custom_properties -->
+		<tr valign="top">
+    	<td class="middle">
+    		&nbsp;{property_name}
+    	</td>
+    	<td class="usual">
+    		&nbsp;{property_value}
+    	</td>
+    </tr>
+	<!-- end custom_properties -->
+    </table>	
+	</td>
+	<td valign="top" width="33%">	
+		<table border="0" cellpadding="2" cellspacing="1" width="100%" bgcolor="#999999">
+    <tr>
+    	<td colspan="2" class="title">&nbsp;{ADMIN_STATISTIC_MSG}</td>
+    </tr>
+		<!-- begin orders_name_stats -->
+    <tr class="middlebg">
+    	<td colspan="2" >
+				&nbsp;Search by name: found 
+				<a style="color:blue;" href="{admin_orders_url}"><b>{orders_number_sum}</b></a> order(s) for '<b>{user_name}</b>'
+    	</td>
+    </tr><!-- end orders_name_stats -->
+		<!-- begin orders_stats -->
+    <tr class="middle">
+    	<td width="40%">
+    		&nbsp;{ORDERS_MSG}
+    	</td>
+    	<td width="60%">
+    		&nbsp;<a style="color:blue;" href="{admin_orders_url}"><b>{orders_number_sum}</b></a> ({orders_total_sum})
+    	</td>
+    </tr><!-- end orders_stats -->
+		<!-- begin orders_statuses -->
+    <tr valign="top">
+    	<td class="usual">
+    		&nbsp;{order_status}
+    	</td>
+    	<td class="usual">
+    		&nbsp;<a style="color:blue;" href="{admin_orders_url}"><b>{orders_number}</b></a> ({orders_total})
+    	</td>
+    </tr><!-- end orders_statuses -->
+		<!-- begin tickets_stats -->
+    <tr class="middle">
+    	<td width="40%">
+    		&nbsp;{TICKETS_MSG}
+    	</td>
+    	<td width="60%">
+    		&nbsp;<a style="color:blue;" href="{admin_tickets_url}"><b>{tickets_number_sum}</b></a>
+    	</td>
+    </tr><!-- end tickets_stats -->
+		<!-- begin tickets_statuses -->
+    <tr valign="top">
+    	<td class="usual">
+    		&nbsp;{ticket_status}
+    	</td>
+    	<td class="usual">
+    		&nbsp;<a style="color:blue;" href="{admin_tickets_url}"><b>{tickets_number}</b></a>
+    	</td>
+    </tr><!-- end tickets_statuses -->
+    </table>	
+	</td>
+	<td valign="top" width="33%">	
+		<table width="100%" cellpadding="2" cellspacing="1" bgcolor="#999999">
+    <tr valign="top"  >
+    	<td colspan="2" class=title style="color:white" bgcolor="#003399">
+    		<b>&nbsp;{REQUEST_DETAILS_MSG}</b>
+    	</td>
+    </tr>
+    <tr valign="top">
+    	<td class="middle" width="30%">
+    		&nbsp;{SUPPORT_DEPARTMENT_FIELD}
+    	</td>
+    	<td class="usual">
+    		&nbsp;{department_title}
+    	</td>
+    </tr>
+    <tr valign="top">
+    	<td class="middle" width="30%">
+    		&nbsp;{ASSIGNED_MSG}
+    	</td>
+    	<td class="usual">
+    		&nbsp;{assign_to}
+    	</td>
+    </tr>
+    <tr valign="top" >
+    	<td class="middle">
+    		&nbsp;{TYPE_MSG}
+    	</td>
+    	<td class="usual">
+    		&nbsp;{type}
+    	</td>
+    </tr>
+    <tr valign="top">
+    	<td nowrap class="middle">
+    		&nbsp;{SUPPORT_CURRENT_STATUS_FIELD}
+    	</td>
+    	<td  class="usual" nowrap>
+    		&nbsp;{current_status}
+    	</td>
+    </tr>
+    <tr valign="top">
+    	<td class="middle">
+    		&nbsp;{PRIORITY_MSG}
+    	</td>
+    	<td class="usual">
+    		&nbsp;{priority}
+    	</td>
+    </tr>
+    <tr valign="top">
+    	<td class="middle">
+    		&nbsp;{POSTED_MSG}
+    	</td>
+    	<td nowrap class="usual">
+    		&nbsp;{request_added}
+    	</td>
+    </tr>
+    <tr valign="top">
+    	<td  nowrap class="middle">
+    		&nbsp;{SUPPORT_UPDATED_FIELD}
+    	</td>
+    	<td nowrap class="usual">
+    		&nbsp;{date_modified}
+    	</td>
+    </tr><!--begin site_name_block-->
+    <tr valign="top">
+    	<td  nowrap class="middle">
+    		&nbsp;{SITE_NAME_MSG}
+    	</td>
+    	<td nowrap class="usual">
+    		&nbsp;{site_name}
+    	</td>
+    </tr>
+     <!--end site_name_block-->
+    <tr valign="top">
+    	<td colspan="2" class="usual">
+				<!-- BEGIN edit_ticket -->
+				<a style="color:blue;" href="{admin_support_request_url}"><b>{EDIT_TICKET_MSG}</b></a>
+				| <a style="color:blue;" href="{admin_request_delete_url}" onClick="return confirm('{CONFIRM_DELETE_JS}');"><b>{DELETE_TICKET_MSG}</b></a>
+				<!-- END edit_ticket -->
+				{links_separator}
+				<!-- BEGIN close_ticket -->
+				<a style="color:blue;" href="{close_ticket_url}" onclick="return closeTicket();"><b>{CLOSE_TICKET_MSG}</b></a>
+				<!-- END close_ticket -->
+    	</td>
+    </tr>
+    </table>
+
+	<!-- end of request data -->
+	</td>
+</tr><!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="3" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr>
+	<td colspan="3" valign="bottom">
+
+	<div id="tabs">
+		<!-- BEGIN tabs_rows -->
+		<div id="{row_id}" class="tabRow"><!-- BEGIN tabs -->
+			<div id="{tab_id}" class="{tab_class}"><a class="blackSm" href="#" onClick="changeHelpdeskTab('{tab_name}', '{tab_title}'); return false;">{tab_title}</a></div>{br}<!-- END tabs -->
+		</div>
+		<!-- END tabs_rows -->
+	</div>
+	<table cellspacing=0 cellpadding=0 border=0 width="100%" class="tabTable">
+	<tr height="40">
+		<td colspan="2" class="middle">
+		<table border="0" cellpadding="5" cellspacing="0" width="100%">
+		<tr>
+			<td>
+				<div id="data_reply" style="{reply_style}">
+					&nbsp;&nbsp;{CHANGE_STATUS_MSG}:&nbsp;
+					<select name="support_status_id"><!-- begin response_status -->
+						<option {response_status_selected} value="{response_status_value}">{response_status_description}<!-- end response_status -->
+					</select> 
+				</div>
+				<div id="data_assign" style="{assign_style}">
+					&nbsp;&nbsp;{ASSIGN_TO_MSG}:&nbsp;
+					<select name="admin_id_assign_to"><!-- begin admin_id_assign_to -->
+						<option {admin_id_assign_to_selected} value="{admin_id_assign_to_value}">{admin_id_assign_to_description}<!-- end admin_id_assign_to -->
+					</select>
+				</div>	
+				<div id="data_knowledge" style="{knowledge_style}">
+					&nbsp;&nbsp;{SELECT_CATEGORY_MSG}:&nbsp;
+					<select name="knowledge_category"><!-- begin knowledge_category -->
+						<option {knowledge_category_selected} value="{knowledge_category_value}">{knowledge_category_description}<!-- end knowledge_category -->
+					</select>
+					&nbsp;{ADMIN_TITLE_MSG}: <input size="25" class="field" type="text" name="knowledge_title" value="{knowledge_title}">
+				</div>
+				<div id="data_reply_to_admin" style="{reply_to_admin_style}">
+					<input type="hidden" name="last_admin_id_assign_by" value="{last_admin_id_assign_by}">
+					&nbsp;&nbsp;{ASSIGN_TO_MSG}:&nbsp;<b>{reply_to_admin}</b>
+				</div>	
+			</td>
+			<td align="right">
+				<a href="{admin_support_attachments_url}" onClick="attachFiles();return false;"><img src="../images/clip.gif" border="0" width="16" height="16"></a>
+			</td>
+		</table>
+	</td>
+	</tr>
+	</table>
+
+	<div id="attachmentsBlock" style="{attachments_class}">
+		<table cellspacing=0 cellpadding=5 border=0 width="100%" style="border-bottom:#919b9c 1px solid; border-right:#919b9c 1px solid; border-left:#919b9c 1px solid;">
+		<tr class="usual">
+			<td>
+				&nbsp;<a href="{admin_support_attachments_url}" onClick="attachFiles();return false;">{ATTACHED_FILES_MSG}</a>:&nbsp;
+				&nbsp;<span id="attachedFiles">{attached_files}</span>
+			</td>
+		</tr>
+	</table>
+	</div>
+
+</td>
+</tr>
+
+<tr class="usual">
+	<td colspan="3">
+		<textarea style="font-family:verdana; width: 880px;" name="message_text" cols="100" rows="15" onSelect="storeCaret(this);" onClick="storeCaret(this);" onKeyUp="storeCaret(this);">{response_message}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="3">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+		<tr>
+			<td>
+				<!-- BEGIN reply_button -->
+				<input class="submit" type="submit" name="btnReply" value="{button_name}">
+				<!-- END reply_button -->
+			</td>
+			<td align="right">
+				<input class="submit" type="button" value=" {ADD_SIGNATURE_MSG} " onClick="addSignature();">&nbsp;&nbsp;
+				<input class="submit" type="button" value="{PREDEFINED_REPLIES_MSG}" onClick="openPredefined();">&nbsp;&nbsp;
+				<input class="submit" type="button" value=" {CLEAR_BUTTON} " onClick="document.reply.message_text.value=''">&nbsp;&nbsp;
+				<input class="submit" type="reset" value=" {RESET_BUTTON} ">
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>	
+</form>
+
+	</td>
+</tr>
+</table>
+</fieldset>
+
+
+<!-- BEGIN records -->
+<a name="{message_id}"></a>
+<br><br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+
+<table border="0" cellpadding="6" cellspacing="1" width="100%">
+<!-- begin internal_block -->
+<tr valign="top">
+	<td colspan="2" class=title style="color:white" bgcolor="#003399">
+		<b>{INTERNAL_MESSAGE_MSG}</b>
+	</td>
+</tr>
+<!-- end internal_block -->
+<!-- begin initial_block -->
+<tr valign="top">
+	<td colspan="2" class=title style="color:white" bgcolor="#009900">
+		<b>{INITIAL_REQUEST_MSG}</b>
+	</td>
+</tr>
+<!-- end initial_block -->
+<tr valign="top">
+	<td class="middle" width="24%">
+		{STATUS_MSG}
+	</td>
+	<td class="{style_am}">
+		{status}
+	</td>
+</tr>
+<tr valign="top">
+	<td class="middle">
+		{POSTED_BY_MSG}
+	</td>
+	<td class="{style_am}">
+		{posted_by}
+	</td>
+</tr>
+<!-- begin assign_to_block -->
+<tr valign="top">
+	<td class="middle">
+		{ASSIGN_TO_MSG}
+	</td>
+	<td class="{style_am}">
+		<font color="blue">{message_assign_to}</font>
+	</td>
+</tr>
+<!-- end assign_to_block -->
+<tr valign="top">
+	<td class="middle">
+		{POSTED_MSG}
+	</td>
+	<td class="{style_am}">
+		{date_added}
+	</td>
+</tr>
+<tr valign="top">
+	<td class="middle">
+		{viewed_by} {VIEWED_MSG}
+	</td>
+	<td class="{style_am}">
+		{date_viewed}
+	</td>
+</tr>
+<!-- begin mail_data -->
+<tr valign="top">
+	<td class="middle">
+		{MAIL_DATA_MSG}
+	</td>
+	<td class="{style_am}">
+		<table cellspacing="0" cellpadding="0" border="0">
+		<tr>
+			<!-- BEGIN mail_headers -->
+			<td><img src="../images/icons/view_page.gif" width="16" height="16"></td>
+			<td>&nbsp;<a href="{admin_support_mail_data_url}" onClick="openDataWindow('{admin_support_mail_data_url}');return false;">{HEADERS_MSG}</a>&nbsp;</td>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<!-- END mail_headers -->
+			<!-- BEGIN mail_body_html -->
+			<td><img src="../images/icons/view_page.gif" width="16" height="16"></td>
+			<td>&nbsp;<a href="{admin_support_mail_data_url}" onClick="openDataWindow('{admin_support_mail_data_url}');return false;">{ORIGINAL_HTML_MSG}</a>&nbsp;</td>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<!-- END mail_body_html -->
+			<!-- BEGIN mail_body_text -->
+			<td><img src="../images/icons/view_page.gif" width="16" height="16"></td>
+			<td>&nbsp;<a href="{admin_support_mail_data_url}" onClick="openDataWindow('{admin_support_mail_data_url}');return false;">{ORIGINAL_TEXT_MSG}</a>&nbsp;</td>
+			<!-- END mail_body_text -->
+		</tr>
+		</table>
+		
+	</td>
+</tr>
+<!-- end mail_data -->
+<!-- begin attachments_block -->
+<tr valign="top">
+	<td class="middle">
+		{ATTACHMENTS_MSG}
+	</td>
+	<td class="{style_am}">
+		{attachments_files}
+	</td>
+</tr>
+<!-- end attachments_block -->
+<tr>
+	<td colspan="2" class="{style_am}">
+		{message_text}
+		<!-- begin edit_link -->
+		<p><a href="{admin_support_message_url}"><b>{EDIT_MESSAGE_MSG}</b></a></p>
+		<!-- end edit_link -->
+	</td>
+</tr>
+</table>	
+
+</td></tr></table>
+<!-- END records -->
+
+<!-- begin navigator_block -->
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<td align="right">
+		&nbsp;{navigator}&nbsp;
+	</td>
+</tr>
+</table>
+<!-- end navigator_block -->
+
+
+{admin_footer}
+</body>
+</html>

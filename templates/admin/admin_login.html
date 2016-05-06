@@ -1,0 +1,110 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {LOGIN_BUTTON} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+
+<body class="commonbg">
+<table width="100%" height=100% border="0" cellspacing="0" cellpadding="5">
+<tr><td valign=middle>
+
+<table width="400" border="0" cellspacing="0" cellpadding="0" align="center">
+<td>
+<fieldset>
+<legend><img align="top" src="../images/icons/admin.gif" width="16" height="16">&nbsp;&nbsp;{ADMINISTRATION_MSG}</legend>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<td valign="top" colspan="3" class="usual">
+
+<form action="{admin_login_url}" name="record" method="POST">
+<input type="hidden" name="operation" value="{operation}">
+<input type="hidden" name="return_page" value="{return_page}">
+<input type="hidden" name="post_data" value="{post_data}">
+<table align="center">
+<tr>
+	<td>&nbsp;</td>
+</tr><!-- BEGIN errors -->
+<tr>
+	<td colspan="2" align="center">
+		<div class="error">
+			<!-- begin session_expired -->
+			{SESSION_EXPIRED_MSG}<br>
+			<!-- end session_expired -->
+			<!-- begin access_error -->
+			<b>{ADMIN_ACCESS_ERROR}</b><br>
+			{TO_CHANGE_PERMISSION_MSG}
+			<a style="color:#cc0000;" href="{admin_privileges_href}">{PRIVILEDGE_GROUPS_MSG}</a>.<!-- end access_error -->
+			{errors_list}
+		</div>
+		<br>
+	</td>
+</tr><!-- END errors --><!-- BEGIN login_form -->
+
+<tr>
+	<td align="right">
+	{LOGIN_FIELD}&nbsp;
+	</td>
+	<td>
+		<input class="field" type="text" name="login" value="{login}" size="24" maxlength="32">
+	</td>
+</tr>
+<tr>
+	<td align="right">
+	{PASSWORD_FIELD}&nbsp;
+	</td>
+	<td>
+		<input class="field" type="password" name="password" value="" size="24" maxlength="32">
+	</td>
+</tr>
+
+<tr>
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value=" {LOGIN_BUTTON} " onCLick="document.record.operation.value='login'">
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel_login'">
+	</td>
+</tr><!-- END login_form --><!-- BEGIN logout_form -->
+<tr>
+	<td colspan="2" align="right">
+		{LOGIN_AS_MSG} <b>{admin_name}</b>
+	</td>
+</tr>
+<tr>
+	<td colspan="2" align="right">
+		{TO_ACCESS_HOME_MSG} <a href="{admin_href}">{CLICK_HERE_MSG}</a>
+	</td>
+</tr>
+<tr>
+	<td>
+	</td>
+	<td align="right">
+		<br><input class="submit" type="submit" value="{LOGOUT_BUTTON}" onCLick="document.record.operation.value='logout'">
+	</td>
+</tr><!-- END logout_form -->
+<tr>
+	<td>&nbsp;</td>
+</tr>
+</table>
+</form>
+	</td>
+</tr>
+</table></fieldset>
+
+
+
+	</td>
+</tr>
+</table>
+
+</td></tr></table>
+
+<script language="JavaScript">
+<!--
+	if(document.record.login) {
+		document.record.login.focus();
+	}
+//-->
+</script>
+
+</body>
+</html>

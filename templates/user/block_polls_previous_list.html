@@ -1,0 +1,52 @@
+<div class="block-polls-previous-list">
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{PREVIOUS_POLLS_MSG}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr> 
+		<td class="blockTD">
+	<br>
+
+<table border="0" width="90%" cellspacing="5" cellpadding="10" align="center"><!-- BEGIN records -->
+<tr>
+	<td valign="top" width="100" align="right">
+		<i>{poll_date}</i>
+	</td>
+	<td>
+		<a class="title" onClick="window.open('{poll_vote_href}?poll_id={poll_id}','vote','toolbar=no,scrollbars=yes,resizable=no,width=400,height=300'); return false;"
+			href="{poll_vote_href}?poll_id={poll_id}" class="bigtitle">{poll_question}</a> &nbsp;
+		<a class="smallText" onClick="window.open('{poll_vote_href}?poll_id={poll_id}','vote','toolbar=no,scrollbars=yes,resizable=no,width=400,height=300'); return false;"
+			href="{poll_vote_href}?poll_id={poll_id}">{VIEW_RESULTS_MSG}</a>
+	</td>
+</tr><!-- END records -->
+<!-- BEGIN navigator_block -->
+<tr>
+	<td></td>
+	<td>
+		{navigator}
+	</td>
+</tr><!-- END navigator_block --><!-- BEGIN no_records -->
+<tr>
+	<td colspan="2">
+		{NO_POLLS_MSG}
+	</td>
+</tr><!-- END no_records -->
+</table>	
+
+	<br>
+	</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+</div>

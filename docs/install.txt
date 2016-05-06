@@ -1,0 +1,176 @@
+================================================================================
+ViArt v.3.3.2
+Copyright (c) 2007 ViArt Limited
+All Rights Reserved.
+
+Installation Guide
+
+================================================================================
+
+* Prerequisites: 
+
+(a) Make sure you have a web server where the ViArt Shop will be deployed. 
+
+(b) Make sure that your web server is capable of serving the web pages written in 
+    PHP (http://www.php.net). 
+
+(c) Make sure that Zend Optimizer 2.6.2 or higher is installed (http://www.zend.com)
+
+(d) Make sure you have one of the supported databases installed. 
+    - MySQL version 3.22.x or higher. (http://www.mysql.com) 
+    - PostgreSQL 7.1 or higher (http://www.postgresql.org) 
+    - ODBC connected database
+
+(e) When you download the application, you should find the following components 
+    contained in the zip archive: 
+
+    "/" - Language specific script files and html template files are in Root folder. 
+    "/docs" - Reference Manual is in "Docs" folder. 
+    "/db" - SQL script files that can be used to recreate the database are in /DB folder. 
+    "/images" - A folder containing images. 
+    "/includes" - A folder with common used scripts and settings. 
+
+================================================================================
+
+* Installation: 
+
+The installation process is pretty straightforward and requires minimal 
+adjustment of the application files. Proceed as follows: 
+
+1. Extract the files from archive 
+Extract the files into a folder within your web server hierarchy from where 
+the application will be served. Usually under Linux you could extract them like: 
+
+tar xfz viart_shop-3.3.2.tar.gz 
+
+Windows users could use WinZip to extract files from archive.
+
+Ensure that the folder name does not have spaces in it. During the process of 
+unzipping, make sure that the files are unzipped to their respective folders. 
+Don't simply open the zip archive and drag all the files to the same folders. 
+For the application to work correctly, some files such as the image files need 
+to be in specific folders. 
+
+================================================================================
+
+2. Prepare a database 
+
+If you do not have a database already, create a database. 
+In MySQL you use the "mysqladmin" program like this: 
+mysqladmin -uuser -ppaswword create mydb 
+
+
+Be sure that you have a user for that database which has the rights to select,
+insert, update, delete. 
+A MySQL Grant statement for this user would look like this: 
+GRANT 
+  select, insert, update, create, alter, delete, drop 
+ON 
+ database.* 
+TO 
+ user@localhost 
+IDENTIFIED BY 
+ 'password'; 
+
+================================================================================
+3. Quick Install
+
+(a) Using your web browser visit the location you placed ViArt Shop
+   e.g. http://www.mydomain.com/viart_shop
+
+(b) Change the permissions on includes/var_definition.php to be writeable by 
+all (666 or -rw-rw-rw- within your FTP Client) 
+
+(c) The installation is divided logically in two steps. In the first part you 
+   provide database settings and create database table.
+   In the second part you decide which settings you want to use.
+   Fill out all the requested information and hit Next each step.
+
+(d) Change the permissions on includes/var_definition.php to be writeable only 
+by yourself (644 or -rw-r--r-- within your FTP Client) 
+
+(e) Revisit the location you entered above
+
+(f) ViArt Shop should now be available, please MAKE SURE you read at least 
+Section 5 from User Manual for important, security related post-installation 
+instructions
+
+
+NOTE: the following  steps are not needed if the installation had completed
+successfully
+
+================================================================================
+4. Populating the database with tables structure
+
+Go to "db" folder of your installation and populate your database server with 
+information from one of the following SQL script files: 
+- mysql_viart_shop.sql   - for MySQL Database Server 
+- postgre_viart_shop.sql - for PostgreSQL 
+- access_viart_shop.sql  - for MS Access
+
+To populate MySQL database you could use 'mysql' client like:
+mysql -uuser -ppassword mydb < mysql_viart_shop.sql
+
+================================================================================
+5. The database connection string 
+
+Once you have unzipped the files, the next task is to alter the database 
+connection string to reflect the current location/name of the database. 
+Follow the relevant instructions below depending on the type of connection 
+that you want to use: 
+
+* MySQL,PostgreSQL,ODBC
+
+NOTE: Before using ODBC connection you must setup it.
+Use the ODBC option in Control Panel to setup a system DSN 
+for the application database. The database file is located 
+in the main folder of the application. In the interest of 
+security, you can and are encouraged to move the database 
+file to a more secure location outside the web server 
+hierarchy. Your application will work fine as long as the 
+DSN you configure points to the correct location of the 
+database file. Ensure that the DSN is a system DSN so that 
+it will be available to all users.
+
+(a) Open the file 'var_definition_example.php' which is in the 'includes' folder of your application path. 
+
+(b) Look for the connection parameters: $db_host, $db_user, $db_password, $db_name, $db_type 
+
+(c) Using the guidelines below, change the statement to look something like the example shown below: 
+// database parameters 
+$db_type = "mysql"; 
+$db_name = "viart_shop"; 
+$db_user = "viart_shop"; 
+$db_password = "best2004os"; 
+$db_host = "localhost"; 
+
+where: 
+$db_type : type of database that you use. It can be - 'mysql', 'postgre', 'odbc'. 
+$db_name : Refers to the database name. 
+$db_user and $db_password : Used to specify user authentication values. 
+$db_host : This is the name of computer where database server resides. 
+           Default value is localhost. 
+
+(d) Save file 'var_definition_example.php' as 'var_definition.php'
+
+================================================================================
+
+6. PHP for Windows 
+For PHP for Windows do the following: 
+
+(a) Open php.ini (it can be found in the Windows folder) 
+(b) Find session.save_path parameter. 
+E.g.: session.save_path = C:\Program Files\PHP\sessiondata\ ; 
+argument passed to save_handler 
+(c) Verify that set as a value for this parameter exists and not a Read-Only 
+file for the Web-Server. 
+
+================================================================================
+
+7. Verify if all things works 
+To verify if all things works simply point your browser to 
+http://"your_web_server"/"path_to_ViArt_Shop" 
+where: 
+
+"your_web_server" - might be "localhost" or (if installed on remote web server) internet domain name like "www.your_company.com". 
+"path_to_ViArt_Shop" - The directory within web-server hierarchy where ViArt Shop was installed. 

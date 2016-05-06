@@ -1,0 +1,569 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {ORDERS_MAINTENANCE_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript" src="../js/calendar.js"></script>
+<script language="JavaScript" type= "text/javascript" src="../js/select.js"></script>
+<script language="JavaScript">
+<!--
+	function changeStatus()
+	{
+		var checkedStatus = document.orders.all_orders.checked;
+		var ordersNumber = document.orders.orders_number.value;
+		for (var i = 1; i <= ordersNumber; i++) {
+			document.orders.elements["id_" + i].checked = checkedStatus;
+		}
+		checkOrders();
+	}
+
+	function updateStatus(operation)
+	{
+		var orderId = "";
+		var ordersIds = "";
+		var ordersNumber = document.orders.orders_number.value;
+		var totalOrders = 0;
+		for (var i = 1; i <= ordersNumber; i++) {
+			if (document.orders.elements["id_" + i].checked) {
+				totalOrders++;
+				orderId = document.orders.elements["id_" + i].value;
+				if(totalOrders > 1) { ordersIds += ","; }
+				ordersIds += orderId;
+			}
+		}
+		var statusControl = document.update_status.status_id;
+		if (totalOrders == 0) {
+			alert("{SELECT_ORDERS_NOTE}")
+		} else if (operation == "update_status") {
+			if (statusControl.options[statusControl.selectedIndex].value == "") {
+				alert("{SELECT_STATUS_NOTE}");
+			} else if (confirm("{CHANGE_SELECTED_STATUS_NOTE} '" + statusControl.options[statusControl.selectedIndex].text + "'.\nContinue?'")) {
+				document.update_status.orders_ids.value = ordersIds;
+				document.update_status.operation.value = "update_status";
+				document.update_status.submit();
+			}
+		} else if (operation == "remove_orders") {
+			if (confirm("{REMOVE_SELECTED_ORDERS_QST} (" + totalOrders + ")?")) {
+				document.update_status.orders_ids.value = ordersIds;
+				document.update_status.operation.value = "remove_orders";
+				document.update_status.submit();
+			}
+		}
+	}
+
+	function getOrdersIds()
+	{
+
+		return ordersIds;
+	}
+
+	function checkOrders()
+	{
+		var orderId = "";
+		var ordersIds = "";
+		var ordersNumber = document.orders.orders_number.value;
+		var totalSelected = 0;
+
+		for (var i = 1; i <= ordersNumber; i++) {
+			if (document.orders.elements["id_" + i].checked) {
+				document.getElementById("tr_order_" + i).className = "SelectedRow";
+				totalSelected++;
+				orderId = document.orders.elements["id_" + i].value;
+				if(ordersIds != "") { ordersIds += ","; }
+				ordersIds += orderId;
+			} else {
+				document.getElementById("tr_order_" + i).className = mas[i];
+			}
+		}
+		var exportOrdersLink = document.getElementById("export_orders");
+		if (exportOrdersLink) {
+			if (ordersIds == "") {
+				exportOrdersLink.innerHTML = "{EXPORT_ALL_ORDERS_MSG}";
+				exportOrdersLink.href = "{admin_export_href}?table=orders";
+			} else {
+				exportOrdersLink.innerHTML = "{EXPORT_SELECTED_MSG} (" + totalSelected + ")";
+				exportOrdersLink.href = "{admin_export_href}?table=orders&ids=" + ordersIds;
+			}
+		}
+		var invoicesLink = document.getElementById("invoices");
+		if (invoicesLink) {
+			if (ordersIds == "") {
+				invoicesLink.innerHTML = "{PDF_INVOICES_MSG}";
+				invoicesLink.href = "{admin_invoice_pdf_href}";
+			} else {
+				invoicesLink.innerHTML = "{PDF_INVOICES_MSG} (" + totalSelected + ")";
+				invoicesLink.href = "{admin_invoice_pdf_href}?ids=" + ordersIds;
+			}
+		}
+		var packingSlipsLink = document.getElementById("packing_slips");
+		if (packingSlipsLink) {
+			if (ordersIds == "") {
+				packingSlipsLink.innerHTML = "{PDF_PACKING_SLIPS_MSG}";
+				packingSlipsLink.href = "{admin_packing_pdf_href}";
+			} else {
+				packingSlipsLink.innerHTML = "{PDF_PACKING_SLIPS_MSG} (" + totalSelected + ")";
+				packingSlipsLink.href = "{admin_packing_pdf_href}?ids=" + ordersIds;
+			}
+		}
+		var orderBomLink = document.getElementById("bom");
+		if (orderBomLink) {
+			if (ordersIds == "") {
+				orderBomLink.innerHTML = "{BOM_MSG}";
+				orderBomLink.href = "{admin_orders_bom_pdf_href}";
+			} else {
+				orderBomLink.innerHTML = "{BOM_MSG} (" + totalSelected + ")";
+				orderBomLink.href = "{admin_orders_bom_pdf_href}?ids=" + ordersIds;
+			}
+		}
+	}
+
+	function checkLink()
+	{
+		var ordersNumber = document.orders.orders_number.value;
+		var totalSelected = 0;
+		for (var i = 1; i <= ordersNumber; i++) {
+			if (document.orders.elements["id_" + i].checked) {
+				totalSelected++;
+			}
+		}
+		if (totalSelected == 0) {
+			alert("Please select {ADMIN_ORDERS_BRAKETS_MSG} first.")
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	function clearSearch() {
+		document.search_form.s_on.value = "";
+		document.search_form.s_ne.value = "";
+		document.search_form.s_kw.value = "";
+		document.search_form.s_sd.value = "";
+		document.search_form.s_ed.value = "";
+		document.search_form.s_os_list.value = 0;
+		document.search_form.s_os.selectedIndex = 0;
+		document.search_form.s_ci.selectedIndex = 0;
+		document.search_form.s_si.selectedIndex = 0;
+		document.search_form.s_cct.selectedIndex = 0;
+		document.search_form.s_ex[0].checked = true;
+		if (document.search_form.s_sti) {
+			document.search_form.s_sti.selectedIndex = 0;
+		}
+		document.search_form.submit();
+
+	}
+
+	function mouseX(evt) {
+		if (evt.pageX) {
+			return evt.pageX;
+		} else if (evt.clientX) {
+			return evt.clientX + (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
+		} else {
+			return null;
+		}
+	}
+
+	function mouseY(evt) {
+		if (evt.pageY) {
+			return evt.pageY;
+		} else if (evt.clientY) {
+			return evt.clientY + (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
+		} else {
+			return null;
+		}
+	}
+
+	function showOrderItems(event, orderID)	{
+		var orderItems = document.getElementById("order_items_" + orderID);
+		if (orderItems) {
+  	  var leftPos = mouseX(event) + 15;
+	    var topPos  = mouseY(event) + 15;
+			orderItems.style.left = leftPos;
+			orderItems.style.top = topPos;
+
+			orderItems.style.display = "block";
+		}
+
+	}
+
+	function hideOrderItems(event, orderID)	{
+
+		var orderItems = document.getElementById("order_items_" + orderID);
+		if (orderItems) {
+			orderItems.style.display = 'none';
+		}
+	}
+
+//-->
+</script>
+<script language= "JavaScript" type= "text/javascript">
+<!--
+	var select_form = new select();
+		select_form.object_name = 'select_form';
+		select_form.name_prefix = 'id_';
+		select_form.formname = 'orders';
+		select_form.final_action = 'checkOrders();';
+		select_form.create_event_click();
+//-->
+</script>
+</head>
+
+<body class="commonbg" onLoad="start_event_select();">
+<script language= "JavaScript" type= "text/javascript">
+<!--
+	function start_event_select(){
+		create_event_listener(select_form);
+		var ordersNumber = document.orders.orders_number.value;
+		mas = new Array();
+		for (var i = 1; i <= ordersNumber; i++) {
+			mas[i] = document.getElementById("tr_order_" + i).className;
+		}
+	}
+//-->
+</script>
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header">
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<b>{ORDERS_MAINTENANCE_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+	<tr>
+		<td valign="top">
+
+		<table border="0" cellpadding="2" cellspacing="2">
+		<form action="{admin_orders_href}" name="search_form">
+		<input type="hidden" name="s_os_list" value="{s_os_list_size}">
+		<!-- BEGIN errors -->
+		<tr><td colspan="2">
+			&nbsp;<div align="center" class="error"><font style="font-size:8pt">{errors_list}</font></div>&nbsp;
+		</td></tr>
+		<!-- END errors -->
+		<tr>
+			<td colspan="2"><b>{SEARCH_ORDERS_MSG}:</b></td>
+		</tr>
+		<tr>
+			<td>{BY_ORDER_NUMBER_MSG}:</td>
+			<td><input type="text" name="s_on" value="{s_on}" class="search"></td>
+		</tr>
+		<tr>
+			<td>{BY_NAME_EMAIL_MSG}:</td>
+			<td><input type="text" name="s_ne" value="{s_ne}" class="search"></td>
+		</tr>
+		<tr>
+			<td>{BY_KEYWORD_MSG}, {SERIAL_NUMBER_MSG}:</td>
+			<td><input type="text" name="s_kw" value="{s_kw}" class="search"></td>
+		</tr>
+		<tr>
+			<td>{FROM_DATE_MSG} ({date_edit_format}):</td>
+			<td>
+				<input type="text" name="s_sd" value="{s_sd}" class="search">
+				<A HREF="#"
+					onClick="setDateField(document.search_form.s_sd, '{date_edit_format}');
+					top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+				<IMG SRC="../images/calendar.gif" BORDER=0><font size=1>{CALENDAR_MSG}</font></A>
+			</td>
+		</tr>
+		<tr>
+			<td>{TO_DATE_MSG} ({date_edit_format}):</td>
+			<td>
+				<input type="text" name="s_ed" value="{s_ed}" class="search">
+				<A HREF="#"
+					onClick="setDateField(document.search_form.s_ed, '{date_edit_format}');
+					top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+				<IMG SRC="../images/calendar.gif" BORDER=0><font size=1>{CALENDAR_MSG}</font></A>
+			</td>
+		</tr>
+		<tr>
+			<td valign="top">{ADMIN_WHERE_STATUS_IS_MSG}:</td>
+			<td>
+				<div id="status_select" {status_select_style}>
+					<select name="s_os" class="search">
+						<!-- BEGIN s_os -->
+							<option {s_os_selected} value="{s_os_value}">{s_os_description}
+						<!-- END s_os -->
+					</select>
+					<a href="#"	
+						onClick="document.getElementById('status_checkboxes').style.display='block'; return false;"
+						><font size=1>{ADVANCED_PARAMETERS_MSG}</font></a>		
+				</div>
+				<div id="status_checkboxes" {status_checkboxes_style}>
+					<!-- BEGIN s_os_list -->						
+						<input type="checkbox" {s_os_list_checked} name="s_os_list_{s_os_list_index}" value="{s_os_list_value}">{s_os_list_description}&nbsp;<br/>
+					<!-- END s_os_list -->					
+				</div>
+				
+			</td>
+		</tr>
+		<tr>
+			<td>{SHIP_TO_MSG} {COUNTRY_FIELD}:</td>
+			<td>
+				<select name="s_ci" class="search">
+					<!-- BEGIN s_ci -->
+						<option {s_ci_selected} value="{s_ci_value}">{s_ci_description}
+					<!-- END s_ci -->
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>{SHIP_TO_MSG} {STATE_FIELD}:</td>
+			<td>
+				<select name="s_si" class="search">
+					<!-- BEGIN s_si -->
+						<option {s_si_selected} value="{s_si_value}">{s_si_description}
+					<!-- END s_si -->
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>{CREDIT_CARD_TYPE_MSG}:</td>
+			<td>
+				<select name="s_cct" class="search">
+					<!-- BEGIN s_cct -->
+						<option {s_cct_selected} value="{s_cct_value}">{s_cct_description}
+					<!-- END s_cct -->
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>{ADMIN_SHOW_MSG}:</td>
+			<td>
+					<!-- BEGIN s_ex -->
+					<input type="radio" name="s_ex" {s_ex_checked} value="{s_ex_value}">{s_ex_description}
+					<!-- END s_ex -->
+			</td>
+		</tr>
+		<!-- begin sitelist -->
+		<tr>
+			<td>{ADMIN_SITE_MSG}:</td>
+			<td>
+				<select name="s_sti" class="search">
+					<!-- BEGIN s_sti -->
+						<option {s_sti_selected} value="{s_sti_value}">{s_sti_description}
+					<!-- END s_sti -->
+				</select>
+			</td>
+		</tr>
+		<!-- end sitelist -->
+		<tr>
+			<td colspan="2"><input type="submit" value="Search" class="submit">&nbsp;<input type="button" value="{CLEAR_BUTTON}" class="submit" onClick="clearSearch()"></td>
+		</tr>
+		</form>
+		</table>
+
+	</td>
+	<td valign="top" align="right" valign="top">
+		<table cellpadding="2" cellspacing="2" border="0">
+		<tr>
+			<td colspan="5">&nbsp;<b>{STATS_MSG}:</b></td>
+		</tr>
+		<tr class="middle">
+			<td></td>
+			<!-- begin stats_titles -->
+			<td><a href="{admin_orders_href}?s_sd={start_date}&s_ed={end_date}">{stat_title}</a></td><!-- end stats_titles -->
+		</tr>
+		<!-- begin statuses_stats -->
+		<tr class="usual" align="center">
+			<td align="left"><a href="{admin_orders_href}?s_os={status_id}">{status_name}</a></td>
+			<!-- begin stats_periods -->
+			<td>{period_orders}</td><!-- end stats_periods -->
+		</tr>
+		<!-- end statuses_stats -->
+		<tr class="middle" align="center">
+			<td align="right">{TOTAL_MSG}:&nbsp;</td>
+			<!-- begin stats_totals -->
+			<td>{period_total}</td><!-- end stats_totals -->
+		</tr>
+		</table>
+	</td></tr>
+</table>
+
+<br>
+
+<!-- BEGIN orders_errors -->
+&nbsp;<div align="center" class="error">{errors_list}</div>&nbsp;
+<!-- END orders_errors -->
+
+<!-- BEGIN orders_messages -->
+&nbsp;<div align="center" class="message">{messages_list}</div>&nbsp;
+<!-- END orders_messages -->
+
+
+<fieldset>
+<legend>{ORDERS_MAINTENANCE_MSG}</legend>
+
+<form name="orders" action="{admin_orders_href}" method="POST">
+<input type="hidden" name="orders_number" value="{orders_number}">
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+<!-- begin sorters -->
+<tr class="middle" align="center">
+	<td>
+		<input type="checkbox" name="all_orders" value="1" onClick="changeStatus();">
+	</td>
+	<td>
+		{sorter_id}
+	</td>
+	<td>
+		<b>{CUSTOMER_NAME_MSG}</b>
+	</td>
+	<td>
+		{sorter_status}
+	</td>
+	<td>
+		{sorter_date}
+	</td>
+	<td>
+		{sorter_total}
+	</td>
+	<td>
+		{sorter_ship_to}
+	</td>
+	<!--begin site_name_header-->
+	<td>
+		{sorter_site_name}
+	</td><!--end site_name_header-->
+	<td>
+		Invoice
+	</td>
+	<td>Tracking #</td>
+	<td>Notes</td>
+	<td>&nbsp;
+		
+	</td>
+</tr><!-- end sorters --><!-- BEGIN records -->
+<tr id="tr_order_{order_index}" valign="top" align="center" class="{row_style}">
+	<td>
+		<input type="checkbox" name="id_{order_index}" value="{order_id}" onClick="checkOrders();">
+	</td>
+	<td onMouseOver="showOrderItems(event, {order_id})" onMouseMove="showOrderItems(event, {order_id})"
+		onmouseout="hideOrderItems(event, {order_id})" style="cursor: default;">
+		{order_id}
+		<div id="order_items_{order_id}" style="display: none; position: absolute; width: 300px">
+
+			<table width=100% cellspacing=1 cellpadding=0 border=0 bgcolor="gray">
+			<tr><td>
+
+			<table width=100% cellspacing=1 cellpadding=0 border=0 bgcolor="#FFFFCC">
+			<tr>
+				<td><b>&nbsp;{PROD_TITLE_COLUMN}</b></td><td align="center">&nbsp;<b>{PROD_QTY_COLUMN}</b>&nbsp;</td><td align="right"><b>{PROD_PRICE_COLUMN}&nbsp;</b></td>
+			</tr>
+			<tr>
+				<td height="1" bgcolor="gray" colspan="3"><img src="../images/tr.gif" width="1" height="1"></td>
+			</tr><!-- BEGIN order_items -->
+			<tr valign="top"><td>&nbsp;{item_name}</td><td align=center>{quantity}</td><td align=right>{price}&nbsp;</td></tr>
+			<!-- END order_items -->
+			<tr>
+				<td height="1" bgcolor="gray" colspan="3"><img src="../images/tr.gif" width="1" height="1"></td>
+			</tr>
+			<tr><td align="right"><b>&nbsp;{GOODS_TOTAL_MSG}&nbsp;</b></td><td align=center>{total_quantity}</td><td align=right>{total_price}&nbsp;</td></tr>
+			<tr>
+				<td colspan="3">&nbsp;</td>
+			</tr>
+			</table>
+
+			</td></tr></table>
+
+		</div>
+	</td>
+	<td align="left">
+		&nbsp;{user_name}&nbsp;
+	</td>
+	<td>
+		{order_status}
+	</td>
+	<td>
+		&nbsp;{order_placed_date}&nbsp;
+	</td>
+	<td onMouseOver="showOrderItems(event, {order_id})" onMouseMove="showOrderItems(event, {order_id})"
+		onmouseout="hideOrderItems(event, {order_id})" style="cursor: default;" align="right">
+		&nbsp;{order_total}&nbsp;
+	</td>
+	<td>
+		&nbsp;{ship_to}&nbsp;
+	</td><!--begin site_name_block-->
+	<td>
+		&nbsp;{site_name}&nbsp;
+	</td><!--end site_name_block-->
+	<td>
+		<a href="{admin_invoice_pdf_href}?order_id={order_id}"><img src="../images/pdf_icon.gif" width="28" height="16" border="0"></a>
+	</td>
+	<td>{shipping_tracking_id}</td>
+	<td><a href="{note_url}" title="{note_details}" style="{note_style}">{note_title}</a></td>
+	<td>
+		&nbsp;<a href="{admin_order_url}">{VIEW_MSG}/{EDIT_MSG}</a>&nbsp;
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="{colspan}">
+		&nbsp;{NO_ORDERS_MSG}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="{colspan}">
+				&nbsp;<a id="export_orders" href="{admin_export_href}?table=orders">{EXPORT_ALL_ORDERS_MSG}</a>
+				<!-- begin export_filtered -->
+				| <a href="{admin_export_filtered_url}">{EXPORT_FILTERED_MSG} ({total_filtered})</a>&nbsp;<!-- end export_filtered -->
+				<!-- begin export_new -->
+				| <a href="{admin_export_href}?table=orders&id={exported_order_id}">{EXPORT_NEWEST_MSG} ({total_new})</a>&nbsp;<!-- end export_new -->
+				| <a href="{admin_import_href}?table=orders">{IMPORT_MSG}</a>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="{colspan}">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+		<tr class="middle">
+			<td>
+				&nbsp;<a id="invoices" href="{admin_invoice_pdf_href}" onClick="return checkLink();">{PDF_INVOICES_MSG}</a>
+				| <a id="packing_slips" href="{admin_packing_pdf_href}" onClick="return checkLink();">{PDF_PACKING_SLIPS_MSG}</a>
+				| <a id="bom" href="{admin_orders_bom_pdf_href}" onClick="return checkLink();">{BOM_MSG}</a>
+				<!-- begin generate_recurring -->
+				| <a href="{admin_orders_href}?operation=recurring">{RECURRING_PROCEED_CURRENT_MSG}</a>
+				<!-- end generate_recurring -->
+			</td><!-- begin navigator_block -->
+			<td align="right">&nbsp;{navigator}&nbsp;</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>
+</form>
+</fieldset>
+
+<br>
+<form name="update_status" action="{admin_orders_href}" method="POST">
+<input type="hidden" name="operation" value="">
+<input type="hidden" name="orders_ids" value="">
+<input type="hidden" name="page" value="{page}">
+<input type="hidden" name="s_on" value="{s_on}">
+<input type="hidden" name="s_ne" value="{s_ne}">
+<input type="hidden" name="s_kw" value="{s_kw}">
+<input type="hidden" name="s_sd" value="{s_sd}">
+<input type="hidden" name="s_ed" value="{s_ed}">
+<input type="hidden" name="s_os" value="{s_os_search}">
+<input type="hidden" name="s_cc" value="{s_cc_search}">
+<input type="hidden" name="s_sc" value="{s_sc_search}">
+<input type="hidden" name="s_ex" value="{s_ex_search}">
+
+<!-- begin update_status -->
+<select name="status_id"><!-- begin status_id -->
+	<option {status_id_selected} value="{status_id_value}">{status_id_description}<!-- end status_id -->
+</select>
+<input class="submit" type="button" value="{UPDATE_BUTTON} {STATUS_MSG}" onClick="updateStatus('update_status');">
+<!-- end update_status -->
+<!-- begin remove_orders_button -->
+<input class="submit" type="button" value="{REMOVE_SELECTED_MSG}" onClick="updateStatus('remove_orders');">
+<!-- end remove_orders_button -->
+
+</form>
+
+
+
+{admin_footer}
+</body>
+</html>

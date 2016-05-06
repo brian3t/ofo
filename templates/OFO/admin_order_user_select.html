@@ -1,0 +1,113 @@
+<html><head><title>{ADMINISTRATION_MSG} :: {PRODUCT_SELECTION_MSG}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+<script language="JavaScript">
+<!--
+
+usersInfo = new Array();
+<!-- begin users_info -->
+usersInfo['{user_id}'] = new Object();<!-- end users_info -->
+<!-- begin user_info -->
+usersInfo['{user_id}']['{param_name}'] = '{param_value}';<!-- end user_info -->
+
+function selectUser(userId)
+{
+	if (window.opener) {
+		window.opener.setUser(usersInfo[userId]);
+		window.opener.focus();
+	}
+	window.close();
+}
+
+function closeWindow()
+{
+	window.opener.focus();
+	window.close();
+}
+
+function clearSearch() {
+	document.form_list.sw.value = "";
+	document.form_list.submit();
+}
+
+//-->
+</script>
+</head>
+
+<body class="popup">
+
+<form action="{admin_order_user_select_href}" name="form_list">
+<input type="hidden" name="operation" value="1">
+<input type="hidden" name="form_id" value="{form_id}">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+
+	<table cellspacing="1" cellpadding="5" border="0" width="100%" align="center">
+	<tr>
+		<td colspan="7" class="header" align="center">
+			<a class="header" href="javascript:closeWindow();"><b>{CLOSE_WINDOW_MSG}</b></a>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="7" class="usual" align="center">
+			<input type="text" name="sw" value="{sw}" class="search">&nbsp;
+			<input type="submit" value="Search" class="submit">&nbsp;
+			<input type="submit" value="{CLEAR_BUTTON}" class="submit" onClick="clearSearch()">
+		</td>
+	</tr>
+	<!-- begin search_results -->
+	<tr>
+		<td colspan="7" class="usual" align="center">{found_message}</td>
+	</tr>
+	<!-- end search_results -->
+	<!-- begin users_sorters -->
+	<tr class="middle" align="center">
+		<td nowrap>{sorter_user_id}</td>
+		<td nowrap>{sorter_login}</td>
+		<td nowrap>{sorter_name}</td>
+		<td nowrap>{sorter_first_name}</td>
+		<td nowrap>{sorter_last_name}</td>
+		<td nowrap>{sorter_phone}</td>
+		<td>&nbsp;</td>
+	</tr><!-- end users_sorters --><!-- begin users -->
+	<tr class="usual" align="center">
+		<td align="center">
+			{user_id}
+		</td>
+		<td >
+			&nbsp;{login}
+		</td>
+		<td >
+			&nbsp;{name}
+		</td>
+		<td>
+			&nbsp;{first_name}
+		</td>
+		<td>
+			&nbsp;{last_name}
+		</td>
+		<td>
+			&nbsp;{phone}
+		</td>
+		<td align="center" class="small">
+			&nbsp;<a href="javascript:selectUser('{user_id}');">Select</a>&nbsp;
+		</td>
+	</tr><!-- end users -->
+	<!-- begin navigator_block -->
+	<tr class="middle">
+		<td colspan="7">&nbsp;{navigator}&nbsp;</td>
+	</tr><!-- end navigator_block -->	<tr>
+		<td colspan="7" class="header">
+			<a class="header" href="javascript:closeWindow();"><b>{CLOSE_WINDOW_MSG}</b></a>
+		</td>
+	</tr>
+	</table>
+
+</td></tr></table>
+
+</form>
+
+</body>
+</html>

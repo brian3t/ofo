@@ -1,0 +1,754 @@
+<div class="block-order-info">
+
+	<!-- begin intro_block -->
+	<div>{intro_text}</div>
+	<!-- end intro_block -->
+
+	<!-- begin currency_block -->
+	<div>{block_body}</div>
+	<!-- end currency_block -->
+
+	<!-- BEGIN sc_errors -->
+	<div class="errorbg" align="center">{errors_list}</div>
+	<!-- END sc_errors -->
+	
+	<div class="titleTopCenter">
+		
+		
+		{CART_TITLE} 
+	</div>
+	
+	<form action="{order_info_url}" name="order_info" method="POST">
+	<input type="hidden" name="operation" value="save">
+	<input type="hidden" name="tax_prices_type" value="{tax_prices_type}">
+	<input type="hidden" name="tax_percent" value="{tax_percent}">
+	<input type="hidden" name="tax_rates" value="{tax_rates}">
+	<input type="hidden" name="order_items" value="{order_items}">
+	<input type="hidden" name="shipping_control" value="{shipping_control}">
+	<input type="hidden" name="shipping_methods" value="{shipping_methods}">
+	<input type="hidden" name="order_coupons" value="{order_coupons}">
+	<input type="hidden" name="order_vouchers" value="{order_vouchers}">
+	<input type="hidden" name="goods_value" value="{goods_value}">
+	<input type="hidden" name="goods_tax_value" value="{goods_tax_value}">
+	<input type="hidden" name="goods_points_value" value="{goods_points_value}">
+	<input type="hidden" name="currency_left" value="{currency_left}">
+	<input type="hidden" name="currency_right" value="{currency_right}">
+	<input type="hidden" name="currency_rate" value="{currency_rate}">
+	<input type="hidden" name="currency_decimals" value="{currency_decimals}">
+	<input type="hidden" name="currency_point" value="{currency_point}">
+	<input type="hidden" name="currency_separator" value="{currency_separator}">
+	<input type="hidden" name="properties" value="{properties_ids}">
+	<input type="hidden" name="order_properties" value="{order_properties}">
+	<input type="hidden" name="properties_total" value="{properties_total}">
+	<input type="hidden" name="properties_points_value" value="{properties_points_value}">
+	<input type="hidden" name="properties_taxable" value="{properties_taxable}">
+	<input type="hidden" name="shipping_points_value" value="{shipping_points_value}">
+	<input type="hidden" name="shipping_taxable_value" value="{shipping_taxable_value}">
+	<input type="hidden" name="processing_fees" value="{processing_fees}">
+	<input type="hidden" name="cart_ids" value="{cart_ids}">
+	<input type="hidden" name="points_balance_value" value="{points_balance_value}">
+	<input type="hidden" name="credit_balance_value" value="{credit_balance_value}">
+	<input type="hidden" name="points_rate" value="{points_rate}">
+	<input type="hidden" name="points_decimals" value="{points_decimals}">
+
+
+	<!-- begin points_balance_block -->
+	<div class="messagebg" align="right">{POINTS_BALANCE_MSG}: <b>{points_balance}</b></div>
+	<!-- end points_balance_block -->
+	<!-- begin credit_balance_block -->
+	<div class="messagebg" align="right">Credit Balance: <b>{credit_balance}</b></div>
+	<!-- end credit_balance_block -->
+
+<!-- begin basket -->
+<div class="basket">
+<table cellspacing="1" width="100%">
+<tr class="middlebg">
+	<!-- begin item_image_header -->
+	<td>&nbsp;</td>
+	<!-- end item_image_header -->
+	<!-- begin item_name_header -->
+	<td class="columnTitles">{PROD_TITLE_COLUMN}</td>
+	<!-- end item_name_header -->
+	<!-- begin item_price_header -->
+	<td class="columnTitles textRight">{PROD_PRICE_COLUMN} {tax_note_excl}</td>
+	<!-- end item_price_header -->
+	<!-- begin item_tax_percent_header -->
+	<td class="columnTitles textRight">{tax_name} (%)</td>
+	<!-- end item_tax_percent_header -->
+	<!-- begin item_tax_header -->
+	<td class="columnTitles textRight">{tax_name}</td>
+	<!-- end item_tax_header -->
+	<!-- begin item_price_incl_tax_header -->
+	<td class="columnTitles textRight">{PROD_PRICE_COLUMN} {tax_note}</td>
+	<!-- end item_price_incl_tax_header -->
+	<!-- begin item_quantity_header -->
+	<td class="columnTitles textRight">{PROD_QTY_COLUMN}</td>
+	<!-- end item_quantity_header -->
+	<!-- begin item_price_total_header -->
+	<td class="columnTitles textRight">{PROD_TOTAL_COLUMN} {tax_note_excl}</td>
+	<!-- end item_price_total_header -->
+	<!-- begin item_tax_total_header -->
+	<td class="columnTitles textRight">{tax_name} {PROD_TAX_TOTAL_COLUMN}</td>
+	<!-- end item_tax_total_header -->
+	<!-- BEGIN item_price_incl_tax_total_header -->
+	<td class="columnTitles textRight">{PROD_TOTAL_COLUMN} {tax_note}</td>
+	<!-- END item_price_incl_tax_total_header -->
+</tr>
+<!-- begin items -->
+<tr class="usualbg" valign="top">
+	<!-- begin item_image_column -->
+	<td class="usualbg" align="center" valign="top">
+		<!-- begin image_preview -->
+			<img src="{src}" {height} {width} border="0" alt="{alt}" align="left">
+		<!-- end image_preview -->
+	</td><!-- end item_image_column -->
+	<!-- begin item_name_column -->
+	<td>
+		<b>{item_name}</b>
+		<!-- begin item_code_block -->
+		<br>{PROD_CODE_MSG}: <b>{item_code}</b><!-- end item_code_block -->	
+		<!-- begin manufacturer_code_block -->
+		<br>{MANUFACTURER_CODE_MSG}: <b>{manufacturer_code}</b><!-- end manufacturer_code_block -->	
+		<font class="smallText">{properties_values}</font>
+		<font class="smallText">{coupons_list}</font>
+			<!-- begin components_block -->
+			<div><b>{PROD_SUBCOMPONENTS_MSG}:</b></div>
+			<!-- begin components -->
+			<div>{selection_name} {component_quantity} x {component_name} {component_price} {component_icon}</div>
+			<!-- end components -->
+			<!-- end components_block -->
+		<!-- begin points_price_block -->
+		<div class="points_price"><input type="checkbox" name="pay_points_{cart_id}" {pay_points_checked} value="1" onClick="calculateItems();"> {PROD_PAY_POINTS_MSG}:&nbsp;<b>{points_price}</b> {points_msg}</div><!-- end points_price_block -->
+		<!-- begin reward_points_block -->
+		<div class="reward_points">{REWARD_POINTS_MSG}:&nbsp;{reward_points}</div><!-- end reward_points_block -->
+		<!-- begin reward_credits_block -->
+		<div class="reward_credits">{REWARD_CREDITS_MSG}:&nbsp;{reward_credits}</div><!-- end reward_credits_block -->
+		<input type="hidden" name="item_name_{cart_id}" value="{item_name_strip}">
+	</td><!-- end item_name_column -->
+	<!-- begin item_price_excl_tax_column -->
+	<td align="right">{price_excl_tax}</td><!-- end item_price_excl_tax_column -->
+	<!-- begin item_tax_percent_column -->
+	<td align="right">{item_tax_percent}</td><!-- end item_tax_percent_column -->
+	<!-- begin item_tax_column -->
+	<td align="right">{item_tax}</td><!-- end item_tax_column -->
+	<!-- begin item_price_incl_tax_column -->
+	<td align="right">{price_incl_tax}</td><!-- end item_price_incl_tax_column -->
+	<!-- begin item_quantity_column -->
+	<td align="right">{quantity}</td><!-- end item_quantity_column -->
+	<!-- begin item_price_excl_tax_total_column -->
+	<td align="right">{price_excl_tax_total}</td><!-- end item_price_excl_tax_total_column -->
+	<!-- begin item_tax_total_column -->
+	<td align="right">{item_tax_total}</td><!-- end item_tax_total_column -->
+	<!-- begin item_price_incl_tax_total_column -->
+	<td align="right">{price_incl_tax_total}</td><!-- end item_price_incl_tax_total_column -->
+</tr><!-- end items -->
+<tr class="middlebg">
+	<!-- begin goods_name_column -->
+	<td colspan="{goods_colspan}">
+		<span class="subTotal"><b>{GOODS_TOTAL_MSG}</b></span>
+	</td>
+	<!-- end goods_name_column -->
+	<!-- begin goods_total_excl_tax_column -->
+	<td align="right"><span id="goods_total_excl_tax">{goods_total_excl_tax}</span></td><!-- end goods_total_excl_tax_column -->
+	<!-- BEGIN goods_tax_total_column -->
+	<td align="right"><span id="goods_tax_total">{goods_tax_total}</span></td><!-- END goods_tax_total_column -->
+	<!-- BEGIN goods_total_incl_tax_column -->
+	<td align="right"><span id="goods_total_incl_tax">{goods_total_incl_tax}</span></td><!-- END goods_total_incl_tax_column -->
+</tr>
+<!-- begin coupons -->
+<tr class="usualbg" valign="top">
+	<!-- begin coupon_name_column -->
+	<td colspan="{goods_colspan}">{coupon_title}</td>
+	<!-- end coupon_name_column -->
+	<!-- begin coupon_amount_excl_tax_column -->
+	<td align="right"><span id="coupon_amount_excl_tax_{coupon_id}">{coupon_amount_excl_tax}</span></td>
+	<!-- end coupon_amount_excl_tax_column -->
+	<!-- begin coupon_tax_column -->
+	<td align="right"><span id="coupon_tax_{coupon_id}">{coupon_tax}</span></td><!-- end coupon_tax_column -->
+	<!-- begin coupon_amount_incl_tax_column -->
+	<td align="right"><span id="coupon_amount_incl_tax_{coupon_id}">{coupon_amount_incl_tax}</span></td><!-- end coupon_amount_incl_tax_column -->
+</tr><!-- end coupons --><!-- begin discount -->
+<tr class="middlebg">
+	<!-- BEGIN total_discount_name_column -->
+	<td colspan="{goods_colspan}" align="right"><b>{TOTAL_DISCOUNT_MSG}</b></td><!-- END total_discount_name_column -->
+	<!-- BEGIN total_discount_amount_excl_tax_column -->
+	<td align="right"><b><span id="total_discount_excl_tax">{total_discount_excl_tax}</span></b></td><!-- END total_discount_amount_excl_tax_column -->
+	<!-- BEGIN total_discount_tax_column -->
+	<td align="right"><b><span id="total_discount_tax">{total_discount_tax}</span></b></td><!-- END total_discount_tax_column -->
+	<!-- BEGIN total_discount_amount_incl_tax_column -->
+	<td align="right"><b><span id="total_discount_incl_tax">{total_discount_incl_tax}</span></b></td><!-- END total_discount_amount_incl_tax_column -->
+</tr>
+<tr class="middlebg">
+	<!-- BEGIN discounted_name_column -->
+	<td colspan="{goods_colspan}" align="right"><b>{GOODS_WITH_DISCOUNT_MSG}</b></td><!-- end discounted_name_column -->
+	<!-- BEGIN discounted_amount_excl_tax_column -->
+	<td align="right"><b><span id="discounted_amount_excl_tax">{discounted_amount_excl_tax}</span></b></td><!-- END discounted_amount_excl_tax_column -->
+	<!-- BEGIN discounted_tax_column -->
+	<td align="right"><b><span id="discounted_tax_amount">{discounted_tax_amount}</span></b></td><!-- END discounted_tax_column -->
+	<!-- BEGIN discounted_amount_incl_tax_column -->
+	<td align="right"><b><span id="discounted_amount_incl_tax">{discounted_amount_incl_tax}</span></b></td><!-- END discounted_amount_incl_tax_column -->
+</tr><!-- end discount -->
+<!-- begin cart_properties -->
+<tr id="op_block_{property_id}" class="usualbg" valign="top">
+	<td colspan="{goods_colspan}" style="{property_style}">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">	
+		<tr valign="top">
+			<td>
+				{property_name} {property_required}</span>
+				<!-- begin property_points_price_block -->
+				<div class="points_price"><input type="checkbox" name="property_pay_points_{property_id}" {property_pay_points_checked} value="1" onClick="changeProperty();"> {ORDER_OPTIONS_PAY_POINTS_MSG}</div><!-- end property_points_price_block -->
+
+			</td>
+			<td align="right">{property_control}</td>
+		</tr>
+		</table>
+	</td>
+	<!-- BEGIN property_price_excl_tax_column -->
+	<td align="right"><span id="op_price_excl_tax_{property_id}">{op_price_excl_tax}</span></td><!-- END property_price_excl_tax_column -->
+	<!-- BEGIN property_tax_column -->
+	<td align="right"><span id="op_tax_{property_id}">{op_tax}</span></td><!-- END property_tax_column -->
+	<!-- BEGIN property_price_incl_tax_column -->
+	<td align="right"><span id="op_price_incl_tax_{property_id}">{op_price_incl_tax}</span></td><!-- END property_price_incl_tax_column -->
+</tr><!-- end cart_properties -->
+<!-- begin shipping_type -->
+<tr class="usualbg">
+	<td colspan="{goods_colspan}">
+		<input type="hidden" name="shipping_type_id" value="{shipping_type_id}">
+		<table width="100%" cellspacing="0" cellpadding="0" border="0">
+		<tr>
+			<td>
+				<!-- begin shipping_type_points_block -->
+				<div class="points_price"><input type="checkbox" name="shipping_pay_points" {shipping_pay_points_checked} value="1" onClick="changeShipping();"> {SHIPPING_PAY_POINTS_MSG}</div><!-- end shipping_type_points_block -->
+			</td>
+			<td align="right">{shipping_type_desc}</td>
+		<tr>
+		</table>
+	</td>
+	<!-- BEGIN shipping_cost_excl_tax_column -->
+	<td align="right">{shipping_cost_excl_tax}</td><!-- END shipping_cost_excl_tax_column -->
+	<!-- BEGIN shipping_tax_column -->
+	<td align="right">{shipping_tax}</td><!-- END shipping_tax_column -->
+	<!-- BEGIN shipping_cost_incl_tax_column -->
+	<td align="right">{shipping_cost_incl_tax}</td><!-- END shipping_cost_incl_tax_column -->
+</tr><!-- end shipping_type --><!-- begin shipping_types -->
+<tr class="usualbg">
+	<td colspan="{goods_colspan}" align="right">
+
+				<input type="hidden" name="shipping_value_{shipping_type_id}" value="{shipping_value}">
+				<input type="hidden" name="shipping_taxable_{shipping_type_id}" value="{shipping_taxable}">
+				{shipping_type_desc}&nbsp;({shipping_cost_desc})&nbsp;<input type="radio" onClick="changeShipping()" name="shipping_type_id" {shipping_type_checked} value="{shipping_type_id}">
+
+	</td>
+	<!-- BEGIN shipping_radio_cost_excl_tax_column -->
+	<td align="right"><span id="shipping_cost_excl_tax_{shipping_type_id}">{shipping_cost_excl_tax_selected}</span></td><!-- END shipping_radio_cost_excl_tax_column -->
+	<!-- BEGIN shipping_radio_tax_column -->
+	<td align="right"><span id="shipping_tax_{shipping_type_id}">{shipping_tax_selected}</span></td><!-- END shipping_radio_tax_column -->
+	<!-- BEGIN shipping_radio_cost_incl_tax_column -->
+	<td align="right"><span id="shipping_cost_incl_tax_{shipping_type_id}">{shipping_cost_incl_tax_selected}</span></td><!-- END shipping_radio_cost_incl_tax_column -->
+</tr><!-- end shipping_types -->
+<!-- begin shipping_list -->
+<tr class="usualbg">
+	<td colspan="{goods_colspan}">
+		<table width="100%" cellspacing="0" cellpadding="0" border="0">
+		<tr>
+			<td>
+				<!-- begin shipping_list_points_block -->
+				<div class="points_price"><input type="checkbox" name="shipping_pay_points" {shipping_pay_points_checked} value="1" onClick="changeShippingList();"> {SHIPPING_PAY_POINTS_MSG}</div><!-- end shipping_list_points_block -->
+			</td>
+			<td align="right">
+				<select id="shipping_type_id" name="shipping_type_id" onchange="changeShippingList()">
+					<option selected value="">{SELECT_SHIPPING_METHOD_MSG}</option><!-- begin shipping_option -->
+					<option {shipping_type_selected} value="{shipping_type_id}">{shipping_type_desc}&nbsp;({shipping_cost_desc})&nbsp;</option><!-- end shipping_option -->
+				</select>
+				<!-- begin input_hidden -->
+				<input type="hidden" name="shipping_taxable_{shipping_type_id}" value="{shipping_taxable}">
+				<input type="hidden" name="shipping_value_{shipping_type_id}" value="{shipping_value}">
+				<!-- end input_hidden -->
+			</td>
+		<tr>
+		</table>
+	</td>
+	<!-- BEGIN shipping_list_cost_column -->
+	<td align="right"><span id="shipping_cost_excl_tax_selected">{shipping_cost_excl_tax_selected}</span></td><!-- END shipping_list_cost_column -->
+	<!-- BEGIN shipping_list_tax_column -->
+	<td align="right"><span id="shipping_tax_selected">{shipping_tax_selected}</span></td><!-- END shipping_list_tax_column -->
+	<!-- BEGIN shipping_list_cost_incl_tax_column -->
+	<td align="right"><span id="shipping_cost_incl_tax_selected">{shipping_cost_incl_tax_selected}</span></td><!-- END shipping_list_cost_incl_tax_column -->
+</tr>
+<!-- end shipping_list --><!-- begin taxes -->
+<tr class="usualbg">
+	<td colspan="{sc_colspan}" align="right">{tax_name}</td>
+	<td align="right">
+		<span class="usualprice" id="tax_{tax_id}">{tax_cost}</span>
+	</td>
+</tr><!-- end taxes -->
+<!-- begin fee -->
+<tr class="usualbg">
+	<td colspan="{sc_colspan}" align="right">{PROCESSING_FEE_MSG}</td>
+	<td align="right">
+		<input readonly class="usualprice" type="text" size="10" name="processing_fee" value="{processing_fee_cost}">
+	</td>
+</tr><!-- end fee -->
+<!-- begin vouchers_block -->
+<tr class="middlebg">
+	<td colspan="{total_columns}">{USED_VOUCHERS_MSG}</td>
+</tr>
+<!-- begin used_vouchers -->
+<tr class="usualbg">
+	<td colspan="{sc_colspan}">{voucher_title}</td>
+	<td align="right">
+		<span class="usualprice" id="voucher_amount_{voucher_id}">{voucher_amount}</span>
+	</td>
+</tr><!-- end used_vouchers -->
+<!-- end vouchers_block -->
+<!-- begin credit_amount_block -->
+<tr class="usualbg">
+	<td colspan="{sc_colspan}" align="right">Credit Amount</td>
+	<td align="right">
+		<input class="field" type="text" size="10" name="credit_amount" value="{credit_amount}" style="text-align: right;">
+	</td>
+</tr>
+<!-- end credit_amount_block -->
+<tr class="middlebg">
+	<td colspan="{sc_colspan}" align="right"><b>{CART_TOTAL_MSG}</b></td>
+	<td align="right">
+		<span class="orderprice" id="order_total_desc">{order_total_desc}</span>
+	</td>
+</tr>
+<!-- begin total_points_block -->
+<tr class="middlebg">
+	<td colspan="{sc_colspan}" align="right">
+		<table cellspacing="0" cellpadding="0" border="0" width="100%">
+		<tr class="middlebg">
+			<td>{POINTS_REMAINING_MSG}: <span id="remaining_points">{remaining_points}</span></td>
+			<td align="right">{TOTAL_POINTS_MSG}</td>
+		</tr>
+		</table>
+	</td>
+	<td align="right"><span id="total_points_amount">{total_points_amount}</span></td>
+</tr>
+<!-- end total_points_block -->
+<!-- begin payment_gateways_select -->
+<tr>
+	<td colspan="{total_columns}" align="right" class="middlebg">
+		<b>{SELECT_PAYMENT_MSG}&nbsp;<span class="required">*</span></b>
+		<select class="text" name="payment_id" onChange="calculateOrder();"><!-- begin payment_select_id -->
+			<option {payment_select_id_selected} value="{payment_select_id_value}">{payment_select_id_description}<!-- end payment_select_id -->
+		</select>
+	</td>
+</tr>
+<!-- end payment_gateways_select -->
+
+<!-- begin payment_gateways_radio -->
+<tr>
+	<td colspan="{total_columns}" align="right" class="middlebg">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td align="right" valign="top">
+					<table border="0" cellpadding="0" cellspacing="6">
+					<tr>
+						<td><b>{SELECT_PAYMENT_MSG}&nbsp;<span class="required">*</span></b></td>
+					</tr>
+					</table>
+				</td>
+				<td>
+					<table border="0" cellpadding="0" cellspacing="3"><!-- begin payment_radio_id -->
+					<tr>
+						<td align="right" valign="middlebg">
+							<label for="payment_id_{payment_radio_id_value}">{payment_radio_id_description}</label>&nbsp;
+							<input type="radio" onClick="calculateOrder();" id="payment_id_{payment_radio_id_value}" name="payment_id" {payment_radio_id_checked} value="{payment_radio_id_value}">
+						</td><!-- begin image_option -->
+						<td align="left">
+							<label for="payment_id_{payment_radio_id_value}"><img border="0" src="{src_image}" alt="{alt_image}" title="{alt_image}"></label>
+						</td><!-- end image_option -->
+					</tr><!-- end payment_radio_id -->
+					</table>
+				</td>
+			</tr>
+		</table>
+	</td>
+</tr>
+<!-- end payment_gateways_radio -->
+
+</table>
+<!-- end basket -->
+</div>
+
+<a name="user_details"></a>
+<div class="titleTopCenter">
+		
+		
+		{CHECKOUT_INFO_TITLE}
+	</div>
+<div class="basket">
+<table width="100%" border="0" cellspacing="1" class="orderInfo"><!-- BEGIN errors -->
+<tr class="usualbg">
+	<td colspan="2">
+		<div class="errorbg" align="center">{errors_list}</div>
+	</td>
+</tr><!-- END errors --><!-- begin personal -->
+<tr class="middlebg">
+	<td colspan="2">
+		<b>{PERSONAL_DETAILS_MSG}</b>
+	</td>
+</tr><!-- end personal --><!-- begin name_block -->
+<tr class="usualbg">
+	<td>
+		<label for="name">{NAME_MSG} </label> <span class="required">{name_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="name" value="{name}" size="40" maxlength="128" onChange="uncheckSame();">
+	</td>
+</tr><!-- end name_block --><!-- begin first_name_block -->
+<tr class="usualbg">
+	<td>
+		<label for="first_name">{FIRST_NAME_FIELD} </label> <span class="required">{first_name_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="first_name" value="{first_name}" size="40" maxlength="64" onChange="uncheckSame();">
+	</td>
+</tr><!-- end first_name_block --><!-- begin last_name_block -->
+<tr class="usualbg">
+	<td>
+		<label for="last_name">{LAST_NAME_FIELD} </label> <span class="required">{last_name_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="last_name" value="{last_name}" size="40" maxlength="64" onChange="uncheckSame();">
+	</td>
+</tr><!-- end last_name_block --><!-- begin company_id_block -->
+<tr class="usualbg">
+	<td>
+		<label for="company_id">{COMPANY_SELECT_FIELD} </label> <span class="required">{company_id_required}</span>
+	</td>
+	<td>
+		<select class="text" name="company_id" onChange="uncheckSame();">
+		<!-- begin company_id -->
+			<option {company_id_selected} value="{company_id_value}">{company_id_description}</option>
+		<!-- end company_id -->
+		</select>
+	</td>
+</tr><!-- end company_id_block --><!-- begin company_name_block -->
+<tr class="usualbg">
+	<td>
+		<label for="company_name">{COMPANY_NAME_FIELD} </label><span class="required">{company_name_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="company_name" value="{company_name}" size="40" maxlength="128" onChange="uncheckSame();">
+	</td>
+</tr><!-- end company_name_block --><!-- begin email_block -->
+<tr class="usualbg">
+	<td>
+		<label for="email">{EMAIL_FIELD} </label><span class="required">{email_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="email" value="{email}" size="40" maxlength="128" onChange="uncheckSame();">
+	</td>
+</tr><!-- end email_block --><!-- begin address1_block -->
+<tr class="usualbg">
+	<td>
+		<label for="address1">{STREET_FIRST_FIELD} </label><span class="required">{address1_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="address1" value="{address1}" size="40" maxlength="255" onChange="uncheckSame();">
+	</td>
+</tr><!-- end address1_block --><!-- begin address2_block -->
+<tr class="usualbg">
+	<td>
+		<label for="address2">{STREET_SECOND_FIELD} </label><span class="required">{address2_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="address2" value="{address2}" size="40" maxlength="255" onChange="uncheckSame();">
+	</td>
+</tr><!-- end address2_block --><!-- begin city_block -->
+<tr class="usualbg">
+	<td>
+		<label for="city">{CITY_FIELD} </label><span class="required">{city_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="city" value="{city}" size="40" maxlength="128" onChange="uncheckSame();">
+	</td>
+</tr><!-- end city_block --><!-- begin country_id_block -->
+<tr class="usualbg">
+	<td>
+		<label for="country_id">{COUNTRY_FIELD} </label><span class="required">{country_id_required}</span>
+	</td>
+	<td>
+		<select class="text" name="country_id" id="country_id" onChange="xajax_addstates('state_id', document.order_info.country_id.value);uncheckSame(); changeCountry(document.order_info, 'personal');">
+		<!-- begin country_id -->
+			<option {country_id_selected} value="{country_id_value}">{country_id_description}</option>
+		<!-- end country_id -->
+		</select>
+	</td>
+</tr><!-- end country_id_block --><!-- begin province_block -->
+<tr class="usualbg">
+	<td>
+		<label for="province">{PROVINCE_FIELD} </label><span class="required">{province_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="province" value="{province}" size="40" maxlength="128" onChange="uncheckSame();">
+	</td>
+</tr><!-- end province_block --><!-- begin state_id_block -->
+<tr class="usualbg">
+	<td>
+		<label for="state_id">{STATE_FIELD} </label><span class="required">{state_id_required}</span>
+	</td>
+	<td>
+		<select class="text" name="state_id" id="state_id"onChange="uncheckSame(); changeState(document.order_info, 'personal');">
+		<!-- begin state_id -->
+			<option {state_id_selected} value="{state_id_value}">{state_id_description}</option>
+		<!-- end state_id -->
+		</select>
+	</td>
+</tr><!-- end state_id_block --><!-- begin zip_block -->
+<tr class="usualbg">
+	<td>
+		<label for="zip">{ZIP_FIELD} </label><span class="required">{zip_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="zip" value="{zip}" size="10" maxlength="16" onChange="uncheckSame();">
+	</td>
+</tr><!-- end zip_block --><!-- begin phone_block -->
+<tr class="usualbg">
+	<td>
+		<label for="phone">{PHONE_FIELD} </label><span class="required">{phone_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="phone" value="{phone}" size="40" maxlength="32" onChange="uncheckSame();">
+	</td>
+</tr><!-- end phone_block --><!-- begin daytime_phone_block -->
+<tr class="usualbg">
+	<td>
+		<label for="daytime_phone">{DAYTIME_PHONE_FIELD} </label><span class="required">{daytime_phone_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="daytime_phone" value="{daytime_phone}" size="40" maxlength="32" onChange="uncheckSame();">
+	</td>
+</tr><!-- end daytime_phone_block --><!-- begin evening_phone_block -->
+<tr class="usualbg">
+	<td>
+		<label for="evening_phone">{EVENING_PHONE_FIELD} </label><span class="required">{evening_phone_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="evening_phone" value="{evening_phone}" size="40" maxlength="32" onChange="uncheckSame();">
+	</td>
+</tr><!-- end evening_phone_block --><!-- begin cell_phone_block -->
+<tr class="usualbg">
+	<td>
+		<label for="cell_phone">{CELL_PHONE_FIELD} </label><span class="required">{cell_phone_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="cell_phone" value="{cell_phone}" size="40" maxlength="32" onChange="uncheckSame();">
+	</td>
+</tr><!-- end cell_phone_block --><!-- begin fax_block -->
+<tr class="usualbg">
+	<td>
+		<label for="fax">{FAX_FIELD} </label><span class="required">{fax_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="fax" value="{fax}" size="40" maxlength="32" onChange="uncheckSame();">
+	</td>
+</tr><!-- end fax_block -->
+<!-- begin personal_properties -->
+<tr id="op_block_{property_id}" class="usualbg">
+	<td style="{property_style}">
+		{property_name} <span class="required">{property_required}</span>
+	</td>
+	<td style="{property_style}">
+		{property_control}
+	</td>
+</tr><!-- end personal_properties -->
+
+<!-- begin delivery -->
+<tr class="middlebg">
+	<td colspan="2">
+		<b>{DELIVERY_DETAILS_MSG}</b>
+		<!-- begin same_as_personal_block -->
+		<br><font class="smallText">{SAME_DETAILS_MSG}<input type="checkbox" name="same_as_personal" {same_as_personal} value="1" onClick="checkSame();"></font>
+		<!-- end same_as_personal_block -->
+	</td>
+</tr><!-- end delivery --><!-- begin delivery_name_block -->
+<tr class="usualbg">
+	<td>
+		<label for="delivery_name">{NAME_MSG} </label><span class="required">{delivery_name_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="delivery_name" value="{delivery_name}" size="40" maxlength="128" onChange="uncheckSame();">
+	</td>
+</tr><!-- end delivery_name_block --><!-- begin delivery_first_name_block -->
+<tr class="usualbg">
+	<td>
+		<label for="delivery_first_name">{FIRST_NAME_FIELD} </label><span class="required">{delivery_first_name_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="delivery_first_name" value="{delivery_first_name}" size="40" maxlength="64" onChange="uncheckSame();">
+	</td>
+</tr><!-- end delivery_first_name_block --><!-- begin delivery_last_name_block -->
+<tr class="usualbg">
+	<td>
+		<label for="delivery_last_name">{LAST_NAME_FIELD} </label><span class="required">{delivery_last_name_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="delivery_last_name" value="{delivery_last_name}" size="40" maxlength="64" onChange="uncheckSame();">
+	</td>
+</tr><!-- end delivery_last_name_block --><!-- begin delivery_company_id_block -->
+<tr class="usualbg">
+	<td>
+		<label for="delivery_company_id">{COMPANY_SELECT_FIELD} </label><span class="required">{delivery_company_id_required}</span>
+	</td>
+	<td>
+		<select class="text" name="delivery_company_id" onChange="uncheckSame();">
+		<!-- begin delivery_company_id -->
+			<option {delivery_company_id_selected} value="{delivery_company_id_value}">{delivery_company_id_description}</option>
+		<!-- end delivery_company_id -->
+		</select>
+	</td>
+</tr><!-- end delivery_company_id_block --><!-- begin delivery_company_name_block -->
+<tr class="usualbg">
+	<td>
+		<label for="delivery_company_name">{COMPANY_NAME_FIELD} </label><span class="required">{delivery_company_name_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="delivery_company_name" value="{delivery_company_name}" size="40" maxlength="128" onChange="uncheckSame();">
+	</td>
+</tr><!-- end delivery_company_name_block --><!-- begin delivery_email_block -->
+<tr class="usualbg">
+	<td>
+		<label for="delivery_email">{EMAIL_FIELD} </label><span class="required">{delivery_email_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="delivery_email" value="{delivery_email}" size="40" maxlength="128" onChange="uncheckSame();">
+	</td>
+</tr><!-- end delivery_email_block --><!-- begin delivery_address1_block -->
+<tr class="usualbg">
+	<td>
+		<label for="delivery_address1">{STREET_FIRST_FIELD} </label><span class="required">{delivery_address1_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="delivery_address1" value="{delivery_address1}" size="40" maxlength="255" onChange="uncheckSame();">
+	</td>
+</tr><!-- end delivery_address1_block --><!-- begin delivery_address2_block -->
+<tr class="usualbg">
+	<td>
+		<label for="delivery_address2">{STREET_SECOND_FIELD} </label><span class="required">{delivery_address2_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="delivery_address2" value="{delivery_address2}" size="40" maxlength="255" onChange="uncheckSame();">
+	</td>
+</tr><!-- end delivery_address2_block --><!-- begin delivery_city_block -->
+<tr class="usualbg">
+	<td>
+		<label for="delivery_city">{CITY_FIELD} </label><span class="required">{delivery_city_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="delivery_city" value="{delivery_city}" size="40" maxlength="128" onChange="uncheckSame();">
+	</td>
+</tr><!-- end delivery_city_block --><!-- begin delivery_country_id_block -->
+<tr class="usualbg">
+	<td>
+		<label for="delivery_country_id">{COUNTRY_FIELD} </label><span class="required">{delivery_country_id_required}</span>
+	</td>
+	<td>
+		<select class="text" name="delivery_country_id" id="delivery_country_id" onChange="xajax_addstates('delivery_state_id', document.order_info.delivery_country_id.value);uncheckSame();">
+		<!-- begin delivery_country_id -->
+			<option {delivery_country_id_selected} value="{delivery_country_id_value}">{delivery_country_id_description}</option>
+		<!-- end delivery_country_id -->
+		</select>
+	</td>
+</tr><!-- end delivery_country_id_block --><!-- begin delivery_province_block -->
+<tr class="usualbg">
+	<td>
+		<label for="delivery_province">{PROVINCE_FIELD} </label><span class="required">{delivery_province_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="delivery_province" value="{delivery_province}" size="40" maxlength="128" onChange="uncheckSame();">
+	</td>
+</tr><!-- end delivery_province_block --><!-- begin delivery_state_id_block -->
+<tr class="usualbg">
+	<td>
+		<label for="delivery_state_id">{STATE_FIELD} </label><span class="required">{delivery_state_id_required}</span>
+	</td>
+	<td>
+		<select class="text" name="delivery_state_id" id="delivery_state_id"onChange="uncheckSame();">
+		<!-- begin delivery_state_id -->
+			<option {delivery_state_id_selected} value="{delivery_state_id_value}">{delivery_state_id_description}</option>
+		<!-- end delivery_state_id -->
+		</select>
+	</td>
+</tr><!-- end delivery_state_id_block --><!-- begin delivery_zip_block -->
+<tr class="usualbg">
+	<td>
+		<label for="delivery_zip">{ZIP_FIELD} </label><span class="required">{delivery_zip_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="delivery_zip" value="{delivery_zip}" size="10" maxlength="16" onChange="uncheckSame();">
+	</td>
+</tr><!-- end delivery_zip_block --><!-- begin delivery_phone_block -->
+<tr class="usualbg">
+	<td>
+		<label for="delivery_phone">{PHONE_FIELD} </label><span class="required">{delivery_phone_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="delivery_phone" value="{delivery_phone}" size="40" maxlength="32" onChange="uncheckSame();">
+	</td>
+</tr><!-- end delivery_phone_block --><!-- begin delivery_daytime_phone_block -->
+<tr class="usualbg">
+	<td>
+		<label for="delivery_daytime_phone">{DAYTIME_PHONE_FIELD} </label><span class="required">{delivery_daytime_phone_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="delivery_daytime_phone" value="{delivery_daytime_phone}" size="40" maxlength="32" onChange="uncheckSame();">
+	</td>
+</tr><!-- end delivery_daytime_phone_block --><!-- begin delivery_evening_phone_block -->
+<tr class="usualbg">
+	<td>
+		<label for="delivery_evening_phone">{EVENING_PHONE_FIELD} </label><span class="required">{delivery_evening_phone_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="delivery_evening_phone" value="{delivery_evening_phone}" size="40" maxlength="32" onChange="uncheckSame();">
+	</td>
+</tr><!-- end delivery_evening_phone_block --><!-- begin delivery_cell_phone_block -->
+<tr class="usualbg">
+	<td>
+		<label for="delivery_cell_phone">{CELL_PHONE_FIELD} </label><span class="required">{delivery_cell_phone_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="delivery_cell_phone" value="{delivery_cell_phone}" size="40" maxlength="32" onChange="uncheckSame();">
+	</td>
+</tr><!-- end delivery_cell_phone_block --><!-- begin delivery_fax_block -->
+<tr class="usualbg">
+	<td>
+		<label for="delivery_fax">{FAX_FIELD} </label><span class="required">{delivery_fax_required}</span>
+	</td>
+	<td>
+		<input class="text" type="text" name="delivery_fax" value="{delivery_fax}" size="40" maxlength="32" onChange="uncheckSame();">
+	</td>
+</tr><!-- end delivery_fax_block -->
+<!-- begin delivery_properties -->
+<tr id="op_block_{property_id}" class="usualbg">
+	<td style="{property_style}">
+		{property_name} <span class="required">{property_required}</span>
+	</td>
+	<td style="{property_style}">
+		{property_control}
+	</td>
+</tr><!-- end delivery_properties -->
+<!-- begin subscribe_block -->
+<tr class="middlebg">
+	<td colspan="2" style="padding: 0px;"><img src="images/tr.gif" alt=""></td>
+</tr>
+<tr class="usualbg">
+	<td></td>
+	<td>
+		<label><input type="checkbox" name="subscribe" {subscribe} value="1"> {SUBSCRIBE_CHECKBOX_MSG}</label>
+	</td>
+</tr>
+<!-- end subscribe_block -->
+<tr class="middlebg">
+	<td colspan="2" align="right" class="middlebg">
+		<input class="button" id="continue" type="submit" value="{CONTINUE_BUTTON}" onCLick="return checkOrder(document.order_info);">
+	</td>
+</tr>
+</table>
+</div>
+</form>
+</div>

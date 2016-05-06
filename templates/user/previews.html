@@ -1,0 +1,48 @@
+<!--begin preview_simple_link-->
+<div class="preview">
+	<a href="{preview_path}" target="_blank">{preview_title}</a>
+</div>
+<!--end preview_simple_link-->
+<!--begin preview_swf-->
+<div class="preview">
+	<object id="flashplayer" name="flashplayer" 
+		    align="left" height="{preview_height}" hspace="5" width="{preview_width}"
+		    classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
+		    codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" 
+		    >
+	<param name="movie" value="{preview_path}">
+	<param name="loop" value="false">
+	<param name="menu" value="false">
+	<param name="quality" value="high">
+	<param name="scale" value="noscale">
+	<param name="salign" value="lt">
+	<embed id="flashplayer" name="flashplayer"
+		    align="left" height="{preview_height}" hspace="5" width="{preview_width}"
+		    type="application/x-shockwave-flash" 
+		    pluginspage="http://www.macromedia.com/go/getflashplayer" 
+		    src="{preview_path}"
+		    loop="false" menu="false" quality="high" scale="noscale" salign="lt">	
+	</object>
+</div>
+<!--end preview_swf-->
+<!--begin preview_avi-->
+<div class="preview">
+	<object id="MediaPlayer" name="MediaPlayer" 
+			width="{preview_width}" height="{preview_height}" align="left"
+			classid="CLSID:22D6f312-B0F6-11D0-94AB-0080C74C7E95" 
+			standby="Loading Windows Media Player components..." 
+			type="application/x-oleobject" 
+			codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,4,7,1112"> 
+		<param name="filename" value="{preview_path}">
+		<param name="Showcontrols" value="false">
+		<param name="autoStart" value="false">
+		<embed type="application/x-mplayer2"
+		    pluginspage="http://www.microsoft.com/Windows/MediaPlayer/"
+		    src="{preview_path}"
+		    name="MediaPlayer"
+		    autostart="0"
+		    showcontrols="0">
+		</embed>
+	</object>
+</div>
+<!--end preview_avi-->

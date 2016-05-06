@@ -1,0 +1,209 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {CUSTOMERS_COMISSIONS_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<style type="text/css">
+<!--
+	.row1 { background-color:#f0f0f0; }
+	.row2 { background-color:#fffeee; }
+	.rowWarn { background-color: #FFd0d0; }
+
+//-->
+</style>
+<script language="JavaScript" src="../js/calendar.js"></script>
+<script language="JavaScript">
+<!--
+	function clearSearch() {
+		document.search_form.s_ne.value = "";
+		document.search_form.s_sd.value = "";
+		document.search_form.s_ed.value = "";
+		document.search_form.s_st[0].checked = true;
+	
+		document.search_form.submit();
+
+	}
+//-->
+</script>
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<b>{CUSTOMERS_COMISSIONS_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+	<tr>
+		<td valign="top">
+
+			<table border="0" cellpadding="2" cellspacing="2">
+				<form action="{admin_user_commissions_href}" name="search_form">
+				<!-- BEGIN errors -->
+				<tr>
+					<td colspan="2">
+					&nbsp;<div align="center" class="error"><font style="font-size:8pt">{errors_list}</font></div>&nbsp;
+					</td>
+				</tr>
+				<!-- END errors -->
+				<tr>
+					<td colspan="2"><b>{SEARCH_COMMISSIONS_MSG}:</b></td>
+				</tr>
+				<tr>
+					<td>{BY_USER_NAME_EMAIL_MSG}:</td>
+					<td><input type="text" name="s_ne" value="{s_ne}" class="search"></td>
+				</tr>
+				<tr>
+					<td>{FROM_DATE_MSG} ({date_edit_format}):</td>
+					<td>
+					<input type="text" name="s_sd" value="{s_sd}" class="search">
+					<A HREF="#"
+					onClick="setDateField(document.search_form.s_sd, '{date_edit_format}');
+					top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+					<IMG SRC="../images/calendar.gif" BORDER=0><font size=1>{CALENDAR_MSG}</font></A>
+					</td>
+				</tr>
+				<tr>
+					<td>{TO_DATE_MSG} ({date_edit_format}):</td>
+					<td>
+					<input type="text" name="s_ed" value="{s_ed}" class="search">
+					<A HREF="#"
+					onClick="setDateField(document.search_form.s_ed, '{date_edit_format}');
+					top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+					<IMG SRC="../images/calendar.gif" BORDER=0><font size=1>{CALENDAR_MSG}</font></A>
+					</td>
+				</tr>
+				<tr>
+					<td>{STATUS_MSG}:</td>
+					<td>
+					<!-- BEGIN s_st -->
+					<input type="radio" name="s_st" {s_st_checked} value="{s_st_value}">{s_st_description}
+					<!-- END s_st -->
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" value="Search" class="submit">&nbsp;<input type="button" value="{CLEAR_BUTTON}" class="submit" onClick="clearSearch()"></td>
+				</tr>
+				</form>
+			</table>
+
+		</td>
+		<td valign="top" align="right" valign="top">
+			<table cellpadding="2" cellspacing="2" border="0">
+				<tr>
+					<td colspan="5">&nbsp;<b>{COMMISSIONS_STATS_MSG}:</b></td>
+				</tr>
+				<tr class="middle">
+					<td></td>
+					<td><a href="{admin_user_commissions_href}?s_sd={today_date}&s_ed={today_date}">{TODAY_MSG}</a></td>
+					<td><a href="{admin_user_commissions_href}?s_sd={yesterday_date}&s_ed={yesterday_date}">{YESTERDAY_MSG}</a></td>
+					<td><a href="{admin_user_commissions_href}?s_sd={week_date}&s_ed={today_date}">{LAST_SEVEN_DAYS_MSG}</a></td>
+					<td><a href="{admin_user_commissions_href}?s_sd={month_date}&s_ed={today_date}">{THIS_MONTH_FMSG}</a></td>
+				</tr>
+				<!-- begin types_stats -->
+				<tr class="usual" align="center">
+					<td align="left"><a href="{admin_users_commissions_href}?s_st={type_id}">{type_name}</a></td>
+					<td>{commissions_today}</td>
+					<td>{commissions_yesterday}</td>
+					<td>{commissions_week}</td>
+					<td>{commissions_month}</td>
+				</tr>
+				<!-- end types_stats -->
+				<tr class="middle" align="center">
+					<td align="right">{TOTAL_MSG}:&nbsp;</td>
+					<td>{commissions_total_today}</td>
+					<td>{commissions_total_yesterday}</td>
+					<td>{commissions_total_week}</td>
+					<td>{commissions_total_month}</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+<br>
+
+<fieldset>
+<legend>{CUSTOMERS_COMISSIONS_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<table border="0" cellspacing="1" cellpadding="3" width="100%">
+<form name="commissions" action="{admin_user_commissions_href}" method="POST">
+<!-- begin sorters -->
+<tr align="center" class="middle" valign="top">
+	<td>
+		{sorter_user}
+	</td>
+	<td>
+		{sorter_from_date}
+	</td>
+	<td>
+		{sorter_to_date}
+	</td>
+	<td>
+		{sorter_commission_total}
+	</td>
+	<td>
+		{sorter_status}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- end sorters --><!-- BEGIN records -->
+<tr class="{row_style}">
+	<td>
+		&nbsp;{name}
+	</td>
+	<td align="center">
+		&nbsp;{from_date}
+	</td>
+	<td align="center">
+		&nbsp;{to_date}
+	</td>
+	<td align="right">
+		&nbsp;{commission_total}&nbsp;
+	</td>
+	<td align="center">
+		&nbsp;{status}
+	</td>
+	<td align="center">
+		<a href="{commissions_operation_url}">{commissions_operation}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="6">
+		&nbsp; {NO_COMMISSIONS_MSG}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="6">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+		<tr class="middle">
+			<td>&nbsp;
+			</td><!-- begin navigator_block -->
+			<td>&nbsp;{navigator}&nbsp;</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</form>
+</table>	
+	</td>
+</tr>
+</table>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

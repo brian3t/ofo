@@ -1,0 +1,302 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {PRODUCTS_REGISTRATIONS_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript" src="../js/calendar.js"></script>
+<script language="JavaScript">
+<!--
+	function changeStatus() {
+		var checkedStatus = document.registrations.all_registrations.checked;
+		var registrationsNumber = document.registrations.registrations_number.value;
+		for (var i = 1; i <= registrationsNumber; i++) {
+			document.registrations.elements["id_" + i].checked = checkedStatus;
+		}
+	}
+	function updateStatus(operation)
+	{
+		var registrationId = "";
+		var registrationsIds = "";
+		var registrationsNumber = document.registrations.registrations_number.value;
+		var totalRegistrations = 0;
+		for (var i = 1; i <= registrationsNumber; i++) {
+			if (document.registrations.elements["id_" + i].checked) {
+				totalRegistrations++;
+				registrationId = document.registrations.elements["id_" + i].value;
+				if(totalRegistrations > 1) { registrationsIds += ","; }
+				registrationsIds += registrationId;
+			}
+		}
+		var statusControl = document.update_status.is_approved_status;
+		if (totalRegistrations == 0) {
+			alert("{SELECT_REGISTRATIONS_NOTE}")
+		} else if (operation == "update_status") {
+			if (statusControl.options[statusControl.selectedIndex].value == "") {
+				alert("{SELECT_STATUS_NOTE}");
+			} else if (confirm("{CHANGE_SELECTED_STATUS_NOTE} '" + statusControl.options[statusControl.selectedIndex].text + "'.\nContinue?'")) {
+				document.update_status.registrations_ids.value = registrationsIds;
+				document.update_status.operation.value = "update_status";
+				document.update_status.submit();
+			}
+		} else if (operation == "remove_registrations") {
+			if (confirm("{REMOVE_SELECTED_REGISTRATIONS_QST} (" + totalRegistrations + ")?")) {
+				document.update_status.registrations_ids.value = registrationsIds;
+				document.update_status.operation.value = "remove_registrations";
+				document.update_status.submit();
+			}
+		}
+	}
+	function checkRegistrations()
+	{
+		var registrationId = "";
+		var registrationsIds = "";
+		var registrationsNumber = document.registrations.registrations_number.value;
+		var totalSelected = 0;
+
+		for (var i = 1; i <= registrationsNumber; i++) {
+			if (document.registrations.elements["id_" + i].checked) {
+				document.getElementById("tr_registration_" + i).className = "SelectedRow";
+				totalSelected++;
+				registrationId = document.registrations.elements["id_" + i].value;
+				if(registrationsIds != "") { registrationsIds += ","; }
+				registrationsIds += registrationId;
+			} else {
+				document.getElementById("tr_registration_" + i).className = mas[i];
+			}
+		}
+		var exportOrdersLink = document.getElementById("export_registrations");
+		if (exportOrdersLink) {
+			if (registrationsIds == "") {
+				exportOrdersLink.innerHTML = "{EXPORT_ALL_MSG}";
+				exportOrdersLink.href = "{admin_export_href}?table=registrations";
+			} else {
+				exportOrdersLink.innerHTML = "{EXPORT_SELECTED_MSG} (" + totalSelected + ")";
+				exportOrdersLink.href = "{admin_export_href}?table=registrations&ids=" + registrationsIds;
+			}
+		}
+	}
+
+	function clearSearch() {
+		document.search_form.s_rn.value = "";
+		document.search_form.s_pi.value = "";
+		document.search_form.s_ne.value = "";
+		document.search_form.s_kw.value = "";
+		document.search_form.s_sd.value = "";
+		document.search_form.s_ed.value = "";
+		document.search_form.s_ap[0].checked = true;
+		document.search_form.submit();
+	}
+//-->
+</script>
+</head>
+
+<body class="commonbg" onload="start_event_select();">
+<script language= "JavaScript" type= "text/javascript">
+<!--
+	function start_event_select(){
+		var registrationsNumber = document.registrations.registrations_number.value;
+		mas = new Array();
+		for (var i = 1; i <= registrationsNumber; i++) {
+			mas[i] = document.getElementById("tr_registration_" + i).className;
+		}
+	}
+//-->
+</script>
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header">
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;
+			<b>{PRODUCTS_REGISTRATIONS_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+	<tr>
+		<td valign="top">
+
+		<table border="0" cellpadding="2" cellspacing="2">
+		<form action="{admin_registrations_href}" name="search_form">
+		<!-- BEGIN errors -->
+		<tr><td colspan="2">
+			&nbsp;<div align="center" class="error"><font style="font-size:8pt">{errors_list}</font></div>&nbsp;
+		</td></tr>
+		<!-- END errors -->
+		<tr>
+			<td colspan="2"><b>{SEARCH_REGISTRATIONS_MSG}:</b></td>
+		</tr>
+		<tr>
+			<td>{BY_REGISTRATION_NUMBER_MSG}:</td>
+			<td><input type="text" name="s_rn" value="{s_rn}" class="search"></td>
+		</tr>
+		<tr>
+			<td>{BY_PRODUCT_ID_MSG}:</td>
+			<td><input type="text" name="s_pi" value="{s_pi}" class="search"></td>
+		</tr>
+		<tr>
+			<td>{BY_NAME_EMAIL_MSG}:</td>
+			<td><input type="text" name="s_ne" value="{s_ne}" class="search"></td>
+		</tr>
+		<tr>
+			<td>{BY_KEYWORD_MSG}, {SERIAL_NUMBER_MSG}:</td>
+			<td><input type="text" name="s_kw" value="{s_kw}" class="search"></td>
+		</tr>
+		<tr>
+			<td>{FROM_DATE_MSG} ({date_edit_format}):</td>
+			<td>
+				<input type="text" name="s_sd" value="{s_sd}" class="search">
+				<A HREF="#"
+					onClick="setDateField(document.search_form.s_sd, '{date_edit_format}');
+					top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+				<IMG SRC="../images/calendar.gif" BORDER=0><font size=1>{CALENDAR_MSG}</font></A>
+			</td>
+		</tr>
+		<tr>
+			<td>{TO_DATE_MSG} ({date_edit_format}):</td>
+			<td>
+				<input type="text" name="s_ed" value="{s_ed}" class="search">
+				<A HREF="#"
+					onClick="setDateField(document.search_form.s_ed, '{date_edit_format}');
+					top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+				<IMG SRC="../images/calendar.gif" BORDER=0><font size=1>{CALENDAR_MSG}</font></A>
+			</td>
+		</tr>
+		<tr>
+			<td>{ADMIN_WHERE_STATUS_IS_MSG}:</td>
+			<td>
+				<!-- BEGIN s_ap -->
+					<input type="radio" name="s_ap" {s_ap_checked} value="{s_ap_value}">{s_ap_description}
+				<!-- END s_ap -->
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2"><input type="submit" value="Search" class="submit">&nbsp;<input type="button" value="{CLEAR_BUTTON}" class="submit" onClick="clearSearch()"></td>
+		</tr>
+		</form>
+		</table>
+		
+	</td></tr>
+</table>
+
+<fieldset>
+<legend>{PRODUCTS_REGISTRATIONS_MSG}</legend>
+
+<form name="registrations" action="{admin_registrations_href}" method="POST">
+<input type="hidden" name="registrations_number" value="{registrations_number}">
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+<!-- begin sorters -->
+<tr class="middle" align="center">
+	<td width="20px">
+		<input type="checkbox" name="all_registrations" value="1" onClick="changeStatus();">
+	</td>
+	<td width="60px">
+		{sorter_id}
+	</td>
+	<td>
+		{sorter_username}
+	</td>
+	<td>
+		{sorter_is_approved}
+	</td>
+	<td>
+		{sorter_category_name}
+	</td>
+	<td>
+		{sorter_item_id_name}
+	</td>
+	<td>
+		{sorter_date_added}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- end sorters --><!-- BEGIN records -->
+<tr id="tr_registration_{registration_index}" valign="top" align="center" class="{row_style}">
+	<td>
+		<input type="checkbox" name="id_{registration_index}" value="{registration_id}" onClick="checkRegistrations();">
+	</td>
+	<td>
+		{registration_id}
+	</td>
+	<td>
+		{username}
+	</td>
+	<td>
+		{is_approved}
+	</td>
+	<td>
+		{category_name}
+	</td>
+	<td>
+		{item_id_name}
+	</td>
+	<td>
+		{date_added}
+	</td>
+	<td>
+		&nbsp;<a href="{admin_registration_view_href}?registration_id={registration_id}">{VIEW_MSG}</a>
+		<!--begin update_list_priv-->
+		/ <a href="{admin_registration_edit_href}?registration_id={registration_id}">{EDIT_MSG}</a>
+		<!--end update_list_priv-->
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="8">
+		&nbsp;{NO_PRODUCT_REGISTRATIONS_MSG}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="8">
+		&nbsp;<a id="export_registrations" href="{admin_export_href}?table=registrations">{EXPORT_ALL_MSG}</a>
+		<!-- begin export_filtered -->
+		| <a href="{admin_export_filtered_url}">{EXPORT_FILTERED_MSG} ({total_filtered})</a>&nbsp;<!-- end export_filtered -->
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="8">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+		<tr class="middle">
+			<td>
+			&nbsp;<!--begin registration_add_block-->
+			<a href="{admin_registration_edit_href}">{REGISTER_PRODUCT_MSG}</a>	
+			<!--end registration_add_block-->
+			</td><!-- begin navigator_block -->
+			<td align="right">&nbsp;{navigator}&nbsp;</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>
+</form>
+</fieldset>
+
+<br>
+<form name="update_status" action="{admin_registrations_href}" method="POST">
+<input type="hidden" name="operation" value="">
+<input type="hidden" name="registrations_ids" value="">
+<input type="hidden" name="page" value="{page}">
+<input type="hidden" name="s_rn" value="{s_rn}">
+<input type="hidden" name="s_pi" value="{s_pi}">
+<input type="hidden" name="s_ne" value="{s_ne}">
+<input type="hidden" name="s_kw" value="{s_kw}">
+<input type="hidden" name="s_sd" value="{s_sd}">
+<input type="hidden" name="s_ed" value="{s_ed}">
+<input type="hidden" name="s_ap" value="{s_ap_search}">
+<!-- begin update_status_button -->
+<select name="is_approved_status"><!-- begin is_approved_status -->
+	<option {is_approved_status_selected} value="{is_approved_status_value}">{is_approved_status_description}<!-- end is_approved_status -->
+</select>
+<input class="submit" type="button" value="{UPDATE_BUTTON} {STATUS_MSG}" onClick="updateStatus('update_status');">
+<!-- end update_status_button -->
+<!-- begin remove_registrations_button -->
+<input class="submit" type="button" value="{REMOVE_SELECTED_MSG}" onClick="updateStatus('remove_registrations');">
+<!-- end remove_registrations_button -->
+
+</form>
+
+{admin_footer}
+</body>
+</html>

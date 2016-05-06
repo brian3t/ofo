@@ -1,0 +1,653 @@
+<html><head><title>{ADMINISTRATION_MSG}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script type="text/javascript">
+function toggle_visibility(id) {
+	var element = document.getElementById(id);
+	if (element != null) {
+		if (element.style.display == "none") {
+			element.style.display = "block";
+		} else {
+			element.style.display = "none";
+		}
+	}
+}         
+function toggle_image(id) {
+	var element = document.getElementById(id);
+	if (element != null) {
+		if (element.className == "open") {
+			element.className = "close";
+		} else {
+			element.className = "open";
+		}
+	}
+}         
+function toggle_all() {
+	toggle_visibility('rollover_products'); 
+	toggle_image('image_products');
+	toggle_visibility('rollover_orders'); 
+	toggle_image('image_orders');
+	toggle_visibility('rollover_articles'); 
+	toggle_image('image_articles');
+	toggle_visibility('rollover_layouts'); 
+	toggle_image('image_layouts');
+	toggle_visibility('rollover_ads'); 
+	toggle_image('image_ads');
+	toggle_visibility('rollover_support'); 
+	toggle_image('image_support');
+	toggle_visibility('rollover_customers'); 
+	toggle_image('image_customers');
+	toggle_visibility('rollover_settings'); 
+	toggle_image('image_settings');
+	toggle_visibility('rollover_forum'); 
+	toggle_image('image_forum');
+	toggle_visibility('rollover_manual'); 
+	toggle_image('image_manual');
+}         
+</script>
+</head>
+<body>
+
+{admin_header}
+
+	<!-- begin errors -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+	<tr class="errorbg">
+		<td valign="top" align="center">
+
+			<table width="100%" border="0" cellspacing="1" cellpadding="5">
+			<tr><td class="error" align="center">
+				{errors_list}
+			</td></tr>
+			</table>
+
+		</td>
+	</tr>
+	</table><br>
+	<!-- end errors -->
+
+
+<fieldset>
+<legend onclick="toggle_all();"><img align="top" src="../images/icons/admin.gif" width="16" height="16">&nbsp;&nbsp;{ADMINISTRATION_MSG}</legend>
+
+
+<table width="100%" border="0" class="usual" cellpadding="0" cellspacing="10">
+<tr valign="top">
+<!-- begin rows -->
+<td width="33%">
+<table width="100%" border="0">
+<!-- BEGIN cols -->
+<tr><td>
+<!--<div style="float:left; width:33%;">-->
+<!-- begin products_categories -->
+		<a href="{admin_items_list_href}"><img src="../images/icons/smooth_products.gif" class="image_margins" width="50" height="50" border="0" align="left"></a>
+		<div class="h5u title_margins">
+			<a href="{admin_items_list_href}">{PRODUCTS_CATEGORIES_MSG}</a><img class="open" id="image_products" onclick="toggle_visibility('rollover_products'); toggle_image('image_products');" src="../images/tr.gif" width="13" height="12" hspace="3" align="absmiddle" alt="{CLICK_TO_OPEN_SECTION_MSG}" title="{CLICK_TO_OPEN_SECTION_MSG}">
+		</div>
+		<div class="small note_margins"><i>{ADMIN_PRODUCTS_NOTE}</i></div>
+		<div id="rollover_products" class="note_margins" style="display:none;">
+		<table border="0" cellspacing="0" cellpadding="1">
+
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_items_list_href}">{PRODUCTS_CATEGORIES_MSG}</a></td>
+		</tr>
+		<!-- begin products_settings -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_products_settings_href}">{PRODUCTS_SETTINGS_MSG}</a></td>
+		</tr>
+		<!-- end products_settings -->
+		<!-- begin products_types -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_item_types_href}">{PRODUCTS_TYPES_MSG}</a></td>
+		</tr>
+		<!-- end products_types -->
+		<!-- begin manufacturers -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_manufacturers_href}">{MANUFACTURERS_TITLE}</a></td>
+		</tr>
+		<!-- end manufacturers -->
+		<!-- begin suppliers -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_suppliers_href}">{SUPPLIERS_MSG}</a></td>
+		</tr>
+		<!-- end suppliers -->
+		<!-- begin features_groups_link -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_features_groups_href}">{SPECIFICATION_GROUPS_MSG}</a></td>
+		</tr>
+		<!-- end features_groups_link -->
+		<!-- begin products_reviews -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_reviews_href}">{PRODUCTS_REVIEWS_MSG}</a></td>
+		</tr>
+		<!-- end products_reviews -->
+		<!-- begin products_reviews_settings -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_products_reviews_sets_href}">{REVIEWS_SETTINGS_MSG}</a></td>
+		</tr>
+		<!-- end products_reviews_settings -->
+		<!-- begin shipping_methods -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_shipping_modules_href}">{SHIPPING_SETTINGS_MSG}</a></td>
+		</tr>
+		<!-- end shipping_methods -->
+		<!-- begin shipping_times -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_shipping_times_href}">{SHIPPING_TIMES_MSG}</a></td>
+		</tr>
+		<!-- end shipping_times -->
+		<!-- begin shipping_rules -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_shipping_rules_href}">{SHIPPING_RULES_MSG}</a></td>
+		</tr>
+		<!-- end shipping_rules -->
+		<!-- begin downloadable_products -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_download_info_href}">{DOWNLOADABLE_PRODUCTS_MSG}</a></td>
+		</tr>
+		<!-- end downloadable_products -->
+		<!-- begin coupons -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_coupons_href}">{COUPONS_MSG}</a></td>
+		</tr>
+		<!-- end coupons -->
+		<!-- begin saved_types -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_saved_types_href}">{WISHLIST_TYPES_MSG}</a></td>
+		</tr>
+		<!-- end saved_types -->
+		<!-- begin advanced_search -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_search_href}">{ADVANCED_SEARCH_TITLE}</a></td>
+		</tr>
+		<!-- end advanced_search -->
+		<!-- begin products_report -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_products_report_href}">{PRODUCTS_REPORT}</a></td>
+		</tr>
+		<!-- end products_report -->
+		<!-- begin products_tell_friend_link -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_tell_friend_href}?type=products">{TELL_FRIEND}</a></td>
+		</tr>
+		<!-- end products_tell_friend_link -->
+
+
+		</table>
+		</div>
+<!-- end products_categories -->
+
+<!-- begin support -->
+		<a href="{admin_support_href}"><img src="../images/icons/smooth_support.gif" class="image_margins" width="50" height="50" border="0" align="left"></a>
+		<div class="h5u title_margins">
+			<a href="{admin_support_href}">{HELPDESK_MSG}</a><img class="open" id="image_support" onclick="toggle_visibility('rollover_support'); toggle_image('image_support');" src="../images/tr.gif" width="13" height="12" hspace="3" align="absmiddle" alt="{CLICK_TO_OPEN_SECTION_MSG}" title="{CLICK_TO_OPEN_SECTION_MSG}">
+		</div>
+		<div class="small note_margins"><i>{ADMIN_SUPPORT_NOTE}</i></div>
+		<div id="rollover_support" style="display:none;" class="note_margins">
+		<table border="0" cellspacing="0" cellpadding="1">
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_support_href}">{SUPPORT_TICKETS_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_support_settings_href}">{HELPDESK_SETTINGS_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_support_ranks_href}">{CUSTOMERS_RANKS_MSG}</a></td>
+		</tr>
+		<!-- begin support_prereplies_link -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_support_prereplies_href}">{PREDEFINED_RESPONSES_MSG}</a></td>
+		</tr>
+		<!-- end support_prereplies_link -->
+		<!-- begin support_pretypes_link -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_support_pretypes_href}">{PREDEFINED_TYPES_MSG}</a></td>
+		</tr>
+		<!-- end support_pretypes_link -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_support_departments_href}">{ASSIGN_DEPARTMENTS_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_support_types_href}">{SUPPORT_TYPES_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_support_products_href}">{SUPPORT_PRODUCTS_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_support_priorities_href}">{SUPPORT_PRIORITIES_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_support_statuses_href}">{SUPPORT_STATUSES_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_support_users_report_href}">{USERS_REPORT_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_support_admins_href}">{SUPPORT_USERS_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_support_static_tables_href}">{SUPPORT_STATIC_TABLES_MSG}</a></td>
+		</tr>
+		</table>
+		</div>
+<!-- end support -->
+
+<!-- begin sales_orders -->
+		<a href="{admin_orders_href}"><img src="../images/icons/smooth_orders.gif" class="image_margins" width="50" height="50" border="0" align="left"></a>
+		<div class="h5u title_margins">
+			<a href="{admin_orders_href}">{SALES_ORDERS_MSG}</a><img class="open" id="image_orders" onclick="toggle_visibility('rollover_orders'); toggle_image('image_orders');" src="../images/tr.gif" width="13" height="12" hspace="3" align="absmiddle" alt="{CLICK_TO_OPEN_SECTION_MSG}" title="{CLICK_TO_OPEN_SECTION_MSG}">
+		</div>
+		<div class="small note_margins"><i>{ADMIN_ORDERS_MSG}</i></div>
+		<div id="rollover_orders" class="note_margins" style="display:none;">
+		<table border="0" cellspacing="0" cellpadding="1">
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td colspan=3><a class="small" href="{admin_orders_href}">{SALES_ORDERS_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td colspan=3><a class="small" href="{admin_order_info_href}">{ORDER_PROFILE_PAGE_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_payment_systems_href}">{PAYMENT_SYSTEMS_FINAL_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td colspan="3"><a class="small" href="{admin_order_confirmation_href}">{ORDER_CONFIRMATION_PAGE_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td colspan="3"><a class="small" href="{admin_currencies_href}">{CURRENCIES_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_order_statuses_href}">{ORDERS_STATUSES_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_tax_rates_href}">{TAX_RATES_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_order_printable_href}">{PRINTABLE_PAGE_SETTINGS_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_orders_bom_settings_href}">{BOM_SETTINGS_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_orders_report_href}">{ORDERS_REPORT_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_order_call_href}">{CALL_CENTER_ORDERS}</a></td>
+		</tr>
+		</table>
+		</div>
+<!-- end sales_orders -->
+
+<!-- begin cms_settings -->
+		<a href="{admin_cms_href}"><img src="../images/icons/smooth_layouts.gif" class="image_margins" width="50" height="50" border="0" align="left"></a>
+		<div class="h5u title_margins">
+			<a href="{admin_cms_href}">{CMS_MSG}</a><img class="open" id="image_layouts" onclick="toggle_visibility('rollover_layouts'); toggle_image('image_layouts');" src="../images/tr.gif" width="13" height="12" hspace="3" align="absmiddle" alt="{CLICK_TO_OPEN_SECTION_MSG}" title="{CLICK_TO_OPEN_SECTION_MSG}">
+		</div>
+		<div class="small note_margins"><i>{ADMIN_CMS_NOTE}</i></div>
+		<div id="rollover_layouts" style="display:none;" class="note_margins">
+		<table border="0" cellspacing="0" cellpadding="1">
+		<!-- begin cms_settings_link -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_cms_href}">{CMS_SETTINGS_MSG}</a></td>
+		</tr>
+		<!-- end cms_settings_link -->
+		<!-- begin layouts_link -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_layouts_href}">{LAYOUTS_MSG}</a></td>
+		</tr>
+		<!-- end layouts_link -->
+		<!-- begin site_nav_link -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_header_menus_href}">{SITE_NAVIGATION_MSG}</a></td>
+		</tr>
+		<!-- end site_nav_link -->
+		<!-- begin footer_links_link -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_footer_links_href}">{FOOTER_LINKS_MSG}</a></td>
+		</tr>
+		<!-- end footer_links_link -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_filemanager_href}">{FILE_MANAGER_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_polls_href}">{OPINION_POLLS_MSG}</a></td>
+		</tr><!-- begin filters_link -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_filters_href}">{FILTERS_MSG}</a></td>
+		</tr><!-- end filters_link --><!-- begin custom_menus_link -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_custom_menus_href}">{CUSTOM_MENUS_MSG}</a></td>
+		</tr><!-- end custom_menus_link -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_custom_blocks_href}">{CUSTOM_BLOCKS_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_pages_href}">{CUSTOM_PAGES_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_friendly_urls_href}">{CUSTOM_FRIENDLY_URLS_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_banners_href}">{BANNERS_MANAGEMENT_MSG}</a></td>
+		</tr>
+		</table>
+		</div>
+<!-- end cms_settings -->
+<!-- begin articles -->
+		<a href="{admin_articles_top_href}"><img src="../images/icons/smooth_articles.gif" class="image_margins" width="50" height="50" border="0" align="left"></a>
+		<div class="h5u title_margins">
+			<a href="{admin_articles_top_href}">{ARTICLES_TITLE}</a><img class="open" id="image_articles" onclick="toggle_visibility('rollover_articles'); toggle_image('image_articles');" src="../images/tr.gif" width="13" height="12" hspace="3" align="absmiddle" alt="{CLICK_TO_OPEN_SECTION_MSG}" title="{CLICK_TO_OPEN_SECTION_MSG}">
+		</div>
+		<div class="small note_margins"><i>{ADMIN_ARTICLES_NOTE}</i></div>
+		<div id="rollover_articles" style="display:none;" class="note_margins">
+		<table border="0" cellspacing="0" cellpadding="1">
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_articles_top_href}">{ARTICLES_SETTINGS_MSG}</a></td>
+		</tr>
+		<!-- begin articles_statuses -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_articles_statuses_href}">{ARTICLES_STATUSES_MSG}</a></td>
+		</tr>
+		<!-- end articles_statuses -->
+		<!-- begin articles_reviews -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_articles_reviews_href}">{ARTICLES_REVIEWS_MSG}</a></td>
+		</tr>
+		<!-- end articles_reviews -->
+		<!-- begin articles_reviews_settings -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_articles_reviews_sets_href}">{REVIEWS_SETTINGS_MSG}</a></td>
+		</tr>
+		<!-- end articles_reviews_settings -->
+		<!-- BEGIN top_articles -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_articles_url}">{top_article}</a></td>
+		</tr>
+		<!-- END top_articles -->
+		</table>
+		</div>
+<!-- end articles -->
+
+<!-- begin ads -->
+		<a href="{admin_ads_href}"><img src="../images/icons/smooth_ads.gif" class="image_margins" width="50" height="50" border="0" align="left"></a>
+		<div class="h5u title_margins">
+			<a href="{admin_ads_href}">{CLASSIFIED_ADS_MSG}</a><img class="open" id="image_ads" onclick="toggle_visibility('rollover_ads'); toggle_image('image_ads');" src="../images/tr.gif" width="13" height="12" hspace="3" align="absmiddle" alt="{CLICK_TO_OPEN_SECTION_MSG}" title="{CLICK_TO_OPEN_SECTION_MSG}">
+		</div>
+		<div class="small note_margins"><i>{ADMIN_CLASSIFIED_ADS_NOTE}</i></div>
+		<div id="rollover_ads" style="display:none;" class="note_margins">
+		<table border="0" cellspacing="0" cellpadding="1">
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_ads_href}">{ADS_LISTING_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_ads_settings_href}">{ADS_SETTINGS_MSG}</i></a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_ads_types_href}">{ADS_TYPES_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_ads_notify_href}">{ADVERT_NOTIFICATION_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_ads_request_href}">{ADVERT_REQUEST_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_ads_search_href}">{ADS_SEARCH_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_ads_features_groups_href}">{ADVERT_SPECIFICATION_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_ads_days_href}">{ADS_DAYS_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_ads_hot_days_href}">{ADS_HOT_DAYS_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_ads_types_href}">{ADS_SPECIAL_DAYS_MSG}</a></td>
+		</tr>
+		<!-- begin ads_tell_friend_link -->
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_ads_special_days_href}?type=ads">{TELL_FRIEND}</a></td>
+		</tr>
+		<!-- end ads_tell_friend_link -->
+		</table>
+		</div>
+<!-- end ads -->
+
+<!-- begin site_users -->
+		<a href="{admin_users_href}"><img src="../images/icons/smooth_users.gif" class="image_margins" width="50" height="50" border="0" align="left"></a>
+		<div class="h5u title_margins">
+			<a href="{admin_users_href}">{CUSTOMERS_MSG}</a><img class="open" id="image_customers" onclick="toggle_visibility('rollover_customers'); toggle_image('image_customers');" src="../images/tr.gif" width="13" height="12" hspace="3" align="absmiddle" alt="{CLICK_TO_OPEN_SECTION_MSG}" title="{CLICK_TO_OPEN_SECTION_MSG}">
+		</div>
+		<div class="small note_margins"><i>{ADMIN_CUSTOMERS_NOTE}</i></div>
+		<div id="rollover_customers" style="display:none;" class="note_margins">
+		<table border="0" cellspacing="0" cellpadding="1">
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_users_href}">{CUSTOMER_ACCOUNT_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_user_types_href}">{PROFILE_SETTINGS_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_user_sections_href}">{PROFILE_SECTION_MENU_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_subscriptions_href}">{SUBSCRIPTIONS_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_subscriptions_groups_href}">{SUBSCRIPTIONS_GROUPS_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_forgotten_password_href}">{FORGOTTEN_PASSWORD_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_user_commissions_href}">{CUSTOMERS_COMISSIONS_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_user_payments_href}">{COMMISSION_PAYMENTS}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_newsletters_href}">{NEWSLETTER_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_newsletter_users_href}">{NEWSLETTER_USERS_MSG}</a></td>
+		</tr>
+		</table>
+		</div>
+<!-- end site_users -->
+
+<!-- begin site_settings -->
+		<a href="{admin_global_settings_href}"><img src="../images/icons/smooth_settings.gif" class="image_margins" width="50" height="50" border="0" align="left"></a>
+		<div class="h5u title_margins">
+			<a href="{admin_global_settings_href}">{SYSTEM_ADMINISTRATION_MSG}</a><img class="open" id="image_settings" onclick="toggle_visibility('rollover_settings'); toggle_image('image_settings');" src="../images/tr.gif" width="13" height="12" hspace="3" align="absmiddle" alt="{CLICK_TO_OPEN_SECTION_MSG}" title="{CLICK_TO_OPEN_SECTION_MSG}">
+		</div>
+  	<div class="small note_margins"><i>{ADMIN_SYSTEM_NOTE}</i></div>
+		<div id="rollover_settings" style="display:none;" class="note_margins">
+		<table border="0" cellspacing="0" cellpadding="1">
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_global_settings_href}">{GLOBAL_SETTINGS_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_admins_href}">{ADMINISTRATORS_ACCOUNTS_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_privileges_href}">{PRIVILEDGE_GROUPS_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_lookup_tables_href}">{SYSTEM_STATIC_TABLES_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_static_messages_href}">{SYSTEM_STATIC_MESSAGES_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_black_ips_href}">{BLACK_IPS_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_banned_contents_href}">{BANNED_CONTENT}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_visits_report_href}">{TRACKING_VISITS_REPORT_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_dump_href}">{DATABASE_MANAGEMENT_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_upgrade_href}">{SYSTEM_UPGRADE_MSG}</a></td>
+		</tr>
+		</table>
+		</div>
+<!-- end site_settings -->
+
+<!-- begin forum -->
+		<a href="{admin_forum_href}"><img src="../images/icons/smooth_forum.gif" class="image_margins" width="50" height="50" border="0" align="left"></a>
+		<div class="h5u title_margins">
+			<a href="{admin_forum_href}">{ADMIN_FORUM_TITLE}</a><img class="open" id="image_forum" onclick="toggle_visibility('rollover_forum'); toggle_image('image_forum');" src="../images/tr.gif" width="13" height="12" hspace="3" align="absmiddle" alt="{CLICK_TO_OPEN_SECTION_MSG}" title="{CLICK_TO_OPEN_SECTION_MSG}">
+		</div>
+		<div class="small note_margins"><i>{FORUM_MESSAGES_MSG}</i></div>
+		<div id="rollover_forum" style="display:none;" class="note_margins">
+		<table border="0" cellspacing="0" cellpadding="1">
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_forum_href}">{FORUM_THREADS_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_forum_settings_href}">{FORUM_SETTINGS_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_forum_priorities_href}">{PRIORITIES_MSG}</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_icons_href}">{EMOTION_ICONS_MSG}</a></td>
+		</tr>
+		</table>
+		</div>
+<!-- end forum -->
+
+<!-- begin manual -->
+		<a href="{admin_manual_href}"><img src="../images/icons/smooth_manual.gif" class="image_margins" width="50" height="50" border="0" align="left"></a>
+		<div class="h5u title_margins">
+			<a href="{admin_manual_href}">{MANUAL_MSG}</a><img class="open" id="image_manual" onclick="toggle_visibility('rollover_manual'); toggle_image('image_manual');" src="../images/tr.gif" width="13" height="12" hspace="3" align="absmiddle" alt="{CLICK_TO_OPEN_SECTION_MSG}" title="{CLICK_TO_OPEN_SECTION_MSG}">
+		</div>
+		<div class="small note_margins"><i>{MAINTAIN_MANUAL_ARTICLES_MSG}</i></div>
+		<div id="rollover_manual" style="display:none;" class="note_margins">
+		<table border="0" cellspacing="0" cellpadding="1">
+		<tr>
+			<td>&nbsp;<img src="../images/icons/arr.gif" width="16" height="15"></td>
+			<td><a class="small" href="{admin_manual_href}">{MANUAL_MSG}</a></td>
+		</tr>
+		</table>
+		</div>
+<!-- end manual -->
+</td>
+</tr>
+<!-- END cols -->
+</table>
+<td>
+<!-- end rows -->
+</tr>
+<tr>
+	<td colspan="12" class="usual" align=right>
+		<table width="100" border="0" cellpadding="5" cellspacing="0" style="border:1px white solid">
+		<td class="middle" align="center" valign="middle"><a href="admin_login.php?operation=logout"><b>{LOGOUT_BUTTON}</b></a></td>
+		</table>
+	</td>
+</tr>
+</table>
+</fieldset>
+
+{admin_footer}
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<html><head><title>FedEx Subscription</title></head>
+<body>
+<form name="fedex" action="{fedex_subscription_href}" method="post">
+<input type="hidden" name="operation" value="register">
+<input type="hidden" name="shipping_module_id" value="{shipping_module_id}">
+
+<table width="500" align="center">
+<!-- begin errors -->
+<tr>
+	<td colspan="2" align="center" style="color: red;">{errors_list}</td>
+</tr><!-- end errors -->
+<tr>
+	<th colspan="2"><br>General Information</th>
+</tr>
+<tr>
+	<td>FedEx URL *</td>
+	<td><input type="text" name="FedExURL" value="{FedExURL}" size="40"></td>
+</tr>
+<tr>
+	<td><nobr>Transaction Identifier</nobr></td>
+	<td><input type="text" name="CustomerTransactionIdentifier" value="{CustomerTransactionIdentifier}" size="40"></td>
+</tr>
+<tr>
+	<td>Account Number *</td>
+	<td><input type="text" name="AccountNumber" value="{AccountNumber}" size="40"></td>
+</tr>
+<tr>
+	<td valign="top">Meter Number</td>
+	<td>
+		<input type="text" name="MeterNumber" value="{MeterNumber}" size="40">
+		<br>
+		<font size="2">
+		<b>Note</b>: Meter Number should only be supplied within the Request when attempting to update the meter information.
+		</font>
+	</td>
+</tr>
+<tr>
+	<th colspan="2"><br>Contact</th>
+</tr>
+<tr>
+	<td>Person Name *</td>
+	<td><input type="text" name="PersonName" value="{PersonName}" size="40"></td>
+</tr>
+<tr>
+	<td>Company Name</td>
+	<td><input type="text" name="CompanyName" value="{CompanyName}" size="40"></td>
+</tr>
+<tr>
+	<td>Department</td>
+	<td><input type="text" name="Department" value="{Department}" size="40"></td>
+</tr>
+<tr>
+	<td>Phone Number *</td>
+	<td><input type="text" name="PhoneNumber" value="{PhoneNumber}" size="40"></td>
+</tr>
+<tr>
+	<td>Pager Number</td>
+	<td><input type="text" name="PagerNumber" value="{PagerNumber}" size="40"></td>
+</tr>
+<tr>
+	<td>Fax Number</td>
+	<td><input type="text" name="FaxNumber" value="{FaxNumber}" size="40"></td>
+</tr>
+<tr>
+	<td>E-Mail Address</td>
+	<td><input type="text" name="EMailAddress" value="{EMailAddress}" size="40"></td>
+</tr>
+<tr>
+	<th colspan="2"><br>Address</th>
+</tr>
+<tr>
+	<td>Line1 *</td>
+	<td><input type="text" name="Line1" value="{Line1}" size="40"></td>
+</tr>
+<tr>
+	<td>Line2</td>
+	<td><input type="text" name="Line2" value="{Line2}" size="40"></td>
+</tr>
+<tr>
+	<td>City *</td>
+	<td><input type="text" name="City" value="{City}" size="40"></td>
+</tr>
+<tr>
+	<td><nobr>State Or Province Code&nbsp;</nobr></td>
+	<td><input type="text" name="StateOrProvinceCode" value="{StateOrProvinceCode}" size="40"></td>
+</tr>
+<tr>
+	<td>Postal Code *</td>
+	<td><input type="text" name="PostalCode" value="{PostalCode}" size="40"></td>
+</tr>
+<tr>
+	<td>Country Code *</td>
+	<td><input type="text" name="CountryCode" value="{CountryCode}" size="40"></td>
+</tr>
+<tr>
+	<td></td>
+	<td>
+		<input type="submit" value="Register">
+	</td>
+</tr>
+
+</table>
+
+
+</form>
+</body>
+</html>

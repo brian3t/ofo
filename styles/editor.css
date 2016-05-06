@@ -1,0 +1,110 @@
+.editorMenuBlock {
+	background-color: #FFFFFF;
+	position:absolute;
+	display:none;
+	top:10px;
+	left:48px;
+	border: 1px solid #9F9F9F;
+	z-index: 2500;
+}
+
+a.ComboMenu {
+	width: 101px;
+	padding: 3px 10px 3px 5px;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+	display:block;
+	color:black;
+	text-decoration:none;
+	background: #FFFFFF;
+}
+
+a.ComboMenu:hover, a.ComboMenu:active{
+	background-color: #E6E6E6;
+	color:black;
+	display:block;
+	text-decoration:none;
+}
+
+a.ico{
+	display: block;
+	padding: 1px;
+	border: 1px solid #9F9F9F;
+	text-decoration:none;
+}
+
+a.ico:hover{
+	display: block;
+	padding: 1px;
+	background: #DFDFDF;
+	border: 1px solid #9F9F9F;
+	text-decoration:none;
+}
+
+.editorMenuBlockA {
+	display: block;
+	float: left;
+	padding: 2px;
+	z-index: 2500;
+}
+.TextDiv {
+	display: block;
+	float: left;
+	padding: 5px;
+	z-index: 2500;
+}
+.TextDivLast {
+	display: block;
+	float: left;
+	padding: 5px;
+	z-index: 2500;
+}
+
+img.ico {
+	border: none; 
+} 
+
+a.ico_color{
+	display: block;
+	font-size: 0px;
+	padding: 0px;
+	border: 1px solid white;
+	text-decoration:none;
+}
+
+a.ico_color:hover{
+	display: block;
+	font-size: 0px;
+	padding: 0px;
+	background-color: #DFDFDF;
+	border: 1px solid #9F9F9F;
+	text-decoration: none;
+}
+
+img.ico_color {
+	border: 1px solid gray;
+	width: 10px;
+	height: 10px;
+	margin: 3px;
+}
+
+body.editor       {font: 8pt tahoma,verdana,sans-serif; color: black; margin: 0;}
+
+a.editor {color: black; text-decoration: underline; }
+a.editor:hover {color: blue; text-decoration: underline;}
+
+tr.editor, td.editor		{font: 8pt tahoma,verdana,sans-serif; color: black; }
+.editor_usual 				{background-color: #f3f3f3; font: 8pt tahoma,verdana,sans-serif; color: black; }
+.editor_header 			{background-color: #999999; color: white; }
+.editor_middle 			{background-color: #dedede; font-weight: bold; }
+
+.editor_error {color: #cc0000; font-size:9pt}
+
+.editorTab {font: 11px Verdana, sans-serif; border-bottom:#919b9c 1px solid; border-left:#91a7b4 1px solid; border-right:#91a7b4 1px solid; border-top:#91a7b4 1px solid; padding: 3px 8px 2px 8px; margin:3px 3px 0px 0px; cursor:hand; background: #F5F3EB; white-space: nowrap; moz-border-radius:4px 4px 0px 0px;}
+.editorTabActive {font: bold 11px Verdana, sans-serif; border-right:#919b9c 1px solid; border-left:#919b9c 1px solid; border-top:#FF8200 2px solid; border-bottom:0px solid; padding: 5px 9px 4px 9px; margin:3px 3px 0px 0px; cursor: default; background: #FCFFD5; white-space: nowrap; moz-border-radius:4px 4px 0px 0px;}
+
+input.editor_field 		{font: 8pt Tahoma,Verdana,Arial,sans-serif; color:black; border-left: #747474 1px solid; border-top: #747474 1px solid; border-right: #dcdcdc 1px solid; border-bottom: #dcdcdc 1px solid;}
+input.editor_search 		{font: 8pt Tahoma,Verdana,Arial,sans-serif; color:black; width:150px; border-left: #747474 1px solid; border-top: #747474 1px solid; border-right: #dcdcdc 1px solid; border-bottom: #dcdcdc 1px solid;}
+input.editor_submit 		{font: 8pt Tahoma,Verdana,Arial,sans-serif; padding-left:5px; padding-right:5px; height:19px}
+select.editor 				{font: 8pt Tahoma,Verdana,Arial,sans-serif; color:black;}
+select.editor_search 	{font: 8pt Tahoma,Verdana,Arial,sans-serif; color:black; width:150px;}

@@ -1,0 +1,43 @@
+<div class="block-top-rated">
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{top_category_name}&nbsp;&nbsp;{TOP_RATED_TITLE}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr> 
+		<td class="blockTD">
+
+		<table width="100%" cellspacing="0" cellpadding="0" border="0">
+		<tr class="usualbg"><td valign="top" class="padding10px">
+
+			<table width=100% cellspacing=0 cellpadding=2 border=0>
+			<!-- BEGIN top_rated_items -->
+			<tr>
+				<td class="top">
+
+					<!-- begin top_image --><a href="{details_href}"><img src="{src}" {width} {height} hspace="5" border="0" alt="{alt}" align="left"></a><!-- end top_image -->
+					<b>{top_position}.</b> <a class="top10 {product_new_class} {restricted_class}" href="{details_href}">{top_name}<!--begin product_new_image--><img src="images/tr.gif" alt=""><!--end product_new_image--><!--begin restricted_image--><img src="images/tr.gif" alt="" class="{restricted_class}"><!--end restricted_image--></a> (<b>{top_rating}</b>)
+					<!-- begin top_desc --><br>{desc_text}<!-- end top_desc -->
+
+				</td>
+			</tr>
+			<!-- END top_rated_items --> 
+			</table>
+
+		</td></tr></table>
+
+		</td>
+	</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+</div>

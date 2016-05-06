@@ -1,0 +1,85 @@
+<html><head><title>..:: Administration :: Image Selection ::..</title>
+
+
+<link rel="stylesheet" href="../styles/editor.css" type="text/css">
+ 
+ 
+<script language="JavaScript">
+<!--
+function clearSearch() {
+
+	document.image.s_im.value = "";
+	document.image.submit();
+
+}
+
+//-->
+</script>
+</head>
+
+<body class="editor">
+
+<form action="{admin_select_href}" name="image">
+<input type="hidden" name="action" value="1">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="editor_header"> 
+
+	<table cellspacing="1" cellpadding="5" border="0" width="100%" align="center">
+	<!-- begin errors -->
+	<tr>
+		<td colspan="3" class="editor_usual" align="center">
+			<div class="editor_error"><b>
+			{errors_list}</b></div>
+		</td>
+	</tr>
+	<!-- end errors -->
+	<!-- begin search_images -->
+	<tr>
+		<td colspan="3" class="editor_usual" align="center">
+			<input type="hidden" id="filetype" name="filetype" value="{filetype}">
+			<input type="text" name="s_im" value="{s_im}" class="editor_search">&nbsp;
+			<input type="submit" value="Search" class="editor_submit">&nbsp;
+			<input type="submit" value="Clear" class="editor_submit" onClick="clearSearch()">
+		</td>
+	</tr>
+	<!-- end search_images -->
+	<!-- begin images -->
+	<tr class="editor_middle">
+		<td align="center" colspan="3" class="editor">{image_filename}</td>
+	</tr>
+	<!-- begin dir_row -->
+	<tr class="editor_usual">
+		<td class="small" colspan="3">
+				&nbsp;
+				<a class="editor" href="{dir_name_href}">{dir_name}</a>
+		</td>
+	</tr>
+	<!-- end dir_row -->
+	<!-- begin image_row -->
+	<tr class="editor_usual">
+		<td class="small">
+				&nbsp;{image_name}
+		</td>
+		<td align="center" class="small">
+			&nbsp;<a class="editor" href="javascript:parent.InsertSelect('{filename}','{image_width}','{image_height}');">Select</a>&nbsp;
+		</td>
+		<td align="center" class="small">
+				&nbsp;<a class="editor" href="{image_href}" target="_new">View</a>&nbsp;
+		</td>
+	</tr>
+	<!-- end image_row -->
+	<!-- end images -->
+	<!-- begin no_images -->
+	<tr>
+		<td colspan="3" class="editor_middle" align="center">No images available</td>
+	</tr>
+	<!-- end no_images -->
+	</table>
+
+</td></tr></table>
+
+</form>
+
+</body>
+</html>

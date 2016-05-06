@@ -1,0 +1,192 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_FORUM_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script type="text/javascript" src="../js/icons.js"></script>
+<script type="text/javascript" src="../js/attachments.js"></script>
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td align="center">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_forum_href}">{ADMIN_FORUM_TITLE}</a>&nbsp;&gt;&nbsp;<!-- begin category_breadcrumb --><a 
+			href="{current_category_url}">{current_category_name}</a>&nbsp;&gt;&nbsp;<a 
+			href="{current_forum_url}">{current_forum_name}</a>&nbsp;&gt;&nbsp;<a 
+			href="{current_topic_url}">{current_topic_name}</a>&nbsp;&gt;&nbsp;<!-- end category_breadcrumb --><b>{EDIT_TOPIC_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_TOPIC_MSG}</legend>
+
+<table border="0" cellspacing="1" cellpadding="6" width="100%">
+<form action="{admin_forum_topic_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="thread_id" value="{thread_id}">
+<input type="hidden" name="attachments_url" value="{admin_forum_attachments_url}">
+<input type="hidden" name="rp" value="{rp}">
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_FORUM_TITLE} *
+	</td>
+	<td>
+		<select name="forum_id"><!-- begin forum_id -->
+			<option {forum_id_selected} value="{forum_id_value}">{forum_id_description}<!-- end forum_id -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PRIORITY_MSG} *
+	</td>
+	<td>
+		<select name="priority_id"><!-- begin priority_id -->
+			<option {priority_id_selected} value="{priority_id_value}">{priority_id_description}<!-- end priority_id -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{USER_ID_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="10" name="user_id" value="{user_id}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{TOTAL_VIEWS_MSG}
+	</td>
+	<td class="small">
+	  <input class="field" readonly type="text" name="views" value="{views}" size="10" maxlength="10">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{TOPIC_NICKNAME_FIELD} *
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="user_name" value="{user_name}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_FIELD} *
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="user_email" value="{user_email}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IP_ADDRESS_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="remote_address" value="{remote_address}">
+	</td>
+</tr>
+<!-- BEGIN friendly_url_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{FRIENDLY_URL_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="friendly_url" value="{friendly_url}" size="80" maxlength="255">
+	</td>
+</tr>
+<!-- END friendly_url_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{TOPIC_NAME_COLUMN} *
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="topic" value="{topic}">
+	</td>
+</tr>
+<!-- begin attachments_block -->
+<tr class="usual">
+	<td>
+		&nbsp;<a href="#" onClick="attachFiles(document.record);return false;">{ATTACHMENTS_MSG}</a>
+		<a href="#" onClick="attachFiles(document.record);return false;"><img src="../images/clip.gif" align="top" border="0" width="16" height="16"></a>
+	</td>
+	<td>
+		<div id="attachmentsBlock" style="{attachments_class}">
+			&nbsp;<a href="#" onClick="attachFiles(document.record);return false;">{ATTACHED_FILES_MSG}</a>:&nbsp;
+			&nbsp;<span id="attachedFiles">{attached_files}</span>
+		</div>
+	</td>
+</tr>
+<!-- end attachments_block -->
+<tr class="usual" valign="top">
+	<td>
+		&nbsp;{DESCRIPTION_MSG} *
+
+		<!-- begin icons_block -->
+		<div align="center">
+		<br>{EMOTICONS_MSG}
+		<table cellspacing="3" cellpadding="0" border="0">
+		<!-- begin icons_rows -->
+		<tr>
+			<!-- begin icons_cols -->
+			<td>
+				<a href="#" onClick="insertAtCaret('{icon_code_js}', document.record.description);return false;"><img src="{icon_src}" {icon_size} border="0" alt="{icon_alt}"></a>
+			</td>
+			<!-- end icons_cols -->
+		</tr>
+		<!-- end icons_rows -->
+		</table>
+		<!-- begin icons_more_link -->
+		<br><a href="#" onClick="openIconsWindow('{icon_select_href}', document.record.description);return false;">{VIEW_MORE_EMOTICONS_MSG}</a>
+		<!-- end icons_more_link -->
+		</div>
+		<!-- end icons_block -->
+
+	</td>
+	<td>
+		<textarea name="description" cols="100" rows="15" onSelect="storeCaret(this);" onClick="storeCaret(this);" onKeyUp="storeCaret(this);">{description}</textarea>
+	</td>
+</tr>
+<tr class="usual">
+	<td class="text">
+		&nbsp;{TOPIC_NOTIFY_FIELD}
+	</td>
+	<td>
+		<input type="checkbox" {email_notification} name="email_notification" value="1">
+	</td>
+</tr>
+
+
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onclick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete --><input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete --><input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</form>	
+</table>
+
+</fieldset>
+
+{admin_footer}
+
+</body>
+</html>

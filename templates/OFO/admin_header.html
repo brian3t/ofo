@@ -1,0 +1,784 @@
+<script type="text/javascript">
+<!--
+
+var userAgent = navigator.userAgent.toLowerCase();
+var isIE = ((userAgent.indexOf("msie") != -1) && (userAgent.indexOf("opera") == -1) && (userAgent.indexOf("webtv") == -1));
+var site_url = "{site_url}";
+
+var tid = new Array();
+
+function show(parentName, subName)
+{
+	var parentMenu = document.getElementById(parentName);
+	var subMenu = document.getElementById(subName);
+
+	// hide all other sub menus
+	var menu = new Array("shop_sub", "orders_sub", "cms_sub", "articles_sub", "helpdesk_sub", "forum_sub", "manual_sub", "ads_sub", "registrations_sub", "users_sub", "system_sub");
+	for (var i = 0; i < menu.length; i++) {
+		if (subName != menu[i]) {
+			var menuObj = document.getElementById(menu[i]);
+			if (menuObj && menuObj.style.display == "block") {
+				menuObj.style.display='none';
+				showSelectBoxes(menu[i]);
+				if (tid[menu[i]]) {
+					clearTimeout(tid[menu[i]]);
+					tid[menu[i]] = "";
+				}
+			}
+		}
+	}
+
+
+	if (subMenu) {
+		if (parentName == 'book') {
+			subMenu.style.top = findPosY(parentMenu, false) + "px";
+		} else {
+			subMenu.style.top = findPosY(parentMenu, true) + "px";
+		}
+		if (parentName == 'book') {
+			subMenu.style.left = findPosX(parentMenu, true) + "px";
+		} else {
+			subMenu.style.left = findPosX(parentMenu, false) + "px";
+		}
+		subMenu.style.display='block';
+		hideSelectBoxes(subName);
+		if (tid[subName]) {
+			clearTimeout(tid[subName]);
+			tid[subName] = "";
+		}
+	}
+}
+
+
+function hide(subName)
+{
+	tid[subName] = setTimeout("hideMenu('" + subName + "')", 500);
+}
+
+function hideMenu(subName)
+{
+	var subMenu = document.getElementById(subName);
+	if (subMenu) {
+		subMenu.style.display = 'none';
+		showSelectBoxes(subName);
+	}
+}
+
+function showSelectBoxes(subName)
+{
+	if (isIE) {
+		var subMenu = document.getElementById(subName);
+		var selects = subMenu.overlapObjects;
+		if (selects && selects.length > 0) {
+			for (var i = 0; i < selects.length; i++) {
+				selects[i].style.visibility = "visible";
+			}
+		}
+		subMenu.overlapObjects = null;
+	}
+}
+
+function hideSelectBoxes(subName)
+{
+	if (isIE) {
+		var subMenu = document.getElementById(subName);
+
+		var x = findPosX (subMenu, false);
+		var y = findPosY (subMenu, false);
+		var w = subMenu.offsetWidth;
+		var h = subMenu.offsetHeight;
+
+		if (!subMenu.overlapObjects) {
+			subMenu.overlapObjects = new Array();
+		}
+
+		selects = document.getElementsByTagName("select");
+		for (i = 0; i != selects.length; i++)
+		{
+			var selectObj = selects[i];
+			if (selectObj.style.visibility == "hidden") {
+				continue;
+			}
+
+			var ox = findPosX(selectObj, false);
+			var oy = findPosY(selectObj, false);
+			var ow = selectObj.offsetWidth;
+			var oh = selectObj.offsetHeight;
+
+			if (ox > (x + w) || (ox + ow) < x) {
+				continue;
+			}
+			if (oy > (y + h) || (oy + oh) < y) {
+				continue;
+			}
+			subMenu.overlapObjects[subMenu.overlapObjects.length] = selectObj;
+
+			selects[i].style.visibility = "hidden";
+		}
+	}
+}
+
+
+function findPosX(obj, addWidth)
+{
+	var curleft = 0;
+	if (addWidth) {
+		curleft += obj.offsetWidth;
+	}
+	if (obj.offsetParent) {
+		while (obj.offsetParent) {
+			curleft += obj.offsetLeft
+			obj = obj.offsetParent;
+		}
+	} else if (obj.x){
+		curleft += obj.x;
+	}
+
+	return curleft;
+}
+
+function findPosY(obj, addHeight)
+{
+	var curtop = 0;
+	if (addHeight) {
+		curtop += obj.offsetHeight;
+	}
+	if (obj.offsetParent)
+	{
+		while (obj.offsetParent)
+		{
+			curtop += obj.offsetTop
+			obj = obj.offsetParent;
+		}
+	} else if (obj.y) {
+		curtop += obj.y;
+	}
+
+	return curtop;
+}
+
+function getPageSizeWithScroll()
+{
+	var xWithScroll = 0; var yWithScroll = 0; 
+	if (window.innerHeight && window.scrollMaxY) { // Firefox         
+		yWithScroll = window.innerHeight + window.scrollMaxY;         
+		xWithScroll = window.innerWidth + window.scrollMaxX;     
+	} else if (document.body.scrollHeight > document.body.offsetHeight) { // all but Explorer Mac         
+		yWithScroll = document.body.scrollHeight;         
+		xWithScroll = document.body.scrollWidth;     
+	} else { // works in Explorer 6 Strict, Mozilla (not FF) and Safari         
+		yWithScroll = document.body.offsetHeight;         
+		xWithScroll = document.body.offsetWidth;       
+	}     
+	var arrayPageSizeWithScroll = new Array(xWithScroll,yWithScroll);    
+	return arrayPageSizeWithScroll; 
+} 
+
+function getScroll()
+{
+	var w = window.pageXOffset ||
+		document.body.scrollLeft ||
+		document.documentElement.scrollLeft;
+	var h = window.pageYOffset ||
+		document.body.scrollTop ||
+		document.documentElement.scrollTop;
+	var arrayScroll = new Array(w, h);    
+	return arrayScroll;
+}
+
+function openHelpWindow(pagename)
+{
+	var popupWin = window.open (pagename, 'popup', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');
+	popupWin.focus();
+}
+
+function addParam2URL(param, value, url)
+{
+	if (url.indexOf("?") == -1) {
+		url = url + "?" +param + "=" + value;
+	} else {
+		url = url + "&" + param + "=" + value;
+	}
+
+	return url;
+}
+
+function changeURL(objName) {
+	var urlObj = document.getElementById(objName);
+
+	if (urlObj != null) {
+		param = "title";
+		value = document.title;
+		urlObj.href = addParam2URL(param, value, urlObj.href);
+	}
+
+}
+
+function mouseX(evt) {
+	if (evt.pageX) {
+		return evt.pageX;
+	} else if (evt.clientX) {
+		return evt.clientX + (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
+	} else {
+		return null;
+	}
+}
+
+function mouseY(evt) {
+	if (evt.pageY) {
+		return evt.pageY;
+	} else if (evt.clientY) {
+		return evt.clientY + (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
+	} else {
+		return null;
+	}
+}
+
+function showNotes(event, bookmarkID, bookmarkNotes)	{
+	var bookNote = document.getElementById("notes_" + bookmarkID);
+	var len = bookmarkNotes.length;
+	if (bookNote && len!=0) {
+	var leftPos = mouseX(event) - 380;
+   	var topPos  = mouseY(event) - 100;
+		bookNote.style.left = leftPos;
+		bookNote.style.top = topPos;
+		bookNote.style.display = "block";
+	}
+}
+
+function hideNotes(event, bookmarkID)
+{
+	var bookNote = document.getElementById("notes_" + bookmarkID);
+	if (bookNote) {
+		bookNote.style.display = 'none';
+	}
+}
+
+function changeTab(newTabName, formName)
+{
+	var formObj = "";
+	if (formName) {
+		formObj = document.forms[formName];
+	} else {
+		formObj = document.record;
+	}
+	var currentTabName = formObj.tab.value;
+	if (currentTabName != newTabName) {
+		currentTab = document.getElementById("tab_" + currentTabName);
+		newTab = document.getElementById("tab_" + newTabName);
+
+		currentData = document.getElementById("data_" + currentTabName);
+		newData = document.getElementById("data_" + newTabName);
+
+		currentTab.className = "adminTab";
+		newTab.className = "adminTabActive";
+
+		if (currentData) {
+			currentData.style.display = "none";
+		}
+		if (newData) {
+			newData.style.display = "block";
+		}
+
+		formObj.tab.value = newTabName;
+
+		// check if we need change the rows
+		var rowObj = newTab.parentNode;
+		if (rowObj && rowObj.id && rowObj.id.substring(0, 7) == "tab_row") {
+			var tabs = "";
+			var activeRowId = rowObj.id;
+			var rowId = 1;
+			while ((rowObj = document.getElementById("tab_row_" + rowId))) {
+				if (rowObj.id == activeRowId) {
+					tabs += "<div id='"+rowObj.id+"' class='tabRow'>" + rowObj.innerHTML + "</div>";
+				} else {
+					tabs = "<div id='"+rowObj.id+"' class='tabRow'>" + rowObj.innerHTML + "</div>" + tabs;
+				}
+				rowId++;
+			}
+			var tabsObj = document.getElementById("tabs");
+			if (tabsObj && tabs != "") {
+				tabsObj.innerHTML = tabs;
+			}
+		}
+	}
+}
+
+//-->
+</script>
+
+<center>
+<table width="1200" height="98" cellspacing="0" cellpadding="0" border="0">
+<tr>
+	<td width="1200" height="98" background="images/admin-top.jpg" valign="bottom" style="padding:4">
+		<table width="100%" height="90" cellspacing="0" cellpadding="0" border="0">
+		<tr height="16" valign="top">
+			<td width="33%"></td>
+			<td align="center" style="color:white;font-family:Verdana;font-size:7pt;">
+				ViArt {version_name} {version_type} v.{version_number}
+			</td>
+			<td width="33%" align="right">
+				<a class="adminHeaderLink" href="admin_login.php?operation=logout">{LOGOUT_BUTTON}</a>
+			</td>
+		</tr>
+		<tr height="44" valign="top">
+			<td colspan="3" align="center" style="color:white;font-family:Verdana;font-size:12pt;font-weight:bold;">
+				{header_menu_title}
+			</td>
+		</tr>
+		<tr height="20" valign="bottom">
+			<td colspan="3">
+				<img src="../images/icons/home.gif" width="16" height="16" border="0">
+				<a href="{index_href}" class="adminHeaderLink">{SITE_HOME_MSG}</a>
+				&nbsp; <img src="../images/icons/admin.gif" width="16" height="16" border="0">
+				<a href="{admin_href}" class="adminHeaderLink">{ADMINISTRATION_MENU_MSG}</a>
+				<!-- begin bookmarks -->
+				<a id="book" class="bookMenu" style="{style_shop}" onmouseover="javascript:show('book', 'book_sub');" onmouseout="javascript:hide('book_sub');"
+					href="{admin_bookmark_hrefs}" onclick="changeURL('book');">{BOOKMARKS_MSG}</a>
+					<div id="book_sub" class="bookSubMenu" style="" onmouseover="javascript:show('book', 'book_sub');" onmouseout="javascript:hide('book_sub');">
+						<a class="bookSub" href="{admin_bookmark_href}" id="add_bookmark"
+							onclick="changeURL('add_bookmark')"><img src="../images/tr.gif" align="left" width="16" height="16" border="0">&nbsp; <b>{ADD_BOOKMARK_MSG} &nbsp; &nbsp;&nbsp; &nbsp;</b></a><!-- begin bookmark -->
+						<a class="bookSub" href="{header_bookmark_url}" target="{target}" onmouseover="showNotes(event, {header_bookmark_id}, '{header_bookmark_notes}')" onmousemove="showNotes(event, {header_bookmark_id}, '{header_bookmark_notes}')"
+							onmouseout="hideNotes(event, {header_bookmark_id})"><img src="{src}" align="left" width="16" height="16" border="0">&nbsp; {header_bookmark_title}&nbsp; &nbsp;</a>
+					<div id="notes_{header_bookmark_id}" style="display: none; position: absolute; width: 225px"><table class="book"><tr><td>{header_bookmark_notes}</td></tr></table></div>
+					 <!-- end bookmark -->
+				</div><!-- end bookmarks -->
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr>
+<td align="left" style="background: black; color: white; border: 0px solid gray;">
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<!-- begin menu_shop -->
+	<td id="shop" class="parentMenu">
+		<a class="adminMenu" style="{style_shop}"
+			onmouseover="javascript:show('shop', 'shop_sub');" onmouseout="javascript:hide('shop_sub');"
+			href="{admin_items_list_href}">{PRODUCTS_MSG}</a>
+
+		<div id="shop_sub" class="admSubMenu" style="width:160px;" onmouseover="javascript:show('shop', 'shop_sub');" onmouseout="javascript:hide('shop_sub');">
+			<a class="admSub" href="{admin_items_list_href}"><img align="left" src="../images/icons/products.gif" width="16" height="16" border="0">&nbsp;{PRODUCTS_CATEGORIES_MSG}</a>
+			<!-- begin products_settings_priv --><a class="admSub" href="{admin_products_settings_href}">&nbsp; &nbsp; &nbsp; &nbsp; {PRODUCTS_SETTINGS_MSG}</a><!-- end products_settings_priv -->
+			<!-- begin product_types_priv --><a class="admSub" href="{admin_item_types_href}">&nbsp; &nbsp; &nbsp; &nbsp; {PRODUCTS_TYPES_MSG}</a><!-- end product_types_priv -->
+			<!-- begin manufacturers_priv --><a class="admSub" href="{admin_manufacturers_href}">&nbsp; &nbsp; &nbsp; &nbsp; {MANUFACTURERS_TITLE}</a><!-- end manufacturers_priv -->
+			<!-- begin suppliers_priv --><a class="admSub" href="{admin_suppliers_href}">&nbsp; &nbsp; &nbsp; &nbsp; {SUPPLIERS_MSG}</a><!-- end suppliers_priv -->
+			<!-- begin features_groups_priv --><a class="admSub" href="{admin_features_groups_href}">&nbsp; &nbsp; &nbsp; &nbsp; {SPECIFICATION_GROUPS_MSG}</a><!-- end features_groups_priv -->
+			<!--<a class="admSub" href="{admin_products_notify_href}">&nbsp; &nbsp; &nbsp; &nbsp; {PRODUCTS_NOTIFICATIONS_MSG}</a>-->
+			<!-- begin products_reviews_priv --><a class="admSub" href="{admin_reviews_href}">&nbsp; &nbsp; &nbsp; &nbsp; {PRODUCTS_REVIEWS_MSG}</a><!-- end products_reviews_priv -->
+			<!-- begin products_reviews_sets_priv --><a class="admSub" href="{admin_products_reviews_sets_href}">&nbsp; &nbsp; &nbsp; &nbsp; {REVIEWS_SETTINGS_MSG}</a><!-- end products_reviews_sets_priv -->
+			<!-- begin shipping_methods_priv --><a class="admSub" href="{admin_shipping_modules_href}">&nbsp; &nbsp; &nbsp; &nbsp; {SHIPPING_METHODS_MSG}</a><!-- end shipping_methods_priv -->
+			<!-- begin shipping_times_priv --><a class="admSub" href="{admin_shipping_times_href}">&nbsp; &nbsp; &nbsp; &nbsp; {SHIPPING_TIMES_MSG}</a><!-- end shipping_times_priv -->
+			<!-- begin shipping_rules_priv --><a class="admSub" href="{admin_shipping_rules_href}">&nbsp; &nbsp; &nbsp; &nbsp; {SHIPPING_RULES_MSG}</a><!-- end shipping_rules_priv -->
+			<!-- begin downloadable_products_priv --><a class="admSub" href="{admin_download_info_href}">&nbsp; &nbsp; &nbsp; &nbsp; {DOWNLOADABLE_PRODUCTS_MSG}</a><!-- end downloadable_products_priv -->
+			<!-- begin coupons_priv --><a class="admSub" href="{admin_coupons_href}">&nbsp; &nbsp; &nbsp; &nbsp; {COUPONS_MSG}</a><!-- end coupons_priv -->
+			<!-- begin saved_types_priv --><a class="admSub" href="{admin_saved_types_href}">&nbsp; &nbsp; &nbsp; &nbsp; Wish List Types</a><!-- end saved_types_priv -->
+			<!-- begin advanced_search_priv --><a class="admSub" href="{admin_search_href}">&nbsp; &nbsp; &nbsp; &nbsp; {ADVANCED_SEARCH_TITLE}</a><!-- end advanced_search_priv -->
+			<!-- begin products_report_priv --><a class="admSub" href="{admin_products_report_href}">&nbsp; &nbsp; &nbsp; &nbsp; {PRODUCTS_REPORT}</a><!-- end products_report_priv -->			
+			<!-- begin products_tell_friend_priv --><a class="admSub" href="{admin_tell_friend_href}?type=products">&nbsp; &nbsp; &nbsp; &nbsp; {TELL_FRIEND}</a><!-- end products_tell_friend_priv -->
+		</div>
+	</td>
+<!-- end menu_shop -->
+<!-- begin menu_orders -->
+	<td id="orders" class="parentMenu">
+		<a onmouseover="javascript:show('orders', 'orders_sub');" onmouseout="javascript:hide('orders_sub');"
+			class="adminMenu" style="{style_orders}"
+			href="{admin_orders_href}">{ORDERS_MSG}</a>
+
+			<div id="orders_sub" class="admSubMenu" style="width:160px;" onmouseover="javascript:show('orders', 'orders_sub');" onmouseout="javascript:hide('orders_sub');">
+				<!-- begin sales_orders_menu --><a class="admSub" href="{admin_orders_href}"><img align="left"  border=0 src="../images/icons/orders.gif">&nbsp;{SALES_ORDERS_MSG}</a><!-- end sales_orders_menu -->
+				<!-- begin order_profile_menu --><a class="admSub" href="{admin_order_info_href}">&nbsp; &nbsp; &nbsp; &nbsp; {ORDER_PROFILE_PAGE_MSG}</a><!-- end order_profile_menu -->
+				<!-- begin payment_systems_menu --><a class="admSub" href="{admin_payment_systems_href}"><img align="left" src="../images/icons/payments.gif" width="16" height="16" border="0">&nbsp;{PAYMENT_SYSTEMS_MSG}</a><!-- end payment_systems_menu -->
+				<!-- begin order_confirmation_menu --><a class="admSub" href="{admin_order_confirmation_href}">&nbsp; &nbsp; &nbsp; &nbsp; {ORDER_CONFIRMATION_PAGE_MSG}</a><!-- end order_confirmation_menu -->
+				<!-- begin order_statuses_menu --><a class="admSub" href="{admin_order_statuses_href}">&nbsp; &nbsp; &nbsp; &nbsp; {ORDERS_STATUSES_MSG}</a><!-- end order_statuses_menu -->
+				<!-- begin tax_rates_menu --><a class="admSub" href="{admin_tax_rates_href}">&nbsp; &nbsp; &nbsp; &nbsp; {TAX_RATES_MSG}</a><!-- end tax_rates_menu -->
+				<a class="admSub" href="{admin_currencies_href}">&nbsp; &nbsp; &nbsp; &nbsp; {CURRENCIES_MSG}</a>
+				<a class="admSub" href="{admin_order_printable_href}">&nbsp; &nbsp; &nbsp; &nbsp; {PRINTABLE_PAGE_SETTINGS_MSG}</a>
+				<a class="admSub" href="{admin_orders_bom_settings_href}">&nbsp; &nbsp; &nbsp; &nbsp; {BOM_SETTINGS_MSG}</a>
+				<!-- begin orders_stats_menu --><a class="admSub" href="{admin_orders_report_href}">&nbsp; &nbsp; &nbsp; &nbsp; {ORDERS_REPORTS_MSG}</a><!-- end orders_stats_menu -->
+				<!-- begin create_orders_menu --><a class="admSub" href="{admin_order_call_href}">&nbsp; &nbsp; &nbsp; &nbsp; {CALL_CENTER_ORDERS}</a><!-- end create_orders_menu -->
+				<!-- begin orders_recover_menu --><a class="admSub" href="{admin_orders_recover_href}">&nbsp; &nbsp; &nbsp; &nbsp; {ORDERS_RECOVER_MSG}</a>	<!-- end orders_recover_menu -->
+			</div>
+	</td>
+<!-- end menu_orders -->
+<!-- begin menu_cms -->
+	<td id="cms" class="parentMenu">
+		<a style="{style_cms}" onmouseover="javascript:show('cms', 'cms_sub');"
+			class="adminMenu" href="{admin_cms_href}"
+			onmouseout="javascript:hide('cms_sub');">{CMS_MSG}</a>
+
+			<div id="cms_sub" class="admSubMenu" style="width:140px;" onmouseover="javascript:show('cms', 'cms_sub');" onmouseout="javascript:hide('cms_sub');">
+				<!-- begin cms_settings_menu -->
+					<a class="admSub" href="{admin_cms_href}"><img align="left" src="../images/icons/layouts.gif" width="16" height="16" border="0">&nbsp;{CMS_SETTINGS_MSG}</a>
+				<!-- end cms_settings_menu -->
+				<!-- begin layouts_menu -->
+					<a class="admSub" href="{admin_layouts_href}">&nbsp; &nbsp; &nbsp; &nbsp; {LAYOUTS_MSG}</a><!-- end layouts_menu -->
+				<!-- begin site_nav_menu --><a class="admSub" href="{admin_header_menus_href}">&nbsp; &nbsp; &nbsp; &nbsp; {SITE_NAVIGATION_MSG}</a><!-- end site_nav_menu -->
+				<!-- begin footer_links_menu --><a class="admSub" href="{admin_footer_links_href}">&nbsp; &nbsp; &nbsp; &nbsp; {FOOTER_LINKS_MSG}</a><!-- end footer_links_menu -->
+				<!-- begin filemanager_menu --><a class="admSub" href="{admin_filemanager_href}">&nbsp; &nbsp; &nbsp; &nbsp; {FILE_MANAGER_MSG}</a><!-- end filemanager_menu -->
+				<!-- begin polls_menu --><a class="admSub" href="{admin_polls_href}">&nbsp; &nbsp; &nbsp; &nbsp; {OPINION_POLLS_MSG}</a><!-- end polls_menu -->
+				<!-- begin filters_menu --><a class="admSub" href="{admin_filters_href}">&nbsp; &nbsp; &nbsp; &nbsp; {FILTERS_MSG}</a><!-- end filters_menu -->
+				<!-- begin custom_menus_menu -->	<a class="admSub" href="{admin_custom_menus_href}">&nbsp; &nbsp; &nbsp; &nbsp; {CUSTOM_MENUS_MSG}</a><!-- end custom_menus_menu -->
+				<!-- begin custom_blocks_menu -->	<a class="admSub" href="{admin_custom_blocks_href}">&nbsp; &nbsp; &nbsp; &nbsp; {CUSTOM_BLOCKS_MSG}</a><!-- end custom_blocks_menu -->
+				<!-- begin web_pages_menu --><a class="admSub" href="{admin_pages_href}"><img align="left" src="../images/icons/pages.gif" width="16" height="16" border="0">&nbsp;{CUSTOM_PAGES_MSG}</a><!-- end web_pages_menu -->
+				<!-- begin custom_friendly_urls_menu -->	<a class="admSub" href="{admin_friendly_urls_href}">&nbsp; &nbsp; &nbsp; &nbsp; {CUSTOM_FRIENDLY_URLS_MSG}</a><!-- end custom_friendly_urls_menu -->
+				<!-- begin banners_menu --><a class="admSub" href="{admin_banners_href}">&nbsp; &nbsp; &nbsp; &nbsp; {BANNERS_MSG}</a><!-- end banners_menu -->
+			</div>
+	</td>
+<!-- end menu_cms -->
+
+<!-- begin menu_articles -->
+	<td id="articles" class="parentMenu">
+		<a style="{style_articles}" onmouseover="javascript:show('articles', 'articles_sub');"
+			class="adminMenu" href="{admin_articles_top_href}"
+			onmouseout="javascript:hide('articles_sub');">{ARTICLES_TITLE}</a>
+
+			<div id="articles_sub" class="admSubMenu" style="width:140px;" onmouseover="javascript:show('articles', 'articles_sub');" onmouseout="javascript:hide('articles_sub');">
+				<a class="admSub" href="{admin_articles_top_href}">&nbsp; &nbsp; &nbsp; &nbsp; {ARTICLES_SETTINGS_MSG}</a>
+				<!-- begin articles_statuses_priv --><a class="admSub" href="{admin_articles_statuses_href}">&nbsp; &nbsp; &nbsp; &nbsp; {ARTICLES_STATUSES_MSG}</a><!-- end articles_statuses_priv -->
+				<!-- begin articles_reviews_priv --><a class="admSub" href="{admin_articles_reviews_href}">&nbsp; &nbsp; &nbsp; &nbsp; {ARTICLES_REVIEWS_MSG}</a><!-- end articles_reviews_priv -->
+				<!-- begin articles_reviews_sets_priv --><a class="admSub" href="{admin_articles_reviews_sets_href}">&nbsp; &nbsp; &nbsp; &nbsp; {REVIEWS_SETTINGS_MSG}</a><!-- end articles_reviews_sets_priv -->
+				<!-- begin menu_top_articles -->
+				<a class="admSub" href="{admin_menu_articles_url}">&nbsp; &nbsp; &nbsp; &nbsp; {menu_top_article}</a>
+				<!-- end menu_top_articles -->
+				<!-- begin articles_lost_priv --><a class="admSub" href="{admin_articles_lost_href}">&nbsp; &nbsp; &nbsp; &nbsp; {ARTICLES_LOST_MSG}</a><!-- end articles_lost_priv -->
+			</div>
+	</td>
+<!-- end menu_articles -->
+
+<!-- begin menu_helpdesk -->
+	<td id="helpdesk" class="parentMenu">
+		<a style="{style_helpdesk}" onmouseover="javascript:show('helpdesk', 'helpdesk_sub');" onmouseout="javascript:hide('helpdesk_sub');"
+			class="adminMenu" href="{admin_support_href}">{HELPDESK_MSG}</a>
+
+			<div id="helpdesk_sub" class="admSubMenu" style="width:160px;" onmouseover="javascript:show('helpdesk', 'helpdesk_sub');" onmouseout="javascript:hide('helpdesk_sub');">
+					<!-- begin support_menu --><a class="admSub" href="{admin_support_href}"><img align="left" src="../images/icons/support.gif" width="16" height="16" border="0">&nbsp;{SUPPORT_TICKETS_MSG}</a><!-- end support_menu -->
+				<!-- begin support_settings_menu --><a class="admSub" href="{admin_support_settings_href}">&nbsp; &nbsp; &nbsp; &nbsp; {HELPDESK_SETTINGS_MSG}</a><!-- end support_settings_menu -->
+				<!-- begin support_users_menu --><a class="admSub" href="{admin_support_admins_href}">&nbsp; &nbsp; &nbsp; &nbsp; {SUPPORT_USERS_MSG}</a><!-- end support_users_menu -->
+				<!-- begin support_users_priorities_menu --><a class="admSub" href="{admin_support_ranks_href}">&nbsp; &nbsp; &nbsp; &nbsp; {CUSTOMERS_RANKS_MSG}</a><!-- end support_users_priorities_menu -->
+				<!-- begin support_predefined_reply_menu --><a class="admSub" href="{admin_support_prereplies_href}">&nbsp; &nbsp; &nbsp; &nbsp; {PREDEFINED_REPLIES_MSG}</a><!-- end support_predefined_reply_menu -->
+				<!-- begin support_pretypes_menu --><a class="admSub" href="{admin_support_pretypes_href}">&nbsp; &nbsp; &nbsp; &nbsp; {PREDEFINED_TYPES_MSG}</a><!-- end support_pretypes_menu -->
+				<!-- begin support_departments_menu --><a class="admSub" href="{admin_support_departments_href}">&nbsp; &nbsp; &nbsp; &nbsp; {DEPARTMENTS_MSG}</a><!-- end support_departments_menu -->
+				<!-- begin support_static_data_menu --><a class="admSub" href="{admin_support_types_href}">&nbsp; &nbsp; &nbsp; &nbsp; {SUPPORT_TYPES_MSG}</a>
+				<a class="admSub" href="{admin_support_products_href}">&nbsp; &nbsp; &nbsp; &nbsp; {SUPPORT_PRODUCTS_MSG}</a>
+				<a class="admSub" href="{admin_support_priorities_href}">&nbsp; &nbsp; &nbsp; &nbsp; {SUPPORT_PRIORITIES_MSG}</a>
+				<a class="admSub" href="{admin_support_statuses_href}">&nbsp; &nbsp; &nbsp; &nbsp; {SUPPORT_STATUSES_MSG}</a><!-- end support_static_data_menu -->
+				<!-- begin support_users_stats_menu --><a class="admSub" href="{admin_support_users_report_href}">&nbsp; &nbsp; &nbsp; &nbsp; {USERS_REPORT_MSG}</a><!-- end support_users_stats_menu -->
+				<a class="admSub" href="{admin_support_static_tables_href}">&nbsp; &nbsp; &nbsp; &nbsp; {SUPPORT_STATIC_TABLES_MSG}</a>
+			</div>
+	</td>
+<!-- end menu_helpdesk -->
+
+<!-- begin menu_forum -->
+	<td id="forum" class="parentMenu">
+		<a style="{style_forum}" onmouseover="javascript:show('forum', 'forum_sub');" onmouseout="javascript:hide('forum_sub');"
+			class="adminMenu" href="{admin_forum_href}">{ADMIN_FORUM_TITLE}</a>
+
+			<div id="forum_sub" class="admSubMenu" style="width:140px;" onmouseover="javascript:show('forum', 'forum_sub');" onmouseout="javascript:hide('forum_sub');">
+				<a class="admSub" href="{admin_forum_href}"><img align="left" src="../images/icons/forum.gif" width="16" height="16" border="0">&nbsp;{FORUM_THREADS_MSG}</a>
+				<a class="admSub" href="{admin_forum_settings_href}">&nbsp; &nbsp; &nbsp; &nbsp; {FORUM_SETTINGS_MSG}</a>
+				<a class="admSub" href="{admin_forum_priorities_href}">&nbsp; &nbsp; &nbsp; &nbsp; Forum Priorities</a>
+				<a class="admSub" href="{admin_icons_href}">&nbsp; &nbsp; &nbsp; &nbsp; {EMOTION_ICONS_MSG}</a>
+			</div>
+	</td>
+<!-- end menu_forum -->
+
+<!-- begin menu_manual -->
+	<td id="manual" class="parentMenu">
+		<a style="{style_manual}" onmouseover="javascript:show('manual', 'manual_sub');" onmouseout="javascript:hide('manual_sub');"
+			class="adminMenu" href="{admin_manual_href}">{MANUAL_MSG}</a>
+
+			<div id="manual_sub_hide" class="admSubMenu" style="width:140px;" onmouseover="javascript:show('manual', 'manual_sub');" onmouseout="javascript:hide('manual_sub');">
+				<a class="admSub" href="{admin_manual_href}"><img align="left" src="../images/icons/forum.gif" width="16" height="16" border="0">&nbsp;{MANUAL_MSG}</a>
+			</div>
+	</td>
+<!-- end menu_manual -->
+
+
+<!-- begin menu_ads -->
+	<td id="ads" class="parentMenu" style="{style_ads}">
+		<a  onmouseover="javascript:show('ads', 'ads_sub');" onmouseout="javascript:hide('ads_sub');"
+			class="adminMenu" href="{admin_ads_href}">{ADS_TITLE}</a>
+
+			<div id="ads_sub" class="admSubMenu" onmouseover="javascript:show('ads', 'ads_sub');" onmouseout="javascript:hide('ads_sub');">
+				<a class="admSub" href="{admin_ads_href}">&nbsp; &nbsp; &nbsp; &nbsp; {ADS_LISTING_MSG}</a>
+				<a class="admSub" href="{admin_ads_settings_href}">&nbsp; &nbsp; &nbsp; &nbsp;  {ADS_SETTINGS_MSG}</a>
+				<a class="admSub" href="{admin_ads_types_href}">&nbsp; &nbsp; &nbsp; &nbsp; {ADS_TYPES_MSG}</a>
+				<a class="admSub" href="{admin_ads_notify_href}">&nbsp; &nbsp; &nbsp; &nbsp; {ADVERT_NOTIFICATION_MSG}</a>
+				<a class="admSub" href="{admin_ads_request_href}">&nbsp; &nbsp; &nbsp; &nbsp; {ADVERT_REQUEST_MSG}</a>
+				<a class="admSub" href="{admin_ads_search_href}">&nbsp; &nbsp; &nbsp; &nbsp; {ADVANCED_SEARCH_TITLE}</a>
+				<!-- begin ads_tell_friend_priv --><a class="admSub" href="{admin_tell_friend_href}?type=ads">&nbsp; &nbsp; &nbsp; &nbsp; {TELL_FRIEND}</a><!-- end ads_tell_friend_priv -->
+				<a class="admSub" href="{admin_ads_features_groups_href}">&nbsp; &nbsp; &nbsp; &nbsp; {SPECIFICATION_GROUPS_MSG}</a>
+				<a class="admSub" href="{admin_ads_days_href}">&nbsp; &nbsp; &nbsp; &nbsp; {ADS_DAYS_MSG}</a>
+				<a class="admSub" href="{admin_ads_hot_days_href}">&nbsp; &nbsp; &nbsp; &nbsp; {ADS_HOT_DAYS_MSG}</a>
+				<a class="admSub" href="{admin_ads_special_days_href}">&nbsp; &nbsp; &nbsp; &nbsp; {ADS_SPECIAL_DAYS_MSG}</a>
+			</div>
+	</td>
+<!-- end menu_ads -->
+<!-- begin menu_registrations -->
+	<td id="registrations" class="parentMenu" style="{style_registrations}">
+		<a  onmouseover="javascript:show('registrations', 'registrations_sub');" 
+			onmouseout="javascript:hide('registrations_sub');"
+			class="adminMenu" href="{admin_registrations_href}">{PRODUCTS_REGISTRATIONS_MSG}</a>
+
+			<div id="registrations_sub" class="admSubMenu" onmouseover="javascript:show('registrations', 'registrations_sub');" onmouseout="javascript:hide('registrations_sub');">
+				<a class="admSub" href="{admin_registrations_href}">&nbsp; &nbsp; &nbsp; &nbsp; {PRODUCTS_REGISTRATIONS_MSG}</a>
+				<a class="admSub" href="{admin_registration_products_href}">&nbsp; &nbsp; &nbsp; &nbsp; {REGISTRATION_PRODUCTS_MSG}</a>
+				<a class="admSub" href="{admin_registration_settings_href}">&nbsp; &nbsp; &nbsp; &nbsp; {PRODUCT_REGISTRATION_SETTINGS_MSG}</a>
+			</div>
+	</td>
+<!-- end menu_registrations -->
+<!-- begin menu_site_users-->
+	<td id="users" class="parentMenu">
+		<a style="{style_users}" onmouseover="javascript:show('users', 'users_sub');" onmouseout="javascript:hide('users_sub');"
+			class="adminMenu" href="{admin_users_href}">{CUSTOMERS_MSG}</a>
+
+			<div id="users_sub" class="admSubMenu" onmouseover="javascript:show('users', 'users_sub');" onmouseout="javascript:hide('users_sub');">
+				<!-- begin site_users_menu --><a class="admSub" href="{admin_users_href}"><img align="left" src="../images/icons/users.gif" width="16" height="16" border="0">&nbsp;{ACCOUNTS_MSG}</a><!-- end site_users_menu -->
+				<!-- begin users_groups_menu --><a class="admSub" href="{admin_user_types_href}">&nbsp; &nbsp; &nbsp; &nbsp; {USERS_TYPES_MSG}</a><!-- end users_groups_menu -->
+				<a class="admSub" href="{admin_user_sections_href}">&nbsp; &nbsp; &nbsp; &nbsp; {PROFILE_SECTION_MENU_MSG}</a>
+				<!-- begin subscriptions_menu --><a class="admSub" href="{admin_subscriptions_href}">&nbsp; &nbsp; &nbsp; &nbsp; {SUBSCRIPTIONS_MSG}</a><!-- end subscriptions_menu -->
+				<!-- begin subscriptions_groups_menu --><a class="admSub" href="{admin_subscriptions_groups_href}">&nbsp; &nbsp; &nbsp; &nbsp; {SUBSCRIPTIONS_GROUPS_MSG}</a><!-- end subscriptions_groups_menu -->
+				<!-- begin users_forgot_menu --><a class="admSub" href="{admin_forgotten_password_href}">&nbsp; &nbsp; &nbsp; &nbsp; {FORGOTTEN_PASSWORD_MSG}</a><!-- end users_forgot_menu -->
+				<!-- begin users_payments_menu --><a class="admSub" href="{admin_user_commissions_href}">&nbsp; &nbsp; &nbsp; &nbsp; {CUSTOMERS_COMISSIONS_MSG}</a>
+				<a class="admSub" href="{admin_user_payments_href}">&nbsp; &nbsp; &nbsp; &nbsp; {COMMISSION_PAYMENTS}</a><!-- end users_payments_menu -->
+				<!-- begin newsletter_menu --><a class="admSub" href="{admin_newsletters_href}">&nbsp; &nbsp; &nbsp; &nbsp; {NEWSLETTER_MSG}</a>
+				<a class="admSub" href="{admin_newsletter_users_href}">&nbsp; &nbsp; &nbsp; &nbsp; {NEWSLETTER_USERS_MSG}</a><!-- end newsletter_menu -->
+			</div>
+	</td>
+<!-- end menu_site_users-->
+<!-- begin menu_system -->
+	<td id="system" class="parentMenu">
+		<a style="{style_system}" onmouseover="javascript:show('system', 'system_sub');" onmouseout="javascript:hide('system_sub');"
+			class="adminMenu" href="{admin_global_settings_href}">{SYSTEM_MSG}</a>
+
+			<div id="system_sub" class="admSubMenu" onmouseover="javascript:show('system', 'system_sub');" onmouseout="javascript:hide('system_sub');">
+				<!-- begin global_settings_menu --><a class="admSub" href="{admin_global_settings_href}">&nbsp; &nbsp; &nbsp; &nbsp; {GLOBAL_SETTINGS_MSG}</a><!-- end global_settings_menu -->
+				<!-- begin sites_menu --><a class="admSub" href="{admin_sites_href}">&nbsp; &nbsp; &nbsp; &nbsp; {ADMIN_SITES_MSG}</a><!-- end sites_menu -->
+				<!-- begin admin_users_menu --><a class="admSub" href="{admin_admins_href}">&nbsp; &nbsp; &nbsp; &nbsp; {ADMINISTRATORS_MSG}</a><!-- end admin_users_menu -->
+				<!-- begin admins_groups_menu --><a class="admSub" href="{admin_privileges_href}">&nbsp; &nbsp; &nbsp; &nbsp; {PRIVILEDGE_GROUPS_MSG}</a><!-- end admins_groups_menu -->
+				<!-- begin static_tables_menu --><a class="admSub" href="{admin_lookup_tables_href}">&nbsp; &nbsp; &nbsp; &nbsp; {STATIC_TABLES_MSG}</a><!-- end static_tables_menu -->
+				<!-- begin static_messages_menu --><a class="admSub" href="{admin_messages_href}">&nbsp; &nbsp; &nbsp; &nbsp; {SYSTEM_STATIC_MESSAGES_MSG}</a><!-- end static_messages_menu -->
+				<!-- begin black_ips_menu --><a class="admSub" href="{admin_black_ips_href}">&nbsp; &nbsp; &nbsp; &nbsp; {BLACK_IPS_MSG}</a><!-- end black_ips_menu -->
+				<!-- begin banned_contents_menu --><a class="admSub" href="{admin_banned_contents_href}">&nbsp; &nbsp; &nbsp; &nbsp; {BANNED_CONTENT}</a><!-- end banned_contents_menu -->
+				<!-- begin visits_report_menu --><a class="admSub" href="{admin_visits_report_href}">&nbsp; &nbsp; &nbsp; &nbsp; {TRACKING_VISITS_REPORT_MSG}</a><!-- end visits_report_menu -->
+ 				<!-- begin db_management_menu --><a class="admSub" href="{admin_dump_href}">&nbsp; &nbsp; &nbsp; &nbsp; {DATABASE_MANAGEMENT_MSG}</a><!-- end db_management_menu -->
+ 				<!-- begin system_upgrade_menu --><a class="admSub" href="{admin_upgrade_href}">&nbsp; &nbsp; &nbsp; &nbsp; {SYSTEM_UPGRADE_MSG}</a><!-- end system_upgrade_menu -->
+			</div>
+	</td>
+<!-- end menu_system -->
+</tr>
+</table>
+</td></tr>
+</table>
+
+<!-- begin submenu_helpdesk -->
+		<table cellspacing="0" cellpadding="5" border="0" align="center" width="1200">
+		<tr style="background:#AAAAAA;color:white;">
+			<td>
+			<ul class="horizontal">
+				<!-- begin support_submenu --><li><a class="supportMenu" href="{admin_support_href}?rp={admin_support_href}">&bull; {TICKETS_MSG}</a></li><!-- end support_submenu -->
+				<!-- begin support_settings_submenu --><li><a class="supportMenu" href="{admin_support_settings_href}">&bull; {SETTINGS_MSG}</a></li><!-- end support_settings_submenu -->
+				<!-- begin support_users_submenu --><li><a class="supportMenu" href="{admin_support_admins_href}">&bull; {CUSTOMERS_MSG}</a></li><!-- end support_users_submenu -->
+				<!-- begin support_users_priorities_submenu --><li><a class="supportMenu" href="{admin_support_ranks_href}">&bull; {RANKS_MSG}</a></li><!-- end support_users_priorities_submenu -->
+				<!-- begin support_predefined_reply_submenu --><li><a class="supportMenu" href="{admin_support_prereplies_href}">&bull; {PREDEFINED_REPLIES_MSG}</a></li><!-- end support_predefined_reply_submenu -->
+				<!-- begin support_pretypes_submenu --><li><a class="supportMenu" href="{admin_support_pretypes_href}">&bull; {PREDEFINED_TYPES_MSG}</a></li><!-- end support_pretypes_submenu -->
+				<!-- begin support_departments_submenu --><li><a class="supportMenu" href="{admin_support_departments_href}">&bull; {DEPARTMENTS_MSG}</a></li><!-- end support_departments_submenu -->
+				<!-- begin support_static_data_submenu --><li><a class="supportMenu" href="{admin_support_types_href}">&bull; {TYPES_MSG}</a></li>
+				<li><a class="supportMenu" href="{admin_support_products_href}">&bull;  {PRODUCTS_MSG}</a></li>
+				<li><a class="supportMenu" href="{admin_support_priorities_href}">&bull; {PRIORITIES_MSG}</a></li>
+				<li><a class="supportMenu" href="{admin_support_statuses_href}">&bull; {STATUSES_MSG}</a></li><!-- end support_static_data_submenu -->
+				<!-- begin support_users_stats_submenu --><li><a class="supportMenu" href="{admin_support_users_report_href}">&bull; {REPORTS_MSG}</a></li><!-- end support_users_stats_submenu -->
+			</ul>
+ 			</td>
+		</tr>
+		</table>
+<!-- end submenu_helpdesk -->
+<!-- begin submenu_shop -->
+		<table cellspacing="0" cellpadding="5" border="0" align="center" width="1200">
+		<tr style="background:#AAA;color:white;">
+			<td>
+			<ul class="horizontal">
+				<li><a class="supportMenu" href="{admin_items_list_href}">&bull; {PRODUCTS_CATEGORIES_MSG}</a></li>
+				<!-- begin products_settings_priv_sub --><li><a class="supportMenu" href="{admin_products_settings_href}">&bull; {PRODUCT_SETTINGS_MSG}</a></li><!-- end products_settings_priv_sub -->
+				<!-- begin products_reviews_priv_sub --><li><a class="supportMenu" href="{admin_reviews_href}">&bull; {PRODUCTS_REVIEWS_MSG}</a></li><!-- end products_reviews_priv_sub -->
+				<!-- begin products_reviews_sets_priv_sub --><li><a class="supportMenu" href="{admin_products_reviews_sets_href}">&bull; {REVIEWS_SETTINGS_MSG}</a></li><!-- end products_reviews_sets_priv_sub -->
+				<!-- begin shipping_methods_priv_sub --><li><a class="supportMenu" href="{admin_shipping_modules_href}">&bull; {SHIPPING_SETTINGS_MSG}</a></li><!-- end shipping_methods_priv_sub -->
+				<!-- begin downloadable_products_priv_sub --><li><a class="supportMenu" href="{admin_download_info_href}">&bull; {DOWNLOADABLE_PRODUCTS_MSG}</a></li><!-- end downloadable_products_priv_sub -->
+				<!-- begin coupons_priv_sub --><li><a class="supportMenu" href="{admin_coupons_href}">&bull; {COUPONS_MSG}</a></li><!-- end coupons_priv_sub -->
+				<!-- begin saved_types_priv_sub --><li><a class="supportMenu" href="{admin_saved_types_href}">&bull; Wish List Types</a></li><!-- end saved_types_priv_sub -->
+				<!-- begin products_report_priv_sub --><li><a class="supportMenu" href="{admin_products_report_href}">&bull; {PRODUCTS_REPORT}</a></li><!-- end products_report_priv_sub -->
+				<!-- begin list_page_priv_sub --><li><a class="supportMenu" href="{admin_layout_page_href}?page_name=products_list">&bull; {LIST_PAGE_LAYOUT_MSG}</a></li><!-- end list_page_priv_sub -->
+				<!-- begin details_page_priv_sub --><li><a class="supportMenu" href="{admin_layout_page_href}?page_name=products_details">&bull; {DETAILED_PAGE_LAYOUT_MSG}</a></li><!-- end details_page_priv_sub -->
+				<!-- begin product_types_priv_sub --><li><a class="supportMenu" href="{admin_item_types_href}">&bull; {PRODUCT_TYPES_MSG}</a></li><!-- end product_types_priv_sub -->
+				<!-- begin features_groups_priv_sub --><li><a class="supportMenu" href="{admin_features_groups_href}">&bull; {SPECIFICATION_GROUPS_MSG}</a></li><!-- end features_groups_priv_sub -->
+				<!-- begin advanced_search_priv_sub --><li><a class="supportMenu" href="{admin_search_href}">&bull; {ADVANCED_SEARCH_TITLE}</a></li><!-- end advanced_search_priv_sub -->
+				<!-- begin products_tell_friend_sub --><li><a class="supportMenu" href="{admin_tell_friend_href}?type=products">&bull; {TELL_FRIEND}</a></li><!-- end products_tell_friend_sub -->
+			</ul>
+			</td>
+		</tr>
+		</table>
+<!-- end submenu_shop -->
+<!-- begin submenu_orders -->
+		<table cellspacing="0" cellpadding="5" border="0" align="center" width="1200">
+		<tr style="background:#AAAAAA;color:white;">
+			<td>
+			<ul class="horizontal">
+				<!-- begin sales_orders_submenu --><li><a class="supportMenu" href="{admin_orders_href}">&bull; {SALES_ORDERS_MSG}</a></li><!-- end sales_orders_submenu -->
+				<!-- begin order_profile_submenu --><li><a class="supportMenu" href="{admin_order_info_href}">&bull; {ORDER_PROFILE_PAGE_MSG}</a></li><!-- end order_profile_submenu -->
+				<!-- begin payment_systems_submenu --><li><a class="supportMenu" href="{admin_payment_systems_href}">&bull; {PAYMENT_SYSTEMS_MSG}</a></li><!-- end payment_systems_submenu -->
+				<!-- begin order_confirmation_submenu --><li><a class="supportMenu" href="{admin_order_confirmation_href}">&bull; {ORDER_CONFIRMATION_PAGE_MSG}</a></li><!-- end order_confirmation_submenu -->
+				<!-- begin order_statuses_submenu --><li><a class="supportMenu" href="{admin_order_statuses_href}">&bull; {STATUSES_MSG}</a></li><!-- end order_statuses_submenu -->
+				<!-- begin tax_rates_submenu --><li><a class="supportMenu" href="{admin_tax_rates_href}">&bull; {TAX_RATES_MSG}</a></li><!-- end tax_rates_submenu -->
+				<li><a class="supportMenu" href="{admin_order_printable_href}">&bull; {PRINTABLE_PAGE_SETTINGS_MSG}</a></li>
+				<!-- begin orders_stats_submenu --><li><a class="supportMenu" href="{admin_orders_report_href}">&bull; {REPORTS_MSG}</a></li><!-- end orders_stats_submenu -->
+				<!-- begin create_orders_submenu --><li><a class="supportMenu" href="{admin_order_call_href}">&bull; {CREATE_ORDER_MSG}</a></li><!-- end create_orders_submenu -->
+			</ul>
+			</td>
+		</tr>
+		</table>
+<!-- end submenu_orders -->
+
+<!-- begin submenu_cms -->
+		<table cellspacing="0" cellpadding="5" border="0" align="center" width="1200">
+		<tr style="background:#AAAAAA;color:white;">
+			<td>
+			<ul class="horizontal">
+				<!-- begin cms_settings_submenu --><li><a class="supportMenu" href="{admin_cms_href}">&bull; {CMS_SETTINGS_MSG}</a></li><!-- end cms_settings_submenu -->
+				<!-- begin layouts_submenu --><li><a class="supportMenu" href="{admin_layouts_href}">&bull; {LAYOUTS_MSG}</a></li><!-- end layouts_submenu -->
+				<!-- begin site_nav_submenu --><li><a class="supportMenu" href="{admin_header_menus_href}">&bull; {SITE_NAVIGATION_MSG}</a></li><!-- end site_nav_submenu -->
+				<!-- begin footer_links_submenu --><li><a class="supportMenu" href="{admin_footer_links_href}">&bull; {FOOTER_LINKS_MSG}</a></li><!-- end footer_links_submenu -->
+				<!-- begin filemanager_submenu --><li><a class="supportMenu" href="{admin_filemanager_href}">&bull; {FILE_MANAGER_MSG}</a></li><!-- end filemanager_submenu -->
+				<!-- begin polls_submenu --><li><a class="supportMenu" href="{admin_polls_href}">&bull; {OPINION_POLLS_MSG}</a></li><!-- end polls_submenu -->
+				<!-- begin filters_submenu --><li><a class="supportMenu" href="{admin_filters_href}">&bull; {FILTERS_MSG}</a></li><!-- end filters_submenu -->
+				<!-- begin custom_menus_submenu --><li><a class="supportMenu" href="{admin_custom_menus_href}">&bull; {CUSTOM_MENUS_MSG}</a></li><!-- end custom_menus_submenu -->
+				<!-- begin custom_blocks_submenu --><li><a class="supportMenu" href="{admin_custom_blocks_href}">&bull; {CUSTOM_BLOCKS_MSG}</a></li><!-- end custom_blocks_submenu -->
+				<!-- begin web_pages_submenu --><li><a class="supportMenu" href="{admin_pages_href}">&bull; {CUSTOM_PAGES_MSG}</a></li><!-- end web_pages_submenu -->
+				<!-- begin custom_friendly_urls_submenu --><li><a class="supportMenu" href="{admin_friendly_urls_href}">&bull; {CUSTOM_FRIENDLY_URLS_MSG}</a></li><!-- end custom_friendly_urls_submenu -->
+				<!-- begin banners_submenu --><li><a class="supportMenu" href="{admin_banners_href}">&bull; {BANNERS_MSG}</a></li><!-- end banners_submenu -->
+			</ul>
+			</td>
+		</tr>
+		</table>
+<!-- end submenu_cms -->
+
+<!-- begin submenu_articles -->
+		<table cellspacing="0" cellpadding="5" border="0" align="center" width="1200">
+		<tr style="background:#AAAAAA;color:white;">
+			<td>
+			<ul class="horizontal">
+				<li><a class="supportMenu" href="{admin_articles_top_href}">&bull; {ARTICLES_SETTINGS_MSG}</a></li>
+				<!-- begin articles_statuses_priv_sub --><li><a class="supportMenu" href="{admin_articles_statuses_href}">&bull; {ARTICLES_STATUSES_MSG}</a></li><!-- end articles_statuses_priv_sub -->
+				<!-- begin articles_reviews_priv_sub --><li><a class="supportMenu" href="{admin_articles_reviews_href}">&bull; {ARTICLES_REVIEWS_MSG}</a></li><!-- end articles_reviews_priv_sub -->
+				<!-- begin articles_reviews_sets_priv_sub --><li><a class="supportMenu" href="{admin_articles_reviews_sets_href}">&bull; {REVIEWS_SETTINGS_MSG}</a></li><!-- end articles_reviews_sets_priv_sub -->
+				<!-- begin submenu_top_articles -->
+				<li><a class="supportMenu" href="{admin_menu_articles_url}">&bull; {menu_top_article}</a></li>
+				<!-- end submenu_top_articles -->
+				<!-- begin articles_lost_priv_sub --><li><a class="supportMenu" href="{admin_articles_lost_href}">&bull; {ARTICLES_LOST_MSG}</a></li><!-- end articles_lost_priv_sub -->
+			</ul>
+			</td>
+		</tr>
+		</table>
+<!-- end submenu_articles -->
+
+<!-- begin submenu_manual -->
+		<table cellspacing="0" cellpadding="5" border="0" align="center" width="1200">
+		<tr style="background:#AAAAAA;color:white;">
+			<td>
+			<ul class="horizontal">
+				<li><a class="supportMenu" href="{admin_manual_href}">&bull; {MANUAL_MSG}</a></li>
+			</ul>
+			</td>
+		</tr>
+		</table>
+<!-- end submenu_manual -->
+
+<!-- begin submenu_ads -->
+		<table cellspacing="0" cellpadding="5" border="0" align="center" width="1200">
+		<tr style="background:#AAAAAA;color:white;">
+			<td>
+			<ul class="horizontal">
+				<li><a class="supportMenu" href="{admin_ads_href}">&bull; {ADS_LISTING_MSG}</a></li>
+				<li><a class="supportMenu" href="{admin_ads_settings_href}">&bull; {ADS_TYPES_MSG}</a></li>
+				<li><a class="supportMenu" href="{admin_ads_types_href}">&bull; {ADS_TYPES_MSG}</a></li>
+				<li><a class="supportMenu" href="{admin_ads_notify_href}">&bull; {ADVERT_NOTIFICATION_MSG}</a></li>
+				<li><a class="supportMenu" href="{admin_ads_request_href}">&bull; {ADVERT_REQUEST_MSG}</a></li>
+				<li><a class="supportMenu" href="{admin_ads_search_href}">&bull; {ADS_SEARCH_MSG}</a></li>
+				<!-- begin ads_tell_friend_sub --><li><a class="supportMenu" href="{admin_tell_friend_href}?type=ads">&bull; {TELL_FRIEND}</a></li><!-- end ads_tell_friend_sub -->
+				<li><a class="supportMenu" href="{admin_ads_features_groups_href}">&bull; {SPECIFICATION_GROUPS_MSG}</a></li>
+				<li><a class="supportMenu" href="{admin_layout_page_href}?page_name=ads_list">&bull; {LIST_PAGE_LAYOUT_MSG}</a></li>
+				<li><a class="supportMenu" href="{admin_layout_page_href}?page_name=ads_details">&bull; {DETAILED_PAGE_LAYOUT_MSG}</a></li>
+				<li><a class="supportMenu" href="{admin_ads_days_href}">&bull; {ADS_DAYS_MSG}</a></li>
+				<li><a class="supportMenu" href="{admin_ads_hot_days_href}">&bull; {ADS_HOT_DAYS_MSG}</a></li>
+				<li><a class="supportMenu" href="{admin_ads_special_days_href}">&bull; {ADS_SPECIAL_DAYS_MSG}</a></li>
+			</ul>
+			</td>
+		</tr>
+		</table>
+<!-- end submenu_ads -->
+
+<!-- begin submenu_forum -->
+		<table cellspacing="0" cellpadding="5" border="0" align="center" width="1200">
+		<tr style="background:#AAAAAA;color:white;">
+			<td nowrap>
+			<ul class="horizontal">
+				<li><a class="supportMenu" href="{admin_forum_href}">&bull; {FORUM_THREADS_MSG}</a></li>
+				<li><a class="supportMenu" href="{admin_forum_settings_href}">&bull; {FORUM_SETTINGS_MSG}</a></li>
+				<li><a class="supportMenu" href="{admin_forum_priorities_href}">&bull; Forum Priorities</a></li>
+				<li><a class="supportMenu" href="{admin_icons_href}">&bull; {EMOTION_ICONS_MSG}</a></li>
+			</ul>
+			</td>
+		</tr>
+		</table>
+<!-- end submenu_forum -->
+
+<!-- begin submenu_users -->
+		<table cellspacing="0" cellpadding="5" border="0" align="center" width="1200">
+		<tr style="background:#AAAAAA;color:white;">
+			<td nowrap>
+			<ul class="horizontal">
+				<!-- begin site_users_submenu --><li><a class="supportMenu" href="{admin_users_href}">&bull; {CUSTOMERS_MSG}</a></li><!-- end site_users_submenu -->
+				<!-- begin users_groups_submenu --><li><a class="supportMenu" href="{admin_user_types_href}">&bull; {USERS_TYPES_MSG}</a></li><!-- end users_groups_submenu -->
+				<!-- begin subscriptions_submenu --><li><a class="supportMenu" href="{admin_subscriptions_href}">&bull; {SUBSCRIPTIONS_MSG}</a></li><!-- end subscriptions_submenu -->
+				<!-- begin subscriptions_groups_submenu --><li><a class="supportMenu" href="{admin_subscriptions_groups_href}">&bull; {SUBSCRIPTIONS_GROUPS_MSG}</a></li><!-- end subscriptions_groups_submenu -->
+
+				<li><a class="supportMenu" href="{admin_user_sections_href}">&bull; {PROFILE_SECTION_MENU_MSG}</a></li>
+				<!-- begin users_forgot_submenu --><li><a class="supportMenu" href="{admin_forgotten_password_href}">&bull; {FORGOTTEN_PASSWORD_MSG}</a></li><!-- end users_forgot_submenu -->
+				<!-- begin users_payments_submenu --><li><a class="supportMenu" href="{admin_user_commissions_href}">&bull; {CUSTOMERS_COMISSIONS_MSG}</a></li>
+				<li><a class="supportMenu" href="{admin_user_payments_href}">&bull; {COMMISSION_PAYMENTS}</a></li><!-- end users_payments_submenu -->
+				<!-- begin newsletter_submenu --><li><a class="supportMenu" href="{admin_newsletters_href}">&bull; {NEWSLETTER_MSG}</a></li>
+				<li><a class="supportMenu" href="{admin_newsletter_users_href}">&bull; Newsletter users</a></li><!-- end newsletter_submenu -->
+			</ul>
+			</td>
+		</tr>
+		</table>
+<!-- end submenu_users -->
+
+<!-- begin submenu_system -->
+		<table cellspacing="0" cellpadding="5" border="0" align="center" width="1200">
+		<tr style="background:#AAAAAA;color:white;">
+			<td nowrap>
+			<ul class="horizontal">
+				<!-- begin global_settings -->	<li><a class="supportMenu" href="{admin_global_settings_href}">&bull; {GLOBAL_SETTINGS_MSG}</a></li><!-- end global_settings -->
+				<!-- begin sites -->	<li><a class="supportMenu" href="{admin_sites_href}">&bull; {ADMIN_SITES_MSG}</a></li><!-- end sites -->
+				<!-- begin admin_users_submenu --><li><a class="supportMenu" href="{admin_admins_href}">&bull; {ADMINISTRATORS_MSG}</a></li><!-- end admin_users_submenu -->
+				<!-- begin admins_groups_submenu --><li><a class="supportMenu" href="{admin_privileges_href}">&bull; {PRIVILEDGE_GROUPS_MSG}</a></li><!-- end admins_groups_submenu -->
+				<!-- begin static_tables_submenu --><li><a class="supportMenu" href="{admin_lookup_tables_href}">&bull; {STATIC_TABLES_MSG}</a></li><!-- end static_tables_submenu -->
+				<!-- begin static_messages_submenu --><li><a class="supportMenu" href="{admin_messages_href}">&bull; {MESSAGES_MSG}</a></li><!-- end static_messages_submenu -->
+				<!-- begin black_ips_submenu --><li><a class="supportMenu" href="{admin_black_ips_href}">&bull; {BLACK_IPS_MSG}</a></li><!-- end black_ips_submenu -->
+				<!-- begin banned_contents_submenu --><li><a class="supportMenu" href="{admin_banned_contents_href}">&bull; {BANNED_CONTENT}</a></li><!-- end banned_contents_submenu -->
+				<!-- begin visits_report_submenu --><li><a class="supportMenu" href="{admin_visits_report_href}">&bull; {REPORTS_MSG}</a></li><!-- end visits_report_submenu -->
+				<!-- begin db_management_submenu --><li><a class="supportMenu" href="{admin_dump_href}">&bull; {DATABASE_MANAGEMENT_MSG}</a></li><!-- end db_management_submenu -->
+				<!-- begin system_upgrade_submenu --><li><a class="supportMenu" href="{admin_upgrade_href}">&bull; {SYSTEM_UPGRADE_MSG}</a></li><!-- end system_upgrade_submenu -->
+			</ul>
+			</td>
+		</tr>
+		</table>
+<!-- end submenu_system -->
+
+</center>
+
+<table cellspacing="0" cellpadding="0" border="0" align="center" width="1200">
+<tr><td nowrap>
+<br>

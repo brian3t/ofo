@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{CHECKOUT_PAYMENT_TITLE}</title></head>
+<base href="{absolute_url}">
+<body class="commonbg">
+
+<!-- begin errors -->
+<div align="center">{errors_list}</div>
+<!-- end errors -->
+
+<!-- begin submit_payment -->
+<form action="{payment_url}" name="payment" method="{submit_method}"><!-- begin parameters -->
+<input type="hidden" name="{parameter_name}" value="{parameter_value}"><!-- end parameters -->
+<div align="center" style="font-family: tahoma, arial, sans-serif; color: navy; ">
+{GOTO_PAYMENT_MSG}<br><br>
+<input type="submit" value="{CONTINUE_BUTTON}" style="border: 1px solid gray; background-color: #e0e0e0; font-family: tahoma, arial, sans-serif; height: 20px; color: #333333; font-weight: bold;">
+</div>
+</form>
+
+<script language="JavaScript" type="text/javascript">
+<!--
+document.payment.submit();
+//-->
+</script>
+<!-- end submit_payment -->
+
+</body>
+</html>

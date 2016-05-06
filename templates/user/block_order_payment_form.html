@@ -1,0 +1,135 @@
+<div class="block-order-payment-form">
+	<div class="titleTopCenter">
+		
+		
+		{CHECKOUT_PAYMENT_TITLE} 
+	</div>
+	<div class="basket"> <a name="payment_form"></a>
+		<!-- begin intro_block -->
+		{intro_text}
+		<!-- end intro_block -->
+		<form action="{credit_card_info_href}#payment_form" name="credit_card_info" method="POST">
+			<input type="hidden" name="order_id" value="{order_id}">
+			<input type="hidden" name="vc" value="{vc}">
+			<input type="hidden" name="action" value="save">
+			<table cellspacing="1" width="100%" border="0" class="orderInfo">
+				<!-- BEGIN errors -->
+				<tr class="middlebg">
+					<td colspan="2" align="center"><div class="errorbg">{errors_list}</div></td>
+				</tr>
+				<!-- END errors -->
+				<!-- begin payment_info_block -->
+				<tr class="usualbg">
+					<td colspan="2"> {payment_info} </td>
+				</tr>
+				<!-- end payment_info_block -->
+				<!-- begin cc_name_block -->
+				<tr class="usualbg">
+					<td> {CC_NAME_FIELD}&nbsp;<span class="required">{cc_name_required}</span>
+						<div class="smallText">({CC_NAME_DESC})</div></td>
+					<td><input class="text" type="text" name="cc_name" size="50" value="{cc_name}"></td>
+				</tr>
+				<!-- end cc_name_block -->
+				<!-- begin cc_first_name_block -->
+				<tr class="usualbg">
+					<td> {CC_FIRST_NAME_FIELD}&nbsp;<span class="required">{cc_first_name_required}</span></td>
+					<td><input class="text" type="text" name="cc_first_name" size="50" value="{cc_first_name}"></td>
+				</tr>
+				<!-- end cc_first_name_block -->
+				<!-- begin cc_last_name_block -->
+				<tr class="usualbg">
+					<td> {CC_LAST_NAME_FIELD}&nbsp;<span class="required">{cc_last_name_required}</span></td>
+					<td><input class="text" type="text" name="cc_last_name" size="50" value="{cc_last_name}"></td>
+				</tr>
+				<!-- end cc_last_name_block -->
+				<!-- begin cc_number_block -->
+				<tr class="usualbg">
+					<td> {CC_NUMBER_FIELD}&nbsp;<span class="required">{cc_number_required}</span></td>
+					<td><input class="text" type="text" name="cc_number" size="50" value="{cc_number}"></td>
+				</tr>
+				<!-- end cc_number_block -->
+				<!-- begin cc_start_date_block -->
+				<tr class="usualbg">
+					<td> {CC_START_DATE_FIELD}&nbsp;<span class="required">{cc_start_date_required}</span></td>
+					<td><select class="text" name="cc_start_month">
+							<!-- begin cc_start_month -->
+							<option {cc_start_month_selected} value="{cc_start_month_value}">{cc_start_month_description}</option>
+							<!-- end cc_start_month -->
+						</select>
+						<select class="text" name="cc_start_year">
+							<!-- begin cc_start_year -->
+							<option {cc_start_year_selected} value="{cc_start_year_value}">{cc_start_year_description}</option>
+							<!-- end cc_start_year -->
+						</select>
+						</font></td>
+				</tr>
+				<!-- end cc_start_date_block -->
+				<!-- begin cc_expiry_date_block -->
+				<tr class="usualbg">
+					<td> {CC_EXPIRY_DATE_FIELD}&nbsp;<span class="required">{cc_expiry_date_required}</span></td>
+					<td><select class="text" name="cc_expiry_month">
+							<!-- begin cc_expiry_month -->
+							<option {cc_expiry_month_selected} value="{cc_expiry_month_value}">{cc_expiry_month_description}</option>
+							<!-- end cc_expiry_month -->
+						</select>
+						<select class="text" name="cc_expiry_year">
+							<!-- begin cc_expiry_year -->
+							<option {cc_expiry_year_selected} value="{cc_expiry_year_value}">{cc_expiry_year_description}</option>
+							<!-- end cc_expiry_year -->
+						</select>
+						</font></td>
+				</tr>
+				<!-- end cc_expiry_date_block -->
+				<!-- begin cc_type_block -->
+				<tr class="usualbg">
+					<td> {CC_TYPE_FIELD}&nbsp;<span class="required">{cc_type_required}</span></td>
+					<td><select class="text" name="cc_type">
+							<!-- begin cc_type -->
+							<option {cc_type_selected} value="{cc_type_value}">{cc_type_description}
+							<!-- end cc_type -->
+						</select></td>
+				</tr>
+				<!-- end cc_type_block -->
+				<!-- begin cc_issue_number_block -->
+				<tr class="usualbg">
+					<td> {CC_ISSUE_NUMBER_FIELD}&nbsp;<span class="required">{cc_issue_number_required}</span></td>
+					<td><select class="text" name="cc_issue_number" width=20>
+							<!-- begin cc_issue_number -->
+							<option {cc_issue_number_selected} value="{cc_issue_number_value}">{cc_issue_number_description}
+							<!-- end cc_issue_number -->
+						</select>
+						&nbsp;
+						({CC_ISSUE_NUMBER_DESC}) </td>
+				</tr>
+				<!-- end cc_issue_number_block -->
+				<!-- begin cc_security_code_block -->
+				<tr class="usualbg">
+					<td> {CC_SECURITY_CODE_FIELD}&nbsp;<span class="required">{cc_security_code_required}</span></td>
+					<td><input class="text" type=text name="cc_security_code" width=10 value="{cc_security_code}">
+						<a href="{cc_security_code_help_href}" target="_blank" 
+				onClick="window.open('{cc_security_code_help_href}', 'cc_security_code_help', 'width=425,height=300,location=no,menubar=no,status=no,toolbar=no');return false;" 
+				class="tocreverse">{CC_SECURITY_CODE_HELP_MSG}</a></td>
+				</tr>
+				<!-- end cc_security_code_block -->
+				<!-- begin pay_without_cc_block -->
+				<tr class="usualbg">
+					<td valign="top"> {PAY_WITHOUT_CC_FIELD}&nbsp;<span class="required">{pay_without_cc_required}</span>
+						<div class="smallText">&nbsp;({PAY_WITHOUT_CC_DESC})</div></td>
+					<td><textarea class="text" name="pay_without_cc" cols="50" rows="5">{pay_without_cc}</textarea></td>
+				</tr>
+				<!-- end pay_without_cc_block -->
+				<!-- begin payment_properties -->
+				<tr id="op_block_{property_id}" class="usualbg">
+					<td style="{property_style}"> {property_name}&nbsp;<span class="required">{property_required}</span></td>
+					<td style="{property_style}"> {property_control} </td>
+				</tr>
+				<!-- end payment_properties -->
+				<tr class="middlebg">
+					<td colspan="2" class="middlebg" align="right">(You can review your order on the next page before submitting) 
+						<input class="button" id="continue" type="submit" value="{CONTINUE_BUTTON}" onClick="document.credit_card_info.action.value='save'">
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>

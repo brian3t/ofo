@@ -1,0 +1,109 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {DUMP_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+<script language="JavaScript"> 
+<!--
+	function clearSearch() {
+		document.frmSearch.file_name_search.value = "";
+		document.frmSearch.submit();
+	}
+//-->
+</script>
+ 
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+	<tr><td align="center" colspan="2">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr><td class="header"> 
+			<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+			<tr>
+				<td class="usual">
+					&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<b>{DATABASE_MANAGEMENT_MSG}</b>
+				</td>
+			</tr>
+			</table>
+			</td></tr>
+		</table>
+	</td></tr>
+	<!-- BEGIN errors -->
+		<tr><td>
+			<p align="center">{errors_list}</p>
+		</td></tr>
+	<!-- END errors -->
+	<tr><td>
+		<table cellspacing="0" cellpadding="0" border="0" width="100%" align="center">
+			<tr>
+				<td>
+					<!-- filter -->
+					<table>
+					<form action="{admin_dump_href}" name="frmSearch">
+					<tr height=25>
+						<td colspan="2">&nbsp;<b>{SEARCH_FILE_MSG}:</b></td>
+					</tr>
+					<tr>
+						<td>{FILE_NAME_MSG}:</td>
+						<td><input type="text" name="file_name_search" value="{file_name_search}" class="search"></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<input type="submit" value="Search" class="submit">&nbsp;<input type="button" value="{CLEAR_BUTTON}" class="submit" onClick="clearSearch()">
+						</td>
+					</tr>
+					</form>
+					</table>
+				<!-- end of filter -->
+				</td>
+				<td align="right">
+					<b><a href="{admin_dump_create_href}">{CREATE_NEW_DUMP_MSG}</a></b> | 
+					<b><a href="{admin_db_query_href}">{RUN_SQL_QUERY_MSG}</a></b>
+				</td>
+			</tr>
+		</table>
+	</td>
+	</tr>
+</table>
+
+<!-- BEGIN search_results -->
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr height="25">
+	<td style="border:1px solid #919B9C; background-color:#FCFFD5;" class="MESSAGE">&nbsp;{SEARCH_RESULTS_IN_MSG} {search}</td>
+</tr>
+</table>
+<!-- END search_results -->
+
+<br>
+
+	<table cellspacing="1" cellpadding="5" border="0" width="100%" align="center">
+	<!-- begin dumps -->
+	<tr class="middle">
+		<td align="center">{dump_filename}</td>
+		<td>&nbsp;</td>
+	</tr><!-- begin dump_row -->
+	<tr class="usual">
+		<td class="small">
+				&nbsp;{file_name}
+		</td>
+		<td align="center" class="small">
+			<a href="{admin_dump_apply_html_href}?file_name={file_name}">{APPLY_DUMP_MSG}</a>
+		</td>
+	</tr><!-- end dump_row --><!-- end dumps -->
+	</table>
+	<!-- BEGIN navigator_block -->
+	<table cellspacing="1" cellpadding="5" border="0" width="100%" align="center">
+	<tr>
+		<td align="left">
+			&nbsp;{navigator}&nbsp;
+		</td>
+	</tr>
+	</table>
+	<!-- END navigator_block -->
+	
+{admin_footer}
+</body>
+</html>

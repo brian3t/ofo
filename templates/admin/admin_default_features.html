@@ -1,0 +1,107 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {PREDEFINED_SPECIFICATION_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_items_list_href}">{PRODUCTS_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_item_types_href}">{PRODUCTS_TYPES_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_item_type_href}?item_type_id={item_type_id}">{item_type_name}</a>&nbsp;&gt;&nbsp;<b>{PREDEFINED_SPECIFICATION_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{PREDEFINED_SPECIFICATION_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<form action="{admin_default_features_href}" name="record" method="post">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="item_type_id" value="{item_type_id}">
+<input type="hidden" name="more_features" value="0">
+<input type="hidden" name="number_features" value="{number_features}">
+<input type="hidden" name="rp" value="{rp}">
+<table border="0" cellpadding="4" cellspacing="1" align="center" width="100%">
+<tr class="middle" align="center">
+	<td>
+		#
+	</td>
+	<td>
+		{GROUP_AND_NAME_MSG}
+	</td>
+	<td>
+		{PREDEFINED_VALUES_MSG}
+	</td>
+	<td>
+		{DELETE_BUTTON}
+	</td>
+</tr>
+<!-- begin features --><!-- begin features_errors -->
+<tr class="usual" align="center">
+	<td>&nbsp;</td>
+	<td colspan="2">
+		<div class="error">{errors_list}</div>
+	</td>
+	<td>&nbsp;</td>	
+</tr><!-- end features_errors -->
+<tr class="usual" valign="top">
+	<td align="center">
+		&nbsp;{row_number}&nbsp;
+		<input type="hidden" name="feature_id_{features_number}" value="{feature_id}">
+		<input type="hidden" name="item_type_id_{features_number}" value="{item_type_id}">
+	</td>
+	<td>
+		<select name="group_id_{features_number}" style="width: 200px;"><!-- begin group_id -->
+			<option {group_id_selected} value="{group_id_value}">{group_id_description}<!-- end group_id -->
+		</select> 
+		<br>
+		<input size=20 type="text" name="feature_name_{features_number}" value="{feature_name}" style="width: 200px;">
+		<!--begin google_base_attribute_id_block--><br/>
+		<select name="google_base_attribute_id_{features_number}" style="width: 200px;"><!-- begin google_base_attribute_id -->
+			<option {google_base_attribute_id_selected} value="{google_base_attribute_id_value}">{google_base_attribute_id_description}<!-- end google_base_attribute_id -->
+		</select> 
+		<!--end google_base_attribute_id_block-->
+	</td>
+	<td>
+		<textarea rows="4" cols="40" name="feature_value_{features_number}">{feature_value}</textarea>
+	</td>
+	<td align="center">
+		<input type="checkbox" name="features_delete_{features_number}" {features_delete} value="1">
+	</td>
+</tr><!-- END features -->
+<tr class="usual">
+	<td colspan="4" align="right">
+		{ADD_MORE_FEATURES_QST} <input type="submit" value=" {ADD_BUTTON} " onClick="document.record.more_features.value=1">&nbsp;
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="4" align="right">
+		<input type="submit" value=" {UPDATE_BUTTON} " onCLick="document.record.operation.value='save'">
+		<input type="submit" value="{DELETE_ALL_BUTTON}" onCLick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">
+		<input type="submit" value=" {CANCEL_BUTTON} " onCLick="document.record.operation.value='cancel'">&nbsp;
+	</td>
+</tr>
+</table>	
+</form>
+
+	</td>
+</tr>
+</table>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

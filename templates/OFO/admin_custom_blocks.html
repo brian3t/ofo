@@ -1,0 +1,90 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {CUSTOM_BLOCKS_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript">
+function clearSearch() {
+		document.search_blocks.search_block.value = "";
+		document.search_blocks.submit();
+
+	}
+</script>
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<b>{CUSTOM_BLOCKS_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+<form name="search_blocks">
+<b>{SEARCH_FOR_MSG} {CUSTOM_BLOCKS_MSG}</b> <input type="text" name="search_block" id="search_block" value="{search_block}">
+<input type="submit" value="Search">
+<input type="button" value="Clear" onclick="clearSearch();">
+</form>
+<br><br>
+
+<fieldset>
+<legend>{CUSTOM_BLOCKS_MSG}</legend>
+
+<table border="0" cellpadding="6" cellspacing="1" width="100%"><!-- begin sorters -->
+<tr class="middle"align="center">
+	<td>
+		{sorter_block_id}
+	</td>
+	<td>
+		{sorter_block_name}
+	</td>
+	<td>
+		{sorter_block_notes}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- end sorters --><!-- BEGIN records -->
+<tr class="usual" align="center">
+	<td>
+		{block_id}
+	</td>
+	<td align="left">
+		&nbsp;{block_name}&nbsp;
+	</td>
+	<td align="left">
+		&nbsp;{block_notes}&nbsp;
+	</td>
+	<td>
+		<a href="{admin_custom_block_url}">{EDIT_BLOCK_MSG}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="4">
+		{NO_RECORDS_MSG}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="4">
+		<table cellspacing="0" cellpadding="0" border="0">
+		<tr>
+			<td>&nbsp;<a href="{admin_custom_block_new_url}">{NEW_CUSTOM_BLOCK_MSG}</a>&nbsp;</td>
+			<!-- begin navigator_block -->
+			<td>&nbsp;{navigator}&nbsp;</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>	
+
+</fieldset>
+
+
+{admin_footer}
+</body>
+</html>

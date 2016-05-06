@@ -1,0 +1,99 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_PRODUCT_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+
+<body class="commonbg">
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+				<td>
+					&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;
+					<b>{edit_newsletter_emails}</b>
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<td>
+<fieldset>
+<legend>{edit_newsletter_emails}</legend>
+
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+<td>
+	<form action="admin_newsletter_users_edit.php" name="record" method="POST">
+	<input type="hidden" name="operation" value="save">
+	<input type="hidden" name="page" value="{page}">
+	<input type="hidden" name="number_emails" value="{number_emails}">
+	<input type="hidden" name="more_emails" value="0">
+	<input type="hidden" name="date_added" value="{date_added}">
+	<input type="hidden" name="emails_ids" value="{emails_ids}">
+	<input type="hidden" name="rp" value="{rp}">
+	<table border="0" cellspacing="1" cellpadding="4" width="100%">
+		<tr class="middle" align="center" valign="top">
+			<td width="5%">
+				#
+			</td>
+			<td>
+				Email
+			</td>
+			<td width="5%">
+				Delete
+			</td>
+		</tr>
+		<!-- BEGIN emails -->
+		<!-- begin emails_errors -->
+		<tr  class="usual">
+		<td  colspan="3" align="center">
+		<div class="error">{errors_list}</div>
+		</td>
+		</tr>
+		<!-- end emails_errors -->
+		<tr class="usual">
+			<td align="center">
+				<input type="hidden" name="email_id_{emails_number}" value="{email_id}">
+				{emails_number}
+			</td>
+			<td align="center"><input class="field" type="text" name="email_{emails_number}" value="{email}" size="80" maxlength="255"><br>
+			</td>
+			<td align="center">
+				<input type="checkbox" name="emails_delete_{emails_number}" {emails_delete} value="1">
+			</td>
+		</tr>
+		<!-- END emails-->
+		<tr>
+			<td align="right" colspan="3" class="usual">
+				Add more emails? <input class="submit" type="submit" value=" {ADD_BUTTON} " onClick="document.record.more_emails.value=1;">&nbsp;
+			</td>
+		</tr>
+		<tr class="middle">
+			<td align = "right" width = "100%" colspan="3">
+				<input type="submit" class="submit" style="width: 90px;" value=" {save_button} " onCLick="document.record.operation.value='save'">
+				<input type="submit" class="submit" style="width: 90px;" value=" {CANCEL_BUTTON} " onCLick="document.record.operation.value='cancel'">
+			</td>
+		</tr>
+	</table>
+	</form>
+</td>
+</tr>
+</table>
+</fieldset>
+</td></tr></table>
+
+{admin_footer}
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+<html><head><title>{ADMINISTRATION_MSG} :: {FRIENDLY_URLS_MSG} :: {EDIT_MSG}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript" type= "text/javascript" src="../js/list_fields.js"></script>
+<script language="JavaScript">
+<!--
+var list_fields_names = new Array('sites');
+//-->
+</script>
+
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_friendly_urls_href}">{CUSTOM_FRIENDLY_URLS_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_IP_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{FRIENDLY_URLS_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<form action="{admin_friendly_url_href}" name="record" onSubmit="selectListFieldsAll();" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="friendly_id" value="{friendly_id}">
+<input type="hidden" name="sites" value="">
+<table border="0" cellspacing="1" cellpadding="6" width="100%"><!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{SCRIPT_NAME_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="script_name" value="{script_name}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{FRIENDLY_URL_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="friendly_url" value="{friendly_url}">
+	</td>
+</tr>
+<!--begin sitelist-->
+<tr class="usual">
+	<td colspan="2">
+		&nbsp; <input type="checkbox" name="sites_all" {sites_all} onClick="checkListFields('sites');" value="1">
+		{USE_FRIENDLY_URL_ALL_SITES_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td colspan="2">
+
+		<table width="100%" border="0" cellspacing="1" cellpadding="3">
+		<tr align="center" class="usual">
+			<td width="40%"><b>{AVAILABLE_SITES_MSG}</b></td>
+			<td width="20%"><b>{OPERATIONS_MSG}</b></td>
+			<td width="40%"><b>{USE_ITEM_SITES_MSG}</b></td>
+		</tr>
+		<tr align="center" class="usual">
+			<td width="40%">
+				<select name="available_sites" MULTIPLE size="10"  style="width: 300px;"><!-- begin available_sites -->
+					<option value="{site_id}">{site_name}<!-- end available_sites-->
+				</select>
+			</td>
+			<td width="20%">
+
+				<input class="submit" readonly type="button" name="add_sites" value="&nbsp;&nbsp; {ADD_BUTTON}  -> &nbsp;&nbsp;" onClick="addListFields('sites');"><br><br>
+				<input class="submit" type="button" name="remove_sites" value="<- {REMOVE_BUTTON}" onClick="removeListFields('sites');">
+			</td>
+			<td width="40%">
+
+				<select name="selected_sites" MULTIPLE size="10" style="width: 300px;"><!-- begin selected_sites -->
+					<option value="{site_id}">{site_name}<!-- end selected_sites -->
+				</select>
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<!--end sitelist-->
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onclick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</form>	
+
+	</td>
+</tr>
+</table>
+</fieldset>
+<script language="JavaScript">
+<!--
+	checkListFieldsAll();
+//-->
+</script>
+{admin_footer}
+</body>
+</html>

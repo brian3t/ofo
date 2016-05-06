@@ -1,0 +1,271 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_PAYMENT_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript">
+<!--
+	function changeStatus()
+	{
+		var checkedStatus = document.record.all_commissions.checked;
+		var commissionsNumber = document.record.commissions_number.value;
+		for (var i = 1; i <= commissionsNumber; i++) {
+			document.record.elements["commission_id_" + i].checked = checkedStatus;
+		}
+		calculateAmount();
+	}
+
+	function calculateAmount()
+	{
+		var currencyLeft = document.record.currency_left.value;
+		var currencyRight = document.record.currency_right.value;
+		var currencyRate = document.record.currency_rate.value;
+		var commissionsNumber = document.record.commissions_number.value;
+		var totalAmount = 0; 
+		var commissionAmount = 0;
+		for (var i = 1; i <= commissionsNumber; i++) {
+			if (document.record.elements["commission_id_" + i].checked) {
+				commissionAmount = parseFloat(document.record.elements["commission_amount_" + i].value);
+				totalAmount += commissionAmount;
+			}
+		}
+		var paymentAmount = document.getElementById("payment_amount");
+		if (paymentAmount) {
+			paymentAmount.innerHTML = currencyLeft + formatNumber(totalAmount * currencyRate) + currencyRight;
+		}
+		var commissionsChecked = document.getElementById("commissions_checked");
+		if (commissionsChecked) {
+			commissionsChecked.innerHTML = currencyLeft + formatNumber(totalAmount * currencyRate) + currencyRight;
+		}
+	}
+
+	function formatNumber(numberValue)
+	{
+		numberValue = Math.round(numberValue * 100) / 100;
+		var numberText = new String(numberValue);
+		if(numberText.indexOf(".") == -1) {
+			numberText += ".00";
+		} else if (numberText.indexOf(".") == (numberText.length - 2)) {
+			numberText += "0";
+		} else {
+			var numberParts = numberText.split(".");
+			if(numberParts[1].length > 2) {
+				numberText = numberParts[0] + "." + numberParts[1].substring(0, 2);
+			}
+		}
+		return numberText;
+	}
+
+//-->
+</script>
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_user_payments_href}">{COMMISSION_PAYMENTS}</a>&nbsp;&gt;&nbsp;<b>{EDIT_PAYMENT_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<form action="{admin_user_payment_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="payment_id" value="{payment_id}">
+<input type="hidden" name="payment_user_id" value="{payment_user_id}">
+<input type="hidden" name="commissions_number" value="{commissions_number}">
+<input type="hidden" name="currency_left" value="{currency_left}">
+<input type="hidden" name="currency_right" value="{currency_right}">
+<input type="hidden" name="currency_rate" value="{currency_rate}">
+
+<fieldset>
+<legend>{EDIT_PAYMENT_MSG}</legend>
+
+<table border="0" cellspacing="1" cellpadding="4" width="100%">
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{STATUS_MSG}
+	</td>
+	<td><!-- BEGIN is_paid -->
+		<input type="radio" name="is_paid" {is_paid_checked} value="{is_paid_value}">{is_paid_description}<!-- END is_paid -->
+	</td>
+</tr>
+<!-- begin user_id_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{USER_ID_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" size="10" name="user_id" value="{user_id}">
+	</td>
+</tr>
+<!-- end user_id_block -->
+<!-- begin user_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_USER_MSG} 
+	</td>
+	<td>
+		&nbsp;<b>{user_name}</b>
+	</td>
+</tr>
+<!-- end user_block -->
+<!-- begin paypal_account_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{PAYPAL_ACCOUNT_FIELD} 
+	</td>
+	<td>
+		&nbsp;<b>{paypal_account}</b>
+	</td>
+</tr>
+<!-- end paypal_account_block -->
+<!-- begin payment_total_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{PAYMENT_AMOUNT_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" size="10" name="payment_total" value="{payment_total}">
+	</td>
+</tr>
+<!-- end payment_total_block -->
+<!-- begin payment_amount -->
+<tr class="usual">
+	<td>
+		&nbsp;{PAYMENT_AMOUNT_MSG} 
+	</td>
+	<td>
+		&nbsp;<b><span id="payment_amount">{total_amount}</span></b>
+	</td>
+</tr>
+<!-- end payment_amount -->
+<tr class="usual">
+	<td>
+		&nbsp;{TRANSACTION_ID_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="60" name="transaction_id" value="{transaction_id}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PAYMENT_NAME_COLUMN} *
+	</td>
+	<td>
+		<input class="field" type="text" size="60" name="payment_name" value="{payment_name}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{NOTES_MSG}
+	</td>
+	<td>
+		<textarea cols="60" rows="5" name="payment_notes">{payment_notes}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<!-- BEGIN add_button -->
+		<input class="submit" type="submit" value="{ADD_NEW_MSG}" onclick="document.record.operation.value='save'"> &nbsp; <!-- END add_button -->
+		<!-- BEGIN update_button -->
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onclick="document.record.operation.value='save'"> &nbsp; <!-- END update_button -->
+		<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');"> &nbsp; <!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</fieldset>
+
+
+<!-- begin commission_info -->
+<br>
+<fieldset>
+<legend>{COMMISSION_INFORMATION_MSG}</legend>
+
+
+<table border="0" cellpadding="4" cellspacing="1" width="100%"><!-- begin sorters -->
+<tr class="middle"align="center">
+	<!-- begin all_commissions_block -->
+	<td width="1%">
+		<input type="checkbox" name="all_commissions" value="1" {all_commissions_checked} onClick="changeStatus();">
+	</td>
+	<!-- end all_commissions_block -->
+	<td>
+		{sorter_item_name}
+	</td>
+	<td>
+		{sorter_commission_amount}
+	</td>
+	<td>
+		{sorter_commission_type}
+	</td>
+	<td>
+		{sorter_commission_added}
+	</td>
+</tr><!-- end sorters --><!-- BEGIN records -->
+<tr class="usual" align="center">
+	<!-- begin commission_checkbox -->
+	<td>
+		<input type="checkbox" name="commission_id_{index}" {commission_checked} value="{commission_id}" onClick="calculateAmount();">
+		<input type="hidden" name="commission_amount_{index}" value="{commission_amount_value}">
+	</td>
+	<!-- end commission_checkbox -->
+	<td align="left">
+		&nbsp;{item_name}&nbsp;
+	</td>
+	<td align="right">
+		&nbsp;{commission_amount}&nbsp;
+	</td>
+	<td>
+		&nbsp;{commission_type}&nbsp;
+	</td>
+	<td>
+		&nbsp;{commission_added}&nbsp;
+	</td>
+</tr>
+<!-- END records -->
+<tr class="middle" align="center">
+	<!-- begin commission_footer -->
+	<td>
+		&nbsp;
+	</td>
+	<!-- end commission_footer -->
+	<td align="left">
+		&nbsp;{TOTAL_MSG}&nbsp;
+	</td>
+	<td align="right">
+		&nbsp;<span id="commissions_checked">{total_amount}</span>&nbsp;
+	</td>
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr>
+</table>	
+
+</fieldset>
+<!-- end commission_info -->
+
+</form>	
+
+{admin_footer}
+
+</body></html>

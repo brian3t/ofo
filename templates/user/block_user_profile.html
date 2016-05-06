@@ -1,0 +1,598 @@
+<script language="JavaScript" type="text/javascript">
+<!--	
+	var site_url = "{site_url}";
+//-->
+</script>
+
+<div class="block-user-profile">
+<div class="titleTopCenter">
+	
+	
+<h1>{regisration_step}</span>{PROFILE_TITLE}</h1>
+</div>
+<!-- begin intro_block -->
+<div class="wrapper">{intro_text}</div>
+<!-- end intro_block -->
+
+<div class="basket">
+<form action="{user_profile_url}" name="user_profile" method="POST" onSubmit="submit_editor(Array('editor_sd','editor_fd'));">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="type" value="{type}">
+<input type="hidden" name="return_page" value="{return_page}">
+<input type="hidden" name="site_url" value="{site_url}">
+<input type="hidden" name="affiliate_help" value="{AFFILIATE_CODE_HELP_MSG}">
+<table width="100%" border="0" cellspacing="1" align="center" class="orderInfo"><!-- BEGIN errors -->
+<tr>
+	<td colspan="2" class="usualbg" align="center">
+		<div class="errorbg">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<!-- begin subscription_title -->
+<tr>
+	<td class="middlebg" colspan="2">
+		<b>{SUBSCRIPTION_MSG}</b>
+	</td>
+</tr>
+<!-- end subscription_title -->
+<!-- begin current_subscription -->
+<tr>
+	<td>
+		{CURRENT_SUBSCRIPTION_MSG}
+	</td>
+	<td>
+		<span class="title">{subscription_name}</span> - <span class="ourprice">{subscription_fee}</span> ({subscription_period})<br>
+	</td>
+</tr>
+<!-- end current_subscription -->
+<!-- begin expiry_date_info -->
+<tr class="usualbg">
+	<td>
+		{SUBSCRIPTION_EXPIRATION_MSG}
+	</td>
+	<td>
+		{expiry_date}
+	</td>
+</tr>
+<!-- end expiry_date_info -->
+<!-- begin subscription_options -->
+<tr>
+	<td class="usualbg" colspan="2">
+		<!-- begin subscription_id -->
+		<input type="radio" name="subscription_id" {subscription_id_checked} value="{subscription_id_value}">
+		<span class="title">{subscription_name}</span> - <span class="ourprice">{subscription_fee}</span> ({subscription_period})<br><!-- end subscription_id -->
+	</td>
+</tr>
+<!-- end subscription_options -->
+<!-- begin profile_sections -->
+<!-- begin profile_section -->
+<tr class="middlebg">
+	<td colspan="2">
+		<b>{section_name}</b>
+	</td>
+</tr>
+<!-- end profile_section -->
+<!-- begin profile_properties -->
+<tr id="pp_block_{property_id}" class="usualbg">
+	<td style="{property_style}">
+		{property_name} <span class="required">{property_required}</span>
+	</td>
+	<td style="{property_style}">
+		{property_control} 
+	</td>
+</tr><!-- end profile_properties -->
+<!-- end profile_sections -->
+
+<!-- begin login_info -->
+<tr class="middlebg">
+	<td colspan="2">
+		<b>{LOGIN_INFO_MSG}</b>
+	</td>
+</tr>
+<!-- end login_info -->
+<!-- begin login_block -->
+<tr class="usualbg">
+	<td>
+		{LOGIN_FIELD}{login_desc}<span class="required">*</span>	</td>
+	<td>
+		<input class="text" type="text" name="login" value="{login}" size="40" maxlength="64">
+	</td>
+</tr><!-- end login_block -->
+<!-- begin affiliate_code_block -->
+<tr class="usualbg">
+	<td>
+		{AFFILIATE_CODE_FIELD}<span class="required">*</span>	</td>
+	<td>
+		<input class="text" type="text" name="affiliate_code" value="{affiliate_code}" size="40" maxlength="64" onChange="changeAffiliateCode();" onKeyUp="changeAffiliateCode();">
+		<br>(<span id="affiliate_help_info">{affiliate_code_help}</span>)
+	</td>
+</tr><!-- end affiliate_code_block -->
+<!-- begin password_block -->
+<tr class="usualbg">
+	<td>
+		{PASSWORD_FIELD}<span class="required">*</span>	</td>
+	<td>
+		<input class="text" type="password" name="password" value="{password}" size="40" maxlength="32">
+	</td>
+</tr>
+<!-- end password_block -->
+<!-- begin confirm_block -->
+<tr class="usualbg">
+	<td>
+		{CONFIRM_PASS_FIELD}<span class="required">*</span>	</td>
+	<td>
+		<input class="text" type="password" name="confirm" value="{confirm}" size="40">
+	</td>
+</tr>
+<!-- end confirm_block -->
+<!-- begin affiliate_code_info_block -->
+<tr class="usualbg">
+	<td>
+		{AFFILIATE_CODE_FIELD}
+	</td>
+	<td>
+		<b>{affiliate_code_info}</b> 
+		<input type="hidden" name="affiliate_code_info" value="{affiliate_code_info}">
+		<br>
+		(<span id="affiliate_help_info">{affiliate_code_help}</span>)
+	</td>
+</tr>
+<!-- end affiliate_code_info_block -->
+<!-- begin personal -->
+<tr class="middlebg">
+	<td colspan="2">
+		<b>{PERSONAL_DETAILS_MSG}</b>
+	</td>
+</tr><!-- end personal -->
+<!-- begin name_block -->
+<tr class="usualbg">
+	<td>
+		{NAME_MSG}<span class="required">{name_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="name" value="{name}" size="40" maxlength="128">
+	</td>
+</tr><!-- end name_block --><!-- begin first_name_block -->
+<tr class="usualbg">
+	<td>
+		{FIRST_NAME_FIELD}<span class="required">{first_name_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="first_name" value="{first_name}" size="40" maxlength="64">
+	</td>
+</tr><!-- end first_name_block --><!-- begin last_name_block -->
+<tr class="usualbg">
+	<td>
+		{LAST_NAME_FIELD}<span class="required">{last_name_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="last_name" value="{last_name}" size="40" maxlength="64">
+	</td>
+</tr><!-- end last_name_block --><!-- begin company_id_block -->
+<tr class="usualbg">
+	<td>
+		{COMPANY_SELECT_FIELD}<span class="required">{company_id_required}</span>	</td>
+	<td>
+		<select class="text" name="company_id"><!-- begin company_id -->
+			<option {company_id_selected} value="{company_id_value}">{company_id_description}<!-- end company_id -->
+		</select>
+	</td>
+</tr><!-- end company_id_block --><!-- begin company_name_block -->
+<tr class="usualbg">
+	<td>
+		{COMPANY_NAME_FIELD}<span class="required">{company_name_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="company_name" value="{company_name}" size="40" maxlength="128">
+	</td>
+</tr><!-- end company_name_block --><!-- begin email_block -->
+<tr class="usualbg">
+	<td>
+		{EMAIL_FIELD}<span class="required">{email_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="email" value="{email}" size="40" maxlength="128">
+	</td>
+</tr><!-- end email_block --><!-- begin address1_block -->
+<tr class="usualbg">
+	<td>
+		{STREET_FIRST_FIELD}<span class="required">{address1_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="address1" value="{address1}" size="40" maxlength="255">
+	</td>
+</tr><!-- end address1_block --><!-- begin address2_block -->
+<tr class="usualbg">
+	<td>
+		{STREET_SECOND_FIELD}<span class="required">{address2_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="address2" value="{address2}" size="40" maxlength="255">
+	</td>
+</tr><!-- end address2_block --><!-- begin city_block -->
+<tr class="usualbg">
+	<td>
+		{CITY_FIELD}<span class="required">{city_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="city" value="{city}" size="40" maxlength="128">
+	</td>
+</tr><!-- end city_block --><!-- begin province_block -->
+<tr class="usualbg">
+	<td>
+		{PROVINCE_FIELD}<span class="required">{province_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="province" value="{province}" size="40" maxlength="128">
+	</td>
+</tr><!-- end province_block --><!-- begin state_id_block -->
+<tr class="usualbg">
+	<td>
+		{STATE_FIELD}<span class="required">{state_id_required}</span>	</td>
+	<td>
+		<select class="text" name="state_id" id="state_id"><!-- begin state_id -->
+			<option {state_id_selected} value="{state_id_value}">{state_id_description}<!-- end state_id -->
+		</select>
+	</td>
+</tr><!-- end state_id_block --><!-- begin zip_block -->
+<tr class="usualbg">
+	<td>
+		{ZIP_FIELD}<span class="required">{zip_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="zip" value="{zip}" size="10" maxlength="16">
+	</td>
+</tr><!-- end zip_block --><!-- begin country_id_block -->
+<tr class="usualbg">
+	<td>
+		{COUNTRY_FIELD}<span class="required">{country_id_required}</span>	</td>
+	<td>
+		<select class="text" name="country_id" id="country_id" onChange="xajax_addstates('state_id', document.user_profile.country_id.value);"><!-- begin country_id -->
+			<option {country_id_selected} value="{country_id_value}">{country_id_description}<!-- end country_id -->
+		</select>
+	</td>
+</tr><!-- end country_id_block --><!-- begin phone_block -->
+<tr class="usualbg">
+	<td>
+		{PHONE_FIELD}<span class="required">{phone_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="phone" value="{phone}" size="40" maxlength="32">
+	</td>
+</tr><!-- end phone_block --><!-- begin daytime_phone_block -->
+<tr class="usualbg">
+	<td>
+		{DAYTIME_PHONE_FIELD}<span class="required">{daytime_phone_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="daytime_phone" value="{daytime_phone}" size="40" maxlength="32">
+	</td>
+</tr><!-- end daytime_phone_block --><!-- begin evening_phone_block -->
+<tr class="usualbg">
+	<td>
+		{EVENING_PHONE_FIELD}<span class="required">{evening_phone_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="evening_phone" value="{evening_phone}" size="40" maxlength="32">
+	</td>
+</tr><!-- end evening_phone_block --><!-- begin cell_phone_block -->
+<tr class="usualbg">
+	<td>
+		{CELL_PHONE_FIELD}<span class="required">{cell_phone_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="cell_phone" value="{cell_phone}" size="40" maxlength="32"> 
+	</td>
+</tr><!-- end cell_phone_block --><!-- begin fax_block -->
+<tr class="usualbg">
+	<td>
+		{FAX_FIELD}<span class="required">{fax_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="fax" value="{fax}" size="40" maxlength="32">
+	</td>
+</tr><!-- end fax_block -->
+<!-- begin birth_date_block -->
+<tr class="usualbg">
+	<td>
+		{BIRTHDAY_MSG}<span class="required">{birth_date_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="birth_day" value="{birth_day}" size="2" maxlength="2">, 
+		<select class="text" name="birth_month"><!-- begin birth_month -->
+			<option {birth_month_selected} value="{birth_month_value}">{birth_month_description}<!-- end birth_month -->
+		</select>, 
+		<input class="text" type="text" name="birth_year" value="{birth_year}" size="5" maxlength="4">
+		({DAY_MSG}, {MONTH_MSG}, {YEAR_MSG})
+	</td>
+</tr><!-- end birth_date_block -->
+
+<!-- begin personal_image_block -->
+<tr class="usualbg">
+	<td>
+		{PERSONAL_IMAGE_FIELD} 
+	</td>
+	<td>
+		<input class="text" type="text" size="60" maxlength="255" name="personal_image" value="{personal_image}"> 
+		&nbsp;<a href="javascript:openWindow('{user_upload_href}', 'personal_image')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+	</td>
+</tr><!-- end personal_image_block -->
+
+<!-- begin delivery -->
+<tr class="middlebg">
+	<td colspan="2">
+		<b>{DELIVERY_DETAILS_MSG}</b>
+		<!-- begin same_as_personal_block -->
+		<table cellpadding=0 cellspacing=0 border=0>
+		<tr>
+			<td>
+				<font class="smallText">{SAME_DETAILS_MSG}</font>
+			</td>
+			<td valign="top">
+				&nbsp;<input type="checkbox" name="same_as_personal" {same_as_personal} value="1" onClick="checkSame();" id="samedetails"><br>
+			</td>
+		</tr>
+		</table>
+		<!-- end same_as_personal_block -->
+	</td>
+</tr><!-- end delivery -->
+<!-- begin delivery_name_block -->
+<tr class="usualbg">
+	<td>
+		{NAME_MSG}<span class="required">{delivery_name_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="delivery_name" value="{delivery_name}" size="40" maxlength="128" onChange="uncheckSame();">
+	</td>
+</tr><!-- end delivery_name_block --><!-- begin delivery_first_name_block -->
+<tr class="usualbg">
+	<td>
+		{FIRST_NAME_FIELD}<span class="required">{delivery_first_name_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="delivery_first_name" value="{delivery_first_name}" size="40" maxlength="64" onChange="uncheckSame();">
+	</td>
+</tr><!-- end delivery_first_name_block --><!-- begin delivery_last_name_block -->
+<tr class="usualbg">
+	<td>
+		{LAST_NAME_FIELD}<span class="required">{delivery_last_name_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="delivery_last_name" value="{delivery_last_name}" size="40" maxlength="64" onChange="uncheckSame();">
+	</td>
+</tr><!-- end delivery_last_name_block --><!-- begin delivery_company_id_block -->
+<tr class="usualbg">
+	<td>
+		{COMPANY_SELECT_FIELD}<span class="required">{delivery_company_id_required}</span>	</td>
+	<td>
+		<select class="text" name="delivery_company_id" onChange="uncheckSame();">
+		<!-- begin delivery_company_id -->
+			<option {delivery_company_id_selected} value="{delivery_company_id_value}">{delivery_company_id_description}</option>
+		<!-- end delivery_company_id -->
+		</select>
+	</td>
+</tr><!-- end delivery_company_id_block --><!-- begin delivery_company_name_block -->
+<tr class="usualbg">
+	<td>
+		{COMPANY_NAME_FIELD}<span class="required">{delivery_company_name_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="delivery_company_name" value="{delivery_company_name}" size="40" maxlength="128" onChange="uncheckSame();">
+	</td>
+</tr><!-- end delivery_company_name_block --><!-- begin delivery_email_block -->
+<tr class="usualbg">
+	<td>
+		{EMAIL_FIELD}<span class="required">{delivery_email_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="delivery_email" value="{delivery_email}" size="40" maxlength="128" onChange="uncheckSame();">
+	</td>
+</tr><!-- end delivery_email_block --><!-- begin delivery_address1_block -->
+<tr class="usualbg">
+	<td>
+		{STREET_FIRST_FIELD}<span class="required">{delivery_address1_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="delivery_address1" value="{delivery_address1}" size="40" maxlength="255" onChange="uncheckSame();">
+	</td>
+</tr><!-- end delivery_address1_block --><!-- begin delivery_address2_block -->
+<tr class="usualbg">
+	<td>
+		{STREET_SECOND_FIELD}<span class="required">{delivery_address2_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="delivery_address2" value="{delivery_address2}" size="40" maxlength="255" onChange="uncheckSame();">
+	</td>
+</tr><!-- end delivery_address2_block --><!-- begin delivery_city_block -->
+<tr class="usualbg">
+	<td>
+		{CITY_FIELD}<span class="required">{delivery_city_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="delivery_city" value="{delivery_city}" size="40" maxlength="128" onChange="uncheckSame();">
+	</td>
+</tr><!-- end delivery_city_block --><!-- begin delivery_province_block -->
+<tr class="usualbg">
+	<td>
+		{PROVINCE_FIELD}<span class="required">{delivery_province_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="delivery_province" value="{delivery_province}" size="40" maxlength="128" onChange="uncheckSame();">
+	</td>
+</tr><!-- end delivery_province_block --><!-- begin delivery_state_id_block -->
+<tr class="usualbg">
+	<td>
+		{STATE_FIELD}<span class="required">{delivery_state_id_required}</span>	</td>
+	<td>
+		<select class="text" name="delivery_state_id" id="delivery_state_id" onChange="uncheckSame();"><!-- begin delivery_state_id -->
+			<option {delivery_state_id_selected} value="{delivery_state_id_value}">{delivery_state_id_description}<!-- end delivery_state_id -->
+		</select>
+	</td>
+</tr><!-- end delivery_state_id_block --><!-- begin delivery_zip_block -->
+<tr class="usualbg">
+	<td>
+		{ZIP_FIELD}<span class="required">{delivery_zip_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="delivery_zip" value="{delivery_zip}" size="10" maxlength="16" onChange="uncheckSame();">
+	</td>
+</tr><!-- end delivery_zip_block --><!-- begin delivery_country_id_block -->
+<tr class="usualbg">
+	<td>
+		{COUNTRY_FIELD}<span class="required">{delivery_country_id_required}</span>	</td>
+	<td>
+		<select class="text" name="delivery_country_id" id="delivery_country_id" onChange="xajax_addstates('delivery_state_id', document.user_profile.delivery_country_id.value);uncheckSame();">
+		<!-- begin delivery_country_id -->
+			<option {delivery_country_id_selected} value="{delivery_country_id_value}">{delivery_country_id_description}</option>
+		<!-- end delivery_country_id -->
+		</select>
+	</td>
+</tr><!-- end delivery_country_id_block --><!-- begin delivery_phone_block -->
+<tr class="usualbg">
+	<td>
+		{PHONE_FIELD}<span class="required">{delivery_phone_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="delivery_phone" value="{delivery_phone}" size="40" maxlength="32" onChange="uncheckSame();">
+	</td>
+</tr><!-- end delivery_phone_block --><!-- begin delivery_daytime_phone_block -->
+<tr class="usualbg">
+	<td>
+		{DAYTIME_PHONE_FIELD}<span class="required">{delivery_daytime_phone_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="delivery_daytime_phone" value="{delivery_daytime_phone}" size="40" maxlength="32" onChange="uncheckSame();">
+	</td>
+</tr><!-- end delivery_daytime_phone_block --><!-- begin delivery_evening_phone_block -->
+<tr class="usualbg">
+	<td>
+		{EVENING_PHONE_FIELD}<span class="required">{delivery_evening_phone_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="delivery_evening_phone" value="{delivery_evening_phone}" size="40" maxlength="32" onChange="uncheckSame();">
+	</td>
+</tr><!-- end delivery_evening_phone_block --><!-- begin delivery_cell_phone_block -->
+<tr class="usualbg">
+	<td>
+		{CELL_PHONE_FIELD}<span class="required">{delivery_cell_phone_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="delivery_cell_phone" value="{delivery_cell_phone}" size="40" maxlength="32" onChange="uncheckSame();"> 
+	</td>
+</tr><!-- end delivery_cell_phone_block --><!-- begin delivery_fax_block -->
+<tr class="usualbg">
+	<td>
+		{FAX_FIELD}<span class="required">{delivery_fax_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="delivery_fax" value="{delivery_fax}" size="40" maxlength="32" onChange="uncheckSame();">
+	</td>
+</tr><!-- end delivery_fax_block -->
+<!-- begin additional -->
+<tr>
+	<td class="middlebg" colspan="2">
+		<b>{ADDITIONAL_DETAILS_MSG}</b>
+	</td>
+</tr><!-- end additional -->
+<!-- BEGIN nickname_block -->
+<tr class="usualbg">
+	<td>
+		{NICKNAME_FIELD}<span class="required">{nickname_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="nickname" value="{nickname}" size="40" maxlength="255">
+	</td>
+</tr>
+<!-- END nickname_block -->
+<!-- BEGIN friendly_url_block -->
+<tr class="usualbg">
+	<td>
+		{FRIENDLY_URL_MSG}<span class="required">{friendly_url_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="friendly_url" value="{friendly_url}" size="80" maxlength="255">
+	</td>
+</tr>
+<!-- END friendly_url_block -->
+<!-- begin tax_id_block -->
+<tr class="usualbg">
+	<td>
+		{TAX_ID_FIELD}<span class="required">{tax_id_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="tax_id" value="{tax_id}" size="40" maxlength="128">
+	</td>
+</tr><!-- end tax_id_block -->
+<!-- begin paypal_account_block -->
+<tr class="usualbg">
+	<td>
+		{PAYPAL_ACCOUNT_FIELD}<span class="required">{paypal_account_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="paypal_account" value="{paypal_account}" size="40" maxlength="128">
+	</td>
+</tr><!-- end paypal_account_block -->
+<!-- begin msn_account_block -->
+<tr class="usualbg">
+	<td>
+		{MSN_ACCOUNT_FIELD}<span class="required">{msn_account_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="msn_account" value="{msn_account}" size="40" maxlength="128">
+	</td>
+</tr><!-- end msn_account_block -->
+<!-- begin icq_number_block -->
+<tr class="usualbg">
+	<td>
+		{ICQ_NUMBER_FIELD}<span class="required">{icq_number_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="icq_number" value="{icq_number}" size="40" maxlength="128">
+	</td>
+</tr><!-- end icq_number_block -->
+<!-- begin user_site_url_block -->
+<tr class="usualbg">
+	<td>
+		{USER_SITE_URL_FIELD}<span class="required">{user_site_url_required}</span>	</td>
+	<td>
+		<input class="text" type="text" name="user_site_url" value="{user_site_url}" size="40" maxlength="128">
+	</td>
+</tr><!-- end user_site_url_block -->
+<!-- begin short_description_block -->
+<tr class="usualbg">
+	<td>
+		{SHORT_DESCRIPTION_MSG}<span class="required">{short_description_required}</span>	</td>
+	<td>
+		<textarea class="text" name="short_description" style="display: block; width: 565px; height: 100px;">{short_description}</textarea>
+		<script language= "JavaScript" type= "text/javascript">
+		<!--
+			var editor_sd = new VA_HTMLeditor('content_sd','','{short_description_editor}');
+			editor_sd.text_field_name = 'short_description';
+			editor_sd.formname = 'user_profile';
+			editor_sd.css_file = '{css_file}';
+			editor_sd.editor_type = 'user_editor';
+			editor_sd.displayEditor('editor_sd', 565, 100);
+		//-->
+		</script>
+	</td>
+</tr><!-- end short_description_block --><!-- begin full_description_block -->
+<tr class="usualbg">
+	<td>
+		{FULL_DESCRIPTION_MSG}<span class="required">{full_description_required}</span>	</td>
+	<td>
+		<textarea class="text" name="full_description" style="display: block; width: 565px; height: 200px;">{full_description}</textarea>
+		<script language= "JavaScript" type= "text/javascript">
+		<!--
+			var editor_fd = new VA_HTMLeditor('content_fd','','{full_description_editor}');
+			editor_fd.text_field_name = 'full_description';
+			editor_fd.formname = 'user_profile';
+			editor_fd.css_file = '{css_file}';
+			editor_fd.editor_type = 'user_editor';
+			editor_fd.displayEditor('editor_fd', 565, 200);
+		//-->
+		</script>
+	</td>
+</tr><!-- end full_description_block -->
+<!-- begin is_hidden_block -->
+<tr class="usualbg">
+	<td>
+		{HIDE_MY_ONLINE_STATUS_MSG}<span class="required">{is_hidden_required}</span>	</td>
+	<td>
+		<!-- begin is_hidden -->
+		<input type="radio" name="is_hidden" {is_hidden_checked} value="{is_hidden_value}">{is_hidden_description}<!-- end is_hidden -->
+	</td>
+</tr><!-- end is_hidden_block -->
+<!-- begin subscribe_block -->
+<tr class="middlebg">
+	<td height="1" colspan="2"></td>
+</tr>
+<tr class="usualbg">
+	<td></td>
+	<td>
+		<label><input type="checkbox" name="subscribe" {subscribe} value="1"> {SUBSCRIBE_CHECKBOX_MSG}</label>
+	</td>
+</tr>
+<!-- end subscribe_block -->
+<!-- begin validation_number_block -->
+<tr class="usualbg">
+	<td class="usualbg">
+		{VALIDATION_CODE_FIELD}<span class="required">{validation_number_required}</span>	</td>
+	<td class="usualbg">
+		<input class="field" type="text" name="validation_number" size="4" value="{validation_number}">
+		<img src="validation_image.php" border="0" align="absmiddle">
+	</td>
+</tr>
+<!-- end validation_number_block -->
+
+<tr class="middlebg">
+	<td colspan="2" align="right">
+		<!-- BEGIN save_button --><input class="button" type="submit" value="{save_button_title}" onCLick="document.user_profile.operation.value='save'"><!-- END save_button -->
+		<input class="button" id="cancel" type="submit" value="{CANCEL_BUTTON}" onCLick="document.user_profile.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</form>
+</div>
+</div>

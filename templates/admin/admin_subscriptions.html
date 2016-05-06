@@ -1,0 +1,157 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{SUBSCRIPTIONS_MSG}</title>
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+<script language="JavaScript">
+<!--
+	function clearSearch() {
+		document.search_form.s_ut.selectedIndex = 0;
+		if (document.search_form.s_g) {
+			document.search_form.s_g.selectedIndex = 0;
+		}
+		document.search_form.submit();
+	}
+
+//-->
+</script>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<b>{SUBSCRIPTIONS_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+	<tr>
+		<td valign="top">
+
+			<table border="0" cellpadding="2" cellspacing="2">
+				<form action="{admin_subscriptions_href}" name="search_form">
+				<!-- BEGIN errors -->
+				<tr>
+					<td colspan="2">
+					&nbsp;<div align="center" class="error"><font style="font-size:8pt">{errors_list}</font></div>&nbsp;
+					</td>
+				</tr>
+				<!-- END errors -->
+				<tr>
+					<td colspan="2"><b>{ADMIN_FILTER_MSG}:</b></td>
+				</tr>
+				<tr>
+					<td>{USER_TYPE_MSG}:</td>
+					<td>
+					<select name="s_ut" class="search">
+					<!-- BEGIN s_ut -->
+						<option {s_ut_selected} value="{s_ut_value}">{s_ut_description}
+					<!-- END s_ut -->
+					</select>
+					</td>
+				</tr>
+				<!-- begin s_g_block -->
+				<tr>
+					<td>{GROUP_MSG}:</td>
+					<td>
+					<select name="s_g" class="search">
+					<!-- BEGIN s_g -->
+						<option {s_g_selected} value="{s_g_value}">{s_g_description}
+					<!-- END s_g -->
+					</select>
+					</td>
+				</tr>
+				<!-- end s_g_block -->
+				<tr>
+					<td colspan="2"><input type="submit" value="Search" class="submit">&nbsp;<input type="button" value="{CLEAR_BUTTON}" class="submit" onClick="clearSearch()"></td>
+				</tr>
+				</form>
+			</table>
+
+		</td>
+	</tr>
+</table>
+
+<br>
+<fieldset>
+<legend>{USERS_TYPES_MSG}</legend>
+<table border="0" cellspacing="1" cellpadding="6" width="100%"><!-- begin titles -->
+<tr align="center" class="middle">
+	<td>
+		{sorter_subscription_id}
+	</td>
+	<td>
+		{sorter_subscription_name}
+	</td>
+	<td>
+		{sorter_type_name}
+	</td>
+	<td>
+		{sorter_group_name}
+	</td>
+	<td>
+		{sorter_is_active}
+	</td>
+	<td>
+		{sorter_is_default}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- end titles --><!-- BEGIN records -->
+<tr class="usual" align="center">
+	<td>
+		{subscription_id}
+	</td>
+	<td align="left">
+		&nbsp;{subscription_name}
+	</td>
+	<td>
+		{type_name}
+	</td>
+	<td>
+		{group_name}
+	</td>
+	<td>
+		{is_active}
+	</td>
+	<td>
+		{is_default}
+	</td>
+	<td>
+		<a href="{admin_subscription_url}">{EDIT_TYPE_MSG}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="7">
+		&nbsp;{NO_RECORDS}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="7">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+		<tr class="middle">
+			<td>
+				&nbsp;<a href="{admin_subscription_new_url}">{ADD_NEW_MSG}</a>
+			</td><!-- begin navigator_block -->
+			<td align="right">&nbsp;{navigator}&nbsp;</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>	
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

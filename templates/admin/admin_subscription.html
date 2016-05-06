@@ -1,0 +1,206 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{SUBSCRIPTION_MSG}</title>
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+<body class="commonbg">
+
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_subscriptions_href}">{SUBSCRIPTIONS_MSG}</a>&nbsp;&gt;
+			<b>{SUBSCRIPTION_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{SUBSCRIPTION_MSG}</legend>
+
+<form action="{admin_subscription_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="tab" value="{tab}">
+<input type="hidden" name="page" value="{page}">
+<input type="hidden" name="sort_ord" value="{sort_ord}">
+<input type="hidden" name="sort_dir" value="{sort_dir}">
+<input type="hidden" name="s_ut" value="{s_ut}">
+<input type="hidden" name="s_g" value="{s_g}">
+<input type="hidden" name="subscription_id" value="{subscription_id}">
+
+	<table border="0" cellpadding="6" cellspacing="1" width="100%">
+	<!-- BEGIN errors -->
+	<tr class="usual">
+		<td colspan="2" align="center">
+			<div class="error">{errors_list}</div>
+		</td>
+	</tr><!-- END errors -->
+	<tr class="middle">
+		<td colspan="2">
+			&nbsp;{GLOBAL_MSG}
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{IS_ACTIVE_MSG}
+		</td>
+		<td>
+			<!-- begin is_active -->
+			<input type="radio" name="is_active" {is_active_checked} value="{is_active_value}">{is_active_description}<!-- end is_active -->
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{DEFAULT_MSG}
+		</td>
+		<td>
+			<!-- begin is_default -->
+			<input type="radio" name="is_default" {is_default_checked} value="{is_default_value}">{is_default_description}<!-- end is_default -->
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{USER_TYPE_ID_MSG}
+		</td>
+		<td>
+			<select name="user_type_id"><!-- begin user_type_id -->
+				<option {user_type_id_selected} value="{user_type_id_value}">{user_type_id_description}<!-- end user_type_id -->
+			</select>
+		</td>
+	</tr><!-- begin group_id_block -->
+	<tr class="usual">
+		<td>
+			&nbsp;{GROUP_MSG}
+		</td>
+		<td>
+			<select name="group_id"><!-- begin group_id -->
+				<option {group_id_selected} value="{group_id_value}">{group_id_description}<!-- end group_id -->
+			</select>
+		</td>
+	</tr><!-- end group_id_block -->
+	<tr class="middle">
+		<td colspan="2">
+			&nbsp;{SUBSCRIPTION_OPTIONS_MSG}
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{SUBSCRIPTION_RECURRING_MSG}
+		</td>
+		<td>
+			<input type="checkbox" name="is_subscription_recurring" {is_subscription_recurring} value="1"> 
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{SUBSCRIPTION_NAME_MSG} *
+		</td>
+		<td>
+			<input class="field" type="text" name="subscription_name" value="{subscription_name}" size="60" maxlength="255">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{SUBSCRIPTION_FEE_MSG} *
+		</td>
+		<td>
+			<input class="field" type="text" name="subscription_fee" value="{subscription_fee}" size="20" maxlength="20">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{SUBSCRIPTION_PERIOD_MSG} *
+		</td>
+		<td>
+			<table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td>
+					<input class="field" type="text" name="subscription_interval" value="{subscription_interval}" size="10" maxlength="10"> &nbsp;
+				</td>
+				<td>
+					<select name="subscription_period"><!-- begin subscription_period -->
+						<option {subscription_period_selected} value="{subscription_period_value}">{subscription_period_description}<!-- end subscription_period -->
+					</select>
+				</td>
+				<td>
+					&nbsp; ({SUBSCRIPTION_INTERVAL_DESC})
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{SUBSCRIPTION_SUSPEND_MSG}
+		</td>
+		<td>
+			<input class="field" type="text" name="subscription_suspend" value="{subscription_suspend}" size="20" maxlength="20">
+			({SUBSCRIPTION_SUSPEND_DESC})
+		</td>
+	</tr>
+
+	<tr class="middle">
+		<td colspan="2">
+			&nbsp;{SUBSCRIPTION_REWARDS_MSG}
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{AFFILIATE_COMMISSION_MSG}
+		</td>
+		<td>
+			<select name="subscription_affiliate_type"><!-- begin subscription_affiliate_type -->
+				<option {subscription_affiliate_type_selected} value="{subscription_affiliate_type_value}">{subscription_affiliate_type_description}<!-- end subscription_affiliate_type -->
+			</select>
+			&nbsp;{AMOUNT_MSG} <input class="field" type="text" name="subscription_affiliate_amount" size="20" value="{subscription_affiliate_amount}">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{REWARD_POINTS_MSG}
+		</td>
+		<td>
+			<select name="subscription_points_type"><!-- begin subscription_points_type -->
+				<option {subscription_points_type_selected} value="{subscription_points_type_value}">{subscription_points_type_description}<!-- end subscription_points_type -->
+			</select>
+			&nbsp;{AMOUNT_MSG}
+			<input class="field" type="text" name="subscription_points_amount" value="{subscription_points_amount}" size="20" maxlength="10">
+		</td>
+	</tr>
+	<tr class="usual">
+		<td>
+			&nbsp;{REWARD_CREDITS_MSG}
+		</td>
+		<td>
+			<select name="subscription_credits_type"><!-- begin subscription_credits_type -->
+				<option {subscription_credits_type_selected} value="{subscription_credits_type_value}">{subscription_credits_type_description}<!-- end subscription_credits_type -->
+			</select>
+			&nbsp;{AMOUNT_MSG}
+			<input class="field" type="text" name="subscription_credits_amount" value="{subscription_credits_amount}" size="20" maxlength="10">
+		</td>
+	</tr>
+	<tr class="middle">
+		<td></td>
+		<td>
+			<input class="submit" type="submit" value="{save_button}" onclick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+			<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{confirm_delete}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+			<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+		</td>
+	</tr>
+	
+	</table>
+</form>
+
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

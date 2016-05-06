@@ -1,0 +1,101 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_SITE_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_sites_href}">{ADMIN_SITE_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_SITE_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>Edit Site</legend>
+
+<table border="0" cellspacing="1" cellpadding="4" width="100%">
+<form action="{admin_site_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="param_site_id" value="{param_site_id}">
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual"> 
+	<td class="middle" colspan="2">
+		&nbsp;General
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_TITLE_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" size="60" name="site_name" value="{site_name}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{DESCRIPTION_MSG}
+	</td>
+	<td>
+		<textarea cols="60" rows="5" name="site_description">{site_description}</textarea>
+	</td>
+</tr>
+<!-- begin duplicate -->
+<tr class="usual">
+	<td valign="top">&nbsp;{DUPLICATE_SITE_SETTINGS_MSG}</td>
+	<td>
+		<input type="checkbox" name="duplicate_global_settings" {duplicate_global_settings} value="1">{GLOBAL_SETTINGS_MSG}&nbsp;&nbsp;
+		<input type="checkbox" name="duplicate_page_settings"   {duplicate_page_settings}   value="1">{PAGE_SETTINGS_MSG}
+		<select name="duplicate_site_id" > <!-- begin duplicate_site_option -->
+				<option {duplicate_site_selected} value="{duplicate_site_id}">{duplicate_site_name}<!-- end duplicate_site_option -->
+		</select>	
+		<input class="submit" type="submit" value="Duplicate" onclick="document.record.operation.value='duplicate';return confirm('{DUPLICATE_SITE_SETTINGS_QST}');"> &nbsp;				
+	</td>
+</tr>
+<!-- end duplicate -->
+<!-- begin clear -->
+<tr class="usual">
+	<td valign="top">&nbsp;{CLEAR_SITE_SETTINGS_MSG}</td>
+	<td>
+		<input type="checkbox" name="clear_global_settings" {clear_global_settings} value="1">{GLOBAL_SETTINGS_MSG}&nbsp;&nbsp;
+		<input type="checkbox" name="clear_page_settings"   {clear_page_settings}   value="1">{PAGE_SETTINGS_MSG}
+		<input class="submit" type="submit" value="{CLEAR_BUTTON}" onclick="document.record.operation.value='clear';return confirm('{CLEAR_SITE_SETTINGS_MSG}');"> &nbsp;
+				
+	</td>
+</tr>
+<!-- end clear -->
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<!-- BEGIN add_button -->
+		<input class="submit" type="submit" value="{ADD_NEW_MSG}" onclick="document.record.operation.value='save'"> &nbsp; <!-- END add_button -->
+		<!-- BEGIN update_button -->
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onclick="document.record.operation.value='save'"> &nbsp; <!-- END update_button -->
+		<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');"> &nbsp; <!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</form>	
+</table>
+
+</fieldset>
+
+{admin_footer}
+
+</body></html>

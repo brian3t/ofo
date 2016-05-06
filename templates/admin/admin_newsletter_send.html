@@ -1,0 +1,166 @@
+<!-- begin newsletter_header --><html><head><title>..:: {ADMINISTRATION_MSG} :: {SENDING_NEWSLETTER_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript">
+<!--
+
+function closeWindow(filename)
+{
+	window.opener.focus();
+	window.close();
+}
+//-->
+</script>
+</head>
+
+<body class="popup">
+<!-- end newsletter_header -->
+
+<!-- BEGIN newsletter_sending -->
+	<br>
+	<table cellspacing="1" cellpadding="4" border="0" width="95%" align="center" class="header">
+	<tr>
+		<td colspan="2" class="header">
+			<b>&nbsp;{SENDING_NEWSLETTER_MSG}</b>
+		</td>
+	</tr>
+	</table>
+	<br>
+<!-- END newsletter_sending -->
+
+	<!-- BEGIN newsletter_stats -->
+	<br><br>
+	<table cellspacing="1" cellpadding="4" border="0" width="95%" align="center" class="header">
+	<tr>
+		<td class="middle" width="30%">&nbsp;{EMAILS_SENT_MSG}</td>
+		<td class="usual"><b><font color="green">{emails_sent}</font></b></td>
+	</tr>
+	<tr>
+		<td class="middle" width="30%">&nbsp;{TOTAL_EMAILS_SENT_MSG}</td>
+		<td class="usual"><b><font color="green">{total_emails_sent}</font></b></td>
+	</tr>
+	<tr>
+		<td class="middle" width="30%">&nbsp;{EMAILS_REMAINS_MSG}</td>
+		<td class="usual"><b><font color="blue">{emails_left}</font></b></td>
+	</tr>
+	<!-- begin emails_errors -->
+	<tr>
+		<td class="middle" width="30%">&nbsp;{SENDING_ERRORS_MSG}</td>
+		<td class="usual"><b><font color="red">{total_errors}</font></b></td>
+	</tr><!-- end emails_errors -->
+	</table>
+	<!-- END newsletter_stats -->
+
+	<!-- begin newsletter_refresh -->
+	<br>
+	<table cellspacing="0" cellpadding="5" border="0" width="95%" align="center">
+	<tr>
+		<td>
+			<a href="{admin_newsletter_send_href}">{CONTINUE_SENDIND_NEWSLETTER_MSG}</a><br>
+			({PAGE_REFRESH_AUTOMATICALLY_MSG})
+		</td>
+	</tr>
+	</table>
+	<meta http-equiv="refresh" content="10; url={admin_newsletter_send_href}">
+	<!-- end newsletter_refresh -->
+	
+
+	<!-- BEGIN errors -->
+	<br><div class="error" align="center"><b>{errors_list}</b></div>
+	<!-- END errors -->
+
+	<!-- BEGIN newsletter_preview -->
+	<br>
+	<table cellspacing="1" cellpadding="4" border="0" width="95%" align="center" class="header">
+	<tr>
+		<td colspan="2" class="header">
+			<b>&nbsp;{NEWSLETTER_PREVIEW_MSG}</b>
+		</td>
+	</tr>
+	<tr>
+		<td class="middle" width="20%">&nbsp;{EMAIL_FROM_MSG}:</td>
+		<td class="usual" width="80%">{mail_from}</td>
+	</tr>
+	<tr>
+		<td class="middle">&nbsp;{EMAIL_REPLY_TO_MSG}:</td>
+		<td class="usual">{mail_reply_to}</td>
+	</tr>
+	<tr>
+		<td class="middle" nowrap>&nbsp;{EMAIL_RETURN_PATH_MSG}:</td>
+		<td class="usual">{mail_return_path}</td>
+	</tr>
+	<tr>
+		<td class="middle">&nbsp;{EMAIL_SUBJECT_MSG}:</td>
+		<td class="usual"><b>{newsletter_subject}</b></td>
+	</tr>
+	<tr>
+		<td colspan="2" class="usual">{newsletter_body}</td>
+	</tr>
+	</table>
+	<!-- END newsletter_preview -->
+
+
+	<!-- BEGIN newsletter_form -->
+	<form name="newsletter" action="{admin_newsletter_send_href}" method="get">
+	<input type="hidden" name="operation" value="send">
+	<input type="hidden" name="newsletter_id" value="{newsletter_id}">
+
+	<table cellspacing="1" cellpadding="4" border="0" width="95%" align="center" class="header">
+	<tr>
+		<td class="middle" width="30%">&nbsp;{EMAILS_TO_SEND_MSG}</td>
+		<td class="usual"><b><font color="blue">{emails_left}</font></b></td>
+	</tr>
+	<tr>
+		<td class="middle" width="30%">&nbsp;{EMAILS_SENT_MSG}</td>
+		<td class="usual"><b><font color="green">{emails_sent}</font></b></td>
+	</tr>
+	<tr>
+		<td class="middle" width="30%">&nbsp;{SEND_NEWSLETTER_BY_CYCLES_MSG}</td>
+		<td class="usual">
+			<select name="emails_qty">
+				<option value="10">&nbsp; &nbsp; 10 &nbsp;
+				<option value="20">&nbsp; &nbsp; 20 &nbsp;
+				<option value="50">&nbsp; &nbsp; 50 &nbsp;
+				<option value="100">&nbsp; 100 &nbsp;
+				<option value="200">&nbsp; 200 &nbsp;
+				<option value="500">&nbsp; 500 &nbsp;
+				<option value="1000">1000 &nbsp; 
+			</select> {EMAILS_BY_CYCLE_MSG} with
+			<select name="emails_delay">
+				<option value="0"> no 
+				<option selected value="100000">0.1 {ADMIN_SECONDS_MSG}
+				<option value="200000">0.2 {ADMIN_SECONDS_MSG}
+				<option value="500000">0.5 {ADMIN_SECONDS_MSG}
+				<option value="1000000">1 {ADMIN_SECOND_MSG}
+			</select> 
+			{DELAY_AFTER_EACH_EMAIL_MSG}
+		</td>
+	</tr>
+	</table>
+
+	<br>
+	<table cellspacing="0" cellpadding="0" border="0" width="95%" align="center">
+	<tr>
+		<td>
+			<input type="submit" class="submit" value=" Start Sending {CUSTOMER_MENU_NEWSLETTERS} ">	
+		</td>
+	</tr>
+	</table>
+
+	</form>	
+	<!-- END newsletter_form -->
+
+	<!-- BEGIN newsletter_footer -->
+	<br>
+	<br>
+	<table cellspacing="0" cellpadding="5" border="0" width="95%" align="center">
+	<tr>
+		<td>
+			<a href="javascript:closeWindow('{filename}');"><b>{CLOSE_WINDOW_MSG}</b></a>
+		</td>
+	</tr>
+	</table>
+
+</body>
+</html>
+<!-- END newsletter_footer -->

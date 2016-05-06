@@ -1,0 +1,100 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {ADMINISTRATORS_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<b>{ADMINISTRATORS_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{ADMINISTRATORS_MSG}</legend>
+
+<table border="0" cellspacing="1" cellpadding="6" width="100%">
+<tr align="center" class="middle" valign="top">
+	<td>
+		{sorter_admin_id}
+	</td>
+	<td>
+		{sorter_login}
+	</td>
+	<td>
+		{sorter_admin_name}
+	</td>
+	<td>
+		{sorter_email}
+	</td>
+	<td>
+		{sorter_privilege_name}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- BEGIN records -->
+<tr class="usual">
+	<td align="center">
+		{admin_id}
+	</td>
+	<td>
+		&nbsp;{login}
+	</td>
+	<td>
+		&nbsp;{admin_name}
+	</td>
+	<td>
+		&nbsp;<a href="mailto:{email}">{email}</a>
+	</td>
+	<td align="center">
+		{privilege_name}
+	</td>
+	<td align="center">
+		<a href="{admin_admin_href}?admin_id={admin_id}">{EDIT_MSG}</a>
+	</td>
+	<td align="center">
+		<a href="{admin_admin_password_href}?admin_id={admin_id}">{CHANGE_PASSWORD_MSG}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="7">
+		{NO_RECORDS_MSG}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="7">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+		<tr class="middle">
+			<td>
+				&nbsp;<!-- begin new_admin_link -->
+				<a href="{admin_admin_href}">{NEW_ADMINISTRATOR_MSG}</a>&nbsp;
+				<!-- end new_admin_link -->
+			</td><!-- begin navigator_block -->
+			<td align="right">
+				&nbsp;{navigator}&nbsp;
+			</td><!-- end navigator_block -->
+		</tr>
+		</table>
+
+	</td>
+</tr>
+</table>	
+
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

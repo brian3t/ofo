@@ -1,0 +1,479 @@
+================================================================================
+ViArt Shop
+Copyright (c) 2007 ViArt Ltd - www.viart.com
+All Rights Reserved.
+
+Changes Log
+
+* Changes since version 3.3 to 3.4
+
+- Multisite functionality
+- Google Base importing
+- Full CMS support for all pages
+- Filtering system
+- Wishlist functionality
+- Watermarks for products images
+- Custom fields for support page
+- Custom friendly URLs for default page like index.php, products.php
+- PGP encryption
+- Possibility to upload or specify customers e-mails for sending newsletter
+- New option to reserve/release stock levels when status changed
+- Permission for different merchant groups to post their product into different categories and a new option to post products also in all subcategories for selected category
+- Products predefined prices
+- New credit functionality which allow user to use special credit balance to pay for his order
+- More new options for product and order coupons and new possibility to apply coupons automatically by different criterions
+- New payment systems added: SIPS, ECHO. DGL, Moneybookers
+- Possibility to restrict shipping methods by states and by users’ types
+- Import orders facility
+- Possibility to export only filtered products
+- Allow merchants to post products to all subcategories of the particular category
+- New forum option to change the priority of topic to show them first or last
+- Different forum privileges by user groups. You will find the settings via Administration > Forum Threads > Forum topic
+- Reminder functionality for site customers  
+- New email settings to send notification to merchants and administrators when a particular order status is changed
+- A new field to sort option and component list values
+- New templates email_basket.html and email_basket.txt for easy way of changing {basket} tag content
+- New settings for options price display, like Large (+ $12.00) or Large [$12.00] or Large $12.00. The settings are activated via Administration > Products > Products Settings > Option & Components Price Appearance section
+- New fields for currencies - number of decimals, decimal point, thousands separator
+- Possibility to create a predefined list of options by different product types
+- Possibility to add selected options and components to particular products
+- Dependendable product options
+- New option type 'Text Boxes List'
+
+================================================================================
+
+* Changes since version 3.2 to 3.3
+
+- Possibility to specify the depth level of visible menu items in navigation menus on each page separately
+- An Image Preview functionality on File Select popup and appropriate option on Products Settings page
+- An option'Manufacturer Image Type' for the block 'Product Details' to control the display of the manufacturer image
+- 'Image type'settings have been addded to the block 'Shopping Cart' to control small preview images on the Basket page
+- Additional settings for the 'Recommended Products'block to control number of displayed products and columns
+- New payment system modules for Cybersource and Korta credit card processors are added
+- Possibility to export/import specification data for products
+-'Pre-Order'button for upcoming and out of stock products
+- Posibility to set different payment systems for different users groups
+- Posibility to set different shipping methods for different users groups
+- New orders tax report
+- Possibility to specify in how many categories merchants are allowed to assign the product
+- Allow a merchant to view his merchant sales orders 
+- Possibility for a merchant to add options and components to his products
+- A new {shipping_code} tag is added for order notifications
+- Option to select what kind of image - default or small to show for subcategories block
+- Added new coupon tax free option to exclude any tax calculation to the coupon
+- The problem with empty shipname and shipstateorprovince parameters for the Paypal Direct API payment system (paypal_functions.php file) has been fixed.
+- New admin privilege groups permissions for products & categories section. Individual permission for each action on products&categories page.
+- A final check for products stock levels before submitting an order
+- Ability to display a secondary menu functionality to show under the top header menu
+- Points functionality is added
+- Possibility to see and edit the newsletter users list
+- Ability to run PHP code in the product fields, namely: Short Description, Full Description, Highlights, Special Offer, Notes, Terms & Conditions
+- A new field for a product code has been added (which is to be used separately from the manufacturer code)
+- Possibility to use product and manufacturer codes to show their barcodes on packing slips
+- New settings to send emails directly via SMTP 
+- A New block which enables your customers to switch between different active templates
+- Importing RSS feeds into the article sections
+- Related products functionality for articles and articles categories
+- Stream Video feature for articles
+- Possibility to select what columns to show on basket, orders, checkout and invoice pages
+- Support of DB2 database via ODBC
+- Brazilian and Norweigian messages files have been added, German and French messages are updated
+
+================================================================================
+
+* Changes since version 3.1 to 3.2
+
+- Random image validation for reviews
+- RegExp Validation settings for orders'and payment systems'custom fields are added
+- Custom fields for a user profile
+- Multi-step registration process
+- Subscription functionality
+- Possibility to set terms and conditions for downloadable products
+- Ability to hide administrators
+- Possibility to show text and images for top menu links  
+- Option to run PHP code in the blocks
+- Ability to set minimum and maximum values for total products cost and weight
+- Ability to automatically place zero orders without submitting payment details
+- Possibility to send SMS notifications to customers by default
+- Set birthday greeting messages to customers
+- 'Contact Us' block for merchants
+- Possibility to set the number of products a merchant can submit
+- New user fields are added, namely: Nickname, MSN Account, ICQ Number, Customer Site URL
+- Database management
+- The Protx VSP Server and the VCS payment gateways
+
+================================================================================
+
+* Changes since version 3.0 to 3.1
+
+- Secure site URL settings for the call centre module
+- An ability to change a site logo from Global Settings
+- An automatic resize of product images
+- Terms and conditions option when merchants submit products
+- Customization of products navigation and sorting by price, name, manufacturer and code
+- The body of JavaScript functions has been transferred outside HTML pages
+- A few settings for articles latest block were added
+- The issue with duplicating new orders has been fixed
+- The problem with downloadable products in IE7 has been fixed
+
+================================================================================
+
+* Changes since version 2.8 to 3.0
+
+- Recurring payments
+- Google Checkout API payment system
+- Call Center module
+- Reports for tracking visits
+- Option to use SSL for administrators login
+- New forum blocks - Forum Description, Latest Topics, Top Viewed Topics
+- New product blocks - Latest Products, Top Viewed Products
+- Top Viewed articles block
+- New advert blocks - Latest Ads, Top Viewed Ads
+- Restricted delivery by countries
+- Random image validation for a Tell-a-Friend page
+- Percentage price for product options
+- Ability to import already uploaded files
+- Personal bookmarks for administrators
+- Settings for Google Analytics
+- Image and description settings for products blocks - Top Rated, Tot Viewed, Top Sellers, Recently Viewed
+- Tax free option per customer or a group
+- Six new layouts for our php cart
+- Save/retrieve cart functionality
+- New languages: Portuguese, Lithuanian, German, Italian, Finnish, Hungarian
+
+================================================================================
+
+* Changes since version 2.7.1 to 2.8
+
+- The Akbank, the Netbilling and the Chronopay payment gateways
+- Products and basket recommended blocks
+- Affiliate and merchant modules for php shopping cart
+- Friendly URLs functionality
+- Banned and allowed credit card numbers per payment gateway
+- Ability to create own manuals for customers in the enterprise edition
+- Additional conditions when processing fee is applied
+- Calculation of expecting date for delivery
+- Saving of tracking information on users' visits
+- Menu tree building on the "Edit Menu Item" screen has been fixed
+
+================================================================================
+
+* Changes since version 2.7 to 2.7.1
+
+- Posnet payment system
+- `Ship to State` filter to the admin orders page
+- Ability to send attachments by administrators within HelpDesk
+- Possibility to view user personal images in the forum
+- A default image for products can be set
+- Settings to show product manufacturer code on different pages
+- Ability to show/hide cart buttons and weight information from products listing and details pages
+- New settings to show orders in the certain currency
+- Test data population
+- Multiple PDF packing slips and invoices can be created
+- New settings for product prices display
+- The error with state codes that have more than 2 symbols is fixed
+- Bug with prepopulating of cardholder's Name, First Name and Last Name on Payment Details page has been fixed
+
+================================================================================
+
+* Changes since version 2.6 to 2.7
+
+- ProxyPay, ePDQ MPI and VirtualXS (vxsbill.com) payment systems
+- A tax option for froogle data
+- Transfer of products settings from global settings section
+- Additional settings for forum
+- Image resize functionality
+- Image validation to prevent robots submission
+- New tax rates system based on the product types
+- New categories blocks management, allow to set two categories block on the page
+- E-mail and SMS notification settings per product
+- Option to export froogle data with taxes
+- Name, First Name and Last Name of cardholder on Payment Details page are populated automatically from Personal Information page within checkout process
+- A checkbox `Send notification to client` on Administration > Support Center > Edit Request page
+- Ability to view orders history in the original currency and with the original exchange rate
+- Problem with Editable price is fixed
+- Problems with handling subcomponents are fixed
+
+================================================================================
+
+* Changes since version 2.5.5 to 2.6
+
+- Editable product prices
+- Ability to set up a parent category for product categories
+- New field for average options/components price for products
+- Black IPs list for our php cart
+- Banned content functionality
+- Product searching by code
+- 'Processing Fee`field for payment systems
+- Ability to add extra charges to external modules UPS, USPS, FedEx
+- Froogle feed for filtered data
+- Product Sale Availability
+- SMS Notification Interface
+- Bundle and Subcomponent functionality
+- 'Product Issue Date' field
+- Multi products editing functionality
+- Tracking URL field for customers to track their shipments
+- Custom blocks based on file content
+- Product Preview
+- Currency block on the checkout page
+- CSS-based templates
+- New payment system - Garanti
+
+================================================================================
+
+* Changes since version 2.5.4 to 2.5.5
+
+- Checking for active payment systems before submitting order
+- Block_name and block_notes fields for custom blocks
+- Multi-level menu functionality
+- Formatting helpdesk messages
+- Ability to show products from the bottom subcategories if appropriate option is selected for a parent category
+- Ability to view/edit customers login details via admin panel
+- Possibility to add ranks for helpdesk customers
+- Totally New Forum interface
+- Knowledge Base option for HelpDesk
+- HTML Editor for IE5.5 and Firefox
+- Messages Editor
+- UCASE, UCWORDS, LCASE, TRIM, LTRIM, RTRIM options for the record class
+- Ability to set option for orders statuses to hide orders from the list
+- Ability to select products options on a separate page
+- Problems with users import are fixed
+
+================================================================================
+
+* Changes since version 2.5.3 to 2.5.4
+
+- Order field for languages
+- Products options per product type
+- Ability to set different prices for different users groups
+- Special script for exporting date into UPS (admin_export_ups.php)
+- Polish language to our shopping cart
+- ePDQ CPI payment system
+- Improvements for Authorize SIM payment system
+- Ability to resume downloads
+- Option to clear the shopping cart after logout
+- Problems with RSS publishing are fixed
+
+================================================================================
+
+* Changes since version 2.5.2 to 2.5.3
+
+- Use of complete php tags for all files
+- RSS feed for articles
+- Slovak and Czech languages added
+- 'Sorting by shipping order' field used for shipping methods
+- Setting time limit for scripts when editing accessories, categories and related products
+- New fields - admin_id_added_by, admin_id_modified_by, date_added, date_modified for products and categories are added
+- Priority_image, priority_rank, is_default fields are added into support priorities
+- Banners Management module
+- Import/Export products options along with their prices
+- Date_added and date_modified fields are added to the products table
+- Ability to use different templates for products list for different categories
+- One set of different layouts for Home Page
+- Possibility to encrypt a credit card number and a credit card security code
+- The information about payment gateway and transaction number to the order details page is added
+- Stock control, buying price and downlodable settings for product options values
+- A new discount type based on the difference between selling price and buying price
+- An easy change of the secure site URL and it`s settings
+- New payment gateway VeriSign Payflow Pro
+-  The USPS module is fixed to correctly process the countries with space in the name like `New Zealand`
+
+================================================================================
+
+* Changes since version 2.5 to 2.5.2
+
+- Saving of language code in the cookies
+- Possibility to use referrer tag in the email messages
+- Ukrainian and Russian languages
+- Bug with exporting orders is fixed
+- Bulk Buying Discount
+- Gift Vouchers functionality
+- Database Password encryption
+- Possibility to search by manufacturer code in admin section
+- Image search facility on the image selection page
+- Rollover effect for product images section
+- Ability to turn off JS warning message when adding a product to the basket
+- Option to move a user back to the payment details page in case of a failed transaction
+- Meta Data fields for custom pages
+- Ability to check the existence of DB library while installing the shop
+
+================================================================================
+
+* Changes since version 2.4 to 2.5
+
+- Order Invoices and Packing Slips in PDF Format
+- Super Size Image
+- Drop Down Navigation Menu
+- Meta Tags for Individual Products and Alt Text for Images
+- Hide Pricing Details Until Login
+- Individual Product Page Titles
+- File Manager
+
+================================================================================
+
+* Changes since version 2.3 to 2.4
+
+- Realtime shipping UPS, USPS, FedEx
+- HTML, PDF Packing Slips
+- PDF Order Invoice
+- Ability to update statuses for order items
+- Ability to edit order items
+- Settings for a custom block
+
+================================================================================
+
+* Changes since version 2.2.12 to 2.3
+
+- License keys policy for all ViArt products
+- Filtering by date for orders reports
+- Products stock level report
+- Possibility to send a newsletter for various users groups
+- Ability to use a quantity contol when adding products to the basket
+- Custom fields for payment page
+- New type `Image upload` for products options
+
+================================================================================
+
+* Changes since version 2.2.6 to 2.2.12
+
+- Ability to show images with php script
+- Payoffshore, iDeal, Beamstream payment systems
+- HTML Order Invoice
+- Credit card number validation
+- Possibility to export products options
+- Custom fields for order
+- Option to hide shipping methods
+- Option to disable `Add to Cart` button for out of stock products
+
+================================================================================
+
+* Changes since version 2.2.5 to 2.2.6
+
+- Froogle support
+- Taxable flag for shipping
+- Classified ads
+- Different user types
+- Ability to specify taxes by states
+- Ability to export the newest orders
+- Bulk order status change
+- Ability to specify the offline payment method
+- Order status change log
+- Change the currency in which an order has been placed
+- Customized email templates for orders statuses
+
+================================================================================
+
+* Changes since version 2.2.4 to 2.2.5
+
+- An option for a user to be registered before ordering
+- Show products with default TAX
+- Possibility to modify shipping tracking number
+- Ability to add/modify orders notes
+- Recently viewed items block
+- Top sellers products block
+- Forgot my password feature
+- Search for in stock/out of stock items in the admin section
+- Product duplicate feature
+- Save a user IP when submitting an order
+
+================================================================================
+
+* Changes since version 2.1.10 to 2.2.4
+
+- Newsletter management
+- Ability to browse by manufacturer
+- Separate permissions for custom block editing
+- Improvements for showing categories in multiple format
+- Ability to use tabs for showing different product information
+- Product accessories
+- Product images
+- Products releases block
+- Product specifications
+- Predefined specifications by a product type
+- Products comparison feature
+- Custom fields for an advanced products search
+- Articles management
+- Import product options
+- A breadcrumb block
+  
+================================================================================
+
+* Changes since version 2.1.5 to 2.1.10
+
+- Multi currencies
+- An advanced search form
+- Found in' message for product search
+- Poll Voting
+- Import/Export feature for orders and users
+- Product duplicates feature
+- Forum numbering is fixed
+- Coupon system
+- Advanced payment system support
+- XSS is fixed
+- Related products block
+- Multiple departments to helpDesk System
+- System Upgrade module
+- Ability to prepare predefine replies and insert signatures for HelpDesk
+- Automatic meta data generation
+- Possibility to assign users by deparments
+
+================================================================================
+
+* Changes since version 2.1.4 - 2.1.5
+
+- Multi-lingual support
+- Two new controls for products options: Radio Button, Checkbox List
+- Small Shopping Cart block
+- Redirecting user to a basket after the product was added to the shopping cart
+- Modification of administration menu
+- Default value for product properties
+- New fields start_html, middle_html, end_html for products options
+- Ability to pass products information to payment system
+
+================================================================================
+
+* Changes since version 2.1 to 2.1.4
+
+- Possibility to import/export products and categories in CSV format
+- Customization of E-mail fields
+- New Label type for products options
+- Default options for products
+
+================================================================================
+
+* Changes since version 1.5 to 2.1
+
+- Added Forum system
+- Added Customizable Layouts support
+- Added 'Downloadable' products support
+- Added ability to assign one product to multiple categories
+- Added ability to reassign cases within Support System (only Enterprise Edition)
+- Added customizable payment systems support
+- Added ability to submit POST payment systems parameters
+- Added option that allows hiding Reviews section at Product details page
+- Added custom tags support to email notifications
+- Added 'free shipping' rules to Shipping settings
+- Fixed bug when footer menu didn't hide when there were no menu items
+- Fixed bug when sorting order wasn't preserved in 'Countries' maintenance
+- Fixed bug with complex date formats masks processing 
+- Fixed bug when product description had illegal characters
+- Fixed bug when sending emails from some domains took more time then from others
+- Fixed bug when some phone numbers were not considered to be valid during user registration
+- Fixed bug when FAQ articles has some redundant spaces in HTML
+- Fixed bug when News articles maintenance didn't allow entering large title containing HTML tags 
+
+================================================================================
+
+* Changes since version 1.4 to 1.5
+
+- Added Postgre SQL and ODBC support
+- Added search box to Sales Orders maintenance
+- Added 'Page sources' options for Web pages maintenance
+- Added 'Remember me' option to Login page
+- Added search box to 'Countries maintenance'
+- Fixed bug when countries listbox wasn't sorted by 'Country Order'
+- Fixed typo in Web pages section of Administration
+- Fixed bug when two Administrators could not access Administration simultaneously
+- Fixed bug when Final Checkout page sent two Administrator notifications instead of one
+
+================================================================================

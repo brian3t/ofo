@@ -1,0 +1,88 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_MSG} {ADMIN_NOTE_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_orders_href}">{ORDERS_MAINTENANCE_MSG}</a>&nbsp;&gt;
+			<a href="{admin_order_href}?order_id={order_id}">{ADMIN_ORDER_MSG}</a>&nbsp;&gt;
+			<a href="{admin_order_notes_href}?order_id={order_id}">{NOTES_MSG}</a>&nbsp;&gt;
+			<b>{EDIT_MSG} {ADMIN_NOTE_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<form action="{admin_order_note_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="note_id" value="{note_id}">
+<input type="hidden" name="order_id" value="{order_id}">
+
+<fieldset>
+<legend>{EDIT_MSG} {ADMIN_NOTE_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="6" align="center"><!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{SHOW_FOR_USER_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="show_for_user" {show_for_user} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_TITLE_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="note_title" value="{note_title}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_DETAILS_MSG}
+	</td>
+	<td>
+		<textarea cols="80" rows="10" name="note_details">{note_details}</textarea>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+	</td>
+	<td>
+		<input type="checkbox" name="notify_user" {notify_user} value="1">
+		&nbsp;{EMAIL_SEND_USER_MSG}
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+
+</fieldset>
+</form>	
+
+{admin_footer}
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<html><head><title>{ADMINISTRATION_MSG} :: {PRODUCT_SELECTION_MSG}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+<script language="JavaScript">
+<!--
+
+function selectProduct(itemId, itemName, itemPrice)
+{
+	if (window.opener) {
+		var formId = document.form_list.form_id.value;
+		window.opener.setProduct(itemId, itemName, itemPrice, formId);
+		window.opener.focus();
+	}
+	window.close();
+}
+
+function closeWindow()
+{
+	window.opener.focus();
+	window.close();
+}
+
+function clearSearch() {
+	document.form_list.sw.value = "";
+	document.form_list.submit();
+}
+
+//-->
+</script>
+</head>
+
+<body class="popup">
+
+<form action="{admin_product_select_href}" name="form_list">
+<input type="hidden" name="operation" value="1">
+<input type="hidden" name="form_id" value="{form_id}">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+
+	<table cellspacing="1" cellpadding="5" border="0" width="100%" align="center">
+	<tr>
+		<td colspan="6" class="header" align="center">
+			<a class="header" href="javascript:closeWindow();"><b>{CLOSE_WINDOW_MSG}</b></a>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="6" class="usual" align="center">
+			<input type="text" name="sw" value="{sw}" class="search">&nbsp;
+			<input type="submit" value="Search" class="submit">&nbsp;
+			<input type="submit" value="{CLEAR_BUTTON}" class="submit" onClick="clearSearch()">
+		</td>
+	</tr>
+	<!-- begin search_results -->
+	<tr>
+		<td colspan="6" class="usual" align="center">{found_message}</td>
+	</tr>
+	<!-- end search_results -->
+	<!-- begin products_sorters -->
+	<tr class="middle" align="center">
+		<td>{sorter_item_id}</td>
+		<td>{sorter_item_name}</td>
+		<td>{sorter_item_code}</td>
+		<td>{sorter_manufacturer_code}</td>
+		<td>{sorter_price}</td>
+		<td>&nbsp;</td>
+	</tr><!-- end products_sorters --><!-- begin products -->
+	<tr class="usual">
+		<td align="center">
+			{item_id}
+		</td>
+		<td >
+			&nbsp;{item_name}
+		</td>
+		<td>
+			&nbsp;{item_code}
+		</td>
+		<td >
+			&nbsp;{manufacturer_code}
+		</td>
+		<td align="right">
+			&nbsp;{price}
+		</td>
+		<td align="center" class="small">
+			&nbsp;<a href="javascript:selectProduct('{item_id}', '{item_name_js}', '{price_js}');">{SELECT_MSG}</a>&nbsp;
+		</td>
+	</tr><!-- end products -->
+	<!-- begin navigator_block -->
+	<tr class="middle">
+		<td colspan="5">&nbsp;{navigator}&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr><!-- end navigator_block -->	<tr>
+		<td colspan="6" class="header">
+			<a class="header" href="javascript:closeWindow();"><b>{CLOSE_WINDOW_MSG}</b></a>
+		</td>
+	</tr>
+	</table>
+
+</td></tr></table>
+
+</form>
+
+</body>
+</html>

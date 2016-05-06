@@ -1,0 +1,156 @@
+<html><head><title>{ADMINISTRATION_MSG} :: {EDIT_SUBCOMP_MSG}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript">
+<!--
+
+	function openProductWindow(formId)
+	{
+		var productWin = window.open ('{admin_product_select_href}?form_id=' + formId, 'uploadWin', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=600,height=500');
+		productWin.focus();
+	}
+
+	function setProduct(itemId, itemName, itemPrice, formId)
+	{
+		document.record.sub_item_id.value = itemId;
+		document.record.property_name.value = itemName;
+		var basicPrice = document.getElementById("basic_price");
+		if (basicPrice) {
+			basicPrice.innerHTML = "&nbsp;&ndash;&nbsp;" + itemPrice;
+		}
+	}
+
+//-->
+</script>
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			<!-- BEGIN product_path -->
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_items_list_href}">{PRODUCTS_MSG}</a>&nbsp;&gt;&nbsp;<!-- BEGIN tree --><a 
+			href="{admin_items_list_href}?category_id={tree_cat_id}">{tree_cat_name}</a>&nbsp;&gt;&nbsp;<!-- END tree --><a 
+			href="{admin_items_list_href}?category_id={tree_current_id}">{tree_current_name}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_product_href}?category_id={category_id}&item_id={item_id}">{item_name}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_properties_href}?category_id={category_id}&item_id={item_id}">{OPTIONS_AND_COMPONENTS_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_SUBCOMP_MSG}</b>
+			<!-- END product_path -->
+			<!-- BEGIN type_path -->
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_items_list_href}">{PRODUCTS_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_item_types_href}">{PRODUCTS_TYPES_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_item_type_href}?item_type_id={item_type_id}">{item_type_name}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_properties_href}?item_type_id={item_type_id}">{OPTIONS_AND_COMPONENTS_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_SUBCOMP_MSG}</b>
+			<!-- END type_path -->
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_SUBCOMP_MSG}</legend>
+<table cellspacing="1" cellpadding="4" border="0" align="center" width="100%">
+<form action="{admin_component_single_href}" name="record" method="post">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="category_id" value="{category_id}">
+<input type="hidden" name="property_id" value="{property_id}">
+<input type="hidden" name="item_id" value="{item_id}">
+<input type="hidden" name="item_type_id" value="{item_type_id}">
+<input type="hidden" name="sort_dir" value="{sort_dir}">
+<input type="hidden" name="sort_ord" value="{sort_ord}">
+<input type="hidden" name="page" value="{page}">
+
+<!-- BEGIN errors -->
+<tr>
+	<td colspan="2" class="usual" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{SUBCOMP_ID_MSG} *
+	</td>
+	<td>
+		&nbsp;<input class="field" type="text" name="sub_item_id" value="{sub_item_id}" size="20">
+		&nbsp;<a href="#" onClick="openProductWindow(''); return false;"><b>{SELECT_PRODUCT_MSG}</b></a>
+
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SUBCOMP_NAME_MSG} *
+	</td>
+	<td>
+		&nbsp;<input class="field" type="text" name="property_name" value="{property_name}" size="60">
+	</td>
+</tr>
+<!-- BEGIN usage_type_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{ASSIGN_COMPONENT_MSG} *
+	</td>
+	<td>
+		&nbsp;<select name="usage_type"><!-- begin usage_type -->
+			<option {usage_type_selected} value="{usage_type_value}">{usage_type_description}<!-- end usage_type -->
+		</select>
+	</td>
+</tr>
+<!-- END usage_type_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{QUANTITY_MSG} *
+	</td>
+	<td>
+		&nbsp;<input class="field" type="text" name="quantity" value="{quantity}" size="20">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CART_QUANTITY_MSG}
+	</td>
+	<td>
+		<!-- begin quantity_action -->
+		<input type="radio" name="quantity_action" {quantity_action_checked} value="{quantity_action_value}">{quantity_action_description}<!-- end quantity_action -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SUBCOMP_PRICE_MSG} 
+	</td>
+	<td>
+		&nbsp;<input class="field" type="text" name="additional_price" value="{additional_price}" size="20">
+		({SUBCOMP_PRICE_NOTE}<b><span id="basic_price">{basic_price}</span></b>)
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PROD_TRADE_PRICE_MSG}
+	</td>
+	<td>
+		&nbsp;<input class="field" type="text" name="trade_additional_price" value="{trade_additional_price}" size="20">
+	</td>
+</tr>
+<tr class="middle">
+	<td></td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onCLick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">&nbsp;
+	</td>
+</tr>
+
+</form>
+</table>
+</fieldset>
+
+	
+{admin_footer}
+</body>
+</html>

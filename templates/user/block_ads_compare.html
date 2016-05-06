@@ -1,0 +1,59 @@
+<div class="block-ads-compare">
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{ADS_COMPARE_TITLE}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr> 
+	<td class="blockTD">
+
+<!-- BEGIN compared -->
+<table cellspacing="1" width="100%" border="0" class="padding6px">
+<TR>
+  <TD width="15%">&nbsp;</TD><!-- BEGIN top_title -->
+  <TD vAlign=top align=middle>
+		<!-- BEGIN exclude_link -->
+		<a href="{exclude_href}" title="{COMPARE_REMOVE_HELP_MSG}">{COMPARE_REMOVE_MSG}</a><br><br>
+		<!-- END exclude_link -->
+		<B><A href="{ads_details_href}?item_id={item_id}" {restricted_class}>{item_title}<!--begin restricted_image--><img src="images/tr.gif" alt="" class="{restricted_class}"><!--end restricted_image--></a></B><BR>
+		<!-- begin image_block -->
+		<A href="{ads_details_href}?item_id={item_id}"><img src="{image_src}" alt="{image_alt}" hspace=5 vspace=5 {image_width} {image_height} border=0></A>
+		<!-- end image_block -->
+		<BR>
+		{PRICE_MSG}: <font class="ourprice">{price}</font><br>
+		<br>
+	</TD><!-- END top_title -->
+</TR>
+<!-- BEGIN features_groups -->
+<TR>
+	<TD colSpan="{colspan}" class="headerbg"><b>{group_name}</b></TD>
+</TR><!-- BEGIN features -->
+<tr class=usual>
+  <TD vAlign=top class="middlebg" width="15%"><B>{feature_name}</B></TD><!-- BEGIN features_values -->
+  <TD vAlign=top width="{column_width}">{feature_value}</TD><!-- END features_values -->
+</TR><!-- END features -->
+<!-- END features_groups -->
+<TR>
+	<TD colSpan="{colspan}" class="headerbg">&nbsp;</TD>
+</TR>
+</TABLE>
+
+<!-- END compared -->
+
+<!-- BEGIN errors_block --><div align="center" class="errorbg"><b>{errors}</b></div><!-- END errors_block -->
+
+	</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+</div>

@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{SELECT_FILE_MSG}</title>
+<link rel="stylesheet" href="{css_file}" type="text/css">
+ 
+<script language="JavaScript" type="text/javascript">
+<!--
+
+function selectFile(filepath)
+{
+	window.opener.setFilePath(filepath, document.file.filetype.value, document.file.control_name.value, document.file.fid.value);
+	window.opener.focus();
+	window.close();
+}
+
+function closeWindow()
+{
+	window.opener.focus();
+	window.close();
+}
+
+function clearSearch() {
+
+	document.file.sf.value = "";
+	document.file.submit();
+
+}
+
+function mouseX(evt) 
+{
+	if (evt.pageX) { 
+		return evt.pageX; 
+	} else if (evt.clientX) {
+		return evt.clientX + (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
+	} else { 
+		return null;
+	}
+}
+
+function mouseY(evt)
+{
+	if (evt.pageY) { 
+		return evt.pageY;
+	} else if (evt.clientY) {
+		return evt.clientY + (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
+	} else { 
+		return null;
+	}
+}
+
+function showImageItems(event, imageHref, imageId)
+{
+	var r = /gif$|jpg$|jpeg$|png$/i;
+	var ext = r.exec(imageHref);
+
+	if (ext != null) {
+		var imageItems = document.getElementById("image_items_" + imageId);
+		if (imageItems) {
+		   	if (imageItems.innerHTML == ''){
+				imageItems.innerHTML = '<img id="image_' + imageId + '" src=\'show_image.php?filepath=' + escape(imageHref) + '&width=150\' border=\'0\'>';
+			}	
+			var element = document.getElementById("image_" + imageId);
+			widht = 0;
+			height = 0;
+			var x = event.clientX;
+			var y = event.clientY;
+			var noheight = document.body.scrollTop;
+			var nowidth = document.body.scrollLeft;
+			var max_h = document.body.clientHeight;
+			var max_w = document.body.clientWidth;
+			//alert('1- ' + max_h + ' 2- ' + y + ' 3- ' + document.body.scrollHeight + ' 4- ' + event.pageY + ' 5- ' + noheight);
+			if (element != null) {
+				width = element.width;
+				height = element.height;
+			}
+			
+			  var leftPos = x + 15;
+			  var other = max_w - width;
+			  if (leftPos + width > document.body.clientWidth){
+			    leftPos = x - 15 - width;
+				if (leftPos < 0){
+				  leftPos = nowidth;
+				} else {
+				  leftPos += nowidth;
+				}
+			  } else {
+			    leftPos += nowidth;
+			  }
+				  
+			
+			if (max_h-y < 50)
+			 y += 50;
+			  if (height > max_h){
+				var topPos = (max_h/2)-(height/2) + noheight;
+			  } else {
+				  var topPos = y-(height/2);
+				  var other = max_h - height;
+				  if (topPos < 0){topPos = 0  + noheight;} else {
+				    if (topPos > other){topPos = other + noheight;} else {
+					  topPos += noheight;
+					}
+				  }
+				  
+			  }
+			
+			imageItems.style.left = leftPos;
+			imageItems.style.top = topPos;
+			imageItems.style.display = "block";
+		}
+	}
+}
+
+function hideImageItems(event, imageId)
+{
+	var imageItems = document.getElementById("image_items_" + imageId);
+	if (imageItems) {
+		imageItems.style.display = 'none';
+	}
+}
+
+//-->
+</script>
+</head>
+
+<body class="popup">
+
+<form action="{user_select_href}" name="file">
+<input type="hidden" name="action" value="1">
+<input type="hidden" name="filetype" value="{filetype}">
+<input type="hidden" name="control_name" value="{control_name}">
+<input type="hidden" name="fid" value="{fid}">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="middlebg"> 
+
+	<table cellspacing="1" cellpadding="5" border="0" width="100%" align="center" class=usual>
+	<tr>
+		<td colspan="3" class="headerbg">
+			<table cellspacing="0" cellpadding="0" border="0" width="100%">
+			<tr align="center">
+				<td>
+					<a href="{user_upload_href}?filetype={filetype}&control_name={control_name}&fid={fid}"><b>{UPLOAD_FILE_MSG}</b></a>
+				</td>
+				<td>
+					<a href="javascript:closeWindow();"><b>{CLOSE_WINDOW_MSG}</b></a>
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<!--begin can_select_folder-->
+	<tr>
+		<td colspan="4" class="usual">
+			&nbsp;{CURRENT_DIR_MSG}: <b>{files_dir}</b>
+			<!-- begin subdir_id_block -->
+			<select name="subdir_id" onchange="document.file.submit();"><!-- begin subdir_id -->
+				<option {subdir_id_selected} value="{subdir_id_value}">{subdir_id_description}<!-- end subdir_id -->
+			</select><!-- end subdir_id_block -->
+		</td>
+	</tr>
+	<!--end can_select_folder-->
+	<!-- begin search_files -->
+	<tr>
+		<td colspan="3" class="usualbg" align="center">
+		<table cellspacing="3"><tr>
+		<td><input type="text" name="sf" value="{sf}" size="30" class="search">&nbsp;</td>
+		<td><span class="submit"><input type="submit" value="{SEARCH_BUTTON}" class="submit">&nbsp;</span></td>
+		<td><span class="submit"><input type="submit" id="clear" value="{CLEAR_BUTTON}" class="submit" onClick="clearSearch()"></span></td>
+		</tr></table>
+		</td>
+	</tr>
+	<!-- end search_files -->
+	<!-- begin no_files -->
+	<tr>
+		<td colspan="3" class="usualbg" align="center">{NO_FILES_MSG}</td>
+	</tr>
+	<!-- end no_files -->
+	<!-- begin files -->
+	<tr class="middlebg">
+		<td align="center">{sorter_file_name}</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr><!-- begin file_row -->
+	<tr class="usualbg">
+		<td onmouseover="showImageItems(event, '{file_path_js}', '{image_id}')" onmousemove="showImageItems(event, '{file_path_js}', '{file_id}')"
+			onmouseout="hideImageItems(event, '{file_id}')" style="cursor: default;">
+			&nbsp;{file_name_html}<div id="image_items_{file_id}" style="display: none; position: absolute;"></div>&nbsp;
+		</td>
+		<td align="center">
+				&nbsp;<a href="javascript:selectFile('{file_path_js}');">{SELECT_MSG}</a>&nbsp;
+		</td>
+		<td align="center">
+			&nbsp;<a href="{user_delete_file_url}" onClick="return confirm('{DELETE_FILE_CONFIRM_MSG}');">{DELETE_BUTTON}</a>&nbsp;
+		</td>
+	</tr>
+	<!-- end file_row -->
+	
+	<!-- begin file_row_no_preview -->
+	<tr class="usualbg">
+		<td>
+				&nbsp;{file_name}&nbsp;
+		</td>
+		<td align="center">
+				&nbsp;<a href="javascript:selectFile('{file_path_js}');">{SELECT_MSG}</a>&nbsp;
+		</td>
+		<td align="center">
+			&nbsp;<a href="{user_delete_file_url}" onClick="return confirm('{DELETE_FILE_CONFIRM_MSG}');">{DELETE_BUTTON}</a>&nbsp;
+		</td>
+	</tr>
+	<!-- end file_row_no_preview -->
+	<!-- begin navigator_block -->
+	<tr class="middlebg">
+		<td colspan="3" align="right">&nbsp;{navigator}&nbsp;</td>
+	</tr><!-- end navigator_block -->
+	<!-- end files -->
+	<tr>
+		<td colspan="3" class="middlebg">
+			<table cellspacing="0" cellpadding="0" border="0" width="100%">
+			<tr align="center" >
+				<td>
+					<a href="{user_upload_href}?filetype={filetype}&control_name={control_name}&fid={fid}"><b>{UPLOAD_FILE_MSG}</b></a>
+				</td>
+				<td>
+					<a href="javascript:closeWindow();"><b>{CLOSE_WINDOW_MSG}</b></a>
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+
+</td></tr></table>
+
+</form>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{ADMINISTRATION_MSG} :: {LAYOUTS_MSG}</title>
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script type="text/javascript" src="../js/admin.js"></script>
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="breadcrumb"> 
+
+	<table width="100%" cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<b>{LAYOUTS_MSG}</b>
+		</td>
+		<!-- begin sitelist -->
+		<td class="usual" align="right">
+			<form method="GET" name="reloadform">
+			<input type="hidden" name="operation" value="">
+				{SELECT_SITE_MSG}&nbsp;
+				<select name="param_site_id" onchange="reloadSite(this.form)"><!-- begin param_site_id -->
+					<option {param_site_id_selected} value="{param_site_id_value}">{param_site_id_description}<!-- end param_site_id -->
+				</select>		
+			</form>
+		</td>
+		<!-- end sitelist -->
+	</tr>
+	</table>
+
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{CMS_LAYOUTS_MSG}</legend>
+
+<table border="0" cellpadding="6" cellspacing="1" width="100%">
+<tr class="middle" align="center">
+	<td>
+		{ID_MSG}
+	</td>
+	<td>
+		{sorter_layout_name}
+	</td>
+	<td>
+		{STATUS_MSG}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- BEGIN records -->
+<tr class="usual" align="center">
+	<td>
+		{layout_id}
+	</td>
+	<td align="left">
+		&nbsp;{layout_name}
+	</td>
+	<td>
+		{layout_status}
+	</td>
+	<td>
+		<a class="{active_style}" href="{admin_layout_href}?layout_id={layout_id}">
+		{EDIT_LAYOUT_MSG}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr>
+	<td colspan="4" class="usual">
+		{NO_RECORDS_MSG}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="4">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+		<tr class="middle">
+			<td>
+				&nbsp;<a href="{admin_layout_href}">{ADD_NEW_MSG}</a> 
+				| <a href="{admin_header_menus_href}">{SITE_NAVIGATION_MSG}</a>
+				| <a href="{admin_custom_menus_href}">{CUSTOM_MENUS_MSG}</a>
+				| <a href="{admin_custom_blocks_href}">{CUSTOM_BLOCKS_MSG}</a>
+				| <a href="{admin_cms_href}">{SETTINGS_MSG}</a>
+			</td>
+			<!-- begin navigator_block -->
+			<td align="right">&nbsp;{navigator}&nbsp;</td>
+			<!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>	
+</fieldset>
+
+
+{admin_footer}
+</body>
+</html>

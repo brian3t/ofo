@@ -1,0 +1,199 @@
+<html><head><title>{POINTS_MSG}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<style type="text/css">
+<!--
+	.row1 { background-color:#f0f0f0; }
+	.row2 { background-color:#fffeee; }
+	.rowWarn { background-color: #FFd0d0; }
+
+//-->
+</style>
+<script language="JavaScript" src="../js/calendar.js"></script>
+<script language="JavaScript">
+<!--
+	function clearSearch() {
+		document.search_form.points_sd.value = "";
+		document.search_form.points_ed.value = "";
+		document.search_form.points_tp[0].checked = true;
+	
+		document.search_form.submit();
+
+	}
+//-->
+</script>
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_users_href}">{SITE_USERS_MSG}</a>&nbsp;&gt;
+			<a href="{admin_user_href}?user_id={user_id}">{user_name}</a>&nbsp;&gt;
+			<b>{POINTS_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+	<tr>
+		<td valign="top">
+
+			<table border="0" cellpadding="2" cellspacing="2">
+				<form action="{admin_user_points_href}" name="search_form">
+				<input type="hidden" name="user_id" value="{user_id}">
+				<!-- BEGIN errors -->
+				<tr>
+					<td colspan="2">
+					&nbsp;<div align="center" class="error"><font style="font-size:8pt">{errors_list}</font></div>&nbsp;
+					</td>
+				</tr>
+				<!-- END errors -->
+				<tr>
+					<td colspan="2"><b>Search:</b></td>
+				</tr>
+				<tr>
+					<td>{FROM_DATE_MSG} ({date_edit_format}):</td>
+					<td>
+					<input type="text" name="points_sd" value="{points_sd}" class="search">
+					<A HREF="#"
+					onClick="setDateField(document.search_form.points_sd, '{date_edit_format}');
+					top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+					<IMG SRC="../images/calendar.gif" BORDER=0><font size=1>{CALENDAR_MSG}</font></A>
+					</td>
+				</tr>
+				<tr>
+					<td>{TO_DATE_MSG} ({date_edit_format}):</td>
+					<td>
+					<input type="text" name="points_ed" value="{points_ed}" class="search">
+					<A HREF="#"
+					onClick="setDateField(document.search_form.points_ed, '{date_edit_format}');
+					top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+					<IMG SRC="../images/calendar.gif" BORDER=0><font size=1>{CALENDAR_MSG}</font></A>
+					</td>
+				</tr>
+				<tr>
+					<td>{TYPE_MSG}:</td>
+					<td>
+					<!-- BEGIN points_tp -->
+					<input type="radio" name="points_tp" {points_tp_checked} value="{points_tp_value}">{points_tp_description}
+					<!-- END points_tp -->
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" value="Search" class="submit">&nbsp;<input type="button" value="{CLEAR_BUTTON}" class="submit" onClick="clearSearch()"></td>
+				</tr>
+				</form>
+			</table>
+
+		</td>
+		<td valign="top" align="right" valign="top">
+			<table cellpadding="2" cellspacing="2" border="0">
+				<tr>
+					<td colspan="5">&nbsp;<b>{POINTS_STATS_MSG}:</b></td>
+				</tr>
+				<tr class="middle" align="center">
+					<td></td>
+					<td><a href="{admin_user_points_href}?user_id={user_id}&points_sd={today_date}&points_ed={today_date}">{TODAY_MSG}</a></td>
+					<td><a href="{admin_user_points_href}?user_id={user_id}&points_sd={yesterday_date}&points_ed={yesterday_date}">{YESTERDAY_MSG}</a></td>
+					<td><a href="{admin_user_points_href}?user_id={user_id}&points_sd={week_date}&points_ed={today_date}">{LAST_SEVEN_DAYS_MSG}</a></td>
+					<td><a href="{admin_user_points_href}?user_id={user_id}&points_sd={month_date}&points_ed={today_date}">{THIS_MONTH_FMSG}</a></td>
+				</tr>
+				<!-- begin types_stats -->
+				<tr class="usual" align="right">
+					<td align="left">&nbsp;<a href="{admin_users_points_href}?user_id={user_id}&points_tp={type_id}">{type_name}</a>&nbsp;</td>
+					<td>{points_today}</td>
+					<td>{points_yesterday}</td>
+					<td>{points_week}</td>
+					<td>{points_month}</td>
+				</tr>
+				<!-- end types_stats -->
+				<tr class="middle" align="right">
+					<td>{TOTAL_MSG}:&nbsp;</td>
+					<td>{points_total_today}</td>
+					<td>{points_total_yesterday}</td>
+					<td>{points_total_week}</td>
+					<td>{points_total_month}</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+<br>
+
+<fieldset>
+<legend>{POINTS_MSG}</legend>
+
+<table border="0" cellspacing="1" cellpadding="3" width="100%">
+<form name="points" action="{admin_user_points_href}" method="POST">
+<!-- begin sorters -->
+<tr align="center" class="middle" valign="top">
+	<td>
+		{sorter_order_id}
+	</td>
+	<td>
+		{sorter_points_amount}
+	</td>
+	<td>
+		{sorter_date_added}
+	</td>
+	<td>
+		{sorter_points_type}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- end sorters --><!-- BEGIN records -->
+<tr class="{row_style}">
+	<td align="center">
+		<!-- begin order_link -->
+		&nbsp;<a href="{admin_order_href}?order_id={order_id}">{order_id}</a>
+		<!-- end order_link -->
+	</td>
+	<td align="right">
+		&nbsp;{points_amount}&nbsp;
+	</td>
+	<td align="center">
+		&nbsp;{date_added}
+	</td>
+	<td align="center">
+		&nbsp;{points_type}
+	</td>
+	<td align="center">
+		<a href="{admin_user_point_url}">{EDIT_MSG}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="6">
+		&nbsp; {NO_RECORDS_MSG}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="6">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+		<tr class="middle">
+			<td>&nbsp;
+				<a href="{admin_user_point_new_url}">{ADD_MORE_PARAMETERS_QST}</a>
+			</td><!-- begin navigator_block -->
+			<td align="right">&nbsp;{navigator}&nbsp;</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</form>
+</table>	
+
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

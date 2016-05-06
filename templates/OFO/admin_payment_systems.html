@@ -1,0 +1,118 @@
+<html><head><title>{ADMINISTRATION_MSG} :: {PAYMENT_SYSTEMS_MSG}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<b>{PAYMENT_SYSTEMS_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr>
+</table>
+
+<br>
+
+<fieldset>
+<legend>{PAYMENT_SYSTEMS_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<table border="0" cellpadding="6" cellspacing="1" width="100%">
+<tr class="middle" align="center">
+	<td>
+		{sorter_payment_id}
+	</td>
+	<td>
+		{sorter_payment_name}
+	</td>
+	<td>
+		{sorter_payment_order}
+	</td>
+	<td>
+		{sorter_is_active}
+	</td>
+	<td>
+		{sorter_is_default}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- BEGIN records -->
+<tr class="usual" align="center">
+	<td>
+		{payment_id}
+	</td>
+	<td align="left">
+		&nbsp;{payment_name}
+	</td>
+	<td>
+		&nbsp;{payment_order}&nbsp;
+	</td>
+	<td>
+		&nbsp;<a href="{admin_payment_systems_href}?payment_id={payment_id}&operation={operation}">{active}</a>&nbsp;
+	</td>
+	<td>
+		&nbsp;{is_default}&nbsp;
+	</td>
+	<td>
+		<a href="{admin_payment_system_href}?payment_id={payment_id}">{EDIT_SYSTEM_MSG}</a>
+	</td>
+	<td>
+		<a href="{admin_credit_card_info_href}?payment_id={payment_id}">{PAYMENT_DETAILS_PAGE_MSG}</a>
+	</td>
+	<td>
+		<a href="{admin_order_final_href}?payment_id={payment_id}">{FINAL_CHECKOUT_PAGE_MSG}</a>
+	</td>
+	<td>
+		<a href="{admin_recurring_settings_href}?payment_id={payment_id}">{RECURRING_SETTINGS_MSG}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="9">
+		{NO_RECORDS}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="9">
+	  <table width="100%" cellspacing="0" cellpadding="0" border="0">
+		<tr>
+			<td>
+				&nbsp;<a href="{admin_payment_system_href}">{NEW_PAYMENT_SYSTEM_MSG}</a>&nbsp; |
+				&nbsp;<a href="{admin_payment_predefined_href}">{ADD_PREDEFINED_PS_MSG}</a>&nbsp;
+			</td>
+			<!-- begin navigator_block -->
+			<td align="right">&nbsp;{navigator}&nbsp;</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>	
+
+	</td>
+</tr>
+</table>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

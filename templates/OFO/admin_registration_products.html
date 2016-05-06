@@ -1,0 +1,160 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {REGISTRATION_PRODUCTS_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+<body class="commonbg">
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header">
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<!-- BEGIN tree --><a
+			href="{admin_registration_products_href}?category_id={tree_cat_id}">{tree_cat_name}</a>&nbsp;&gt;&nbsp;<!-- END tree --><b>{tree_current_name}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr>
+	<td valign="top" width="26%">
+
+<fieldset>
+<legend>{AVAILABLE_CATEGORIES_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center">
+	<td>
+
+		<table width="100%" border="0" cellspacing="1" cellpadding="6"><!-- begin categories_header -->
+		<tr class="middle">
+				<td>
+				&nbsp;{CATEGORY_NAME_MSG}
+			</td>
+			<!-- BEGIN categories_edit_header_priv -->
+			<td>&nbsp;</td>
+			<!-- END categories_edit_header_priv -->
+		</tr><!-- end categories_header --><!-- BEGIN categories -->
+		<tr class="usual">
+			<td>
+				&nbsp;<a href="{admin_registration_products_href}?category_id={category_id}">{category_name}</a>&nbsp;
+			</td>
+			<!-- BEGIN categories_edit_list_priv -->
+			<td align="center">
+				<a href="{admin_category_edit_href}?parent_category_id={parent_category_id}&category_id={category_id}">{EDIT_MSG}</a><br>
+			</td>
+			<!-- END categories_edit_list_priv -->
+		</tr><!-- END categories--><!-- BEGIN no_categories -->
+		<tr class="usual">
+			<td colspan="2">&nbsp;<b>'{tree_current_name}'</b> {CATEGORY_DOESNT_HAVE_MSG}.</td>
+		</tr><!-- END no_categories -->
+		<!-- BEGIN categories_edit_block -->
+		<tr class="middle">
+			<td colspan="2">
+				
+				&nbsp;<a href="{admin_category_edit_href}?parent_category_id={parent_category_id}">{ADD_CATEGORY_MSG}</a>
+				<!-- BEGIN categories_order_priv-->
+				 | <a href="{admin_categories_order_href}?parent_category_id={parent_category_id}">{CHANGE_ORDER_MSG}</a>
+				<!-- END categories_order_priv-->
+			</td>
+		</tr>
+		<!-- END categories_edit_block -->
+		</table>
+
+	</td>
+</tr>
+</table>
+</fieldset>
+
+</td>
+<td width="2%">&nbsp;</td>
+<td valign="top" width="72%">
+<!-- begin items_block -->
+<fieldset>
+<legend>{PRODUCTS_MSG} in <b>{tree_current_name}</b> category<!-- begin s_d --> matching the term(s) '<b>{s}</b>'<!-- end s_d -->:</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<form name="items" action="{admin_items_list_href}" method="POST">
+<input type="hidden" name="operation" value="delete">
+<input type="hidden" name="items_number" value="{items_number}">
+<input type="hidden" name="items_ids" value="{items_ids}">
+<input type="hidden" name="approved_status" value="{approved_status}">
+{hidden_parameters}
+<tr align="center">
+	<td>
+
+		<table width="100%" border="0" cellspacing="1" cellpadding="4"><!-- begin items_header -->
+		<tr class="middle" align="center">
+			<td align="left">
+				<nobr>{sorter_item_name}</nobr>
+			</td>
+			<td >
+				<nobr>{sorter_item_code}</nobr>
+			</td>
+			<td>
+				<nobr>{sorter_registered}</nobr>
+			</td>
+		</tr><!-- end items_header --><!-- BEGIN items_list -->
+		<tr class="{row_style}" align="center" valign="top" id="tr_product_{item_index}">
+			<td align="left">
+				<!-- BEGIN update_products_priv -->
+				<a class="title" style="color: black" href="{admin_product_href}?category_id={category_id}&item_id={item_id}">{item_name}</a> 
+				&nbsp; <a href="{admin_product_href}?category_id={category_id}&item_id={item_id}">{EDIT_MSG}</a>
+					<br>
+					<span style="color: black; font-size: 8pt">
+						<a class="small" href="{admin_product_categories_href}?category_id={category_id}&item_id={item_id}">{CATEGORIES_TITLE}</a>
+					</span>					
+				<!-- END update_products_priv -->
+				<!-- BEGIN products_priv -->
+				<span class="title">{item_name}</span>
+				<!-- END products_priv -->
+				<!-- BEGIN update_list_priv -->				
+				<span style="color: black; font-size: 8pt">
+					<a class="small" href="{admin_registration_edit_href}?category_id={category_id}&item_id={item_id}">{REGISTER_PRODUCT_MSG}</a>
+				</span>			
+				<!-- END update_list_priv -->	
+							
+			</td>
+			<td align="right">{item_code}&nbsp;</td>
+			<td>
+				&nbsp;<!-- BEGIN view_list_priv -->
+				<a class="small" href="{admin_registrations_href}?s_pi={item_id}">{registered}</a><!-- END view_list_priv -->
+			</td>
+		</tr><!-- END items_list --><!-- BEGIN no_items -->
+		<tr class="usual">
+			<td colspan="3">&nbsp;'<b>{tree_current_name}</b>' {CATEGORY_DOESNT_HAVE_PRODUCTS_MSG}</td>
+		</tr><!-- END no_items -->
+		<tr>
+			<td class="middlebg" colspan="3">
+				<table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tr>
+					<td>
+						<!-- BEGIN products_edit_block -->
+						<a href="{admin_product_href}?category_id={parent_category_id}">{ADD_NEW_MSG}</a>		
+							<!-- BEGIN products_order_priv-->
+							 | <a href="{admin_products_order_href}?category_id={parent_category_id}">{CHANGE_PRODUCTS_ORDER_MSG}</a>
+							<!-- END products_order_priv-->
+						<!-- END products_edit_block -->
+					</td><!-- begin navigator_block -->
+					<td align="right">&nbsp;{navigator}&nbsp;</td><!-- end navigator_block -->
+				</tr>				
+				</table>
+
+			</td>
+		</tr>	
+		</table>
+
+	</td>
+</tr>
+</form>
+</table>
+</fieldset>
+<!-- end items_block -->
+
+</td></tr>
+</table>
+
+
+{admin_footer}
+</body>
+</html>

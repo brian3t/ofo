@@ -1,0 +1,182 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_MANUFACTURER_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+	function openWindow(pagename, filetype)
+	{
+		var uploadWin = window.open (pagename + '?filetype=' + filetype, 'uploadWindow', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=400,height=300');
+		uploadWin.focus();
+	}
+
+	function setFileName(filename, filetype)
+	{
+		var siteUrl = '{site_url}';
+		if (filename != "" && filetype == "manufacturer_small")
+		{
+			document.record.image_small.value = siteUrl + "images/manufacturers/small/" + filename;
+			document.record.image_small.focus();
+		} else if (filename != "" && filetype == "manufacturer_large") {
+			document.record.image_large.value = siteUrl + "images/manufacturers/large/" + filename;
+			document.record.image_large.focus();
+		}
+	}
+
+//-->
+</script>
+
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5" align="center">
+<tr><td align="center">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_lookup_tables_href}">{STATIC_TABLES_MSG}</a>&nbsp;&gt;
+			<a href="{admin_manufacturers_href}">{MANUFACTURERS_TITLE}</a>&nbsp;&gt;&nbsp;<b>{EDIT_MANUFACTURER_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<td>
+<fieldset>
+<legend>{EDIT_MANUFACTURER_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<form action="{admin_manufacturer_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="manufacturer_id" value="{manufacturer_id}">
+<table border="0" cellspacing="1" cellpadding="6" width="100%"><!-- begin errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- end errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{MANUFACTURER_NAME_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="manufacturer_name" value="{manufacturer_name}">
+	</td>
+</tr><tr class="usual">
+	<td>
+		&nbsp;{MANUFACTURER_ORDER_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" size="10" name="manufacturer_order" value="{manufacturer_order}">
+	</td>
+</tr>
+<!-- begin friendly_url_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{FRIENDLY_URL_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="friendly_url" value="{friendly_url}" size="80" maxlength="255">
+	</td>
+</tr>
+<!-- end friendly_url_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{AFFILIATE_CODE_FIELD}
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="affiliate_code" value="{affiliate_code}">
+	</td>
+</tr>
+<!-- begin short_description_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{AD_SHORT_DESC_MSG}
+	</td>
+	<td>
+		<textarea name="short_description" cols="80" rows="4">{short_description}</textarea>
+	</td>
+</tr><!-- end short_description_block --><!-- begin full_description_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{FULL_DESCRIPTION_MSG}
+	</td>
+	<td>
+		<textarea name="full_description" cols="80" rows="10">{full_description}</textarea>
+	</td>
+</tr><!-- end full_description_block -->
+<tr class="middle">
+	<td colspan="2" class="middle">
+		&nbsp;{IMAGES_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_SMALL_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="image_small" value="{image_small}" size="80" maxlength="255"> 
+		&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'manufacturer_small')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+		&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'manufacturer_small')"><b>{SELECT_IMAGE_MSG}</b></a>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_SMALL_ALT_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="image_small_alt" value="{image_small_alt}" size="80" maxlength="255"> 
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_LARGE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="image_large" value="{image_large}" size="80" maxlength="255"> 
+		&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'manufacturer_large')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+		&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'manufacturer_large')"><b>{SELECT_IMAGE_MSG}</b></a>
+		<br>({SHOWN_FULL_PRODUCTS_DESC_MSG})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_LARGE_ALT_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="image_large_alt" value="{image_large_alt}" size="80" maxlength="255"> 
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onclick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{confirm_delete}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</form>	
+
+	</td>
+</tr>
+</table>
+</fieldset>
+</td></tr></table>
+
+{admin_footer}
+</body>
+</html>

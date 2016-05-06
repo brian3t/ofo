@@ -1,0 +1,49 @@
+<div class="block-filter">
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr> 
+		<td class="blockTD">
+			<table border="0" cellpadding="0" cellspacing="0"><!-- begin filter_properties_rows -->
+			<tr><!-- begin filter_properties_cols -->
+				<td valign="top" class="padding10px">
+					<div><b>{property_name}</b></div>
+					<!-- begin filter_values -->
+					<a href="{filter_url}">{value_title} ({value_total})</a><br>
+					<!-- end filter_values -->
+					<!-- begin filter_more_link -->
+					<div>
+						<a id="fp_link_{property_id}" href="#" onClick="popupBlock('fp_link_{property_id}', 'fp_more_{property_id}', 'fp_image_{property_id}'); return false;">
+						<img id="fp_image_{property_id}" src="images/icons/plus_small.gif" width="9" height="9" border="0">
+						{MORE_MSG}
+						</a>
+					</div>
+					<!-- end filter_more_link -->
+
+				
+					<div id="fp_more_{property_id}" class="filterPopup">
+					<!-- begin filter_more_values -->
+					<nobr>&nbsp;<a href="{filter_url}">{value_title} ({value_total})</a>&nbsp;</nobr><br>
+					<!-- end filter_more_values -->
+					</div>
+
+					<!-- begin filter_selected -->
+					<b>{value_title}</b> - <a href="{filter_url}">remove filter</a>
+					<!-- end filter_selected -->
+				</td><!-- end filter_properties_cols -->
+			</tr><!-- end filter_properties_rows -->
+			</table>
+		</td>
+	</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+</div>

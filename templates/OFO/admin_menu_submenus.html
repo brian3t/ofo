@@ -1,0 +1,80 @@
+<html><head><title>{ADMINISTRATION_MSG} :: {SUBMENU_ITEMS_MSG}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_header_menus_href}?layout_id={layout_id}">{SITE_NAVIGATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_menu_item_href}?layout_id={layout_id}&menu_id={menu_id}">{menu_title}</a>&nbsp;&gt;
+			<b>{SUBMENU_ITEMS_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{SUBMENU_ITEMS_MSG}</legend>
+<table border="0" cellspacing="1" cellpadding="6" width="100%">
+<tr align="center" class="middle">
+	<td>
+		#
+	</td>
+	<td>
+		{ADMIN_TITLE_MSG}
+	</td>
+	<td>
+		{TARGET_URL_MSG}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr>
+<!-- BEGIN records -->
+<tr class="usual" align="center">
+	<td>
+		{submenu_count}
+	</td>
+	<td align="left">
+		&nbsp;{submenu_title}
+	</td>
+	<td align="left">
+		&nbsp;{submenu_url}
+	</td>
+	<td>
+		<a href="{admin_menu_submenu_href}?submenu_id={submenu_id}">{EDIT_MSG}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="4">
+		&nbsp;{NO_RECORDS_MSG}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="4">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+		<tr class="middle">
+			<td>
+				&nbsp;<a href="{admin_menu_submenu_href}?menu_id={menu_id}">{NEW_SUBMENU_ITEM_MSG}</a>
+				&nbsp;|&nbsp; <a href="{admin_header_submenus_order_href}">{CHANGE_ORDER_MSG}</a>
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>	
+
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

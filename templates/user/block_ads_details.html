@@ -1,0 +1,229 @@
+<div class="block-ads-details">
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{item_title}</div></td></tr></table>
+		</td>
+		<td class="titleTopCenter" align="right">
+			<a href="{ads_print_href}?item_id={item_id}"><img src="images/ico-print.gif"  alt="{PRINTER_FRIENDLY_MSG}" width="20" height="20" border="0" align="absmiddle"></a><a onClick="window.open('{tell_friend_href}','tell_friend','toolbar=no,scrollbars=yes,resizable=no,width=425,height=400');return false;" href="{tell_friend_href}"><img src="images/ico-friend.gif" alt="{TELL_FRIEND_TITLE}" width="20" height="20" hspace="5" border="0" align="absmiddle"></a>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr> 
+		<td class="blockTD">
+
+			<!-- begin no_item -->
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr><td align="center" class="padding10px"><div class="errorbg">{NO_AD_MSG}</div><td></tr>
+			</table>
+			<!-- end no_item -->
+
+			<!-- begin item -->
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td class="padding10px">
+				<!-- start item table -->
+				<form name="form_{item_id}" action="{ads_details_href}" method="post">
+				<table width="100%" border="0" cellspacing="0" cellpadding="3">
+				<tr>
+					<td align="left" width="25%">
+						<!-- begin big_image --><a href="{ads_details_href}?item_id={item_id}&category_id={category_id}"><img src="{src}" {width} {height} border="0" hspace="0" alt="{alt}"></a><!-- end big_image -->
+					</td>
+					<td align="left" valign="top" width="35%">
+						<div>
+							<b>{TYPE_MSG}</b>:&nbsp;{type_name}<br>	
+							<b>{PRICE_MSG}</b>:&nbsp;<font class="ourprice">{price}</font><br>	
+							<!-- begin user_block --><b>{AD_SELLER_MSG}</b>:&nbsp;{user_name}<br><!-- end user_block -->	
+							<!-- begin quantity_block --><b>{AD_QTY_MSG}</b>:&nbsp;{quantity}<br><!-- end quantity_block -->	
+							<!-- begin availability_block --><b>{AD_AVAILABILITY_MSG}</b>:&nbsp;{availability}</font><br><!-- end availability_block -->	
+							<!-- begin location_block --><b>{AD_LOCATION_MSG}</b>:&nbsp;{location}<br><!-- end location_block -->	
+						</div>
+					</td>
+					<td align="left" valign="top" width="40%">
+						<!-- begin properties --><b>{property_name}</b>: {property_value}<br><!-- end properties -->
+					</td>
+				</tr>
+				</table>
+				</form>
+
+				</td>
+			</tr>
+			</table>
+			<!-- end item -->
+
+
+			<!-- begin tabs -->
+			<table border="0" cellspacing="0" cellpadding="5">
+				<tr>
+					<!-- BEGIN tab_desc -->
+					<td class="usualbg">&nbsp;</td><td class="{tab_style}">&nbsp;<a href="{tab_href}" class="{tab_style}">{AD_DESCRIPTION_MSG}</a>&nbsp;</td>
+					<!-- END tab_desc -->
+					<!-- begin tab_spec -->
+					<td class="usualbg">&nbsp;</td><td class="{tab_style}">&nbsp;<a href="{tab_href}" class="{tab_style}">{AD_SPECIFICATION_MSG}</a>&nbsp;</td>
+					<!-- end tab_spec -->
+					<!-- begin tab_images -->
+					<td class="usualbg">&nbsp;</td><td class="{tab_style}">&nbsp;<a href="{tab_href}" class="{tab_style}">{IMAGES_MSG}</a>&nbsp;</td>
+					<!-- end tab_images -->
+				</tr>                      	
+			</table>
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tabline">
+				<tr><td height=2><img src="images/tr.gif" width="1" height="2" border="0"></td></tr>                      	
+			</table>
+			<!-- end tabs -->
+
+
+			<!-- begin description_block -->
+			<!-- begin title_desc -->
+			<table width="100%" border="0" cellspacing="0" cellpadding="6">
+			<tr>
+				<td class="middlebg"><div class="bigtitle">&nbsp;{AD_DESCRIPTION_MSG}</div></td>                    	
+			</tr>                      	
+			</table>
+			<!-- end title_desc -->
+			<table width="100%" border="0" cellspacing="0" cellpadding="10">
+			<tr>
+				<td><!-- begin description --><div>{full_description}</div><!-- end description --></td>
+			</tr>				
+			</table>
+			<!-- end description_block -->
+
+
+			<!-- begin specification -->
+			<!-- begin title_spec -->
+			<br>
+			<table width="100%" border="0" cellspacing="0" cellpadding="6">
+			<tr>
+				<td class="middlebg"><div class="bigtitle">&nbsp;{AD_SPECIFICATION_MSG}</div></td>                    	
+			</tr>                      	
+			</table>
+			<!-- end title_spec -->
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr><td class="padding10px">
+					<!-- begin groups -->
+					<table cellspacing=0 cellpadding=0 width="100%" align=center class=headerbg border=0>
+						<tr><td>
+						<table cellspacing=1 cellpadding=4 width="100%" align=center border=0>
+							<tr>
+								<td class="headerbg" colspan=2><b>{group_name}</b></td>
+							</tr>
+							<!-- begin features -->
+							<tr>
+								<td class="middlebg" valign=top width="35%">{feature_name}</td>
+								<td class="usualbg" valign=top>{feature_value}</td>
+							</tr>
+							<!-- end features -->
+						</table>
+						</td></tr>
+					</table>
+					<!-- end groups -->
+				</td></tr>
+			</table>
+			<!-- end specification -->
+
+
+			<!-- begin images -->
+			<!-- begin title_images -->
+			<br>
+			<table width="100%" border="0" cellspacing="0" cellpadding="6">
+			<tr>
+				<td class="middlebg"><div class="bigtitle">&nbsp;{IMAGES_MSG}</div></td>                    	
+			</tr>                      	
+			</table>
+			<!-- end title_images -->
+			<br>
+			<table cellSpacing=0 cellPadding=5 width="100%" align=center border=0>
+			<!-- begin images_rows -->
+			<tr valign="top" align="center">
+				<!-- begin images_cols -->
+				<td>
+					<div class="title">{image_title}</div>
+					<a href="{image_large}" target="_blank"><img src="{image_small}" {image_width} {image_height} border="0"></a>
+					<div class="smallText">{image_description}</div>
+				</td>
+				<!-- end images_cols -->
+			</tr>
+			<tr><td colspan="2">&nbsp;</td></tr>
+			<!-- end images_rows -->
+			</table>
+			<!-- end images -->
+
+		</td>
+	</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+
+
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div><b>{AD_REQUEST_TITLE}</b></div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+<tr> 
+	<td class="blockTD">
+
+		<table width="100%" cellspacing="0" cellpadding="0" border="0">
+		<tr class="usualbg"> 
+			<td valign="top" class="padding10px">
+
+			<table width="100%" border="0" cellspacing="1" cellpadding="4" align="center">
+			<form name="review" action="{ads_details_href}" method="post">
+			<input type="hidden" name="rnd" value="{rnd}">
+			<input type="hidden" name="operation" value="1">
+			<input type="hidden" name="item_id" value="{item_id}">
+			<input type="hidden" name="category_id" value="{category_id}">
+			
+			<tr class="usualbg"><td colspan="2">&nbsp;</td></td>
+			<!-- begin request_sent -->
+			<tr class="usualbg">
+				<td colspan="2" align="center"><div class="messagebg"><b>{AD_SENT_MSG}</b></div></td>
+			</td>
+			<!-- end request_sent -->
+			<!-- begin errors -->
+			<tr class="usualbg">
+				<td colspan="2" align="center" class="errorbg">&nbsp;{errors_list}</td>
+			</td>
+			<!-- end errors -->
+			<tr class="usualbg">
+				<td>&nbsp;{PRICE_MSG} ({currency_sign})</td>
+				<td><input class="text" type="text" name="offer_price" size="50" value="{offer_price}" maxlength="64"></td>
+			</tr>
+			<tr class="usualbg">
+				<td>&nbsp;{AD_OFFER_MESSAGE_MSG} *</td>
+				<td><textarea name="offer_message" cols="50" rows="10">{offer_message}</textarea></td>
+			</tr>
+			<tr class="middlebg">
+				<td></td>
+				<td>
+					<span class="submit"><input class="submit" type="submit" value="{AD_REQUEST_BUTTON}"></span>
+				</td>
+			</tr>
+			</form>
+			</table>
+
+			</td>
+		</tr>
+		</table>
+
+	</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+</div>

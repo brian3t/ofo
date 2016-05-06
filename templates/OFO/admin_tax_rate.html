@@ -1,0 +1,128 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_TAX_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_tax_rates_href}">{TAX_RATES_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_TAX_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<form action="{admin_tax_rate_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="tax_id" value="{tax_id}">
+<input type="hidden" name="page" value="{page}">
+<input type="hidden" name="sort_ord" value="{sort_ord}">
+<input type="hidden" name="sort_dir" value="{sort_dir}">
+<fieldset>
+<legend>{EDIT_TAX_MSG}</legend>
+
+<table border="0" cellspacing="1" cellpadding="6" width="100%"><!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td nowrap valign="top">
+		&nbsp;{DEFAULT_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="is_default" {is_default} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{TAX_NAME_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" size="35" name="tax_name" value="{tax_name}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{STATE_FIELD}
+	</td>
+	<td>
+		<select name="state_id"><!-- begin state_id -->
+			<option {state_id_selected} value="{state_id_value}">{state_id_description}<!-- end state_id -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{COUNTRY_FIELD} *
+	</td>
+	<td>
+		<select name="country_id"><!-- begin country_id -->
+			<option {country_id_selected} value="{country_id_value}">{country_id_description}<!-- end country_id -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{BASE_TAX_PERCENT_MSG} (%) *
+	</td>
+	<td>
+		<input class="field" type="text" size="10" name="tax_percent" value="{tax_percent}" maxlength="10">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SHIPPING_TAX_PERCENT_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="10" name="shipping_tax_percent" value="{shipping_tax_percent}" maxlength="10">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{TAX_PERCENT_PER_PRODUCT_MSG} 
+		<br>
+		&nbsp;({TAX_PERCENT_PER_PRODUCT_NOTE})
+	</td>
+	<td>
+		<table cellpadding="0" cellspacing="0" border="0">
+		<!-- begin tax_rates_items -->
+		<tr>
+			<td>
+				&nbsp;{item_type_name}&nbsp;
+			</td>
+			<td>
+				<input class="field" type="text" size="10" name="item_tax_percent_{item_type_id}" value="{item_tax_percent}" maxlength="10">
+			</td>
+		</tr>
+		<!-- end tax_rates_items -->
+		</table>
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onclick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</fieldset>
+</form>	
+
+{admin_footer}
+</body>
+</html>

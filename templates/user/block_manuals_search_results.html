@@ -1,0 +1,54 @@
+<div class="block-manuals-search-results">
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{MANUALS_SEARCH_RESULTS_TITLE}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr> 
+		<td class="blockTD">
+			<table border="0" cellspacing="1" width="100%" class="padding6px">
+				<!-- BEGIN results_number_block -->
+				<tr><td>{found_message}</td></tr>
+				<!-- END results_number_block -->
+				
+				<!-- BEGIN record -->
+				<tr>
+					<td>
+						<table border="0" cellpadding="0" cellspacing="1">
+						<tr>
+							<td><a href="{article_href}" class="{restricted_class}">{article_title}<!--begin restricted_image--><img src="images/tr.gif" alt="" class="{restricted_class}"><!--end restricted_image--></a>&nbsp;[{section_number}]</td>
+						</tr>
+						<tr>
+							<td>{short_description}</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				<!-- END record -->
+				<!-- BEGIN no_results -->
+				<tr>
+					<td>{not_found_message}</td>
+				</tr>
+				<!-- END no_results -->
+				<!-- begin navigator_block -->
+				<tr>
+					<td align="right">&nbsp;{navigator}&nbsp;</td>
+				</tr>
+				<!-- end navigator_block -->				
+			</table>
+		</td>
+	</tr>
+</table>
+
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+</div>

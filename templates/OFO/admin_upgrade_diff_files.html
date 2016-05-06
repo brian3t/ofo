@@ -1,0 +1,38 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {FILES_DIFFERENCES_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+<body class="commonbg">
+{admin_header}
+<table width="100%" border="0" cellspacing="1" cellpadding="4">
+<tr class=middle><td colspan=4>{STATUSES_MSG}</td></tr>
+<tr align="center" class="usual">
+	<td><div class=error><U>{ADMIN_CHANGED_MSG}</U></div>&#8211; {CHANGED_FILE_MSG} &#8211;</td>
+	<td>{ADMIN_NOT_CHANGED_MSG}<BR>&#8211; {NOT_CHANGED_FILE_MSG} &#8211;</td>
+	<td><div class=message>{NEW_FILE_MSG}</div>&#8211; {NEW_FILE_VERSION_MSG} &#8211;</td>
+	<td><div class=comment>{UNKNOWN_MSG}</div>&#8211; {UNKNOWN_FILE_MSG} &#8211;</td>
+</tr>
+</TABLE>
+<TABLE width="100%" border="0" cellspacing="1" cellpadding="4">
+<tr align="center" class="middle">
+	<td>{FILE_NAME_MSG}</td>
+	<td>{ADMIN_MODIFIED_MSG}</td>
+	<td>{STATUS_MSG}</td>
+</tr>
+<!-- BEGIN files-->
+<tr class="usual">
+	<td>{ver_file_name}</td>
+	<td align=center>{m_time}</td>
+	<td align=center>{compare_files}</td>
+</tr>
+<!-- END files-->
+<tr align="center" class="middle">
+	<td>{FILE_NAME_MSG}</td>
+	<td>{ADMIN_MODIFIED_MSG}</td>
+	<td>{STATUS_MSG}</td>
+</tr>
+</TABLE>
+<br>
+{admin_footer}
+</body>
+</html> 

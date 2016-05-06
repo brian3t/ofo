@@ -1,0 +1,85 @@
+<html><head><title>{ADMINISTRATION_MSG} :: {CUSTOM_FRIENDLY_URLS_MSG}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<b>{CUSTOM_FRIENDLY_URLS_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{CUSTOM_FRIENDLY_URLS_MSG}</legend>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+</tr>
+<tr align="center"> 
+	<td>
+
+<table border="0" cellspacing="1" cellpadding="6" width="100%"><!-- begin sorters -->
+<tr align="center" class="middle">
+	<td>
+		{sorter_friendly_id}
+	</td>
+	<td>
+		{sorter_script_name}
+	</td>
+	<td>
+		{sorter_friendly_url}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- end sorters --><!-- BEGIN records -->
+<tr class="usual" align="center">
+	<td>
+		{friendly_id}
+	</td>
+	<td align="left">
+		&nbsp;{script_name}
+	</td>
+	<td align="left">
+		&nbsp;{friendly_url}
+	</td>
+	<td>
+		<a href="{admin_friendly_url_href}?friendly_id={friendly_id}">{EDIT_MSG}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="4">
+		&nbsp;{NO_RECORDS_MSG}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="4">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td>
+				&nbsp;<a href="{admin_friendly_url_href}">{ADD_NEW_MSG}</a>
+			</td>
+			<!-- begin navigator_block -->
+			<td align="right">&nbsp;{navigator}&nbsp;</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>	
+
+	</td>
+</tr>
+</table>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

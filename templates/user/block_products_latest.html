@@ -1,0 +1,25 @@
+<div class="block-products-latest">
+	<div class="titleTopCenter">
+		
+		
+		<h1>{PRODUCTS_TITLE}&nbsp;&nbsp;{LATEST_TITLE}</h1>
+	</div>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0"><!-- BEGIN lp_rows -->
+	<tr><!-- BEGIN lp_cols -->
+		<td align="left" valign="top" width="{latest_column}" class="padding10px">
+
+			<!-- begin lp_image --><a href="{details_url}"><img src="{src}" {width} {height} hspace="5" border="0" alt="{alt}" align="left"></a><!-- end lp_image -->
+
+			<a href="{details_url}" class="{restricted_class}"><b>{item_name}</b><!--begin restricted_image--><!--end restricted_image--></a>
+			<!-- begin lp_price_block -->
+			 - <span class="ourprice"><b>{lp_price}</b> {lp_tax_price}</span>
+			<!-- end lp_price_block -->
+
+			<!-- begin lp_desc -->
+			<br>{desc_text}
+			<!-- end lp_desc -->
+
+		</td><!-- END lp_cols -->
+	</tr><!-- END lp_rows -->
+	</table>
+</div>

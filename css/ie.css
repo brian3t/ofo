@@ -1,0 +1,10 @@
+@charset "utf-8";
+/* IE Fixes */
+#vehicleSelector {
+	width:225px;
+	left:-30px;
+}
+.mainTableCellLeft {
+	width:200px;
+}
+

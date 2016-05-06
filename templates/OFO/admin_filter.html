@@ -1,0 +1,82 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {ADMIN_FILTER_MSG} :: {EDIT_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<link rel="stylesheet" href="../styles/editor.css" type="text/css">
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_filters_url}">{FILTERS_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{ADMIN_FILTER_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="6" align="center">
+<form action="{admin_filter_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="filter_id" value="{filter_id}">
+<input type="hidden" name="sort_ord" value="{sort_ord}">
+<input type="hidden" name="sort_dir" value="{sort_dir}">
+<input type="hidden" name="page" value="{page}">
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{TYPE_MSG} *
+	</td>
+	<td colspan="4">
+		<select name="filter_type"><!-- begin filter_type -->
+			<option {filter_type_selected} value="{filter_type_value}">{filter_type_description}<!-- end filter_type -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{NAME_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" name="filter_name" size="100" value="{filter_name}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{DESCRIPTION_MSG}
+	</td>
+	<td>
+		<textarea name="filter_desc" cols="100" rows="8">{filter_desc}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</form>	
+</table>
+
+</fieldset>
+
+{admin_footer}
+
+</body>
+</html>

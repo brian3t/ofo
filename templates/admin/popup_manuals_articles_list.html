@@ -1,0 +1,80 @@
+<html>
+<head>
+<title>..:: {ADMINISTRATION_MSG} :: {MANUALS_ARTICLES_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+<style type="text/css">
+.level-1 a {margin-left: 15;font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9pt;}
+.level-2 a {margin-left: 25;font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9pt;}
+.level-3 a {margin-left: 35;font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9pt;}
+.level-4 a {margin-left: 40;font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9pt;}
+.level-5 a {margin-left: 45;font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9pt;}
+.level-6 a {margin-left: 50;font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9pt;}
+
+.description {font-family: Verdana, Helvetica, sans-serif; font-size: 9pt;}
+.manual_title {font-family: Verdana, Helvetica, sans-serif; font-size: 9pt;}
+</style>
+<script type="text/javascript">
+function toggle_visibility(div_id) {
+	element = document.getElementById(div_id);
+	
+	if (element != null) {
+		if (element.style.display == "none") {
+			element.style.display = "block";
+		} else {
+			element.style.display = "none";
+		}
+	}
+}
+
+function put_and_close(article_id, article_title, manual_title, section_number) {
+	element = window.opener.document.getElementById("alias_article_id");
+	info_element = window.opener.document.getElementById("alias_article_title");
+	
+	if (element != null && info_element != null) {
+		element.value = article_id;
+		info_element.value = section_number + " " + article_title + "(" + manual_title + ")";
+	}
+	window.close();
+}
+</script>
+<body>
+<div align="center" class="description">
+Select alias article in list below. Click on the manual name to open manual articles list.
+</div>
+<table>
+	<!-- begin manual_block -->
+	
+	<tr>
+		<td><a class="manual_title" href="#" onclick="toggle_visibility('manual_articles_{manual_id}')">{manual_title}</a></td>
+	</tr>
+	
+	<tr>
+		<td>
+			<div id="manual_articles_{manual_id}" style="display: none;">
+			<table>
+				<!-- begin no_articles -->
+				<tr>
+					<td class="description">No articles</td>
+				</tr>
+				<!-- end no_articles -->
+				<!-- begin article_block -->
+				<tr>
+					<td class="level-{article_level}">
+					<a href="#" onclick="put_and_close('{article_id}', '{article_title_param}', '{manual_title}', '{alias_section_number}');">{section_number}&nbsp;{article_title}</a>
+					</td>
+				</tr>
+				<!-- end article_block -->
+			</table>
+			</div>
+		</td>
+	</tr>
+	
+	</td>
+	</tr>
+	<!-- end manual_block -->
+</table>
+<div align="center"><a class="description" href="javascript: window.close();">[{CLOSE_WINDOW_MSG}]</a></div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+@charset "utf-8";
+
+#oilFilterContent .content {
+background: #787878 url(/images/oil-filters/oil_filters_bkgd.jpg) repeat-x 0 0;
+}
+
+#oilFilterContent .content {
+overflow: hidden;
+height: auto;
+}
+
+#oilFilterContent .content .textArea {
+width: 520px;
+background: transparent;
+float: left;
+padding: 20px 0 20px 20px;
+}
+
+#oilFilterContent .content .textArea .cornerImage {
+float: left;
+margin-right: 20px;
+}
+
+#oilFilterContent .content .textArea h1 {
+color: #ff6600;
+font: 600 18px/26px arial;
+font-style: italic;
+}
+
+#oilFilterContent .content .textArea h2 {
+color: #ff6600;
+font-style: italic;
+}
+
+#oilFilterContent .content .textArea p {
+color: #fff;
+}
+
+#oilFilterContent .content .textArea ul {
+margin: 0;
+padding: 0;
+}
+
+#oilFilterContent .content .textArea ul li {
+color: #fff;
+margin: 0 15px;
+padding: 0;
+}
+
+#oilFilterContent .content .textArea .firstBox{
+float: left;
+width: 290px;
+margin: 0;
+padding: 0;
+}
+
+#oilFilterContent .content .textArea .secondBox{
+clear: left;
+margin: 0;
+padding: 20px 0;
+}
+
+#oilFilterContent .content .flashContent{
+	height: 600px;
+	width: 280px;
+	background: transparent;
+	float: right;
+	padding: 10px 10px;
+}

@@ -1,0 +1,83 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {ARTICLES_STATUSES_MSG} ::..</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_articles_top_href}">{ARTICLES_TITLE}</a>&nbsp;&gt;&nbsp;<b>{ARTICLES_STATUSES_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{ARTICLES_STATUSES_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<table border="0" cellspacing="1" cellpadding="6" width="100%"><!-- BEGIN sorters -->
+<tr align="center" class="middle">
+	<td>
+		{sorter_status_id}
+	</td>
+	<td>
+		{sorter_status_name}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- END sorters --><!-- BEGIN records -->
+<tr class="usual" align="center">
+	<td>
+		{status_id}
+	</td>
+	<td align="left">
+		&nbsp;{status_name}
+	</td>
+	<td>
+		<a href="{admin_articles_status_href}?status_id={status_id}">{EDIT_STATUS_MSG}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="3">
+		&nbsp;{NO_RECORDS_MSG}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="3">
+		<table cellspacing="0" cellpadding="0" width="100%" border="0">
+		<tr>
+			<td class="middle">
+				&nbsp;<a href="{admin_articles_status_href}">{ADD_NEW_MSG}</a>
+			</td><!-- begin navigator_block -->
+			<td class="middle" align="right">
+				&nbsp;{navigator}&nbsp;
+			</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>	
+
+	</td>
+</tr>
+</table>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

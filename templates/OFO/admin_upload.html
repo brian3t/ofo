@@ -1,0 +1,152 @@
+<html><head><title>{ADMINISTRATION_MSG} :: {UPLOAD_TITLE}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript" type= "text/javascript" src="../js/product.js"></script>
+<script language="JavaScript">
+<!--
+
+function closeWindow(imageName)
+{
+
+	var siteUrl = '{site_url}';
+
+	window.opener.setFileName(imageName, document.upload.filetype.value, document.upload.image_index.value, siteUrl);
+
+	if (document.upload.generate_big != null) {
+		if (document.upload.generate_big.value) {
+			window.opener.setFileName(imageName, "big_image", document.upload.image_index.value, siteUrl);
+		}
+	}
+	if (document.upload.generate_small != null) {
+		if (document.upload.generate_small.value) {
+			window.opener.setFileName(imageName, "small_image", document.upload.image_index.value, siteUrl);
+		}
+	}
+	if (document.upload.generate_tiny != null) {
+		if (document.upload.generate_tiny.value) {
+			window.opener.setFileName(imageName, "tiny_image", document.upload.image_index.value, siteUrl);
+		}
+	}
+
+	window.opener.focus();
+	window.close();
+}
+
+//-->
+</script>
+</head>
+
+<body class="popup">
+<form name="upload" action="{admin_upload_href}?filetype={filetype}" enctype="multipart/form-data" method="post">
+<input type="hidden" name="operation" value="1">
+<input type="hidden" name="filetype" value="{filetype}">
+<input type="hidden" name="image_index" value="{image_index}">
+<input type="hidden" name="layout_id" value="{layout_id}">
+<table width="100%" border="0" cellspacing="1" cellpadding="0" align="center" class="header">
+<tr><td class="header">
+
+	<table cellspacing="0" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td colspan="3" class="header">
+			<table cellspacing="0" cellpadding="0" border="0" width="100%">
+			<tr align="center">
+				<td width=50%>
+					<a class="header" href="{admin_select_href}?filetype={filetype}&layout_id={layout_id}"><b>{VIEW_FILES_MSG}</b></a>
+				</td>
+				<td>
+					<a class="header" href="javascript:closeWindow('{filename_js}');"><b>{CLOSE_WINDOW_MSG}</b></a>
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3" class="usual">
+			&nbsp;{CURRENT_DIR_MSG}: <b>{files_dir}</b>
+			<!-- begin subdir_id_block -->
+			<select name="subdir_id"><!-- begin subdir_id -->
+				<option {subdir_id_selected} value="{subdir_id_value}">{subdir_id_description}<!-- end subdir_id -->
+			</select><!-- end subdir_id_block -->
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3" class="usual">
+		<br>
+		</td>
+	</tr><!-- BEGIN errors -->
+	<tr>
+		<td align="center" class="usual">
+			<div class="error"><b>
+			{errors_list}</b></div>
+		</td>
+	</tr><!-- END errors --><!-- BEGIN before_upload -->
+	<tr>
+		<td class="usual">
+			<table><tr><td>&nbsp;&nbsp;&nbsp;{upload_select_message}<br>
+			</td></tr>
+			<tr><td>
+				&nbsp;&nbsp;&nbsp;<input class="submit" type="file" size="40" name="newfile">&nbsp;&nbsp;
+				<input class="submit" type="submit" name="submit" value="{UPLOAD_BUTTON}">
+
+			</td></tr></table>
+		</td>
+	</tr>
+
+	<!-- BEGIN generate_tiny_image -->
+	<tr class="usual">
+		<td align="left">
+			&nbsp;&nbsp;&nbsp;<input type="checkbox" name="is_generate_tiny_image" {is_generate_tiny_image} value="1"> {GENERATE_TINY_IMAGE_MSG}
+		</td>
+	</tr><!-- END generate_tiny_image --><!-- BEGIN generate_small_image -->
+	<tr class="usual">
+		<td align="left">
+			&nbsp;&nbsp;&nbsp;<input type="checkbox" name="is_generate_small_image" {is_generate_small_image} value="1"> {GENERATE_SMALL_IMAGE_MSG}
+		</td>
+	</tr><!-- END generate_small_image --><!-- BEGIN generate_big_image -->
+	<tr class="usual">
+		<td align="left">
+			&nbsp;&nbsp;&nbsp;<input type="checkbox" name="is_generate_big_image" {is_generate_big_image} value="1"> {GENERATE_BIG_IMAGE_MSG}
+		</td>
+	</tr><!-- END generate_big_image -->
+
+<!-- END before_upload --><!-- BEGIN after_upload -->
+	<tr>
+		<td class="usual" align="center">
+			{UPLOADED_FILE_MSG}
+			<input type="hidden" name="filename" value="{filename}">
+			<input type="hidden" name="generate_tiny" value="{generate_tiny}">
+			<input type="hidden" name="generate_small" value="{generate_small}">
+			<input type="hidden" name="generate_big" value="{generate_big}">
+			<script language="JavaScript">
+				closeWindow('{filename_js}');
+			</script>
+		</td>
+	</tr><!-- END after_upload -->
+
+	<tr>
+		<td colspan="3" class="usual">
+		<br>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3" class="header">
+			<table cellspacing="0" cellpadding="0" border="0" width="100%">
+			<tr align="center">
+				<td>
+					<a class="header" href="{admin_select_href}?filetype={filetype}&layout_id={layout_id}"><b>{VIEW_FILES_MSG}</b></a>
+				</td>
+				<td>
+					<a class="header" href="javascript:closeWindow('{filename_js}');"><b>{CLOSE_WINDOW_MSG}</b></a>
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+
+</td></tr>
+</table>
+</form>
+
+</body>
+</html>

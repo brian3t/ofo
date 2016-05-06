@@ -1,0 +1,57 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {FILE_MANAGER_MSG} :: {UPLOAD_FILE_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+<body class="commonbg">
+{admin_header} 
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a href="{admin_filemanager_fm_href}?op=1&root_dir={dir_path}">{FILE_MANAGER_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_FILE_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+<br>
+<fieldset>
+<legend>{EDIT_FILE_MSG}</legend>
+
+<table border="0" cellspacing="1" cellpadding="0" width="100%">
+<FORM method=post action="{admin_edit_file_href}">
+<!-- BEGIN service_messages -->
+<TR>
+	<TD class=message colspan=2 align=center>{service_message}</TD>
+</TR>
+<!-- END service_messages -->
+<!-- BEGIN errors -->
+<TR>
+	<TD class=error colspan=2 align=center>{error}</TD>
+</TR>
+<!-- END errors -->
+<TR>
+	<TD width=10% align="right">&nbsp;<b>{FILENAME_MSG}</b>&nbsp;</TD>
+	<TD><INPUT class="field" TYPE="text" NAME="edit_file" size="120" value="{edit_file}"></TD>
+</TR>
+<TR>
+	<TD>&nbsp;&nbsp;</TD>
+	<TD><TEXTAREA NAME="file_content" ROWS="25" COLS="120">{content_file}</TEXTAREA></TD>
+</TR>
+<TR>
+	<td></td>
+	<TD>
+		<INPUT TYPE="hidden" name=op value=1>
+		<INPUT TYPE="hidden" name=dir_path value="{dir_path}">
+		<INPUT TYPE="hidden" name=old_edit_file value="{edit_file}">
+		<INPUT TYPE="submit" name=button value="Save">
+		<INPUT TYPE="button" value="{CANCEL_BUTTON}" name=button_reset onclick="parent.location='{host}{admin_filemanager_fm_href}?op=1&root_dir={dir_path}'">
+		<BR>&nbsp;
+	</TD>
+</TR>
+</FORM>
+</table>
+</fieldset>
+{admin_footer}
+</body>
+</html>

@@ -1,0 +1,2088 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_PRODUCT_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<link rel="stylesheet" href="../styles/editor.css" type="text/css">
+
+<script language="JavaScript" type= "text/javascript" src="../js/product.js"></script>
+<script language="JavaScript" type= "text/javascript" src="../js/calendar.js"></script>
+<script language="JavaScript" type= "text/javascript" src="../js/editor.js"></script>
+<script language="JavaScript" type= "text/javascript" src="../js/list_fields.js"></script>
+<script language="JavaScript" type= "text/javascript" src="../js/access_table.js"></script>
+<script language="JavaScript" type= "text/javascript" src="../js/tips.js"></script>
+<script language="JavaScript" type= "text/javascript" src="../js/images.js"></script>
+<script language="JavaScript" type= "text/javascript" src="../js/users.js"></script>
+<script language="JavaScript">
+<!--
+
+var removeButton = "{REMOVE_BUTTON}";
+var userViewLink = "{admin_user_href}";
+var list_fields_names = new Array('sites');
+
+var price_fields_names = new Array('price', 'sales_price', 'trade_price', 'trade_sales', 'buying_price', 'properties_price', 'trade_properties_price');	
+var price_codes = new Array(); 
+{price_codes_js}
+var old_values = new Array();
+function priceSelected(field_name, field_value) {
+	var formObj = document.record;
+	if (field_value > 0 && price_codes[field_value]) {
+		old_values[field_name] = formObj[field_name].value;
+		formObj[field_name].value = price_codes[field_value];
+		formObj[field_name].readOnly = true;
+	} else {
+		if (old_values[field_name])
+			formObj[field_name].value = old_values[field_name];
+		formObj[field_name].readOnly = false;
+	}
+	pricePreview();
+}
+function priceSelectedLoad() {
+	var formObj = document.record;
+	if (price_fields_names) {
+		for (var n = 0; n < price_fields_names.length; n++) {
+			var field_name = price_fields_names[n];
+			if (formObj[field_name+'_id'].value>0)
+				formObj[field_name].readOnly = true;			
+		}
+	}
+	
+}
+
+var current_id;
+var indicatorIcon = "../images/icons/indicator.gif";
+var closeIcon = "../images/icons/close.gif";
+function nextNode(e) {
+	return ((e && e.nodeType != 1) ? nextNode(e = e.nextSibling) : e);
+}
+function saveItemTypeOptionDefaults(prID) {
+	var formObj = document.record;
+	var option_properties_default_values = "";			
+	var default_objs = formObj.elements["properties_default_values_" + current_id + "_" + prID];
+	if (default_objs) {				 
+		if (default_objs.length && !default_objs.selectedIndex) {						
+			for(var j=0; j<default_objs.length; j++) {
+				if (default_objs[j].selectedIndex || default_objs[j].checked) {
+					option_properties_default_values += default_objs[j].value + ",";
+				}
+			}						
+		} else {
+			if (default_objs.selectedIndex || default_objs.checked) {
+				option_properties_default_values = default_objs.value;
+			}
+		}
+	}
+	return option_properties_default_values;
+	
+}
+function saveItemTypeOptions() {
+	var formObj = document.record;
+	if (current_id) {
+		var objs = formObj.elements["properties_assigned_" + current_id];
+		var properties_default_values = "";
+		if (objs) {
+			if (objs.length) {
+				var properties_assigned = "";
+				var properties_default_values = "";
+				for(var i=0; i<objs.length; i++) {
+					if (objs[i].checked) {
+						properties_assigned += objs[i].value + ",";
+						properties_default_values += saveItemTypeOptionDefaults(objs[i].value) + ",";
+					}
+				}
+				formObj.elements["properties_assigned"].value = properties_assigned;
+				formObj.elements["properties_default_values"].value = properties_default_values;
+			} else {
+				if (objs.selectedIndex || objs.checked) {
+					formObj.elements["properties_assigned"].value =  objs.value;
+					formObj.elements["properties_default_values"].value = saveItemTypeOptionDefaults(objs.value);
+				}
+			}
+		}
+		var objs = formObj.elements["properties_assigned_values_" + current_id];
+		if (objs) {
+			if (objs.length) {
+				var properties_assigned_values = "";
+				for(var i=0; i<objs.length; i++) {
+					if (objs[i].selectedIndex || objs[i].checked) {
+						properties_assigned_values += objs[i].value + ",";
+					}
+				}
+				formObj.elements["properties_assigned_values"].value = properties_assigned_values;
+			} else {
+				if (objs.selectedIndex || objs.checked) {
+					formObj.elements["properties_assigned_values"].value =  objs.value;
+				}
+			}
+		}
+	}
+	return false;
+}
+function changeItemType(id) {
+	var formObj = document.record;
+	var div_id = "item_type_" + id;
+	if (current_id) {
+		var current_div_id = "item_type_" + current_id;
+		var div = document.getElementById(current_div_id);
+		if (div) {
+			div.style.cssText = 'display:none';
+			if (isIE) {
+				var objs = formObj.elements["properties_assigned_values_" + current_id];
+				if (objs) {
+					for (var i = 0; i < objs.length; i++) {
+						objs[i].style.visibility = "hidden";
+					}
+				}
+				div.style.visibility = "hidden";
+			}
+			current_id = 0;
+		}
+	}
+	if (div_id) {
+		var div = document.getElementById(div_id);
+		if (div) {
+			div.style.cssText = 'display:block';
+			if (isIE) {
+				var objs = formObj.elements["properties_assigned_values_" + id];
+				if (objs) {
+					for (var i = 0; i < objs.length; i++) {
+						objs[i].style.visibility = "visible";
+					}
+				}	
+				div.style.visibility = "visible";
+			}
+			current_id = id;
+		}
+	}
+}
+function changeItemTypeOptions(id) {
+	var formObj = document.record;
+	if (id) {
+		var objs = formObj.elements["properties_assigned_" + id];
+		if (objs) {
+			for(var i=0; i<objs.length; i++) {
+				changeItemTypeOption(objs[i]);
+			}
+		} else if (objs) {
+			changeItemTypeOption(objs);
+		}
+	}
+}
+function changeItemTypeOption(obj, divID, prID, default_array, default_type) {
+	if (!obj) return false;
+	var td = nextNode(obj.parentNode.nextSibling);
+	if (!td) return false;
+	var div = nextNode(td.childNodes[0]);
+	if (!div) return false;
+	var table = nextNode(div.childNodes[0]);
+	if (!table) return false;
+	var tbody = nextNode(table.childNodes[0]);
+	if (!tbody) return false;
+
+	for (var tr = nextNode(tbody.childNodes[0]); tr; tr = nextNode(tr.nextSibling)) {
+		var i = 0; var checked = false;
+		for (var td = nextNode(tr.childNodes[0]); td; td = nextNode(td.nextSibling)) {			
+			if (obj.checked) {
+				for (var child = td.firstChild; child; child = nextNode(child.nextSibling)) {
+					if (child.className == "field" || child.className == "select") {
+						child.disabled = false;
+					} else if (child.name) {			
+						if (i == 0) checked = child.checked;
+						if (i == 0 || checked) {
+							child.disabled = false;
+						} else {
+							child.disabled = true;
+						}
+					}					
+				}
+			} else {				
+				for (var child = td.firstChild; child; child = nextNode(child.nextSibling)) {
+					if (child.className == "field") {
+						child.disabled = true;
+					} else if (child.name) {
+						child.disabled = true;
+					}
+				}
+			}
+			i++;
+		}
+	}
+	if(obj.checked && default_array) {
+		var objs = document.getElementsByName("properties_default_values_" + divID + "_" + prID);
+		if (objs) {
+			if (default_type == "select") {
+				if (objs.length) {
+					for(var i=0; i<objs.length; i++) {
+						objs[i].value  = default_array[default_array.length - 1];
+						objs[i].onchange();
+					}
+				}
+			} else {
+				if (objs.length) {
+					for(var i=0; i<objs.length; i++) {
+						if (in_array(objs[i].value, default_array)) {
+							objs[i].checked  = true;
+							objs[i].onclick();
+						}
+					}
+				} else {
+					if (in_array(objs.value, default_array)) {
+						objs.checked  = true;
+					}
+				}
+			}
+		}
+	}
+	
+}
+function in_array(item, array) {
+	for (var i = 0; i<array.length; i++) {
+		if (item == array[i]) {
+			return true;
+		}
+	}
+	return false;
+}
+function changeItemSubComponent(obj, prID, prValue){
+	var formObj = document.record;
+	if (prValue != "") {
+		var image_button = document.getElementById("option_image_action_" + prID);
+		if (formObj.elements["option_image_" + prValue]) {			
+			image_button.style.visibility = 'visible';
+			image_button.href    = formObj.elements["option_image_" + prValue].value;
+			image_button.onclick = formObj.elements["option_image_" + prValue].onclick;
+			image_button.title   = obj.options[obj.selectedIndex].text;
+		} else {
+			image_button.style.visibility = 'hidden';
+		}
+	} else {
+		var image_button = document.getElementById("option_image_action_" + prID);
+		image_button.style.visibility = 'hidden';
+	}
+}
+function changeItemDefault(obj, divID, prValue) {
+	
+}
+function changeItemAssigned(obj, divID, prID, prValue) {	
+	var objs = document.getElementsByName("properties_default_values_" + divID + "_" + prID);
+	if (objs) {
+		if (objs.length) {
+			for(var i=0; i<objs.length; i++) {
+				if (objs[i].value == prValue) {
+					if (!obj.checked || obj.disabled) {
+						objs[i].checked  = false;
+						objs[i].disabled = true;
+					} else {
+						objs[i].disabled = false;
+					}
+				}
+			}
+		} else if (objs) {
+			if (objs.value == prValue) {
+				if (!obj.checked || obj.disabled) {
+					objs.checked = false;
+					objs.disabled = true;
+				} else {
+					objs.disabled = false;
+				}
+				
+			}
+		}
+	}
+}
+//-->
+</script>
+</head>
+
+<body class="commonbg">
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header">
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+				<td>
+					&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+					href="{admin_items_list_href}">{PRODUCTS_MSG}</a>&nbsp;&gt;&nbsp;<!-- BEGIN tree --><a
+					href="{admin_items_list_href}?category_id={tree_cat_id}">{tree_cat_name}</a>&nbsp;&gt;&nbsp;<!-- END tree --><a
+					href="{admin_items_list_href}?category_id={tree_current_id}">{tree_current_name}</a>&nbsp;&gt;&nbsp;<b>{EDIT_PRODUCT_MSG}</b>
+				</td>
+				<!-- BEGIN view_live_product -->
+				<td class="usual" align="right">
+					<a href="{product_details_href}" target=new>{VIEW_PRODUCT_ON_LIVE_MSG}</a>&nbsp;
+				</td>
+				<!-- END view_live_product -->
+			</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+	
+	<div id="tabs">
+		<!-- BEGIN tabs_rows -->
+		<div id="{row_id}" class="tabRow"><!-- BEGIN tabs -->
+			<div id="{tab_id}" class="{tab_class}"><a class="blackSm" href="#" onClick="changePane('{tab_name}'); return false;">{tab_title}</a></div>{br}<!-- END tabs -->
+		</div>
+		<!-- END tabs_rows -->
+	</div>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tabTable">
+<tr align="center">
+	<td class="">
+
+<form action="{admin_product_href}" name="record" method="POST" onSubmit="selectListFieldsAll(); saveItemTypeOptions(); submit_editor(Array('editor_sd','editor_f','editor_fd','editor_so','editor_n'));">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="item_id" value="{item_id}">
+<input type="hidden" name="category_id" value="{category_id}">
+<input type="hidden" name="current_tab" value="{current_tab}">
+<input type="hidden" name="currency_left" value="{currency_left}">
+<input type="hidden" name="currency_right" value="{currency_right}">
+<input type="hidden" name="currency_rate" value="{currency_rate}">
+<input type="hidden" name="sites" value="">
+<input type="hidden" name="properties_assigned" value="">
+<input type="hidden" name="properties_assigned_values" value="">
+<input type="hidden" name="properties_default_values" value="">
+
+<!-- general data -->
+<div id="data_general" style="{general_style}">
+<table width="100%" border="0" cellspacing="1" cellpadding="4">
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr>
+	<td colspan="2" class="usual">
+		<table cellpadding="0" cellspacing="0" width="100%">
+		<tr>
+			<td nowrap>
+				<input type="checkbox" {is_showing} name="is_showing" value="1">
+				{PROD_SHOWN_MSG}
+			</td>
+			<td align="right">
+				<font class="small">{ASTERISK_MSG}</font>
+			</td>
+		</tr>
+    </table>
+	</td>
+</tr>
+
+<tr class="middle">
+	<td colspan="2" class="middle">
+		&nbsp;{PROD_GENERAL_INFO_MSG}
+	</td>
+</tr>
+<!-- BEGIN is_approved_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{IS_APPROVED_MSG}
+	</td>
+	<td><!-- BEGIN is_approved -->
+		<input type="radio" name="is_approved" {is_approved_checked} value="{is_approved_value}">{is_approved_description}<!-- END is_approved -->
+	</td>
+</tr>
+<!-- END is_approved_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{PROD_ORDER_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" name="item_order" value="{item_order}" size="10" maxlength="10">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PROD_TYPE_MSG} *
+	</td>
+	<td>
+		<select name="item_type_id" onChange="changeItemType(this.value);"><!-- begin item_type_id -->
+			<option {item_type_id_selected} value="{item_type_id_value}">{item_type_id_description}<!-- end item_type_id -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td colspan="2"><!-- begin item_type_properties -->
+		<div id="item_type_{div_item_type_id}" style="display:none;">
+			<table border="0" cellspacing="1" cellpadding="1" width="100%" class="headerbg">
+			<tr class="middle">
+				<td>&nbsp;<b>{OPTIONS_AND_COMPONENTS_MSG}</b></td>
+				<td>&nbsp;<b>{OPTIONS_VALUES_MSG} / {LIST_OF_SUBCOMPONENTS_MSG}</b></td>
+			</tr>
+			<!-- begin item_type_property -->
+			<tr class="usual">
+				<td valign="top">
+					<input type="checkbox" {is_property_selected}
+						onclick="changeItemTypeOption(this, {div_item_type_id}, {property_id}, {item_type_property_default_values}, '{item_type_property_default_type}')"
+						name="properties_assigned_{div_item_type_id}" value="{property_id}"> 
+					{property_name}					
+				</td>
+				<td valign="top" align="left">
+						<!-- begin item_type_property_value_header -->
+						<div class="item_type_property_value{property_class}">						
+						<table cellspacing="0" cellpadding="0">						
+						<tr>
+							<!-- begin item_type_property_value_assigned_header -->
+							<td>&nbsp;{VALUE_MSG}&nbsp;</td>
+							<!-- end item_type_property_value_assigned_header -->
+							<td>&nbsp;{DEFAULT_MSG}&nbsp;</td>
+							<td>{item_type_property_default}</td>
+						</tr>						
+						<!-- begin item_type_property_value_input -->
+							<tr>
+								<!-- begin item_type_property_value_assigned_value -->
+								<td align="center">
+									{item_type_property_value_assigned}
+								</td>
+								<!-- end item_type_property_value_assigned_value -->
+								<td align="center">
+									{item_type_property_value_default}
+								</td>
+								<td>
+									{item_type_property_value}
+								</td>
+							</tr>
+						<!-- end item_type_property_value_input -->					
+						</table>
+						</div>				
+						<!-- end item_type_property_value_header -->
+						<!-- begin item_type_property_default_input -->
+						<div>
+						<table cellspacing="0" cellpadding="0" border="0">
+						<tr>
+							<td align="center">
+								&nbsp;{property_default_title}:&nbsp;
+							</td>
+							<td align="center">
+								{item_type_property_default}
+							</td>
+						</tr>
+						</table>
+						</div>			
+						<!-- end item_type_property_default_input -->
+
+
+
+				</td>
+			</tr><!-- end item_type_property -->
+			</table>
+		
+		</div>
+		<script language="JavaScript">
+		<!--
+			changeItemTypeOptions({div_item_type_id});
+		//-->
+		</script>
+		<!-- end item_type_properties -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PROD_CODE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="item_code" value="{item_code}" size="40" maxlength="64">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PROD_NAME_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" name="item_name" value="{item_name}" size="80" maxlength="255">
+	</td>
+</tr>
+<!-- BEGIN friendly_url_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{FRIENDLY_URL_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="friendly_url" value="{friendly_url}" size="80" maxlength="255">
+	</td>
+</tr>
+<!-- END friendly_url_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{PROD_MANUFACTURER_MSG}
+	</td>
+	<td>
+		<select name="manufacturer_id"><!-- begin manufacturer_id -->
+			<option {manufacturer_id_selected} value="{manufacturer_id_value}">{manufacturer_id_description}<!-- end manufacturer_id -->
+		</select>
+		&nbsp; {MANUFACTURER_CODE_MSG} &nbsp; <input class="field" type="text" name="manufacturer_code" value="{manufacturer_code}" size="20" maxlength="255">
+	</td>
+</tr>
+<!-- begin supplier_id_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{SUPPLIER_MSG}
+	</td>
+	<td>
+		<select name="supplier_id"><!-- begin supplier_id -->
+			<option {supplier_id_selected} value="{supplier_id_value}">{supplier_id_description}<!-- end supplier_id -->
+		</select>
+	</td>
+</tr><!-- end supplier_id_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{MERCHANT_MSG}
+	</td>
+	<td>
+		<input type="hidden" name="user_id" value="{user_id}">
+		<span id="userName">
+			<!-- BEGIN selected_user -->
+			<a href="{admin_user_href}?user_id={user_id}" class="title" target="_blank">{user_name}</a> (#{user_id}) 
+			- <a href="#" onClick="removeSingleUser('{user_id}', 'record', 'user_id'); return false;">{REMOVE_BUTTON}</a> |<!-- END selected_user -->
+		</span>
+		<a href="#" onClick="openUsersWindow('{admin_users_select_href}', 'record', 'user_id', 'single'); return false;">{SELECT_USER_MSG}</a>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PROD_DIRECT_LINK_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="buy_link" value="{buy_link}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PROD_ISSUE_DATE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="issue_date" value="{issue_date}" size="20" maxlength="16">
+		<a href="#"
+			onClick="setDateField(document.record.issue_date, '{date_edit_format}');
+			top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+		<img src="../images/calendar.gif" border="0"><font size="1">{CALENDAR_MSG}</font></a>
+		({date_format_msg})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PROD_ADDITIONAL_OPTIONS_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="is_compared" {is_compared} value="1"> {PROD_ALLOWED_COMPARISON_MSG}
+		&nbsp; &nbsp;
+		<input type="checkbox" name="tax_free" {tax_free} value="1"> {PROD_TAX_FREE_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PROD_LANGUAGE_MSG}
+	</td>
+	<td>
+		<select name="language_code"><!-- begin language_code -->
+			<option {language_code_selected} value="{language_code_value}">{language_code_description}<!-- end language_code -->
+		</select>
+		<font class="small">
+			({PROD_LANGUAGE_DESC})
+		</font>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;Google Base Product Type
+	</td>
+	<td>
+		<select name="google_base_type_id"><!-- begin google_base_type_id -->
+			<option {google_base_type_id_selected} value="{google_base_type_id_value}">{google_base_type_id_description}<!-- end google_base_type_id -->
+		</select>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{PROD_PRICING_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td colspan="2">
+		&nbsp;{tax_price_type_note}&nbsp;&nbsp;&nbsp;<a href="{admin_products_settings_href}">{CHANGE_SETTING_MSG}</a>
+	</td>
+</tr>
+<tr>
+	<td class="usual" colspan="2">
+
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr class="usual">
+	<td colspan="3" width="30%">
+		<input type="checkbox" {is_price_edit} name="is_price_edit" value="1">
+		{PROD_CHANGE_PRICE_MSG}
+	</td>
+	<td colspan="3" width="30%">
+		<input type="checkbox" {is_sales} name="is_sales" value="1" onClick="pricePreview();">
+		{PROD_ACTIVATE_DISCOUNT_MSG}
+	</td>
+	<td width="30%" rowspan="5" valign="top">
+		{PROD_PRICE_PREVIEW_MSG} &nbsp;
+    	<div id="inline_price" style="font-size: 8pt; font-family: tahoma,verdana,sans-serif; border: 1px solid black;">
+			&nbsp;{PRICE_MSG}:&nbsp;<input readonly size="25" type="text" name="preview_price" value="200.00" style=" border:none; background-color: transparent; font-size: 8pt; font-family: tahoma,verdana,sans-serif;" class="usual"><br>
+			&nbsp;<br>&nbsp;
+		</div>
+		<div id="detail_price" style="font-size: 8pt; font-family: tahoma,verdana,sans-serif; border: 1px solid black;">
+			&nbsp;{PRICE_MSG}:&nbsp;<input readonly size="25" type="text" name="preview_list_price" value="" style=" background-color: transparent; text-decoration: line-through; border:none;  font-size: 8pt; font-family: tahoma,verdana,sans-serif;" class="usual"><br>
+			&nbsp;{OUR_PRICE_MSG}:&nbsp;<input readonly type="text" name="preview_sales_price" value="" style=" background-color: transparent; border:none; color:red; font-size: 8pt; font-family: tahoma,verdana,sans-serif;" class="usual"><br>
+			&nbsp;{YOU_SAVE_MSG}:&nbsp;<input  readonly type="text" name="preview_discount" value="" style=" background-color: transparent; border:none; font-size: 8pt; font-family: tahoma,verdana,sans-serif;" class="usual">
+		</div>
+	</td>
+</tr>
+		
+<tr class="usual">	
+	<td>
+	  &nbsp;{PROD_LIST_PRICE_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" name="price" value="{price}" size="10" maxlength="16" onChange="pricePreview();" onKeyUp="pricePreview();">
+	</td>
+	<td>
+		<select name="price_id" onchange="priceSelected('price', this.value);"><!-- begin price_id -->
+			<option {price_id_selected} value="{price_id_value}">{price_id_description}<!-- end price_id -->
+		</select>
+	</td>
+	<td>
+		&nbsp;{PROD_DISCOUNT_PRICE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="sales_price" value="{sales_price}" size="10" maxlength="16" onChange="pricePreview();" onKeyUp="pricePreview();">
+	</td>
+	<td>
+		<select name="sales_price_id" onchange="priceSelected('sales_price', this.value);"><!-- begin sales_price_id -->
+			<option {sales_price_id_selected} value="{sales_price_id_value}">{sales_price_id_description}<!-- end sales_price_id -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+	  &nbsp;{PROD_TRADE_PRICE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="trade_price" value="{trade_price}" size="10" maxlength="16">
+	</td>
+	<td>
+		<select name="trade_price_id" onchange="priceSelected('trade_price', this.value);"><!-- begin trade_price_id -->
+			<option {trade_price_id_selected} value="{trade_price_id_value}">{trade_price_id_description}<!-- end trade_price_id -->
+		</select>
+	</td>
+	<td>
+		&nbsp;{PROD_DISCOUNT_TRADE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="trade_sales" value="{trade_sales}" size="10" maxlength="16">
+	</td>
+	<td>
+		<select name="trade_sales_id" onchange="priceSelected('trade_sales', this.value);"><!-- begin trade_sales_id -->
+			<option {trade_sales_id_selected} value="{trade_sales_id_value}">{trade_sales_id_description}<!-- end trade_sales_id -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+	  &nbsp;{PROD_BUYING_PRICE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="buying_price" value="{buying_price}" size="10" maxlength="16">
+	</td>
+	<td>
+		<select name="buying_price_id" onchange="priceSelected('buying_price', this.value);"><!-- begin buying_price_id -->
+			<option {buying_price_id_selected} value="{buying_price_id_value}">{buying_price_id_description}<!-- end buying_price_id -->
+		</select>
+	</td>
+	<td>
+		&nbsp;{PROD_SHOWN_DISCOUNT_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="discount_percent" value="{discount_percent}" size="10" maxlength="10" onChange="pricePreview();" onKeyUp="pricePreview();">
+	</td>
+	<td>
+		&nbsp;<a href='{admin_price_codes_href}'>Edit Prices List</a>&nbsp;
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+	  &nbsp;{PROD_OPTIONS_PRICE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="properties_price" value="{properties_price}" size="10" maxlength="16">
+	</td>
+	<td>
+		<select name="properties_price_id" onchange="priceSelected('properties_price', this.value);"><!-- begin properties_price_id -->
+			<option {properties_price_id_selected} value="{properties_price_id_value}">{properties_price_id_description}<!-- end properties_price_id -->
+		</select>
+	</td>
+	<td>
+	  &nbsp;{OPTIONS_TRADE_PRICE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="trade_properties_price" value="{trade_properties_price}" size="10" maxlength="16">
+	</td>
+	<td>
+		<select name="trade_properties_price_id" onchange="priceSelected('trade_properties_price', this.value);"><!-- begin trade_properties_price_id -->
+			<option {trade_properties_price_id_selected} value="{trade_properties_price_id_value}">{trade_properties_price_id_description}<!-- end trade_properties_price_id -->
+		</select>
+	</td>
+</tr>
+<tr>
+	<td colspan="6">
+		({PROD_OPTIONS_PRICE_DESC})
+	</td>
+</tr>
+</table>
+
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2" class="middle">
+		&nbsp;{FEES_COMMISSIONS_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{MERCHANT_FEE_MSG}
+	</td>
+	<td colspan="3">
+		<select name="merchant_fee_type"><!-- begin merchant_fee_type -->
+			<option {merchant_fee_type_selected} value="{merchant_fee_type_value}">{merchant_fee_type_description}<!-- end merchant_fee_type -->
+		</select>
+		&nbsp; {AMOUNT_MSG} <input class="field"  type="text" name="merchant_fee_amount" size="20" value="{merchant_fee_amount}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{AFFILIATE_COMMISSION_MSG}
+	</td>
+	<td>
+		<select name="affiliate_commission_type"><!-- begin affiliate_commission_type -->
+			<option {affiliate_commission_type_selected} value="{affiliate_commission_type_value}">{affiliate_commission_type_description}<!-- end affiliate_commission_type -->
+		</select>
+		&nbsp; {AMOUNT_MSG} <input class="field"  type="text" name="affiliate_commission_amount" size="20" value="{affiliate_commission_amount}">
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+				<!-- BEGIN save -->
+				<input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save';"> &nbsp; &nbsp;
+				<input class="submit" type="submit" value="{apply_button}" onCLick="document.record.operation.value='apply';"> &nbsp; &nbsp;
+				<!-- END save -->
+				<!-- BEGIN delete -->
+				<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{PROD_DELETE_CONFIRM_MSG}?');"> &nbsp; &nbsp; <!-- END delete -->
+				<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+<!-- BEGIN duplicate -->
+<tr class=usual>
+	<td></td>
+	<td>
+		<br>
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+		<tr>
+			<td align=right>
+				<input type="checkbox" name="duplicate_properties"    {duplicate_properties}  value="1">{OPTIONS_MSG}
+				<input type="checkbox" name="duplicate_specification" {duplicate_specification} value="1">{ADMIN_SPECIFICATION_MSG}
+				<input type="checkbox" name="duplicate_related"       {duplicate_related}     value="1">{RELATED_TITLE}
+				<input type="checkbox" name="duplicate_categories"    {duplicate_categories}  value="1">{ASSIGNED_CATEGORIES_MSG}
+				<input type="checkbox" name="duplicate_images"        {duplicate_images}      value="1">{IMAGES_MSG}
+				<input type="checkbox" name="duplicate_accessories"   {duplicate_accessories} value="1">{PROD_ACCESSORIES_MSG}
+				<input type="checkbox" name="duplicate_releases"      {duplicate_releases}    value="1">{RELEASES_TITLE}
+				<input type="checkbox" name="duplicate_user_types"    {duplicate_user_types}  value="1">{USERS_TYPES_MSG}
+				<input type="checkbox" name="duplicate_sites"         {duplicate_sites}       value="1">{ADMIN_SITES_MSG}
+				&nbsp;                                          			
+				<br><input class="submit" type="submit" value="{DUPLICATE_BUTTON}" onclick="document.record.operation.value='duplicate';return confirm('{CONFIRM_PRODUCT_COPY_QST}');"> &nbsp;
+			</td>
+			<td align="right">
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr><!-- END duplicate -->
+</table>
+</div>
+
+<!-- descriptions block -->
+<div id="data_desc" style="{desc_style}">
+<table width="100%" border="0" cellspacing="1" cellpadding="4">
+<tr class="middle">
+	<td colspan="2" class="middle">
+		&nbsp;{DESCRIPTION_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SHORT_DESCRIPTION_MSG}
+	</td>
+	<td>
+		<textarea class="text" name="short_description" style="display: block; width: 565px; height: 100px;">{short_description}</textarea>
+		<script language= "JavaScript" type= "text/javascript">
+		<!--
+			var editor_sd = new VA_HTMLeditor('content_sd','../','{html_editor}');
+			editor_sd.text_field_name = 'short_description';
+			editor_sd.formname = 'record';
+			editor_sd.css_file = '{css_file}';
+			editor_sd.editor_type = 'product_editor';
+			editor_sd.displayEditor('editor_sd', 565, 100);
+		//-->
+		</script>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{HIGHLIGHTS_MSG}
+	</td>
+	<td>
+		<textarea class="text" name="features" style="display: block; width: 565px; height: 100px;">{features}</textarea>
+		<script language= "JavaScript" type= "text/javascript">
+		<!--
+			var editor_f = new VA_HTMLeditor('content_f','../','{html_editor}');
+			editor_f.text_field_name = 'features';
+			editor_f.formname = 'record';
+			editor_f.css_file = '{css_file}';
+			editor_f.editor_type = 'product_editor';
+			editor_f.displayEditor('editor_f', 565, 100);
+		//-->
+		</script>
+	</td>
+</tr>
+<!-- begin full_desc_type_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{FULL_DESCRIPTION_MODE_MSG}
+	</td>
+	<td valign="bottom"><!-- begin full_desc_type -->
+		<input type="radio" name="full_desc_type" {full_desc_type_checked} value="{full_desc_type_value}">&nbsp;{full_desc_type_description}&nbsp;<!-- end full_desc_type -->
+	</td>
+</tr>
+<!-- end full_desc_type_block -->
+<tr class="usual">
+	<td>
+		&nbsp;{FULL_DESCRIPTION_MSG}
+	</td>
+	<td>
+		<textarea class="text" name="full_description" style="display: block; width: 565px; height: 200px;">{full_description}</textarea>
+		<script language= "JavaScript" type= "text/javascript">
+		<!--
+			var editor_fd = new VA_HTMLeditor('content_fd','../','{html_editor}');
+			editor_fd.text_field_name = 'full_description';
+			editor_fd.formname = 'record';
+			editor_fd.css_file = '{css_file}';
+			editor_fd.editor_type = 'product_editor';
+			editor_fd.displayEditor('editor_fd', 565, 200);
+		//-->
+		</script>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2" class="middle">
+		&nbsp;{META_DATA_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{META_TITLE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="meta_title" value="{meta_title}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{META_KEYWORDS_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="meta_keywords" value="{meta_keywords}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{META_DESCRIPTION_MSG}
+	</td>
+	<td>
+		<textarea name="meta_description" cols="80" rows="3">{meta_description}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		{save}
+	</td>
+</tr>
+</table>
+</div>
+
+<div id="data_images" style="{images_style}">
+<table width="100%" border="0" cellspacing="1" cellpadding="4">
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{IMAGES_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_TINY_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="50" maxlength="255" name="tiny_image" value="{tiny_image}">
+		&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'tiny_image')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+		&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'tiny_image')"><b>{SELECT_IMAGE_MSG}</b></a>
+		<br><!-- begin no_tiny_image-->&nbsp;&nbsp;<span class="error">{NO_IMAGE_FILE_MSG}</span><!-- end no_tiny_image-->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_TINY_ALT_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="50" maxlength="255" name="tiny_image_alt" value="{tiny_image_alt}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_SMALL_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="50" maxlength="255" name="small_image" value="{small_image}">
+		&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'small_image')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+		&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'small_image')"><b>{SELECT_IMAGE_MSG}</b></a>
+		<br>({IMAGE_SMALL_DESC})<!-- begin no_small_image-->&nbsp;&nbsp;<span class="error">{NO_IMAGE_FILE_MSG}</span><!-- end no_small_image-->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_SMALL_ALT_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="50" maxlength="255" name="small_image_alt" value="{small_image_alt}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_LARGE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="50" maxlength="255" name="big_image" value="{big_image}">
+		&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'big_image')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+		&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'big_image')"><b>{SELECT_IMAGE_MSG}</b></a>
+		<br>({IMAGE_LARGE_DESC})<!-- begin no_big_image-->&nbsp;&nbsp;<span class="error">{NO_IMAGE_FILE_MSG}</span><!-- end no_big_image-->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_LARGE_ALT_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="50" maxlength="255" name="big_image_alt" value="{big_image_alt}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IMAGE_SUPER_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="50" maxlength="255" name="super_image" value="{super_image}">
+		&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'super_image')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+		&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'super_image')"><b>{SELECT_IMAGE_MSG}</b></a>
+		<br>({IMAGE_SUPER_DESC})<!-- begin no_super_image-->&nbsp;&nbsp;<span class="error">{NO_IMAGE_FILE_MSG}</span><!-- end no_super_image-->
+	</td>
+</tr>
+
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{PROD_APPEARANCE_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CUSTOM_TEMPLATE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="template_name" value="{template_name}" size="50" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{HIDE_ADD_BUTTON_MSG}
+	</td>
+	<td >
+		<input type="checkbox" {hide_add_list} name="hide_add_list" value="1">
+		<font size="1">{ON_PROD_LIST_MSG}</font> &nbsp;
+		<input type="checkbox" {hide_add_details} name="hide_add_details" value="1">
+		<font size="1">{ON_PROD_DETAILS_MSG}</font> &nbsp;
+		<input type="checkbox" {hide_add_table} name="hide_add_table" value="1">
+		<font size="1">{ON_TABLE_VIEW_MSG}</font> &nbsp;
+		<input type="checkbox" {hide_add_grid} name="hide_add_grid" value="1">
+		<font size="1">{ON_GRID_VIEW_MSG}</font> &nbsp;
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PROD_PREVIEW_URL_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="preview_url" value="{preview_url}" size="50" maxlength="255">
+		&nbsp; {WIDTH_MSG} <input class="field" type="text" name="preview_width" value="{preview_width}" size="10" maxlength="255">
+		&nbsp; {HEIGHT_MSG} <input class="field" type="text" name="preview_height" value="{preview_height}" size="10" maxlength="255">
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		{save}	
+	</td>
+</tr>
+</table>
+</div>
+
+<div id="data_stock" style="{stock_style}">
+<table width="100%" border="0" cellspacing="1" cellpadding="4">
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{PACKAGE_PARAMETERS_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PACKAGES_NUMBER_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="packages_number" value="{packages_number}" size="7" maxlength="10">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{WEIGHT_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="weight" value="{weight}" size="7" maxlength="10">
+		<b>{weight_measure}</b> &nbsp; ({PER_PACKAGE_MSG})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{DIMENSIONS_MSG} ({WIDTH_MSG} x {HEIGHT_MSG} x {LENGTH_MSG})
+	</td>
+	<td>
+		<input class="field" type="text" name="width" value="{width}" size="7" maxlength="10"> x
+		<input class="field" type="text" name="height" value="{height}" size="7" maxlength="10"> x
+		<input class="field" type="text" name="length" value="{length}" size="7" maxlength="10">
+	</td>
+</tr>
+
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{PROD_STOCK_MSG}
+	</td>
+</tr>
+
+<tr class="usual">
+	<td>
+		&nbsp;{USE_STOCK_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="use_stock_level" {use_stock_level} value="1" onClick="updateStockProperty();">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{STOCK_QUANTITY_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="stock_level" value="{stock_level}" size="10" maxlength="16">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{HIDE_OUT_STOCK_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="hide_out_of_stock" {hide_out_of_stock} value="1" onClick="checkUseStock();">
+		({HIDE_OUT_STOCK_DESC})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{DISABLE_OUT_STOCK_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="disable_out_of_stock" {disable_out_of_stock} value="1" onClick="checkUseStock();">
+		({DISABLE_OUT_STOCK_DESC})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{MINIMUM_ITEMS_QTY_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="min_quantity" value="{min_quantity}" size="10" maxlength="16">
+		({MINIMUM_ITEMS_QTY_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{MAXIMUM_ITEMS_QTY_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="max_quantity" value="{max_quantity}" size="10" maxlength="16">
+		({MAXIMUM_ITEMS_QTY_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{QTY_INCREMENT_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="quantity_increment" value="{quantity_increment}" size="10" maxlength="16">
+	</td>
+</tr>
+
+
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{PROD_SHIPPING_MSG}
+	</td>
+</tr>
+
+<tr class="usual">
+	<td>
+		&nbsp;{FREE_SHIPPING_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="is_shipping_free" {is_shipping_free} value="1">
+		({FREE_SHIPPING_DESC})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SHIPPING_COST_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="shipping_cost" value="{shipping_cost}" size="10" maxlength="16">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IN_STOCK_AVAILABILITY_MSG}<br>
+	</td>
+	<td>
+		<select name="shipping_in_stock"><!-- begin shipping_in_stock -->
+			<option {shipping_in_stock_selected} value="{shipping_in_stock_value}">{shipping_in_stock_description}<!-- end shipping_in_stock -->
+		</select>
+		&nbsp;<font class="small">({IN_STOCK_AVAILABILITY_DESC})</font>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{OUT_STOCK_AVAILABILITY_MSG}<br>
+	</td>
+	<td>
+		<select name="shipping_out_stock"><!-- begin shipping_out_stock -->
+			<option {shipping_out_stock_selected} value="{shipping_out_stock_value}">{shipping_out_stock_description}<!-- end shipping_out_stock -->
+		</select>
+		&nbsp;<font class="small">({OUT_STOCK_AVAILABILITY_DESC})</font>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SHIPPING_RESTRICTIONS_MSG}
+	</td>
+	<td>
+		<select name="shipping_rule_id"><!-- begin shipping_rule_id -->
+			<option {shipping_rule_id_selected} value="{shipping_rule_id_value}">{shipping_rule_id_description}<!-- end shipping_rule_id -->
+		</select>
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		{save}
+	</td>
+</tr>
+</table>
+</div>
+
+<!-- quantity prices block -->
+<div id="data_quantity_prices" style="{quantity_prices_style}">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<!-- BEGIN quantity_prices_errors -->
+<tr class="usual">
+	<td align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END quantity_prices_errors -->
+<tr>
+	<td>
+
+	<input type="hidden" name="number_prices" value="{number_prices}">
+	<table border="0" cellpadding="4" cellspacing="1" align="center" width="100%">
+	<tr class="middle" align="center">
+		<td>
+			#
+		</td>
+		<td>
+			{PROD_ACTIVE_MSG}
+		</td>
+		<td>
+			Min {PROD_QTY_COLUMN}
+		</td>
+		<td>
+			Max {PROD_QTY_COLUMN}
+		</td>
+		<td>
+			{INDIVIDUAL_PRICE_MSG}
+		</td>
+		<td>
+			{OPTIONS_MSG} {DISCOUNT_MSG} (%)
+		</td>
+		<td>
+			{USER_TYPE_MSG}
+		</td><!-- begin site_column -->
+		<td>
+			Site
+		</td><!-- end site_column -->
+		<td>
+			{DISCOUNT_MSG} {SETTINGS_MSG}
+		</td>
+		<td>
+			{DELETE_BUTTON}
+		</td>
+	</tr>
+	<!-- begin prices --><!-- begin prices_errors -->
+	<tr class="usual" align="center">
+		<td>&nbsp;</td>
+		<td colspan="{error_colspan}">
+			<div class="error">{errors_list}</div>
+		</td>
+		<td>&nbsp;</td>	
+	</tr><!-- end prices_errors -->
+	<tr class="usual" valign="top" align="center">
+		<td>
+			&nbsp;{row_number}&nbsp;
+			<input type="hidden" name="quantity_price_id_{prices_number}" value="{quantity_price_id}">
+		</td>
+		<td>
+			<input type="checkbox" name="is_active_{prices_number}" {is_active} value="1"> 
+		</td>
+		<td >
+			<input class="field" size=6 type="text" name="ip_min_quantity_{prices_number}" value="{ip_min_quantity}"> 
+		</td>
+		<td >
+			<input class="field" size=6 type="text" name="ip_max_quantity_{prices_number}" value="{ip_max_quantity}"> 
+		</td>
+		<td >
+			<input class="field" size=10 type="text" name="quantity_price_{prices_number}" value="{quantity_price}" style="text-align:right;"> 
+		</td>
+		<td >
+			<input class="field" size=8 type="text" name="properties_discount_{prices_number}" value="{properties_discount}" style="text-align:right;"> 
+		</td>
+		<td>
+			<select name="user_type_id_{prices_number}"><!-- begin user_type_id -->
+				<option {user_type_id_selected} value="{user_type_id_value}">{user_type_id_description}<!-- end user_type_id -->
+			</select> 
+		</td>
+		<!--begin site_id_block--><td>
+			<select name="site_id_{prices_number}"><!-- begin site_id -->
+				<option {site_id_selected} value="{site_id_value}">{site_id_description}<!-- end site_id -->
+			</select> 
+		</td><!--end site_id_block-->
+		<td >
+			<select name="discount_action_{prices_number}"><!-- begin discount_action -->
+				<option {discount_action_selected} value="{discount_action_value}">{discount_action_description}<!-- end discount_action -->
+			</select> 
+		</td>
+		<td align="center">
+			<input type="checkbox" name="prices_delete_{prices_number}" {prices_delete} value="1">
+		</td>
+	</tr><!-- END prices -->
+	<tr class="usual">
+		<td colspan="{total_colspan}" align="right">
+			{ADD_MORE_PRICES_QST} <input class="submit" type="submit" value=" {ADD_BUTTON} " onClick="document.record.operation.value='more_prices';">&nbsp;
+		</td>
+	</tr>
+	<tr class="middle">
+		<td colspan="{total_colspan}" align="right">
+			{save}
+		</td>
+	</tr>
+	</table>	
+
+	
+	</td>
+</tr>
+</table>
+</div>
+<!-- quantity prices end -->
+
+<!-- downloads block -->
+<div id="data_downloads" style="{downloads_style}">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<!-- BEGIN downloads_errors -->
+<tr class="usual">
+	<td align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END downloads_errors -->
+<tr>
+	<td>
+		<table width="100%" cellpadding="3" cellspacing="1" border="0">
+		<tr class="middle">
+			<td colspan="4">
+				&nbsp;{DOWNLOAD_OPTIONS_MSG}
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{DOWNLOAD_SHOW_TERMS_MSG}
+			</td>
+			<td colspan="3">
+				<input type="checkbox" name="download_show_terms" {download_show_terms} value="1">
+				<font class="small">({DOWNLOAD_SHOW_TERMS_DESC})</font>
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{DOWNLOAD_TERMS_MSG}
+			</td>
+			<td colspan="3">
+				<textarea name="download_terms_text" cols="100" rows="10">{download_terms_text}</textarea>
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr>
+	<td>
+
+	<input type="hidden" name="number_files" value="{number_files}">
+	<table width="100%" cellpadding="3" cellspacing="1" border="0">
+	<tr>
+		<td class="middle" colspan="7">
+			&nbsp;{DOWNLOADABLE_FILES_MSG}
+		</td>
+	</tr>
+	<tr class="row1" align="center">
+		<td rowspan="2">
+			#
+		</td>
+		<td>
+			{DOWNLOAD_TYPE_MSG}
+		</td>
+		<td>
+			{DOWNLOAD_TITLE_MSG}
+		</td>
+		<td>
+			{DOWNLOAD_PATH_MSG}
+		</td>
+		<td>
+			{DOWNLOAD_PERIOD_MSG}
+		</td>
+		<td>
+			{DOWNLOAD_LIMIT_MSG}
+		</td>
+		<td rowspan="2" valign="top">
+			{SERIAL_DELETE_COLUMN}
+		</td>
+	</tr>
+	<tr class="row2" align="center">
+		<td>
+			{PREVIEW_TYPE_MSG}
+		</td>
+		<td>
+			{PREVIEW_TITLE_MSG}
+		</td>
+		<td>
+			{PREVIEW_PATH_MSG}
+		</td>
+		<td>
+			{PREVIEW_IMAGE_MSG}
+		</td>
+		<td>
+			{PREVIEW_POSITION_MSG}
+		</td>
+	</tr>
+	<tr><td colspan="7" class="rowDelimiter"></td></tr>
+	<!-- begin files --><!-- begin files_errors -->
+	<tr class="usual" align="center">
+		<td>&nbsp;</td>
+		<td colspan="5">
+			<div class="error">{errors_list}</div>
+		</td>
+		<td>&nbsp;</td>
+	</tr><!-- end files_errors -->
+	<tr class="row1" valign="top">
+		<td align="center" rowspan="2">
+			&nbsp;{row_number}&nbsp;
+			<input type="hidden" name="file_id_{row_number}" value="{file_id}">
+		</td>
+		<td align="center">
+			<select name="download_type_{row_number}" style="width: 125px;"><!-- begin download_type -->
+				<option {download_type_selected} value="{download_type_value}">{download_type_description}<!-- end download_type -->
+			</select>
+		</td>
+		<td>
+			<input class="field" size=20 type="text" name="download_title_{row_number}" value="{download_title}">
+		</td>
+		<td>
+			<input class="field" size=30 type="text" name="download_path_{row_number}" value="{download_path}"><br>
+			<a href="javascript:openWindow('{admin_upload_href}', 'downloads', '{row_number}')"><b>{UPLOAD_MSG}</b></a>
+			| <a href="javascript:openWindow('{admin_select_href}', 'downloads', '{row_number}')"><b>{SELECT_MSG}</b></a>
+		</td>
+		<td>
+			<input class="field" type="text" name="download_interval_{row_number}" value="{download_interval}" size="5" maxlength="10"> 
+			<select name="download_period_{row_number}"><!-- begin download_period -->
+				<option {download_period_selected} value="{download_period_value}">{download_period_description}<!-- end download_period -->
+			</select>
+		</td>
+		<td>
+			<input class="field" size=10 type="text" name="download_limit_{row_number}" value="{download_limit}">
+		</td>
+		<td align="center" rowspan="2">
+			<input type="checkbox" name="files_delete_{row_number}" {files_delete} value="1">
+		</td>
+	</tr>
+	<tr class="row2" valign="top">
+		<td align="center">
+			<select name="preview_type_{row_number}" style="width: 125px;"><!-- begin preview_type -->
+				<option {preview_type_selected} value="{preview_type_value}">{preview_type_description}<!-- end preview_type -->
+			</select>
+		</td>
+		<td>
+			<input class="field" size=20 type="text" name="preview_title_{row_number}" value="{preview_title}">
+		</td>
+		<td>
+			<input class="field" size=30 type="text" name="preview_path_{row_number}" value="{preview_path}"><br>
+			<a href="javascript:openWindow('{admin_upload_href}', 'previews', '{row_number}')"><b>{UPLOAD_MSG}</b></a>
+			| <a href="javascript:openWindow('{admin_select_href}', 'previews', '{row_number}')"><b>{SELECT_MSG}</b></a>
+		</td>
+		<td>
+			<input class="field" size=20 type="text" name="preview_image_{row_number}" value="{preview_image}"><br>
+			<a href="javascript:openWindow('{admin_upload_href}', 'preview_image', '{row_number}')"><b>{UPLOAD_MSG}</b></a>
+			| <a href="javascript:openWindow('{admin_select_href}', 'preview_image', '{row_number}')"><b>{SELECT_MSG}</b></a>
+		</td>
+		<td>
+			<select name="preview_position_{row_number}"><!-- begin preview_position -->
+				<option {preview_position_selected} value="{preview_position_value}">{preview_position_description}<!-- end preview_position -->
+			</select>
+		</td>
+	</tr>
+	<tr><td colspan="7" class="rowDelimiter"></td></tr>
+	<!-- END files -->
+	<tr class="usual">
+		<td colspan="7" align="right">
+			{MORE_FILES_MSG} <input class="submit" type="submit" value=" {ADD_BUTTON} " onClick="document.record.operation.value='more_files';">&nbsp;
+		</td>
+	</tr>
+	</table>
+
+	</td>
+</tr>
+<tr>
+	<td>
+
+		<table width="100%" cellpadding="3" cellspacing="1" border="0">
+		<tr class="middle">
+			<td colspan="2">
+				&nbsp;{ACTIVATION_OPTIONS_MSG}
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{SERIAL_GENERATE_MSG}
+			</td>
+		  <td valign="bottom"><!-- begin generate_serial -->
+				<input type="radio" name="generate_serial" {generate_serial_checked} value="{generate_serial_value}">&nbsp;{generate_serial_description}&nbsp;<!-- end generate_serial -->
+		  </td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{SERIAL_PERIOD_MSG}
+			</td>
+			<td>
+				<input class="field" type="text" name="serial_period" value="{serial_period}" size="10" maxlength="10"> ({DAYS_MSG})
+			</td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{ACTIVATION_MAX_NUMBER_MSG}
+			</td>
+			<td>
+				<input class="field" type="text" name="activations_number" value="{activations_number}" size="10" maxlength="10">
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr>
+	<td>
+		<input type="hidden" name="number_serials" value="{number_serials}">
+		<table width="100%" cellpadding="3" cellspacing="1" border="0">
+		<tr class="middle">
+			<td colspan="4">
+				&nbsp;{SERIAL_PREDEFINED_MSG}
+			</td>
+		</tr>
+
+		<tr class="middle" align="center">
+			<td>
+				#
+			</td>
+			<td>
+				{SERIAL_NUMBER_COLUMN}
+			</td>
+			<td>
+				{SERIAL_USED_COLUMN}
+			</td>
+			<td>
+				{SERIAL_DELETE_COLUMN}
+			</td>
+		</tr>
+		<!-- begin serials --><!-- begin serials_errors -->
+		<tr class="usual" align="center">
+			<td>&nbsp;</td>
+			<td colspan="2">
+				<div class="error">{errors_list}</div>
+			</td>
+			<td>&nbsp;</td>
+		</tr><!-- end serials_errors -->
+		<tr class="usual" valign="top">
+			<td align="center">
+				&nbsp;{row_number}&nbsp;
+				<input type="hidden" name="serial_id_{serials_number}" value="{serial_id}">
+			</td>
+			<td>
+				<input class="field" size=60 type="text" name="serial_number_{serials_number}" value="{serial_number}">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="used_{serials_number}" {used} value="1">
+			</td>
+			<td align="center">
+				<input type="checkbox" name="serials_delete_{serials_number}" {serials_delete} value="1">
+			</td>
+		</tr><!-- END serials -->
+		<tr class="usual">
+			<td colspan="4" align="right">
+				{SERIAL_MORE_MSG} <input class="submit" type="submit" value=" {ADD_BUTTON} " onClick="document.record.operation.value='more_serials';">&nbsp;
+			</td>
+		</tr>
+		
+		</table>
+	</td>
+</tr>
+
+<tr class="middle" style="padding: 5px;">
+	<td>
+		{save}
+	</td>
+</tr>
+</table>
+</div>
+
+<!-- special offer block -->
+<div id="data_special_offer" style="{special_offer_style}">
+<table width="100%" border="0" cellspacing="1" cellpadding="4">
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{SPECIAL_OFFER_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td colspan="2">
+		<input type="checkbox" name="is_special_offer" {is_special_offer} value="1">
+		{PROD_OFFER_ACTIVATE_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SPECIAL_OFFER_MSG}
+	</td>
+	<td>
+		<textarea class="text" name="special_offer" style="display: block; width: 565px; height: 200px;">{special_offer}</textarea>
+		<script language= "JavaScript" type= "text/javascript">
+		<!--
+			var editor_so = new VA_HTMLeditor('content_so','../','{html_editor}');
+			editor_so.text_field_name = 'special_offer';
+			editor_so.formname = 'record';
+			editor_so.css_file = '{css_file}';
+			editor_so.editor_type = 'product_editor';
+			editor_so.displayEditor('editor_so', 565, 200);
+		//-->
+		</script>
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		{save}
+	</td>
+</tr>
+</table>
+</div>
+
+<!-- recurring block -->
+<div id="data_recurring" style="{recurring_style}">
+<table width="100%" border="0" cellspacing="1" cellpadding="4">
+<!-- BEGIN recurring_errors -->
+<tr class="usual">
+	<td colspan="4" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END recurring_errors -->
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{RECURRING_OPTIONS_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td colspan="2">
+		<input type="checkbox" name="is_recurring" {is_recurring} value="1">
+		{RECURRING_ACTIVATE_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{RECURRING_PRICE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="recurring_price" value="{recurring_price}" size="10" maxlength="10">
+		({RECURRING_PRICE_DESC})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{RECURRING_PERIOD_MSG}
+	</td>
+	<td>
+		<table cellspacing="0" cellpadding="0" border="0">
+		<tr>
+			<td>
+				<input class="field" type="text" name="recurring_interval" value="{recurring_interval}" size="10" maxlength="10"> &nbsp;
+			</td>
+			<td>
+				<select name="recurring_period"><!-- begin recurring_period -->
+					<option {recurring_period_selected} value="{recurring_period_value}">{recurring_period_description}<!-- end recurring_period -->
+				</select>
+			</td>
+			<td>
+				&nbsp; ({RECURRING_INTERVAL_DESC})
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{RECURRING_PAYMENTS_TOTAL_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="recurring_payments_total" value="{recurring_payments_total}" size="10" maxlength="10">
+		({RECURRING_PAYMENTS_TOTAL_DESC})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{RECURRING_START_DATE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="recurring_start_date" value="{recurring_start_date}" size="10" maxlength="10">
+		<a href="#"
+			onClick="setDateField(document.record.recurring_start_date, '{date_edit_format}');
+			top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+		<img src="../images/calendar.gif" border="0"><font size="1">{CALENDAR_MSG}</font></a>
+		({RECURRING_START_DATE_DESC})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{RECURRING_END_DATE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="recurring_end_date" value="{recurring_end_date}" size="10" maxlength="10">
+		<a href="#"
+			onClick="setDateField(document.record.recurring_end_date, '{date_edit_format}');
+			top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+		<img src="../images/calendar.gif" border="0"><font size="1">{CALENDAR_MSG}</font></a>
+		({RECURRING_END_DATE_DESC})
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		{save}
+	</td>
+</tr>
+</table>
+</div>
+
+<!-- points block -->
+<div id="data_points" style="{points_style}">
+<table width="100%" border="0" cellspacing="1" cellpadding="4">
+<!-- BEGIN points_errors -->
+<tr class="usual">
+	<td colspan="4" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END points_errors -->
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{POINTS_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PROD_PAY_POINTS_MSG}
+	</td>
+	<td>
+		<select name="is_points_price"><!-- begin is_points_price -->
+			<option {is_points_price_selected} value="{is_points_price_value}">{is_points_price_description}<!-- end is_points_price -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{POINTS_PRICE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="points_price" value="{points_price}" size="10" maxlength="10">
+		&nbsp;({POINTS_PRICE_DESC})
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{REWARDS_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{REWARD_POINTS_MSG}
+	</td>
+	<td>
+		<select name="reward_type"><!-- begin reward_type -->
+			<option {reward_type_selected} value="{reward_type_value}">{reward_type_description}<!-- end reward_type -->
+		</select>
+		&nbsp;{AMOUNT_MSG}
+		<input class="field" type="text" name="reward_amount" value="{reward_amount}" size="20" maxlength="10">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{REWARD_CREDITS_MSG}
+	</td>
+	<td>
+		<select name="credit_reward_type"><!-- begin credit_reward_type -->
+			<option {credit_reward_type_selected} value="{credit_reward_type_value}">{credit_reward_type_description}<!-- end credit_reward_type -->
+		</select>
+		&nbsp;{AMOUNT_MSG}
+		<input class="field" type="text" name="credit_reward_amount" value="{credit_reward_amount}" size="20" maxlength="10">
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		{save}
+	</td>
+</tr>
+</table>
+</div>
+
+<!-- notification block -->
+<div style="{notifications_style}" id="data_notifications">
+<table width="100%" border="0" cellspacing="1" cellpadding="4">
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{EMAIL_NOTIFICATION_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_USER_IF_STATUS_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="mail_notify" {mail_notify} value="1">
+		(<a href="{admin_order_statuses_href}">{CHECK_ORDER_STATUSES_SETTINGS_MSG}</a>)
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_TO_MSG}
+		&nbsp;({EMAIL_TO_USER_DESC})
+	</td>
+	<td>
+		<input class="field" type="text" name="mail_to" value="{mail_to}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_FROM_MSG}</b>
+	</td>
+	<td>
+		<input class="field" type="text" name="mail_from" value="{mail_from}" size="80" maxlength="255">
+		<div class="small">({EG_MSG} <b>sales@yoursite.com</b>)</div>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_CC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="mail_cc" value="{mail_cc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_BCC_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="mail_bcc" value="{mail_bcc}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_REPLY_TO_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="mail_reply_to" value="{mail_reply_to}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{EMAIL_RETURN_PATH_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="mail_return_path" value="{mail_return_path}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_SUBJECT_MSG}</b>
+	</td>
+	<td>
+		<input class="field" type="text" name="mail_subject" value="{mail_subject}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{EMAIL_MESSAGE_TYPE_MSG}</b>
+	</td>
+	<td><!-- begin mail_type -->
+		<input type="radio" name="mail_type" {mail_type_checked} value="{mail_type_value}">{mail_type_description}<!-- end mail_type -->
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{EMAIL_MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openHelpWindow('{admin_order_help_href}?product=1')">{CLICK_HERE_MSG}</a> {LEARN_MORE_EMAIL_SETTINGS_NOTE}
+		<br>&nbsp;&nbsp;{LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td>
+		<textarea name="mail_body" cols="80" rows="10">{mail_body}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;<b>{SMS_NOTIFICATION_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SMS_USER_IF_STATUS_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="sms_notify" {sms_notify} value="1">
+		({SMS_NOTIFICATION_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{SMS_RECIPIENT_MSG}</b> ({SMS_RECIPIENT_USER_DESC})
+	</td>
+	<td>
+		<input class="field" type="text" name="sms_recipient" value="{sms_recipient}" size="80" maxlength="255">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{SMS_ORIGINATOR_MSG}</b>
+	</td>
+	<td>
+		<input class="field" type="text" name="sms_originator" value="{sms_originator}" size="80" maxlength="16">
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;<b>{SMS_MESSAGE_MSG}</b>
+		<font class="small">
+		<br><br>&nbsp;(<a href="javascript:openHelpWindow('{admin_order_help_href}?product=1')">{CLICK_HERE_MSG}</a> {LEARN_MORE_AND_SEE_NOTE})
+		</font>
+	</td>
+	<td >
+		<textarea name="sms_message" cols="80" rows="3">{sms_message}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		{save}
+	</td>
+</tr>
+</table>
+</div>
+
+<!-- new block -->
+<div style="{other_style}" id="data_other">
+<table width="100%" border="0" cellspacing="1" cellpadding="4">
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{PROD_RATING_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{TOTAL_VIEWS_MSG}
+	</td>
+	<td class="small">
+	  <input readonly class="field" type="text" name="total_views" value="{total_views}" size="10" maxlength="10">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{TOTAL_VOTES_MSG}
+	</td>
+	<td class="small">
+	  <input class="field" type="text" name="votes" value="{votes}" size="10" maxlength="10" readonly>
+		({TOTAL_VOUTES_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{TOTAL_POINTS_MSG}
+	</td>
+	<td class="small">
+		<input class="field" type="text" name="points" value="{points}" size="10" maxlength="10" readonly>
+		({TOTAL_VOUTES_NOTE})
+	</td>
+</tr>
+
+
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{OTHER_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{NOTES_MSG}
+	</td>
+	<td>
+		<textarea class="text" name="notes" style="display: block; width: 565px; height: 200px;">{notes}</textarea>
+		<script language= "JavaScript" type= "text/javascript">
+		<!--
+			var editor_n = new VA_HTMLeditor('content_n','../','{html_editor}');
+			editor_n.text_field_name = 'notes';
+			editor_n.formname = 'record';
+			editor_n.css_file = '{css_file}';
+			editor_n.editor_type = 'product_editor';
+			editor_n.displayEditor('editor_n', 565, 200);
+		//-->
+		</script>
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		{save}
+	</td>
+</tr>
+</table>
+</div>
+
+<div id="data_sites" style="{sites_style}">
+	<table cellspacing="0" cellpadding="0" border="0" width="100%">
+	<tr class="usual">
+		<td>
+			{sites_table}
+		</td>
+	</tr>
+	<tr class="middle">
+		<td>
+			<table cellspacing="1" cellpadding="4" border="0" width="100%">
+				<tr>
+					<td align="left">
+						<input type="checkbox" name="save_sites_by_category" value="1">
+						{SAVE_SITES_SETTINGS_BY_CATEGORY_MSG}
+					</td>
+					<td align="right">
+					{save}
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+</div>
+
+
+<div id="data_subscriptions" style="{subscriptions_style}">
+	<table cellspacing="0" cellpadding="0" border="0" width="100%">
+	<tr class="usual">
+		<td>
+			{subscriptions_table}
+		</td>
+	</tr>
+	<tr class="middle">
+		<td>
+			<table cellspacing="1" cellpadding="4" border="0" width="100%">
+				<tr>
+					<td align="left">
+						<input type="checkbox" name="save_subscriptions_by_category" value="1">
+						{SAVE_SUBSCRIPTIONS_SETTINGS_BY_CATEGORY_MSG}
+					</td>
+					<td align="right">
+					{save}
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+</div>
+
+</form>
+
+	</td>
+</tr>
+</table>
+{admin_footer}
+<script language="JavaScript">
+<!--
+	checkListFieldsAll();
+	pricePreview();
+	priceSelectedLoad();
+	changeItemType({selected_item_type_id});
+	changeItemTypeOptions();
+//-->
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {FILTER_OPTIONS_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_filters_href}">{FILTERS_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_filter_href}?filter_id={filter_id}">{filter_name}</a>&nbsp;&gt;&nbsp;<b>{OPTIONS_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{FILTER_OPTIONS_MSG}</legend>
+<table cellspacing="1" cellpadding="4" border="0" width="100%"><!-- begin sorters -->
+<tr class="middle" align="center">
+	<td>
+		&nbsp;{sorter_property_id}
+	</td>
+	<td>
+		&nbsp;{sorter_property_name}
+	</td>
+	<td>
+		&nbsp;{sorter_property_order}
+	</td>
+	<td>
+		&nbsp;{sorter_property_type}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- end sorters --><!-- begin records -->
+<tr class="usual" align="center">
+	<td>
+		&nbsp;{property_id}&nbsp;
+	</td>
+	<td align="left">
+		&nbsp;{property_name}
+	</td>
+	<td>
+		&nbsp;{property_order}
+	</td>
+	<td>
+		&nbsp;{property_type}
+	</td>
+	<td>
+		<a href="{admin_filter_property_edit_url}">{EDIT_MSG}</a>
+	</td>
+</tr><!-- end records -->
+<!-- begin no_records -->
+<tr>
+	<td colspan="5" class="usual">
+		&nbsp;{NO_RECORDS_MSG}
+	</td>
+</tr><!-- end no_records -->
+<tr>
+	<td colspan="5" class="middle">
+		&nbsp;<a href="{admin_filter_property_new_url}">{ADD_NEW_MSG}</a>
+		{navigator}
+	</td>
+</tr>
+</table>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

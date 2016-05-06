@@ -1,0 +1,172 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {ADMIN_QUOTES_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+	function clearSearch() {
+		document.search_form.s_kw.value = "";
+		document.search_form.submit();
+}		
+	function closeQuote ()
+	{
+ 	 var close_quote = document.getElementById("close_quote");
+  	//alert (flag_mail);
+  	if (confirm("Do you want to close this quote?"))
+  	{
+  	close_quote.value = "1";
+  	document.admin_quote_close.submit();
+ }	
+	else {
+  	close_quote.value = "0";
+  }	
+  
+}
+
+//-->
+</script>
+
+
+</head>
+<body>
+
+{admin_header}
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a href="admin_quotes.php">{ADMIN_QUOTES_MSG}</a>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+	<fieldset>
+		<legend>{ADMIN_QUOTES_MSG}</legend>
+		<table width="100%" border="0"  cellpadding="2" cellspacing="1" align="center">
+			<tr>
+			<td>
+			<table width="100%" border="0" cellspacing="1" cellpadding="1">
+				<tr>
+					<td colspan=6>
+						<table border="0" cellpadding="2" cellspacing="2">
+						<form action="{admin_quotes_href}" name="search_form">
+							<tr>
+								<td colspan="2">
+									<b>{SEARCH_TITLE}:</b>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									{BY_KEYWORD_MSG}:
+								</td>
+								<td>
+									<input type="text" name="s_kw" value="{s_kw}" class="search">
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<input type="submit" value="Search" class="submit">
+									&nbsp;<input type="button" value="{CLEAR_BUTTON}" class="submit" onClick="clearSearch()">
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<a href="admin_quotes.php?show_all=1">{SHOW_ALL_QUOTES_MSG}</a>
+								</td>
+							</tr>
+						</form>
+						</table>
+						<br><br>
+					</td>
+				</tr>
+				<tr class="middle" align="center" height=25>
+					<td>
+						{sorter_quote_id}
+					</td>
+					<td>
+						{sorter_request_summary}
+					</td>
+					<td>
+						{sorter_quote_status_id}
+					</td>
+					<td>
+						{sorter_user_email}
+					</td>
+					<td>
+						{sorter_quoted_price}
+					</td>
+					<td>
+						{sorter_date_due}
+					</td>
+					<td>
+					</td>
+					<td>
+					</td>
+				</tr>
+				<!-- begin no_record_block -->
+							<tr height=25 class="usual">
+								<td colspan=8 align=center>
+									&nbsp;&nbsp;{no_record}
+								</td>
+							</tr>
+				<!-- end no_record_block -->
+			<!-- begin quotes -->
+					<tr class="usual" height=25> 
+					
+						<td align="center" >
+							{quote_id}
+						</td>
+						<td align="center" >
+							&nbsp;{request_summary}
+						</td>
+						<td align="center" >
+						<font color={quote_color}>	&nbsp;{quote_status_id} </font>	
+						</td>
+						<td align="center" >
+							&nbsp;{user_email}
+						</td>
+						<td align="center" >
+							&nbsp;{quoted_price}
+						</td>
+						<td align="center" >
+						&nbsp;{date_due}
+						</td>
+						<td align="center" >
+							{action_quote}
+						</td>
+						<td align="center" width="18">
+						<!-- begin close_quote -->
+							<form name="admin_quote_close" action="admin_quotes.php" method="POST">
+							<input type="hidden" name="quote_id" id="quote_id" value="{quote_id}">
+							<input type="hidden" name="close_quote" id="close_quote" value="">
+							<nobr>
+								<a href="admin_quotes.php?quote_id={quote_id}&close_quote=1" onclick="closeQuote(); return false;">
+								<img src="../images/close.gif" alt="Close ticket" width="16" height="16" border="0" align="absmiddle">
+								</a>						
+							</nobr>
+							</form>
+						<!-- end close_quote -->
+						<!-- begin closed_quote -->
+							<font color=red>{CLOSED_MSG}</font>
+						<!-- end closed_quote -->
+						</td>
+					</tr>
+			<!-- end quotes -->
+					<tr class="middle" align="left" height=25>
+						<td colspan=8>
+							&nbsp;&nbsp;<a href="admin_quote.php">{ADD_NEW_MSG}</a>
+						</td>
+					</tr>
+			</table>
+			</td>
+	</tr>
+</table>
+</fieldset>
+		
+{admin_footer}
+
+</body>
+</html>

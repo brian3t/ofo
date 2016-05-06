@@ -1,0 +1,174 @@
+<html><head><title>{ADMINISTRATION_MSG} :: Cart Import</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript">
+<!--
+	var isImported = false;
+	var stepNumber = 0;
+	var queriesSuccess = 0;
+	var queriesFailed = 0;
+
+	function importingData(dataName, importedRecords, totalRecords)
+	{
+		var dataControl= document.getElementById("import_" + dataName);
+		if (!dataControl) {
+			// if there is no data for block create a new one
+			var importingDataControl = document.getElementById("importingData");
+			var controlData = "<table border='0' cellpadding='3' cellspacing='0'>";
+			controlData += "	<tr>";
+			controlData += "		<td width='30%'><font color='blue'>&nbsp;Importing " + dataName + ":&nbsp;</font></td>";
+			controlData += "		<td width='70%'><font color='blue'><div id='import_" + dataName + "'>" + importedRecords + "</div></font></td>";
+			controlData += "	</tr>";
+			controlData += "</table>";
+			if (importingDataControl.insertAdjacentHTML) {
+				importingDataControl.insertAdjacentHTML("beforeEnd", controlData);
+			} else {
+				importingDataControl.innerHTML += controlData;
+			}
+		} 
+		dataControl = document.getElementById("import_" + dataName);
+		if (totalRecords > 0) {
+			dataControl.innerHTML = importedRecords + " of " + totalRecords;
+		} else {
+			dataControl.innerHTML = importedRecords;
+		}
+	}
+
+	function cartImported()
+	{
+		isImported = true;
+		message = "Shopping cart imported";
+		var processObject = document.getElementById("processInfo");
+		processObject.innerHTML = message;
+	}
+
+	function importProcess()
+	{
+		if (!isImported) {
+			stepNumber++;
+			var message = "Shopping Cart import process ";
+			for (var s = 0; s < (stepNumber % 15) + 1; s++) {
+				message += " . ";
+			}
+			var processObject = document.getElementById("processInfo");
+			processObject.innerHTML = message;
+			setTimeout("importProcess()", 500);
+		}
+	}
+
+
+//-->
+</script>
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" align="center">
+<tr>
+	<td>
+		<h2>Shopping Cart Import</h2>
+	</td>
+</tr>
+</table>
+
+<!-- begin import_form -->
+<fieldset>
+<legend>Shopping Cart Import</legend>
+
+<table border="0" cellspacing="1" cellpadding="4" width="100%">
+<form action="{admin_import_cart_href}" name="import_form" method="post">
+<input type="hidden" name="operation" value="import">
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;Shopping Cart *
+	</td>
+	<td>
+		<select name="cart_type"><!-- begin cart_type -->
+			<option {cart_type_selected} value="{cart_type_value}">{cart_type_description}<!-- end cart_type -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{DB_HOST_FIELD} *
+	</td>
+	<td>
+		<table cellspacing="0" cellpadding="0" border="0">
+		<tr>
+			<td>
+				<input class="field"  size="30" type="text" name="db_host" value="{db_host}">
+			</td>
+			<td>&nbsp;{DB_PORT_FIELD}&nbsp;</td>
+			<td><input class="field"  size="10" type="text" name="db_port" value="{db_port}"></td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr class="usual">
+	<td>&nbsp;{DB_NAME_FIELD} *</td>
+	<td>
+		<input class="field" size="60" type="text" name="db_name" value="{db_name}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>&nbsp;{DB_USER_FIELD}</td>
+	<td>
+		<input class="field" size="60" type="text" name="db_user" value="{db_user}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>&nbsp;{DB_PASS_FIELD}</td>
+	<td><input class="field" size="60" type="password" name="db_password" value="{db_password}"></td>
+</tr>
+<tr class="usual">
+	<td>&nbsp;Cart Directory</td>
+	<td><input class="field" size="60" type="text" name="cart_path" value="{cart_path}"></td>
+</tr>
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{IMPORT_MSG}" onclick="document.import_form.operation.value='import';"> 
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.import_form.operation.value='cancel';">
+	</td>
+</tr>
+</form>	
+</table>
+</fieldset>
+<!-- end import_form -->
+
+<!-- BEGIN import_results -->
+<fieldset>
+<legend>Importing</legend>
+
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+<tr class="middle">
+	<td>
+		&nbsp;&nbsp;<span id="processInfo" class="message">Import process </span>
+	</td>
+</tr>
+<tr class="usual">
+	<td id="importingData">
+
+	</td>
+</tr>
+</table>
+
+</fieldset>
+</td></tr></table>
+<!-- END import_results -->
+
+
+
+<br>
+{admin_footer}
+
+<!-- begin page_end -->
+</body></html><!-- end page_end -->

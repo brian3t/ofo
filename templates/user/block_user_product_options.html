@@ -1,0 +1,74 @@
+<div class="block-user-product-options">
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{OPTIONS_AND_COMPONENTS_MSG}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr class="headerbg"> 
+		<td class="blockTD">
+
+
+	<table cellspacing="1" cellpadding="4" border="0" width="100%"><!-- begin sorters -->
+	<tr class="middlebg" align="center">
+		<td>
+			&nbsp;{sorter_property_id}
+		</td>
+		<td>
+			&nbsp;{sorter_property_name}
+		</td>
+		<td>
+			&nbsp;{sorter_property_type_id}
+		</td>
+		<td>
+			&nbsp;
+		</td>
+	</tr><!-- end sorters --><!-- begin records -->
+	<tr class="usualbg">
+		<td align="center">
+			&nbsp;{property_id}&nbsp;
+		</td>
+		<td>
+			&nbsp;{property_name}
+		</td>
+		<td align="center">
+			&nbsp;{property_type}
+		</td>
+		<td align="center">
+			<a href="{user_property_edit_url}">{EDIT_BUTTON}</a>
+		</td>
+	</tr><!-- end records -->
+	<!-- begin no_records -->
+	<tr>
+		<td colspan="4" class="usualbg">
+			&nbsp;{NO_OPTIONS_AVAILABLE_MSG}
+		</td>
+	</tr><!-- end no_records -->
+	<tr>
+		<td colspan="4" class="middlebg">
+			|
+			<!-- begin add_option -->
+			&nbsp;<a href="{user_property_new_url}">{ADD_NEW_MSG}</a> |<!-- end add_option -->
+			<!-- begin add_subcomponent -->
+			&nbsp;<a href="{user_component_single_url}">{ADD_SUBCOMPONENT_MSG}</a> |<!-- end add_subcomponent -->
+			<!-- begin add_subcomponent_selection -->
+			&nbsp;<a href="{user_component_selection_url}">{ADD_SUBCOMPONENT_SELECTION_MSG}</a> |<!-- end add_subcomponent_selection -->
+			{navigator}
+		</td>
+	</tr>
+	</table>
+
+	</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+</div>

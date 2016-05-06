@@ -1,0 +1,1717 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{ADMINISTRATION_MSG} :: {PAGE_LAYOUT_MSG} :: {page_name_desc}</title>
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script type="text/javascript" src="../js/admin.js"></script>
+<script language="JavaScript">
+<!--
+
+	function selectBlock(blockName)
+	{
+		var blockObject = null;
+		if (blockName == "top") {
+			blockObject = document.layout.available_blocks;
+			document.layout.left_blocks.selectedIndex = -1;
+			document.layout.middle_blocks.selectedIndex = -1;
+			document.layout.right_blocks.selectedIndex = -1;
+		} else if (blockName == "left") {
+			blockObject = document.layout.left_blocks;
+			document.layout.available_blocks.selectedIndex = -1;
+			document.layout.middle_blocks.selectedIndex = -1;
+			document.layout.right_blocks.selectedIndex = -1;
+		} else if (blockName == "middle") {
+			blockObject = document.layout.middle_blocks;
+			document.layout.available_blocks.selectedIndex = -1;
+			document.layout.left_blocks.selectedIndex = -1;
+			document.layout.right_blocks.selectedIndex = -1;
+		} else if (blockName == "right") {
+			blockObject = document.layout.right_blocks;
+			document.layout.available_blocks.selectedIndex = -1;
+			document.layout.left_blocks.selectedIndex = -1;
+			document.layout.middle_blocks.selectedIndex = -1;
+		} else {
+			return;
+		}
+
+		var lastBlock = document.layout.last_block.value;
+		if (lastBlock) {
+			document.layout.last_block.value = "";
+			var hideObject = document.getElementById(lastBlock);
+			if (hideObject) {
+				hideObject.style.display = 'none';
+			}
+		}
+
+		if (blockObject.selectedIndex != -1) {
+			var block{VALUE_MSG} = blockObject.options[blockObject.selectedIndex].value;
+			var propertiesObject = document.getElementById(block{VALUE_MSG});
+			if (propertiesObject) {
+				propertiesObject.style.display = 'block';
+				propertiesObject.style.padding = '1px';
+
+				propertiesObject.style.background = "#E3E3FF";
+				propertiesObject.style.border = "1px solid blue";
+				document.layout.last_block.value = block{VALUE_MSG};
+				setTimeout("hideBlockColor()", 700);
+			}
+		}
+
+	}
+
+	function hideBlockColor()
+	{
+		var lastBlock = document.layout.last_block.value;
+		if (lastBlock != "") {
+			var blockObject = document.getElementById(lastBlock);
+			if (blockObject) {
+				blockObject.style.background = "#F3F3F3";
+				blockObject.style.border = "1px solid #F3F3F3";
+				setTimeout("showBlockColor()", 700);
+			}
+		}
+	}
+
+	function showBlockColor()
+	{
+		var lastBlock = document.layout.last_block.value;
+		if (lastBlock != "") {
+			var blockObject = document.getElementById(lastBlock);
+			if (blockObject) {
+				blockObject.style.background = "#E3E3FF";
+				blockObject.style.border = "1px solid blue";
+			}
+		}
+	}
+
+
+	function moveBlock(oldBlock, newBlock)
+	{
+		var oldObject = null; var newObject = null;
+		if(oldBlock == 'list') {
+			oldObject = document.layout.available_blocks;
+		} else if (oldBlock == 'left') {
+			oldObject = document.layout.left_blocks;
+		} else if (oldBlock == 'middle') {
+			oldObject = document.layout.middle_blocks;
+		} else if (oldBlock == 'right') {
+			oldObject = document.layout.right_blocks;
+		} else {
+			alert("Wrong object type"); return;
+		}
+		if(newBlock == 'list') {
+			newObject = document.layout.available_blocks;
+		} else if (newBlock == 'left') {
+			newObject = document.layout.left_blocks;
+		} else if (newBlock == 'middle') {
+			newObject = document.layout.middle_blocks;
+		} else if (newBlock == 'right') {
+			newObject = document.layout.right_blocks;
+		} else {
+			alert("Wrong object type"); return;
+		}
+
+		var selectedIndex = oldObject.selectedIndex;
+
+		if(selectedIndex == -1) {
+			alert('Please select block');
+		} else {
+			newObject.options[newObject.length] = new Option(oldObject.options[selectedIndex].text, oldObject.options[selectedIndex].value);
+			newObject.options[newObject.length - 1].selected = true;
+			oldObject.options[selectedIndex] = null;
+		}
+	}
+
+	function changeOrder(column, order)
+	{
+		var columnObject = null;
+		if (column == 'left') {
+			columnObject = document.layout.left_blocks;
+		} else if (column == 'middle') {
+			columnObject = document.layout.middle_blocks;
+		} else if (column == 'right') {
+			columnObject = document.layout.right_blocks;
+		} else {
+			alert("Wrong object type"); return;
+		}
+		var selectedIndex = columnObject.selectedIndex;
+		var incrementIndex = (order == 'up') ? -1 : 1;
+
+		if(selectedIndex == -1) {
+			alert('Please select block');
+		} else {
+			var selectedValue = columnObject.options[selectedIndex].value;
+			var selectedText = columnObject.options[selectedIndex].text;
+			if((order == 'up' && selectedIndex != 0) ||
+				(order == 'down' && selectedIndex != (columnObject.length - 1))) {
+				columnObject.options[selectedIndex].value = columnObject.options[selectedIndex + incrementIndex].value;
+				columnObject.options[selectedIndex].text = columnObject.options[selectedIndex + incrementIndex].text;
+				columnObject.options[selectedIndex + incrementIndex].value = selectedValue;
+				columnObject.options[selectedIndex + incrementIndex].text = selectedText;
+				columnObject.options[selectedIndex].selected = false;
+				columnObject.options[selectedIndex + incrementIndex].selected = true;
+			}
+		}
+	}
+
+	function prepareLists()
+	{
+		var valuesList = "";
+		for(var i = 0; i < document.layout.available_blocks.length; i++) {
+			if(i > 0) valuesList += ","
+			valuesList += document.layout.available_blocks.options[i].value;
+		}
+		document.layout.available_list.value = valuesList;
+		valuesList = "";
+		for(var i = 0; i < document.layout.left_blocks.length; i++) {
+			if(i > 0) valuesList += ","
+			valuesList += document.layout.left_blocks.options[i].value;
+		}
+		document.layout.left_list.value = valuesList;
+		valuesList = "";
+		for(var i = 0; i < document.layout.middle_blocks.length; i++) {
+			if(i > 0) valuesList += ","
+			valuesList += document.layout.middle_blocks.options[i].value;
+		}
+		document.layout.middle_list.value = valuesList;
+		valuesList = "";
+		for(var i = 0; i < document.layout.right_blocks.length; i++) {
+			if(i > 0) valuesList += ","
+			valuesList += document.layout.right_blocks.options[i].value;
+		}
+		document.layout.right_list.value = valuesList;
+	}
+	
+	var shownSubBlocks = new Array();
+	function showSubBlock(value, div) {
+		if (shownSubBlocks[div]) {
+			var subBlockId = div + "_" + shownSubBlocks[div];
+			var subBlock = document.getElementById(subBlockId);			
+			if (subBlock) {
+				subBlock.style.display = 'none';
+			}
+		}
+		if (value) {
+			var subBlockId = div + "_" + value;
+			var subBlock = document.getElementById(subBlockId);			
+			if (subBlock) {
+				subBlock.style.display = 'block';
+				shownSubBlocks[div] = value;
+			}
+		}
+	}
+	
+	function getSelectedRadio(buttonGroup) {
+	   if (buttonGroup[0]) {
+	      for (var i=0; i<buttonGroup.length; i++) {
+	         if (buttonGroup[i].checked) {
+	            return i
+	         }
+	      }
+	   } else {
+	      if (buttonGroup.checked) { return 0; }
+	   }
+	   return -1;
+	}
+
+	function getSelectedRadioValue(buttonGroup) {
+	   var i = getSelectedRadio(buttonGroup);
+	   if (i == -1) {
+	      return "";
+	   } else {
+	      if (buttonGroup[i]) {
+	         return buttonGroup[i].value;
+	      } else {
+	         return buttonGroup.value;
+	      }
+	   }
+	} 
+
+	function initSubBlocks(){
+		var value = getSelectedRadioValue(document.layout.manufacturers_selection);
+		if (!value)  value = 1;
+		showSubBlock( value, 'manufacturers_block_sub');
+		
+	}
+
+//-->
+</script>
+</head>
+
+<body class="commonbg">
+{admin_header}
+
+<form action="{admin_layout_page_href}" name="layout" method="POST" onSubmit="prepareLists();">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+
+			<table cellspacing="0" cellpadding="0" border="0" width="100%" align="center">
+			<tr>
+				<td class="usual">
+	<!-- begin cms_path -->
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_cms_href}">{CMS_MSG}</a>&nbsp;&gt;<!-- begin layout_name_link -->
+			<a href="{admin_layout_href}?layout_id={layout_id}">{layout_name}</a>&nbsp;&gt;<!-- end layout_name_link -->
+			<b>{page_name_desc}</b>   
+	<!-- end cms_path -->
+
+	<!-- begin articles_path -->
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_cms_href}">{CMS_MSG}</a>&nbsp;&gt;<a
+			href="{admin_articles_top_href}">{ARTICLES_TITLE}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_articles_href}?category_id={art_cat_id}">{art_cat_name}</a>&nbsp;&gt;
+			<b>{page_name_desc}</b>
+	<!-- end articles_path -->
+
+	<!-- begin products_path -->
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_cms_href}">{CMS_MSG}</a>&nbsp;&gt;<a
+			href="{admin_items_list_href}">{PRODUCTS_MSG}</a>&nbsp;&gt;
+			<b>{page_name_desc}</b>
+	<!-- end products_path -->
+
+	<!-- begin user_path -->
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_cms_href}">{CMS_MSG}</a>&nbsp;&gt;<a
+			href="{admin_layouts_href}">{LAYOUTS_MSG}</a>&nbsp;&gt;
+			<b>{page_name_desc}</b>
+	<!-- end user_path -->
+
+	<!-- begin ads_path -->
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_cms_href}">{CMS_MSG}</a>&nbsp;&gt;<a
+			href="{admin_ads_href}">{ADS_TITLE}</a>&nbsp;&gt;
+			<b>{page_name_desc}</b>
+	<!-- end ads_path -->
+
+				</td>
+				<!-- begin sitelist -->
+				<td class="usual" align="right">
+					{SELECT_SITE_MSG}&nbsp;
+					<select name="param_site_id" onchange="reloadSite(this.form)"><!-- begin param_site_id -->
+						<option {param_site_id_selected} value="{param_site_id_value}">{param_site_id_description}<!-- end param_site_id -->
+					</select>		
+				</td>
+				<!-- end sitelist -->
+			</tr>
+			</table>
+
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+
+<br>
+
+<fieldset>
+<legend>{page_name_desc}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center">
+	<td>
+		<input type="hidden" name="operation" value="save">
+		<input type="hidden" name="layout_id" value="{layout_id}">
+		<input type="hidden" name="art_cat_id" value="{art_cat_id}">
+		<input type="hidden" name="page_name" value="{page_name}">
+		<input type="hidden" name="rp" value="{rp}">
+		<input type="hidden" name="available_list" value="">
+		<input type="hidden" name="left_list" value="">
+		<input type="hidden" name="middle_list" value="">
+		<input type="hidden" name="right_list" value="">
+		<input type="hidden" name="last_block" value="">
+  	<table width="100%" border="0" cellspacing="1" cellpadding="4"><!-- BEGIN errors -->
+		<tr class="usual">
+			<td colspan="3" align="center">
+				<div class="error">{errors_list}</div>
+			</td>
+		</tr><!-- END errors -->
+		<!-- begin layout_type_block -->
+		<tr align="center" class="middle">
+			<td colspan="3">{LAYOUT_SETTINGS_MSG}</td>
+		</tr>
+		<tr align="center" class="usual">
+			<td colspan="3">
+				{LAYOUT_TYPE_MSG} 
+				<select name="layout_type"><!-- begin layout_type -->
+					<option {layout_type_selected} value="{layout_type_value}">{layout_type_description}<!-- end layout_type -->
+				</select>
+			</td>
+		</tr>
+		<!-- end layout_type_block -->
+		<tr align="center" class="middle">
+			<td colspan="3">{AVAILABLE_BLOCKS_MSG}</td>
+		</tr>
+		<tr align="center" class="usual">
+			<td>
+				&nbsp;
+			</td>
+			<td>
+				<select name="available_blocks" size="15" onClick="selectBlock('top');" onChange="selectBlock('top');" style="width: 250px;"><!-- begin available_blocks -->
+					<option value="{available_blocks_value}">{available_blocks_description}<!-- end available_blocks -->
+					<option>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+				</select>
+			</td>
+			<td valign="top">
+
+				<div id="categories_block" style="display:none;">
+					<b>{PRODUCTS_CATEGORIES_SETTINGS_MSG}</b><br><br>
+					{CATEGORIES_TYPE_VIEW_MSG}:<br>
+					<select name="categories_type"><!-- begin categories_type -->
+						<option {categories_type_selected} value="{categories_type_value}">{categories_type_description}<!-- end categories_type -->
+					</select><br><br>
+					&nbsp;{IMAGE_TYPE_FOR_TOP_CAT_MSG}:<br>
+					<select name="categories_image"><!-- begin categories_image -->
+						<option {categories_image_selected} value="{categories_image_value}">&nbsp;{categories_image_description}&nbsp;<!-- end categories_image -->
+					</select>
+					<br>&nbsp;
+				</div>
+
+				<div id="subcategories_block" style="display:none;">
+					<b>{PRODUCTS_SUBCAT_SETTINGS_MSG}</b><br><br>
+
+					<select name="subcategories_type"><!-- begin subcategories_type -->
+						<option {subcategories_type_selected} value="{subcategories_type_value}">{subcategories_type_description}<!-- end subcategories_type -->
+					</select><br><br>
+					&nbsp;in&nbsp;
+					<select name="subcategories_columns"><!-- begin subcategories_columns -->
+						<option {subcategories_columns_selected} value="{subcategories_columns_value}">&nbsp;{subcategories_columns_description}&nbsp;<!-- end subcategories_columns -->
+					</select>
+					{ADMIN_COLUMNS_MSG} with
+					<select name="subcategories_subs"><!-- begin subcategories_subs -->
+						<option {subcategories_subs_selected} value="{subcategories_subs_value}">{subcategories_subs_description}<!-- end subcategories_subs -->
+					</select>
+					subcategories
+					<br><br>
+					&nbsp;{IMAGE_TYPE_FOR_TOP_CAT_MSG}:<br>
+					<select name="subcategories_image"><!-- begin subcategories_image -->
+						<option {subcategories_image_selected} value="{subcategories_image_value}">&nbsp;{subcategories_image_description}&nbsp;<!-- end subcategories_image -->
+					</select>
+					<br>&nbsp;
+				</div>
+
+				<div id="products_recently_viewed" style="display:none;">
+					<b>{RECENTLY_VIEWED_SETTINGS_MSG}</b><br><br>
+
+					{ADMIN_SHOW_MSG}
+					<input class="field" type="text" name="products_recent_records" size="4" value="{products_recent_records}" style="text-align: center;">
+					latest viewed products<br>in
+					<select name="products_recent_cols"><!-- begin products_recent_cols -->
+						<option {products_recent_cols_selected} value="{products_recent_cols_value}">&nbsp;{products_recent_cols_description}&nbsp;<!-- end products_recent_cols -->
+					</select>
+					{ADMIN_COLUMNS_MSG}
+					<br><br>
+
+					&nbsp;{IMAGE_TYPE_MSG}:
+					<select name="recent_image"><!-- begin recent_image -->
+						<option {recent_image_selected} value="{recent_image_value}">&nbsp;{recent_image_description}&nbsp;<!-- end recent_image -->
+					</select><br>
+					&nbsp;{DESCRIPTION_MSG}:
+					<select name="recent_desc"><!-- begin recent_desc -->
+						<option {recent_desc_selected} value="{recent_desc_value}">&nbsp;{recent_desc_description}&nbsp;<!-- end recent_desc -->
+					</select>
+
+					<br>&nbsp;
+				</div>
+
+				<div id="products_top_sellers" style="display:none">
+					<b>{TOP_SELLERS_SETTINGS_MSG}</b><br><br>
+					{ADMIN_SHOW_MSG}
+					<select name="bestsellers_records"><!-- begin bestsellers_records -->
+						<option {bestsellers_records_selected} value="{bestsellers_records_value}">{bestsellers_records_description}<!-- end bestsellers_records -->
+					</select>
+					products <br>bought during the last
+					<select name="bestsellers_days"><!-- begin bestsellers_days -->
+						<option {bestsellers_days_selected} value="{bestsellers_days_value}">{bestsellers_days_description}<!-- end bestsellers_days -->
+					</select>
+					<br>for orders with
+					<select name="bestsellers_status"><!-- begin bestsellers_status -->
+						<option {bestsellers_status_selected} value="{bestsellers_status_value}">{bestsellers_status_description}<!-- end bestsellers_status -->
+					</select>
+					status<br><br>
+					&nbsp;{IMAGE_TYPE_MSG}:
+					<select name="bestsellers_image"><!-- begin bestsellers_image -->
+						<option {bestsellers_image_selected} value="{bestsellers_image_value}">&nbsp;{bestsellers_image_description}&nbsp;<!-- end bestsellers_image -->
+					</select><br>
+					&nbsp;{DESCRIPTION_MSG}:
+					<select name="bestsellers_desc"><!-- begin bestsellers_desc -->
+						<option {bestsellers_desc_selected} value="{bestsellers_desc_value}">&nbsp;{bestsellers_desc_description}&nbsp;<!-- end bestsellers_desc -->
+					</select>
+
+					<br>&nbsp;
+				</div>
+
+				<div id="related_purchase" style="display:none">
+					<b>{CUSTOMERS_WHO_BOUGHT_TITLE}</b><br><br>
+
+					{ADMIN_SHOW_MSG}
+					<input class="field" type="text" name="related_purchase_recs" size="5" value="{related_purchase_recs}">
+					{PRODUCTS_PER_PAGE_MSG} <br>in
+					<input class="field" type="text" name="related_purchase_cols" size="5" value="{related_purchase_cols}">
+					{ADMIN_COLUMNS_MSG}&nbsp;
+					<br>
+
+					<br>bought during the last
+					<select name="related_purchase_days"><!-- begin related_purchase_days -->
+						<option {related_purchase_days_selected} value="{related_purchase_days_value}">{related_purchase_days_description}<!-- end related_purchase_days -->
+					</select>
+					<br>for orders with
+					<select name="related_purchase_status"><!-- begin related_purchase_status -->
+						<option {related_purchase_status_selected} value="{related_purchase_status_value}">{related_purchase_status_description}<!-- end related_purchase_status -->
+					</select>
+					status<br><br>
+					&nbsp;{IMAGE_TYPE_MSG}:
+					<select name="related_purchase_image"><!-- begin related_purchase_image -->
+						<option {related_purchase_image_selected} value="{related_purchase_image_value}">&nbsp;{related_purchase_image_description}&nbsp;<!-- end related_purchase_image -->
+					</select><br>
+					&nbsp;{DESCRIPTION_MSG}:
+					<select name="related_purchase_desc"><!-- begin related_purchase_desc -->
+						<option {related_purchase_desc_selected} value="{related_purchase_desc_value}">&nbsp;{related_purchase_desc_description}&nbsp;<!-- end related_purchase_desc -->
+					</select>
+
+					<br>&nbsp;
+				</div>
+
+				<div id="users_bought_item" style="display:none">
+					<b>{CUSTOMERS_LIST_BOUGHT_ITEM_TITLE}</b><br><br>
+
+					{USERS_PER_PAGE_MSG} <input class="field" type="text" name="users_bought_item_recs" size="5" value="{users_bought_item_recs}">
+					<br>
+					{NUMBER_OF_COLUMNS_MSG} <input class="field" type="text" name="users_bought_item_cols" size="5" value="{users_bought_item_cols}">
+					<br>
+					{USERS_BOUGHT_DURING_MSG}
+					<input class="field" type="text" name="users_bought_item_days" size="5" value="{users_bought_item_days}">
+					<br>
+					{ORDER_STATUS_MSG}
+					<select name="users_bought_status"><!-- begin users_bought_status -->
+						<option {users_bought_status_selected} value="{users_bought_status_value}">{users_bought_status_description}<!-- end users_bought_status -->
+					</select>
+					<br>
+					{USER_TYPE_MSG}
+					<select name="users_bought_type"><!-- begin users_bought_type -->
+						<option {users_bought_type_selected} value="{users_bought_type_value}">{users_bought_type_description}<!-- end users_bought_type -->
+					</select>
+
+					<br>
+
+					<br><br>{SELECT_FIELDS_TO_SHOW_MSG}
+					<table cellpadding="0" cellspacing="0" border="0">
+					<tr>
+						<td>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox" name="users_bought_item_fn" {users_bought_item_fn} value="1"> {FIRST_NAME_FIELD}
+						</td>
+						<td>
+							<input type="checkbox" name="users_bought_item_ln" {users_bought_item_ln} value="1"> {LAST_NAME_FIELD}
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox" name="users_bought_item_name" {users_bought_item_name} value="1"> {NAME_MSG}
+						</td>
+						<td>
+							<input type="checkbox" name="users_bought_item_nickname" {users_bought_item_nickname} value="1"> {NICKNAME_FIELD}
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox" name="users_bought_item_cn" {users_bought_item_cn} value="1"> {COMPANY_NAME_FIELD}
+						</td>
+						<td>
+							<input type="checkbox" name="users_bought_item_email" {users_bought_item_email} value="1"> {EMAIL_FIELD}
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox" name="users_bought_item_country" {users_bought_item_country} value="1"> {COUNTRY_FIELD}
+						</td>
+						<td>
+							<input type="checkbox" name="users_bought_item_state" {users_bought_item_state} value="1"> {STATE_FIELD}
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox" name="users_bought_item_od" {users_bought_item_od} value="1"> {DATE_OF_PURCHASE_MSG}
+						</td>
+						<td>
+						</td>
+					</tr>
+
+					</table>
+
+
+					<br>&nbsp;
+				</div>
+
+
+				<div id="top_products_block" style="display:none">
+					<b>{TOP_RATED_SETTINGS_MSG}</b><br><br>
+
+					&nbsp;{IMAGE_TYPE_MSG}:
+					<select name="top_rated_image"><!-- begin top_rated_image -->
+						<option {top_rated_image_selected} value="{top_rated_image_value}">&nbsp;{top_rated_image_description}&nbsp;<!-- end top_rated_image -->
+					</select><br>
+					&nbsp;{DESCRIPTION_MSG}:
+					<select name="top_rated_desc"><!-- begin top_rated_desc -->
+						<option {top_rated_desc_selected} value="{top_rated_desc_value}">&nbsp;{top_rated_desc_description}&nbsp;<!-- end top_rated_desc -->
+					</select>
+
+					<br>&nbsp;
+				</div>
+
+				<div id="basket_block" style="display:none">
+					<b>{CART_TITLE}</b><br><br>
+
+					&nbsp;{IMAGE_TYPE_MSG}:
+					<select name="shopping_cart_preview"><!-- begin shopping_cart_preview -->
+						<option {shopping_cart_preview_selected} value="{shopping_cart_preview_value}">&nbsp;{shopping_cart_preview_description}&nbsp;<!-- end shopping_cart_preview -->
+					</select><br>&nbsp;
+
+					<br><br>{SELECT_FIELDS_TO_SHOW_MSG}:
+					<table cellpadding="0" cellspacing="0" border="0">
+					<tr>
+						<td>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox" name="fast_checkout_country_show" {fast_checkout_country_show} value="1"> {COUNTRY_FIELD}
+						</td>
+						<td>
+							<input type="checkbox" name="fast_checkout_country_required" {fast_checkout_country_required} value="1"> {REQUIRED_MSG}
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox" name="fast_checkout_state_show" {fast_checkout_state_show} value="1"> {STATE_FIELD}
+						</td>
+						<td>
+							<input type="checkbox" name="fast_checkout_state_required" {fast_checkout_state_required} value="1"> {REQUIRED_MSG}
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox" name="fast_checkout_postcode_show" {fast_checkout_postcode_show} value="1"> {ZIP_FIELD}
+						</td>
+						<td>
+							<input type="checkbox" name="fast_checkout_postcode_required" {fast_checkout_postcode_required} value="1"> {REQUIRED_MSG}
+						</td>
+					</tr>
+					</table>
+
+					&nbsp;
+
+				</div>
+
+				<div id="category_description_block" style="display:none">
+					<b>{CATEGOTY_INFO_SETTINGS_MSG}</b><br><br>
+
+					&nbsp;{IMAGE_MSG}:
+					<select name="category_description_image"><!-- begin category_description_image -->
+						<option {category_description_image_selected} value="{category_description_image_value}">&nbsp;{category_description_image_description}&nbsp;<!-- end category_description_image -->
+					</select><br>
+					&nbsp;{DESCRIPTION_MSG}:
+					<select name="category_description_type"><!-- begin category_description_type -->
+						<option {category_description_type_selected} value="{category_description_type_value}">&nbsp;{category_description_type_description}&nbsp;<!-- end category_description_type -->
+					</select>
+
+					<br>&nbsp;
+				</div>
+
+				<div id="manufacturer_info_block" style="display:none">
+					<b>{MANUFACTURERS_BLOCK_SETTINGS_MSG}</b><br><br>
+
+					&nbsp;{IMAGE_MSG}:
+					<select name="manufacturer_info_image"><!-- begin manufacturer_info_image -->
+						<option {manufacturer_info_image_selected} value="{manufacturer_info_image_value}">&nbsp;{manufacturer_info_image_description}&nbsp;<!-- end manufacturer_info_image -->
+					</select><br>
+					&nbsp;{DESCRIPTION_MSG}:
+					<select name="manufacturer_info_type"><!-- begin manufacturer_info_type -->
+						<option {manufacturer_info_type_selected} value="{manufacturer_info_type_value}">&nbsp;{manufacturer_info_type_description}&nbsp;<!-- end manufacturer_info_type -->
+					</select>
+
+					<br>&nbsp;
+				</div>
+
+
+				<div id="products_recommended" style="display:none">
+					<b>{RECOMMENDED_PRODUCTS_SETTINGS_MSG}</b><br><br>
+
+					{ADMIN_SHOW_MSG}
+					<input class="field" type="text" name="prod_recom_per_page" size="5" value="{prod_recom_per_page}">
+					{PRODUCTS_PER_PAGE_MSG} <br>in
+					<input class="field" type="text" name="prod_recom_cols" size="5" value="{prod_recom_cols}">
+					{ADMIN_COLUMNS_MSG}&nbsp;
+					<br>
+					(show related products and products accessories the user has bought in the past,
+					this block appears only if user is logged in)
+					<br>&nbsp;
+				</div>
+
+				<div id="basket_recommended_block" style="display:none">
+					<b>{RECOMMENDED_PRODUCTS_SETTINGS_MSG}</b><br><br>
+
+					{ADMIN_SHOW_MSG}
+					<input class="field" type="text" name="basket_prod_recom_per_page" size="5" value="{basket_prod_recom_per_page}">
+					{PRODUCTS_PER_PAGE_MSG} <br>in
+					<input class="field" type="text" name="basket_prod_recom_cols" size="5" value="{basket_prod_recom_cols}">
+					{ADMIN_COLUMNS_MSG}&nbsp;
+					<br>
+					(show related products and accessories to the products user has add to his cart)
+					<br>&nbsp;
+				</div>
+
+				<div id="ads_categories" style="display:none;">
+					<b>{ADS_CAT_SETTINGS_MSG}</b><br><br>
+					{CATEGORIES_TYPE_VIEW_MSG}:<br>
+					<select name="ads_categories_type"><!-- begin ads_categories_type -->
+						<option {ads_categories_type_selected} value="{ads_categories_type_value}">{ads_categories_type_description}<!-- end ads_categories_type -->
+					</select><br><br>
+					&nbsp;{IMAGE_TYPE_FOR_TOP_CAT_MSG}:<br>
+					<select name="ads_categories_image"><!-- begin ads_categories_image -->
+						<option {ads_categories_image_selected} value="{ads_categories_image_value}">&nbsp;{ads_categories_image_description}&nbsp;<!-- end ads_categories_image -->
+					</select>
+					<br>&nbsp;
+				</div>
+
+				<div id="ads_subcategories" style="display:none;">
+					<b>{ADS_SUBCAT_SETTINGS_MSG}</b><br><br>
+
+					<select name="ads_subcategories_type"><!-- begin ads_subcategories_type -->
+						<option {ads_subcategories_type_selected} value="{ads_subcategories_type_value}">{ads_subcategories_type_description}<!-- end ads_subcategories_type -->
+					</select><br><br>
+					&nbsp;in&nbsp;
+					<select name="ads_subcategories_columns"><!-- begin ads_subcategories_columns -->
+						<option {ads_subcategories_columns_selected} value="{ads_subcategories_columns_value}">&nbsp;{ads_subcategories_columns_description}&nbsp;<!-- end ads_subcategories_columns -->
+					</select>
+					{ADMIN_COLUMNS_MSG} with
+					<select name="ads_subcategories_subs"><!-- begin ads_subcategories_subs -->
+						<option {ads_subcategories_subs_selected} value="{ads_subcategories_subs_value}">{ads_subcategories_subs_description}<!-- end ads_subcategories_subs -->
+					</select>
+					subcategories
+					<br>&nbsp;
+				</div>
+
+				<div id="ads_category_info" style="display:none">
+					<b>{ADS_CAT_INFO_SETTINGS_MSG}</b><br><br>
+
+					&nbsp;{IMAGE_MSG}:
+					<select name="ads_cat_desc_image"><!-- begin ads_cat_desc_image -->
+						<option {ads_cat_desc_image_selected} value="{ads_cat_desc_image_value}">&nbsp;{ads_cat_desc_image_description}&nbsp;<!-- end ads_cat_desc_image -->
+					</select><br>
+					&nbsp;{DESCRIPTION_MSG}:
+					<select name="ads_cat_desc_type"><!-- begin ads_cat_desc_type -->
+						<option {ads_cat_desc_type_selected} value="{ads_cat_desc_type_value}">&nbsp;{ads_cat_desc_type_description}&nbsp;<!-- end ads_cat_desc_type -->
+					</select>
+
+					<br>&nbsp;
+				</div>
+
+
+				<div id="ads_recently_viewed" style="display:none">
+					<b>{ADS_RECENTLY_VIEWED_SETTINGS_MSG}</b><br><br>
+
+					{ADMIN_SHOW_MSG}
+					<select name="ads_recent_records"><!-- begin ads_recent_records -->
+						<option {ads_recent_records_selected} value="{ads_recent_records_value}">{ads_recent_records_description}<!-- end ads_recent_records -->
+					</select>
+					latest viewed products
+					<br>&nbsp;
+				</div>
+
+				<div id="ads_hot" style="display:none">
+					<b>{ADS_HOT_OFFERS_SETTINGS_MSG}</b><br><br>
+
+					{ADMIN_SHOW_MSG}
+					<select name="ads_hot_recs"><!-- begin ads_hot_recs -->
+						<option {ads_hot_recs_selected} value="{ads_hot_recs_value}">{ads_hot_recs_description}<!-- end ads_hot_recs -->
+					</select>
+					offers per page <br>in
+					<select name="ads_hot_cols"><!-- begin ads_hot_cols -->
+						<option {ads_hot_cols_selected} value="{ads_hot_cols_value}">{ads_hot_cols_description}<!-- end ads_hot_cols-->
+					</select>
+					{ADMIN_COLUMNS_MSG}&nbsp;
+					<br>&nbsp;
+				</div>
+
+				<div id="ads_special" style="display:none">
+					<b>{ADS_SPECIAL_OFFERS_SETTINGS_MSG}</b><br><br>
+
+					{ADMIN_SHOW_MSG}
+					<select name="ads_special_recs"><!-- begin ads_special_recs -->
+						<option {ads_special_recs_selected} value="{ads_special_recs_value}">{ads_special_recs_description}<!-- end ads_special_recs -->
+					</select>
+					offers per page <br>in
+					<select name="ads_special_cols"><!-- begin ads_special_cols -->
+						<option {ads_special_cols_selected} value="{ads_special_cols_value}">{ads_special_cols_description}<!-- end ads_special_cols-->
+					</select>
+					{ADMIN_COLUMNS_MSG}&nbsp;
+					<br>&nbsp;
+				</div>
+
+				<div id="ads_list" style="display:none">
+					<b>{ADS_LIST_SETTINGS_MSG}</b><br><br>
+
+					&nbsp;{ADMIN_SHOW_MSG}
+					<select name="ads_list_per_page"><!-- begin ads_list_per_page -->
+						<option {ads_list_per_page_selected} value="{ads_list_per_page_value}">{ads_list_per_page_description}<!-- end ads_list_per_page -->
+					</select>
+					{PRODUCTS_PER_PAGE_MSG} <br>in
+					<select name="ads_list_columns"><!-- begin ads_list_columns -->
+						<option {ads_list_columns_selected} value="{ads_list_columns_value}">{ads_list_columns_description}<!-- end ads_list_columns-->
+					</select>
+					{ADMIN_COLUMNS_MSG}
+					<br>&nbsp;
+				</div>
+
+				<div id="ads_latest" style="display:none">
+					<b>{ADS_LATEST_SETTINGS_MSG}</b><br><br>
+
+					&nbsp;{ADMIN_SHOW_MSG}
+					<select name="ads_latest_recs"><!-- begin ads_latest_recs -->
+						<option {ads_latest_recs_selected} value="{ads_latest_recs_value}">{ads_latest_recs_description}<!-- end ads_latest_recs -->
+					</select>
+					latest ads <br>in
+					<select name="ads_latest_cols"><!-- begin ads_latest_cols -->
+						<option {ads_latest_cols_selected} value="{ads_latest_cols_value}">&nbsp;{ads_latest_cols_description}&nbsp;<!-- end ads_latest_cols -->
+					</select>
+					{ADMIN_COLUMNS_MSG}
+					<br>&nbsp;
+
+				</div>
+
+				<div id="ads_top_viewed" style="display:none">
+					<b>{ADS_TOP_VIEWED_SETTINGS_MSG}</b><br><br>
+
+					&nbsp;{ADMIN_SHOW_MSG}
+					<input class="field" type="text" name="ads_top_viewed_recs" size="5" value="{ads_top_viewed_recs}">
+					top viewed ads <br>in
+					<input class="field" type="text" name="ads_top_viewed_cols" size="5" value="{ads_top_viewed_cols}">
+					{ADMIN_COLUMNS_MSG}
+					<br>&nbsp;
+
+				</div>
+
+				<div id="ads_details" style="display:none">
+					<b>{ADS_DETAILS_SETTINGS_MSG}</b><br><br>
+
+					<table>
+					<tr><td><!-- begin ads_details_tabs -->
+						<input type="radio" name="ads_details_tabs" {ads_details_tabs_checked} value="{ads_details_tabs_value}">{ads_details_tabs_description}<br><!-- end ads_details_tabs -->
+					</td></tr>
+					</table>
+					&nbsp;
+				</div>
+
+				<div id="ads_sellers" style="display:none">
+					<b>{ADS_SELLERS_SETTINGS_MSG}</b><br><br>
+
+					&nbsp;{ADMIN_SHOW_MSG}
+					<select name="ads_user_type_id"><!-- begin ads_user_type_id -->
+						<option {ads_user_type_id_selected} value="{ads_user_type_id_value}">{ads_user_type_id_description}<!-- end ads_user_type_id -->
+					</select>
+					users
+					<br>&nbsp;
+				</div>
+
+				<div id="forum_latest" style="display:none">
+					<b>{FORUM_LATEST_SETTINGS_MSG}</b><br><br>
+
+					&nbsp;{ADMIN_SHOW_MSG}
+					<input class="field" type="text" name="forum_latest_recs" size="5" value="{forum_latest_recs}">
+					latest updated forum topics <br>in
+					<input class="field" type="text" name="forum_latest_cols" size="5" value="{forum_latest_cols}">
+					{ADMIN_COLUMNS_MSG}
+					<br>&nbsp;
+
+				</div>
+
+				<div id="forum_top_viewed" style="display:none">
+					<b>{FORUM_TOP_VIEWED_SETTINGS_MSG}</b><br><br>
+
+					&nbsp;{ADMIN_SHOW_MSG}
+					<input class="field" type="text" name="forum_top_viewed_recs" size="5" value="{forum_top_viewed_recs}">
+					top viewed forum topics <br>in
+					<input class="field" type="text" name="forum_top_viewed_cols" size="5" value="{forum_top_viewed_cols}">
+					{ADMIN_COLUMNS_MSG}
+					<br>&nbsp;
+
+				</div>
+
+				<div id="forum_description" style="display:none">
+					<b>{FORUM_DESCRIPTION_SETTINGS_MSG}</b><br><br>
+
+					&nbsp;{IMAGE_MSG}:
+					<select name="forum_description_image"><!-- begin forum_description_image -->
+						<option {forum_description_image_selected} value="{forum_description_image_value}">&nbsp;{forum_description_image_description}&nbsp;<!-- end forum_description_image -->
+					</select><br>
+					&nbsp;{DESCRIPTION_MSG}:
+					<select name="forum_description_type"><!-- begin forum_description_type -->
+						<option {forum_description_type_selected} value="{forum_description_type_value}">&nbsp;{forum_description_type_description}&nbsp;<!-- end forum_description_type -->
+					</select>
+
+					<br>&nbsp;
+				</div>
+				
+				<div id="forum_item_related_block" style="display:none">
+					<b>{RELATED_PRODUCTS_TITLE}</b><br><br>
+
+					&nbsp;{ADMIN_SHOW_MSG}
+					<select name="forum_item_related_per_page"><!-- begin forum_item_related_per_page -->
+						<option {forum_item_related_per_page_selected} value="{forum_item_related_per_page_value}">{forum_item_related_per_page_description}<!-- end forum_item_related_per_page -->
+					</select>
+					{PRODUCTS_PER_PAGE_MSG}<br>in
+					<select name="forum_item_related_columns"><!-- begin forum_item_related_columns -->
+						<option {forum_item_related_columns_selected} value="{forum_item_related_columns_value}">{forum_item_related_columns_description}<!-- end forum_item_related_columns -->
+					</select>
+					{ADMIN_COLUMNS_MSG}
+					<br>
+				</div>
+				<div id="forum_articles_related_block" style="display:none">
+					<b>{RELATED_ARTICLES_MSG}</b><br><br>
+
+					&nbsp;{ADMIN_SHOW_MSG}
+					<select name="forum_articles_related_per_page"><!-- begin forum_articles_related_per_page -->
+						<option {forum_articles_related_per_page_selected} value="{forum_articles_related_per_page_value}">{forum_articles_related_per_page_description}<!-- end forum_articles_related_per_page -->
+					</select>
+					{ARTICLES_PER_PAGE_MSG}<br>in
+					<select name="forum_articles_related_columns"><!-- begin forum_articles_related_columns -->
+						<option {forum_articles_related_columns_selected} value="{forum_articles_related_columns_value}">{forum_articles_related_columns_description}<!-- end forum_articles_related_columns -->
+					</select>
+					{ADMIN_COLUMNS_MSG}
+					<br>					
+					
+					{IMAGE_TYPE_MSG}: <select name="forum_articles_related_image"><!-- begin forum_articles_related_image -->
+						<option {forum_articles_related_image_selected} value="{forum_articles_related_image_value}">&nbsp;{forum_articles_related_image_description}&nbsp;<!-- end forum_articles_related_image -->
+					</select>
+					<br>
+					{DESCRIPTION_MSG}: <select name="forum_articles_related_desc"><!-- begin forum_articles_related_desc -->
+						<option {forum_articles_related_desc_selected} value="{forum_articles_related_desc_value}">&nbsp;{forum_articles_related_desc_description}&nbsp;<!-- end forum_articles_related_desc -->
+					</select>
+					<br>
+					{DATE_MSG}: <select name="forum_articles_related_date"><!-- begin forum_articles_related_date -->
+						<option {forum_articles_related_date_selected} value="{forum_articles_related_date_value}">&nbsp;{forum_articles_related_date_description}&nbsp;<!-- end forum_articles_related_date -->
+					</select>								
+				</div>
+
+
+				<div id="language_block" style="display:none">
+					<b>{LANGUAGE_BLOCK_SETTINGS_MSG}</b><br><br>
+
+					<table>
+					<tr><td><!-- begin language_selection -->
+						<input type="radio" name="language_selection" {language_selection_checked} value="{language_selection_value}">{language_selection_description}<br><!-- end language_selection -->
+					</td></tr>
+					</table>
+					&nbsp;
+				</div>
+
+				<div id="currency_block" style="display:none">
+					<b>{CURRENCY_BLOCK_MSG} {SETTINGS_MSG}</b><br><br>
+
+					<table>
+					<tr><td><!-- begin currency_selection -->
+						<input type="radio" name="currency_selection" {currency_selection_checked} value="{currency_selection_value}">{currency_selection_description}<br><!-- end currency_selection -->
+					</td></tr>
+					</table>
+					&nbsp;
+				</div>
+
+				<div id="layouts_block" style="display:none">
+					<b>{LAYOUT_BLOCK_SETTINGS_MSG}</b><br><br>
+
+					<table>
+					<tr><td><!-- begin layouts_selection -->
+						<input type="radio" name="layouts_selection" {layouts_selection_checked} value="{layouts_selection_value}">{layouts_selection_description}<br><!-- end layouts_selection -->
+					</td></tr>
+					</table>
+					&nbsp;
+				</div>
+
+				<div id="manufacturers_block" style="display:none">
+					<b>{MANUFACTURERS_BLOCK_SETTINGS_MSG}</b><br><br>
+
+					<table>
+					<tr><td><!-- begin manufacturers_selection -->
+						<input type="radio" name="manufacturers_selection" {manufacturers_selection_checked} value="{manufacturers_selection_value}" onclick="showSubBlock(this.value, 'manufacturers_block_sub')">{manufacturers_selection_description}<br><!-- end manufacturers_selection -->
+						
+						<div id="manufacturers_block_sub_1" style="display:none">
+							&nbsp;{IMAGE_TYPE_MSG}:
+							<select name="manufacturers_image"><!-- begin manufacturers_image -->
+								<option {manufacturers_image_selected} value="{manufacturers_image_value}">&nbsp;{manufacturers_image_description}&nbsp;<!-- end manufacturers_image -->
+							</select><br>
+							&nbsp;{DESCRIPTION_MSG}:
+							<select name="manufacturers_desc"><!-- begin manufacturers_desc -->
+								<option {manufacturers_desc_selected} value="{manufacturers_desc_value}">&nbsp;{manufacturers_desc_description}&nbsp;<!-- end manufacturers_desc -->
+							</select><br>
+						</div>
+						
+						&nbsp;{SORT_ORDER_MSG}:
+						<select name="manufacturers_order"><!-- begin manufacturers_order -->
+							<option {manufacturers_order_selected} value="{manufacturers_order_value}">{manufacturers_order_description}<!-- end manufacturers_order -->
+						</select> &nbsp;
+						<select name="manufacturers_direction"><!-- begin manufacturers_direction -->
+							<option {manufacturers_direction_selected} value="{manufacturers_direction_value}">{manufacturers_direction_description}<!-- end manufacturers_direction -->
+						</select> 
+					</td></tr>
+					</table>
+					&nbsp;
+				</div>
+
+				<div id="merchants_block" style="display:none">
+					<b>{MERCHANTS_BLOCK_SETTINGS_MSG}</b><br><br>
+
+					<table>
+					<tr><td><!-- begin merchants_selection -->
+						<input type="radio" name="merchants_selection" {merchants_selection_checked} value="{merchants_selection_value}">{merchants_selection_description}<br><!-- end merchants_selection -->
+					</td></tr>
+					</table>
+					&nbsp;
+				</div>
+
+				<!-- begin custom_options -->
+				<div id="custom_block_{block_id}" style="display:none;">
+					<b>{block_name}</b><br><br>
+					{BLOCK_CSS_CLASS_MSG} <input class="field" type="text" name="cb_css_class_{block_id}" value="{cb_css_class}"><br><br>
+
+					{RESTRICT_SHOWING_FOR_MSG}<br>
+					{CUSTOMERS_MSG} <select name="cb_user_type_{block_id}"><!-- begin cb_user_type -->
+						<option {cb_user_type_selected} value="{cb_user_type_value}">{cb_user_type_description}<!-- end cb_user_type -->
+					</select><br>
+
+					Admins <select name="cb_admin_type_{block_id}"><!-- begin cb_admin_type -->
+						<option {cb_admin_type_selected} value="{cb_admin_type_value}">{cb_admin_type_description}<!-- end cb_admin_type -->
+					</select><br>
+
+					{PARAMETERS_MSG} <input class="field" type="text" name="cb_params_{block_id}" value="{cb_params}">
+					<br>&nbsp;
+				</div>
+				<!-- end custom_options -->
+
+				<!-- begin banners_options -->
+				<div id="banners_group_{group_id}" style="display:none;">
+					<b>{group_name}</b><br><br>
+					{NUMBER_OF_SHOWN_BANNERS_MSG} <input class="field" size="5" type="text" name="bg_limit_{group_id}" value="{bg_limit}">
+					<br>
+
+					{RESTRICT_SHOWING_BANNERS_MSG}<br>
+
+					{PARAMETERS_MSG} <input class="field" type="text" name="bg_params_{group_id}" value="{bg_params}">
+					<br>&nbsp;
+				</div>
+				<!-- end banners_options -->
+
+
+				<div id="offers_block" style="display:none">
+					<b>{PROD_SPECIAL_OFFERS_SETTINGS_MSG}</b><br><br>
+
+					{ADMIN_SHOW_MSG}
+					<input class="field" type="text" name="prod_offers_recs" size="5" value="{prod_offers_recs}">
+					{PRODUCTS_PER_PAGE_MSG} <br>in
+					<input class="field" type="text" name="prod_offers_cols" size="5" value="{prod_offers_cols}">
+					{ADMIN_COLUMNS_MSG}&nbsp;
+
+					<div align="left" style="padding-left: 20px;">
+						<br><input type="checkbox" name="prod_offers_points_price" {prod_offers_points_price} value="1"> {SHOW_POINTS_PRICE_MSG}
+						<br><input type="checkbox" name="prod_offers_reward_points" {prod_offers_reward_points} value="1"> {SHOW_REWARD_POINTS_MSG}
+						<br><input type="checkbox" name="prod_offers_reward_credits" {prod_offers_reward_credits} value="1"> {SHOW_REWARD_CREDITS_MSG}
+
+						<br><input type="checkbox" name="prod_offers_add_button" {prod_offers_add_button} value="1"> {show_add_message}
+						<br><input type="checkbox" name="prod_offers_view_button" {prod_offers_view_button} value="1"> {show_view_message}
+						<br><input type="checkbox" name="prod_offers_goto_button" {prod_offers_goto_button} value="1"> {show_goto_message}
+						<br><input type="checkbox" name="prod_offers_wish_button" {prod_offers_wish_button} value="1"> {show_wish_message}
+						<br/>
+						{QUANTITY_CONTROL_MSG} <select name="prod_offers_quantity_control"><!-- begin prod_offers_quantity_control -->
+						<option {prod_offers_quantity_control_selected} value="{prod_offers_quantity_control_value}">{prod_offers_quantity_control_description}<!-- end prod_offers_quantity_control -->
+						</select>
+					</div>
+
+				</div>
+				
+				<div id="products_fast_add" style="display:none">
+					<b>{FAST_PRODUCT_ADDING_SETTINGS_MSG}</b><br><br>
+					{FAST_PRODUCT_ADDING_DESC_MSG}
+					<div align="left" style="padding-left: 20px;">
+						<br><input type="checkbox" name="prod_fast_add_points_price" {prod_fast_add_points_price} value="1"> {SHOW_POINTS_PRICE_MSG}
+						<br><input type="checkbox" name="prod_fast_add_reward_points" {prod_fast_add_reward_points} value="1"> {SHOW_REWARD_POINTS_MSG}
+						<br><input type="checkbox" name="prod_fast_add_reward_credits" {prod_fast_add_reward_credits} value="1"> {SHOW_REWARD_CREDITS_MSG}
+
+						<br><input type="checkbox" name="prod_fast_add_add_button" {prod_fast_add_add_button} value="1"> {show_add_message}
+						<br><input type="checkbox" name="prod_fast_add_view_button" {prod_fast_add_view_button} value="1"> {show_view_message}
+						<br><input type="checkbox" name="prod_fast_add_goto_button" {prod_fast_add_goto_button} value="1"> {show_goto_message}
+						<br><input type="checkbox" name="prod_fast_add_wish_button" {prod_fast_add_wish_button} value="1"> {show_wish_message}
+					</div>
+
+				</div>
+
+				<div id="products_latest" style="display:none">
+					<b>{PROD_LATEST_SETTINGS_MSG}</b><br><br>
+
+					&nbsp;{ADMIN_SHOW_MSG}
+					<select name="products_latest_recs"><!-- begin products_latest_recs -->
+						<option {products_latest_recs_selected} value="{products_latest_recs_value}">{products_latest_recs_description}<!-- end products_latest_recs -->
+					</select>
+					latest products <br>in
+					<select name="products_latest_cols"><!-- begin products_latest_cols -->
+						<option {products_latest_cols_selected} value="{products_latest_cols_value}">&nbsp;{products_latest_cols_description}&nbsp;<!-- end products_latest_cols -->
+					</select>
+					{ADMIN_COLUMNS_MSG} <br><br>
+
+					&nbsp;{IMAGE_TYPE_MSG}:
+					<select name="prod_latest_image"><!-- begin prod_latest_image -->
+						<option {prod_latest_image_selected} value="{prod_latest_image_value}">&nbsp;{prod_latest_image_description}&nbsp;<!-- end prod_latest_image -->
+					</select><br>
+					&nbsp;{DESCRIPTION_MSG}:
+					<select name="prod_latest_desc"><!-- begin prod_latest_desc -->
+						<option {prod_latest_desc_selected} value="{prod_latest_desc_value}">&nbsp;{prod_latest_desc_description}&nbsp;<!-- end prod_latest_desc -->
+					</select><br>
+					&nbsp;{SORT_ORDER_MSG}
+					<select name="prod_latest_order"><!-- begin prod_latest_order -->
+						<option {prod_latest_order_selected} value="{prod_latest_order_value}">{prod_latest_order_description}<!-- end prod_latest_order -->
+					</select> 
+
+					<br>&nbsp;
+
+				</div>
+
+				<div id="products_top_viewed" style="display:none">
+					<b>{PROD_TOP_VIEWED_SETTINGS_MSG}</b><br><br>
+
+					&nbsp;{ADMIN_SHOW_MSG}
+					<input class="field" type="text" name="prod_top_viewed_recs" size="4" value="{prod_top_viewed_recs}" style="text-align: center;">
+					top viewed products <br>in
+					<select name="prod_top_viewed_cols"><!-- begin prod_top_viewed_cols -->
+						<option {prod_top_viewed_cols_selected} value="{prod_top_viewed_cols_value}">&nbsp;{prod_top_viewed_cols_description}&nbsp;<!-- end prod_top_viewed_cols -->
+					</select>
+					{ADMIN_COLUMNS_MSG}
+					<br><br>
+
+					&nbsp;{IMAGE_TYPE_MSG}:
+					<select name="top_viewed_image"><!-- begin top_viewed_image -->
+						<option {top_viewed_image_selected} value="{top_viewed_image_value}">&nbsp;{top_viewed_image_description}&nbsp;<!-- end top_viewed_image -->
+					</select><br>
+					&nbsp;{DESCRIPTION_MSG}:
+					<select name="top_viewed_desc"><!-- begin top_viewed_desc -->
+						<option {top_viewed_desc_selected} value="{top_viewed_desc_value}">&nbsp;{top_viewed_desc_description}&nbsp;<!-- end top_viewed_desc -->
+					</select>
+
+					<br>&nbsp;
+
+
+				</div>
+
+
+				<div id="wishlist_items" style="display:none">
+					<b>{WISHLIST_ITEMS_SETTINGS_MSG}</b><br><br>
+
+					{ADMIN_SHOW_MSG}
+					<input class="field" type="text" name="wl_recs" size="5" value="{wl_recs}">
+					items per page <br><br>
+
+					&nbsp;{IMAGE_TYPE_MSG}:
+					<select name="wl_image"><!-- begin wl_image -->
+						<option {wl_image_selected} value="{wl_image_value}">&nbsp;{wl_image_description}&nbsp;<!-- end wl_image -->
+					</select><br>
+
+					<br>&nbsp;
+
+				</div>
+
+				<!-- begin products_settings -->
+				<div id="products_block" style="display:none">
+					<b>{PROD_LIST_SETTINGS_MSG}</b><br><br>
+
+					{ADMIN_SHOW_MSG}
+					<input class="field" type="text" name="products_per_page" size="5" value="{products_per_page}">
+					{PRODUCTS_PER_PAGE_MSG} in
+					<input class="field" type="text" name="products_columns" size="5" value="{products_columns}">
+					{ADMIN_COLUMNS_MSG}&nbsp;
+
+					<br><br>&nbsp;{NAVIGATOR_SORTING_SETTINGS_MSG}:<br>
+					<select name="products_nav_type"><!-- begin products_nav_type -->
+						<option {products_nav_type_selected} value="{products_nav_type_value}">{products_nav_type_description}<!-- end products_nav_type -->
+					</select>
+					<br><input type="checkbox" name="products_nav_first_last" {products_nav_first_last} value="1"> Show navigator links to the first and last pages
+					<br><input type="checkbox" name="products_nav_prev_next" {products_nav_prev_next} value="1"> Show links to the previous and next pages
+					<br>{NUMBER_OF_PAGES_NAVIGATOR_MSG}: <input class="field" type="text" name="products_nav_pages" size="5" value="{products_nav_pages}">
+
+					<br><input type="checkbox" name="products_sortings" {products_sortings} value="1"> Show sortings by price, name, manufacturer, code
+					<br>
+					{DEFAULT_VIEW_TYPE_MSG}: <select name="products_default_view"><!-- begin products_default_view -->
+						<option {products_default_view_selected} value="{products_default_view_value}">{products_default_view_description}<!-- end products_default_view -->
+					</select>
+					<br><input type="checkbox" name="products_group_by_cats" {products_group_by_cats} value="1"> Group products by categories
+
+				</div>
+				<!-- end products_settings -->
+
+				<!-- begin product_settings -->
+				<div id="related_block" style="display:none">
+					<b>{RELATED_PRODUCTS_SETTINGS_MSG}</b><br><br>
+
+					&nbsp;{ADMIN_SHOW_MSG}
+					<select name="related_per_page"><!-- begin related_per_page -->
+						<option {related_per_page_selected} value="{related_per_page_value}">{related_per_page_description}<!-- end related_per_page -->
+					</select>
+					{PRODUCTS_PER_PAGE_MSG} <br>in
+					<select name="related_columns"><!-- begin related_columns -->
+						<option {related_columns_selected} value="{related_columns_value}">{related_columns_description}<!-- end related_columns -->
+					</select>
+					{ADMIN_COLUMNS_MSG}
+					<br>&nbsp;
+				</div>
+
+				<div id="details_block" style="display:none">
+					<b>{PROD_DETAILS_SETTINGS_MSG}</b><br><br>
+
+
+					<table>
+					<tr><td><!-- begin use_tabs2 -->
+						<input type="radio" name="use_tabs" {use_tabs_checked} value="{use_tabs_value}">{use_tabs_description}<br><!-- end use_tabs2 -->
+					</td></tr>
+					</table>
+
+					{SHOW_PRODUCTS_SECTION_MSG}
+					<select name="use_tabs"><!-- begin use_tabs -->
+						<option {use_tabs_selected} value="{use_tabs_value}">{use_tabs_description}<!-- end use_tabs -->
+					</select>
+
+					<br><br>
+
+					&nbsp;{MANUFACTURER_IMAGE_MSG}:
+					<select name="details_manufacturer_image"><!-- begin details_manufacturer_image -->
+						<option {details_manufacturer_image_selected} value="{details_manufacturer_image_value}">&nbsp;{details_manufacturer_image_description}&nbsp;<!-- end details_manufacturer_image -->
+					</select>
+
+					<br><br>
+				</div>
+				
+				<div id="forums_related_block" style="display:none">
+					<b>{RELATED_FORUMS_SETTINGS_MSG}</b><br><br>
+
+					&nbsp;{ADMIN_SHOW_MSG}
+					<select name="forums_related_per_page"><!-- begin forums_related_per_page -->
+						<option {forums_related_per_page_selected} value="{forums_related_per_page_value}">{forums_related_per_page_description}<!-- end forums_related_per_page -->
+					</select>
+					{FORUM_THREADS_PER_PAGE_MSG}<br>in
+					<select name="forums_related_columns"><!-- begin forums_related_columns -->
+						<option {forums_related_columns_selected} value="{forums_related_columns_value}">{forums_related_columns_description}<!-- end forums_related_columns -->
+					</select>
+					{ADMIN_COLUMNS_MSG}
+					<br>
+					&nbsp;{DESCRIPTION_MSG}:
+					<select name="forums_related_desc"><!-- begin forums_related_desc -->
+						<option {forums_related_desc_selected} value="{forums_related_desc_value}">&nbsp;{forums_related_desc_description}&nbsp;<!-- end forums_related_desc -->
+					</select>
+					<br>
+					<input type="checkbox" name="forums_related_user_info" size="20" {forums_related_user_info} value="1">
+					{AUTHOR_INFO_MSG}					
+				</div>
+				
+				<div id="articles_related_block" style="display:none">
+					<b>{RELATED_ARTICLES_SETTINGS_MSG}</b><br><br>
+
+					&nbsp;{ADMIN_SHOW_MSG}
+					<select name="articles_related_per_page"><!-- begin articles_related_per_page -->
+						<option {articles_related_per_page_selected} value="{articles_related_per_page_value}">{articles_related_per_page_description}<!-- end articles_related_per_page -->
+					</select>
+					{ARTICLES_PER_PAGE_MSG}<br>in
+					<select name="articles_related_columns"><!-- begin articles_related_columns -->
+						<option {articles_related_columns_selected} value="{articles_related_columns_value}">{articles_related_columns_description}<!-- end articles_related_columns -->
+					</select>
+					{ADMIN_COLUMNS_MSG}
+					<br>
+					
+					{IMAGE_TYPE_MSG}: <select name="articles_related_image"><!-- begin articles_related_image -->
+						<option {articles_related_image_selected} value="{articles_related_image_value}">&nbsp;{articles_related_image_description}&nbsp;<!-- end articles_related_image -->
+					</select>
+					<br>
+					{DESCRIPTION_MSG}: <select name="articles_related_desc"><!-- begin articles_related_desc -->
+						<option {articles_related_desc_selected} value="{articles_related_desc_value}">&nbsp;{articles_related_desc_description}&nbsp;<!-- end articles_related_desc -->
+					</select>
+					<br>
+					{DATE_MSG}: <select name="articles_related_date"><!-- begin articles_related_date -->
+						<option {articles_related_date_selected} value="{articles_related_date_value}">&nbsp;{articles_related_date_description}&nbsp;<!-- end articles_related_date -->
+					</select>
+				</div>
+				<!-- end product_settings -->
+
+				<!-- begin filters_settings -->
+				<div id="filter_{filter_id}" style="display:none;">
+					<b>{filter_name} {SETTINGS_MSG}</b><br><br>
+
+					<br>{NUMBER_DEFAULT_VALUES_MSG}: <input class="field" type="text" name="filter_values_limit_{filter_id}" size="5" value="{filter_values_limit}">
+
+					<br><br>&nbsp;
+				</div>
+				<!-- end filters_settings -->
+
+				<!-- begin articles_settings -->
+
+				<div id="a_cats_{row_cat_id}" style="display:none;">
+					<b>{row_cat_name} {CATEGORIES_TITLE} {SETTINGS_MSG}</b><br><br>
+					{CATEGORIES_TYPE_VIEW_MSG}:<br>
+					<select name="a_cats_type_{row_cat_id}"><!-- begin a_cats_type -->
+						<option {a_cats_type_selected} value="{a_cats_type_value}">{a_cats_type_description}<!-- end a_cats_type -->
+					</select><br><br>
+					&nbsp;{IMAGE_TYPE_FOR_TOP_CAT_MSG}:<br>
+					<select name="a_cats_image_{row_cat_id}"><!-- begin a_cats_image -->
+						<option {a_cats_image_selected} value="{a_cats_image_value}">&nbsp;{a_cats_image_description}&nbsp;<!-- end a_cats_image -->
+					</select>
+					<br>&nbsp;
+				</div>
+
+				<div id="a_subcats_{row_cat_id}" style="display:none">
+					<b>{row_cat_name} {SUBCAT_SETTINGS_MSG}</b><br><br>
+					<select name="a_subcats_type_{row_cat_id}"><!-- begin a_subcats_type -->
+						<option {a_subcats_type_selected} value="{a_subcats_type_value}">{a_subcats_type_description}<!-- end a_subcats_type -->
+					</select><br><br>
+					&nbsp;in&nbsp;
+					<select name="a_subcats_cols_{row_cat_id}"><!-- begin a_subcats_cols -->
+						<option {a_subcats_cols_selected} value="{a_subcats_cols_value}">&nbsp;{a_subcats_cols_description}&nbsp;<!-- end a_subcats_cols -->
+					</select>
+					{ADMIN_COLUMNS_MSG} with
+					<select name="a_subcats_subs_{row_cat_id}"><!-- begin a_subcats_subs -->
+						<option {a_subcats_subs_selected} value="{a_subcats_subs_value}">{a_subcats_subs_description}<!-- end a_subcats_subs -->
+					</select>
+					subcategories
+					<br>&nbsp;
+				</div>
+
+				<div id="a_cat_desc_{row_cat_id}" style="display:none">
+					<b>{row_cat_name} {CATEGORY_MSG} {SETTINGS_MSG}</b><br><br>
+
+					&nbsp;{IMAGE_MSG}:
+					<select name="a_cat_desc_image_{row_cat_id}"><!-- begin a_cat_desc_image -->
+						<option {a_cat_desc_image_selected} value="{a_cat_desc_image_value}">&nbsp;{a_cat_desc_image_description}&nbsp;<!-- end a_cat_desc_image -->
+					</select><br>
+					&nbsp;{DESCRIPTION_MSG}:
+					<select name="a_cat_desc_type_{row_cat_id}"><!-- begin a_cat_desc_type -->
+						<option {a_cat_desc_type_selected} value="{a_cat_desc_type_value}">&nbsp;{a_cat_desc_type_description}&nbsp;<!-- end a_cat_desc_type -->
+					</select>
+
+					<br>&nbsp;
+				</div>
+
+
+				<div id="a_latest_{row_cat_id}" style="display:none">
+					<b>{row_cat_name} {LATEST_TITLE} {SETTINGS_MSG}</b><br><br>
+
+					&nbsp;{GROUP_BY_MSG}
+					<select name="a_latest_group_by_{row_cat_id}"><!-- begin a_latest_group_by -->
+						<option {a_latest_group_by_selected} value="{a_latest_group_by_value}">{a_latest_group_by_description}<!-- end a_latest_group_by -->
+					</select>
+
+					<br>{CATEGORIES_IDS_MSG}: <input class="field" type="text" name="a_latest_cats_{row_cat_id}" size="20" value="{a_latest_cats}">
+					<br><input type="checkbox" name="a_latest_subcats_{row_cat_id}" size="20" {a_latest_subcats} value="1">
+					{INCLUDE_ARTICLES_FROM_SUBCAT_MSG}
+
+					<br>
+					<br>{TOP_ARTICLES_MSG}: <input class="field" type="text" name="a_latest_recs_{row_cat_id}" size="5" value="{a_latest_recs}">
+					&nbsp; {ARTICLES_LINKS_MSG}: <input class="field" type="text" name="a_latest_subrecs_{row_cat_id}" size="5" value="{a_latest_subrecs}">
+					<br>
+					{TOP_ARTICLE_IMAGE_TYPE_MSG}: <select name="a_latest_image_{row_cat_id}"><!-- begin a_latest_image -->
+						<option {a_latest_image_selected} value="{a_latest_image_value}">&nbsp;{a_latest_image_description}&nbsp;<!-- end a_latest_image -->
+					</select>
+					<br>
+					{TOP_ARTICLE_DESCRIPTION_MSG}: <select name="a_latest_desc_{row_cat_id}"><!-- begin a_latest_desc -->
+						<option {a_latest_desc_selected} value="{a_latest_desc_value}">&nbsp;{a_latest_desc_description}&nbsp;<!-- end a_latest_desc -->
+					</select>
+
+					<br>{NUMBER_OF_COLUMNS_MSG}: <input class="field" type="text" name="a_latest_cols_{row_cat_id}" size="5" value="{a_latest_cols}">
+					<br>&nbsp;
+
+				</div>
+
+				<div id="a_top_viewed_{row_cat_id}" style="display:none">
+					<b>{row_cat_name} {TOP_VIEWED_SETTINGS_MSG}</b><br><br>
+
+					&nbsp;{ADMIN_SHOW_MSG}
+					<input class="field" type="text" name="a_top_viewed_recs_{row_cat_id}" size="5" value="{a_top_viewed_recs}">
+					top viewed articles <br>in
+					<input class="field" type="text" name="a_top_viewed_cols_{row_cat_id}" size="5" value="{a_top_viewed_cols}">
+					{ADMIN_COLUMNS_MSG}
+					<br>&nbsp;
+
+				</div>
+
+				<div id="a_hot_{row_cat_id}" style="display:none">
+					<b>{row_cat_name} {HOT_SETTINGS_MSG}</b><br><br>
+
+					&nbsp;{ADMIN_SHOW_MSG}
+					<select name="a_hot_recs_{row_cat_id}"><!-- begin a_hot_recs -->
+						<option {a_hot_recs_selected} value="{a_hot_recs_value}">{a_hot_recs_description}<!-- end a_hot_recs -->
+					</select>
+					hot {ARTICLES_PER_PAGE_MSG}<br> in
+					<select name="a_hot_cols_{row_cat_id}"><!-- begin a_hot_cols -->
+						<option {a_hot_cols_selected} value="{a_hot_cols_value}">&nbsp;{a_hot_cols_description}&nbsp;<!-- end a_hot_cols -->
+					</select>
+					{ADMIN_COLUMNS_MSG}
+					<br>&nbsp;
+				</div>
+
+				<div id="a_cat_item_related_{row_cat_id}" style="display:none">
+					<b>{row_cat_name} {CATEGORY_RELATED_PRODUCTS_TITLE}</b><br><br>
+
+					&nbsp;{ADMIN_SHOW_MSG}
+					<select name="a_cat_item_related_recs_{row_cat_id}"><!-- begin a_cat_item_related_recs -->
+						<option {a_cat_item_related_recs_selected} value="{a_cat_item_related_recs_value}">{a_cat_item_related_recs_description}<!-- end a_cat_item_related_recs -->
+					</select>
+					 products<br> in
+					<select name="a_cat_item_related_cols_{row_cat_id}"><!-- begin a_cat_item_related_cols -->
+						<option {a_cat_item_related_cols_selected} value="{a_cat_item_related_cols_value}">&nbsp;{a_cat_item_related_cols_description}&nbsp;<!-- end a_cat_item_related_cols -->
+					</select>
+					{ADMIN_COLUMNS_MSG}
+					<br>&nbsp;
+				</div>			
+				<!-- end articles_settings -->
+
+				<!-- begin articles_list_settings -->
+				<div id="a_list_{row_cat_id}" style="display:none">
+					<b>{row_cat_name} {LIST_SETTINGS_MSG}</b><br><br>
+
+					&nbsp;{ADMIN_SHOW_MSG}
+					<select name="a_list_recs_{row_cat_id}"><!-- begin a_list_recs -->
+						<option {a_list_recs_selected} value="{a_list_recs_value}">{a_list_recs_description}<!-- end a_list_recs -->
+					</select>
+					{ARTICLES_PER_PAGE_MSG}
+					<br>in
+					<select name="a_list_cols_{row_cat_id}"><!-- begin a_list_cols -->
+						<option {a_list_cols_selected} value="{a_list_cols_value}">&nbsp;{a_list_cols_description}&nbsp;<!-- end a_list_cols -->
+					</select>
+					{ADMIN_COLUMNS_MSG}&nbsp;
+					<br>&nbsp;
+
+				</div>
+				<!-- end articles_list_settings -->
+
+				<!-- begin articles_details_settings -->
+				<div id="a_item_related_{row_cat_id}" style="display:none">
+					<b>{row_cat_name} {ARTICLE_RELATED_PRODUCTS_TITLE}</b><br><br>
+
+					&nbsp;{ADMIN_SHOW_MSG}
+					<select name="a_item_related_recs_{row_cat_id}"><!-- begin a_item_related_recs -->
+						<option {a_item_related_recs_selected} value="{a_item_related_recs_value}">{a_item_related_recs_description}<!-- end a_item_related_recs -->
+					</select>
+					{PRODUCTS_PER_PAGE_MSG}<br> in
+					<select name="a_item_related_cols_{row_cat_id}"><!-- begin a_item_related_cols -->
+						<option {a_item_related_cols_selected} value="{a_item_related_cols_value}">&nbsp;{a_item_related_cols_description}&nbsp;<!-- end a_item_related_cols -->
+					</select>
+					{ADMIN_COLUMNS_MSG}
+					<br>&nbsp;
+				</div>
+				<div id="a_related_{row_cat_id}" style="display:none">
+					<b>{RELATED_ARTICLES_SETTINGS_MSG}</b><br><br>
+
+					&nbsp;{ADMIN_SHOW_MSG}
+					<select name="a_related_per_page_{row_cat_id}"><!-- begin a_related_per_page -->
+						<option {a_related_per_page_selected} value="{a_related_per_page_value}">{a_related_per_page_description}<!-- end a_related_per_page -->
+					</select>
+					{ARTICLES_PER_PAGE_MSG}<br>in
+					<select name="a_related_columns_{row_cat_id}"><!-- begin a_related_columns -->
+						<option {a_related_columns_selected} value="{a_related_columns_value}">{a_related_columns_description}<!-- end a_related_columns -->
+					</select>
+					{ADMIN_COLUMNS_MSG}
+					<br>
+					
+					{IMAGE_TYPE_MSG}: <select name="a_related_image_{row_cat_id}"><!-- begin a_related_image -->
+						<option {a_related_image_selected} value="{a_related_image_value}">&nbsp;{a_related_image_description}&nbsp;<!-- end a_related_image -->
+					</select>
+					<br>
+					{DESCRIPTION_MSG}: <select name="a_related_desc_{row_cat_id}"><!-- begin a_related_desc -->
+						<option {a_related_desc_selected} value="{a_related_desc_value}">&nbsp;{a_related_desc_description}&nbsp;<!-- end a_related_desc -->
+					</select>
+					<br>
+					{DATE_MSG}: <select name="a_related_date_{row_cat_id}"><!-- begin a_related_date -->
+						<option {a_related_date_selected} value="{a_related_date_value}">&nbsp;{a_related_date_description}&nbsp;<!-- end a_related_date -->
+					</select>
+				</div>
+				<div id="a_forums_related_{row_cat_id}" style="display:none">
+					<b>{RELATED_FORUMS_SETTINGS_MSG}</b><br><br>
+
+					&nbsp;{ADMIN_SHOW_MSG}
+					<select name="a_forums_related_per_page_{row_cat_id}"><!-- begin a_forums_related_per_page -->
+						<option {a_forums_related_per_page_selected} value="{a_forums_related_per_page_value}">{a_forums_related_per_page_description}<!-- end a_forums_related_per_page -->
+					</select>
+					{FORUM_THREADS_PER_PAGE_MSG}<br>in
+					<select name="a_forums_related_columns_{row_cat_id}"><!-- begin a_forums_related_columns -->
+						<option {a_forums_related_columns_selected} value="{a_forums_related_columns_value}">{a_forums_related_columns_description}<!-- end a_forums_related_columns -->
+					</select>
+					{ADMIN_COLUMNS_MSG}
+					<br>
+					&nbsp;{DESCRIPTION_MSG}:
+					<select name="a_forums_related_desc_{row_cat_id}"><!-- begin a_forums_related_desc -->
+						<option {a_forums_related_desc_selected} value="{a_forums_related_desc_value}">&nbsp;{a_forums_related_desc_description}&nbsp;<!-- end a_forums_related_desc -->
+					</select>
+					<br>
+					<input type="checkbox" name="a_forums_related_user_info_{row_cat_id}" size="20" {a_forums_related_user_info} value="1">
+					{AUTHOR_INFO_MSG}					
+				</div>
+				<div id="forums_related_block" style="display:none">
+					<b>{RELATED_FORUMS_SETTINGS_MSG}</b><br><br>
+
+					&nbsp;{ADMIN_SHOW_MSG}
+					<select name="forums_related_per_page"><!-- begin forums_related_per_page -->
+						<option {forums_related_per_page_selected} value="{forums_related_per_page_value}">{forums_related_per_page_description}<!-- end forums_related_per_page -->
+					</select>
+					{FORUM_THREADS_PER_PAGE_MSG}<br>in
+					<select name="forums_related_columns"><!-- begin forums_related_columns -->
+						<option {forums_related_columns_selected} value="{forums_related_columns_value}">{forums_related_columns_description}<!-- end forums_related_columns -->
+					</select>
+					{ADMIN_COLUMNS_MSG}
+					<br>
+					&nbsp;{DESCRIPTION_MSG}:
+					<select name="forums_related_desc"><!-- begin forums_related_desc -->
+						<option {forums_related_desc_selected} value="{forums_related_desc_value}">&nbsp;{forums_related_desc_description}&nbsp;<!-- end forums_related_desc -->
+					</select>
+					<br>
+					<input type="checkbox" name="forums_related_user_info" size="20" {forums_related_user_info} value="1">
+					{AUTHOR_INFO_MSG}					
+				</div>
+				<!-- end articles_details_settings -->
+
+				<!-- begin navigation_block_settings -->
+				<div id="navigation_block_{menu_id}" style="display: none;">
+					<b>{menu_title} {SETTINGS_MSG}</b><br><br>
+					&nbsp;{NAVIGATION_VISIBLE_DEPTH_MSG}:&nbsp;
+					<select name="navigation_visible_depth_level_{menu_id}"><!-- begin navigation_visible_depth_level -->
+						<option {navigation_visible_depth_level_selected} value="{navigation_visible_depth_level_value}">{navigation_visible_depth_level_description}</option><!-- end navigation_visible_depth_level -->
+					</select>
+				</div>
+				<!-- end navigation_block_settings -->
+				
+				<div id="sms_test_block" style="display:none">
+					<b>{SMS_TEST_SETTINGS_MSG}</b><br><br>
+
+					{ORIGINATOR_MSG}
+					<input class="field" type="text" name="sms_originator" size="20" value="{sms_originator}">
+					<br>
+					<textarea class="field" name="sms_test_message" cols="30" rows="3">{sms_test_message}</textarea>
+					<br>&nbsp;
+				</div>
+
+			</td>
+		</tr>
+
+		<tr align="center" class="usual">
+			<td>
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" height=100%>
+				<tr>
+					<td width="11%" align="right"><a href="#" onClick="moveBlock('list', 'left');return false;"><img src="../images/move_down.gif" border="0" width="16" height="16" alt="{ADD_BLOCK_MSG} to {LEFT_COLUMN_MSG}"></a></td>
+					<td width="11%" align="center" valign="top"><b>{ADD_BLOCK_MSG}</b></td>
+					<td width="11%" align="left"><a href="#" onClick="moveBlock('list', 'left');return false;"><img src="../images/move_down.gif" border="0" width="16" height="16" alt="{ADD_BLOCK_MSG} to {RIGHT_COLUMN_MSG}"></a></td>
+
+				</tr>
+				</table>
+			</td>
+			<td>
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" height=100%>
+				<tr>
+
+					<td width="11%" align="right"><a href="#" onClick="moveBlock('list', 'middle');return false;"><img src="../images/move_down.gif" border="0" width="16" height="16" alt="{ADD_BLOCK_MSG} to {LEFT_COLUMN_MSG}"></a></td>
+					<td width="11%" align="center" valign="top"><b>{ADD_BLOCK_MSG}</b></td>
+					<td width="11%" align="left"><a href="#" onClick="moveBlock('list', 'middle');return false;"><img src="../images/move_down.gif" border="0" width="16" height="16" alt="{ADD_BLOCK_MSG} to {RIGHT_COLUMN_MSG}"></a></td>
+
+				</tr>
+				</table>
+			</td>
+			<td>
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" height=100%>
+				<tr>
+					<td width="11%" align="right"><a href="#" onClick="moveBlock('list', 'right');return false;"><img src="../images/move_down.gif" border="0" width="16" height="16" alt="{ADD_BLOCK_MSG} to {LEFT_COLUMN_MSG}"></a></td>
+					<td width="11%" align="center" valign="top"><b>{ADD_BLOCK_MSG}</b></td>
+					<td width="11%" align="left"><a href="#" onClick="moveBlock('list', 'right');return false;"><img src="../images/move_down.gif" border="0" width="16" height="16" alt="{ADD_BLOCK_MSG} to {RIGHT_COLUMN_MSG}"></a></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr align="center" class="middle">
+			<td width="33%">{LEFT_COLUMN_MSG}</td>
+			<td width="33%">{MIDDLE_COLUMN_MSG}</td>
+			<td width="33%">{RIGHT_COLUMN_MSG}</td>
+		</tr>
+		<tr align="center" class="usual">
+			<td width="33%">
+				<table border="0" cellspacing="0" cellpadding="2">
+				<tr valign="top">
+					<td>
+						{COLUMN_WIDTH_MSG} &nbsp; <input type="text" name="left_column_width" value="{left_column_width}" size="7" maxlength="4">
+					</td>
+				</tr>
+				<tr valign="top">
+					<td>
+						<select name="left_blocks" size="7" onChange="selectBlock('left');" onClick="selectBlock('left');" style="width: 250px;"><!-- begin left_blocks -->
+							<option value="{left_blocks_value}">{left_blocks_description}<!-- end left_blocks -->
+							<option>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+						</select>
+					</td>
+					<td>
+						<table border="0" cellspacing="0" cellpadding="0" height=100%>
+						<tr><td valign="top">
+							<a href="#" onClick="changeOrder('left', 'up');return false;" onDblClick="changeOrder('left', 'up');return false;"><img src="../images/move_up.gif" border="0" width="16" height="16" alt="{MOVE_MSG}"></a><br>
+							<img src="../images/tr.gif" border="0" width="2" height="2"><br>
+							<a href="#" onClick="changeOrder('left', 'down');return false;" onDblClick="changeOrder('left', 'down');return false;"><img src="../images/move_down.gif" border="0" width="16" height="16" alt="{MOVE_MSG}"></a><br>
+						</td></tr>
+						<tr><td valign="bottom">
+							<img src="../images/tr.gif" border="0" width="2" height="2"><br>
+							<a href="#" onClick="moveBlock('left', 'list');return false;"><img src="../images/remove.gif" border="0" width="16" height="16" alt="{REMOVE_BUTTON}"></a><br>
+						</td></tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td align="center" colspan="2">
+						<table border="0" cellspacing="0" cellpadding="0" height=100%>
+						<tr>
+							<td valign="top"><b>{MOVE_BLOCK_MSG}&nbsp;&nbsp;</b></td>
+							<td><a href="#" onClick="moveBlock('left', 'middle');return false;"><img align="" src="../images/move_right.gif" border="0" width="16" height="16" alt="{MOVE_MSG}"></a></td>
+							<td valign="top">&nbsp;</td>
+							<td><a href="#" onClick="moveBlock('left', 'right');return false;"><img align="" src="../images/double_right.gif" border="0" width="16" height="16" alt="{MOVE_MSG}"></a></td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+
+			</td>
+			<td width="33%">
+
+				<table border="0" cellspacing="0" cellpadding="2">
+				<tr valign="top">
+					<td>
+						{COLUMN_WIDTH_MSG} &nbsp; <input type="text" name="middle_column_width" value="{middle_column_width}" size="7" maxlength="4">
+					</td>
+				</tr>
+				<tr valign="top">
+					<td>
+						<select name="middle_blocks" size="7" onChange="selectBlock('middle');" onClick="selectBlock('middle');" style="width: 250px;"><!-- begin middle_blocks -->
+							<option value="{middle_blocks_value}">{middle_blocks_description}<!-- end middle_blocks -->
+							<option>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+						</select>
+					</td>
+					<td>
+						<table border="0" cellspacing="0" cellpadding="0" height=100%>
+						<tr><td valign="top">
+							<a href="#" onClick="changeOrder('middle', 'up');return false;" onDblClick="changeOrder('middle', 'up');return false;"><img src="../images/move_up.gif" border="0" width="16" height="16" alt="{MOVE_MSG}"></a><br>
+							<img src="../images/tr.gif" border="0" width="2" height="2"><br>
+							<a href="#" onClick="changeOrder('middle', 'down');return false;" onDblClick="changeOrder('middle', 'down');return false;"><img src="../images/move_down.gif" border="0" width="16" height="16" alt="{MOVE_MSG}"></a><br>
+						</td></tr>
+						<tr><td valign="bottom">
+							<img src="../images/tr.gif" border="0" width="2" height="2"><br>
+							<a href="#" onClick="moveBlock('middle', 'list');return false;"><img src="../images/remove.gif" border="0" width="16" height="16" alt="{REMOVE_BUTTON}"></a><br>
+						</td></tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td align="center" colspan="2">
+						<table border="0" cellspacing="0" cellpadding="0" height=100%>
+						<tr>
+							<td><a href="#" onClick="moveBlock('middle', 'left');return false;"><img align="" src="../images/move_left.gif" border="0" width="16" height="16" alt="{MOVE_MSG}"></a></td>
+							<td valign="top"><b>&nbsp;&nbsp;{MOVE_BLOCK_MSG}&nbsp;&nbsp;</b></td>
+							<td><a href="#" onClick="moveBlock('middle', 'right');return false;"><img align="" src="../images/move_right.gif" border="0" width="16" height="16" alt="{MOVE_MSG}"></a></td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+
+			</td>
+			<td width="33%">
+
+				<table border="0" cellspacing="0" cellpadding="2">
+				<tr valign="top">
+					<td>
+						{COLUMN_WIDTH_MSG} &nbsp; <input type="text" name="right_column_width" value="{right_column_width}" size="7" maxlength="4">
+					</td>
+				</tr>
+				<tr valign="top">
+					<td>
+						<select name="right_blocks" size="7" onChange="selectBlock('right');" onClick="selectBlock('right');" style="width: 250px;"><!-- begin right_blocks -->
+							<option value="{right_blocks_value}">{right_blocks_description}<!-- end right_blocks -->
+							<option>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+						</select>
+					</td>
+					<td>
+						<table border="0" cellspacing="0" cellpadding="0" height=100%>
+						<tr><td valign="top">
+							<a href="#" onClick="changeOrder('right', 'up');return false;" onDblClick="changeOrder('right', 'up');return false;"><img src="../images/move_up.gif" border="0" width="16" height="16" alt="{MOVE_MSG}"></a><br>
+							<img src="../images/tr.gif" border="0" width="2" height="2"><br>
+							<a href="#" onClick="changeOrder('right', 'down');return false;" onDblClick="changeOrder('right', 'down');return false;"><img src="../images/move_down.gif" border="0" width="16" height="16" alt="{MOVE_MSG}"></a><br>
+						</td></tr>
+						<tr><td valign="bottom">
+							<img src="../images/tr.gif" border="0" width="2" height="2"><br>
+							<a href="#" onClick="moveBlock('right', 'list');return false;"><img src="../images/remove.gif" border="0" width="16" height="16" alt="{REMOVE_BUTTON}"></a><br>
+						</td></tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td align="center" colspan="2">
+						<table border="0" cellspacing="0" cellpadding="0" height=100%>
+						<tr>
+							<td><a href="#" onClick="moveBlock('right', 'left');return false;"><img align="" src="../images/double_left.gif" border="0" width="16" height="16" alt="{MOVE_MSG}"></a></td>
+							<td valign="top">&nbsp;</td>
+							<td><a href="#" onClick="moveBlock('right', 'middle');return false;"><img align="" src="../images/move_left.gif" border="0" width="16" height="16" alt="{MOVE_MSG}"></a></td>
+							<td valign="top"><b>&nbsp;&nbsp;{MOVE_BLOCK_MSG}</b></td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+
+			</td>
+
+		</tr>
+		<tr align="center" class="usual">
+			<td width="33%">
+				&nbsp;<input type="checkbox" name="left_column_hide" {left_column_hide} value="1">
+				{HIDE_LEFT_COLUMN_MSG}
+			</td>
+			<td width="33%">
+				&nbsp;<input type="checkbox" name="middle_column_hide" {middle_column_hide} value="1">
+				{HIDE_MIDDLE_COLUMN_MSG}
+			</td>
+			<td width="33%">
+				&nbsp;<input type="checkbox" name="right_column_hide" {right_column_hide} value="1">
+				{HIDE_RIGHT_COLUMN_MSG}
+			</td>
+		</tr>
+
+		<tr align="center" class="middle">
+			<td colspan="3">
+				<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.layout.operation.value='save'"> &nbsp; &nbsp;
+				<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.layout.operation.value='cancel'"> &nbsp; &nbsp;
+				<input class="submit" type="submit" value="{APPLY_BUTTON}" onCLick="document.layout.operation.value='apply'"> &nbsp; &nbsp;
+			</td>
+		</tr>
+		</table>
+		</form>
+
+	</td>
+</tr>
+</table>
+</fieldset>
+
+{admin_footer}
+
+<script language="JavaScript">
+<!--
+
+	document.layout.available_blocks.options[document.layout.available_blocks.length - 1] = null;
+	document.layout.left_blocks.options[document.layout.left_blocks.length - 1] = null;
+	document.layout.middle_blocks.options[document.layout.middle_blocks.length - 1] = null;
+	document.layout.right_blocks.options[document.layout.right_blocks.length - 1] = null;
+	initSubBlocks();
+
+-->
+</script>
+</body>
+</html>

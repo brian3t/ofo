@@ -1,0 +1,336 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{ARTICLES_REVIEWS_MSG}</title>
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript" type="text/javascript" src="../js/admin.js"></script>
+<script language="JavaScript" type="text/javascript" src="../js/select.js"></script>
+<script>
+<!--
+	function clearSearch() {
+		document.search_form.s_ne.value = "";
+		document.search_form.s_sd.value = "";
+		document.search_form.s_ed.value = "";
+		document.search_form.s_rt.selectedIndex = 0;
+		document.search_form.s_rc[0].checked = true;
+		document.search_form.s_ap[0].checked = true;
+	
+		document.search_form.submit();
+	}
+
+	function allReviews()
+	{
+		var checkedStatus = document.reviews.all_reviews.checked;
+		var reviewsNumber = document.reviews.reviews_number.value;
+		for (var i = 1; i <= reviewsNumber; i++) {
+			document.reviews.elements["id_" + i].checked = checkedStatus;
+		}
+		checkReviews();
+	}
+
+	function updateReviews(operation)
+	{
+		var reviewId = ""; var itemId = "";
+		var reviewsIds = ""; var itemsIds = "";
+		var reviewsNumber = document.reviews.reviews_number.value;
+		var totalReviews = 0;
+		for (var i = 1; i <= reviewsNumber; i++) {
+			if (document.reviews.elements["id_" + i].checked) {
+				totalReviews++;
+				reviewId = document.reviews.elements["id_" + i].value;
+				itemId = document.reviews.elements["article_id_" + i].value;
+				if(totalReviews > 1) { reviewsIds += ","; itemsIds += ","; }
+				reviewsIds += reviewId;
+				itemsIds += itemId;
+			}
+		}
+		var reviewsControl = document.update_reviews.status_id;
+		document.update_reviews.reviews_ids.value = reviewsIds;
+		document.update_reviews.articles_ids.value = itemsIds;
+		if (totalReviews == 0) {
+			alert("{SELECT_REVIEWS_FIRST_MSG}")
+		} else if (operation == "update_status") {
+			var confirmStatusChange = "{REVIEWS_STATUS_CONFIRM_MSG}";
+			confirmStatusChange = confirmStatusChange.replace("\{status_name\}", reviewsControl.options[reviewsControl.selectedIndex].text);
+			if (reviewsControl.options[reviewsControl.selectedIndex].value == "") {
+				alert("{SELECT_REVIEWS_STATUS_MSG}");
+			} else if (confirm(confirmStatusChange)) {
+				document.update_reviews.operation.value = "update_status";
+				document.update_reviews.submit();
+			}
+		} else if (operation == "remove_reviews") {
+			var confirmReviewsDelete = "{REVIEWS_DELETE_CONFIRM_MSG}";
+			confirmReviewsDelete = confirmReviewsDelete.replace("\{total_reviews\}", totalReviews);
+			if (confirm(confirmReviewsDelete)) {
+				document.update_reviews.operation.value = "remove_reviews";
+				document.update_reviews.submit();
+			}
+		}
+	} 
+	
+	function checkReviews()
+	{
+		var reviewId = "";
+		var reviewsIds = "";
+		var reviewsNumber = document.reviews.reviews_number.value;
+		var totalSelected = 0;
+		for (var i = 1; i <= reviewsNumber; i++) {
+			if (document.reviews.elements["id_" + i].checked) {
+				document.getElementById("tr_review_" + i).className = "SelectedRow";
+				totalSelected++;
+				reviewId = document.reviews.elements["id_" + i].value;
+				if(reviewsIds != "") { reviewsIds += ","; }
+				reviewsIds += reviewId;
+			} else {
+				document.getElementById("tr_review_" + i).className = mas[i];
+			}
+		}
+	}
+
+
+	var select_form = new select();
+	select_form.object_name = 'select_form';
+	select_form.name_prefix = 'id_';
+	select_form.formname = 'reviews';
+	select_form.final_action = 'checkReviews();';
+	select_form.create_event_click();
+//-->
+</script>
+</head>
+
+<body class="commonbg"  onload="start_event_select();">
+{admin_header} 
+
+<script language= "JavaScript" type= "text/javascript">
+<!--
+	function start_event_select(){
+		create_event_listener(select_form);
+		var reviewsNumber = document.reviews.reviews_number.value;
+		mas = new Array();
+		for (var i = 1; i <= reviewsNumber; i++) {
+			mas[i] = document.getElementById("tr_review_" + i).className;
+		}
+	}
+//-->
+</script>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_articles_top_href}">{ARTICLES_TITLE}</a>&nbsp;&gt;&nbsp;<b>{ARTICLES_REVIEWS_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+	<tr>
+		<td valign="top">
+
+			<table border="0" cellpadding="2" cellspacing="2">
+				<form action="{admin_articles_reviews_href}" name="search_form">
+				<!-- BEGIN errors -->
+				<tr>
+					<td colspan="2">
+					&nbsp;<div align="center" class="error"><font style="font-size:8pt">{errors_list}</font></div>&nbsp;
+					</td>
+				</tr>
+				<!-- END errors -->
+				<tr>
+					<td colspan="2"><b>{SEARCH_TITLE}:</b></td>
+				</tr>
+				<tr>
+					<td>{BY_NAME_EMAIL_MSG}:</td>
+					<td><input type="text" name="s_ne" value="{s_ne}" class="search"></td>
+				</tr>
+				<tr>
+					<td>{FROM_DATE_MSG} ({date_edit_format}):</td>
+					<td>
+					<input type="text" name="s_sd" value="{s_sd}" class="search">
+					<A HREF="#"
+					onClick="setDateField(document.search_form.s_sd, '{date_edit_format}');
+					top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+					<IMG SRC="../images/calendar.gif" BORDER=0><font size=1>{CALENDAR_MSG}</font></A>
+					</td>
+				</tr>
+				<tr>
+					<td>{TO_DATE_MSG} ({date_edit_format}):</td>
+					<td>
+					<input type="text" name="s_ed" value="{s_ed}" class="search">
+					<A HREF="#"
+					onClick="setDateField(document.search_form.s_ed, '{date_edit_format}');
+					top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+					<IMG SRC="../images/calendar.gif" BORDER=0><font size=1>{CALENDAR_MSG}</font></A>
+					</td>
+				</tr>
+				<tr>
+					<td>{BY_RATING_MSG}:</td>
+					<td>
+					<select name="s_rt" class="search">
+					<!-- BEGIN s_rt -->
+						<option {s_rt_selected} value="{s_rt_value}">{s_rt_description}
+					<!-- END s_rt -->
+					</select>
+					</td>
+				</tr>
+				<tr>
+					<td>{RECOMMENDED_MSG}:</td>
+					<td>
+					<!-- BEGIN s_rc -->
+					<input type="radio" name="s_rc" {s_rc_checked} value="{s_rc_value}">{s_rc_description}
+					<!-- END s_rc -->
+					</td>
+				</tr>
+				<tr>
+					<td>{ADMIN_SHOW_MSG}:</td>
+					<td>
+					<!-- BEGIN s_ap -->
+					<input type="radio" name="s_ap" {s_ap_checked} value="{s_ap_value}">{s_ap_description}
+					<!-- END s_ap -->
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" value="Search" class="submit">&nbsp;<input type="button" value="{CLEAR_BUTTON}" class="submit" onClick="clearSearch()"></td>
+				</tr>
+				</form>
+			</table>
+
+		</td>
+		<td valign="top" align="right" valign="top">
+			<table cellpadding="2" cellspacing="2" border="0">
+			<tr>
+				<td colspan="5">&nbsp;<b>{STATS_MSG}:</b></td>
+			</tr>
+			<tr class="middle">
+				<td></td>
+				<!-- begin stats_titles -->
+				<td><a href="{admin_articles_reviews_href}?s_sd={start_date}&s_ed={end_date}">{stat_title}</a></td><!-- end stats_titles -->
+			</tr>
+			<!-- begin types_stats -->
+			<tr class="usual" align="center">
+				<td align="left"><a href="{admin_articles_reviews_href}?s_ap={type_id}">{type_name}</a></td>
+				<!-- begin stats_periods -->
+				<td>{period_reviews}</td><!-- end stats_periods -->
+			</tr>
+			<!-- end types_stats -->
+			<tr class="middle" align="center">
+				<td align="right">{TOTAL_MSG}:&nbsp;</td>
+				<!-- begin stats_totals -->
+				<td>{period_total}</td><!-- end stats_totals -->
+			</tr>
+			</table>
+
+		</td>
+	</tr>
+</table>
+
+<br>
+
+<form name="reviews" action="{admin_articles_reviews_href}" method="POST">
+<input type="hidden" name="reviews_number" value="{reviews_number}">
+<input type="hidden" name="art_cat_id" value="{art_cat_id}">
+<fieldset>
+<legend>{ARTICLES_REVIEWS_MSG}</legend>
+
+<table border="0" cellpadding="3" cellspacing="1" width="100%"><!-- begin sorters -->
+<tr class="middle" align="center">
+	<td width="10px">
+		<input type="checkbox" name="all_reviews" value="1" onClick="allReviews();">
+	</td>
+	<td>
+		{sorter_review_id}
+	</td>
+	<td>
+		{sorter_user_name}
+	</td>
+	<td>
+		{sorter_summary}
+	</td>
+	<td>
+		{sorter_rating}
+	</td>
+	<td>
+		{sorter_date_added}
+	</td>
+	<td>
+		{sorter_approved}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- end sorters --><!-- BEGIN records -->
+<tr class="{row_style}" id="tr_review_{review_index}">
+	<td>
+		<input type="checkbox" name="id_{review_index}" value="{review_id}" onClick="checkReviews();">
+		<input type="hidden" name="article_id_{review_index}" value="{article_id}">
+	</td>
+	<td align="center">
+		{review_id}
+	</td>
+	<td align="left">
+		&nbsp;{user_name}
+	</td>
+		<td align="left">
+		&nbsp;{summary}
+	</td>
+	<td align="center">
+		{rating}
+	</td>
+	<td align="center">
+		{date_added}
+	</td>
+	<td align="center">
+		{approved}
+	</td>
+	<td align="center">
+		&nbsp;<a href="{admin_article_review_url}">{EDIT_REVIEW_MSG}</a>&nbsp;
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr>
+	<td colspan="8" class="usual">
+		&nbsp;{NO_REVIEWS_FOUND_MSG}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="8">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+		<tr class="middle">
+			<td>&nbsp;</td><!-- begin navigator_block -->
+			<td align="right">&nbsp;{navigator}&nbsp;</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>	
+
+</fieldset>
+</form>
+
+<br>
+
+<form name="update_reviews" action="{admin_articles_reviews_href}" method="POST">
+<input type="hidden" name="operation" value="">
+<input type="hidden" name="reviews_ids" value="">
+<input type="hidden" name="articles_ids" value="">
+<input type="hidden" name="s_ne" value="{s_ne}">
+<input type="hidden" name="s_sd" value="{s_sd}">
+<input type="hidden" name="s_ed" value="{s_ed}">
+<input type="hidden" name="s_rt" value="{s_rt_search}">
+<input type="hidden" name="s_rc" value="{s_rc_search}">
+<input type="hidden" name="s_ap" value="{s_ap_search}">
+
+<select name="status_id"><!-- begin status_id -->
+	<option {status_id_selected} value="{status_id_value}">{status_id_description}<!-- end status_id -->
+</select> 
+<input class="submit" type="button" value="{UPDATE_STATUS_MSG}" onClick="updateReviews('update_status');">
+<input class="submit" type="button" value="{REMOVE_SELECTED_MSG}" onClick="updateReviews('remove_reviews');">
+
+</form>
+
+
+{admin_footer}
+</body>
+</html>

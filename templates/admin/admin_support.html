@@ -1,0 +1,495 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {HELPDESK_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+<script language="JavaScript" type= "text/javascript" src="../js/select.js"></script>
+<script language="JavaScript"> 
+<!--
+	function clearSearch() {
+		document.frmSearch.summary_search.value = "";
+		document.frmSearch.s_ne.value = "";
+		document.frmSearch.keyword_search.value = "";
+		document.frmSearch.support_id_search.value = "";
+		if (document.frmSearch.s_at) {
+			document.frmSearch.s_at.selectedIndex = 0;
+		}
+		document.frmSearch.status_id.selectedIndex = 0;
+		document.frmSearch.s_in[0].checked = true;
+				
+		document.frmSearch.submit();
+	}
+
+	function closeTicket()
+	{
+		return confirm("{CLOSE_CONFIRM_QST}?");
+	} 
+	
+	function allItems()
+	{
+		var checkedStatus = document.items.all_items.checked;
+		var itemsNumber = document.items.items_number.value;
+		for (var i = 1; i <= itemsNumber; i++) {
+			document.items.elements["id_" + i].checked = checkedStatus;
+		}
+		checkItems();
+	}
+
+	function updateItems(operation)
+	{
+		var itemId = "";
+		var itemsIds = "";
+		var itemsNumber = document.items.items_number.value;
+		var totalitems = 0;
+		for (var i = 1; i <= itemsNumber; i++) {
+			if (document.items.elements["id_" + i].checked) {
+				totalitems++;
+				itemId = document.items.elements["id_" + i].value;
+				if(totalitems > 1) { itemsIds += ","; }
+				itemsIds += itemId;
+			}
+		}
+
+		if (totalitems == 0) {
+			alert("Please select tickets first.");
+			window.event.returnValue=false;
+		} else if (operation == "delete_items") {
+			if (confirm("{DELETE_CONFIRM_QST} " + totalitems + " {SELECTED_TICKETS_MSG}?")) {
+				document.items.items_ids.value = itemsIds;
+				document.items.operation.value = "delete_items";
+				document.items.submit();
+			}
+		}
+	}
+	
+	function checkItems()
+	{
+		var itemId = "";
+		var itemsIds = "";
+		var itemsNumber = document.items.items_number.value;
+		var totalSelected = 0;
+		for (var i = 1; i <= itemsNumber; i++) {
+			if (document.items.elements["id_" + i].checked) {
+				document.getElementById("tr_ticket_" + i).className = "SelectedRow";
+				totalSelected++;
+				itemId = document.items.elements["id_" + i].value;
+				if(itemsIds != "") { itemsIds += ","; }
+				itemsIds += itemId;
+			} else {
+				document.getElementById("tr_ticket_" + i).className = mas[i];
+			}
+		}
+		var deleteLink = document.getElementById("delete_items");
+		if (deleteLink) {
+			if (itemsIds == "") {
+				deleteLink.innerHTML = "{DELETE_SELECTED_MSG}";
+				deleteLink.href = "admin_support.php";
+			} else {
+				deleteLink.innerHTML = "{DELETE_SELECTED_MSG} (" + totalSelected + ")";
+				deleteLink.href = "admin_support.php?operation=delete&items_ids=" + itemsIds;
+			}
+		}
+		var editLink = document.getElementById("edit_items");
+		if (editLink) {
+			if (itemsIds == "") {
+				editLink.innerHTML = "{EDIT_SELECTED_MSG}";
+				editLink.href = "admin_support.php";
+			} else {
+				editLink.innerHTML = "{EDIT_SELECTED_MSG} (" + totalSelected + ")";
+				editLink.href = "{admin_products_edit_href}?category_id={parent_category_id}&page_show=fields&items_ids="+itemsIds;
+				
+			}
+		}
+	} 
+
+	var select_form = new select();
+	select_form.object_name = 'select_form';
+	select_form.name_prefix = 'id_';
+	select_form.formname = 'items';
+	select_form.final_action = 'checkItems();';
+	select_form.create_event_click();
+
+	function start_event_select(){
+		if (document.items) {
+			create_event_listener(select_form);
+			var itemsNumber = document.items.items_number.value;
+			mas = new Array();
+			for (var i = 1; i <= itemsNumber; i++) {
+				mas[i] = document.getElementById("tr_ticket_" + i).className;
+			}
+		}
+	}
+
+//-->
+</script>
+</head>
+
+<body class="commonbg" onload="start_event_select();">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header">
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<b>{HELPDESK_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr>
+	<td>
+		<!-- filter -->
+		<table>
+		<form action="{admin_support_href}" name="frmSearch">
+		<tr height=25>
+			<td colspan="2">&nbsp;<b>{SEARCH_MESSAGES_MSG}:</b></td>
+		</tr>
+		<!-- BEGIN errors -->
+		<tr>
+			<td colspan="2"><p align="center">{errors_list}</p></td>
+		</tr>
+		<!-- END errors -->
+		<tr>
+			<td>{BY_TICKET_NO_MSG}:</td>
+			<td><input type="text" name="support_id_search" value="{support_id_search}" size="2" style="width:65px;" class="search"></td>
+		</tr>
+		<tr>
+			<td>{BY_SUMMARY_MSG}:</td>
+			<td><input type="text" name="summary_search" value="{summary_search}" class="search"></td>
+		</tr>
+		<tr>
+			<td>{BY_NAME_OR_EMAIL_MSG}:</td>
+			<td><input type="text" name="s_ne" value="{s_ne}" class="search"></td>
+		</tr>
+		<tr>
+			<td>{BY_KEYWORD_MSG}:</td>
+			<td><input type="text" name="keyword_search" value="{keyword_search}" class="search"></td>
+		</tr><!-- begin s_at_block -->
+		<tr>
+			<td>{ASSIGN_TO_MSG}:</td>
+			<td>
+				<select name="s_at" class="search"><!-- BEGIN s_at -->
+						<option {s_at_selected} value="{s_at_value}">{s_at_description}<!-- END s_at -->
+				</select>
+			</td>
+		</tr><!-- end s_at_block -->
+		<tr>
+			<td>{ADMIN_WHERE_STATUS_IS_MSG}:</td>
+			<td>
+				<select name="status_id" class="search">
+					<!-- BEGIN status_id-->
+						<option {status_id_selected} value="{status_id_value}">{status_id_description}
+					<!-- END status_id-->
+				</select>
+			</td>
+		</tr><!-- begin department_id_block -->
+		<tr>
+			<td>{SUPPORT_DEPARTMENT_FIELD}:</td>
+			<td>
+				<select name="department_id" class="search"><!-- BEGIN department_id -->
+						<option {department_id_selected} value="{department_id_value}">{department_id_description}<!-- END department_id -->
+				</select>
+			</td>
+		</tr><!-- end department_id_block -->
+		<tr>
+			<td>{SEARCH_IN_MSG}:</td>
+			<td>
+				<!-- BEGIN s_in -->
+				<input type="radio" name="s_in" {s_in_checked} value="{s_in_value}">{s_in_description}
+				<!-- END s_in -->
+			</td>
+		</tr>
+		<!-- begin sitelist -->
+		<tr>
+			<td>{ADMIN_SITE_MSG}:</td>
+			<td>
+				<select name="s_sti" class="search">
+					<!-- BEGIN s_sti -->
+						<option {s_sti_selected} value="{s_sti_value}">{s_sti_description}
+					<!-- END s_sti -->
+				</select>
+			</td>
+		</tr>
+		<!-- end sitelist -->
+		<tr>
+			<td colspan="2"><input type="submit" value="Search" class="submit">&nbsp;<input type="button" value="{CLEAR_BUTTON}" class="submit" onClick="clearSearch()"></td>
+		</tr>
+		</form>
+		</table>
+		<!-- begin create_ticket_link -->
+		<br><a href="admin_support_request.php?dep_id={dep_id}">{CREATE_MESSAGE_MSG}</a><br>&nbsp;
+		<!-- end create_ticket_link -->
+
+		<!-- end of filter -->
+	</td>
+	<td valign="top" align="right">
+		<!-- user stats -->
+
+		<!-- begin admins_stats -->
+		<table>
+		<tr height=25 class="">
+			<td colspan="10">&nbsp;<b>{STATS_BY_MANAGERS_MSG}</b></td>
+		</tr>
+		<tr class="middle">
+			<td></td>
+			<td>{TICKETS_MSG}</td>
+		</tr>
+		<!-- BEGIN admins_tickets -->
+		<tr class="usual" align="center">
+			<td align="left">&nbsp;<a href="{admin_support_admin_url}">{admin_name}</a>&nbsp;</td>
+			<td>&nbsp;<a href="{admin_support_admin_url}">{tickets_number}</a>&nbsp;</td>
+		</tr>
+		<!-- END admins_tickets -->
+		<tr class="middle" align="center">
+			<td align="left">&nbsp;{TOTAL_MSG}&nbsp;</td>
+			<td>&nbsp;{admin_tickets_total}&nbsp;</td>
+		</tr>
+		</table>
+		<!-- end admins_stats -->
+
+	</td>
+	<td valign="top" align="right">
+		<table cellpadding="2" cellspacing="2" border="0">
+		<tr>
+			<td colspan="5">&nbsp;<b>{STATS_MSG}:</b></td>
+		</tr>
+		<tr class="middle">
+			<td></td>
+			<!-- begin deps_titles -->
+			<td><a href="{admin_support_href}?department_id={dep_id}&s_in=0">{department_title}</a></td><!-- end deps_titles -->
+		</tr>
+		<!-- begin statuses_stats -->
+		<tr class="usual" align="center">
+			<td align="left"><a href="{admin_support_href}?status_id={status_id}&s_in=2">{status_name}</a></td>
+			<!-- begin statuses_deps -->
+			<td>{tickets_number}</td><!-- end statuses_deps -->
+		</tr>
+		<!-- end statuses_stats -->
+		<tr class="middle" align="center">
+			<td align="right">{TOTAL_MSG}:&nbsp;</td>
+			<!-- begin stats_totals -->
+			<td>{tickets_total}</td><!-- end stats_totals -->
+		</tr>
+		</table>
+
+	</td>
+</tr>
+</table>
+
+<!-- BEGIN search_results -->
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr height="25">
+	<td style="border:1px solid #919B9C; background-color:#FCFFD5;" class="MESSAGE">&nbsp;{SEARCH_RESULTS_IN_MSG} {search}</td>
+</tr>
+</table>
+<!-- END search_results -->
+
+	<br>
+	<!-- BEGIN allocated_me -->
+	<fieldset>
+	<legend>{ALLOCATED_TO_ME_MSG}</legend>
+	
+		<table border="0" cellpadding="4" cellspacing="1" width="100%">
+		<!-- begin sorters_am -->
+		<tr class="middle" align="center">
+			<td>
+				<nobr>{sorter_id_am}</nobr>
+			</td>
+			<td>
+				<nobr>{sorter_summary_am}</nobr>
+			</td>
+			<td>
+				<nobr>{sorter_status_am}</nobr>
+			</td>
+			<td>
+				<nobr>{sorter_type_am}</nobr>
+			</td>
+			<td>
+				<nobr>{sorter_user_am}</nobr>
+			</td>
+			<td>
+				<nobr>{sorter_modified_am}</nobr>
+			</td><!--begin site_name_header_am-->
+			<td align="left">
+				<nobr>{sorter_site_am}</nobr>
+			</td><!--end site_name_header_am-->
+			<td>
+				<nobr>{sorter_close_am}</nobr>
+			</td>
+		</tr>
+		<!-- end sorters_am -->
+		<!-- BEGIN records_am -->
+		<tr class="{style_am}" valign="top" align="center">
+			<td>
+				{support_id_am}
+			</td>
+			<td align="left">
+				{priority_html} 
+				<a href="{admin_support_reply_url_am}">{html_start_am}{summary_am}{html_end_am}</a>
+			</td>
+			<td align="left">
+				<!-- BEGIN status_ico_am -->
+				<img src="{status_icon_am}" alt="{status_am}" width="16" height="16" border="0" align="absmiddle">
+				<!-- END status_ico_am -->
+				{status_am}
+			</td>
+			<td align="left">
+				{type_am}
+			</td>
+			<td align="left">
+				{user_email_am}
+			</td>
+			<td align="left">
+				<nobr>{date_modified_am}<nobr>
+			</td>
+			<!--begin site_name_am-->
+			<td align="left">
+				{site_name}
+			</td><!--end site_name_am-->
+			<td align="center" width="18">
+				<nobr>
+					<!-- BEGIN close_ticket_enable_am -->
+					<a href="{close_ticket_am}" onclick="return closeTicket();">
+					<img src="../images/close.gif" alt="{close_summary_am}" title="{close_summary_am}" width="16" height="16" border="0" align="absmiddle">
+					</a>
+					<!-- END close_ticket_enable_am -->
+					<!-- BEGIN close_ticket_disable_am -->
+					<img src="../images/closed.gif" alt="{close_summary_am}" title="{close_summary_am}" width="16" height="16" border="0" align="absmiddle">
+					<!-- END close_ticket_disable_am -->
+				<nobr>
+			</td>
+		</tr>
+		<!-- END records_am -->
+		</table>	
+		
+	</fieldset>
+	<!-- END allocated_me -->
+
+	<!-- BEGIN navigator_am_block -->
+	<br>&nbsp;{navigator_am}&nbsp;
+	<!-- END navigator_am_block -->
+
+	<!-- BEGIN tickets_block -->
+	<form name="items" action="admin_support.php" method="POST">
+	<input type="hidden" name="items_number" value="{items_number}">
+	<input type="hidden" name="items_ids" value="{items_ids}">
+	<input type="hidden" name="operation" value="delete">
+
+	<p align="center">{error_delete}</p>
+	<fieldset>
+	<legend>{SUPPORT_ISSUES_MSG}: {dep_name} {SUPPORT_DEPARTMENT_FIELD}</legend>
+
+		<table border="0" cellpadding="3" cellspacing="1" width="100%">
+			<!-- begin sorters -->
+			<tr class="middle" align="center">
+				<td>
+					<input type="checkbox" name="all_items" value="1" onClick="allItems();">
+				</td>
+				<td>
+					<nobr>{sorter_id}</nobr>
+				</td>
+				<td>
+					<nobr>{sorter_summary}</nobr>
+				</td>
+				<td>
+					<nobr>{sorter_status}</nobr>
+				</td>
+				<td>
+					<nobr>{sorter_type}</nobr>
+				</td>
+				<td>
+					<nobr>{sorter_user}</nobr>
+				</td>
+				<td>
+					<nobr>{sorter_admin_alias}</nobr>
+				</td>
+				<td>
+					<nobr>{sorter_modified}</nobr>
+				</td>
+				<!--begin site_name_header-->
+				<td align="left">
+					<nobr>{sorter_site}</nobr>
+				</td><!--end site_name_header-->
+				<td>
+					<nobr>{sorter_close}</nobr>
+				</td>
+			</tr>
+			<!-- end sorters -->
+			<!-- BEGIN records -->
+			<tr class="{style}" valign="top" align="center" id="tr_ticket_{item_index}">
+				<td>
+					<input type="checkbox" name="id_{item_index}" value="{support_id}" onClick="checkItems();">
+				</td>
+				<td>
+					{support_id}
+				</td>
+				<td align="left">
+					{priority_html} 
+					<a href="{admin_support_reply_url}">{html_start}{summary}{html_end}</a>
+				</td>
+				<td align="left">
+					<!-- BEGIN status_ico -->
+					<img src="{status_icon}" alt="{status}" width="16" height="16" border="0" align="absmiddle">
+					<!-- END status_ico -->
+					{status}
+				</td>
+				<td align="left">
+					{type}
+				</td>
+				<td align="left">
+					{user_email}
+				</td>
+				<td align="center">
+					{admin_alias}
+				</td>
+				<td align="left">
+					<nobr>{date_modified}<nobr>
+				</td><!--begin site_name_block-->
+				<td align="left">
+					{site_name}
+				</td><!--end site_name_block-->
+				<td align="center" width="18">
+					<nobr>
+						<!-- BEGIN close_ticket_enable -->
+						<a href="{close_ticket}" onclick="return closeTicket();">
+						<img src="../images/close.gif" alt="{close_summary}" title="{close_summary}" width="16" height="16" border="0" align="absmiddle">
+						</a>
+						<!-- END close_ticket_enable -->
+						<!-- BEGIN close_ticket_disable -->
+						<img src="../images/closed.gif" alt="{close_summary}" title="{close_summary}" width="16" height="16" border="0" align="absmiddle">
+						<!-- END close_ticket_disable -->
+					</nobr>
+				</td>
+			</tr>
+			<!-- END records -->
+			<tr class="middle">
+			<td colspan="{colspan}">
+				<table width="100%" cellpadding="0" cellspacing="0" border="0">
+				<tr class="middle">
+					<td>
+					&nbsp;
+					<!-- BEGIN delete_tickets_link -->
+					<a id="delete_items" href="admin_support.php" onClick="updateItems('delete_items');return false;">{DELETE_SELECTED_MSG}</a>
+					<!-- END delete_tickets_link -->
+					</td>
+				</tr>
+				</table>
+			</td>
+			</tr>
+		</table>	
+
+	</fieldset>
+
+	</form>
+	<!-- END tickets_block -->
+
+	<!-- BEGIN navigator_block -->
+	<br>&nbsp;{navigator}&nbsp;
+	<!-- END navigator_block -->
+	
+{admin_footer}
+</body>
+</html>

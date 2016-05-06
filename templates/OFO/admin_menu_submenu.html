@@ -1,0 +1,142 @@
+<html><head><title>{ADMINISTRATION_MSG} :: {EDIT_SUBMENU_ITEM_MSG}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_header_menus_href}?layout_id={layout_id}">{SITE_NAVIGATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_menu_item_href}?layout_id={layout_id}&menu_id={menu_id}">{menu_title}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_menu_submenus_href}?menu_id={menu_id}">{SUBMENU_ITEMS_MSG}</a>&nbsp;&gt;
+			<b>{EDIT_SUBMENU_ITEM_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_SUBMENU_ITEM_MSG}</legend>
+<table border="0" cellpadding="6" cellspacing="1" width="100%">
+<form action="{admin_menu_submenu_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="menu_id" value="{menu_id}">
+<input type="hidden" name="submenu_id" value="{submenu_id}">
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{GENERAL_INFO_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_ORDER_MSG} *
+	</td>
+	<td>
+		<input class="field"  type="text" name="submenu_order" size="10" value="{submenu_order}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{PARENT_ITEM_MSG}
+	</td>
+	<td>
+		<select name="parent_submenu_id"><option value=""></option><!-- begin parent_submenu_id -->
+			<option {parent_submenu_id_selected} value="{parent_submenu_id_value}">{parent_submenu_id_description}<!-- end parent_submenu_id -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_TITLE_MSG} *
+	</td>
+	<td class="small">
+		<input class="field" type="text" name="submenu_title" value="{submenu_title}" size="80">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{MENU_URL_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" name="submenu_url" size="80" value="{submenu_url}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_TARGET_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" name="submenu_target" size="20" value="{submenu_target}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SHOW_SUBMENU_MSG}
+	</td>
+	<td>
+		<!-- begin show_for_user -->
+		<input type="radio" name="show_for_user" {show_for_user_checked} value="{show_for_user_value}">{show_for_user_description}<!-- end show_for_user -->
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{MATCH_TYPE_MSG}
+	</td>
+	<td>
+		<!-- begin match_type -->
+		<input type="radio" name="match_type" {match_type_checked} value="{match_type_value}">{match_type_description}<!-- end match_type -->
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="2">
+		&nbsp;{IMAGES_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ACTIVE_IMAGE_MSG}
+	</td>
+	<td class="small">
+		<input class="field" type="text" name="submenu_image_active" value="{submenu_image_active}" size="80">
+		&nbsp; <a href="#" onClick="document.record.submenu_image_active.value=''">{CLEAR_BUTTON}</a>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{NOT_ACTIVE_IMAGE_MSG}
+	</td>
+	<td class="small">
+		<input class="field" type="text" name="submenu_image" value="{submenu_image}" size="80">
+		&nbsp; <a href="#" onClick="document.record.submenu_image.value=''">{CLEAR_BUTTON}</a>
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</form>	
+</table>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

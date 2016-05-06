@@ -1,0 +1,210 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {GIFT_VOUCHERS_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+
+<body class="commonbg">
+
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_orders_href}">{ORDERS_MAINTENANCE_MSG}</a>&nbsp;&gt;
+			<a href="{admin_order_href}?order_id={order_id}">{ADMIN_ORDER_MSG}</a>&nbsp;&gt;
+			<b>{GIFT_VOUCHERS_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{GIFT_VOUCHERS_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+<td>
+		<table align="center" cellspacing="1" cellpadding="6" border="0" width=100%><!-- begin sorters -->
+		<tr class="middle" align="center">
+			<td>
+				&nbsp;{sorter_coupon_id}&nbsp;
+			</td>
+			<td>
+				&nbsp;{sorter_coupon_title}&nbsp;
+			</td>                         
+			<td>
+				&nbsp;{sorter_coupon_code}&nbsp;
+			</td>                         
+			<td>
+				&nbsp;{sorter_is_active}&nbsp;
+			</td>                         
+			<td>
+				&nbsp;
+			</td>                         
+		</tr><!-- end sorters --><!-- begin records -->
+		<tr class="usual" align="center">
+			<td>
+				&nbsp;{coupon_id}&nbsp;
+			</td>
+			<td align="left">
+				&nbsp;{coupon_title}&nbsp;
+			</td>                         
+			<td>
+				&nbsp;{coupon_code}&nbsp;
+			</td>                         
+			<td>
+				&nbsp;{is_active}&nbsp;
+			</td>                         
+			<td>
+				&nbsp;<a href="{admin_coupon_href}?coupon_id={coupon_id}&order_id={order_id}">{VIEW_MSG}/{EDIT_MSG}</a>&nbsp;
+			</td>                         
+		</tr><!-- end records --><!-- begin no_records -->
+		<tr>
+			<td colspan="5" class="usual">
+				&nbsp;{NO_VOUCHERS_MSG}&nbsp;
+			</td>
+		</tr><!-- end no_records --><!-- begin add_voucher_link -->
+		<tr class="middle">
+			<td colspan="5">
+				&nbsp;<a href="{admin_coupon_href}?order_id={order_id}&discount_type=5">{ADD_GIFT_VOUCHER_MSG}</a>&nbsp;
+			</td>
+		</tr><!-- end add_voucher_link -->
+		</table>
+	</td>
+</tr>
+</table>
+</fieldset>
+<br>
+
+	<!-- begin message_sent -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+	<tr class="header"> 
+		<td valign="top">
+  
+			<table width="100%" border="0" cellspacing="1" cellpadding="5">
+			<tr><td class="usual">
+				<div align="center" class="title">{MESSAGE_SENT_MSG}</div>
+			</td></tr>
+			</table>
+  
+		</td>
+	</tr>
+	</table><br><!-- end message_sent -->
+
+<form action="{admin_order_vouchers_href}" name="admin_order_vouchers" method="POST">
+<input type="hidden" name="operation" value="send">
+<input type="hidden" name="order_id" value="{order_id}">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<td>
+<fieldset>
+<legend>{MESSAGE_MSG} {EMAIL_FROM_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+<td>
+
+		<table align="center" cellspacing="1" cellpadding="6" border="0" width=100%><!-- BEGIN errors -->
+		<tr class="usual">
+			<td colspan="2">
+				<div align="center" class="error">{errors_list}</div>
+			</td>
+		</tr><!-- END errors -->
+		<tr class="usual">
+			<td>
+				&nbsp;{EMAIL_TO_MSG} *
+			</td>
+			<td>
+				<input class="field" type="text" name="message_to" value="{message_to}" size="70" maxlength="255">
+				<a href="#" onClick="document.admin_order_vouchers.message_to.value='';return false;">{CLEAR_BUTTON}</a>
+			</td>                         
+		</tr>
+		<tr class="usual">
+			<td width="20%">
+				&nbsp;{EMAIL_FROM_MSG} *
+			</td>
+			<td>
+				<input class="field" type="text" name="message_from" value="{message_from}" size="70" maxlength="255">
+				<a href="#" onClick="document.admin_order_vouchers.message_from.value='';return false;">{CLEAR_BUTTON}</a>
+			</td>                         
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{EMAIL_CC_MSG}
+			</td>
+			<td>
+				<input class="field" type="text" name="message_cc" value="{message_cc}" size="70" maxlength="255">
+				<a href="#" onClick="document.admin_order_vouchers.message_cc.value='';return false;">{CLEAR_BUTTON}</a>
+			</td>                         
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{EMAIL_BCC_MSG}
+			</td>
+			<td>
+				<input class="field" type="text" name="message_bcc" value="{message_bcc}" size="70" maxlength="255">
+				<a href="#" onClick="document.admin_order_vouchers.message_bcc.value='';return false;">{CLEAR_BUTTON}</a>
+			</td>                         
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{EMAIL_REPLY_TO_MSG}
+			</td>
+			<td>
+				<input class="field" type="text" name="message_reply_to" value="{message_reply_to}" size="70" maxlength="255">
+				<a href="#" onClick="document.admin_order_vouchers.message_reply_to.value='';return false;">{CLEAR_BUTTON}</a>
+			</td>                         
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{EMAIL_RETURN_PATH_MSG}
+			</td>
+			<td>
+				<input class="field" type="text" name="message_return_path" value="{message_return_path}" size="70" maxlength="255">
+				<a href="#" onClick="document.admin_order_vouchers.message_return_path.value='';return false;">{CLEAR_BUTTON}</a>
+			</td>                         
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{EMAIL_SUBJECT_MSG}
+			</td>
+			<td>
+				<input class="field" type="text" name="message_subject" value="{message_subject}" size="70" maxlength="255">
+				<a href="#" onClick="document.admin_order_vouchers.message_subject.value='';return false;">{CLEAR_BUTTON}</a>
+			</td>                         
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{EMAIL_MESSAGE_TYPE_MSG}
+			</td>
+			<td><!-- begin message_type -->
+				<input type="radio" name="message_type" {message_type_checked} value="{message_type_value}">{message_type_description}<!-- end message_type -->
+			</td>
+		</tr>
+		<tr class="usual">
+			<td colspan="2">
+				<textarea name="message_body" rows="10" cols="100">{message_body}</textarea>
+				<a href="#" onClick="document.admin_order_vouchers.message_body.value='';return false;">{CLEAR_BUTTON}</a>
+			</td>
+		</tr>
+		<tr class="middle">
+			<td></td>
+			<td>
+				<input class="submit" type="submit" value="Send">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="submit" type="reset" value="Reset">				
+			</td>
+		</tr>
+		</table>
+
+	</td>
+</tr>
+</table>
+</form>
+</fieldset>       
+
+{admin_footer}
+
+</body>
+</html>

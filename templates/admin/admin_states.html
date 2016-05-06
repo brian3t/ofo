@@ -1,0 +1,104 @@
+<html><head><title>{ADMINISTRATION_MSG} :: {STATES_MSG}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5" align="center">
+<tr><td align="center">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_lookup_tables_href}">{STATIC_TABLES_MSG}</a>&nbsp;&gt;&nbsp;<b>{STATES_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<td>
+<fieldset>
+<legend>{STATES_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<table border="0" cellspacing="1" cellpadding="6" width="100%">
+<tr align="center" class="middle">
+	<td>
+		{sorter_state_id}
+	</td>
+	<td>
+		{sorter_state_code}
+	</td>
+	<td>
+		{sorter_state_name}
+	</td>
+	<td>
+		{sorter_country_name}
+	</td>
+	<td>
+		{sorter_show_for_user}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- BEGIN records -->
+<tr class="usual" align="center">
+	<td>
+		{state_id}
+	</td>
+	<td>
+		{state_code}
+	</td>
+	<td align="left">
+		&nbsp;{state_name}
+	</td>
+	<td align="left">
+		&nbsp;{country_name}
+	</td>
+	<td>
+		{show_for_user}
+	</td>
+	<td>
+		<a href="{admin_state_href}?state_id={state_id}">{EDIT_STATE_MSG}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="6">
+		&nbsp;{NO_RECORDS}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="6">
+		<table cellspacing="0" cellpadding="0" width="100%" border="0">
+		<tr>
+			<td class="middle">
+				&nbsp;<a href="{admin_state_href}">{NEW_STATE_MSG}</a>
+			</td><!-- begin navigator_block -->
+			<td class="middle" align="right">
+				&nbsp;{navigator}&nbsp;
+			</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>	
+
+	</td>
+</tr>
+</table>
+</fieldset>
+</td></tr></table>
+
+{admin_footer}
+</body>
+</html>

@@ -1,0 +1,223 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_CURRENCY_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript">
+<!--
+	function checkDefault() 
+	{
+		if (!document.record.is_default.checked) {
+			document.record.recalculate_prices.checked = false;
+		}
+	}
+	
+	function checkRecalc() 
+	{
+		if (document.record.recalculate_prices.checked) {
+			if (!document.record.is_default.checked) {
+				document.record.is_default.checked = true;
+				alert ("To recalculate prices for products you shoud make this currency default.");
+			}
+		}
+	}
+
+	function checkShow() 
+	{
+		if (document.record.is_default_show.checked) {
+			if (!document.record.show_for_user.checked) {
+				document.record.show_for_user.checked = true;
+				alert ("To make this currency as default show you should make this currency as show.");
+			}
+		}
+	}
+
+	function openWindow(pagename, filetype)
+	{
+		var uploadWin = window.open (pagename + '?filetype=' + filetype, 'uploadWin', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=400,height=300');
+		uploadWin.focus();
+	}
+
+	function setFileName(filename, filetype)
+	{
+		var siteUrl = '{site_url}';
+		if (filename != "")
+		{
+			if (filetype == "currency") {
+				document.record.currency_image.value = siteUrl + "images/currencies/" + filename;
+				document.record.currency_image.focus();
+			} else if (filetype == "currency_active") {
+				document.record.currency_image_active.value = siteUrl + "images/currencies/" + filename;
+				document.record.currency_image_active.focus();
+			}
+		}
+	}
+//-->
+</script>
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_lookup_tables_href}">{STATIC_TABLES_MSG}</a>&nbsp;&gt;
+			<a href="{admin_currencies_href}">{CURRENCIES_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<td>
+<fieldset>
+<legend>{CURRENCY_TITLE}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<form action="{admin_currency_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="currency_id" value="{currency_id}">
+<table border="0" cellpadding="6" cellspacing="1" width="100%"><!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td nowrap valign="top">
+		&nbsp;{SET_AS_DEFAULT_CURRENCY_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="is_default" {is_default} value="1" onClick="checkDefault();"> ({SET_AS_DEFAULT_CURRENCY_NOTE})
+		<br><input type="checkbox" name="recalculate_prices" {recalculate_prices} value="1" onClick="checkRecalc();"> ({CHECKBOX_RECALCULATE_MSG})
+	</td>
+</tr>
+<tr class="usual">
+	<td nowrap valign="top">
+		&nbsp;{SHOW_FOR_USER_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="show_for_user" {show_for_user} value="1"> ({CURRENCY_SHOW_DESC})
+		<br><input type="checkbox" name="is_default_show" {is_default_show} value="1" onClick="checkShow();"> ({CURRENCY_DEFAULT_SHOW_DESC})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CURRENCY_CODE_MSG} *
+	</td>
+	<td>
+		&nbsp;<input class="field" type="text" name="currency_code" size="10" value="{currency_code}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{NUMERIC_CODE_MSG}
+	</td>
+	<td>
+		&nbsp;<input class="field" type="text" name="currency_value" size="10" value="{currency_value}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CURRENCY_TITLE_MSG} *
+	</td>
+	<td>
+		&nbsp;<input class="field" type="text" name="currency_title" size="50" value="{currency_title}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CURRENCY_IMAGE_MSG}
+	</td>
+	<td>
+		&nbsp;<input class="field" type="text" name="currency_image" size="50" value="{currency_image}">
+		&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'currency')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+		&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'currency')"><b>{SELECT_IMAGE_MSG}</b></a>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{CURRENCY_IMAGE_ACTIVE_MSG}
+	</td>
+	<td>
+		&nbsp;<input class="field" type="text" name="currency_image_active" size="50" value="{currency_image_active}">
+		&nbsp;<a href="javascript:openWindow('{admin_upload_href}', 'currency_active')"><b>{UPLOAD_IMAGE_MSG}</b></a>
+		&nbsp;|&nbsp; <a href="javascript:openWindow('{admin_select_href}', 'currency_active')"><b>{SELECT_IMAGE_MSG}</b></a>
+	</td>
+</tr>
+<tr class="usual" valign="top">
+	<td>
+		&nbsp;{EXCHANGE_RATE_MSG} *
+	</td>
+	<td>
+		&nbsp;<input class="field" type="text" name="exchange_rate" size="10" value="{exchange_rate}"><br>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SYMBOL_LEFT_MSG}
+	</td>
+	<td>
+		&nbsp;<input class="field" type="text" name="symbol_left" size="10" value="{symbol_left}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SYMBOL_RIGHT_MSG}
+	</td>
+	<td>
+		&nbsp;<input class="field" type="text" name="symbol_right" size="10" value="{symbol_right}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{NUMBER_OF_DECIMALS_MSG}
+	</td>
+	<td>
+		&nbsp;<input class="field" type="text" name="decimals_number" size="10" value="{decimals_number}" maxlength="2">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{DECIMAL_POINT_MSG}
+	</td>
+	<td>
+		&nbsp;<input class="field" type="text" name="decimal_point" size="10" value="{decimal_point}" maxlength="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{THOUSANDS_SEPARATOR_MSG}
+	</td>
+	<td>
+		&nbsp;<input class="field" type="text" name="thousands_separator" size="10" value="{thousands_separator}" maxlength="1">
+	</td>
+</tr>
+
+<tr class="middle">
+	<td>
+	</td>
+	<td>
+		<input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+</form>	
+
+	</td>
+</tr>
+</table>
+</fieldset>
+</td></tr></table>
+
+{admin_footer}
+</body>
+</html>

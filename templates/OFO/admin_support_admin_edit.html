@@ -1,0 +1,164 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_USER_MSG} ::..</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+				&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+				href="{admin_support_href}">{HELPDESK_MSG}</a>&nbsp;&gt;&nbsp;<a 
+				href="{admin_support_admins_href}">{SUPPORT_USERS_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_SUPPORT_USER_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{EDIT_SUPPORT_USER_MSG}</legend>
+<table border="0" cellspacing="0" cellpadding="1" width="100%">
+<form action="{admin_support_admin_edit_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="admin_id" value="{admin_id}">
+<tr>
+	<td width="70%" valign="top">
+		<table width="100%" cellspacing="1" cellpadding="6">
+			<!-- BEGIN errors -->
+			<tr>
+				<td colspan="2" class="usual" align="center">
+					<div class="error">{errors_list}</div>
+				</td>
+			</tr>
+			<!-- END errors -->
+			<!-- BEGIN login_information -->
+			<tr class="usual"> 
+				<td class="middle" colspan="2">
+					&nbsp;{LOGIN_INFO_MSG}
+				</td>
+			</tr>
+			<tr class="usual"> 
+				<td>
+					&nbsp;{LOGIN_FIELD} *
+				</td>
+				<td>
+					<input class="field" type="text" size="30" name="login" value="{login}">
+				</td>
+			</tr>
+			<tr class="usual">
+				<td>
+					&nbsp;{PASSWORD_FIELD} *
+				</td>
+				<td>
+					<input class="field" type="password" size="30" name="password" value="{password}">
+				</td>
+			</tr>
+			<tr class="usual">
+				<td>
+					&nbsp;{CONFIRM_PASS_FIELD} *
+				</td>
+				<td>
+					<input class="field" type="password" size="30" name="confirm" value="{confirm}">
+				</td>
+			</tr>
+			<!-- END login_information -->
+			<tr class="usual"> 
+				<td class="middle" colspan="2">
+					&nbsp;{ADMIN_INFO_MSG}
+				</td>
+			</tr>
+			<tr class="usual">
+				<td>
+					&nbsp;{USER_NAME_MSG} *
+				</td>
+				<td>
+					<input class="field" type="text" size="50" name="admin_name" value="{admin_name}">
+				</td>
+			</tr>
+			<tr class="usual">
+				<td>
+					&nbsp;{INITIALS_OR_ALIAS_MSG} *
+				</td>
+				<td>
+					<input class="field" type="text" size="50" maxlength="8" name="admin_alias" value="{admin_alias}">
+				</td>
+			</tr>
+			<tr class="usual">
+				<td>
+					&nbsp;{DEFAULT_DEPARTMENT_MSG}
+				</td>
+				<td>
+					<select name="default_department_id"><!-- begin default_department_id -->
+						<option {default_department_id_selected} value="{default_department_id_value}">{default_department_id_description}<!-- end default_department_id -->
+					</select>
+				</td>
+			</tr>
+			<tr class="usual">
+				<td>
+					&nbsp;{USER_EMAIL_MSG} *
+				</td>
+				<td>
+					<input class="field" type="text" size="50" name="email" value="{email}">
+				</td>
+			</tr>
+			<tr class="usual">
+				<td>
+					&nbsp;{PRIVILEGE_MSG} *
+				</td>
+				<td>
+					<select name="privilege_id"><!-- begin privilege_id -->
+						<option {privilege_id_selected} value="{privilege_id_value}">{privilege_id_description}<!-- end privilege_id -->
+					</select>
+				</td>
+			</tr>
+			<tr class="usual">
+				<td>
+					&nbsp;{SIGNATURE_MSG}<br>
+				</td>
+				<td>
+					<textarea name="signature" cols="50" rows="5">{signature}</textarea>
+				</td>
+			</tr>
+		</table>
+		</td>
+		<td width="30%" valign="top">
+			<table width="100%" border="0" cellspacing="1" cellpadding="6">
+				<tr class="middle">
+					<td colspan="2" align="center"><b>{ASSIGN_DEPARTMENTS_MSG}:</b></td>
+				</tr>
+				<!-- BEGIN dep_rows -->
+				<tr class="usual">
+					<td>&nbsp;{short_title}</td>
+					<td align="center">{dep_checkbox}</td>
+				</tr><!-- END dep_rows -->
+			</table>
+		</td>
+		</tr>
+		<tr class="middle">
+			<td colspan="2">
+				<table border="0" cellspacing="0" cellpadding="6" width="100%">
+				<tr><td>
+					<input class="submit" type="submit" value="{save_button}" onclick="document.record.operation.value='save'"> &nbsp; <!-- BEGIN delete -->
+					<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');"> &nbsp; <!-- END delete -->
+					<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+				</td></tr>
+				</table>
+			</td>
+		</tr>
+</form>	
+</table>
+</fieldset>
+
+{admin_footer}
+
+</body>
+</html>

@@ -1,0 +1,678 @@
+<html><head><title>..:: WYSIWYG :: Image Properties ::..</title>
+<link rel="stylesheet" href="../../styles/editor.css" type="text/css">
+<script language="JavaScript">
+function updatePreview()
+{
+	var frm = document.forms['frmImage'];
+	if (frm.imageUrl.value!='') {
+		try 
+		{
+			var img = document.getElementById('imgPreview');
+			img.style.display = 'none';
+			img.src = frm.imageUrl.value;
+			img.alt = frm.imageAlt.value;
+			img.title = frm.imageAlt.value;
+			img.width = (!isNaN(frm.imageWidthE.value) && frm.imageWidthE.value != '') ? parseInt(frm.imageWidthE.value) : 100;
+			img.height = (!isNaN(frm.imageHeightE.value) && frm.imageHeightE.value != '') ? parseInt(frm.imageHeightE.value) : 100;
+			img.border = (frm.imageBorder.value != '' && !isNaN(frm.imageBorder.value)) ? parseInt(frm.imageBorder.value) : 0;
+			img.hspace = (!isNaN(frm.imageHSpase.value) && frm.imageHSpase.value != '') ? parseInt(frm.imageHSpase.value) : 0;
+			img.vspace = (!isNaN(frm.imageVSpase.value) && frm.imageVSpase.value != '') ? parseInt(frm.imageVSpase.value) : 0;
+			img.align = frm.imageAlign[frm.imageAlign.selectedIndex].value;
+			if (img.src != '') img.style.display = '';
+			if (frm.imageWidthE.value > 280) {
+				img.width = 280;
+			}
+			if (frm.imageHeightE.value > 125) {
+				img.height = 125;
+			}
+		}
+		catch (e) {
+			img.style.display = 'none';
+			alert('Error in updatePreview');
+		}
+	} else {
+		var img = document.getElementById('imgPreview');
+		img.style.display = 'none';
+		img.src = '';
+		img.alt = '';
+		img.title = '';
+		img.width = '';
+		img.height = '';
+		img.border = '';
+		img.hspace = '';
+		img.vspace = '';
+		img.align = '';
+		frm.imageWidthE.value = '';
+		frm.imageHeightE.value = '';
+	}
+}
+function action_insert()
+{
+	if (window.dialogArguments){
+		var opener = window.dialogArguments[0];
+		var object_editor = window.dialogArguments[1];
+		var editor = eval('opener.'+object_editor);
+	} else {
+		var opener = window.parent.opener;
+		var object_editor = "";
+		var currentURL    = window.parent.document.URL;
+		var questionMark  = currentURL.indexOf("?");
+		var slashPosition = currentURL.lastIndexOf("/");
+		if (questionMark != -1) {
+			pageName = currentURL.substring(slashPosition + 1, questionMark);
+			var queryString = currentURL.substring(questionMark + 1, currentURL.length);
+			var queryParts = queryString.split("&");
+			for (var i = 0; i < queryParts.length; i++) {
+				var paramName  = ""; var paramValue = "";
+				var queryPart = queryParts[i];
+				var equalSign = queryPart.indexOf("=");
+				if (equalSign == -1) {
+					paramName = queryPart;
+				} else {
+					paramName  = queryPart.substring(0, equalSign);
+					paramValue = queryPart.substring(equalSign + 1, queryPart.length);
+					if (paramName == "object_editor") {
+						object_editor = paramValue;
+					}
+				}
+			}
+		}
+	}
+	var editor = eval('opener.'+object_editor);
+	var frm = document.forms['frmImage'];
+	editor.imageUrl=frm.imageUrl.value;
+	editor.imageAlt=frm.imageAlt.value;
+	editor.imageTitle=frm.imageAlt.value;
+	editor.imageWidth=frm.imageWidthE.value;
+	editor.imageHeight=frm.imageHeightE.value;
+	editor.imageBorder=frm.imageBorder.value;
+	editor.imageVSpase=frm.imageHSpase.value;
+	editor.imageHSpase=frm.imageHSpase.value;
+	editor.imageAlign=frm.imageAlign.value;
+	var frm = document.forms['frmLink'];
+	var targe_t = document.getElementById("target_type");
+	if (frm.linkUrl.value != '') {
+		if (targe_t.value == 'popup') {
+			resizable_v = (frm.popup_resize.checked) ? 'yes' : 'no';
+			location_v = (frm.popup_locat_bar.checked) ? 'yes' : 'no';
+			menubar_v = (frm.popup_menu_bar.checked) ? 'yes' : 'no';
+			scrollbars_v = (frm.popup_scroll_bars.checked) ? 'yes' : 'no';
+			status_v = (frm.popup_stat_bar.checked) ? 'yes' : 'no';
+			toolbar_v = (frm.popup_toolbar.checked) ? 'yes' : 'no';
+			fullscreen_v = (frm.popup_full_screen.checked) ? 'yes' : 'no';
+			dependent_v = (frm.popup_dependent.checked) ? 'yes' : 'no';
+			width_v = (!isNaN(frm.popup_width.value) && frm.popup_width.value != '') ? parseInt(frm.popup_width.value) : 100;
+			height_v = (!isNaN(frm.popup_height.value) && frm.popup_height.value != '') ? parseInt(frm.popup_height.value) : 100;
+			left_v = (!isNaN(frm.popup_left.value) && frm.popup_left.value != '') ? parseInt(frm.popup_left.value) : 0;
+			top_v = (!isNaN(frm.popup_top.value) && frm.popup_top.value != '') ? parseInt(frm.popup_top.value) : 0;
+				href_v="javascript:void(window.open('"+frm.linkUrl.value+"','','resizable="+resizable_v+",location="+location_v+",menubar="+menubar_v+",scrollbars="+scrollbars_v+",status="+status_v+",toolbar="+toolbar_v+",fullscreen="+fullscreen_v+",dependent="+dependent_v+",width="+width_v+",height="+height_v+",left="+left_v+",top="+left_v+"'))"
+			editor.imageLinkUrl=href_v;
+			editor.imagelinkTarget='';
+		} else {
+			editor.imageLinkUrl=frm.linkUrl.value;
+			editor.imagelinkTarget=frm.target_name.value;
+		}
+	}
+	editor.addImage();
+	window.close();
+}
+function changePane(newTabName)
+{
+
+var upl = document.getElementById('upload_images');
+var url=upl.src;
+upl.src = url;
+var upl = document.getElementById('select_images');
+var url=upl.src;
+upl.src = url;
+
+	var currentTabName = document.frmImage.current_tab.value;
+
+	if (newTabName == 'settings' && currentTabName == 'upload') {
+		try 
+		{
+			var frm = document.forms['frmImage'];
+			var upl = document.getElementById("upload_images").contentWindow;
+			if (upl.document.forms['upload'].image_Url.value!='') {
+				frm.imageUrl.value = upl.document.forms['upload'].image_Url.value;
+				frm.imageWidth.value = upl.document.forms['upload'].image_Width.value;
+				frm.imageHeight.value = upl.document.forms['upload'].image_Height.value;
+				frm.imageWidthE.value = upl.document.forms['upload'].image_Width.value;
+				frm.imageHeightE.value = upl.document.forms['upload'].image_Height.value;
+				updatePreview();
+			}
+		} catch (e) {}
+	}
+	if (currentTabName != newTabName) {
+		currentTab = document.getElementById("tab_" + currentTabName);
+		newTab = document.getElementById("tab_" + newTabName);
+   
+		currentTab.className = "editorTab";
+		newTab.className = "editorTabActive";
+
+		currentData = document.getElementById("data_" + currentTabName);
+		newData = document.getElementById("data_" + newTabName);
+
+     	currentData.style.display = "none";
+     	newData.style.display = "block";
+
+		document.frmImage.current_tab.value = newTabName;
+	}
+}
+
+function InsertSelect(image_Url, image_Width, image_Height)
+{
+	var frm = document.forms['frmImage'];
+	frm.imageUrl.value = image_Url;
+	frm.imageWidth.value = image_Width;
+	frm.imageHeight.value = image_Height;
+	frm.imageWidthE.value = image_Width;
+	frm.imageHeightE.value = image_Height;
+	changePane('settings');
+	updatePreview();
+}
+
+function updateTarger()
+{
+	var targe_t = document.getElementById("target_type");
+	var targe_n = document.getElementById("target_name");
+	if (targe_n.value != '' && targe_t.value == 'not_set') {
+		targe_t.value = 'frame';
+	} else if (targe_n.value != '_blank' && targe_t.value == '_blank') {
+		targe_t.value = 'frame';
+	} else if (targe_n.value != '_top' && targe_t.value == '_top') {
+		targe_t.value = 'frame';
+	} else if (targe_n.value != '_self' && targe_t.value == '_self') {
+		targe_t.value = 'frame';
+	} else if (targe_n.value != '_parent' && targe_t.value == '_parent') {
+		targe_t.value = 'frame';
+	}
+
+}
+
+function updateTargerName()
+{
+	var targe_t = document.getElementById("target_type");
+	var targe_n = document.getElementById("target_name");
+	if (targe_t.value == 'popup') {
+		var table_popup = document.getElementById("data_target_popup");
+		var data_target_name = document.getElementById("data_target_name");
+     	data_target_name.style.display = "none";
+     	table_popup.style.display = "block";
+	} else {
+		var table_popup = document.getElementById("data_target_popup");
+		var data_target_name = document.getElementById("data_target_name");
+     	data_target_name.style.display = "block";
+     	table_popup.style.display = "none";
+	}
+	if (targe_t.value == '_blank') {
+		targe_n.value = '_blank';
+	} else if (targe_t.value == '_top') {
+		targe_n.value = '_top';
+	} else if (targe_t.value == '_self') {
+		targe_n.value = '_self';
+	} else if (targe_t.value == '_parent') {
+		targe_n.value = '_parent';
+	} else if (targe_n.value != '' && targe_t.value == 'not_set') {
+		targe_t.value = 'frame';
+	}
+}
+
+function editWidth()
+{
+	var frm = document.forms['frmImage'];
+	var Width = frm.imageWidth.value;
+	var Height = frm.imageHeight.value;
+	var WidthE = frm.imageWidthE.value;
+	var HeightE = frm.imageHeightE.value;
+
+	if (frm.lock_ratio.checked)
+	{
+		if (!isNaN(Width) && Width != '' && 
+			!isNaN(Height) && Height != '' && 
+			!isNaN(WidthE) && WidthE != '') {
+			frm.imageHeightE.value = parseInt(parseInt(WidthE)*parseInt(Height)/parseInt(Width));
+		}
+	}
+	updatePreview();
+}
+
+function editHeight()
+{
+	var frm = document.forms['frmImage'];
+	var Width = frm.imageWidth.value;
+	var Height = frm.imageHeight.value;
+	var WidthE = frm.imageWidthE.value;
+	var HeightE = frm.imageHeightE.value;
+
+	if (frm.lock_ratio.checked)
+	{
+		if (!isNaN(Width) && Width != '' && 
+			!isNaN(Height) && Height != '' && 
+			!isNaN(HeightE) && HeightE != '') {
+			frm.imageWidthE.value = parseInt(parseInt(HeightE)*parseInt(Width)/parseInt(Height));
+		}
+	}
+	updatePreview();
+}
+
+</script>
+</head>
+<body class="editor" scroll="no" style="overflow: hidden">
+	<table cellspacing="0" cellpadding="0" border="0">
+		<tr class="editor">
+			<td><div id="tab_settings" class="editorTabActive"><a class="editor" href="#" onClick="changePane('settings'); return false;">settings</a></td>
+			<td><div id="tab_upload" class="editorTab"><a class="editor" href="#" onClick="changePane('upload'); return false;">upload</a></td>
+			<td><div id="tab_select" class="editorTab"><a class="editor" href="#" onClick="changePane('select'); return false;">select</a></td>
+			<td><div id="tab_url" class="editorTab"><a class="editor" href="#" onClick="changePane('url'); return false;">URL</a></td>
+		</tr>
+	</table>
+
+	<table id="data_settings" style="display: block;" border="0" cellspacing="1" cellpadding="0" width="100%" height="100%" class="editor_header">
+		<tr class="editor_usual">
+			<td valign="top">
+				<form name="frmImage" id="frmImage">
+				<input type="hidden" name="current_tab" value="settings">
+				<input type="hidden" id="imageWidth" name="imageWidth" value="">
+				<input type="hidden" id="imageHeight" name="imageHeight" value="">
+					<table border="0" cellspacing="0" cellpadding="0" width="450" height="300">
+						<tr>
+							<td valign="top">
+								<table border="0" cellspacing="0" cellpadding="1" width="100%">
+									<tr class="editor_usual">
+										<td align="RIGHT" width="95">
+											Image URL
+										</td>
+										<td align="LEFT">
+										<input class="editor_field" id="imageUrl" name="imageUrl" type="text" style="width:95%" value="" onblur="updatePreview();"><br />
+										</td>
+									</tr>
+									<tr class="editor_usual">
+										<td align="RIGHT" width="95">
+											ALT(TITLE) Short Description
+										</td>
+										<td align="LEFT">
+											<input class="editor_field" id="imageAlt" name="imageAlt" type="text" style="width:95%" value="" onblur="updatePreview();"><br />
+										</td>
+									</tr>
+								</table>
+								<table cellspacing="0" cellpadding="5" border="0" width="100%">
+									<tr>
+										<td valign="top">
+											<table cellspacing="0" cellpadding="1" border="0" width="140">
+												<tr class="editor">
+													<td align="RIGHT" width="40">
+														Width
+													</td>
+													<td>
+														<input class="editor_field" type="text" size="3" id="imageWidthE" name="imageWidthE" value="" style="width:42"  onkeyup="editWidth();">
+													</td>
+												</tr>
+												<tr class="editor">
+													<td align="RIGHT" width="40">
+														Height
+													</td>
+													<td>
+														<input class="editor_field" type="text" size="3" id="imageHeightE" name="imageHeightE" value="" style="width:42" onkeyup="editHeight();">
+													</td>
+												</tr>
+												<tr class="editor">
+													<td align="LEFT" colspan="2">
+														<input type="checkbox" id="lock_ratio" name="lock_ratio" onkeyup="editWidth();" onClick="editWidth();"> Lock Ratio
+													</td>
+												</tr>
+											</table>
+											<br>
+											<table cellspacing="0" cellpadding="1" border="0" width="140">
+												<tr class="editor">
+													<td align="RIGHT" width="40">
+														Border
+													</td>
+													<td>
+														<input class="editor_field" type="text" size="2" id="imageBorder" name="imageBorder" value="" onkeyup="updatePreview();">
+													</td>
+												</tr>
+												<tr class="editor">
+													<td align="RIGHT" width="40">
+														HSpace
+													</td>
+													<td>
+														<input class="editor_field" type="text" size="2" id="imageHSpase" name="imageHSpase" value="" onkeyup="updatePreview();">
+													</td>
+												</tr>
+												<tr class="editor">
+													<td align="RIGHT" width="40">
+														VSpace
+													</td>
+													<td>
+														<input class="editor_field" type="text" size="2" id="imageVSpase" name="imageVSpase" value="" onkeyup="updatePreview();">
+													</td>
+												</tr>
+												<tr class="editor">
+													<td align="RIGHT" width="40">
+														Align
+													</td>
+													<td>
+														<select class="editor" id="imageAlign" onchange="updatePreview();">
+															<option value="" selected></option>
+															<option value="left">Left</option>
+															<option value="absBottom">Abs Bottom</option>
+															<option value="absMiddle">Abs Middle</option>
+															<option value="baseline">Baseline</option>
+															<option value="bottom">Bottom</option>
+															<option value="middle">Middle</option>
+															<option value="right">Right</option>
+															<option value="textTop">Text Top</option>
+															<option value="top">Top</option>
+														</select>
+													</td>
+												</tr>
+											</table>
+										</td>
+										<td width="100%" valign="top">
+											<table cellpadding="0" cellspacing="0" border="0" width="100%" style="table-layout: fixed">
+												<tr class="editor">
+													<td>Preview</td>
+												</tr>
+												<tr class="editor">
+													<td valign="top">
+														<div id="imagePreviewArea">
+															<a id="lnkPreview" onclick="return false;" style="cursor: default"><img id="imgPreview" style="display: none"></a>
+														</div>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								<table cellspacing="0" cellpadding="5" border="0" width="100%">
+									<tr>
+										<td ALIGN="CENTER">
+											<input class="editor_submit" type="button" name="button" value=" Ok " onClick="action_insert();">&nbsp;
+											<input class="editor_submit" type="button" name="button" value=" Cancel " onClick="window.parent.close();"><br>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</form>
+			</td>
+		</tr>
+	</table>
+
+	<table id="data_upload" style="display: none;" border="0" cellspacing="0" cellpadding="0" width="100%" height="100%" VALIGN=TOP>
+		<tr class="editor_usual" VALIGN=TOP>
+			<td ALIGN="CENTER" valign="top">
+				<iframe height="370" width="450" FRAMEBORDER=0 name="upload_images" id="upload_images"></iframe>
+			</td>
+		</tr>
+	</table>
+	<table id="data_select" style="display: none;" border="0" cellspacing="0" cellpadding="0" width="100%" height="100%"  VALIGN=TOP>
+		<tr class="editor_usual" VALIGN=TOP>
+			<td VALIGN=TOP>
+				<iframe height="350" width="445" FRAMEBORDER=0 name="select_images" id="select_images"></iframe>
+			</td>
+		</tr>
+	</table>
+	<table id="data_url" style="display: none;" border="0" cellspacing="1" cellpadding="0" width="450" height="400" class="editor_header" VALIGN="TOP">
+	<tr class="editor_usual" VALIGN="TOP">
+	<td>
+	<form name="frmLink" id="frmLink">
+		<table border="0" cellspacing="0" cellpadding="0" width="450" height="400" VALIGN=TOP>
+			<tr class="editor_usual" VALIGN=TOP height="5">
+				<td colspan="5">
+				</td>
+			</tr>
+			<tr class="editor_usual" VALIGN=TOP height="10">
+				<td width="1%">
+					&nbsp;
+				</td>
+				<td align="LEFT" width="33%">
+					Link URL
+				</td>
+				<td width="1%">
+					&nbsp;
+				</td>
+				<td align="LEFT" width="60%">
+					<input class="editor_field" id="linkUrl" name="linkUrl" type="text" style="width:95%" value="http://"><br />
+				</td>
+				<td width="1%">
+					&nbsp;
+				</td>
+			</tr>
+			<tr class="editor_usual" height="10">
+				<td width="1%">
+					&nbsp;
+				</td>
+				<td  width="33%" VALIGN=TOP ALIGN=LEFT>
+					Target
+				</td>
+				<td width="1%">
+					&nbsp;
+				</td>
+				<td  width="60%" VALIGN=TOP ALIGN=LEFT>
+					Target Frame Name
+				</td>
+				<td width="1%">
+					&nbsp;
+				</td>
+			</tr>
+			<tr class="editor_usual" VALIGN=TOP height="5">
+				<td colspan="5">
+				</td>
+			</tr>
+			<tr class="editor_usual">
+				<td width="1%">
+					&nbsp;
+				</td>
+				<td width="33%" VALIGN=TOP ALIGN=LEFT>
+					<SELECT class="editor" id="target_type" name="target_type" style="width:150;font-size:10" onkeyup="updateTargerName();" onClick="updateTargerName();">
+						<OPTION value="not_set">&lt;not set&gt;</OPTION>
+						<OPTION value="frame">&lt;frame&gt;</OPTION>
+						<OPTION value="popup">&lt;Popup Window&gt;</OPTION>
+						<OPTION value="_blank">&lt;New Window (_blank)&gt;</OPTION>
+						<OPTION value="_top">&lt;Topmost Window (_top)&gt;</OPTION>
+						<OPTION value="_self">&lt;Same Window (_self)&gt;</OPTION>
+						<OPTION value="_parent">&lt;Parent Window (_parent)&gt;</OPTION>
+					</SELECT>
+				</td>
+				<td width="1%">
+					&nbsp;
+				</td>
+				<td width="60%" VALIGN=TOP ALIGN=LEFT id="data_target_name" style="display: block;">
+					<input class="editor_field" id="target_name" name="target_name" type="text" style="width: 95%" value="" onkeyup="updateTarger();">
+				</td>
+				<td width="1%">
+					&nbsp;
+				</td>
+			</tr>
+			<tr class="editor_usual" VALIGN=TOP height="100%">
+				<td colspan="5">
+					<table id="data_target_popup" style="display: none;" border="0" cellspacing="0" cellpadding="0" width="100%" height="100%" VALIGN=TOP>
+						<tr class="editor_usual" VALIGN=TOP height="5">
+							<td colspan="5">
+							</td>
+						</tr>
+						<tr class="editor_usual" VALIGN=MIDDLE ALIGN=CENTER height="5">
+							<td colspan="5">
+								Popup Window Features
+							</td>
+						</tr>
+						<tr class="editor_usual" VALIGN=TOP height="5">
+							<td colspan="5">
+							</td>
+						</tr>
+						<tr class="editor_usual" VALIGN=TOP height="10">
+							<td width="1%">
+								&nbsp;
+							</td>
+							<td width="46%" VALIGN=TOP ALIGN=LEFT>
+								<input type="checkbox" id="popup_resize" name="popup_resize" value="0">Resizable
+							</td>
+							<td width="1%">
+								&nbsp;
+							</td>
+							<td width="47%" VALIGN=TOP ALIGN=LEFT>
+								<input type="checkbox" id="popup_stat_bar" name="popup_stat_bar" value="0">Status bar
+							</td>
+							<td width="1%">
+								&nbsp;
+							</td>
+						</tr>
+						<tr class="editor_usual" VALIGN=TOP height="5">
+							<td colspan="5">
+							</td>
+						</tr>
+						<tr class="editor_usual" VALIGN=TOP height="10">
+							<td width="1%">
+								&nbsp;
+							</td>
+							<td width="46%" VALIGN=TOP ALIGN=LEFT>
+								<input type="checkbox" id="popup_locat_bar" name="popup_locat_bar" value="0">Location bar
+							</td>
+							<td width="1%">
+								&nbsp;
+							</td>
+							<td width="47%" VALIGN=TOP ALIGN=LEFT>
+								<input type="checkbox" id="popup_toolbar" name="popup_toolbar" value="0">Toolbar
+							</td>
+							<td width="1%">
+								&nbsp;
+							</td>
+						</tr>
+						<tr class="editor_usual" VALIGN=TOP height="5">
+							<td colspan="5">
+							</td>
+						</tr>
+						<tr class="editor_usual" VALIGN=TOP height="10">
+							<td width="1%">
+								&nbsp;
+							</td>
+							<td width="46%" VALIGN=TOP ALIGN=LEFT>
+								<input type="checkbox" id="popup_menu_bar" name="popup_menu_bar" value="0">Menu bar
+							</td>
+							<td width="1%">
+								&nbsp;
+							</td>
+							<td width="47%" VALIGN=TOP ALIGN=LEFT>
+								<input type="checkbox" id="popup_full_screen" name="popup_full_screen" value="0">Full Screen (IE)
+							</td>
+							<td width="1%">
+								&nbsp;
+							</td>
+						</tr>
+						<tr class="editor_usual" VALIGN=TOP height="5">
+							<td colspan="5">
+							</td>
+						</tr>
+						<tr class="editor_usual" VALIGN=TOP height="10">
+							<td width="1%">
+								&nbsp;
+							</td>
+							<td width="46%" VALIGN=TOP ALIGN=LEFT>
+								<input type="checkbox" id="popup_scroll_bars" name="popup_scroll_bars" value="0">Scroll bars
+							</td>
+							<td width="1%">
+								&nbsp;
+							</td>
+							<td width="47%" VALIGN=TOP ALIGN=LEFT>
+								<input type="checkbox" id="popup_dependent" name="popup_dependent" value="0">Dependent (Netscape)
+							</td>
+							<td width="1%">
+								&nbsp;
+							</td>
+						</tr>
+						<tr class="editor_usual" VALIGN=TOP height="5">
+							<td colspan="5">
+							</td>
+						</tr>
+						<tr class="editor_usual" VALIGN=TOP height="10">
+							<td width="1%">
+								&nbsp;
+							</td>
+							<td width="46%" VALIGN=TOP ALIGN=RIGHT>
+								Width&nbsp;<input class="editor_field" id="popup_width" name="popup_width" type="text" style="width: 100" value="">
+							</td>
+							<td width="1%">
+								&nbsp;
+							</td>
+							<td width="47%" VALIGN=TOP ALIGN=LEFT>
+								Left Position&nbsp;<input class="editor_field" id="popup_left" name="popup_left" type="text" style="width: 100" value="">
+							</td>
+							<td width="1%">
+								&nbsp;
+							</td>
+						</tr>
+						<tr class="editor_usual" VALIGN=TOP height="5">
+							<td colspan="5">
+							</td>
+						</tr>
+						<tr class="editor_usual" VALIGN=TOP height="10">
+							<td width="1%">
+								&nbsp;
+							</td>
+							<td width="46%" VALIGN=TOP ALIGN=RIGHT>
+								Height&nbsp;<input class="editor_field" id="popup_height" name="popup_height" type="text" style="width: 100" value="">
+							</td>
+							<td width="1%">
+								&nbsp;
+							</td>
+							<td width="47%" VALIGN=TOP ALIGN=LEFT>
+								Top Position&nbsp;<input class="editor_field" id="popup_top" name="popup_top" type="text" style="width: 100" value="">
+							</td>
+							<td width="1%">
+								&nbsp;
+							</td>
+						</tr>
+						<tr class="editor_usual" VALIGN=TOP>
+							<td colspan="5">
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</form>
+	</td>
+	</tr>
+	</table>
+<script language="JavaScript">
+if (window.dialogArguments){
+	var editor_type = window.dialogArguments[2];
+} else {
+	var currentURL    = window.parent.document.URL;
+	var questionMark  = currentURL.indexOf("?");
+	var slashPosition = currentURL.lastIndexOf("/");
+	if (questionMark != -1) {
+		pageName = currentURL.substring(slashPosition + 1, questionMark);
+		var queryString = currentURL.substring(questionMark + 1, currentURL.length);
+		var queryParts = queryString.split("&");
+		for (var i = 0; i < queryParts.length; i++) {
+			var paramName  = ""; var paramValue = "";
+			var queryPart = queryParts[i];
+			var equalSign = queryPart.indexOf("=");
+			if (equalSign == -1) {
+				paramName = queryPart;
+			} else {
+				paramName  = queryPart.substring(0, equalSign);
+				paramValue = queryPart.substring(equalSign + 1, queryPart.length);
+				if (paramName == "editor_type") {
+					var editor_type = paramValue;
+				}
+			}
+		}
+	}
+}
+var upl = document.getElementById('upload_images');
+upl.src = '../../editor/editor_upload.php?filetype='+editor_type;
+var upl = document.getElementById('select_images');
+upl.src = '../../editor/editor_select.php?filetype='+editor_type;
+</script>
+
+</body>
+</html>

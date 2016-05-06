@@ -1,0 +1,67 @@
+<?php
+/*
+  ****************************************************************************
+  ***                                                                      ***
+  ***      ViArt Shop 3.6                                                  ***
+  ***      File:  reviews_messages.php                                     ***
+  ***      Built: Wed Feb 18 13:08:18 2009                                 ***
+  ***      http://www.viart.com                                            ***
+  ***                                                                      ***
+  ****************************************************************************
+*/
+
+
+	// reviews/rating messages
+	define("OPTIONAL_MSG", "ÇÎÊíÇÑí");
+	define("BAD_MSG", "ÓíÁ");
+	define("POOR_MSG", "ÖÚíÝ");
+	define("AVERAGE_MSG", "ãÊæÓØ");
+	define("GOOD_MSG", "ÌíÏ");
+	define("EXCELLENT_MSG", "ããÊÇÒ");
+	define("REVIEWS_MSG", "ÇáÊÚáíÞÇÊ");
+	define("NO_REVIEWS_MSG", "áÇ ÊæÌÏ ÇíÉ ÊÚáíÞÇÊ");
+	define("WRITE_REVIEW_MSG", "ÇÖÝ ÊÚáíÞÇð");
+	define("RATE_PRODUCT_MSG", "Þóíöã åÐÇ ÇáãäÊÌ");
+	define("RATE_ARTICLE_MSG", "Þóíöã åÐÇ ÇáãæÖæÚ");
+	define("NOT_RATED_PRODUCT_MSG", ".áã íÊã ÊÞííã åÐÇ ÇáãäÊÌ ÈÚÏ");
+	define("NOT_RATED_ARTICLE_MSG", ".áã íÊã ÊÞííã åÐå ÇáãæÖæÚ ÈÚÏ");
+	define("AVERAGE_RATING_MSG", "ãÊæÓØ ÊÞííãÇÊ ÇáÒÈÇÆä");
+	define("BASED_ON_REVIEWS_MSG", "{total_votes} :ÈÇáÅÚÊãÇÏ Úáì ÚÏÏ ÇáÊÚáíÞÇÊ");
+	define("POSITIVE_REVIEW_MSG", "ÊÚáíÞÇÊ ÇáÒÈÇÆä ÇáÅíÌÇÈíå");
+	define("NEGATIVE_REVIEW_MSG", "ÊÚáíÞÇÊ ÇáÒÈÇÆä ÇáÓáÈíå");
+	define("SEE_ALL_REVIEWS_MSG", "ÇØáÚ Úáì ÌãíÚ ÇáÊÚáíÞÇÊ");
+	define("ALL_REVIEWS_MSG", "ßá ÇáÊÚáíÞÇÊ");
+	define("ONLY_POSITIVE_MSG", "ÇáÅíÌÇÈíå ÝÞØ");
+	define("ONLY_NEGATIVE_MSG", "ÇáÓáÈíå ÝÞØ");
+	define("POSITIVE_REVIEWS_MSG", "ÇáÊÚáíÞÇÊ ÇáÅíÌÇÈíå");
+	define("NEGATIVE_REVIEWS_MSG", "ÇáÊÚáíÞÇÊ ÇáÓáÈíå");
+	define("SUBMIT_REVIEW_MSG", ".ÓÊÊã ãÑÇÌÚÉ ÊÚáíÞß, æ ÓíÊã äÔÑå ÇÐÇ ÊãÊ ÇáãæÇÝÞå Úáíå. áÇÍÙ ÇääÇ äãáß ÇáÍÞ Ýí ÑÝÖ ÇíÉ ÊÚáíÞ áÇ íÊæÇÝÞ ãÚ ãÊØáÈÇÊäÇ <br>ÔßÑÇð áß");
+	define("ALREADY_REVIEW_MSG", "áÞÏ ÞãÊ ãÓÈÞÇð ÈæÖÚ ÊÚáíÞß");
+	define("RECOMMEND_PRODUCT_MSG", "åá ÊäÕÍ ÈåÐÇ ÇáãäÊÌ ááÂÎÑíä¿");
+	define("RECOMMEND_ARTICLE_MSG", "åá ÊäÕÍ åÐÇ ÇáãæÖæÚ ááÂÎÑíä¿");
+	define("RATE_IT_MSG", "Þíãå");
+	define("ONE_LINE_SUMMARY_MSG", "ãáÎÕ ÞÕíÑ");
+	define("DETAILED_COMMENT_MSG", "ÊÚáíÞ ãÝÕá");
+	define("NAME_ALIAS_MSG", "ÇáÅÓã Çæ ÇáÅÓã ÇáãÓÊÚÇÑ");
+	define("SHOW_MSG", "ÇÙåÑ");
+	define("FOUND_MSG", "æÌöÏ");
+	define("RATING_MSG", "ãÊæÓØ ÇáÊÞííãÇÊ");
+	define("REGISTERED_USERS_ADD_REVIEWS_MSG", "Only registered users can add their reviews.");
+	define("NOT_ALLOWED_ADD_REVIEW_MSG", "Sorry, but you are not allowed to add reviews.");
+
+	define("ALLOWED_VIEW_REVIEWS_MSG", "Allowed to See Reviews");
+	define("ALLOWED_POST_REVIEWS_MSG", "Allowed to Post Reviews");
+	define("REVIEWS_RESTRICTIONS_MSG", "Reviews Restrictions");
+	define("REVIEWS_PER_USER_MSG", "Number of Reviews per User");
+	define("REVIEWS_PER_USER_DESC", "leave this field blank if you do not want to limit number of reviews user can post");
+	define("REVIEWS_PERIOD_MSG", "Reviews Period");
+	define("REVIEWS_PERIOD_DESC", "period when reviews restrictions are in force");
+
+	define("AUTO_APPROVE_REVIEWS_MSG", "Auto Approve Reviews");
+	define("BY_RATING_MSG", "By Rating");
+	define("SELECT_REVIEWS_FIRST_MSG", "Please select reviews first.");
+	define("SELECT_REVIEWS_STATUS_MSG", "Please select status.");
+	define("REVIEWS_STATUS_CONFIRM_MSG", "You are about to change the status of selected reviews to '{status_name}'. Continue?");
+	define("REVIEWS_DELETE_CONFIRM_MSG", "Are you sure you want remove selected reviews ({total_reviews})?");
+
+?>

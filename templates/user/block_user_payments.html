@@ -1,0 +1,47 @@
+<div class="block-user-payments">
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{COMMISSION_PAYMENTS_MSG}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr class="headerbg"> 
+		<td class="blockTD">
+
+		<table border="0" cellspacing="1" width="100%" class="padding6px"><!-- begin sorters -->
+		<tr class="middlebg" align="center">
+			<td>{sorter_id}</td>
+			<td>{sorter_payment_name}</td>
+			<td>{sorter_total}</td>
+			<td>{sorter_date}</td>
+			<td>&nbsp;</td>
+		</tr><!-- end sorters --><!-- BEGIN records -->
+		<tr class="usualbg" valign="top" align="center">
+			<td>{payment_id}</td>
+			<td align="left">&nbsp;{payment_name}</td>
+			<td align="right">&nbsp;{payment_total}&nbsp;</td>
+			<td>&nbsp;{date_paid}&nbsp;</td>
+			<td>&nbsp;<a href="{user_payment_href}?payment_id={payment_id}">{VIEW_DETAILS_MSG}</a>&nbsp;</td>
+		</tr><!-- END records --><!-- BEGIN no_records -->
+		<tr class="usualbg">
+			<td colspan="5">&nbsp;{NO_COMMISSION_PAYMENTS_MSG}</td>
+		</tr><!-- END no_records -->
+		<tr class="middlebg">
+			<td colspan="5">&nbsp;<!-- begin navigator_block -->{navigator}<!-- end navigator_block -->&nbsp;</td>
+		</tr>
+		</table>	
+
+	</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+</div>

@@ -1,0 +1,146 @@
+<div class="block-ads-search-advanced">
+	
+	<!-- begin intro_block -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="introBlock">
+	<tr class="usualbg"> 
+		<td valign="top">
+			{intro_text}
+		</td>
+	</tr>
+	</table><br>
+	<!-- end intro_block -->
+
+	<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+		<tr> 
+			<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+			<td class="titleTopCenter">
+				<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{ADS_TITLE} {SEARCH_TITLE}</div></td></tr></table>
+			</td>
+			<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+		</tr>
+	</table>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr><td class="blockTD">
+
+	<form action="{ads_href}" name="search_form" method="GET">
+	<input type="hidden" name="pq" value="{pq}">
+	<input type="hidden" name="fq" value="{fq}">
+
+			<table cellspacing="1" width="100%" border="0" class="padding6px"><!-- begin search_for_block -->
+			<tr class="usualbg">
+				<td align=right>&nbsp;{SEARCH_FOR_MSG}</td>
+				<td><input class="text" type="text" name="search_string" value="{search_string}" size="50" maxlength="128"></td>
+			</tr><!-- end search_for_block --><!-- begin search_in_block -->
+			<tr class="usualbg">
+				<td align=right>&nbsp;{SEARCH_IN_MSG} 
+				</td>
+				<td>
+					<input type="checkbox" name="s_tit" checked  value="1"> {SEARCH_TITLE_MSG}
+					<input type="checkbox" name="s_sds" {s_sds} value="1"> {SEARCH_SHORT_DESC_MSG}
+					<input type="checkbox" name="s_fds" {s_fds} value="1"> {SEARCH_FULL_DESC_MSG}
+				</td>
+			</tr><!-- end search_in_block --><!-- begin properties -->
+			<tr class="usualbg">
+				<td align=right>&nbsp;{property_name} <input type="hidden" name="pn_{property_number}" value="{property_name}">
+				</td>
+				<td>
+					<!-- BEGIN property_select -->
+					<select class="text" name="pv_{property_number}"><!-- begin property_value -->
+						<option {property_value_selected} value="{property_value_value}">{property_value_description}<!-- end property_value -->
+					</select>
+					<!-- END property_select -->
+					<!-- BEGIN property_text -->
+					<input class="text" type="text" name="pv_{property_number}" value="{property_value}" size="25" maxlength="128">
+					<!-- END property_text -->
+				</td>
+			</tr><!-- end properties --><!-- begin features -->
+			<tr class="usualbg">
+				<td align=right>&nbsp;{feature_name} <input type="hidden" name="fn_{feature_number}" value="{feature_name}">
+				</td>
+				<td>
+					<!-- BEGIN feature_select -->
+					<select class="text" name="fv_{feature_number}"><!-- begin feature_value -->
+						<option {feature_value_selected} value="{feature_value_value}">{feature_value_description}<!-- end feature_value -->
+					</select>
+					<!-- END feature_select -->
+					<!-- BEGIN feature_text -->
+					<input class="text" type="text" name="fv_{feature_number}" value="{feature_value}" size="25" maxlength="128">
+					<!-- END feature_text -->
+				</td>
+			</tr><!-- end features --><!-- begin search_in_category_block -->
+			<tr class="usualbg">
+				<td align=right>&nbsp;{SEARCH_CATEGORY_MSG} </td>
+				<td>
+					<select class="text" name="search_category_id"><!-- begin search_category_id -->
+						<option {search_category_id_selected} value="{search_category_id_value}">{search_category_id_description}<!-- end search_category_id -->
+					</select>
+				</td>
+			</tr><!-- end search_in_category_block --><!-- begin user_block -->
+			<tr class="usualbg">
+				<td align=right>&nbsp;{SEARCH_SELLER_MSG} </td>
+				<td>
+					<select class="text" name="user"><!-- begin user_id -->
+						<option {user_id_selected} value="{user_id_value}">{user_id_description}<!-- end user_id -->
+					</select>
+				</td>
+			</tr><!-- end user_block --><!-- begin price_block -->
+			<tr class="usualbg">
+				<td align=right>&nbsp;{SEARCH_PRICE_MSG} ({currency_symbol})</td>
+				<td>
+					<input class="text" type="text" name="lprice" value="{lprice}" size="10" maxlength="16"> - 
+					<input class="text" type="text" name="hprice" value="{hprice}" size="10" maxlength="16">
+				</td>
+			</tr><!-- end price_block --><!-- begin weight_block -->
+			<tr class="usualbg">
+				<td align=right>&nbsp;{SEARCH_WEIGHT_MSG} ({weight_measure})</td>
+				<td>
+					<input class="text" type="text" name="lweight" value="{lweight}" size="10" maxlength="16"> - 
+					<input class="text" type="text" name="hweight" value="{hweight}" size="10" maxlength="16">
+				</td>
+			</tr><!-- end weight_block -->
+			<!-- begin country_block -->
+			<tr class="usualbg">
+				<td align=right>&nbsp;{COUNTRY_FIELD} </td>
+				<td>
+					<select class="text" name="country"><!-- begin country -->
+						<option {country_selected} value="{country_value}">{country_description}<!-- end country -->
+					</select>
+				</td>
+			</tr><!-- end country_block -->
+			<!-- begin state_block -->
+			<tr class="usualbg">
+				<td align=right>&nbsp;{STATE_FIELD} </td>
+				<td>
+					<select class="text" name="state"><!-- begin state -->
+						<option {state_selected} value="{state_value}">{state_description}<!-- end state -->
+					</select>
+				</td>
+			</tr><!-- end state_block -->
+			<!-- begin zip_block -->
+			<tr class="usualbg">
+				<td align=right>&nbsp;{ZIP_FIELD}</td>
+				<td>
+					<input class="text" type="text" name="zip" value="{zip}" size="20" maxlength="16"> 
+				</td>
+			</tr><!-- end zip_block -->
+			<tr class="middlebg">
+				<td></td>
+				<td>
+					<span class="submit"><input class="submit" type="submit" value="{SEARCH_BUTTON}"></span>
+					<span class="submit"><input class="submit" id="reset" type="reset" value="{RESET_BUTTON}"></span>
+					<span class="submit"><input class="submit" id="clear" type="button" value="{CLEAR_BUTTON}" onClick="clearFields();"></span>
+				</td>
+			</tr>
+			</table>
+			</form>
+
+		</td>
+	</tr>
+	</table>
+	<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+		<tr> 
+			<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+			<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+		</tr>
+	</table>
+</div>

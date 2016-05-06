@@ -1,0 +1,29 @@
+<div id="cartDiv" class="block-cart">
+	<!-- begin empty_small_cart -->
+	<div class="bigTitle" align="center">{EMPTY_CART_MSG}</div>
+	<!-- end empty_small_cart -->
+	<!-- begin small_cart -->
+	<table width="185" cellspacing="1" cellpadding="1" border="0">
+		<tr>
+			<td><b>{PROD_TITLE_COLUMN}</b></td>
+			<td align="center"><b>{PROD_QTY_COLUMN}</b></td>
+			<td align="right"><b>{PROD_PRICE_COLUMN}</b></td>
+		</tr>
+		<!-- BEGIN small_cart_items -->
+		<tr>
+			<td>{short_name}...</td>
+			<td align=center>{quantity}</td>
+			<td align=right>{price}</td>
+		</tr>
+		<!-- END small_cart_items -->
+		<tr>
+			<td align="right"><b>{GOODS_TOTAL_MSG}</b></td>
+			<td align=center>{total_quantity}</td>
+			<td align=right>{total_price}</td>
+		</tr>
+	</table>
+	<div style="text-align:center">
+		<a class="button" id="check" href="{checkout_href}"><span>{GOTO_CHECKOUT_MSG}</span></a>
+	</div>
+	<!-- end small_cart -->
+</div>

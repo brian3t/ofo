@@ -1,0 +1,130 @@
+<div class="block-ads-list">
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div><b>{current_category_name}</b></div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr> 
+		<td class="blockTD">
+		
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<!-- begin search_and_navigation -->
+<tr class="middlebg"> 
+	<td valign="top">
+
+		<table width="100%" border="0" cellspacing="2" cellpadding="3">
+		<tr>
+			<!-- begin search_results --><td>&nbsp;&nbsp;&nbsp;&nbsp;{FOUND_ADS_MSG}</td><!-- end search_results -->
+			<!-- begin navigator_block --><td align="right" nowrap>&nbsp;{navigator}&nbsp;</td><!-- end navigator_block -->
+		</tr>
+		</table>
+
+	</td>
+</tr>
+<!-- end search_and_navigation -->
+<tr class="usualbg"> 
+	<td valign="top">
+
+			<!-- begin no_items -->
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr><td align="center" class="padding10px">{NO_ADS_MSG}</td></tr>
+			</table>
+			<!-- end no_items -->
+
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<!-- BEGIN items_rows -->
+			<tr>
+				<!-- BEGIN items_cols -->
+				<td valign="top" width="{item_column}" class="padding10px">
+					<a name="p{form_id}"></a>
+					<form name="form_{form_id}" method="post" action="{ads_href}#p{form_id}">
+					<table border="0" cellspacing="0" cellpadding="3" width="100%">
+					<tr>
+						<td colspan="3">
+							<a class="bigtitle {restricted_class}" href="{ads_details_url}">{item_title}<!--begin restricted_image--><img src="images/tr.gif" alt="" class="{restricted_class}"><!--end restricted_image--></a>
+							<!-- begin found_in_category -->
+							<div class="smallText">{FOUND_IN_MSG}: <!-- BEGIN found_categories -->
+							<a class="smallText {restricted_cat_class}" href="{ads_href}?category_id={ic_id}">{item_category}<!--begin restricted_cat_image--><img src="images/tr.gif" alt="" class="{restricted_cat_class}"><!--end restricted_cat_image--></a>{ic_separator} <!-- END found_categories -->	
+							</div><!-- end found_in_category -->
+						</td>
+					</tr>
+					<tr>
+						<td align="left" width="20%" valign="top">
+							<!-- begin small_image --><a href="{ads_details_url}"><img src="{src}" {width} {height} border="0" vspace="0" hspace="5" alt="{alt}"></a><!-- end small_image -->
+							<!-- begin compare -->
+							<div align=center>
+								<input type="checkbox" name="compare" value="{item_id}">
+								<a href="#" onClick="return compareItems();"><b>{COMPARE_MSG}</b></a>
+							</div>
+							<!-- end compare -->
+						</td>
+						<td align="left" width="30%" valign="top">
+							<div>
+							<b>{TYPE_MSG}</b>:&nbsp;{type_name}<br>	
+							<b>{PRICE_MSG}</b>:&nbsp;<font class="ourprice">{price}</font><br>	
+							<!-- begin user_block --><b>{AD_SELLER_MSG}</b>:&nbsp;{user_name}<br><!-- end user_block -->	
+							<!-- begin quantity_block --><b>{AD_QTY_MSG}</b>:&nbsp;<font class="smallText">{quantity}</font><br><!-- end quantity_block -->	
+							<!-- begin availability_block --><b>{AD_AVAILABILITY_MSG}</b>:&nbsp;<font class="smallText">{availability}</font><br><!-- end availability_block -->	
+							</div>
+						</td>
+						<td align="left" width="50%" valign="top">
+							<!-- begin properties --><div class="smallText"><b>{property_name}</b>: {property_value}</div><!-- end properties -->&nbsp;
+						</td>
+					</tr>
+					<!-- begin description -->
+					<tr>
+						<td colspan="3"><p>{short_description}</p></td>
+					</tr>
+					<!-- end description -->
+					</table>
+					</form>
+
+				</td>
+				<!-- END items_cols -->
+			</tr>
+			<!-- begin delimiter -->
+			<tr><td colspan="{total_columns}" class="hDelimiter"><img src="images/tr.gif" alt=""></td></tr>
+			<!-- end delimiter -->
+			<!-- END items_rows -->
+			</table>
+
+	</td>
+</tr>
+<!-- begin search_and_navigation -->
+<tr class="middlebg"> 
+	<td valign="top">
+
+		<table width="100%" border="0" cellspacing="2" cellpadding="3">
+		<tr>
+			<!-- begin search_results --><td>&nbsp;&nbsp;&nbsp;&nbsp;{FOUND_ADS_MSG}</td><!-- end search_results -->
+			<!-- begin navigator_block --><td align="right" nowrap>&nbsp;{navigator}&nbsp;</td><!-- end navigator_block -->
+		</tr>
+		</table>
+
+	</td>
+</tr>
+<!-- end search_and_navigation -->
+</table>
+
+	</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+
+<form name="compare_form" action="{compare_href}">
+<input type="hidden" name="items" value="">
+</form>
+<form name="forms_names" action="{compare_href}"><!-- begin forms -->
+<input type="hidden" name="form_name" value="form_{form_id}"><!-- end forms -->
+</form>
+</div>

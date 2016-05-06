@@ -1,0 +1,166 @@
+<html><head><title>{ADMIN_ORDER_MSG} {ORDER_NUMBER_COLUMN}: {order_id}</title>
+<style type="text/css">
+<!--
+body, td { font-family:  "Verdana", "Tahoma", "Arial"; font-size: 10pt; }
+//-->
+</style>
+
+</head>
+<body>
+
+<!-- begin packing -->
+
+<!-- begin page_break -->
+<br style="page-break-after: always;">
+<!-- end page_break -->
+
+<div align="center">
+&nbsp;<br>
+
+<table width="600" cellspacing="0" cellpadding="0" border="0" align="center">
+<tr>
+	<td valign="top">
+		<!-- begin packing_logo -->		
+		<img align="right" src="{image_path}" {image_width} {image_height} width="242" height="72">
+		<!-- end packing_logo -->		
+
+		{packing_header}
+		
+	</td>
+</tr>
+</table>
+
+
+&nbsp;
+<table cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+<tr class="usual" valign="top">
+	<td width="50%">
+		<b>{INVOICE_DATE_MSG}</b>: {order_date}
+	</td>
+</tr>
+<tr>
+	<td width="50%">
+		<b>{INVOICE_NUMBER_MSG}</b>: {invoice_number}
+	</td>
+</tr>
+</table>
+&nbsp;
+
+<table cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+<tr class="usual" valign="top"><!-- begin personal -->
+	<td width="50%">
+			<b><u>{INVOICE_TO_MSG}:</u></b><br><br><!-- begin name_block -->
+			{name}<br><!-- end name_block --><!-- begin first_name_block -->
+			{first_name}<br><!-- end first_name_block --><!-- begin last_name_block -->
+			{last_name}<br><!-- end last_name_block --><!-- begin company_id_block -->
+			{company_id}<br><!-- end company_id_block --><!-- begin company_name_block -->
+			{company_name}<br><!-- end company_name_block --><!-- begin address1_block -->
+			{address1}<br><!-- end address1_block --><!-- begin address2_block -->
+			{address2}<br><!-- end address2_block --><!-- begin city_block -->
+			{city}<br><!-- end city_block --><!-- begin province_block -->
+			{province}<br><!-- end province_block --><!-- begin state_id_block -->
+			{state_id}<br><!-- end state_id_block --><!-- begin zip_block -->
+			{zip}<br><!-- end zip_block --><!-- begin country_id_block -->
+			{country_id}<br><!-- end country_id_block --><!-- begin phone_block -->
+			{PHONE_FIELD}: <b>{phone}</b><br><!-- end phone_block --><!-- begin daytime_phone_block -->
+			{DAYTIME_PHONE_FIELD}: <b>{daytime_phone}</b><br><!-- end daytime_phone_block --><!-- begin evening_phone_block -->
+			{EVENING_PHONE_FIELD}: <b>{evening_phone}</b><br><!-- end evening_phone_block --><!-- begin cell_phone_block -->
+			{CELL_PHONE_FIELD}: <b>{cell_phone}</b><br><!-- end cell_phone_block --><!-- begin fax_block -->
+			{FAX_FIELD}: <b>{fax}</b><br><!-- end fax_block -->
+			<!-- begin email_block -->
+			{EMAIL_FIELD}: <b>{email}</b><br><!-- end email_block -->
+			<!-- begin personal_properties -->
+			{property_name}: <b>{property_value}</b> {property_price}<br>
+			<!-- end personal_properties -->
+		</td><!-- end personal --><!-- begin delivery -->
+		<td width="50%">
+			<b><u>{DELIVERY_TO_MSG}:</u></b><br><br><!-- begin delivery_name_block -->
+			{delivery_name}<br><!-- end delivery_name_block --><!-- begin delivery_first_name_block -->
+			{delivery_first_name}<br><!-- end delivery_first_name_block --><!-- begin delivery_last_name_block -->
+			{delivery_last_name}<br><!-- end delivery_last_name_block --><!-- begin delivery_company_id_block -->
+			{delivery_company_id}<br><!-- end delivery_company_id_block --><!-- begin delivery_company_name_block -->
+			{delivery_company_name}<br><!-- end delivery_company_name_block --><!-- begin delivery_address1_block -->
+			{delivery_address1}<br><!-- end delivery_address1_block --><!-- begin delivery_address2_block -->
+			{delivery_address2}<br><!-- end delivery_address2_block --><!-- begin delivery_city_block -->
+			{delivery_city}<br><!-- end delivery_city_block --><!-- begin delivery_province_block -->
+			{delivery_province}<br><!-- end delivery_province_block --><!-- begin delivery_state_id_block -->
+			{delivery_state_id}<br><!-- end delivery_state_id_block --><!-- begin delivery_zip_block -->
+			{delivery_zip}<br><!-- end delivery_zip_block --><!-- begin delivery_country_id_block -->
+			{delivery_country_id}<br><!-- end delivery_country_id_block --><!-- begin delivery_phone_block -->
+			{PHONE_FIELD}: <b>{delivery_phone}</b><br><!-- end delivery_phone_block --><!-- begin delivery_daytime_phone_block -->
+			{DAYTIME_PHONE_FIELD}: <b>{delivery_daytime_phone}</b><br><!-- end delivery_daytime_phone_block --><!-- begin delivery_evening_phone_block -->
+			{EVENING_PHONE_FIELD}: <b>{delivery_evening_phone}</b><br><!-- end delivery_evening_phone_block --><!-- begin delivery_cell_phone_block -->
+			{CELL_PHONE_FIELD}: <b>{delivery_cell_phone}</b><br><!-- end delivery_cell_phone_block --><!-- begin delivery_fax_block -->
+			{FAX_FIELD}: <b>{delivery_fax}</b><br><!-- end delivery_fax_block -->
+			<!-- begin delivery_email_block -->
+			{EMAIL_FIELD}: <b>{delivery_email}</b><br><!-- end delivery_email_block -->
+			<!-- begin delivery_properties -->
+			{property_name}: <b>{property_value}</b> {property_price}<br>
+			<!-- end delivery_properties -->
+			<!-- begin basket -->
+			Shipping Method: {shipping_type_desc}&nbsp;
+			<!-- end basket -->
+		</td><!-- end delivery -->
+	</tr>
+</table>
+
+&nbsp;
+
+<table width="600" cellspacing="1" cellpadding="3" border="1" align="center">
+<tr bgcolor="white" align="center">
+	<td width="10%" bgcolor="white">
+		<b>{QTY_MSG}</b>
+	</td>
+	<td width="50%" bgcolor="white">
+		<b>{DESCRIPTION_MSG}</b>
+	</td>
+	<!-- begin item_code_title -->
+	<td width="{item_code_width}" bgcolor="white">
+		<b>{PROD_CODE_MSG}</b>
+	</td><!-- end item_code_title -->
+	<!-- begin manufacturer_code_title -->
+	<td width="{manufacturer_code_width}" bgcolor="white">
+		<b>{MANUFACTURER_CODE_MSG}</b>
+	</td><!-- end manufacturer_code_title -->
+</tr><!-- BEGIN items -->
+<tr bgcolor="white" valign="top">
+	<td width="10%" align="center">
+		{quantity}
+	</td>
+	<td width="50%">
+		{item_name}
+		{item_properties}
+	</td>
+	<!-- begin item_code_cell -->
+	<td width="{item_code_width}" align="center">
+		<!-- begin item_code_barcode -->
+		<img src="{item_code_barcode_url}" border="0"><!-- end item_code_barcode -->
+		<!-- begin item_code_text -->
+		&nbsp;{item_code}&nbsp;<!-- end item_code_text -->
+	</td><!-- end item_code_cell -->
+	<!-- begin manufacturer_code_cell -->
+	<td width="{manufacturer_code_width}" align="center">
+		<!-- begin manufacturer_code_barcode -->
+		<img src="{manufacturer_code_barcode_url}" border="0"><!-- end manufacturer_code_barcode -->
+		<!-- begin manufacturer_code_text -->
+		&nbsp;{manufacturer_code}&nbsp;<!-- end manufacturer_code_text -->
+	</td><!-- end manufacturer_code_cell -->
+</tr><!-- END items -->
+</table>
+
+&nbsp;<br>&nbsp;
+
+<table width="600" cellspacing="0" cellpadding="0" border="0" align="center">
+<tr>
+	<td width="100%" valign="top" align="center">
+		<font face="tahoma" size="1" color="gray">
+			{packing_footer}
+		</font>
+	</td>
+</tr>
+</table>
+
+<!-- end packing -->
+
+</body>
+</html>

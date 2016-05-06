@@ -1,0 +1,136 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {BANNERS_MANAGEMENT_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<style type="text/css">
+<!--
+	.row1 { background-color:#f0f0f0; }
+	.row2 { background-color:#fffeee; }
+	.rowWarn { background-color: #FFd0d0; }
+
+//-->
+</style>
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<b>{BANNERS_MANAGEMENT_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+<tr>
+	<td align="right">
+		<b>
+			<a href="{admin_banners_groups_href}">{BANNERS_GROUPS_MSG}</a>
+		</b>
+	</td>
+</tr></table>
+
+
+<fieldset>
+<legend>{BANNERS_MSG}</legend>
+
+<table border="0" cellspacing="1" cellpadding="4" width="100%">
+<!-- begin sorters -->
+<tr align="center" class="middle" valign="top">
+	<td>
+		{sorter_banner_id}
+	</td>
+	<td>
+		{sorter_banner_title}
+	</td>
+	<td>
+		{sorter_total_impressions}
+	</td>
+	<td>
+		{sorter_total_clicks}
+	</td>
+	<td>
+		{sorter_expiry_date}
+	</td>
+	<td>
+		{STATUS_MSG}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- end sorters --><!-- BEGIN records -->
+<tr class="{row_style}">
+	<td align="center">
+		{banner_id}
+	</td>
+	<td>
+		&nbsp;{banner_title}&nbsp;
+	</td>
+	<td align="center">
+		&nbsp;{total_impressions}&nbsp;
+		(<b>{max_impressions}</b>)
+	</td>
+	<td align="center">
+		&nbsp;{total_clicks}&nbsp;
+		(<b>{max_clicks}</b>)
+	</td>
+	<td align="center">
+		&nbsp;{expiry_date}
+	</td>
+	<td align="center">
+		&nbsp;{banner_status}
+	</td>
+	<td align="center">
+		<a href="{admin_banner_href}?banner_id={banner_id}">{EDIT_MSG}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="7">
+		&nbsp;{NO_BANNERS_FOUND_MSG}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="7">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+		<tr class="middle">
+			<td>&nbsp;
+				<a href="{admin_banner_href}">{ADD_NEW_MSG}</a>
+			</td><!-- begin navigator_block -->
+			<td>&nbsp;{navigator}&nbsp;</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>	
+</fieldset>
+
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr align="center" class="header"> 
+	<td>
+		<table width="100%" border="0" cellspacing="1" cellpadding="10" >
+		<tr>
+      <td class="middlebg" width="50"><img src="../images/icons/admin_forum.gif" hspace="10" width="50" height="50"></td>
+			<td class="commonbg">
+      	<ul class=cat>
+        	<li class=nob>{SPECIFY_APPROPRIATE_MSG} <a href="{admin_banners_groups_href}"><b>{BANNERS_GROUPS_MSG}</b></a>.<br><br>
+          <li class=nob>{ADD_BANNERS_GROUP_MSG} <a href="{admin_layouts_href}"><b>{CMS_MSG}</b></a>.
+				</ul>
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>
+
+
+
+{admin_footer}
+</body>
+</html>

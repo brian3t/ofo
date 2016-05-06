@@ -1,0 +1,31 @@
+<?php
+/*
+  ****************************************************************************
+  ***                                                                      ***
+  ***      ViArt Shop 3.6                                                  ***
+  ***      File:  manuals_messages.php                                     ***
+  ***      Built: Wed Feb 18 13:08:18 2009                                 ***
+  ***      http://www.viart.com                                            ***
+  ***                                                                      ***
+  ****************************************************************************
+*/
+
+
+	// manuals messages
+	define("MANUALS_TITLE", "Ta i liê u hß½ ng dâ n");
+	define("NO_MANUALS_MSG", "Không ti m thâ y ta i liê u");
+	define("NO_MANUAL_ARTICLES_MSG", "Không co  chu  ðê ");
+	define("MANUALS_PREV_ARTICLE", "Kê  sau");
+	define("MANUALS_NEXT_ARTICLE", "Kê  tiê p");
+	define("MANUAL_CONTENT_MSG", "Så p xê p");
+	define("MANUALS_SEARCH_IN_MSG", "Ti m kiê m trong");
+	define("MANUALS_SEARCH_FOR_MSG", "Ti m kiê m");
+	define("MANUALS_SEARCH_IN_FIRST_VARIANT", "Tâ t ca  ta i liê u");
+	define("MANUALS_SEARCH_RESULTS_INFO", "Ti m thâ y {results_number} chu  ðê  cho ðiê u kiê n {search_string}");
+	define("MANUALS_SEARCH_RESULT_MSG", "Kê t qua  ti m kiê m");
+	define("MANUALS_NOT_FOUND_ANYTHING", "Không ti m thâ y '{seach_string}'");
+	define("MANUAL_ARTICLE_NO_CONTENT_MSG", "Không nô i dung");
+	define("MANUALS_SEARCH_TITLE", "Ti m không tß  ðô ng");
+	define("MANUALS_SEARCH_RESULTS_TITLE", "Kê t qua  ti m kiê m");
+
+?>

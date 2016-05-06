@@ -1,0 +1,187 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_CATEGORY_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+
+<script language="JavaScript" type= "text/javascript" src="../js/list_fields.js"></script>
+<script language="JavaScript">
+<!--
+var list_fields_names = new Array('sites');
+//-->
+</script>
+
+</head>
+<body class="commonbg">
+
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header">
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a
+			href="{admin_forum_href}">{ADMIN_FORUM_TITLE}</a>&nbsp;&gt;&nbsp;<b>{EDIT_CATEGORY_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<table cellspacing="0" cellpadding="0" border="0">
+<tr><!-- BEGIN tabs -->
+	<td onClick="changeTab('{tab_name}'); return false;"><div id="{tab_id}" class="{tab_class}"><a class="blackSm" href="#" onClick="changeTab('{tab_name}'); return false;">{tab_title}</a></td><!-- END tabs -->
+</tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border: 1px solid #999;">
+<tr align="center">
+	<td class="">
+
+<form action="{admin_forum_category_href}" name="record" onSubmit="selectListFieldsAll();" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="category_id" value="{category_id}">
+<input type="hidden" name="tab" value="{tab}">
+<input type="hidden" name="sites" value="">
+
+<div id="data_general" style="{general_style}">
+		<table width="100%" border="0" cellspacing="1" cellpadding="6"><!-- BEGIN errors -->
+		<tr class="usual" align="center">
+			<td colspan="4">
+				<div class="error">{errors_list}</div>
+			</td>
+		</tr><!-- END errors -->
+		<tr class="usual">
+			<td colspan="4" align="right">
+				<font class="small">{ASTERISK_MSG}</font>
+		    </td>
+		</tr>
+		<tr class="usual">
+			<td>
+				&nbsp;{ALLOW_VIEW_CATEGORY_TO_MSG}
+			</td>
+			<td><!-- BEGIN allowed_view -->
+				<input type="radio" name="allowed_view" {allowed_view_checked} value="{allowed_view_value}">{allowed_view_description}<!-- END allowed_view -->
+			</td>
+		</tr>
+		<!-- begin category_order_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{CATEGORY_ORDER_MSG} *
+			</td>
+			<td>
+				<input class="field" type="text" name="category_order" value="{category_order}" size="10" maxlength="10">
+			</td>
+		</tr><!-- end category_order_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{CATEGORY_NAME_MSG} *
+			</td>
+			<td>
+				<input class="field" type="text" name="category_name" value="{category_name}" size="80" maxlength="255">
+			</td>
+		</tr>
+		<!-- BEGIN friendly_url_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{FRIENDLY_URL_MSG}
+			</td>
+			<td>
+				<input class="field" type="text" name="friendly_url" value="{friendly_url}" size="80" maxlength="255">
+			</td>
+		</tr>
+		<!-- END friendly_url_block -->
+		<!-- begin short_description_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{AD_SHORT_DESC_MSG}
+			</td>
+			<td>
+				<textarea name="short_description" cols="80" rows="4">{short_description}</textarea>
+			</td>
+		</tr><!-- end short_description_block --><!-- begin full_description_block -->
+		<tr class="usual">
+			<td>
+				&nbsp;{FULL_DESCRIPTION_MSG}
+			</td>
+			<td>
+				<textarea name="full_description" cols="80" rows="10">{full_description}</textarea>
+			</td>
+		</tr><!-- end full_description_block -->
+
+		<tr class="middle">
+			<td></td>
+			<td>
+				<input class="submit" type="submit" value="{save_button}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- BEGIN delete -->
+				<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- END delete -->
+				<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+			</td>
+		</tr>
+		</table>
+</div>
+
+<!-- begin sitelist-->
+<div id="data_sites" style="{sites_style}">
+<table cellspacing="1" cellpadding="4" border="0" width="100%">
+<tr class="usual">
+	<td colspan="3">
+		&nbsp; <input type="checkbox" name="sites_all" {sites_all} onClick="checkListFields('sites');" value="1">
+		{USE_CATEGORY_ALL_SITES_MSG}
+	</td>
+</tr>
+<tr class="usual">
+	<td colspan="2">
+
+		<table width="100%" border="0" cellspacing="1" cellpadding="3">
+		<tr align="center" class="usual">
+			<td width="40%"><b>{AVAILABLE_SITES_MSG}</b></td>
+			<td width="20%"><b>{OPERATIONS_MSG}</b></td>
+			<td width="40%"><b>{USE_ITEM_SITES_MSG}</b></td>
+		</tr>
+		<tr align="center" class="usual">
+			<td width="40%">
+				<select name="available_sites" MULTIPLE size="10"  style="width: 300px;"><!-- begin available_sites -->
+					<option value="{site_id}">{site_name}<!-- end available_sites-->
+				</select>
+			</td>
+			<td width="20%">
+
+				<input class="submit" readonly type="button" name="add_sites" value="&nbsp;&nbsp; {ADD_BUTTON}  -> &nbsp;&nbsp;" onClick="addListFields('sites');"><br><br>
+				<input class="submit" type="button" name="remove_sites" value="<- {REMOVE_BUTTON}" onClick="removeListFields('sites');">
+			</td>
+			<td width="40%">
+
+				<select name="selected_sites" MULTIPLE size="10" style="width: 300px;"><!-- begin selected_sites -->
+					<option value="{site_id}">{site_name}<!-- end selected_sites -->
+				</select>
+			</td>
+		</tr>
+		</table>
+
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="3">
+		&nbsp; <input class="submit" type="submit" value=" {save_button} " onCLick="document.record.operation.value='save'"> &nbsp;
+	</td>
+</tr>
+</table>
+</div>
+<!-- end sitelist-->
+
+</form>
+
+	</td>
+</tr>
+</table>
+
+<script language="JavaScript">
+<!--
+	checkListFieldsAll();
+//-->
+</script>
+
+{admin_footer}
+
+</body>
+</html>

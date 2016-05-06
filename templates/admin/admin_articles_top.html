@@ -1,0 +1,85 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{ARTICLES_TITLE}</title>
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+</head>
+<body class="commonbg">
+
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header">
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<b>{ARTICLES_TITLE}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{ARTICLES_TITLE}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center">
+	<td>
+
+<table border="0" cellspacing="1" cellpadding="6" width="100%"><!-- BEGIN sorters -->
+<tr align="center" class="middle">
+	<td>
+		{ID_MSG}
+	</td>
+	<td align="left">
+		&nbsp;{ARTICLES_TYPE_MSG}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- END sorters --><!-- BEGIN records -->
+<tr class="usual" align="center">
+	<td>
+		{category_id}
+	</td>
+	<td align="left">
+		&nbsp;<a class="title" href="{admin_articles_href}?category_id={category_id}">{category_name}</a>
+		<br>&nbsp;<a href="{admin_article_category_items_related_href}?category_id={category_id}&parent_category_id=0">{ADMIN_RELATED_PRODUCTS_TITLE}</a>
+	</td>
+	<td>
+		<a href="{admin_articles_category_href}?category_id={category_id}">{EDIT_SETTINGS_MSG}</a>
+	</td>
+	<td>
+		<a href="{admin_layout_page_href}?art_cat_id={category_id}&page_name=list">{LIST_PAGE_LAYOUT_MSG}</a>
+	</td>
+	<td>
+		<a href="{admin_layout_page_href}?art_cat_id={category_id}&page_name=details">{DETAILED_PAGE_LAYOUT_MSG}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="5">
+		&nbsp;{NO_RECORDS_MSG}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="5">
+		&nbsp;<a href="{admin_articles_category_href}">{NEW_ARTICLES_TYPE_MSG}</a><!-- begin navigator_block -->&nbsp;{navigator}&nbsp;<!-- end navigator_block -->
+	</td>
+</tr>
+</table>
+
+	</td>
+</tr>
+</table>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

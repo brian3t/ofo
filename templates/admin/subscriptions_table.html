@@ -1,0 +1,77 @@
+<!--begin table-->
+<table border="0" cellpadding="6" cellspacing="1" width="100%">
+	<!--begin header_block-->
+	<tr class="middle">
+		<td colspan="2">
+			&nbsp;
+		</td>
+		<td>
+			<input id="{field_id}_every" name="{field_id}_every" type="checkbox" value="1"
+			 onclick="markTableCells('{field_id}', {field_id}_ids, 'every', 0)";
+			>
+		</td>
+		<!--begin header_level_block-->
+		<td>
+			<input id="{field_id}_level_{level_value}" name="{field_id}_level_{level_value}" type="checkbox" value="1"
+			 onclick="markTableCells('{field_id}', {field_id}_ids, 'vert', {level_value})";
+			>
+			{level_name}
+		</td>
+		<!--end header_level_block-->
+	</tr>
+	<!--end header_block-->
+	<!--begin all_block-->
+	<tr class="middle">
+		<td colspan="2" align="right">
+			{FOR_ALL_SUBSCRIPTIONS_MSG}
+		</td>
+		<td class="middle">
+			<input id="{field_id}_type_{subscription_id}" name="{field_id}_type_all" type="checkbox" value="1"
+				onclick="markTableCells('{field_id}', {field_id}_ids, 'horz', 'all')";
+			>
+		</td>
+		<!--begin all_level_block-->
+		<td align="center" class="row1">
+			<input id="{field_id}_all_{level_value}" name="{field_id}_all_{level_value}" type="checkbox" {checked} value="1"
+				onclick="onAllClick('{field_id}', {field_id}_ids, {level_value})";
+			> 
+		</td>
+		<!--end all_level_block-->
+	</tr>
+	<!--end all_block-->
+	<!--begin subscription_block-->
+	<tr class="usual">
+		
+		<!--begin type_header_block-->
+		<td rowspan="{type_rowspan}" valign="top" class="middle">
+			{type_name}
+		</td>
+		<!--end type_header_block-->
+		<td class="middle">
+			{subscription_name}
+		</td>
+		<td class="middle">
+			<input id="{field_id}_type_{subscription_id}" name="{field_id}_type_{subscription_id}" type="checkbox" value="1"
+			 	onclick="markTableCells('{field_id}', {field_id}_ids, 'horz', {subscription_id})";
+			>
+		</td>
+		<!--begin level_block-->
+		<td align="center" class="{row_class}">
+			<input id="{field_id}_{subscription_id}_{level_value}" name="{field_id}_{subscription_id}_{level_value}" type="checkbox" {checked} value="1"
+				onclick="markTableCell('{field_id}', {field_id}_ids, {subscription_id}, {level_value}, this.checked)";
+			>
+		</td>
+		<!--end level_block-->
+	</tr>
+	<!--end subscription_block-->			
+</table>
+<script language="JavaScript">
+	<!--
+	var {field_id}_ids = new Array({subscription_ids});
+	window.onload = function() { 
+		enableTableCells('{field_id}', {field_id}_ids); 
+	};
+	//-->
+</script>
+
+<!--end table-->

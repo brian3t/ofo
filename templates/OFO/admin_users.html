@@ -1,0 +1,416 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{SITE_USERS_MSG}</title>
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript" type="text/javascript" src="../js/calendar.js"></script>
+<script language="JavaScript" type="text/javascript" src="../js/select.js"></script>
+<script language="JavaScript">
+<!--
+	function clearSearch() {
+		document.search_form.s_ne.value = "";
+		document.search_form.s_ad.value = "";
+		document.search_form.s_sd.value = "";
+		document.search_form.s_ed.value = "";
+		document.search_form.s_ut.selectedIndex = 0;
+		document.search_form.s_ap[0].checked = true;
+		document.search_form.s_on[0].checked = true;
+	
+		document.search_form.submit();
+
+	}
+
+	function changeStatus()
+	{
+		var checkedStatus = document.users.all_users.checked;
+		var usersNumber = document.users.users_number.value;
+		for (var i = 1; i <= usersNumber; i++) {
+			document.users.elements["id_" + i].checked = checkedStatus;
+		}
+		checkUsers();
+	}
+
+	function checkUsers()
+	{
+		var userId = "";
+		var usersIds = "";
+		var usersNumber = document.users.users_number.value;
+		var totalSelected = 0;
+		for (var i = 1; i <= usersNumber; i++) {
+			if (document.users.elements["id_" + i].checked) {
+				document.getElementById("tr_user_" + i).className = "SelectedRow";
+				totalSelected++;
+				userId = document.users.elements["id_" + i].value;
+				if(usersIds != "") { usersIds += ","; }
+				usersIds += userId;
+			} else {
+				document.getElementById("tr_user_" + i).className = mas[i];
+			}
+		}
+		var exportUsersLink = document.getElementById("export_users");
+		if (exportUsersLink) {
+			if (usersIds == "") {
+				exportUsersLink.innerHTML = "{EXPORT_USERS_MSG}";
+				exportUsersLink.href = "{admin_export_href}?table=users";
+			} else {
+				exportUsersLink.innerHTML = "{EXPORT_MSG} {ADMIN_SELECTED_MSG} (" + totalSelected + ")";
+				exportUsersLink.href = "{admin_export_href}?table=users&ids=" + usersIds;
+			}
+		}
+	}
+
+	function updateUsers(operation)
+	{
+		var userId = "";
+		var usersIds = "";
+		var usersNumber = document.users.users_number.value;
+		var totalUsers = 0;
+		for (var i = 1; i <= usersNumber; i++) {
+			if (document.users.elements["id_" + i].checked) {
+				totalUsers++;
+				userId = document.users.elements["id_" + i].value;
+				if(totalUsers > 1) { usersIds += ","; }
+				usersIds += userId;
+			}
+		}
+		var usersControl = document.update_users.status_id;
+		if (totalUsers == 0) {
+			alert("Please select users first.")
+		} else if (operation == "update_status") {
+			if (usersControl.options[usersControl.selectedIndex].value == "") {
+				alert("Please select status.");
+			} else if (confirm("You are about to change the status of selected users to '" + usersControl.options[usersControl.selectedIndex].text + "'.\nContinue?'")) {
+				document.update_users.users_ids.value = usersIds;
+				document.update_users.operation.value = "update_status";
+				document.update_users.submit();
+			}
+		} else if (operation == "remove_users") {
+			if (confirm("Are you sure you want remove selected users (" + totalUsers + ")?")) {
+				document.update_users.users_ids.value = usersIds;
+				document.update_users.operation.value = "remove_users";
+				document.update_users.submit();
+			}
+		}
+	} 
+
+//-->
+</script>
+<script language= "JavaScript" type= "text/javascript">
+<!--
+	var select_form = new select();
+		select_form.object_name = 'select_form';
+		select_form.name_prefix = 'id_';
+		select_form.formname = 'users';
+		select_form.final_action = 'checkUsers();';
+		select_form.create_event_click();
+//-->
+</script>
+</head>
+<body class="commonbg" onload="start_event_select();">
+<script language= "JavaScript" type= "text/javascript">
+<!--
+	function start_event_select(){
+		create_event_listener(select_form);
+		var usersNumber = document.users.users_number.value;
+		mas = new Array();
+		for (var i = 1; i <= usersNumber; i++) {
+			mas[i] = document.getElementById("tr_user_" + i).className;
+		}
+	}
+//-->
+</script>
+
+{admin_header} 
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<b>{SITE_USERS_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+	<tr>
+		<td valign="top">
+
+			<table border="0" cellpadding="2" cellspacing="2">
+				<form action="{admin_users_href}" name="search_form">
+				<!-- BEGIN errors -->
+				<tr>
+					<td colspan="2">
+					&nbsp;<div align="center" class="error"><font style="font-size:8pt">{errors_list}</font></div>&nbsp;
+					</td>
+				</tr>
+				<!-- END errors -->
+				<tr>
+					<td colspan="2"><b>{SEARCH_USERS_MSG}:</b></td>
+				</tr>
+				<tr>
+					<td>{BY_NAME_EMAIL_MSG}:</td>
+					<td><input type="text" name="s_ne" value="{s_ne}" class="search"></td>
+				</tr>
+				<tr>
+					<td>{BY_ADDRESS_MSG}:</td>
+					<td><input type="text" name="s_ad" value="{s_ad}" class="search"></td>
+				</tr>
+				<tr>
+					<td>{FROM_DATE_MSG} ({date_edit_format}):</td>
+					<td>
+					<input type="text" name="s_sd" value="{s_sd}" class="search">
+					<A HREF="#"
+					onClick="setDateField(document.search_form.s_sd, '{date_edit_format}');
+					top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+					<IMG SRC="../images/calendar.gif" BORDER=0><font size=1>{CALENDAR_MSG}</font></A>
+					</td>
+				</tr>
+				<tr>
+					<td>{TO_DATE_MSG} ({date_edit_format}):</td>
+					<td>
+					<input type="text" name="s_ed" value="{s_ed}" class="search">
+					<A HREF="#"
+					onClick="setDateField(document.search_form.s_ed, '{date_edit_format}');
+					top.newWin = window.open('../js/calendar.html','cal','dependent=yes,width=210,height=230,screenX=200,screenY=300,titlebar=yes'); top.newWin.focus(); return false;">
+					<IMG SRC="../images/calendar.gif" BORDER=0><font size=1>{CALENDAR_MSG}</font></A>
+					</td>
+				</tr>
+				<tr>
+					<td>{BY_TYPE_MSG}:</td>
+					<td>
+					<select name="s_ut" class="search">
+					<!-- BEGIN s_ut -->
+						<option {s_ut_selected} value="{s_ut_value}">{s_ut_description}
+					<!-- END s_ut -->
+					</select>
+					</td>
+				</tr>
+				<tr>
+					<td>{ADMIN_SHOW_MSG}:</td>
+					<td>
+					<!-- BEGIN s_ap -->
+					<input type="radio" name="s_ap" {s_ap_checked} value="{s_ap_value}">{s_ap_description}
+					<!-- END s_ap -->
+					</td>
+				</tr>
+				<tr>
+					<td>{ONLINE_MSG}/{OFFLINE_MSG}:</td>
+					<td>
+					<!-- BEGIN s_on -->
+					<input type="radio" name="s_on" {s_on_checked} value="{s_on_value}">{s_on_description}
+					<!-- END s_on -->
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" value="Search" class="submit">&nbsp;<input type="button" value="{CLEAR_BUTTON}" class="submit" onClick="clearSearch()"></td>
+				</tr>
+				</form>
+			</table>
+
+		</td>
+		<td valign="top" align="right" valign="top">
+			<table cellpadding="2" cellspacing="2" border="0">
+				<tr>
+					<td colspan="5">&nbsp;<b>{ONLINE_STATISTIC_MSG}:</b></td>
+				</tr>
+				<tr class="middle">
+					<td></td>
+					<td><a href="{admin_users_href}?s_on=1">{ONLINE_MSG}</a></td>
+				</tr>
+				<!-- begin users_online_stats -->
+				<tr class="usual" align="center">
+					<td align="left">&nbsp;<a href="{admin_users_href}?s_ut={type_id}&s_on=1">{type_name}</a>&nbsp;</td>
+					<td>{users_online}</td>
+				</tr>
+				<!-- end users_online_stats -->
+				<tr class="middle" align="center">
+					<td align="left">&nbsp;{TOTAL_MSG}&nbsp;</td>
+					<td>{users_total_online}</td>
+				</tr>
+			</table>
+		</td>
+		<td valign="top" align="right" valign="top">
+			<table cellpadding="2" cellspacing="2" border="0">
+			<tr>
+				<td colspan="5">&nbsp;<b>{REGISTRATION_INFO_MSG}:</b></td>
+			</tr>
+			<tr class="middle">
+				<td></td>
+				<!-- begin stats_titles -->
+				<td><a href="{admin_users_href}?s_sd={start_date}&s_ed={end_date}">{stat_title}</a></td><!-- end stats_titles -->
+			</tr>
+			<!-- begin types_stats -->
+			<tr class="usual" align="center">
+				<td align="left"><a href="{admin_users_href}?s_ut={type_id}">{type_name}</a></td>
+				<!-- begin stats_periods -->
+				<td>{period_users}</td><!-- end stats_periods -->
+			</tr>
+			<!-- end types_stats -->
+			<tr class="middle" align="center">
+				<td align="right">{TOTAL_MSG}:&nbsp;</td>
+				<!-- begin stats_totals -->
+				<td>{period_total}</td><!-- end stats_totals -->
+			</tr>
+			</table>
+
+		</td>
+	</tr>
+</table>
+
+<br>
+
+<!-- BEGIN users_errors -->
+&nbsp;<div align="center" class="error">{errors_list}</div>&nbsp;
+<!-- END users_errors -->
+
+<!-- BEGIN users_messages -->
+&nbsp;<div align="center" class="message">{messages_list}</div>&nbsp;
+<!-- END users_messages -->
+
+<br>
+
+
+<fieldset>
+<legend>{SITE_USERS_MSG}</legend>
+
+<form name="users" action="{admin_users_href}" method="POST">
+<input type="hidden" name="users_number" value="{users_number}">
+<table border="0" cellspacing="1" cellpadding="3" width="100%">
+<!-- begin sorters -->
+<tr align="center" class="middle" valign="top">
+	<td>
+		<input type="checkbox" name="all_users" value="1" onClick="changeStatus();">
+	</td>
+	<td>
+		{sorter_user_id}
+	</td>
+	<td>
+		{sorter_login}
+	</td>
+	<td>
+		{USER_NAME_MSG}
+	</td>
+	<td>
+		{sorter_email}
+	</td>
+	<td>
+		{sorter_user_type}
+	</td>
+	<td>
+		{sorter_is_approved}
+	</td>
+	<td>
+		{sorter_total_points}
+	</td>
+	<td>
+		{sorter_credit_balance}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- end sorters --><!-- BEGIN records -->
+<tr class="{row_style}" id="tr_user_{user_index}">
+	<td align="center">
+		<input type="checkbox" name="id_{user_index}" value="{user_id}" onClick="checkUsers();">
+	</td>
+	<td align="center">
+		{user_id}
+	</td>
+	<td>
+		&nbsp;{login}
+	</td>
+	<td>
+		&nbsp;{name}
+	</td>
+	<td>
+		&nbsp;<a href="mailto:{email}">{email}</a>&nbsp;
+	</td>
+	<td align="center">
+		&nbsp;<a href="{admin_user_change_type_url}">{user_type}</a>&nbsp;
+	</td>
+	<td align="center">
+		&nbsp;{is_approved}
+	</td>
+	<td align="center">
+		&nbsp;<a href="{admin_user_points_url}">{total_points}</a>
+	</td>
+	<td align="center">
+		&nbsp;<a href="{admin_user_credits_url}">{credit_balance}</a>
+	</td>
+	<td align="center">
+		<a href="{admin_user_href}?user_id={user_id}">{VIEW_EDIT_INFO_MSG}</a>
+	</td>
+	<td align="center">
+		<a href="{admin_user_login_href}?user_id={user_id}">{LOGIN_DETAILS_MSG}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="11">
+		&nbsp;{NO_DATA_WERE_FOUND_MSG}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="11">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+		<tr class="middle">
+			<td>&nbsp;
+				<!-- begin user_types -->
+				{delimiter}<a href="{admin_user_href}?type_id={type_id}">{ADD_NEW_MSG} {type_name}</a><!-- end user_types -->
+			</td><!-- begin navigator_block -->
+			<td align="right">&nbsp;{navigator}&nbsp;</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="11">
+		&nbsp;<a id="export_users" href="{admin_export_href}?table=users">{EXPORT_USERS_MSG}</a>
+		<!-- begin export_filtered -->
+		| <a href="{admin_export_filtered_url}">{EXPORT_FILTERED_MSG} ({total_filtered})</a>&nbsp;<!-- end export_filtered -->
+		<!-- begin export_new -->
+		| <a href="{admin_export_href}?table=users&id={exported_user_id}">{EXPORT_NEW_USERS_MSG} ({total_new})</a>&nbsp;<!-- end export_new -->
+		| <a href="{admin_import_href}?table=users">{IMPORT_USERS_MSG}</a>
+		| <a href="{admin_users_href}?operation=birth_greetings&rnd={rnd}">{SEND_BIRTHDAY_GREETINGS_MSG}</a>
+		| <a href="{admin_users_href}?operation=send_reminders">{SEND_REMINDERS_MSG}</a>
+	</td>
+</tr>
+</table>	
+</form>
+
+</fieldset>
+
+<br>
+<form name="update_users" action="{admin_users_href}" method="POST">
+<input type="hidden" name="operation" value="">
+<input type="hidden" name="users_ids" value="">
+<input type="hidden" name="s_ne" value="{s_ne}">
+<input type="hidden" name="s_ad" value="{s_ad}">
+<input type="hidden" name="s_sd" value="{s_sd}">
+<input type="hidden" name="s_ed" value="{s_ed}">
+<input type="hidden" name="s_ut" value="{s_ut_search}">
+<input type="hidden" name="s_ap" value="{s_ap_search}">
+<input type="hidden" name="s_on" value="{s_on_search}">
+
+<!-- begin update_status -->
+<select name="status_id"><!-- begin status_id -->
+	<option {status_id_selected} value="{status_id_value}">{status_id_description}<!-- end status_id -->
+</select> 
+<input class="submit" type="button" value="{UPDATE_BUTTON} {STATUS_MSG}" onClick="updateUsers('update_status');">
+<!-- end update_status -->
+<!-- begin remove_users_button -->
+<input class="submit" type="button" value="{REMOVE_SELECTED_MSG}" onClick="updateUsers('remove_users');">
+<!-- end remove_users_button -->
+
+</form>
+
+{admin_footer}
+</body>
+</html>
+

@@ -1,0 +1,46 @@
+<div class="block-user-orders">
+	<div class="titleTopCenter">
+		
+		
+		{MY_ORDERS_MSG} </div>
+	<div class="basket">
+		<table border="0" cellspacing="1" width="100%" class="padding6px">
+			<!-- begin sorters -->
+			<tr class="middlebg" align="center">
+				<td>{sorter_id}</td>
+				<td>{sorter_status}</td>
+				<td>{sorter_date}</td>
+				<td>{sorter_total}</td>
+				<td class="titleText">{INVOICE_MSG}</td>
+				<td>&nbsp;</td>
+			</tr>
+			<!-- end sorters -->
+			<!-- begin records -->
+			<tr class="usualbg" valign="top" align="center">
+				<td>{order_id}</td>
+				<td>{order_status}</td>
+				<td>&nbsp;{order_placed_date}&nbsp;</td>
+				<td align="right">&nbsp;{order_total}&nbsp;</td>
+				<td><!-- begin invoice_links -->
+					<a href="{user_invoice_html_href}?order_id={order_id}" target="_blank"><img src="./images/html_icon.gif" width="28" height="16" border="0"></a>&nbsp; <a href="{user_invoice_pdf_href}?order_id={order_id}"><img src="./images/pdf_icon.gif" width="28" height="16" border="0"></a>
+					<!-- end invoice_links --></td>
+				<td id="butTd">&nbsp;<a href="{user_order_href}?order_id={order_id}">{VIEW_ORDER_DETAILS_MSG}</a>
+					<!-- begin pay_link -->
+					<span> | </span> <a href="{user_order_payment_href}?order_id={order_id}&vc={vc}">{PAY_FOR_YOUR_ORDER_MSG}</a>
+					<!-- end pay_link -->
+					&nbsp; </td>
+			</tr>
+			<!-- end records -->
+			<!-- begin no_records -->
+			<tr class="usualbg">
+				<td colspan="6">&nbsp;{NO_ORDERS_MSG}</td>
+			</tr>
+			<!-- end no_records -->
+			<!-- begin navigator_block -->
+			<tr class="middlebg">
+				<td colspan="6">&nbsp;{navigator}&nbsp;</td>
+			</tr>
+			<!-- end navigator_block -->
+		</table>
+	</div>
+</div>

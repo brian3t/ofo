@@ -1,0 +1,117 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {GOOGLE_BASE_ITEM_TYPES_MSG} ::..</title>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+ 
+</head>
+
+<body class="commonbg">
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_lookup_tables_href}">{STATIC_TABLES_MSG}</a>&nbsp;&gt;&nbsp;<b>{GOOGLE_BASE_ITEM_TYPES_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+	<!-- begin success -->
+	<table width="100%" border="0" cellspacing="1" cellpadding="5" class="headerbg">
+	<tr><td class="usual" align="center">
+		<div class="message">{success_message}</div>
+	</td></tr>
+	</table>
+	<br><!-- end success -->
+
+	<!-- begin errors -->
+	<table width="100%" border="0" cellspacing="1" cellpadding="5" class="errorbg">
+	<tr><td class="error" align="center">
+		{errors_list}
+	</td></tr>
+	</table>
+	<br><!-- end errors -->
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<td>
+<fieldset>
+<legend>{GOOGLE_BASE_ITEM_TYPES_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center"> 
+	<td>
+
+<table border="0" cellpadding="6" cellspacing="1" width="100%"><!-- begin sorters -->
+<tr class="middle" align="center">
+	<td>
+		{sorter_type_id}
+	</td>
+	<td>
+		{sorter_type_name}
+	</td>
+	<td>
+		{sorter_a_count}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- end sorters --><!-- BEGIN records -->
+<tr class="usual" align="center">
+	<td>
+		{type_id}
+	</td>
+	<td align="left">
+		&nbsp;{type_name}
+	</td>
+	<td>
+		&nbsp;{a_count}&nbsp;
+	</td>
+	<td>
+		&nbsp;<a href="{admin_google_base_type_href}?type_id={type_id}">{EDIT_TYPE_MSG}</a>&nbsp;
+	</td>
+	<td>
+		&nbsp;<a href="{admin_google_base_type_attr_href}?type_id={type_id}">{EDIT_MSG}</a>&nbsp;
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr>
+	<td colspan="6" class="usual">
+		&nbsp;{NO_RECORDS}
+	</td>
+</tr><!-- END no_records -->
+<tr>
+	<td colspan="6" class="middle" align="right">
+	<table width="100%" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td>
+			<a href="{admin_google_base_type_href}">{ADD_NEW_MSG}</a>
+		</td><!-- begin navigator_block -->
+		<td align="right">
+			&nbsp;{navigator}&nbsp;
+		</td><!-- end navigator_block -->
+	</tr>
+	</table>
+	</td>
+</tr>
+</table>	
+
+	</td>
+</tr>
+</table>
+</fieldset>
+
+</td>
+</tr></table>
+{admin_footer}
+</body>
+</html>

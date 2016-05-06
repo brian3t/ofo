@@ -1,0 +1,72 @@
+<div class="bl_cart">
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{SMALL_CART_TITLE}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr> 
+		<td class="blockTD">
+
+<!-- begin empty_small_cart -->
+<table width="205" cellspacing="0" cellpadding="20" border="0">
+<tr> 
+	<td>
+		<b>{EMPTY_CART_MSG}</b>
+	</td>
+</tr>
+</table>
+<!-- end empty_small_cart -->
+
+<!-- begin small_cart -->
+<table width="205" cellspacing="0" cellpadding="0" border="0">
+<tr class="usual"><td class="padding10px">
+
+<table width=100% cellspacing=1 cellpadding=0 border=0>
+<tr>
+	<td height="1" class="header" colspan="3"><img src="images/tr.gif" width="1" height="1"></td>
+</tr>
+<tr class="middle">
+	<td><b>&nbsp;{PROD_TITLE_COLUMN}</b></td><td align="center"><b>{PROD_QTY_COLUMN}</b></td><td align="right"><b>{PROD_PRICE_COLUMN}&nbsp;</b></td>
+</tr>
+<tr>
+	<td height="1" class="header" colspan="3"><img id="begin" src="images/tr.gif" width="1" height="1"></td>
+</tr>
+<!-- BEGIN small_cart_items -->
+<tr><td>&nbsp;{short_name}...</td><td align=center>{quantity}</td><td align=right>{price}&nbsp;</td></tr>
+<!-- END small_cart_items -->
+<tr>
+	<td height="1" class="header" colspan="3"><img id="end" src="images/tr.gif" width="1" height="1"></td>
+</tr>
+<tr><td align="right"><b>&nbsp;{GOODS_TOTAL_MSG}&nbsp;</b></td><td align=center>{total_quantity}</td><td align=right>{total_price}&nbsp;</td></tr>
+<tr>
+	<td colspan="3">&nbsp;</td>
+</tr>
+<tr>
+	<td colspan="3" align="center" class="butTd">
+		<b>
+		<a class="buttonCart button-check" id="check" href="{checkout_href}"><span>{GOTO_CHECKOUT_MSG}</span><img src="images/tr.gif" alt="{GOTO_CHECKOUT_MSG}"></a>
+		<span class="spacer">&nbsp;|&nbsp;</span>
+		<a class="buttonCart button-view" id="view" href="{basket_href}"><span>{VIEW_CART_MSG}</span><img src="images/tr.gif" alt="{VIEW_CART_MSG}"></a>
+		</b>
+	</td>
+</tr>
+</table>
+
+</td></tr></table>
+<!-- end small_cart -->
+
+		</td>
+	</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+</div>

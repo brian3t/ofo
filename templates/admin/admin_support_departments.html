@@ -1,0 +1,91 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {SUPPORT_DEPARTMENTS_MSG} ::..</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5" align="center">
+<tr><td align="center">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_support_href}">{HELPDESK_MSG}</a>&nbsp;&gt;&nbsp;<b>{SUPPORT_DEPARTMENTS_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<td>
+<fieldset>
+<legend>{SUPPORT_DEPARTMENTS_MSG}</legend>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr align="center">  
+	<td>
+
+<table border="0" cellspacing="1" cellpadding="6" width="100%">
+<tr align="center" class="middle">
+	<td>
+		{sorter_dep_id}
+	</td>
+	<td>
+		{sorter_short_title}
+	</td>
+	<td>
+		{sorter_inc_acc}
+	</td>
+	<td>
+		{sorter_out_acc}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- BEGIN records -->
+<tr class="usual" align="center">
+	<td>
+		{dep_id}
+	</td>
+	<td align="left">
+		&nbsp;{short_title}
+	</td>
+	<td>
+		{incoming_account}
+	</td>
+	<td>
+		{outgoing_account}
+	</td>
+	<td>
+		<a href="{admin_support_dep_edit_href}?dep_id={dep_id}">{EDIT_DEPARTMENT_MSG}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="5">
+		&nbsp;{NO_RECORDS}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="4">&nbsp;<a href="{admin_support_dep_edit_href}">{NEW_DEPARTMENT_MSG}</a></td>
+	<td align=center><!-- begin navigator_block -->&nbsp;{navigator}&nbsp;<!-- end navigator_block --></td>
+</tr>
+</table>	
+
+	</td>
+</tr>
+</table>
+</fieldset>
+</td></tr></table>
+
+{admin_footer}
+</body>
+</html>

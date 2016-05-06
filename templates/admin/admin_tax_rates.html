@@ -1,0 +1,94 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {TAX_RATES_MSG} ::..</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<b>{TAX_RATES_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{TAX_RATES_MSG}</legend>
+<table border="0" cellspacing="1" cellpadding="6" width="100%"><!-- begin sorters -->
+<tr align="center" class="middle">
+	<td>
+		{sorter_tax_id}
+	</td>
+	<td>
+		{sorter_tax_name}
+	</td>
+	<td>
+		{sorter_country_name}
+	</td>
+	<td>
+		{sorter_state_name}
+	</td>
+	<td>
+		{sorter_tax_percent}
+	</td>
+	<td>
+		{sorter_is_default}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr><!-- end sorters --><!-- BEGIN records -->
+<tr class="usual" align="center">
+	<td>
+		{tax_id}
+	</td>
+	<td align="left">
+		&nbsp;{tax_name}
+	</td>
+	<td align="left">
+		&nbsp;{country_name}
+	</td>
+	<td>
+		&nbsp;{state_name}
+	</td>
+	<td>
+		&nbsp;{tax_percent}%
+	</td>
+	<td>
+		&nbsp;<a class="small" href="{admin_tax_rate_default_url}">{is_default}</a>
+	</td>
+	<td>
+		<a href="{admin_tax_rate_url}">{EDIT_TAX_MSG}</a>
+	</td>
+</tr><!-- END records --><!-- BEGIN no_records -->
+<tr class="usual">
+	<td colspan="7">
+		&nbsp;{NO_RECORDS}
+	</td>
+</tr><!-- END no_records -->
+<tr class="middle">
+	<td colspan="7">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+		<tr>
+			<td>&nbsp;<a href="{admin_tax_rate_new_url}">{ADD_NEW_MSG}</a></td><!-- begin navigator_block -->
+			<td align="right">&nbsp;{navigator}&nbsp;</td><!-- end navigator_block -->
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>	
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

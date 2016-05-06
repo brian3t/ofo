@@ -1,0 +1,75 @@
+<html><head><title>{ADMINISTRATION_MSG} :: {PAYMENT_SYSTEMS_MSG}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+
+</head>
+
+<body class="commonbg">
+{admin_header}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header">
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_payment_systems_href}">{PAYMENT_SYSTEMS_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_PAYMENT_SYSTEM_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+
+<table cellspacing="0" cellpadding="0" border="0">
+<tr><!-- BEGIN tabs -->
+	<td onClick="changeTab('{tab_name}'); return false;"><div id="{tab_id}" class="{tab_class}"><a class="blackSm" href="#" onClick="changeTab('{tab_name}'); return false;">{tab_title}</a></td><!-- END tabs -->
+</tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border: 1px solid #999;">
+<tr align="center">
+	<td class="">
+
+<form action="{admin_payment_predefined_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="apply">
+<input type="hidden" name="tab" value="{tab}">
+
+<div id="data_general" style="{general_style}">
+<table cellspacing="1" cellpadding="4" border="0" width="100%"><!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td width="20%">
+		&nbsp;{PREDEFINED_PS_MSG}
+	</td>
+	<td>
+		<select name="payment_id"><!-- begin payment_id -->
+			<option {payment_id_selected} value="{payment_id_value}">{payment_id_description}<!-- end payment_id -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td width="20%">
+		&nbsp;
+	</td>
+	<td>
+		<input type="submit" class="submit" value="{APPLY_BUTTON}">
+	</td>
+</tr>
+</table>
+</div>
+
+</form>
+
+	</td>
+</tr>
+</table>
+
+{admin_footer}
+</body>
+</html>

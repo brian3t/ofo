@@ -1,0 +1,216 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{ADMINISTRATION_MSG} :: {ADVANCED_SEARCH_SETTINGS_MSG}</title>
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script type="text/javascript" src="../js/admin.js"></script>
+<script language="JavaScript">
+<!--
+	function openWindow(pagename)
+	{
+		var popupWin = window.open (pagename, 'popup', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');
+		popupWin.focus();
+	}
+//-->
+</script>
+</head>
+<body class="commonbg">
+
+{admin_header}
+
+<form action="{admin_ads_search_href}" name="record" method="POST">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="breadcrumb"> 
+
+	<table width="100%" cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_ads_href}">{ADS_TITLE}</a>&nbsp;&gt;&nbsp;
+			<b>{ADVANCED_SEARCH_SETTINGS_MSG}</b>
+		</td>
+		<!-- begin sitelist -->
+		<td class="usual" align="right">
+			{SELECT_SITE_MSG}&nbsp;
+			<select name="param_site_id" onchange="reloadSite(this.form)"><!-- begin param_site_id -->
+				<option {param_site_id_selected} value="{param_site_id_value}">{param_site_id_description}<!-- end param_site_id -->
+			</select>		
+		</td>
+		<!-- end sitelist -->
+	</tr>
+	</table>
+
+</td></tr></table>
+
+<br>
+
+<fieldset>
+<legend>{ADVANCED_SEARCH_SETTINGS_MSG}</legend>
+
+<table border="0" cellpadding="6" cellspacing="1" width="100%">
+<input type="hidden" name="properties_number" value="{properties_number}">
+<input type="hidden" name="features_number" value="{features_number}">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="rp" value="{rp}">
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="5" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr>
+	<td class="header" colspan="4">
+		&nbsp;<b>{SETTINGS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td valign="top">
+		&nbsp;{INTRO_TEXT_FOR_SEARCH_MSG}
+	</td>
+	<td colspan="4">
+		<textarea name="intro_text" cols="80" rows="5">{intro_text}</textarea>
+	</td>
+</tr>
+<tr>
+	<td class="header" colspan="4">
+		&nbsp;<b>{SEARCH_FIELDS_MSG}</b>
+	</td>
+</tr>
+<tr class="usual">
+	<td width="40%">
+		&nbsp;<b>{SEARCH_FOR_MSG}</b>
+	</td>
+	<td width="15%" align="center">
+		<input type="checkbox" name="search_for" {search_for} value="1">
+	</td>
+	<td width="40%">
+		&nbsp;<b>{SEARCH_IN_MSG}</b> ({SEARCH_TITLE_NOTE})
+	</td>
+	<td width="15%" align="center">
+		<input type="checkbox" name="search_in" {search_in} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{SEARCH_CATEGORY_MSG}</b>
+	</td>
+	<td align="center">
+		<input type="checkbox" name="search_in_category" {search_in_category} value="1">
+	</td>
+	<td>
+		&nbsp;<b>{SEARCH_BY_MSG}&nbsp;
+		<select name="user_type_id"><!-- begin user_type_id -->
+			<option {user_type_id_selected} value="{user_type_id_value}">{user_type_id_description}<!-- end user_type_id -->
+		</select> 
+		&nbsp;{CUSTOMERS_MSG}</b>
+	</td>
+	<td align="center">
+		<input type="checkbox" name="user" {user} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{PRICE_MSG}</b>
+	</td>
+	<td align="center">
+		<input type="checkbox" name="price" {price} value="1">
+	</td>
+	<td>
+		&nbsp;<b>{SEARCH_BY_MSG}&nbsp;{COUNTRY_FIELD}</b>
+	</td>
+	<td align="center">
+		<input type="checkbox" name="search_by_country" {search_by_country} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;<b>{SEARCH_BY_MSG}&nbsp;{STATE_FIELD}</b>
+	</td>
+	<td align="center">
+		<input type="checkbox" name="search_by_state" {search_by_state} value="1">
+	</td>
+	<td>
+		&nbsp;<b>{SEARCH_BY_MSG}&nbsp;{ZIP_FIELD}</b>
+	</td>
+	<td align="center">
+		<input type="checkbox" name="search_by_zip" {search_by_zip} value="1">
+	</td>
+</tr><!-- BEGIN properties -->
+<tr>
+	<td class="header" colspan="4">
+		&nbsp;<b>{SEARCH_IN_PRODUCTS_OPTIONS_MSG}</b>
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+		{OPTION_NAME_MSG}
+	</td>
+	<td align="center">
+		{USE_MSG}
+	</td>
+	<td colspan="2">
+		{PREDEFINED_VALUES_MSG}
+	</td>
+</tr>
+<!-- BEGIN properties_rows -->
+<tr class="usual">
+	<td>
+		{property_name}
+		<input type="hidden" name="property_name_{property_number}" value="{property_name}" size=40>
+	</td>
+	<td align="center">
+		<input type="checkbox" name="property_show_{property_number}" {property_checked} value="1">
+	</td>
+	<td colspan="2">
+		<textarea cols="60" rows="2" name="property_value_{property_number}">{property_value}</textarea>
+	</td>
+</tr><!-- END properties_rows -->
+<!-- END properties -->
+<!-- BEGIN features -->
+<tr>
+	<td class="header" colspan="4">
+		&nbsp;<b>{SEARCH_IN_PRODUCTS_SPECIFICATIONS_MSG}</b>
+	</td>
+</tr>
+<tr class="middle">
+	<td>
+		{FEATURE_NAME_MSG}
+	</td>
+	<td align="center">
+		{USE_MSG}
+	</td>
+	<td colspan="2">
+		{PREDEFINED_VALUES_MSG}
+	</td>
+</tr>
+<!-- BEGIN features_rows -->
+<tr class="usual">
+	<td>
+		{feature_name}
+		<input type="hidden" name="feature_name_{feature_number}" value="{feature_name}" size=40>
+	</td>
+	<td align="center">
+		<input type="checkbox" name="feature_show_{feature_number}" {feature_checked} value="1">
+	</td>
+	<td colspan="2">
+		<textarea cols="60" rows="2" name="feature_value_{feature_number}">{feature_value}</textarea>
+	</td>
+</tr><!-- END features_rows -->
+<!-- END features -->
+<tr class="middle">
+	<td></td>
+	<td colspan="4">
+		<input class="submit" type="submit" value="{UPDATE_BUTTON}" onCLick="document.record.operation.value='save'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onCLick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</form>
+</table>
+</fieldset>
+
+
+{admin_footer}
+
+</body>
+</html>

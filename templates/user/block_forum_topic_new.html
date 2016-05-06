@@ -1,0 +1,169 @@
+<div class="block-forum-topic-new">
+<!-- begin topic_preview-->
+
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{PREVIEW_TITLE}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr> 
+		<td class="blockTD">
+			<table width="100%" border="0" cellspacing="0" cellpadding="5"><tr><td>
+				{description}
+			</td></tr></table>
+		</TD>
+	</TR>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+	<tr> 
+		<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+		<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+	</tr>
+</table>
+<!-- end topic_preview-->
+
+<!-- begin errors -->
+<div class="errorbg" align="center">
+	{errors_list}
+</div><br><!-- end errors -->
+
+<!-- begin forum_thanks --><div class="messagebg" align="center">{TOPIC_ADDED_MSG}</div><br><!-- end forum_thanks -->
+
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleTop">
+	<tr> 
+		<td class="titleTopLeft"><img src="images/tr.gif" class="titleTopImgLeft" alt=""></td>
+		<td class="titleTopCenter">
+			<table cellspacing=0 cellpadding=0 border=0><tr><td><div>{NEW_TOPIC_MSG}</div></td></tr></table>
+		</td>
+		<td class="titleTopRight"><img src="images/tr.gif" class="titleTopImgRight" alt=""></td>
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="block">
+	<tr> 
+		<td class="blockTD">
+		<form action="{forum_topic_new_href}" method="post" name="forum">
+		<input type="hidden" name="forum_id" value="{forum_id}">
+		<input type="hidden" name="attachments_url" value="{user_forum_attachments_url}">
+		<input type="hidden" name="rnd" value="{rnd}">
+		<input type="hidden" name="operation" value="1">
+		<input type="hidden" name="u" value="{u}">
+		<table border="0" cellspacing="1" width="100%" class="padding6px">
+			<tr class="usualbg">
+				<td colspan="2" class="smallText" align="right">
+					{ASTERISK_MSG}
+				</td>
+			</tr>
+			<!-- begin user_name_block -->
+			<tr class="usualbg">
+				<td class="{user_name_class}">
+					{TOPIC_NICKNAME_FIELD} *
+					</td>
+				<td class="{user_name_class}">
+					<input class="text" type="text" name="user_name" size="60" value="{user_name}" maxlength="64">
+				</td>
+			</tr>
+			<!-- end user_name_block -->
+			<!-- begin user_email_block -->
+			<tr class="usualbg">
+				<td class="{user_email_class}">
+					{TOPIC_EMAIL_FIELD} *
+				</td>
+				<td class="{user_email_class}">
+					<input class="text" type="text" name="user_email" size="60" value="{user_email}" maxlength="128">
+				</td>
+			</tr>
+			<!-- end user_email_block -->
+			<tr class="usualbg">
+				<td class="{topic_class}">
+					{TOPIC_NAME_FIELD} *
+				</td>
+				<td class="{topic_class}">
+					<input class="text" type="text" name="topic" size="60" value="{topic}">
+				</td>
+			</tr>
+			<!-- begin attachments_block -->
+			<tr class="usualbg">
+				<td>
+					<a href="#" onClick="attachFiles(document.forum);return false;">{ATTACHMENTS_MSG}</a>
+					<a href="#" onClick="attachFiles(document.forum);return false;"><img src="images/clip.gif" align="top" border="0" width="16" height="16"></a>
+				</td>
+				<td>
+					<div id="attachmentsBlock" style="{attachments_class}">
+						<a href="#" onClick="attachFiles(document.forum);return false;">Attached Files</a>:&nbsp;
+						&nbsp;<span id="attachedFiles">{attached_files}</span>
+					</div>
+				</td>
+			</tr>
+			<!-- end attachments_block -->
+			<tr class="usualbg" valign="top">
+				<td class="{description_class}">
+					{TOPIC_MESSAGE_FIELD} *
+
+					<!-- begin icons_block -->
+					<div align="center">
+					<br>{EMOTICONS_MSG}
+					<table cellspacing="3" cellpadding="0" border="0">
+					<!-- begin icons_rows -->
+					<tr>
+						<!-- begin icons_cols -->
+						<td><a href="#" onClick="insertAtCaret('{icon_code_js}', document.forum.description);return false;"><img src="{icon_src}" {icon_size} border="0" alt="{icon_alt}"></a></td>
+						<!-- end icons_cols -->
+					</tr>
+					<!-- end icons_rows -->
+					</table>
+					<!-- begin icons_more_link -->
+					<br><a href="#" onClick="openIconsWindow('{icon_select_href}', document.forum.description);return false;">{VIEW_MORE_EMOTICONS_MSG}</a>
+					<!-- end icons_more_link -->
+					</div>
+					<!-- end icons_block -->
+
+				</td>
+				<td class="{description_class}">
+					<TEXTAREA NAME="description" ROWS="15" COLS="60" onSelect="storeCaret(this);" onClick="storeCaret(this);" onKeyUp="storeCaret(this);">{description}</TEXTAREA>
+				</td>
+			</tr>
+			<tr class="usualbg">
+				<td class="text">
+					{TOPIC_NOTIFY_FIELD}
+				</td>
+				<td>
+					<input type="checkbox" {email_notification} name="email_notification" value="1">
+				</td>
+			</tr>
+			<!-- begin validation_number_block -->
+			<tr class="usualbg">
+				<td class="{validation_class}">
+					{VALIDATION_CODE_FIELD}
+				</td>
+				<td class="{validation_class}">
+					<input class="field" type="text" name="validation_number" size="4" value="{validation_number}">
+					&nbsp;<img src="validation_image.php" border="0" align="absmiddle">
+				</td>
+			</tr>
+			<!-- end validation_number_block -->
+			<tr class="middlebg">
+				<td>
+				</td>
+				<td>
+					<span class="submit"><input class="submit" type="submit" name="button" value="{ADD_TOPIC_BUTTON}"></span>
+					<span class="submit"><input class="submit" id="preview" type="submit" name="button" value="{PREVIEW_BUTTON}"></span>
+					<span class="submit"><input class="submit" id="clear" type="button" value="{CLEAR_BUTTON}" onClick="document.forum.description.value=''"></span>
+					<span class="submit"><input class="submit" id="reset" type="reset" value="{RESET_BUTTON}"></span>
+				</td>
+			</tr>
+		</table>
+	</form>
+	</td></tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="titleBot">
+<tr> 
+	<td class="titleBotLeft"><img src="images/tr.gif" class="titleBotImgLeft" alt=""></td>
+	<td class="titleBotRight"><img src="images/tr.gif" class="titleBotImgRight" alt=""></td>
+</tr>
+</table>
+</div>

@@ -1,0 +1,100 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<title>{ADMINISTRATION_MSG} :: {EDIT_PREDEFINED_REPLY_MSG}</title>
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+<script language="JavaScript">
+<!--
+function closeWindow()
+{
+	window.opener.focus();
+	window.close();
+}
+//-->
+</script>
+</head>
+
+<body class="commonbg">
+
+
+{admin_header} 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_support_href}">{HELPDESK_MSG}</a>&nbsp;&gt;&nbsp;<a 
+			href="{admin_support_prereplies_url}">{PREDEFINED_REPLIES_MSG}</a>&nbsp;&gt;&nbsp;<b>{EDIT_PREDEFINED_REPLY_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<fieldset class="normargin">
+<legend>{EDIT_PREDEFINED_REPLY_MSG}</legend>
+
+<table border="0" cellspacing="1" cellpadding="6" width="100%">
+<form action="{admin_support_prereply_href}" name="record" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="reply_id" value="{reply_id}">
+<input type="hidden" name="s_kw" value="{s_kw}">
+<input type="hidden" name="s_type" value="{s_type}">
+<input type="hidden" name="is_popup" value="{is_popup}">
+<input type="hidden" name="sort_ord" value="{sort_ord}">
+<input type="hidden" name="sort_dir" value="{sort_dir}">
+<input type="hidden" name="page" value="{page}">
+
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="6" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{TYPE_MSG} *
+	</td>
+	<td>
+		<select name="type_id"><!-- begin type_id -->
+			<option {type_id_selected} value="{type_id_value}">{type_id_description}<!-- end type_id -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ADMIN_TITLE_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="subject" value="{subject}">
+	</td>
+</tr>
+<tr class="usual" valign="top">
+	<td>
+		&nbsp;{BODY_MSG} *
+	</td>
+	<td>
+		<textarea name="body" cols="80" rows="15">{body}</textarea>
+	</td>
+</tr>
+<tr class="middle">
+	<td></td>
+	<td>
+		<!-- BEGIN edit_button -->
+		<input class="submit" type="submit" value="{save_button}" onclick="document.record.operation.value='save'"> 
+		<!-- END edit_button -->
+		&nbsp; <!-- BEGIN delete -->
+		<input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');"> &nbsp; <!-- END delete -->
+		<input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	</td>
+</tr>
+</form>	
+</table>
+</fieldset>
+
+{admin_footer}
+</body>
+</html>

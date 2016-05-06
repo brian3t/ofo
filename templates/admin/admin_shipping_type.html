@@ -1,0 +1,335 @@
+<html><head><title>..:: {ADMINISTRATION_MSG} :: {EDIT_SHIPPING_TYPE_MSG} ::..</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<link rel="stylesheet" href="../styles/admin.css" type="text/css">
+ 
+<script language="JavaScript" type= "text/javascript" src="../js/list_fields.js"></script>
+<script language="JavaScript">
+<!--
+var list_fields_names = new Array('countries','states','sites','user_types');
+//-->
+</script>
+
+</head>
+<body class="commonbg">
+
+{admin_header} 
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr><td class="header"> 
+	<table cellspacing="1" cellpadding="3" border="0" width="100%" align="center">
+	<tr>
+		<td class="usual">
+			&nbsp;<a href="{admin_href}">{ADMINISTRATION_MSG}</a>&nbsp;&gt;
+			<a href="{admin_shipping_modules_href}">{SHIPPING_MODULES_MSG}</a>&nbsp;&gt;
+			<a href="{admin_shipping_module_href}?shipping_module_id={shipping_module_id}">{shipping_module_name}</a>&nbsp;&gt;
+			<a href="{admin_shipping_types_href}?shipping_module_id={shipping_module_id}">{SHIPPING_TYPES_MSG}</a>&nbsp;&gt;
+			<b>{EDIT_SHIPPING_TYPE_MSG}</b>
+		</td>
+	</tr>
+	</table>
+</td></tr></table>
+
+<br>
+
+<table cellspacing="0" cellpadding="0" border="0">
+<tr><!-- BEGIN tabs -->
+	<td onClick="changeTab('{tab_name}'); return false;"><div id="{tab_id}" class="{tab_class}"><a class="blackSm" href="#" onClick="changeTab('{tab_name}'); return false;">{tab_title}</a></td><!-- END tabs -->
+</tr>
+</table>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border: 1px solid #999;">
+<tr align="center"> 
+	<td>
+
+<form action="{admin_shipping_type_href}" name="record" onSubmit="selectListFieldsAll();" method="POST">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="shipping_type_id" value="{shipping_type_id}">
+<input type="hidden" name="shipping_module_id" value="{shipping_module_id}">
+<input type="hidden" name="page" value="{page}">
+<input type="hidden" name="tab" value="{tab}">
+<input type="hidden" name="user_types" value="">
+<input type="hidden" name="sites" value="">
+<input type="hidden" name="countries" value="">
+<input type="hidden" name="states" value="">
+
+
+<div id="data_general" style="{general_style}">
+<table border="0" cellspacing="1" cellpadding="4" width="100%">
+<!-- BEGIN errors -->
+<tr class="usual">
+	<td colspan="2" align="center">
+		<div class="error">{errors_list}</div>
+	</td>
+</tr><!-- END errors -->
+<tr class="usual">
+	<td>
+		&nbsp;{IS_ACTIVE_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="is_active" {is_active} value="1">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SHIPPING_ORDER_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" size="10" name="shipping_order" value="{shipping_order}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{ESTIMATED_SHIPPING_TIME_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="10" name="shipping_time" value="{shipping_time}"> &nbsp; ({USED_TO_ESTIMATE_NOTE})
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SHIPPING_CODE_MSG}
+	</td>
+	<td>
+		<input class="field" type="text" size="40" name="shipping_type_code" value="{shipping_type_code}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SHIPPING_DESCRIPTION_MSG} *
+	</td>
+	<td>
+		<input class="field" type="text" size="80" name="shipping_type_desc" value="{shipping_type_desc}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{QUANTITY_MSG} 
+	</td>
+	<td>
+		&nbsp;{MINIMUM_MSG} <input class="field" type="text" size="10" name="min_quantity" value="{min_quantity}">
+		&nbsp;{MAXIMUM_MSG} <input class="field" type="text" size="10" name="max_quantity" value="{max_quantity}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{TOTAL_GOODS_COST}
+	</td>
+	<td>
+		&nbsp;{MINIMUM_MSG} <input class="field" type="text" size="10" name="min_goods_cost" value="{min_goods_cost}">
+		&nbsp;{MAXIMUM_MSG} <input class="field" type="text" size="10" name="max_goods_cost" value="{max_goods_cost}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{TOTAL_PRODUCTS_WEIGHT_MSG} (<b>{weight_measure}</b>)
+	</td>
+	<td>
+		&nbsp;{MINIMUM_MSG} <input class="field" type="text" size="10" name="min_weight" value="{min_weight}">
+		&nbsp;{MAXIMUM_MSG} <input class="field" type="text" size="10" name="max_weight" value="{max_weight}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{TARE_WEIGHT_MSG} (<b>{weight_measure}</b>)
+	</td>
+	<td>
+		<input class="field" type="text" size="10" name="tare_weight" value="{tare_weight}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{SHIPPING_COST_MSG}
+	</td>
+	<td>
+		&nbsp;{PER_ORDER_MSG} <input class="field" type="text" size="10" name="cost_per_order" value="{cost_per_order}">
+		&nbsp;{FOR_EACH_PRODUCT_MSG} <input class="field" type="text" size="10" name="cost_per_product" value="{cost_per_product}">
+		&nbsp;{PER_WEIGHT_MSG} (<b>{weight_measure}</b>) <input class="field" type="text" size="10" name="cost_per_weight" value="{cost_per_weight}">
+	</td>
+</tr>
+<tr class="usual">
+	<td>
+		&nbsp;{IS_SHIPPINGTAXABLE_MSG}
+	</td>
+	<td>
+		<input type="checkbox" name="is_taxable" {is_taxable} value="1">
+	</td>
+</tr>
+</table>
+
+<table width="100%" border="0" cellspacing="1" cellpadding="4">
+<tr class="usual">
+	<td colspan="3">
+		&nbsp; <input type="checkbox" name="countries_all" {countries_all} onClick="checkListFields('countries');" value="1">
+		Use this shipping type for all countries (untick this checkbox to select countries manually)
+	</td>
+</tr>
+<tr align="center" class="middle">
+	<td width="40%">{AVAILABLE_COUNTRIES_MSG}</td>
+	<td width="20%">{OPERATIONS_MSG}</td>
+	<td width="40%">{TYPE_FOR_COUNTRIES_NOTE}</td>
+</tr>	
+<tr align="center" class="usual">
+	<td width="40%">
+		<select name="available_countries" MULTIPLE size="10"  style="width: 300px;"><!-- begin available_countries -->
+				<option value="{country_id}">{country_name}<!-- end available_countries -->
+		</select>
+	</td>
+	<td width="20%">
+
+		<input class="submit" type="button" name="add_countries" value="&nbsp;&nbsp; {ADD_BUTTON} -> &nbsp;&nbsp;" onClick="addListFields('countries');"><br><br>
+		<input class="submit" type="button" name="remove_countries" value="<- Remove" onClick="removeListFields('countries');">
+	</td>
+	<td width="40%">
+		<select name="selected_countries" MULTIPLE size="10" style="width: 300px;"><!-- begin selected_countries -->
+				<option value="{country_id}">{country_name}<!-- end selected_countries -->
+		</select>
+	</td>
+</tr>
+<tr class="usual">
+	<td colspan="3">
+		&nbsp; <input type="checkbox" name="states_all" {states_all} onClick="checkListFields('states');" value="1">
+		Use this shipping type for all states (untick this checkbox to select states manually)
+	</td>
+</tr>
+<tr align="center" class="middle">
+	<td width="40%">Available States</td>
+	<td width="20%">{OPERATIONS_MSG}</td>
+	<td width="40%">Use this shipping type for states in the list below</td>
+</tr>	
+<tr align="center" class="usual">
+	<td width="40%">
+		<select name="available_states" MULTIPLE size="10"  style="width: 300px;"><!-- begin available_states -->
+				<option value="{state_id}">{state_name}<!-- end available_states -->
+		</select>
+	</td>
+	<td width="20%">
+
+		<input class="submit" type="button" name="add_states" value="&nbsp;&nbsp; {ADD_BUTTON} -> &nbsp;&nbsp;" onClick="addListFields('states');"><br><br>
+		<input class="submit" type="button" name="remove_states" value="<- Remove" onClick="removeListFields('states');">
+	</td>
+	<td width="40%">
+		<select name="selected_states" MULTIPLE size="10" style="width: 300px;"><!-- begin selected_states -->
+				<option value="{state_id}">{state_name}<!-- end selected_states -->
+		</select>
+	</td>
+</tr>
+<tr class="middle">
+	<td align="left" colspan="3">
+		&nbsp; <input class="submit" type="submit" value="{save_button}" onclick="document.record.operation.value='save'">&nbsp;<!-- BEGIN delete -->
+		&nbsp; <input class="submit" type="submit" value="{DELETE_BUTTON}" onclick="document.record.operation.value='delete';return confirm('{CONFIRM_DELETE_JS}');">&nbsp;<!-- END delete -->
+		&nbsp; <input class="submit" type="submit" value="{CANCEL_BUTTON}" onclick="document.record.operation.value='cancel'">
+	</td>
+</tr>
+</table>
+
+
+</div>
+
+<div id="data_user_types" style="{user_types_style}">
+<table cellspacing="1" cellpadding="4" border="0" width="100%">
+<tr class="usual">
+	<td colspan="3">
+		&nbsp; <input type="checkbox" name="user_types_all" {user_types_all} onClick="checkListFields('user_types');" value="1">
+		Use this shipping type for all users types (untick this checkbox to select users types manually)
+	</td>
+</tr>	
+<tr class="usual">
+	<td colspan="2">
+
+		<table width="100%" border="0" cellspacing="1" cellpadding="3">
+		<tr align="center" class="usual">
+			<td width="40%"><b>{AVAILABLE_USER_TYPES_MSG}</b></td>
+			<td width="20%"><b>{OPERATIONS_MSG}</b></td>
+			<td width="40%"><b>Use this shipping type for users types in the list below</b></td>
+		</tr>	
+		<tr align="center" class="usual">
+			<td width="40%">
+				<select name="available_user_types" MULTIPLE size="10"  style="width: 300px;"><!-- begin available_user_types -->
+					<option value="{type_id}">{type_name}<!-- end available_user_types -->
+				</select>
+			</td>
+			<td width="20%">    
+				<input class="submit" readonly type="button" name="add_user_types" value="&nbsp;&nbsp; {ADD_BUTTON}  -> &nbsp;&nbsp;" onClick="addListFields('user_types');"><br><br>
+				<input class="submit" type="button" name="remove_user_types" value="<- {REMOVE_BUTTON}" onClick="removeListFields('user_types');">
+			</td>
+			<td width="40%">    
+				<select name="selected_user_types" MULTIPLE size="10" style="width: 300px;"><!-- begin selected_user_types -->
+					<option value="{type_id}">{type_name}<!-- end selected_user_types -->
+				</select>
+			</td>
+		</tr>
+		</table>
+
+	</td>
+</tr>
+<tr class="middle">
+	<td colspan="3">
+		&nbsp; <input class="submit" type="submit" value=" {save_button} " onCLick="document.record.operation.value='save'"> &nbsp; 
+	</td>
+</tr>
+</table>
+</div>
+
+
+<!-- begin sitelist-->
+<div id="data_sites" style="{sites_style}">
+	<table cellspacing="1" cellpadding="4" border="0" width="100%">
+	<tr class="usual">
+		<td colspan="3">
+			&nbsp; <input type="checkbox" name="sites_all" {sites_all} onClick="checkListFields('sites');" value="1">
+			Use this shipping type for all sites (untick this checkbox to select sites manually)
+		</td>
+	</tr>
+	<tr class="usual">
+		<td colspan="2">
+	
+			<table width="100%" border="0" cellspacing="1" cellpadding="3">
+			<tr align="center" class="usual">
+				<td width="40%"><b>{AVAILABLE_SITES_MSG}</b></td>
+				<td width="20%"><b>{OPERATIONS_MSG}</b></td>
+				<td width="40%"><b>{USE_ITEM_SITES_MSG}</b></td>
+			</tr>
+			<tr align="center" class="usual">
+				<td width="40%">
+					<select name="available_sites" MULTIPLE size="10"  style="width: 300px;"><!-- begin available_sites -->
+						<option value="{site_id}">{site_name}<!-- end available_sites-->
+					</select>
+				</td>
+				<td width="20%">
+	
+					<input class="submit" readonly type="button" name="add_sites" value="&nbsp;&nbsp; {ADD_BUTTON}  -> &nbsp;&nbsp;" onClick="addListFields('sites');">
+					<br><br>
+					<input class="submit" type="button" name="remove_sites" value="<- {REMOVE_BUTTON}" onClick="removeListFields('sites');">
+				</td>
+				<td width="40%">
+	
+					<select name="selected_sites" MULTIPLE size="10" style="width: 300px;"><!-- begin selected_sites -->
+						<option value="{site_id}">{site_name}<!-- end selected_sites -->
+					</select>
+				</td>
+			</tr>
+			</table>
+	
+		</td>
+	</tr>
+	<tr class="middle">
+		<td colspan="3">
+			&nbsp; <input class="submit" type="submit" value=" {save_button} " onCLick="document.record.operation.value='save'"> &nbsp;
+		</td>
+	</tr>
+	</table>
+</div>
+<!-- end sitelist-->
+
+</form>	
+
+{admin_footer}
+<script language="JavaScript">
+<!--
+	checkListFieldsAll();
+//-->
+</script>
+</body>
+</html>
