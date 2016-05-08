@@ -15,7 +15,7 @@ if ($_SERVER['PWD'] == '/home/tri' || strpos('localhost', $_SERVER['SERVER_NAME'
 }
 
 if (IS_LOCAL) {
-    $root_pw = "rTrapok)1";
+    $root_pw = "";
 } else {
     $root_pw = "ifl@b";
 }

@@ -1,3 +1,7 @@
+apw/log*
+includes/var_definition.php
+.idea
+apw/data
 images/*
 video/*
 ViartText/*

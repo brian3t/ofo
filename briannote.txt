@@ -1,0 +1,4 @@
+sql:
+UPDATE  `oilfiltersonline_test_store`.`va_global_settings` SET  `setting_value` =  'https://localhost/' WHERE  `va_global_settings`.`site_id` =1 AND  `va_global_settings`.`setting_type` =  'global' AND  `va_global_settings`.`setting_name` =  'secure_url' LIMIT 1 ;
+
+SELECT * FROM `va_global_settings` WHERE setting_name = "site_url";
