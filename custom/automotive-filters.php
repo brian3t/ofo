@@ -464,7 +464,7 @@ $xajax->printJavascript("js/");
 <script type="text/javascript">
   $(document).ready(function(){
   <? if($_SESSION["application"]) {
-    echo '$(".mainTableCellCenter").prepend(\''.$_SESSION["application"].'\');';
+    //echo '$(".mainTableCellCenter").prepend(\''.$_SESSION["application"].'\');';
   } ?>
   $(".finder-wrapper").addClass("hide");
 

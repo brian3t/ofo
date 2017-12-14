@@ -19,6 +19,8 @@ if (IS_LOCAL) {
 } else {
     $root_pw = "ifl@b";
 }
+// define('DEBUG', true);
+define('DEBUG', false);
 
 $con = new mysqli("localhost", "root", $root_pw);
 /* check connection */
@@ -351,9 +353,9 @@ $appNodes = $apps->$options['nodepath'];
 $k = 0;
 for ($k = 0;$k <= sizeof($appNodes);$k++) {
 
-//    if (IS_LOCAL && $k > 1){
-//        break;
-//    }
+   if ((IS_LOCAL || DEBUG) && $k > 1){
+       break;
+   }
     $app = $appNodes[$k];
     /*
      * 		<BaseVehicle id="1"/>

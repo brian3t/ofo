@@ -264,10 +264,10 @@
   </wsdl:binding> 
   <wsdl:service name="AutoPOService"> 
     <wsdl:port name="AutoPOServiceSoap" binding="tns:AutoPOServiceSoap"> 
-      <soap:address location="https://apnet.apwks.com/OilFiltersWebservice/webservice.asmx" /> 
+      <soap:address location="https://apnet2.apwks.com/oilfilterswebservice/webservice.asmx" /> 
     </wsdl:port> 
     <wsdl:port name="AutoPOServiceSoap12" binding="tns:AutoPOServiceSoap12"> 
-      <soap12:address location="https://apnet.apwks.com/OilFiltersWebservice/webservice.asmx" /> 
+      <soap12:address location="https://apnet2.apwks.com/oilfilterswebservice/webservice.asmx" /> 
     </wsdl:port> 
   </wsdl:service> 
 </wsdl:definitions>

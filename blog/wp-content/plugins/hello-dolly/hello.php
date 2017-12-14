@@ -12,6 +12,7 @@ Version: 1.6
 Author URI: http://ma.tt/
 */
 
+
 function hello_dolly_get_lyric() {
 	/** These are the lyrics to Hello Dolly */
 	$lyrics = "Hello, Dolly
