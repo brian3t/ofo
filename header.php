@@ -1,6 +1,6 @@
 <?php
 
-  if (substr($_SERVER['HTTP_HOST'],0,3) != 'www') {
+  if (!IS_LOCAL && substr($_SERVER['HTTP_HOST'],0,3) != 'www') {
     header('HTTP/1.1 301 Moved Permanently');
     header('Location: http://www.'.$_SERVER['HTTP_HOST']
     .$_SERVER['REQUEST_URI']);

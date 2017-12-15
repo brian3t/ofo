@@ -8,14 +8,14 @@ Check log file log_read_parts_.txt in the same folder for inserted records and/o
 
 //error_reporting(4);
 ini_set('max_execution_time', 10800);
-if ($_SERVER['PWD'] == '/home/tri' || strpos('localhost', $_SERVER['SERVER_NAME']) != false) {
+if ($_SERVER['PWD'] == '/home/tri' || strpos('ofo', $_SERVER['SERVER_NAME']) !== false) {
     define('IS_LOCAL', true);
 } else {
     define('IS_LOCAL', false);
 }
 
 if (IS_LOCAL) {
-    $root_pw = "";
+    $root_pw = "rTrapok)1";
 } else {
     $root_pw = "ifl@b";
 }

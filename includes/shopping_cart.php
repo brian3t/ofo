@@ -352,7 +352,8 @@
 		}
 
 		$is_error = false;
-		if (VA_Products::check_permissions($sc_item_id, VIEW_ITEMS_PERM)) {
+		$va_product = (new VA_Products);
+		if ($va_product->check_permissions($sc_item_id, VIEW_ITEMS_PERM)) {
 			$sql  = " SELECT item_type_id,item_name," . $price_field . ",is_price_edit,is_sales," . $sales_field . ",buying_price,tax_free,stock_level,";
 			$sql .= " use_stock_level,hide_out_of_stock,disable_out_of_stock,min_quantity,max_quantity,quantity_increment ";
 			$sql .= " FROM " . $table_prefix . "items ";
