@@ -2,25 +2,27 @@
 /*Import .xml part data into oilfiltersonline.com VIART database.
 Insert/replace new records into aaia and aaia_parts tables
 Usage: At command line:
- php readpartsfromxml_aces.php --file="/Users/tri/bench_mac/ofo/fgto.xml" --nodepath="App"
+ php readpartsfromxml.php --file="/Users/tri/bench_mac/ofo/fgto.xml" --nodepath="App"
+NOTE the capitazlied App
 Check log file log_read_parts_.txt in the same folder for inserted records and/or errors encountered while executing script.
 */
 
 //error_reporting(4);
 ini_set('max_execution_time', 10800);
-if ($_SERVER['PWD'] == '/home/tri' || strpos('localhost', $_SERVER['SERVER_NAME']) !== false) {
+if (php_sapi_name() == 'cli' || strpos('ofo', $_SERVER['SERVER_NAME']) !== false) {
     define('IS_LOCAL', true);
 } else {
     define('IS_LOCAL', false);
 }
 
 if (IS_LOCAL) {
-    $root_pw = "";
+    $root_pw = "rTrapok)1";
 } else {
     $root_pw = "ifl@b";
 }
-// define('DEBUG', true);
-define('DEBUG', false);
+
+define('IS_DEBUG', true);
+//define('IS_DEBUG', false);
 
 $con = new mysqli("localhost", "root", $root_pw);
 /* check connection */
@@ -194,8 +196,8 @@ function lookupAaia($z)
         $liter = $engineBase['Liter'];
     }
 
-    if (isset($z['enginevin'])) {
-        $sql = "SELECT * FROM EngineVin WHERE EngineVINID = " . $z['enginevin'] . " LIMIT 1;";
+    if (isset($z['enginevin']) && !empty($z['enginevin'])) {
+        $sql = "SELECT * FROM EngineVIN WHERE EngineVINID = " . $z['enginevin'] . " LIMIT 1;";
         $result = $con->query($sql);
         if ($result->num_rows == 0) {
             $log .= "No engine vin found, ";
@@ -206,7 +208,7 @@ function lookupAaia($z)
     }
 
     if (isset($z['parttype'])) {
-        $sql = "SELECT * FROM aaia_pcdb.parts WHERE PartTerminologyID = " . $z['parttype'] . " LIMIT 1;";
+        $sql = "SELECT * FROM aaia_pcdb.Parts WHERE PartTerminologyID = " . $z['parttype'] . " LIMIT 1;";
         $result = $con->query($sql);
         if ($result->num_rows == 0) {
             $log .= "No parttype found, ";
@@ -353,7 +355,7 @@ $appNodes = $apps->$options['nodepath'];
 $k = 0;
 for ($k = 0;$k <= sizeof($appNodes);$k++) {
 
-   if ((IS_LOCAL || DEBUG) && $k > 1){
+   if (IS_DEBUG && $k > 1){
        break;
    }
     $app = $appNodes[$k];

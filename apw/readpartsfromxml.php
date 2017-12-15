@@ -3,12 +3,13 @@
 Insert/replace new records into aaia and aaia_parts tables
 Usage: At command line:
  php readpartsfromxml.php --file="/Users/tri/bench_mac/ofo/fgto.xml" --nodepath="App"
+NOTE the capitazlied App
 Check log file log_read_parts_.txt in the same folder for inserted records and/or errors encountered while executing script.
 */
 
 //error_reporting(4);
 ini_set('max_execution_time', 10800);
-if ($_SERVER['PWD'] == '/home/tri' || strpos('ofo', $_SERVER['SERVER_NAME']) !== false) {
+if (php_sapi_name() == 'cli' || strpos('ofo', $_SERVER['SERVER_NAME']) !== false) {
     define('IS_LOCAL', true);
 } else {
     define('IS_LOCAL', false);
@@ -19,6 +20,9 @@ if (IS_LOCAL) {
 } else {
     $root_pw = "ifl@b";
 }
+
+define('IS_DEBUG', true);
+//define('IS_DEBUG', false);
 
 $con = new mysqli("localhost", "root", $root_pw);
 /* check connection */
@@ -338,6 +342,7 @@ $options = getopt(null, $longopts);
 //END DEBUG
 if (sizeof($options) !== 2) {
     $log .= ("Needs 2 arguments!!!");
+    echo "Needs 2 arguments";
     die(- 1);
 }
 // var_dump($options);
@@ -357,9 +362,9 @@ $appNodes = $apps->$options['nodepath'];
 $k = 0;
 for ($k = 0;$k <= sizeof($appNodes);$k ++) {
 
-//    if (IS_LOCAL && $k > 1){
-//        break;
-//    }
+    if (IS_DEBUG && $k > 1){
+        break;
+    }
     $app = $appNodes[$k];
     $z['part'] = (string) $app->Part;
     $z['description'] = (string) $app->MfrLabel;
