@@ -9,7 +9,7 @@
 		 * @param Constant $access_level: VIEW_CATEGORIES_PERM, VIEW_CATEGORIES_ITEMS_PERM, VIEW_ITEMS_PERM, ADD_ITEMS_PERM
 		 * @return String
 		 */
-		function _sql($params, $access_level) {
+		static function _sql($params, $access_level) {
 			global $table_prefix, $db, $site_id;
 			
 			$select = "";
@@ -145,7 +145,7 @@
 		 * @param Constant $access_level: VIEW_CATEGORIES_PERM, VIEW_CATEGORIES_ITEMS_PERM, VIEW_ITEMS_PERM, ADD_ITEMS_PERM
 		 * @return Array
 		 */
-		function find_all_ids($where = "", $access_level = VIEW_CATEGORIES_PERM) {
+		static function find_all_ids($where = "", $access_level = VIEW_CATEGORIES_PERM) {
 			global $db;
 			
 			$db->query(VA_Categories::_sql($where, $access_level));
@@ -219,7 +219,7 @@
 		 * @param Constant $access_level: VIEW_CATEGORIES_ITEMS_PERM, VIEW_ITEMS_PERM
 		 * @return String
 		 */
-		function _sql($params, $access_level, $is_count = false) {
+		static function _sql($params, $access_level, $is_count = false) {
 			global $table_prefix, $db, $site_id, $language_code;
 			$select = ""; $where = ""; $distinct = ""; $group_by = ""; $order = "";
 			$join = ""; $brackets = "";
@@ -429,7 +429,7 @@
 		 * @param Boolean $debug - turn on debug output
 		 * @return Array
 		 */
-		function find_all_ids($params = "", $access_level = VIEW_CATEGORIES_ITEMS_PERM, $debug = false) {
+		static function find_all_ids($params = "", $access_level = VIEW_CATEGORIES_ITEMS_PERM, $debug = false) {
 			global $db;
 			if ($debug) {
 				$sql = VA_Products::_sql($params, $access_level);

@@ -84,7 +84,7 @@ class xajaxPluginManager
 		object : a reference to the one and only instance of the
 			plugin manager.
 	*/
-	function &getInstance()
+	static function &getInstance()
 	{
 		static $obj;
 		if (!$obj) {
