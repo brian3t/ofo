@@ -18,7 +18,7 @@ if (php_sapi_name() == 'cli' || strpos('ofo', $_SERVER['SERVER_NAME']) !== false
 if (IS_LOCAL) {
     $root_pw = "rTrapok)1";
 } else {
-    $root_pw = "ifl@b";
+    $root_pw = "rTrapok)1";
 }
 
 define('IS_DEBUG', true);

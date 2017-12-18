@@ -16,7 +16,7 @@ $option['txt']."','".$option['val']."');");
   }
 }
  
-$db=mysql_connect("localhost", "root", "ifl@b") or die(mysql_error());
+$db=mysql_connect("localhost", "root", "rTrapok)1") or die(mysql_error());
 mysql_select_db("oilfiltersonline") or die(mysql_error());
 $makesRs = mysql_query("SELECT DISTINCT(make) from part_lookup order by make asc") or die(mysql_error());
 while ($rs=mysql_fetch_assoc($makesRs)) {

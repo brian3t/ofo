@@ -1,6 +1,6 @@
 <?
 
-mysql_connect('localhost:3306','root','ifl@b') or die(mysql_error());
+mysql_connect('localhost:3306','root','rTrapok)1') or die(mysql_error());
 mysql_select_db('oilfiltersonlinestore') or die(mysql_error());
 $datafeedRs = mysql_query("SELECT item_code as mfrpartnbr, sales_price as price from va_items order by item_code asc") or die(mysql_error());
 

@@ -1,5 +1,5 @@
 <?
-mysql_connect("localhost", "root", "ifl@b") or die(mysql_error());
+mysql_connect("localhost", "root", "rTrapok)1") or die(mysql_error());
 
 $db = "oilfiltersonline_test_store";
 

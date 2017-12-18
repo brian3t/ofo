@@ -23,7 +23,7 @@ if(stristr($_SERVER['HTTP_HOST'], 'ajcates') || stristr($_SERVER['HTTP_HOST'], '
 	define('DB_USER', 'egghead');
 	 
 	/** MySQL database password */
-	define('DB_PASSWORD', 'ifl@b');
+	define('DB_PASSWORD', 'rTrapok)1');
 	
 	/** MySQL hostname */
 	define('DB_HOST', 'localhost');
@@ -42,7 +42,7 @@ if(stristr($_SERVER['HTTP_HOST'], 'ajcates') || stristr($_SERVER['HTTP_HOST'], '
 	define('DB_USER', 'root');
 	
 	/** MySQL database password */
-	define('DB_PASSWORD', 'ifl@b');
+	define('DB_PASSWORD', 'rTrapok)1');
 	
 	/** MySQL hostname */
 	define('DB_HOST', 'localhost');

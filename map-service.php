@@ -83,7 +83,7 @@ $ch = curl_init();
 	$address3 = get_address3($file);
 	$phone = get_phone($file);
 
-	mysql_connect('localhost', 'root', 'ifl@b')
+	mysql_connect('localhost', 'root', 'rTrapok)1')
 		OR die(fail('Could not connect to database.'));
 		
 	mysql_select_db('oilfiltersonline');

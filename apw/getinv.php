@@ -23,7 +23,7 @@ curl_close($ch);
 
 function csv_file_to_mysql_table($source_file, $target_table, $max_line_length=10000) {
 	
-	$link = mysql_connect("localhost", "root", "ifl@b") or die(mysql_error());
+	$link = mysql_connect("localhost", "root", "rTrapok)1") or die(mysql_error());
 	$db = mysql_select_db('oilfiltersonline', $link);
 	mysql_query("TRUNCATE TABLE $target_table") or die(mysql_error());
 	

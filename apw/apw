@@ -1,1 +1,1 @@
-mysqlimport --local --user=root --password=ifl@b --delete --fields-terminated-by="," --fields-enclosed-by="'" --fields-escaped-by="'" --lines-terminated-by="\r\n" oilfiltersonline /var/www/public_html/oilfiltersonline.com/apw/apw.csv
+mysqlimport --local --user=root --password=rTrapok)1 --delete --fields-terminated-by="," --fields-enclosed-by="'" --fields-escaped-by="'" --lines-terminated-by="\r\n" oilfiltersonline /var/www/public_html/oilfiltersonline.com/apw/apw.csv

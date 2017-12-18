@@ -1,6 +1,6 @@
 <?php
 	// Connect to the database
-	mysql_connect('localhost:3306','root','ifl@b') or die(mysql_error());
+	mysql_connect('localhost:3306','root','rTrapok)1') or die(mysql_error());
 	mysql_select_db('oilfiltersonlinestore') or die(mysql_error());
 
 	// Backward compatibility with old variable names
