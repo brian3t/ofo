@@ -9,24 +9,24 @@ Check log file log_read_parts_.txt in the same folder for inserted records and/o
 
 //error_reporting(4);
 ini_set('max_execution_time', 10800);
-if (php_sapi_name() == 'cli' || strpos('ofo', $_SERVER['SERVER_NAME']) !== false) {
+if (php_sapi_name() == 'cli' || strpos('ofo', $_SERVER['SERVER_NAME']) !== false){
     define('IS_LOCAL', true);
 } else {
     define('IS_LOCAL', false);
 }
 
-if (IS_LOCAL) {
+if (IS_LOCAL){
     $root_pw = "rTrapok)1";
 } else {
     $root_pw = "rTrapok)1";
 }
 
-define('IS_DEBUG', true);
-//define('IS_DEBUG', false);
+//define('IS_DEBUG', true);
+define('IS_DEBUG', false);
 
 $con = new mysqli("localhost", "root", $root_pw);
 /* check connection */
-if ($con->connect_errno) {
+if ($con->connect_errno){
     die("Connect failed: %s\n" . $con->connect_error);
 }
 
@@ -38,6 +38,7 @@ $enginebases = array();
 $fuelDeliveryTypes = array();
 $engineDesignations = array();
 $partTypes = array();
+$results = ['success' => 0, 'insert_fail' => 0, 'lookup_fail' => 0];
 chdir(dirname(__FILE__));
 $logFile = __DIR__ . '/log_read_parts_' . date("m_d_h_i_s") . ".txt";
 $logFile = fopen($logFile, 'w+');
@@ -48,7 +49,7 @@ $log = "";
 function initVars()
 {
     global $makes, $enginebases, $fuelDeliveryTypes, $engineDesignations, $partTypes, $log, $con, $logFile;
-    if (!$con->select_db(AAIA_VCDB)) {
+    if (!$con->select_db(AAIA_VCDB)){
         $log .= "Unable to select AAIA_VCDB: " . mysqli_error($con);
         exit;
     }
@@ -59,12 +60,12 @@ function initVars()
 
     $result = $con->query($sql);
 
-    if (!$result) {
+    if (!$result){
         $log .= "Could not successfully run query ($sql) from DB: " . mysqli_error($con);
         exit;
     }
 
-    if ($result->num_rows == 0) {
+    if ($result->num_rows == 0){
         $log .= "No rows found, nothing to print so exiting";
         exit;
     }
@@ -79,12 +80,12 @@ function initVars()
 
     $result = $con->query($sql);
 
-    if (!$result) {
+    if (!$result){
         $log .= "Could not successfully run query ($sql) from DB: " . mysqli_error($con);
         exit;
     }
 
-    if ($result->num_rows == 0) {
+    if ($result->num_rows == 0){
         $log .= "No rows found, nothing to print so am exiting";
         exit;
     }
@@ -99,12 +100,12 @@ function initVars()
 
     $result = $con->query($sql);
 
-    if (!$result) {
+    if (!$result){
         $log .= "Could not successfully run query ($sql) from DB: " . mysqli_error($con);
         exit;
     }
 
-    if ($result->num_rows == 0) {
+    if ($result->num_rows == 0){
         $log .= "No rows found, nothing to print so am exiting";
         exit;
     }
@@ -116,7 +117,7 @@ function initVars()
     $fuelDeliveryTypes['5'] = "FI";
     $fuelDeliveryTypes['6'] = "CARB";
 
-    if (!$con->select_db(AAIA_PCDB)) {
+    if (!$con->select_db(AAIA_PCDB)){
         $log .= "Unable to select AAIA_PCDB: " . mysqli_error($con);
         exit;
     }
@@ -127,12 +128,12 @@ function initVars()
 
     $result = $con->query($sql);
 
-    if (!$result) {
+    if (!$result){
         $log .= "Could not successfully run query ($sql) from DB: " . mysqli_error($con);
         exit;
     }
 
-    if ($result->num_rows == 0) {
+    if ($result->num_rows == 0){
         $log .= "No rows found, nothing to print so am exiting";
         exit;
     }
@@ -159,7 +160,7 @@ function lookupAaia($z)
     $result = false;
     global $makes, $logFile, $log, $enginebases, $engineDesignations, $fuelDeliveryTypes, $con;
 
-    if (!$con->select_db(VIART_DB)) {
+    if (!$con->select_db(VIART_DB)){
         $log .= "Unable to select VIART_DB: " . mysqli_error($con);
         exit;
     }
@@ -169,11 +170,11 @@ function lookupAaia($z)
   ON BV.ModelID = MODEL.ModelID
   WHERE BaseVehicleID = " . $z['basevehicle'] . ";";
     $result = $con->query($sql);
-    if ($result->num_rows == 0) {
+    if ($result->num_rows == 0){
         $log .= "Model not found, nothing to print so exiting";
         return false;
     }
-    if ($result->num_rows != 1) {
+    if ($result->num_rows != 1){
         $log .= "More than 1 basevehicle found";
         return false;
     }
@@ -183,10 +184,10 @@ function lookupAaia($z)
     $model = trim($year_make_model['model']);
 
     //get cylinders, liter from enginebase
-    if (isset($z['enginebase'])) {
+    if (isset($z['enginebase'])){
         $sql = "SELECT * FROM EngineBase WHERE EngineBaseID = " . $z['enginebase'] . " LIMIT 1;";
         $result = $con->query($sql);
-        if ($result->num_rows == 0) {
+        if ($result->num_rows == 0){
             $log .= "No enginebase found, ";
 
             return false;
@@ -196,10 +197,11 @@ function lookupAaia($z)
         $liter = $engineBase['Liter'];
     }
 
-    if (isset($z['enginevin']) && !empty($z['enginevin'])) {
+    $engineVIN = '';
+    if (isset($z['enginevin']) && !empty($z['enginevin'])){
         $sql = "SELECT * FROM EngineVIN WHERE EngineVINID = " . $z['enginevin'] . " LIMIT 1;";
         $result = $con->query($sql);
-        if ($result->num_rows == 0) {
+        if ($result->num_rows == 0){
             $log .= "No engine vin found, ";
             return false;
         }
@@ -207,10 +209,10 @@ function lookupAaia($z)
         $z['enginevin'] = $engineVIN['EngineVINName'];
     }
 
-    if (isset($z['parttype'])) {
+    if (isset($z['parttype'])){
         $sql = "SELECT * FROM aaia_pcdb.Parts WHERE PartTerminologyID = " . $z['parttype'] . " LIMIT 1;";
         $result = $con->query($sql);
-        if ($result->num_rows == 0) {
+        if ($result->num_rows == 0){
             $log .= "No parttype found, ";
             return false;
         }
@@ -222,22 +224,22 @@ function lookupAaia($z)
 
     $aaiaIds = array();
     $sql = "SELECT id FROM aaia where year = $year_id and make = '$make' and model = '$model' ";
-    if (!empty($cylinders)) {
+    if (!empty($cylinders)){
         $sql .= "AND cylinders LIKE '%$cylinders%' ";
     }
-    if (!empty($liter)) {
+    if (!empty($liter)){
         $sql .= "AND liters = '$liter' ";
     }
     $result = $con->query($sql);
-    if (!$result) {
+    if (!$result){
         $log .= "Could not successfully run query ($sql) from DB: " . mysqli_error($con);
         return false;
     }
 
-    if ($result->num_rows == 0) {
+    if ($result->num_rows == 0){
         $sql = "REPLACE INTO aaia (year,make,model,cylinders,liters,engineVIN) values('$year_id', '$make', '$model', '$cylinders', '$liter', '$engineVIN');";
         $result = $con->query($sql);
-        if (!$result) {
+        if (!$result){
             $log .= "Could not successfully run query ($sql) from DB: " . mysqli_error($con);
             exit;
         }
@@ -248,8 +250,8 @@ function lookupAaia($z)
         $row = $result->fetch_row();
         $aaiaId = $row[0];
     }
-    
-    if (is_object($result)) {
+
+    if (is_object($result)){
         $result->free_result();
     }
     fwrite($logFile, $log);
@@ -275,43 +277,48 @@ manufacturer
 function insertPartToOFO($z)
 {
     $result = false;
-    global $log, $logFile, $con;
+    global $log, $logFile, $con, $results;
 
-    if (!$con->select_db(VIART_DB)) {
+    if (!$con->select_db(VIART_DB)){
         $log .= "Unable to select VIART_DB: " . mysqli_error($con);
         exit;
     }
 
     $aaiaId = $z['aaia'];
+    if ($aaiaId == false){
+        $results['lookup_fail']++;
+        exit;
+    }
 
     //check if part already exists
     $sql = "SELECT id FROM aaia_parts WHERE `part` = '$z[part]' AND `aaia` = '$aaiaId' AND `type` = '$z[parttype]' AND `manufacturer` = '$z[manufacturer]' ;";
-    if (($con->query($sql)->num_rows) > 0) {
+    if (($con->query($sql)->num_rows) > 0){
         //part exists
-        $log .= "Part already exists ". json_encode($z) . "\n";
+        $log .= "Part already exists. AAIA: " . $z['aaia'] . "\n";
     };
 
-    $pentius_desc = "Pentius UltraFlow Filters Feature:
+    /*$pentius_desc = "Pentius UltraFlow Filters Feature:
 
 *Advanced filtration technology
 *Superior quality for today\'s high tech vehicles
 *Are highly efficient in providing greater protection
 *Prevent harmful contaminants from causing premature wear and/or damage
-";
+";*/
 
     $sql = "REPLACE INTO aaia_parts (`part`, `description`, `aaia`, `type`, `manufacturer`) " .
-        "VALUES('$z[part]', '$pentius_desc', '$aaiaId', '$z[parttype]', '$z[manufacturer]') ; ";
+        "VALUES('$z[part]', 'Description  :', '$aaiaId', '$z[parttype]', '$z[manufacturer]') ; ";
 
     $result = $con->query($sql);
 
-    if (!$result) {
+    if (!$result){
         $log .= "Could not successfully run query ($sql) from DB: " . mysqli_error($con);
-        exit;
+        $results['insert_fail']++;
+        return false;
     }
 
     $log .= "Inserted part id: " . $con->insert_id . "\r\n";
     $result = true;
-
+    $results['success']++;
 
     fwrite($logFile, $log);
     $log = "";
@@ -329,19 +336,19 @@ $options = getopt(null, $longopts);
 //$options['file']="\\Users\\tri\\bench_mac\\ofo\\fgto.xml";
 //  $options['nodepath'] = "App";
 //END DEBUG
-if (sizeof($options) !== 2) {
-    if (!isset($options['file'])) {
+if (sizeof($options) !== 2){
+    if (!isset($options['file'])){
         $options['file'] = "data/pentius.xml";
     }
 
-    if (!isset($options['nodepath'])) {
+    if (!isset($options['nodepath'])){
         $options['nodepath'] = 'App';
     }
 }
 // var_dump($options);
 
 $xml = simplexml_load_file($options['file']);
-if ($xml === false) {
+if ($xml === false){
     echo "Can not read file " . $options['file'] . "\n";
     die(-1);
 };
@@ -353,11 +360,11 @@ $z = array();
 
 $appNodes = $apps->$options['nodepath'];
 $k = 0;
-for ($k = 0;$k <= sizeof($appNodes);$k++) {
+for ($k = 0;$k <= sizeof($appNodes);$k++){
 
-   if (IS_DEBUG && $k > 1){
-       break;
-   }
+    if (IS_DEBUG && $k > 1){
+        break;
+    }
     $app = $appNodes[$k];
     /*
      * 		<BaseVehicle id="1"/>
@@ -369,14 +376,17 @@ for ($k = 0;$k <= sizeof($appNodes);$k++) {
      */
     $z['basevehicle'] = (string)$app->BaseVehicle->attributes();
     $z['enginebase'] = (string)$app->EngineBase->attributes();
-    $z['enginevin'] = (string)$app->EngineVIN->attributes();
+    $z['enginevin'] = '';
+    if (isset($app->EngineVIN) && method_exists($app->EngineVIN, 'attributes')){
+        $z['enginevin'] = (string)$app->EngineVIN->attributes();
+    }
     $z['qty'] = (string)$app->Qty;
     $z['parttype'] = (string)$app->PartType->attributes();
     $z['part'] = (string)$app->Part;
 
     $z['type'] = $z['parttype'];
     $z['manufacturer'] = (string)$xml->Header->Company[0];//
-    if ($z['manufacturer'] == "Pentius USA, Inc") {
+    if ($z['manufacturer'] == "Pentius USA, Inc"){
         $z['manufacturer'] = "Pentius";
     }
     $z['aaia'] = lookupAaia($z);
@@ -387,4 +397,5 @@ for ($k = 0;$k <= sizeof($appNodes);$k++) {
 $con->close();
 unset($makes, $enginebases, $fuelDeliveryTypes, $engineDesignations, $partTypes);
 fwrite($logFile, $log . "\nStop");
+fwrite($logFile, "Summary: " . json_encode($results));
 fclose($logFile);
