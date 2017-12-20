@@ -11,9 +11,6 @@
 */
 
 
-  if (IS_LOCAL) {
-      error_reporting(E_ALL);
-  }
   //set_magic_quotes_runtime(0);
 
   // version information

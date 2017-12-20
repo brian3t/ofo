@@ -38,7 +38,7 @@ $enginebases = array();
 $fuelDeliveryTypes = array();
 $engineDesignations = array();
 $partTypes = array();
-$results = ['success' => 0, 'insert_fail' => 0, 'lookup_fail' => 0];
+$results = ['success' => 0, 'insert_fail' => 0, 'lookup_fail' => 0,'exist' =>0];
 chdir(dirname(__FILE__));
 $logFile = __DIR__ . '/log_read_parts_' . date("m_d_h_i_s") . ".txt";
 $logFile = fopen($logFile, 'w+');
@@ -158,7 +158,7 @@ function initVars()
 function lookupAaia($z)
 {
     $result = false;
-    global $makes, $logFile, $log, $enginebases, $engineDesignations, $fuelDeliveryTypes, $con;
+    global $makes, $logFile, $log, $enginebases, $engineDesignations, $fuelDeliveryTypes, $con, $results;
 
     if (!$con->select_db(VIART_DB)){
         $log .= "Unable to select VIART_DB: " . mysqli_error($con);
@@ -241,7 +241,8 @@ function lookupAaia($z)
         $result = $con->query($sql);
         if (!$result){
             $log .= "Could not successfully run query ($sql) from DB: " . mysqli_error($con);
-            exit;
+            $results['insert_fail']++;
+            return false;
         }
         $aaiaId = $con->insert_id;
         $log .= "Inserted aaia id: $year_id $make $model. \r\n";
@@ -295,6 +296,8 @@ function insertPartToOFO($z)
     if (($con->query($sql)->num_rows) > 0){
         //part exists
         $log .= "Part already exists. AAIA: " . $z['aaia'] . "\n";
+        $results['exist']++;
+        return false;
     };
 
     /*$pentius_desc = "Pentius UltraFlow Filters Feature:
@@ -360,7 +363,8 @@ $z = array();
 
 $appNodes = $apps->$options['nodepath'];
 $k = 0;
-for ($k = 0;$k <= sizeof($appNodes);$k++){
+$num_of_parts = sizeof($appNodes);
+for ($k = 0;$k <= $num_of_parts;$k++){
 
     if (IS_DEBUG && $k > 1){
         break;
@@ -398,4 +402,6 @@ $con->close();
 unset($makes, $enginebases, $fuelDeliveryTypes, $engineDesignations, $partTypes);
 fwrite($logFile, $log . "\nStop");
 fwrite($logFile, "Summary: " . json_encode($results));
+echo "Summary: " . json_encode($results);
+fwrite($logFile,'\nDone.');
 fclose($logFile);
