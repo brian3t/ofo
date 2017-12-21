@@ -38,7 +38,7 @@ $enginebases = array();
 $fuelDeliveryTypes = array();
 $engineDesignations = array();
 $partTypes = array();
-$results = ['success' => 0, 'insert_fail' => 0, 'lookup_fail' => 0,'exist' =>0];
+$results = ['success' => 0, 'insert_fail' => 0, 'lookup_fail' => 0, 'exist' => 0];
 chdir(dirname(__FILE__));
 $logFile = __DIR__ . '/log_read_parts_' . date("m_d_h_i_s") . ".txt";
 $logFile = fopen($logFile, 'w+');
@@ -61,12 +61,12 @@ function initVars()
     $result = $con->query($sql);
 
     if (!$result){
-        $log .= "Could not successfully run query ($sql) from DB: " . mysqli_error($con);
+        $log .= "initvar failed. Could not successfully run query ($sql) from DB: " . mysqli_error($con);
         exit;
     }
 
     if ($result->num_rows == 0){
-        $log .= "No rows found, nothing to print so exiting";
+        $log .= "No rows found, initvar failed";
         exit;
     }
 
@@ -81,12 +81,12 @@ function initVars()
     $result = $con->query($sql);
 
     if (!$result){
-        $log .= "Could not successfully run query ($sql) from DB: " . mysqli_error($con);
+        $log .= "initvar failed. Could not successfully run query ($sql) from DB: " . mysqli_error($con);
         exit;
     }
 
     if ($result->num_rows == 0){
-        $log .= "No rows found, nothing to print so am exiting";
+        $log .= "No rows found, initvar failed";
         exit;
     }
 
@@ -101,12 +101,12 @@ function initVars()
     $result = $con->query($sql);
 
     if (!$result){
-        $log .= "Could not successfully run query ($sql) from DB: " . mysqli_error($con);
+        $log .= "initvar failed. Could not successfully run query ($sql) from DB: " . mysqli_error($con);
         exit;
     }
 
     if ($result->num_rows == 0){
-        $log .= "No rows found, nothing to print so am exiting";
+        $log .= "No rows found, initvar failed";
         exit;
     }
 
@@ -129,12 +129,12 @@ function initVars()
     $result = $con->query($sql);
 
     if (!$result){
-        $log .= "Could not successfully run query ($sql) from DB: " . mysqli_error($con);
+        $log .= "initvar failed. Could not successfully run query ($sql) from DB: " . mysqli_error($con);
         exit;
     }
 
     if ($result->num_rows == 0){
-        $log .= "No rows found, nothing to print so am exiting";
+        $log .= "No rows found, initvar failed";
         exit;
     }
 
@@ -171,11 +171,13 @@ function lookupAaia($z)
   WHERE BaseVehicleID = " . $z['basevehicle'] . ";";
     $result = $con->query($sql);
     if ($result->num_rows == 0){
-        $log .= "Model not found, nothing to print so exiting";
+        $log .= "Model not found";
+        $results['lookup_fail']++;
         return false;
     }
     if ($result->num_rows != 1){
         $log .= "More than 1 basevehicle found";
+        $results['lookup_fail']++;
         return false;
     }
     $year_make_model = $result->fetch_assoc();
@@ -189,7 +191,7 @@ function lookupAaia($z)
         $result = $con->query($sql);
         if ($result->num_rows == 0){
             $log .= "No enginebase found, ";
-
+            $results['lookup_fail']++;
             return false;
         }
         $engineBase = $result->fetch_assoc();//Cylinders Liter
@@ -203,6 +205,7 @@ function lookupAaia($z)
         $result = $con->query($sql);
         if ($result->num_rows == 0){
             $log .= "No engine vin found, ";
+            $results['lookup_fail']++;
             return false;
         }
         $engineVIN = $result->fetch_assoc();//Cylinders Liter
@@ -214,6 +217,7 @@ function lookupAaia($z)
         $result = $con->query($sql);
         if ($result->num_rows == 0){
             $log .= "No parttype found, ";
+            $results['lookup_fail']++;
             return false;
         }
         $parttype = $result->fetch_assoc();//Cylinders Liter
@@ -233,11 +237,18 @@ function lookupAaia($z)
     $result = $con->query($sql);
     if (!$result){
         $log .= "Could not successfully run query ($sql) from DB: " . mysqli_error($con);
+        $results['lookup_fail']++;
         return false;
     }
 
     if ($result->num_rows == 0){
-        $sql = "REPLACE INTO aaia (year,make,model,cylinders,liters,engineVIN) values('$year_id', '$make', '$model', '$cylinders', '$liter', '$engineVIN');";
+        foreach (compact('year_id', 'make', 'model', 'cylinders', 'liter') as $key => &$value){
+            if (is_array($value)){
+                $value = array_shift($value);
+                $log .= "$key Value lookup is an array: $value";
+            }
+        }
+        $sql = "REPLACE INTO aaia (year,make,model,cylinders,liters,engineVIN) values('$year_id', '$make', '$model', '$cylinders', '$liter', '" . $z['enginevin'] . "');";
         $result = $con->query($sql);
         if (!$result){
             $log .= "Could not successfully run query ($sql) from DB: " . mysqli_error($con);
@@ -245,11 +256,12 @@ function lookupAaia($z)
             return false;
         }
         $aaiaId = $con->insert_id;
-        $log .= "Inserted aaia id: $year_id $make $model. \r\n";
-
+        $log .= "Inserted aaia id: $aaiaId $year_id $make $model. \r\n";
+        $results['success']++;
     } else {
         $row = $result->fetch_row();
         $aaiaId = $row[0];
+        $results['exist'];
     }
 
     if (is_object($result)){
@@ -288,7 +300,7 @@ function insertPartToOFO($z)
     $aaiaId = $z['aaia'];
     if ($aaiaId == false){
         $results['lookup_fail']++;
-        exit;
+        return false;
     }
 
     //check if part already exists
@@ -364,7 +376,7 @@ $z = array();
 $appNodes = $apps->$options['nodepath'];
 $k = 0;
 $num_of_parts = sizeof($appNodes);
-for ($k = 0;$k <= $num_of_parts;$k++){
+for ($k = 0;$k < $num_of_parts;$k++){
 
     if (IS_DEBUG && $k > 1){
         break;
@@ -403,5 +415,5 @@ unset($makes, $enginebases, $fuelDeliveryTypes, $engineDesignations, $partTypes)
 fwrite($logFile, $log . "\nStop");
 fwrite($logFile, "Summary: " . json_encode($results));
 echo "Summary: " . json_encode($results);
-fwrite($logFile,'\nDone.');
+fwrite($logFile, '\nDone.');
 fclose($logFile);
