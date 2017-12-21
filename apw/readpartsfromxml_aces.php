@@ -390,6 +390,10 @@ for ($k = 0;$k < $num_of_parts;$k++){
 		<PartType id="6192"/>
 		<Part>PAB9588</Part>
      */
+    if (!property_exists($app, 'BaseVehicle')){
+        $log .= "Basevehicle not exists in XML. App: ". json_encode($app);
+        continue;
+    }
     $z['basevehicle'] = (string)$app->BaseVehicle->attributes();
     $z['enginebase'] = (string)$app->EngineBase->attributes();
     $z['enginevin'] = '';
