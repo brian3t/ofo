@@ -1,0 +1,4589 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="aaia_vcdb@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.7">
+    <root id="1">
+      <DefaultCasing>exact</DefaultCasing>
+    </root>
+    <schema id="2" parent="1" name="aaia_pcdb">
+      <Collation>latin1_swedish_ci</Collation>
+    </schema>
+    <schema id="3" parent="1" name="aaia_vcdb">
+      <Current>1</Current>
+      <Visible>1</Visible>
+      <Collation>latin1_swedish_ci</Collation>
+    </schema>
+    <schema id="4" parent="1" name="bimitech">
+      <Collation>latin1_swedish_ci</Collation>
+    </schema>
+    <schema id="5" parent="1" name="bimitech_phplist">
+      <Collation>latin1_swedish_ci</Collation>
+    </schema>
+    <schema id="6" parent="1" name="btscenes">
+      <Collation>latin1_swedish_ci</Collation>
+    </schema>
+    <schema id="7" parent="1" name="carpoolnowdb">
+      <Collation>latin1_swedish_ci</Collation>
+    </schema>
+    <schema id="8" parent="1" name="erm">
+      <Collation>latin1_swedish_ci</Collation>
+    </schema>
+    <schema id="9" parent="1" name="formulary">
+      <Collation>latin1_swedish_ci</Collation>
+    </schema>
+    <schema id="10" parent="1" name="information_schema">
+      <Collation>utf8_general_ci</Collation>
+    </schema>
+    <schema id="11" parent="1" name="mysql">
+      <Collation>latin1_swedish_ci</Collation>
+    </schema>
+    <schema id="12" parent="1" name="oilfiltersonline">
+      <Collation>latin1_swedish_ci</Collation>
+    </schema>
+    <schema id="13" parent="1" name="oilfiltersonline_test_store">
+      <Collation>latin1_swedish_ci</Collation>
+    </schema>
+    <schema id="14" parent="1" name="orchid">
+      <Collation>latin1_swedish_ci</Collation>
+    </schema>
+    <schema id="15" parent="1" name="performance_schema">
+      <Collation>utf8_general_ci</Collation>
+    </schema>
+    <schema id="16" parent="1" name="phpmyadmin">
+      <Collation>utf8_bin</Collation>
+    </schema>
+    <schema id="17" parent="1" name="saramy_wrdp4">
+      <Collation>latin1_swedish_ci</Collation>
+    </schema>
+    <schema id="18" parent="1" name="sayygo">
+      <Collation>latin1_swedish_ci</Collation>
+    </schema>
+    <schema id="19" parent="1" name="sys">
+      <Collation>utf8_general_ci</Collation>
+    </schema>
+    <schema id="20" parent="1" name="test">
+      <Collation>latin1_swedish_ci</Collation>
+    </schema>
+    <schema id="21" parent="1" name="vest">
+      <Collation>latin1_swedish_ci</Collation>
+    </schema>
+    <collation id="22" parent="1" name="armscii8_bin">
+      <Charset>armscii8</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="23" parent="1" name="armscii8_general_ci">
+      <Charset>armscii8</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="24" parent="1" name="ascii_bin">
+      <Charset>ascii</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="25" parent="1" name="ascii_general_ci">
+      <Charset>ascii</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="26" parent="1" name="big5_bin">
+      <Charset>big5</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="27" parent="1" name="big5_chinese_ci">
+      <Charset>big5</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="28" parent="1" name="binary">
+      <Charset>binary</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="29" parent="1" name="cp1250_bin">
+      <Charset>cp1250</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="30" parent="1" name="cp1250_croatian_ci">
+      <Charset>cp1250</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="31" parent="1" name="cp1250_czech_cs">
+      <Charset>cp1250</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="32" parent="1" name="cp1250_general_ci">
+      <Charset>cp1250</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="33" parent="1" name="cp1250_polish_ci">
+      <Charset>cp1250</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="34" parent="1" name="cp1251_bin">
+      <Charset>cp1251</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="35" parent="1" name="cp1251_bulgarian_ci">
+      <Charset>cp1251</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="36" parent="1" name="cp1251_general_ci">
+      <Charset>cp1251</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="37" parent="1" name="cp1251_general_cs">
+      <Charset>cp1251</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="38" parent="1" name="cp1251_ukrainian_ci">
+      <Charset>cp1251</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="39" parent="1" name="cp1256_bin">
+      <Charset>cp1256</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="40" parent="1" name="cp1256_general_ci">
+      <Charset>cp1256</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="41" parent="1" name="cp1257_bin">
+      <Charset>cp1257</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="42" parent="1" name="cp1257_general_ci">
+      <Charset>cp1257</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="43" parent="1" name="cp1257_lithuanian_ci">
+      <Charset>cp1257</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="44" parent="1" name="cp850_bin">
+      <Charset>cp850</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="45" parent="1" name="cp850_general_ci">
+      <Charset>cp850</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="46" parent="1" name="cp852_bin">
+      <Charset>cp852</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="47" parent="1" name="cp852_general_ci">
+      <Charset>cp852</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="48" parent="1" name="cp866_bin">
+      <Charset>cp866</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="49" parent="1" name="cp866_general_ci">
+      <Charset>cp866</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="50" parent="1" name="cp932_bin">
+      <Charset>cp932</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="51" parent="1" name="cp932_japanese_ci">
+      <Charset>cp932</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="52" parent="1" name="dec8_bin">
+      <Charset>dec8</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="53" parent="1" name="dec8_swedish_ci">
+      <Charset>dec8</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="54" parent="1" name="eucjpms_bin">
+      <Charset>eucjpms</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="55" parent="1" name="eucjpms_japanese_ci">
+      <Charset>eucjpms</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="56" parent="1" name="euckr_bin">
+      <Charset>euckr</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="57" parent="1" name="euckr_korean_ci">
+      <Charset>euckr</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="58" parent="1" name="gb18030_bin">
+      <Charset>gb18030</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="59" parent="1" name="gb18030_chinese_ci">
+      <Charset>gb18030</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="60" parent="1" name="gb18030_unicode_520_ci">
+      <Charset>gb18030</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="61" parent="1" name="gb2312_bin">
+      <Charset>gb2312</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="62" parent="1" name="gb2312_chinese_ci">
+      <Charset>gb2312</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="63" parent="1" name="gbk_bin">
+      <Charset>gbk</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="64" parent="1" name="gbk_chinese_ci">
+      <Charset>gbk</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="65" parent="1" name="geostd8_bin">
+      <Charset>geostd8</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="66" parent="1" name="geostd8_general_ci">
+      <Charset>geostd8</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="67" parent="1" name="greek_bin">
+      <Charset>greek</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="68" parent="1" name="greek_general_ci">
+      <Charset>greek</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="69" parent="1" name="hebrew_bin">
+      <Charset>hebrew</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="70" parent="1" name="hebrew_general_ci">
+      <Charset>hebrew</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="71" parent="1" name="hp8_bin">
+      <Charset>hp8</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="72" parent="1" name="hp8_english_ci">
+      <Charset>hp8</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="73" parent="1" name="keybcs2_bin">
+      <Charset>keybcs2</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="74" parent="1" name="keybcs2_general_ci">
+      <Charset>keybcs2</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="75" parent="1" name="koi8r_bin">
+      <Charset>koi8r</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="76" parent="1" name="koi8r_general_ci">
+      <Charset>koi8r</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="77" parent="1" name="koi8u_bin">
+      <Charset>koi8u</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="78" parent="1" name="koi8u_general_ci">
+      <Charset>koi8u</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="79" parent="1" name="latin1_bin">
+      <Charset>latin1</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="80" parent="1" name="latin1_danish_ci">
+      <Charset>latin1</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="81" parent="1" name="latin1_general_ci">
+      <Charset>latin1</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="82" parent="1" name="latin1_general_cs">
+      <Charset>latin1</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="83" parent="1" name="latin1_german1_ci">
+      <Charset>latin1</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="84" parent="1" name="latin1_german2_ci">
+      <Charset>latin1</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="85" parent="1" name="latin1_spanish_ci">
+      <Charset>latin1</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="86" parent="1" name="latin1_swedish_ci">
+      <Charset>latin1</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="87" parent="1" name="latin2_bin">
+      <Charset>latin2</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="88" parent="1" name="latin2_croatian_ci">
+      <Charset>latin2</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="89" parent="1" name="latin2_czech_cs">
+      <Charset>latin2</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="90" parent="1" name="latin2_general_ci">
+      <Charset>latin2</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="91" parent="1" name="latin2_hungarian_ci">
+      <Charset>latin2</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="92" parent="1" name="latin5_bin">
+      <Charset>latin5</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="93" parent="1" name="latin5_turkish_ci">
+      <Charset>latin5</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="94" parent="1" name="latin7_bin">
+      <Charset>latin7</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="95" parent="1" name="latin7_estonian_cs">
+      <Charset>latin7</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="96" parent="1" name="latin7_general_ci">
+      <Charset>latin7</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="97" parent="1" name="latin7_general_cs">
+      <Charset>latin7</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="98" parent="1" name="macce_bin">
+      <Charset>macce</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="99" parent="1" name="macce_general_ci">
+      <Charset>macce</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="100" parent="1" name="macroman_bin">
+      <Charset>macroman</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="101" parent="1" name="macroman_general_ci">
+      <Charset>macroman</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="102" parent="1" name="sjis_bin">
+      <Charset>sjis</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="103" parent="1" name="sjis_japanese_ci">
+      <Charset>sjis</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="104" parent="1" name="swe7_bin">
+      <Charset>swe7</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="105" parent="1" name="swe7_swedish_ci">
+      <Charset>swe7</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="106" parent="1" name="tis620_bin">
+      <Charset>tis620</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="107" parent="1" name="tis620_thai_ci">
+      <Charset>tis620</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="108" parent="1" name="ucs2_bin">
+      <Charset>ucs2</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="109" parent="1" name="ucs2_croatian_ci">
+      <Charset>ucs2</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="110" parent="1" name="ucs2_czech_ci">
+      <Charset>ucs2</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="111" parent="1" name="ucs2_danish_ci">
+      <Charset>ucs2</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="112" parent="1" name="ucs2_esperanto_ci">
+      <Charset>ucs2</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="113" parent="1" name="ucs2_estonian_ci">
+      <Charset>ucs2</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="114" parent="1" name="ucs2_general_ci">
+      <Charset>ucs2</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="115" parent="1" name="ucs2_general_mysql500_ci">
+      <Charset>ucs2</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="116" parent="1" name="ucs2_german2_ci">
+      <Charset>ucs2</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="117" parent="1" name="ucs2_hungarian_ci">
+      <Charset>ucs2</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="118" parent="1" name="ucs2_icelandic_ci">
+      <Charset>ucs2</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="119" parent="1" name="ucs2_latvian_ci">
+      <Charset>ucs2</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="120" parent="1" name="ucs2_lithuanian_ci">
+      <Charset>ucs2</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="121" parent="1" name="ucs2_persian_ci">
+      <Charset>ucs2</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="122" parent="1" name="ucs2_polish_ci">
+      <Charset>ucs2</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="123" parent="1" name="ucs2_roman_ci">
+      <Charset>ucs2</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="124" parent="1" name="ucs2_romanian_ci">
+      <Charset>ucs2</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="125" parent="1" name="ucs2_sinhala_ci">
+      <Charset>ucs2</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="126" parent="1" name="ucs2_slovak_ci">
+      <Charset>ucs2</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="127" parent="1" name="ucs2_slovenian_ci">
+      <Charset>ucs2</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="128" parent="1" name="ucs2_spanish2_ci">
+      <Charset>ucs2</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="129" parent="1" name="ucs2_spanish_ci">
+      <Charset>ucs2</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="130" parent="1" name="ucs2_swedish_ci">
+      <Charset>ucs2</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="131" parent="1" name="ucs2_turkish_ci">
+      <Charset>ucs2</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="132" parent="1" name="ucs2_unicode_520_ci">
+      <Charset>ucs2</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="133" parent="1" name="ucs2_unicode_ci">
+      <Charset>ucs2</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="134" parent="1" name="ucs2_vietnamese_ci">
+      <Charset>ucs2</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="135" parent="1" name="ujis_bin">
+      <Charset>ujis</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="136" parent="1" name="ujis_japanese_ci">
+      <Charset>ujis</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="137" parent="1" name="utf16_bin">
+      <Charset>utf16</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="138" parent="1" name="utf16_croatian_ci">
+      <Charset>utf16</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="139" parent="1" name="utf16_czech_ci">
+      <Charset>utf16</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="140" parent="1" name="utf16_danish_ci">
+      <Charset>utf16</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="141" parent="1" name="utf16_esperanto_ci">
+      <Charset>utf16</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="142" parent="1" name="utf16_estonian_ci">
+      <Charset>utf16</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="143" parent="1" name="utf16_general_ci">
+      <Charset>utf16</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="144" parent="1" name="utf16_german2_ci">
+      <Charset>utf16</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="145" parent="1" name="utf16_hungarian_ci">
+      <Charset>utf16</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="146" parent="1" name="utf16_icelandic_ci">
+      <Charset>utf16</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="147" parent="1" name="utf16_latvian_ci">
+      <Charset>utf16</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="148" parent="1" name="utf16_lithuanian_ci">
+      <Charset>utf16</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="149" parent="1" name="utf16_persian_ci">
+      <Charset>utf16</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="150" parent="1" name="utf16_polish_ci">
+      <Charset>utf16</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="151" parent="1" name="utf16_roman_ci">
+      <Charset>utf16</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="152" parent="1" name="utf16_romanian_ci">
+      <Charset>utf16</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="153" parent="1" name="utf16_sinhala_ci">
+      <Charset>utf16</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="154" parent="1" name="utf16_slovak_ci">
+      <Charset>utf16</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="155" parent="1" name="utf16_slovenian_ci">
+      <Charset>utf16</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="156" parent="1" name="utf16_spanish2_ci">
+      <Charset>utf16</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="157" parent="1" name="utf16_spanish_ci">
+      <Charset>utf16</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="158" parent="1" name="utf16_swedish_ci">
+      <Charset>utf16</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="159" parent="1" name="utf16_turkish_ci">
+      <Charset>utf16</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="160" parent="1" name="utf16_unicode_520_ci">
+      <Charset>utf16</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="161" parent="1" name="utf16_unicode_ci">
+      <Charset>utf16</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="162" parent="1" name="utf16_vietnamese_ci">
+      <Charset>utf16</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="163" parent="1" name="utf16le_bin">
+      <Charset>utf16le</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="164" parent="1" name="utf16le_general_ci">
+      <Charset>utf16le</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="165" parent="1" name="utf32_bin">
+      <Charset>utf32</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="166" parent="1" name="utf32_croatian_ci">
+      <Charset>utf32</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="167" parent="1" name="utf32_czech_ci">
+      <Charset>utf32</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="168" parent="1" name="utf32_danish_ci">
+      <Charset>utf32</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="169" parent="1" name="utf32_esperanto_ci">
+      <Charset>utf32</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="170" parent="1" name="utf32_estonian_ci">
+      <Charset>utf32</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="171" parent="1" name="utf32_general_ci">
+      <Charset>utf32</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="172" parent="1" name="utf32_german2_ci">
+      <Charset>utf32</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="173" parent="1" name="utf32_hungarian_ci">
+      <Charset>utf32</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="174" parent="1" name="utf32_icelandic_ci">
+      <Charset>utf32</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="175" parent="1" name="utf32_latvian_ci">
+      <Charset>utf32</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="176" parent="1" name="utf32_lithuanian_ci">
+      <Charset>utf32</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="177" parent="1" name="utf32_persian_ci">
+      <Charset>utf32</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="178" parent="1" name="utf32_polish_ci">
+      <Charset>utf32</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="179" parent="1" name="utf32_roman_ci">
+      <Charset>utf32</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="180" parent="1" name="utf32_romanian_ci">
+      <Charset>utf32</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="181" parent="1" name="utf32_sinhala_ci">
+      <Charset>utf32</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="182" parent="1" name="utf32_slovak_ci">
+      <Charset>utf32</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="183" parent="1" name="utf32_slovenian_ci">
+      <Charset>utf32</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="184" parent="1" name="utf32_spanish2_ci">
+      <Charset>utf32</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="185" parent="1" name="utf32_spanish_ci">
+      <Charset>utf32</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="186" parent="1" name="utf32_swedish_ci">
+      <Charset>utf32</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="187" parent="1" name="utf32_turkish_ci">
+      <Charset>utf32</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="188" parent="1" name="utf32_unicode_520_ci">
+      <Charset>utf32</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="189" parent="1" name="utf32_unicode_ci">
+      <Charset>utf32</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="190" parent="1" name="utf32_vietnamese_ci">
+      <Charset>utf32</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="191" parent="1" name="utf8_bin">
+      <Charset>utf8</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="192" parent="1" name="utf8_croatian_ci">
+      <Charset>utf8</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="193" parent="1" name="utf8_czech_ci">
+      <Charset>utf8</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="194" parent="1" name="utf8_danish_ci">
+      <Charset>utf8</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="195" parent="1" name="utf8_esperanto_ci">
+      <Charset>utf8</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="196" parent="1" name="utf8_estonian_ci">
+      <Charset>utf8</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="197" parent="1" name="utf8_general_ci">
+      <Charset>utf8</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="198" parent="1" name="utf8_general_mysql500_ci">
+      <Charset>utf8</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="199" parent="1" name="utf8_german2_ci">
+      <Charset>utf8</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="200" parent="1" name="utf8_hungarian_ci">
+      <Charset>utf8</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="201" parent="1" name="utf8_icelandic_ci">
+      <Charset>utf8</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="202" parent="1" name="utf8_latvian_ci">
+      <Charset>utf8</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="203" parent="1" name="utf8_lithuanian_ci">
+      <Charset>utf8</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="204" parent="1" name="utf8_persian_ci">
+      <Charset>utf8</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="205" parent="1" name="utf8_polish_ci">
+      <Charset>utf8</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="206" parent="1" name="utf8_roman_ci">
+      <Charset>utf8</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="207" parent="1" name="utf8_romanian_ci">
+      <Charset>utf8</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="208" parent="1" name="utf8_sinhala_ci">
+      <Charset>utf8</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="209" parent="1" name="utf8_slovak_ci">
+      <Charset>utf8</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="210" parent="1" name="utf8_slovenian_ci">
+      <Charset>utf8</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="211" parent="1" name="utf8_spanish2_ci">
+      <Charset>utf8</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="212" parent="1" name="utf8_spanish_ci">
+      <Charset>utf8</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="213" parent="1" name="utf8_swedish_ci">
+      <Charset>utf8</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="214" parent="1" name="utf8_turkish_ci">
+      <Charset>utf8</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="215" parent="1" name="utf8_unicode_520_ci">
+      <Charset>utf8</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="216" parent="1" name="utf8_unicode_ci">
+      <Charset>utf8</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="217" parent="1" name="utf8_vietnamese_ci">
+      <Charset>utf8</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="218" parent="1" name="utf8mb4_bin">
+      <Charset>utf8mb4</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="219" parent="1" name="utf8mb4_croatian_ci">
+      <Charset>utf8mb4</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="220" parent="1" name="utf8mb4_czech_ci">
+      <Charset>utf8mb4</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="221" parent="1" name="utf8mb4_danish_ci">
+      <Charset>utf8mb4</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="222" parent="1" name="utf8mb4_esperanto_ci">
+      <Charset>utf8mb4</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="223" parent="1" name="utf8mb4_estonian_ci">
+      <Charset>utf8mb4</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="224" parent="1" name="utf8mb4_general_ci">
+      <Charset>utf8mb4</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="225" parent="1" name="utf8mb4_german2_ci">
+      <Charset>utf8mb4</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="226" parent="1" name="utf8mb4_hungarian_ci">
+      <Charset>utf8mb4</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="227" parent="1" name="utf8mb4_icelandic_ci">
+      <Charset>utf8mb4</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="228" parent="1" name="utf8mb4_latvian_ci">
+      <Charset>utf8mb4</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="229" parent="1" name="utf8mb4_lithuanian_ci">
+      <Charset>utf8mb4</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="230" parent="1" name="utf8mb4_persian_ci">
+      <Charset>utf8mb4</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="231" parent="1" name="utf8mb4_polish_ci">
+      <Charset>utf8mb4</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="232" parent="1" name="utf8mb4_roman_ci">
+      <Charset>utf8mb4</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="233" parent="1" name="utf8mb4_romanian_ci">
+      <Charset>utf8mb4</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="234" parent="1" name="utf8mb4_sinhala_ci">
+      <Charset>utf8mb4</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="235" parent="1" name="utf8mb4_slovak_ci">
+      <Charset>utf8mb4</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="236" parent="1" name="utf8mb4_slovenian_ci">
+      <Charset>utf8mb4</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="237" parent="1" name="utf8mb4_spanish2_ci">
+      <Charset>utf8mb4</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="238" parent="1" name="utf8mb4_spanish_ci">
+      <Charset>utf8mb4</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="239" parent="1" name="utf8mb4_swedish_ci">
+      <Charset>utf8mb4</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="240" parent="1" name="utf8mb4_turkish_ci">
+      <Charset>utf8mb4</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="241" parent="1" name="utf8mb4_unicode_520_ci">
+      <Charset>utf8mb4</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="242" parent="1" name="utf8mb4_unicode_ci">
+      <Charset>utf8mb4</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <collation id="243" parent="1" name="utf8mb4_vietnamese_ci">
+      <Charset>utf8mb4</Charset>
+      <DefaultForCharset>0</DefaultForCharset>
+    </collation>
+    <table id="244" parent="3" name="Abbreviation">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="245" parent="3" name="Aspiration">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="246" parent="3" name="Attachment">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="247" parent="3" name="AttachmentType">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="248" parent="3" name="BaseVehicle">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="249" parent="3" name="BedConfig">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="250" parent="3" name="BedLength">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="251" parent="3" name="BedType">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="252" parent="3" name="BodyNumDoors">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="253" parent="3" name="BodyStyleConfig">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="254" parent="3" name="BodyType">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="255" parent="3" name="BrakeABS">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="256" parent="3" name="BrakeConfig">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="257" parent="3" name="BrakeSystem">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="258" parent="3" name="BrakeType">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="259" parent="3" name="CylinderHeadType">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="260" parent="3" name="DriveType">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="261" parent="3" name="ElecControlled">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="262" parent="3" name="EngineBase">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="263" parent="3" name="EngineConfig">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="264" parent="3" name="EngineDesignation">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="265" parent="3" name="EngineVIN">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="266" parent="3" name="EngineVersion">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="267" parent="3" name="EnglishPhrase">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="268" parent="3" name="FuelDeliveryConfig">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="269" parent="3" name="FuelDeliverySubType">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="270" parent="3" name="FuelDeliveryType">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="271" parent="3" name="FuelSystemControlType">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="272" parent="3" name="FuelSystemDesign">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="273" parent="3" name="FuelType">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="274" parent="3" name="IgnitionSystemType">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="275" parent="3" name="Language">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="276" parent="3" name="LanguageTranslation">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="277" parent="3" name="LanguageTranslationAttachment">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="278" parent="3" name="Make">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="279" parent="3" name="Mfr">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="280" parent="3" name="MfrBodyCode">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="281" parent="3" name="Model">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="282" parent="3" name="PowerOutput">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="283" parent="3" name="PublicationStage">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="284" parent="3" name="Region">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="285" parent="3" name="SpringType">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="286" parent="3" name="SpringTypeConfig">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="287" parent="3" name="SteeringConfig">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="288" parent="3" name="SteeringSystem">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="289" parent="3" name="SteeringType">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="290" parent="3" name="Submodel">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="291" parent="3" name="Transmission">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="292" parent="3" name="TransmissionBase">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="293" parent="3" name="TransmissionControlType">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="294" parent="3" name="TransmissionMfrCode">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="295" parent="3" name="TransmissionNumSpeeds">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="296" parent="3" name="TransmissionType">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="297" parent="3" name="Valves">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="298" parent="3" name="Vehicle">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="299" parent="3" name="VehicleToBedConfig">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="300" parent="3" name="VehicleToBodyStyleConfig">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="301" parent="3" name="VehicleToBrakeConfig">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="302" parent="3" name="VehicleToDriveType">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="303" parent="3" name="VehicleToEngineConfig">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="304" parent="3" name="VehicleToMfrBodyCode">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="305" parent="3" name="VehicleToSpringTypeConfig">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="306" parent="3" name="VehicleToSteeringConfig">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="307" parent="3" name="VehicleToTransmission">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="308" parent="3" name="VehicleToWheelbase">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="309" parent="3" name="VehicleType">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="310" parent="3" name="VehicleTypeGroup">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="311" parent="3" name="Version">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="312" parent="3" name="WheelBase">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="313" parent="3" name="Year">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="314" parent="3" name="abbreviation">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="315" parent="3" name="aspiration">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="316" parent="3" name="attachmenttype">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="317" parent="3" name="bedlength">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="318" parent="3" name="bedtype">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="319" parent="3" name="bodynumdoors">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="320" parent="3" name="bodytype">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="321" parent="3" name="brakeabs">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="322" parent="3" name="brakesystem">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="323" parent="3" name="braketype">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="324" parent="3" name="cylinderheadtype">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="325" parent="3" name="drivetype">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="326" parent="3" name="eleccontrolled">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="327" parent="3" name="enginebase">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="328" parent="3" name="enginedesignation">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="329" parent="3" name="engineversion">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="330" parent="3" name="enginevin">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="331" parent="3" name="englishphrase">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="332" parent="3" name="fueldeliverysubtype">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="333" parent="3" name="fueldeliverytype">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="334" parent="3" name="fuelsystemcontroltype">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="335" parent="3" name="fuelsystemdesign">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="336" parent="3" name="fueltype">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="337" parent="3" name="ignitionsystemtype">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="338" parent="3" name="language">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="339" parent="3" name="make">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="340" parent="3" name="mfr">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="341" parent="3" name="mfrbodycode">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="342" parent="3" name="poweroutput">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="343" parent="3" name="publicationstage">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="344" parent="3" name="springtype">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="345" parent="3" name="steeringsystem">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="346" parent="3" name="steeringtype">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="347" parent="3" name="submodel">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="348" parent="3" name="transmissioncontroltype">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="349" parent="3" name="transmissionmfrcode">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="350" parent="3" name="transmissionnumspeeds">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="351" parent="3" name="transmissiontype">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="352" parent="3" name="valves">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="353" parent="3" name="vcdbchanges">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="354" parent="3" name="vehicletype">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="355" parent="3" name="vehicletypegroup">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="356" parent="3" name="version">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="357" parent="3" name="wheelbase">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="358" parent="3" name="year">
+      <Engine>InnoDB</Engine>
+    </table>
+    <column id="359" parent="244" name="Abbreviation">
+      <Position>1</Position>
+      <DataType>char(3)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="360" parent="244" name="Description">
+      <Position>2</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="361" parent="244" name="LongDescription">
+      <Position>3</Position>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="362" parent="244" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>Abbreviation
+Abbreviation
+Abbreviation
+Abbreviation</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="363" parent="245" name="AspirationID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="364" parent="245" name="AspirationName">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="365" parent="246" name="AttachmentID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="366" parent="246" name="AttachmentTypeID">
+      <Position>2</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="367" parent="246" name="AttachmentFileName">
+      <Position>3</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="368" parent="246" name="AttachmentURL">
+      <Position>4</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="369" parent="246" name="AttachmentDescription">
+      <Position>5</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="370" parent="246" name="IX_Attachment_AttachmentTypeID">
+      <ColNames>AttachmentTypeID</ColNames>
+    </index>
+    <key id="371" parent="246" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>AttachmentID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="372" parent="246" name="FK_AttachmentType_Attachment">
+      <ColNames>AttachmentTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>attachmenttype</RefTableName>
+      <RefColNames>AttachmentTypeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="373" parent="246" name="attachmenttypeattachment_fk">
+      <ColNames>AttachmentTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>attachmenttype</RefTableName>
+      <RefColNames>AttachmentTypeID</RefColNames>
+    </foreign-key>
+    <column id="374" parent="247" name="AttachmentTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="375" parent="247" name="AttachmentTypeName">
+      <Position>2</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="376" parent="247" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>AttachmentTypeID
+AttachmentTypeID
+AttachmentTypeID
+AttachmentTypeID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="377" parent="248" name="BaseVehicleID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="378" parent="248" name="YearID">
+      <Position>2</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="379" parent="248" name="MakeID">
+      <Position>3</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="380" parent="248" name="ModelID">
+      <Position>4</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="381" parent="248" name="IDX_BaseVehicle_YearID">
+      <ColNames>YearID</ColNames>
+    </index>
+    <index id="382" parent="248" name="IDX_BaseVehicle_MakeID">
+      <ColNames>MakeID</ColNames>
+    </index>
+    <index id="383" parent="248" name="IDX_BaseVehicle_ModelID">
+      <ColNames>ModelID</ColNames>
+    </index>
+    <key id="384" parent="248" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>BaseVehicleID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="385" parent="248" name="FK_Year_BaseVehicle">
+      <ColNames>YearID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>year</RefTableName>
+      <RefColNames>YearID</RefColNames>
+    </foreign-key>
+    <foreign-key id="386" parent="248" name="yearbasevehicle_fk">
+      <ColNames>YearID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>year</RefTableName>
+      <RefColNames>YearID</RefColNames>
+    </foreign-key>
+    <foreign-key id="387" parent="248" name="FK_Make_BaseVehicle">
+      <ColNames>MakeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>make</RefTableName>
+      <RefColNames>MakeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="388" parent="248" name="makebasevehicle_fk">
+      <ColNames>MakeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>make</RefTableName>
+      <RefColNames>MakeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="389" parent="248" name="FK_Model_BaseVehicle">
+      <ColNames>ModelID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>Model</RefTableName>
+      <RefColNames>ModelID</RefColNames>
+    </foreign-key>
+    <foreign-key id="390" parent="248" name="modelbasevehicle_fk">
+      <ColNames>ModelID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>Model</RefTableName>
+      <RefColNames>ModelID</RefColNames>
+    </foreign-key>
+    <column id="391" parent="249" name="BedConfigID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="392" parent="249" name="BedLengthID">
+      <Position>2</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="393" parent="249" name="BedTypeID">
+      <Position>3</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="394" parent="249" name="IDX_BedConfig_BedLengthID">
+      <ColNames>BedLengthID</ColNames>
+    </index>
+    <index id="395" parent="249" name="IDX_BedConfig_BedTypeID">
+      <ColNames>BedTypeID</ColNames>
+    </index>
+    <key id="396" parent="249" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>BedConfigID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="397" parent="249" name="FK_BedLength_BedConfig">
+      <ColNames>BedLengthID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>bedlength</RefTableName>
+      <RefColNames>BedLengthID</RefColNames>
+    </foreign-key>
+    <foreign-key id="398" parent="249" name="bedlengthbedconfig_fk">
+      <ColNames>BedLengthID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>bedlength</RefTableName>
+      <RefColNames>BedLengthID</RefColNames>
+    </foreign-key>
+    <foreign-key id="399" parent="249" name="FK_BedType_BedConfig">
+      <ColNames>BedTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>bedtype</RefTableName>
+      <RefColNames>BedTypeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="400" parent="249" name="bedtypebedconfig_fk">
+      <ColNames>BedTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>bedtype</RefTableName>
+      <RefColNames>BedTypeID</RefColNames>
+    </foreign-key>
+    <column id="401" parent="250" name="BedLengthID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="402" parent="250" name="BedLength">
+      <Position>2</Position>
+      <DataType>char(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="403" parent="250" name="BedLengthMetric">
+      <Position>3</Position>
+      <DataType>char(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="404" parent="250" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>BedLengthID
+BedLengthID
+BedLengthID
+BedLengthID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="405" parent="251" name="BedTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="406" parent="251" name="BedTypeName">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="407" parent="252" name="BodyNumDoorsID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="408" parent="252" name="BodyNumDoors">
+      <Position>2</Position>
+      <DataType>char(3)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="409" parent="253" name="BodyStyleConfigID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="410" parent="253" name="BodyNumDoorsID">
+      <Position>2</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="411" parent="253" name="BodyTypeID">
+      <Position>3</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="412" parent="253" name="IDX_BodyStyleConfig_BodyNumDoor">
+      <ColNames>BodyNumDoorsID</ColNames>
+    </index>
+    <index id="413" parent="253" name="IDX_BodyStyleConfig_BodyTypeID">
+      <ColNames>BodyTypeID</ColNames>
+    </index>
+    <key id="414" parent="253" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>BodyStyleConfigID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="415" parent="253" name="FK_BodyNumDoors_BodyStyleConfig">
+      <ColNames>BodyNumDoorsID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>bodynumdoors</RefTableName>
+      <RefColNames>BodyNumDoorsID</RefColNames>
+    </foreign-key>
+    <foreign-key id="416" parent="253" name="bodynumdoorsbodystyleconfig_fk">
+      <ColNames>BodyNumDoorsID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>bodynumdoors</RefTableName>
+      <RefColNames>BodyNumDoorsID</RefColNames>
+    </foreign-key>
+    <foreign-key id="417" parent="253" name="FK_BodyType_BodyStyleConfig">
+      <ColNames>BodyTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>bodytype</RefTableName>
+      <RefColNames>BodyTypeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="418" parent="253" name="bodytypebodystyleconfig_fk">
+      <ColNames>BodyTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>bodytype</RefTableName>
+      <RefColNames>BodyTypeID</RefColNames>
+    </foreign-key>
+    <column id="419" parent="254" name="BodyTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="420" parent="254" name="BodyTypeName">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="421" parent="254" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>BodyTypeID
+BodyTypeID
+BodyTypeID
+BodyTypeID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="422" parent="255" name="BrakeABSID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="423" parent="255" name="BrakeABSName">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="424" parent="256" name="BrakeConfigID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="425" parent="256" name="FrontBrakeTypeID">
+      <Position>2</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="426" parent="256" name="RearBrakeTypeID">
+      <Position>3</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="427" parent="256" name="BrakeSystemID">
+      <Position>4</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="428" parent="256" name="BrakeABSID">
+      <Position>5</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="429" parent="256" name="IDX_BrakeConfig_FrontBrakeTypeID">
+      <ColNames>FrontBrakeTypeID</ColNames>
+    </index>
+    <index id="430" parent="256" name="IDX_BrakeConfig_RearBrakeTypeID">
+      <ColNames>RearBrakeTypeID</ColNames>
+    </index>
+    <index id="431" parent="256" name="IDX_BrakeConfig_BrakeSystemID">
+      <ColNames>BrakeSystemID</ColNames>
+    </index>
+    <index id="432" parent="256" name="IDX_BrakeConfig_BrakeABSID">
+      <ColNames>BrakeABSID</ColNames>
+    </index>
+    <key id="433" parent="256" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>BrakeConfigID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="434" parent="256" name="FK_FrontBrakeType_BrakeConfig">
+      <ColNames>FrontBrakeTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>braketype</RefTableName>
+      <RefColNames>BrakeTypeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="435" parent="256" name="braketypebrakeconfig_fk">
+      <ColNames>FrontBrakeTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>braketype</RefTableName>
+      <RefColNames>BrakeTypeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="436" parent="256" name="FK_RearBrakeType_BrakeConfig">
+      <ColNames>RearBrakeTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>braketype</RefTableName>
+      <RefColNames>BrakeTypeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="437" parent="256" name="braketypebrakeconfig1_fk">
+      <ColNames>RearBrakeTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>braketype</RefTableName>
+      <RefColNames>BrakeTypeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="438" parent="256" name="FK_BrakeSystem_BrakeConfig">
+      <ColNames>BrakeSystemID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>brakesystem</RefTableName>
+      <RefColNames>BrakeSystemID</RefColNames>
+    </foreign-key>
+    <foreign-key id="439" parent="256" name="brakesystembrakeconfig_fk">
+      <ColNames>BrakeSystemID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>brakesystem</RefTableName>
+      <RefColNames>BrakeSystemID</RefColNames>
+    </foreign-key>
+    <foreign-key id="440" parent="256" name="FK_BrakeABS_BrakeConfig">
+      <ColNames>BrakeABSID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>brakeabs</RefTableName>
+      <RefColNames>BrakeABSID</RefColNames>
+    </foreign-key>
+    <foreign-key id="441" parent="256" name="brakeabsbrakeconfig_fk">
+      <ColNames>BrakeABSID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>brakeabs</RefTableName>
+      <RefColNames>BrakeABSID</RefColNames>
+    </foreign-key>
+    <column id="442" parent="257" name="BrakeSystemID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="443" parent="257" name="BrakeSystemName">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="444" parent="258" name="BrakeTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="445" parent="258" name="BrakeTypeName">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="446" parent="258" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>BrakeTypeID
+BrakeTypeID
+BrakeTypeID
+BrakeTypeID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="447" parent="259" name="CylinderHeadTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="448" parent="259" name="CylinderHeadTypeName">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="449" parent="260" name="DriveTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="450" parent="260" name="DriveTypeName">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="451" parent="261" name="ElecControlledID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="452" parent="261" name="ElecControlled">
+      <Position>2</Position>
+      <DataType>char(3)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="453" parent="261" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ElecControlledID
+ElecControlledID
+ElecControlledID
+ElecControlledID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="454" parent="262" name="EngineBaseID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="455" parent="262" name="Liter">
+      <Position>2</Position>
+      <DataType>char(6)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="456" parent="262" name="CC">
+      <Position>3</Position>
+      <DataType>char(8)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="457" parent="262" name="CID">
+      <Position>4</Position>
+      <DataType>char(7)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="458" parent="262" name="Cylinders">
+      <Position>5</Position>
+      <DataType>char(2)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="459" parent="262" name="BlockType">
+      <Position>6</Position>
+      <DataType>char(2)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="460" parent="262" name="EngBoreIn">
+      <Position>7</Position>
+      <DataType>char(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="461" parent="262" name="EngBoreMetric">
+      <Position>8</Position>
+      <DataType>char(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="462" parent="262" name="EngStrokeIn">
+      <Position>9</Position>
+      <DataType>char(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="463" parent="262" name="EngStrokeMetric">
+      <Position>10</Position>
+      <DataType>char(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="464" parent="262" name="IDX_EngineBase_Liter">
+      <ColNames>Liter
+Liter</ColNames>
+    </index>
+    <index id="465" parent="262" name="IDX_EngineBase_CID">
+      <ColNames>CID
+CID</ColNames>
+    </index>
+    <index id="466" parent="262" name="IDX_EngineBase_BlockType">
+      <ColNames>BlockType
+BlockType</ColNames>
+    </index>
+    <index id="467" parent="262" name="IDX_EngineBase_EngBoreIn">
+      <ColNames>EngBoreIn
+EngBoreIn</ColNames>
+    </index>
+    <index id="468" parent="262" name="IDX_EngineBase_EngBoreMetric">
+      <ColNames>EngBoreMetric
+EngBoreMetric</ColNames>
+    </index>
+    <index id="469" parent="262" name="IDX_EngineBase_EngStrokeIn">
+      <ColNames>EngStrokeIn
+EngStrokeIn</ColNames>
+    </index>
+    <index id="470" parent="262" name="IDX_EngineBase_EngStrokeMetric">
+      <ColNames>EngStrokeMetric
+EngStrokeMetric</ColNames>
+    </index>
+    <column id="471" parent="263" name="EngineConfigID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="472" parent="263" name="EngineDesignationID">
+      <Position>2</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="473" parent="263" name="EngineVINID">
+      <Position>3</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="474" parent="263" name="ValvesID">
+      <Position>4</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="475" parent="263" name="EngineBaseID">
+      <Position>5</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="476" parent="263" name="FuelDeliveryConfigID">
+      <Position>6</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="477" parent="263" name="AspirationID">
+      <Position>7</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="478" parent="263" name="CylinderHeadTypeID">
+      <Position>8</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="479" parent="263" name="FuelTypeID">
+      <Position>9</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="480" parent="263" name="IgnitionSystemTypeID">
+      <Position>10</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="481" parent="263" name="EngineMfrID">
+      <Position>11</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="482" parent="263" name="EngineVersionID">
+      <Position>12</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="483" parent="263" name="PowerOutputID">
+      <Position>13</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="484" parent="263" name="IDX_EngineConfig_EngineDesignat">
+      <ColNames>EngineDesignationID</ColNames>
+    </index>
+    <index id="485" parent="263" name="IDX_EngineConfig_EngineVINID">
+      <ColNames>EngineVINID</ColNames>
+    </index>
+    <index id="486" parent="263" name="FK_EngineConfig_Valves1">
+      <ColNames>ValvesID</ColNames>
+    </index>
+    <index id="487" parent="263" name="IDX_EngineConfig_EngineBaseID">
+      <ColNames>EngineBaseID</ColNames>
+    </index>
+    <index id="488" parent="263" name="IDX_EngineConfig_FuelDeliveryCo">
+      <ColNames>FuelDeliveryConfigID</ColNames>
+    </index>
+    <index id="489" parent="263" name="IDX_EngineConfig_AspirationID">
+      <ColNames>AspirationID</ColNames>
+    </index>
+    <index id="490" parent="263" name="IDX_EngineConfig_CylinderHeadTy">
+      <ColNames>CylinderHeadTypeID</ColNames>
+    </index>
+    <index id="491" parent="263" name="IDX_EngineConfig_FuelTypeID">
+      <ColNames>FuelTypeID</ColNames>
+    </index>
+    <index id="492" parent="263" name="IDX_EngineConfig_IgnitionSystem">
+      <ColNames>IgnitionSystemTypeID</ColNames>
+    </index>
+    <index id="493" parent="263" name="IDX_EngineConfig_EngineMfrID">
+      <ColNames>EngineMfrID</ColNames>
+    </index>
+    <index id="494" parent="263" name="IDX_EngineConfig_EngineVersionID">
+      <ColNames>EngineVersionID</ColNames>
+    </index>
+    <key id="495" parent="263" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>EngineConfigID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="496" parent="263" name="FK_EngineDesignation_EngineConfig">
+      <ColNames>EngineDesignationID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>enginedesignation</RefTableName>
+      <RefColNames>EngineDesignationID</RefColNames>
+    </foreign-key>
+    <foreign-key id="497" parent="263" name="enginedesignationengineconfi_fk">
+      <ColNames>EngineDesignationID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>enginedesignation</RefTableName>
+      <RefColNames>EngineDesignationID</RefColNames>
+    </foreign-key>
+    <foreign-key id="498" parent="263" name="FK_EngineVIN_EngineConfig">
+      <ColNames>EngineVINID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>enginevin</RefTableName>
+      <RefColNames>EngineVINID</RefColNames>
+    </foreign-key>
+    <foreign-key id="499" parent="263" name="enginevinengineconfig_fk">
+      <ColNames>EngineVINID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>enginevin</RefTableName>
+      <RefColNames>EngineVINID</RefColNames>
+    </foreign-key>
+    <foreign-key id="500" parent="263" name="FK_EngineConfig_Valves">
+      <ColNames>ValvesID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>valves</RefTableName>
+      <RefColNames>ValvesID</RefColNames>
+    </foreign-key>
+    <foreign-key id="501" parent="263" name="FK_EngineConfig_Valves1">
+      <ColNames>ValvesID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>valves</RefTableName>
+      <RefColNames>ValvesID</RefColNames>
+    </foreign-key>
+    <foreign-key id="502" parent="263" name="FK_EngineBase_EngineConfig">
+      <ColNames>EngineBaseID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>enginebase</RefTableName>
+      <RefColNames>EngineBaseID</RefColNames>
+    </foreign-key>
+    <foreign-key id="503" parent="263" name="enginebaseengineconfig_fk">
+      <ColNames>EngineBaseID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>enginebase</RefTableName>
+      <RefColNames>EngineBaseID</RefColNames>
+    </foreign-key>
+    <foreign-key id="504" parent="263" name="FK_FuelDeliveryConfig_EngineConfig">
+      <ColNames>FuelDeliveryConfigID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>FuelDeliveryConfig</RefTableName>
+      <RefColNames>FuelDeliveryConfigID</RefColNames>
+    </foreign-key>
+    <foreign-key id="505" parent="263" name="fueldeliveryconfigengineconf_fk">
+      <ColNames>FuelDeliveryConfigID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>FuelDeliveryConfig</RefTableName>
+      <RefColNames>FuelDeliveryConfigID</RefColNames>
+    </foreign-key>
+    <foreign-key id="506" parent="263" name="FK_Aspiration_EngineConfig">
+      <ColNames>AspirationID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>aspiration</RefTableName>
+      <RefColNames>AspirationID</RefColNames>
+    </foreign-key>
+    <foreign-key id="507" parent="263" name="aspirationengineconfig_fk">
+      <ColNames>AspirationID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>aspiration</RefTableName>
+      <RefColNames>AspirationID</RefColNames>
+    </foreign-key>
+    <foreign-key id="508" parent="263" name="FK_CylinderHeadType_EngineConfig">
+      <ColNames>CylinderHeadTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>cylinderheadtype</RefTableName>
+      <RefColNames>CylinderHeadTypeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="509" parent="263" name="cylinderheadtypeengineconfig_fk">
+      <ColNames>CylinderHeadTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>cylinderheadtype</RefTableName>
+      <RefColNames>CylinderHeadTypeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="510" parent="263" name="FK_FuelType_EngineConfig">
+      <ColNames>FuelTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>fueltype</RefTableName>
+      <RefColNames>FuelTypeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="511" parent="263" name="fueltypeengineconfig_fk">
+      <ColNames>FuelTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>fueltype</RefTableName>
+      <RefColNames>FuelTypeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="512" parent="263" name="FK_IgnitionSystemType_EngineConfig">
+      <ColNames>IgnitionSystemTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>ignitionsystemtype</RefTableName>
+      <RefColNames>IgnitionSystemTypeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="513" parent="263" name="ignitionsystemtypeengineconf_fk">
+      <ColNames>IgnitionSystemTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>ignitionsystemtype</RefTableName>
+      <RefColNames>IgnitionSystemTypeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="514" parent="263" name="FK_Mfr_EngineConfig">
+      <ColNames>EngineMfrID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>mfr</RefTableName>
+      <RefColNames>MfrID</RefColNames>
+    </foreign-key>
+    <foreign-key id="515" parent="263" name="mfrengineconfig_fk">
+      <ColNames>EngineMfrID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>mfr</RefTableName>
+      <RefColNames>MfrID</RefColNames>
+    </foreign-key>
+    <foreign-key id="516" parent="263" name="FK_EngineVersion_EngineConfig">
+      <ColNames>EngineVersionID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>engineversion</RefTableName>
+      <RefColNames>EngineVersionID</RefColNames>
+    </foreign-key>
+    <foreign-key id="517" parent="263" name="engineversionengineconfig_fk">
+      <ColNames>EngineVersionID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>engineversion</RefTableName>
+      <RefColNames>EngineVersionID</RefColNames>
+    </foreign-key>
+    <column id="518" parent="264" name="EngineDesignationID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="519" parent="264" name="EngineDesignationName">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="520" parent="265" name="EngineVINID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="521" parent="265" name="EngineVINName">
+      <Position>2</Position>
+      <DataType>varchar(5)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="522" parent="265" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>EngineVINID
+EngineVINID
+EngineVINID
+EngineVINID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="523" parent="266" name="EngineVersionID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="524" parent="266" name="EngineVersion">
+      <Position>2</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="525" parent="266" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>EngineVersionID
+EngineVersionID
+EngineVersionID
+EngineVersionID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="526" parent="267" name="EnglishPhraseID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="527" parent="267" name="EnglishPhrase">
+      <Position>2</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="528" parent="268" name="FuelDeliveryConfigID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="529" parent="268" name="FuelDeliveryTypeID">
+      <Position>2</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="530" parent="268" name="FuelDeliverySubTypeID">
+      <Position>3</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="531" parent="268" name="FuelSystemControlTypeID">
+      <Position>4</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="532" parent="268" name="FuelSystemDesignID">
+      <Position>5</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="533" parent="268" name="IDX_FuelDeliveryConfig_FuelDel2">
+      <ColNames>FuelDeliveryTypeID</ColNames>
+    </index>
+    <index id="534" parent="268" name="IDX_FuelDeliveryConfig_FuelDel1">
+      <ColNames>FuelDeliverySubTypeID</ColNames>
+    </index>
+    <index id="535" parent="268" name="IDX_FuelDeliveryConfig_FuelSys3">
+      <ColNames>FuelSystemControlTypeID</ColNames>
+    </index>
+    <index id="536" parent="268" name="IDX_FuelDeliveryConfig_FuelSys4">
+      <ColNames>FuelSystemDesignID</ColNames>
+    </index>
+    <key id="537" parent="268" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>FuelDeliveryConfigID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="538" parent="268" name="FK_FuelDeliveryType_FuelDeliveryConfig">
+      <ColNames>FuelDeliveryTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>fueldeliverytype</RefTableName>
+      <RefColNames>FuelDeliveryTypeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="539" parent="268" name="fueldeliverytypefueldelivery_fk">
+      <ColNames>FuelDeliveryTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>fueldeliverytype</RefTableName>
+      <RefColNames>FuelDeliveryTypeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="540" parent="268" name="FK_FuelDeliverySubType_FuelDeliveryConfig">
+      <ColNames>FuelDeliverySubTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>fueldeliverysubtype</RefTableName>
+      <RefColNames>FuelDeliverySubTypeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="541" parent="268" name="fueldeliverysubtypefueldeliv_fk">
+      <ColNames>FuelDeliverySubTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>fueldeliverysubtype</RefTableName>
+      <RefColNames>FuelDeliverySubTypeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="542" parent="268" name="FK_FuelSystemControlType_FuelDeliveryConfig">
+      <ColNames>FuelSystemControlTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>fuelsystemcontroltype</RefTableName>
+      <RefColNames>FuelSystemControlTypeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="543" parent="268" name="fuelsystemcontroltypefueldel_fk">
+      <ColNames>FuelSystemControlTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>fuelsystemcontroltype</RefTableName>
+      <RefColNames>FuelSystemControlTypeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="544" parent="268" name="FK_FuelSystemDesign_FuelDeliveryConfig">
+      <ColNames>FuelSystemDesignID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>fuelsystemdesign</RefTableName>
+      <RefColNames>FuelSystemDesignID</RefColNames>
+    </foreign-key>
+    <foreign-key id="545" parent="268" name="fuelsystemdesignfueldelivery_fk">
+      <ColNames>FuelSystemDesignID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>fuelsystemdesign</RefTableName>
+      <RefColNames>FuelSystemDesignID</RefColNames>
+    </foreign-key>
+    <column id="546" parent="269" name="FuelDeliverySubTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="547" parent="269" name="FuelDeliverySubTypeName">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="548" parent="270" name="FuelDeliveryTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="549" parent="270" name="FuelDeliveryTypeName">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="550" parent="270" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>FuelDeliveryTypeID
+FuelDeliveryTypeID
+FuelDeliveryTypeID
+FuelDeliveryTypeID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="551" parent="271" name="FuelSystemControlTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="552" parent="271" name="FuelSystemControlTypeName">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="553" parent="272" name="FuelSystemDesignID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="554" parent="272" name="FuelSystemDesignName">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="555" parent="272" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>FuelSystemDesignID
+FuelSystemDesignID
+FuelSystemDesignID
+FuelSystemDesignID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="556" parent="273" name="FuelTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="557" parent="273" name="FuelTypeName">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="558" parent="273" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>FuelTypeID
+FuelTypeID
+FuelTypeID
+FuelTypeID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="559" parent="274" name="IgnitionSystemTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="560" parent="274" name="IgnitionSystemTypeName">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="561" parent="275" name="LanguageID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="562" parent="275" name="LanguageName">
+      <Position>2</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="563" parent="275" name="DialectName">
+      <Position>3</Position>
+      <DataType>varchar(20)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="564" parent="275" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>LanguageID
+LanguageID
+LanguageID
+LanguageID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="565" parent="276" name="LanguageTranslationID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="566" parent="276" name="EnglishPhraseID">
+      <Position>2</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="567" parent="276" name="LanguageID">
+      <Position>3</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="568" parent="276" name="Translation">
+      <Position>4</Position>
+      <DataType>varchar(150)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="569" parent="276" name="IX_LanguageTranslation_EnglishP">
+      <ColNames>EnglishPhraseID</ColNames>
+    </index>
+    <index id="570" parent="276" name="IX_LanguageTranslation_Language">
+      <ColNames>LanguageID</ColNames>
+    </index>
+    <key id="571" parent="276" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>LanguageTranslationID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="572" parent="276" name="FK_EnglishPhrase_LanguageTranslation">
+      <ColNames>EnglishPhraseID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>englishphrase</RefTableName>
+      <RefColNames>EnglishPhraseID</RefColNames>
+    </foreign-key>
+    <foreign-key id="573" parent="276" name="englishphraselanguagetranslation_fk">
+      <ColNames>EnglishPhraseID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>englishphrase</RefTableName>
+      <RefColNames>EnglishPhraseID</RefColNames>
+    </foreign-key>
+    <foreign-key id="574" parent="276" name="FK_Language_LanguageTranslation">
+      <ColNames>LanguageID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>language</RefTableName>
+      <RefColNames>LanguageID</RefColNames>
+    </foreign-key>
+    <foreign-key id="575" parent="276" name="languagelanguagetranslation_fk">
+      <ColNames>LanguageID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>language</RefTableName>
+      <RefColNames>LanguageID</RefColNames>
+    </foreign-key>
+    <column id="576" parent="277" name="LanguageTranslationAttachmentID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="577" parent="277" name="LanguageTranslationID">
+      <Position>2</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="578" parent="277" name="AttachmentID">
+      <Position>3</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="579" parent="277" name="IX_LanguageTranslationAttachme2">
+      <ColNames>LanguageTranslationID</ColNames>
+    </index>
+    <index id="580" parent="277" name="IX_LanguageTranslationAttachme1">
+      <ColNames>AttachmentID</ColNames>
+    </index>
+    <key id="581" parent="277" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>LanguageTranslationAttachmentID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="582" parent="277" name="FK_LanguageTranslation_LanguageTranslationAttachment">
+      <ColNames>LanguageTranslationID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>LanguageTranslation</RefTableName>
+      <RefColNames>LanguageTranslationID</RefColNames>
+    </foreign-key>
+    <foreign-key id="583" parent="277" name="languagetranslationlanguagetranslationattachment_fk">
+      <ColNames>LanguageTranslationID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>LanguageTranslation</RefTableName>
+      <RefColNames>LanguageTranslationID</RefColNames>
+    </foreign-key>
+    <foreign-key id="584" parent="277" name="FK_Attachment_LanguageTranslationAttachment">
+      <ColNames>AttachmentID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>Attachment</RefTableName>
+      <RefColNames>AttachmentID</RefColNames>
+    </foreign-key>
+    <foreign-key id="585" parent="277" name="attachmentlanguagetranslationattachment_fk">
+      <ColNames>AttachmentID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>Attachment</RefTableName>
+      <RefColNames>AttachmentID</RefColNames>
+    </foreign-key>
+    <column id="586" parent="278" name="MakeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="587" parent="278" name="MakeName">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="588" parent="278" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>MakeID
+MakeID
+MakeID
+MakeID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="589" parent="279" name="MfrID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="590" parent="279" name="MfrName">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="591" parent="280" name="MfrBodyCodeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="592" parent="280" name="MfrBodyCodeName">
+      <Position>2</Position>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="593" parent="281" name="ModelID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="594" parent="281" name="ModelName">
+      <Position>2</Position>
+      <DataType>varchar(100)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="595" parent="281" name="VehicleTypeID">
+      <Position>3</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="596" parent="281" name="IDX_Model_VehicleTypeID">
+      <ColNames>VehicleTypeID</ColNames>
+    </index>
+    <key id="597" parent="281" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ModelID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="598" parent="281" name="FK_VehicleType_Model">
+      <ColNames>VehicleTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>vehicletype</RefTableName>
+      <RefColNames>VehicleTypeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="599" parent="281" name="vehicletypemodel_fk">
+      <ColNames>VehicleTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>vehicletype</RefTableName>
+      <RefColNames>VehicleTypeID</RefColNames>
+    </foreign-key>
+    <column id="600" parent="282" name="PowerOutputID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="601" parent="282" name="HorsePower">
+      <Position>2</Position>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="602" parent="282" name="KilowattPower">
+      <Position>3</Position>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="603" parent="283" name="PublicationStageID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="604" parent="283" name="PublicationStageName">
+      <Position>2</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="605" parent="283" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>PublicationStageID
+PublicationStageID
+PublicationStageID
+PublicationStageID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="606" parent="284" name="RegionID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="607" parent="284" name="ParentID">
+      <Position>2</Position>
+      <DataType>int(10)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="608" parent="284" name="RegionAbbr">
+      <Position>3</Position>
+      <DataType>char(3)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="609" parent="284" name="RegionName">
+      <Position>4</Position>
+      <DataType>varchar(30)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="610" parent="284" name="IDX_Region_ParentID">
+      <ColNames>ParentID</ColNames>
+    </index>
+    <key id="611" parent="284" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>RegionID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="612" parent="284" name="FK_Region_Parent">
+      <ColNames>ParentID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>region</RefTableName>
+      <RefColNames>RegionID</RefColNames>
+    </foreign-key>
+    <column id="613" parent="285" name="SpringTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="614" parent="285" name="SpringTypeName">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="615" parent="286" name="SpringTypeConfigID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="616" parent="286" name="FrontSpringTypeID">
+      <Position>2</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="617" parent="286" name="RearSpringTypeID">
+      <Position>3</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="618" parent="286" name="IDX_SpringTypeConfig_FrontSprin">
+      <ColNames>FrontSpringTypeID</ColNames>
+    </index>
+    <index id="619" parent="286" name="IDX_SpringTypeConfig_RearSpring">
+      <ColNames>RearSpringTypeID</ColNames>
+    </index>
+    <key id="620" parent="286" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>SpringTypeConfigID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="621" parent="286" name="FK_FrontSpringType_SpringTypeConfig">
+      <ColNames>FrontSpringTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>springtype</RefTableName>
+      <RefColNames>SpringTypeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="622" parent="286" name="springconfig1_fk">
+      <ColNames>FrontSpringTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>springtype</RefTableName>
+      <RefColNames>SpringTypeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="623" parent="286" name="FK_RearSpringType_SpringTypeConfig">
+      <ColNames>RearSpringTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>springtype</RefTableName>
+      <RefColNames>SpringTypeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="624" parent="286" name="springconfig2_fk">
+      <ColNames>RearSpringTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>springtype</RefTableName>
+      <RefColNames>SpringTypeID</RefColNames>
+    </foreign-key>
+    <column id="625" parent="287" name="SteeringConfigID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="626" parent="287" name="SteeringTypeID">
+      <Position>2</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="627" parent="287" name="SteeringSystemID">
+      <Position>3</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="628" parent="287" name="IDX_SteeringConfig_SteeringType">
+      <ColNames>SteeringTypeID</ColNames>
+    </index>
+    <index id="629" parent="287" name="IDX_SteeringConfig_SteeringSyst">
+      <ColNames>SteeringSystemID</ColNames>
+    </index>
+    <key id="630" parent="287" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>SteeringConfigID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="631" parent="287" name="FK_SteeringType_SteeringConfig">
+      <ColNames>SteeringTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>steeringtype</RefTableName>
+      <RefColNames>SteeringTypeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="632" parent="287" name="steeringtypesteeringconfig_fk">
+      <ColNames>SteeringTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>steeringtype</RefTableName>
+      <RefColNames>SteeringTypeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="633" parent="287" name="FK_SteeringSystem_SteeringConfig">
+      <ColNames>SteeringSystemID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>steeringsystem</RefTableName>
+      <RefColNames>SteeringSystemID</RefColNames>
+    </foreign-key>
+    <foreign-key id="634" parent="287" name="steeringsystemsteeringconfig_fk">
+      <ColNames>SteeringSystemID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>steeringsystem</RefTableName>
+      <RefColNames>SteeringSystemID</RefColNames>
+    </foreign-key>
+    <column id="635" parent="288" name="SteeringSystemID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="636" parent="288" name="SteeringSystemName">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="637" parent="288" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>SteeringSystemID
+SteeringSystemID
+SteeringSystemID
+SteeringSystemID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="638" parent="289" name="SteeringTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="639" parent="289" name="SteeringTypeName">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="640" parent="289" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>SteeringTypeID
+SteeringTypeID
+SteeringTypeID
+SteeringTypeID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="641" parent="290" name="SubmodelID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="642" parent="290" name="SubmodelName">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="643" parent="291" name="TransmissionID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="644" parent="291" name="TransmissionBaseID">
+      <Position>2</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="645" parent="291" name="TransmissionMfrCodeID">
+      <Position>3</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="646" parent="291" name="TransmissionElecControlledID">
+      <Position>4</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="647" parent="291" name="TransmissionMfrID">
+      <Position>5</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="648" parent="291" name="IDX_Transmission_TransmissionBa">
+      <ColNames>TransmissionBaseID</ColNames>
+    </index>
+    <index id="649" parent="291" name="IDX_Transmission_TransmissionM1">
+      <ColNames>TransmissionMfrCodeID</ColNames>
+    </index>
+    <index id="650" parent="291" name="FK_Transmission_ElecControlled">
+      <ColNames>TransmissionElecControlledID</ColNames>
+    </index>
+    <index id="651" parent="291" name="IDX_Transmission_TransmissionM2">
+      <ColNames>TransmissionMfrID</ColNames>
+    </index>
+    <key id="652" parent="291" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>TransmissionID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="653" parent="291" name="FK_TransmissionBase_Transmission">
+      <ColNames>TransmissionBaseID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>TransmissionBase</RefTableName>
+      <RefColNames>TransmissionBaseID</RefColNames>
+    </foreign-key>
+    <foreign-key id="654" parent="291" name="transmissionbasetransmission_fk">
+      <ColNames>TransmissionBaseID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>TransmissionBase</RefTableName>
+      <RefColNames>TransmissionBaseID</RefColNames>
+    </foreign-key>
+    <foreign-key id="655" parent="291" name="FK_TransmissionMfrCode_Transmission">
+      <ColNames>TransmissionMfrCodeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>transmissionmfrcode</RefTableName>
+      <RefColNames>TransmissionMfrCodeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="656" parent="291" name="transmissionmfrcodetransmiss_fk">
+      <ColNames>TransmissionMfrCodeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>transmissionmfrcode</RefTableName>
+      <RefColNames>TransmissionMfrCodeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="657" parent="291" name="FK_Transmission_ElecControlled">
+      <ColNames>TransmissionElecControlledID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>eleccontrolled</RefTableName>
+      <RefColNames>ElecControlledID</RefColNames>
+    </foreign-key>
+    <foreign-key id="658" parent="291" name="FK_Mfr_Transmission">
+      <ColNames>TransmissionMfrID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>mfr</RefTableName>
+      <RefColNames>MfrID</RefColNames>
+    </foreign-key>
+    <foreign-key id="659" parent="291" name="mfrtransmission_fk">
+      <ColNames>TransmissionMfrID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>mfr</RefTableName>
+      <RefColNames>MfrID</RefColNames>
+    </foreign-key>
+    <column id="660" parent="292" name="TransmissionBaseID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="661" parent="292" name="TransmissionTypeID">
+      <Position>2</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="662" parent="292" name="TransmissionNumSpeedsID">
+      <Position>3</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="663" parent="292" name="TransmissionControlTypeID">
+      <Position>4</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="664" parent="292" name="IDX_TransmissionBase_Transmiss3">
+      <ColNames>TransmissionTypeID</ColNames>
+    </index>
+    <index id="665" parent="292" name="IDX_TransmissionBase_Transmiss2">
+      <ColNames>TransmissionNumSpeedsID</ColNames>
+    </index>
+    <index id="666" parent="292" name="IDX_TransmissionBase_Transmiss1">
+      <ColNames>TransmissionControlTypeID</ColNames>
+    </index>
+    <key id="667" parent="292" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>TransmissionBaseID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="668" parent="292" name="FK_TransmissionType_TransmissionBase">
+      <ColNames>TransmissionTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>transmissiontype</RefTableName>
+      <RefColNames>TransmissionTypeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="669" parent="292" name="transmissiontypetransmission_fk">
+      <ColNames>TransmissionTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>transmissiontype</RefTableName>
+      <RefColNames>TransmissionTypeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="670" parent="292" name="FK_TransmissionNumSpeeds_TransmissionBase">
+      <ColNames>TransmissionNumSpeedsID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>transmissionnumspeeds</RefTableName>
+      <RefColNames>TransmissionNumSpeedsID</RefColNames>
+    </foreign-key>
+    <foreign-key id="671" parent="292" name="transmissionnumspeedstransmi_fk">
+      <ColNames>TransmissionNumSpeedsID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>transmissionnumspeeds</RefTableName>
+      <RefColNames>TransmissionNumSpeedsID</RefColNames>
+    </foreign-key>
+    <foreign-key id="672" parent="292" name="FK_TransmissionControlType_TransmissionBase">
+      <ColNames>TransmissionControlTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>transmissioncontroltype</RefTableName>
+      <RefColNames>TransmissionControlTypeID</RefColNames>
+    </foreign-key>
+    <foreign-key id="673" parent="292" name="transmissioncontroltypetrans_fk">
+      <ColNames>TransmissionControlTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>transmissioncontroltype</RefTableName>
+      <RefColNames>TransmissionControlTypeID</RefColNames>
+    </foreign-key>
+    <column id="674" parent="293" name="TransmissionControlTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="675" parent="293" name="TransmissionControlTypeName">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="676" parent="294" name="TransmissionMfrCodeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="677" parent="294" name="TransmissionMfrCode">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="678" parent="294" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>TransmissionMfrCodeID
+TransmissionMfrCodeID
+TransmissionMfrCodeID
+TransmissionMfrCodeID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="679" parent="295" name="TransmissionNumSpeedsID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="680" parent="295" name="TransmissionNumSpeeds">
+      <Position>2</Position>
+      <DataType>char(3)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="681" parent="296" name="TransmissionTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="682" parent="296" name="TransmissionTypeName">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="683" parent="297" name="ValvesID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="684" parent="297" name="ValvesPerEngine">
+      <Position>2</Position>
+      <DataType>char(3)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="685" parent="297" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ValvesID
+ValvesID
+ValvesID
+ValvesID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="686" parent="298" name="VehicleID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="687" parent="298" name="BaseVehicleID">
+      <Position>2</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="688" parent="298" name="SubmodelID">
+      <Position>3</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="689" parent="298" name="RegionID">
+      <Position>4</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="690" parent="298" name="Source">
+      <Position>5</Position>
+      <DataType>char(10)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="691" parent="298" name="PublicationStageID">
+      <Position>6</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;4&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="692" parent="298" name="PublicationStageSource">
+      <Position>7</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="693" parent="298" name="PublicationStageDate">
+      <Position>8</Position>
+      <DataType>timestamp|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="694" parent="298" name="IDX_Vehicle_BaseVehicleID">
+      <ColNames>BaseVehicleID</ColNames>
+    </index>
+    <index id="695" parent="298" name="IDX_Vehicle_SubmodelID">
+      <ColNames>SubmodelID</ColNames>
+    </index>
+    <index id="696" parent="298" name="IDX_Vehicle_RegionID">
+      <ColNames>RegionID</ColNames>
+    </index>
+    <index id="697" parent="298" name="IDX_Vehicle_PublicationStage">
+      <ColNames>PublicationStageID</ColNames>
+    </index>
+    <key id="698" parent="298" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>VehicleID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="699" parent="298" name="FK_BaseVehicle_Vehicle">
+      <ColNames>BaseVehicleID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>BaseVehicle</RefTableName>
+      <RefColNames>BaseVehicleID</RefColNames>
+    </foreign-key>
+    <foreign-key id="700" parent="298" name="basevehiclevehicle_fk">
+      <ColNames>BaseVehicleID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>BaseVehicle</RefTableName>
+      <RefColNames>BaseVehicleID</RefColNames>
+    </foreign-key>
+    <foreign-key id="701" parent="298" name="FK_SubModel_Vehicle">
+      <ColNames>SubmodelID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>submodel</RefTableName>
+      <RefColNames>SubmodelID</RefColNames>
+    </foreign-key>
+    <foreign-key id="702" parent="298" name="submodelvehicle_fk">
+      <ColNames>SubmodelID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>submodel</RefTableName>
+      <RefColNames>SubmodelID</RefColNames>
+    </foreign-key>
+    <foreign-key id="703" parent="298" name="FK_Region_Vehicle">
+      <ColNames>RegionID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>region</RefTableName>
+      <RefColNames>RegionID</RefColNames>
+    </foreign-key>
+    <foreign-key id="704" parent="298" name="regionvehicle_fk">
+      <ColNames>RegionID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>region</RefTableName>
+      <RefColNames>RegionID</RefColNames>
+    </foreign-key>
+    <foreign-key id="705" parent="298" name="FK_PublicationStage_Vehicle">
+      <ColNames>PublicationStageID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>publicationstage</RefTableName>
+      <RefColNames>PublicationStageID</RefColNames>
+    </foreign-key>
+    <foreign-key id="706" parent="298" name="publicationstage_fk">
+      <ColNames>PublicationStageID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>publicationstage</RefTableName>
+      <RefColNames>PublicationStageID</RefColNames>
+    </foreign-key>
+    <column id="707" parent="299" name="VehicleToBedConfigID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="708" parent="299" name="VehicleID">
+      <Position>2</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="709" parent="299" name="BedConfigID">
+      <Position>3</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="710" parent="299" name="Source">
+      <Position>4</Position>
+      <DataType>char(10)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="711" parent="299" name="IDX_VehicleToBedConfig_VehicleID">
+      <ColNames>VehicleID</ColNames>
+    </index>
+    <index id="712" parent="299" name="IDX_VehicleToBedConfig_BedConfi">
+      <ColNames>BedConfigID</ColNames>
+    </index>
+    <key id="713" parent="299" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>VehicleToBedConfigID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="714" parent="299" name="vehiclevehicle_fk">
+      <ColNames>VehicleID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>Vehicle</RefTableName>
+      <RefColNames>VehicleID</RefColNames>
+    </foreign-key>
+    <foreign-key id="715" parent="299" name="bedconfigvehicletobed_fk">
+      <ColNames>BedConfigID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>BedConfig</RefTableName>
+      <RefColNames>BedConfigID</RefColNames>
+    </foreign-key>
+    <column id="716" parent="300" name="VehicleToBodyStyleConfigID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="717" parent="300" name="VehicleID">
+      <Position>2</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="718" parent="300" name="BodyStyleConfigID">
+      <Position>3</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="719" parent="300" name="Source">
+      <Position>4</Position>
+      <DataType>char(10)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="720" parent="300" name="IDX_VehicleToBodyStyleConfig_Ve">
+      <ColNames>VehicleID</ColNames>
+    </index>
+    <index id="721" parent="300" name="IDX_VehicleToBodyStyleConfig_Bo">
+      <ColNames>BodyStyleConfigID</ColNames>
+    </index>
+    <key id="722" parent="300" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>VehicleToBodyStyleConfigID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="723" parent="300" name="vehicletobodystyleconfigvehicle_fk">
+      <ColNames>VehicleID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>Vehicle</RefTableName>
+      <RefColNames>VehicleID</RefColNames>
+    </foreign-key>
+    <foreign-key id="724" parent="300" name="bodystyleconfigbasetosubmode_fk">
+      <ColNames>BodyStyleConfigID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>BodyStyleConfig</RefTableName>
+      <RefColNames>BodyStyleConfigID</RefColNames>
+    </foreign-key>
+    <column id="725" parent="301" name="VehicleToBrakeConfigID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="726" parent="301" name="VehicleID">
+      <Position>2</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="727" parent="301" name="BrakeConfigID">
+      <Position>3</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="728" parent="301" name="Source">
+      <Position>4</Position>
+      <DataType>char(10)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="729" parent="301" name="IDX_VehicleToBrakeConfig_Vehicl">
+      <ColNames>VehicleID</ColNames>
+    </index>
+    <index id="730" parent="301" name="IDX_VehicleToBrakeConfig_BrakeC">
+      <ColNames>BrakeConfigID</ColNames>
+    </index>
+    <key id="731" parent="301" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>VehicleToBrakeConfigID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="732" parent="301" name="vehicletobrakeconfigvehicle_fk">
+      <ColNames>VehicleID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>Vehicle</RefTableName>
+      <RefColNames>VehicleID</RefColNames>
+    </foreign-key>
+    <foreign-key id="733" parent="301" name="brakeconfigvehicle_fk">
+      <ColNames>BrakeConfigID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>BrakeConfig</RefTableName>
+      <RefColNames>BrakeConfigID</RefColNames>
+    </foreign-key>
+    <column id="734" parent="302" name="VehicleToDriveTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="735" parent="302" name="VehicleID">
+      <Position>2</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="736" parent="302" name="DriveTypeID">
+      <Position>3</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="737" parent="302" name="Source">
+      <Position>4</Position>
+      <DataType>char(10)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="738" parent="302" name="IDX_VehicleToDriveType_VehicleID">
+      <ColNames>VehicleID</ColNames>
+    </index>
+    <index id="739" parent="302" name="IDX_VehicleToDriveType_DriveTyp">
+      <ColNames>DriveTypeID</ColNames>
+    </index>
+    <key id="740" parent="302" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>VehicleToDriveTypeID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="741" parent="302" name="vehicletodrivetypevehicle_fk">
+      <ColNames>VehicleID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>Vehicle</RefTableName>
+      <RefColNames>VehicleID</RefColNames>
+    </foreign-key>
+    <foreign-key id="742" parent="302" name="drivetypevehicletodri_fk">
+      <ColNames>DriveTypeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>drivetype</RefTableName>
+      <RefColNames>DriveTypeID</RefColNames>
+    </foreign-key>
+    <column id="743" parent="303" name="VehicleToEngineConfigID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="744" parent="303" name="VehicleID">
+      <Position>2</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="745" parent="303" name="EngineConfigID">
+      <Position>3</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="746" parent="303" name="Source">
+      <Position>4</Position>
+      <DataType>char(10)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="747" parent="303" name="IDX_VehicleToEngineConfig_Vehic">
+      <ColNames>VehicleID</ColNames>
+    </index>
+    <index id="748" parent="303" name="IDX_VehicleToEngineConfig_Engin">
+      <ColNames>EngineConfigID</ColNames>
+    </index>
+    <key id="749" parent="303" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>VehicleToEngineConfigID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="750" parent="303" name="vehicletoengineconfigvehicle_fk">
+      <ColNames>VehicleID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>Vehicle</RefTableName>
+      <RefColNames>VehicleID</RefColNames>
+    </foreign-key>
+    <foreign-key id="751" parent="303" name="engineconfigvehicleto_fk">
+      <ColNames>EngineConfigID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>EngineConfig</RefTableName>
+      <RefColNames>EngineConfigID</RefColNames>
+    </foreign-key>
+    <column id="752" parent="304" name="VehicleToMfrBodyCodeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="753" parent="304" name="VehicleID">
+      <Position>2</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="754" parent="304" name="MfrBodyCodeID">
+      <Position>3</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="755" parent="304" name="Source">
+      <Position>4</Position>
+      <DataType>char(10)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="756" parent="304" name="IDX_VehicleToMfrBodyCode_Vehicl">
+      <ColNames>VehicleID</ColNames>
+    </index>
+    <index id="757" parent="304" name="IDX_VehicleToMfrBodyCode_MfrBod">
+      <ColNames>MfrBodyCodeID</ColNames>
+    </index>
+    <key id="758" parent="304" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>VehicleToMfrBodyCodeID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="759" parent="304" name="vehicletomfrbodycodevehicle_fk">
+      <ColNames>VehicleID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>Vehicle</RefTableName>
+      <RefColNames>VehicleID</RefColNames>
+    </foreign-key>
+    <foreign-key id="760" parent="304" name="mfrbodycodevehicletom_fk">
+      <ColNames>MfrBodyCodeID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>mfrbodycode</RefTableName>
+      <RefColNames>MfrBodyCodeID</RefColNames>
+    </foreign-key>
+    <column id="761" parent="305" name="VehicleToSpringTypeConfigID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="762" parent="305" name="VehicleID">
+      <Position>2</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="763" parent="305" name="SpringTypeConfigID">
+      <Position>3</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="764" parent="305" name="Source">
+      <Position>4</Position>
+      <DataType>char(10)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="765" parent="305" name="IDX_VehicleToSpringTypeConfig_V">
+      <ColNames>VehicleID</ColNames>
+    </index>
+    <index id="766" parent="305" name="IDX_VehicleToSpringTypeConfig_S">
+      <ColNames>SpringTypeConfigID</ColNames>
+    </index>
+    <key id="767" parent="305" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>VehicleToSpringTypeConfigID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="768" parent="305" name="vehicletospringtypeconfigvehicle_fk">
+      <ColNames>VehicleID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>Vehicle</RefTableName>
+      <RefColNames>VehicleID</RefColNames>
+    </foreign-key>
+    <foreign-key id="769" parent="305" name="vehicletospringtype1_fk">
+      <ColNames>SpringTypeConfigID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>SpringTypeConfig</RefTableName>
+      <RefColNames>SpringTypeConfigID</RefColNames>
+    </foreign-key>
+    <column id="770" parent="306" name="VehicleToSteeringConfigID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="771" parent="306" name="VehicleID">
+      <Position>2</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="772" parent="306" name="SteeringConfigID">
+      <Position>3</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="773" parent="306" name="Source">
+      <Position>4</Position>
+      <DataType>char(10)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="774" parent="306" name="IDX_VehicleToSteeringConfig_Veh">
+      <ColNames>VehicleID</ColNames>
+    </index>
+    <index id="775" parent="306" name="IDX_VehicleToSteeringConfig_Ste">
+      <ColNames>SteeringConfigID</ColNames>
+    </index>
+    <key id="776" parent="306" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>VehicleToSteeringConfigID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="777" parent="306" name="vehicletosteeringconfigvehicle_fk">
+      <ColNames>VehicleID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>Vehicle</RefTableName>
+      <RefColNames>VehicleID</RefColNames>
+    </foreign-key>
+    <foreign-key id="778" parent="306" name="steeringconfigvehicle_fk">
+      <ColNames>SteeringConfigID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>SteeringConfig</RefTableName>
+      <RefColNames>SteeringConfigID</RefColNames>
+    </foreign-key>
+    <column id="779" parent="307" name="VehicleToTransmissionID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="780" parent="307" name="VehicleID">
+      <Position>2</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="781" parent="307" name="TransmissionID">
+      <Position>3</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="782" parent="307" name="Source">
+      <Position>4</Position>
+      <DataType>char(10)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="783" parent="307" name="IDX_VehicleToTransmission_Vehic">
+      <ColNames>VehicleID</ColNames>
+    </index>
+    <index id="784" parent="307" name="IDX_VehicleToTransmission_Trans">
+      <ColNames>TransmissionID</ColNames>
+    </index>
+    <key id="785" parent="307" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>VehicleToTransmissionID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="786" parent="307" name="vehicletotransmissionvehicle_fk">
+      <ColNames>VehicleID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>Vehicle</RefTableName>
+      <RefColNames>VehicleID</RefColNames>
+    </foreign-key>
+    <foreign-key id="787" parent="307" name="transmissionvehicleto_fk">
+      <ColNames>TransmissionID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>Transmission</RefTableName>
+      <RefColNames>TransmissionID</RefColNames>
+    </foreign-key>
+    <column id="788" parent="308" name="VehicleToWheelbaseID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="789" parent="308" name="VehicleID">
+      <Position>2</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="790" parent="308" name="WheelbaseID">
+      <Position>3</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="791" parent="308" name="Source">
+      <Position>4</Position>
+      <DataType>char(10)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="792" parent="308" name="IDX_VehicleToWheelbase_VehicleID">
+      <ColNames>VehicleID</ColNames>
+    </index>
+    <index id="793" parent="308" name="IDX_VehicleToWheelbase_Wheelbas">
+      <ColNames>WheelbaseID</ColNames>
+    </index>
+    <key id="794" parent="308" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>VehicleToWheelbaseID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="795" parent="308" name="vehicletowheelbasevehicle_fk">
+      <ColNames>VehicleID</ColNames>
+      <RefSchemaName>aaia_vcdb</RefSchemaName>
+      <RefTableName>Vehicle</RefTableName>
+      <RefColNames>VehicleID</RefColNames>
+    </foreign-key>
+    <column id="796" parent="309" name="VehicleTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="797" parent="309" name="VehicleTypeName">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="798" parent="309" name="VehicleTypeGroupID">
+      <Position>3</Position>
+      <DataType>int(10)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="799" parent="310" name="VehicleTypeGroupID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="800" parent="310" name="VehicleTypeGroupName">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="801" parent="311" name="VersionDate">
+      <Position>1</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="802" parent="312" name="WheelBaseID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="803" parent="312" name="WheelBase">
+      <Position>2</Position>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="804" parent="312" name="WheelBaseMetric">
+      <Position>3</Position>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="805" parent="313" name="YearID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="806" parent="314" name="Abbreviation">
+      <Position>1</Position>
+      <DataType>char(3)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="807" parent="314" name="Description">
+      <Position>2</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="808" parent="314" name="LongDescription">
+      <Position>3</Position>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="809" parent="315" name="AspirationID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="810" parent="315" name="AspirationName">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="811" parent="315" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>AspirationID
+AspirationID
+AspirationID
+AspirationID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="812" parent="316" name="AttachmentTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="813" parent="316" name="AttachmentTypeName">
+      <Position>2</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="814" parent="317" name="BedLengthID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="815" parent="317" name="BedLength">
+      <Position>2</Position>
+      <DataType>char(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="816" parent="317" name="BedLengthMetric">
+      <Position>3</Position>
+      <DataType>char(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="817" parent="318" name="BedTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="818" parent="318" name="BedTypeName">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="819" parent="318" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>BedTypeID
+BedTypeID
+BedTypeID
+BedTypeID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="820" parent="319" name="BodyNumDoorsID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="821" parent="319" name="BodyNumDoors">
+      <Position>2</Position>
+      <DataType>char(3)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="822" parent="319" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>BodyNumDoorsID
+BodyNumDoorsID
+BodyNumDoorsID
+BodyNumDoorsID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="823" parent="320" name="BodyTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="824" parent="320" name="BodyTypeName">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="825" parent="321" name="BrakeABSID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="826" parent="321" name="BrakeABSName">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="827" parent="321" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>BrakeABSID
+BrakeABSID
+BrakeABSID
+BrakeABSID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="828" parent="322" name="BrakeSystemID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="829" parent="322" name="BrakeSystemName">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="830" parent="322" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>BrakeSystemID
+BrakeSystemID
+BrakeSystemID
+BrakeSystemID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="831" parent="323" name="BrakeTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="832" parent="323" name="BrakeTypeName">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="833" parent="324" name="CylinderHeadTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="834" parent="324" name="CylinderHeadTypeName">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="835" parent="324" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>CylinderHeadTypeID
+CylinderHeadTypeID
+CylinderHeadTypeID
+CylinderHeadTypeID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="836" parent="325" name="DriveTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="837" parent="325" name="DriveTypeName">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="838" parent="325" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>DriveTypeID
+DriveTypeID
+DriveTypeID
+DriveTypeID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="839" parent="326" name="ElecControlledID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="840" parent="326" name="ElecControlled">
+      <Position>2</Position>
+      <DataType>char(3)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="841" parent="327" name="EngineBaseID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="842" parent="327" name="Liter">
+      <Position>2</Position>
+      <DataType>char(6)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="843" parent="327" name="CC">
+      <Position>3</Position>
+      <DataType>char(8)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="844" parent="327" name="CID">
+      <Position>4</Position>
+      <DataType>char(7)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="845" parent="327" name="Cylinders">
+      <Position>5</Position>
+      <DataType>char(2)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="846" parent="327" name="BlockType">
+      <Position>6</Position>
+      <DataType>char(2)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="847" parent="327" name="EngBoreIn">
+      <Position>7</Position>
+      <DataType>char(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="848" parent="327" name="EngBoreMetric">
+      <Position>8</Position>
+      <DataType>char(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="849" parent="327" name="EngStrokeIn">
+      <Position>9</Position>
+      <DataType>char(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="850" parent="327" name="EngStrokeMetric">
+      <Position>10</Position>
+      <DataType>char(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="851" parent="327" name="IDX_EngineBase_CC">
+      <ColNames>CC
+CC</ColNames>
+    </index>
+    <index id="852" parent="327" name="IDX_EngineBase_Cylinders">
+      <ColNames>Cylinders
+Cylinders</ColNames>
+    </index>
+    <key id="853" parent="327" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>EngineBaseID
+EngineBaseID
+EngineBaseID
+EngineBaseID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="854" parent="328" name="EngineDesignationID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="855" parent="328" name="EngineDesignationName">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="856" parent="328" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>EngineDesignationID
+EngineDesignationID
+EngineDesignationID
+EngineDesignationID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="857" parent="329" name="EngineVersionID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="858" parent="329" name="EngineVersion">
+      <Position>2</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="859" parent="330" name="EngineVINID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="860" parent="330" name="EngineVINName">
+      <Position>2</Position>
+      <DataType>varchar(5)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="861" parent="331" name="EnglishPhraseID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="862" parent="331" name="EnglishPhrase">
+      <Position>2</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="863" parent="331" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>EnglishPhraseID
+EnglishPhraseID
+EnglishPhraseID
+EnglishPhraseID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="864" parent="332" name="FuelDeliverySubTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="865" parent="332" name="FuelDeliverySubTypeName">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="866" parent="332" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>FuelDeliverySubTypeID
+FuelDeliverySubTypeID
+FuelDeliverySubTypeID
+FuelDeliverySubTypeID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="867" parent="333" name="FuelDeliveryTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="868" parent="333" name="FuelDeliveryTypeName">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="869" parent="334" name="FuelSystemControlTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="870" parent="334" name="FuelSystemControlTypeName">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="871" parent="334" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>FuelSystemControlTypeID
+FuelSystemControlTypeID
+FuelSystemControlTypeID
+FuelSystemControlTypeID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="872" parent="335" name="FuelSystemDesignID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="873" parent="335" name="FuelSystemDesignName">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="874" parent="336" name="FuelTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="875" parent="336" name="FuelTypeName">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="876" parent="337" name="IgnitionSystemTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="877" parent="337" name="IgnitionSystemTypeName">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="878" parent="337" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>IgnitionSystemTypeID
+IgnitionSystemTypeID
+IgnitionSystemTypeID
+IgnitionSystemTypeID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="879" parent="338" name="LanguageID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="880" parent="338" name="LanguageName">
+      <Position>2</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="881" parent="338" name="DialectName">
+      <Position>3</Position>
+      <DataType>varchar(20)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="882" parent="339" name="MakeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="883" parent="339" name="MakeName">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="884" parent="340" name="MfrID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="885" parent="340" name="MfrName">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="886" parent="340" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>MfrID
+MfrID
+MfrID
+MfrID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="887" parent="341" name="MfrBodyCodeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="888" parent="341" name="MfrBodyCodeName">
+      <Position>2</Position>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="889" parent="341" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>MfrBodyCodeID
+MfrBodyCodeID
+MfrBodyCodeID
+MfrBodyCodeID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="890" parent="342" name="PowerOutputID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="891" parent="342" name="HorsePower">
+      <Position>2</Position>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="892" parent="342" name="KilowattPower">
+      <Position>3</Position>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="893" parent="343" name="PublicationStageID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="894" parent="343" name="PublicationStageName">
+      <Position>2</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="895" parent="344" name="SpringTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="896" parent="344" name="SpringTypeName">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="897" parent="344" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>SpringTypeID
+SpringTypeID
+SpringTypeID
+SpringTypeID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="898" parent="345" name="SteeringSystemID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="899" parent="345" name="SteeringSystemName">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="900" parent="346" name="SteeringTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="901" parent="346" name="SteeringTypeName">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="902" parent="347" name="SubmodelID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="903" parent="347" name="SubmodelName">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="904" parent="347" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>SubmodelID
+SubmodelID
+SubmodelID
+SubmodelID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="905" parent="348" name="TransmissionControlTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="906" parent="348" name="TransmissionControlTypeName">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="907" parent="348" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>TransmissionControlTypeID
+TransmissionControlTypeID
+TransmissionControlTypeID
+TransmissionControlTypeID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="908" parent="349" name="TransmissionMfrCodeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="909" parent="349" name="TransmissionMfrCode">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="910" parent="350" name="TransmissionNumSpeedsID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="911" parent="350" name="TransmissionNumSpeeds">
+      <Position>2</Position>
+      <DataType>char(3)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="912" parent="350" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>TransmissionNumSpeedsID
+TransmissionNumSpeedsID
+TransmissionNumSpeedsID
+TransmissionNumSpeedsID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="913" parent="351" name="TransmissionTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="914" parent="351" name="TransmissionTypeName">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="915" parent="351" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>TransmissionTypeID
+TransmissionTypeID
+TransmissionTypeID
+TransmissionTypeID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="916" parent="352" name="ValvesID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="917" parent="352" name="ValvesPerEngine">
+      <Position>2</Position>
+      <DataType>char(3)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="918" parent="353" name="versiondate">
+      <Position>1</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="919" parent="353" name="tablename">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="920" parent="353" name="id">
+      <Position>3</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="921" parent="353" name="action">
+      <Position>4</Position>
+      <DataType>char(1)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="922" parent="354" name="VehicleTypeID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="923" parent="354" name="VehicleTypeName">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="924" parent="354" name="VehicleTypeGroupID">
+      <Position>3</Position>
+      <DataType>int(10)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="925" parent="354" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>VehicleTypeID
+VehicleTypeID
+VehicleTypeID
+VehicleTypeID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="926" parent="355" name="VehicleTypeGroupID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="927" parent="355" name="VehicleTypeGroupName">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="928" parent="356" name="VersionDate">
+      <Position>1</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="929" parent="357" name="WheelBaseID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="930" parent="357" name="WheelBase">
+      <Position>2</Position>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="931" parent="357" name="WheelBaseMetric">
+      <Position>3</Position>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="932" parent="357" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>WheelBaseID
+WheelBaseID
+WheelBaseID
+WheelBaseID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="933" parent="358" name="YearID">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="934" parent="358" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>YearID
+YearID
+YearID
+YearID</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>

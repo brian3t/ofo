@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlResolveMappings">
+    <file url="file://$PROJECT_DIR$" scope="{&quot;node&quot;:{  &quot;@negative&quot;:&quot;1&quot;,  &quot;group&quot;:{   &quot;@kind&quot;:&quot;data-source&quot;,   &quot;node&quot;:{    &quot;name&quot;:{     &quot;@name&quot;:&quot;101618ac-0a96-415a-9bec-f54098c56dac&quot;,     &quot;@quoted&quot;:&quot;1&quot;    },    &quot;name&quot;:{     &quot;@name&quot;:&quot;a06f9f38-3659-4b8f-992c-919c0c5fd1a6&quot;,     &quot;@quoted&quot;:&quot;1&quot;    },    &quot;name&quot;:{     &quot;@name&quot;:&quot;bfd3a5c4-8e1e-46ba-bc58-08caa8b7a1b8&quot;,     &quot;@quoted&quot;:&quot;1&quot;    }   },   &quot;node&quot;:{    &quot;name&quot;:{     &quot;@name&quot;:&quot;65a9b7e7-44dd-455d-b4c1-c280c1331971&quot;,     &quot;@quoted&quot;:&quot;1&quot;    },    &quot;group&quot;:{     &quot;@kind&quot;:&quot;schema&quot;,     &quot;node&quot;:{      &quot;name&quot;:{       &quot;@name&quot;:&quot;oilfiltersonline&quot;,       &quot;@quoted&quot;:&quot;1&quot;      }     }    }   }  } }}" />
+  </component>
+</project>
