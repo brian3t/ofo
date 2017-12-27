@@ -189,7 +189,7 @@ function lookupAaia($z)
     if (isset($z['enginebase'])){
         $sql = "SELECT * FROM EngineBase WHERE EngineBaseID = " . $z['enginebase'] . " LIMIT 1;";
         $result = $con->query($sql);
-        if ($result->num_rows == 0){
+        if (!is_object($result) || $result->num_rows == 0){
             $log .= "No enginebase found, ";
             $results['lookup_fail']++;
             return false;
@@ -391,11 +391,11 @@ for ($k = 0;$k < $num_of_parts;$k++){
 		<Part>PAB9588</Part>
      */
     if (!property_exists($app, 'BaseVehicle')){
-        $log .= "Basevehicle not exists in XML. App: ". json_encode($app);
+        $log .= "Basevehicle not exists in XML. App: " . json_encode($app);
         continue;
     }
     $z['basevehicle'] = (string)$app->BaseVehicle->attributes();
-    $z['enginebase'] = (string)$app->EngineBase->attributes();
+    $z['enginebase'] = property_exists($app, 'EngineBase') ? (string)$app->EngineBase->attributes() : '';
     $z['enginevin'] = '';
     if (isset($app->EngineVIN) && method_exists($app->EngineVIN, 'attributes')){
         $z['enginevin'] = (string)$app->EngineVIN->attributes();
