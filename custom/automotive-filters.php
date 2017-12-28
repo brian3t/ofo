@@ -264,7 +264,7 @@ function showdiv($model, $make, $year, $id, $engine) {
     list($availableDesc) = mysql_fetch_row($availDesc);
     $price = $rs["price"];
     $part = $rs["part"];
-    $description = $rs["description"];
+    $description = htmlentities($rs["description"],ENT_QUOTES);
     $manufacturer = $rs["manufacturer"];
     $friendly_url = $rs["friendly_url"];
     $content = $rs["content"];

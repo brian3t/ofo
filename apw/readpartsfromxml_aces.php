@@ -8,7 +8,6 @@ Check log file log_read_parts_.txt in the same folder for inserted records and/o
 */
 
 //error_reporting(4);
-ini_set('max_execution_time', 10800);
 if (php_sapi_name() == 'cli' || strpos('ofo', $_SERVER['SERVER_NAME']) !== false){
     define('IS_LOCAL', true);
 } else {
