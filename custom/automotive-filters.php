@@ -36,12 +36,12 @@ if ($_GET["app"] == "motorcycle") {
 $effects_script = 'imagePreview();';
 
 if($_GET["app"] == "heavyduty") {
-  $makesRs = mysql_query("SELECT DISTINCT(make) from oilfiltersonline.".$current_db." order by make asc") or die(mysql_error());
+  $makesRs = mysql_query("SELECT DISTINCT(make) FROM oilfiltersonline.".$current_db." ORDER BY make ASC") or die(mysql_error());
   while ($rs=mysql_fetch_assoc($makesRs)) {
     $make_options .= '<option value="'.$rs["make"].'">'.$rs["make"].'</option>';
   }
 } else {
-  $yearRs = mysql_query("SELECT DISTINCT(year) from oilfiltersonline.".$current_db." order by year desc") or die(mysql_error());
+  $yearRs = mysql_query("SELECT DISTINCT(year) FROM oilfiltersonline.".$current_db." ORDER BY year DESC") or die(mysql_error());
   while ($rs=mysql_fetch_assoc($yearRs)) {
     $year_options .= '<option value="'.$rs["year"].'">'.$rs["year"].'</option>';
   }
@@ -101,7 +101,7 @@ function addmodels($selectId, $year, $make) {
   global $models, $current_db;
   $objResponse = new myXajaxResponse();
   $modelsRs = mysql_query(sprintf(
-  "SELECT DISTINCT(model) FROM oilfiltersonline.".$current_db." WHERE make = '%s' and year = '%s' order by model asc", $make, $year));
+  "SELECT DISTINCT(model) FROM oilfiltersonline.".$current_db." WHERE make = '%s' AND year = '%s' ORDER BY model ASC", $make, $year));
   $models[]=array("txt"=>"--Select Model--", "val"=>"");
   while ($rs=mysql_fetch_assoc($modelsRs)) {
     $models[]=array("txt"=>$rs["model"], "val"=>$rs["model"]);
@@ -118,7 +118,7 @@ function addmodelsHD($selectId, $make) {
   global $models, $current_db;
   $objResponse = new myXajaxResponse();
   $modelsRs = mysql_query(sprintf(
-  "SELECT DISTINCT(model) FROM oilfiltersonline.".$current_db." WHERE make = '%s' order by model asc", $make));
+  "SELECT DISTINCT(model) FROM oilfiltersonline.".$current_db." WHERE make = '%s' ORDER BY model ASC", $make));
   $models[]=array("txt"=>"--Select Model--", "val"=>"");
   while ($rs=mysql_fetch_assoc($modelsRs)) {
     $models[]=array("txt"=>$rs["model"], "val"=>$rs["model"]);
@@ -137,7 +137,7 @@ function addmakes($selectId, $year) {
   global $makes, $current_db;
   $objResponse = new myXajaxResponse();
   $makesRs = mysql_query(sprintf
-  ("SELECT DISTINCT(make) FROM oilfiltersonline.".$current_db." WHERE year = '%s' order by make asc", $year));
+  ("SELECT DISTINCT(make) FROM oilfiltersonline.".$current_db." WHERE year = '%s' ORDER BY make ASC", $year));
   $makes[]=array("txt"=>"--Select Make--", "val"=>"");
   while ($rs=mysql_fetch_assoc($makesRs)) {
     $makes[]=array("txt"=>$rs["make"], "val"=>$rs["make"]);
@@ -155,7 +155,7 @@ function addyearsHD($selectId, $make, $model) {
   global $years, $current_db;
   $objResponse = new myXajaxResponse();
   $yearsRs = mysql_query(sprintf
-  ("SELECT DISTINCT(year) FROM oilfiltersonline.".$current_db." WHERE model = '%s' and make = '%s' order by year desc", $model, $make));
+  ("SELECT DISTINCT(year) FROM oilfiltersonline.".$current_db." WHERE model = '%s' AND make = '%s' ORDER BY year DESC", $model, $make));
   $years[]=array("txt"=>"--Select Year--", "val"=>"");
   while ($rs=mysql_fetch_assoc($yearsRs)) {
     $years[]=array("txt"=>$rs["year"], "val"=>$rs["year"]);
@@ -173,10 +173,10 @@ function addengines($selectId, $model, $make, $year) {
   $objResponse = new myXajaxResponse();
   if($current_db == "aaia") {
     $enginesRs = mysql_query(sprintf
-    ("SELECT id, concat_ws('-',cylinders,concat(liters,'L'),engineVIN,injectionType,notes1,notes2,notes4,fuelType) as engine from oilfiltersonline.".$current_db." WHERE model = '%s' and make = '%s' and year = '%s' order by engine desc", $model, $make, $year));
+    ("SELECT id, concat_ws('-',cylinders,concat(liters,'L'),engineVIN,injectionType,notes1,notes2,notes4,fuelType) AS engine FROM oilfiltersonline.".$current_db." WHERE model = '%s' AND make = '%s' AND year = '%s' ORDER BY engine DESC", $model, $make, $year));
   } else {
     $enginesRs = mysql_query(sprintf
-  ("SELECT DISTINCT(engine) FROM oilfiltersonline.".$current_db." WHERE model = '%s' and make = '%s' and year = '%s' order by engine desc", $model, $make, $year));
+  ("SELECT DISTINCT(engine) FROM oilfiltersonline.".$current_db." WHERE model = '%s' AND make = '%s' AND year = '%s' ORDER BY engine DESC", $model, $make, $year));
   }
   $engines[]=array("txt"=>"--Select Engine--", "val"=>"");
   while ($rs=mysql_fetch_assoc($enginesRs)) {
@@ -192,7 +192,7 @@ function addengines_old($selectId, $model, $make, $year) {
   global $engines, $current_db;
   $objResponse = new myXajaxResponse();
   $enginesRs = mysql_query(sprintf
-  ("SELECT DISTINCT(engine) FROM oilfiltersonline.".$current_db." WHERE model = '%s' and make = '%s' and year = '%s' order by engine desc", $model, $make, $year));
+  ("SELECT DISTINCT(engine) FROM oilfiltersonline.".$current_db." WHERE model = '%s' AND make = '%s' AND year = '%s' ORDER BY engine DESC", $model, $make, $year));
   $engines[]=array("txt"=>"--Select Engine--", "val"=>"");
   while ($rs=mysql_fetch_assoc($enginesRs)) {
     $engines[]=array("txt"=>$rs["engine"], "val"=>$rs["engine"]);
@@ -207,7 +207,7 @@ function addenginesHD($selectId, $model, $make, $year) {
   global $engines, $current_db;
   $objResponse = new myXajaxResponse();
   $enginesRs = mysql_query(sprintf
-  ("SELECT DISTINCT(engine) FROM oilfiltersonline.".$current_db." WHERE model = '%s' and make = '%s' and year = '%s' order by engine desc", $model, $make, $year));
+  ("SELECT DISTINCT(engine) FROM oilfiltersonline.".$current_db." WHERE model = '%s' AND make = '%s' AND year = '%s' ORDER BY engine DESC", $model, $make, $year));
   $engines[]=array("txt"=>"--Select Engine--", "val"=>"");
   while ($rs=mysql_fetch_assoc($enginesRs)) {
     $engines[]=array("txt"=>$rs["engine"], "val"=>$rs["engine"]);
@@ -220,15 +220,27 @@ function addenginesHD($selectId, $model, $make, $year) {
 
 function showdiv($model, $make, $year, $id, $engine) {
   global $part, $current_view, $effects_script;
-  $objResponse = new myXajaxResponse();
+    $pcdb = new mysqli('localhost', 'root', 'rTrapok)1', 'aaia_pcdb');
+    $objResponse = new myXajaxResponse();
   if($current_view == "aaia_view") {
     $partRs = mysql_query(sprintf
-    ("SELECT * FROM oilfiltersonline.".$current_view." WHERE aaia = '%s' order by field(type,'Engine Oil Filter','Air Filter','Cabin Air Filter','Brake Pads','Suspension','Fuel Filter','Transmission Filters','Spark Plug','Oxygen Sensors','PCV Valves and Breather'), price asc ", $id));
+    ("SELECT * FROM oilfiltersonline.".$current_view." WHERE aaia = '%s' ORDER BY field(type,'Engine Oil Filter','Air Filter','Cabin Air Filter','Brake Pads','Suspension','Fuel Filter','Transmission Filters','Spark Plug','Oxygen Sensors','PCV Valves and Breather'), price ASC ", $id));
   } else {
     $partRs = mysql_query(sprintf
-    ("SELECT * FROM oilfiltersonline.".$current_view." WHERE model = '%s' and make = '%s' and year = '%s' and engine = '%s' ", $model, $make, $year, $engine));
+    ("SELECT * FROM oilfiltersonline.".$current_view." WHERE model = '%s' AND make = '%s' AND year = '%s' AND engine = '%s' ", $model, $make, $year, $engine));
   }
   while ($rs=mysql_fetch_assoc($partRs)) {
+      //trying to pull part type from AAIA PCDB
+      $type_id = $rs['type'];
+      if (is_numeric($type_id)){
+          if ($query_result = $pcdb->query("SELECT PartTerminologyName FROM aaia_pcdb.Parts WHERE PartTerminologyID = '$type_id' LIMIT 1", MYSQLI_USE_RESULT))
+          {
+              $type_desc = $query_result->fetch_row();
+              $type_desc = $type_desc[0];
+              $query_result->close();
+          }
+          $rs['type'] = $type_desc;
+      }
     $parts[] = $rs;
     $categories[] = $rs["type"];
   }
@@ -260,7 +272,7 @@ function showdiv($model, $make, $year, $id, $engine) {
     } else {
       $availability = $rs["shipping_out_stock"];
     }
-    $availDesc = mysql_query(sprintf("Select shipping_time_desc from oilfiltersonline_test_store.va_shipping_times where shipping_time_id= %s limit 1", $availability));
+    $availDesc = mysql_query(sprintf("SELECT shipping_time_desc FROM oilfiltersonline_test_store.va_shipping_times WHERE shipping_time_id= %s LIMIT 1", $availability));
     list($availableDesc) = mysql_fetch_row($availDesc);
     $price = $rs["price"];
     $part = $rs["part"];
@@ -280,6 +292,7 @@ function showdiv($model, $make, $year, $id, $engine) {
       $bigimage = 'images/no_image_tiny.gif';
     }
     $part_group = $rs["type"];
+
     if($part_group != $previous_part_group) {
       $application_code .= '<div class="finder_header_row">
                   <a class="left" name="'.str_replace(" ", "",$part_group).'" id="'.str_replace(" ", "",$part_group).'">'.$part_group.'</a>
@@ -342,6 +355,7 @@ function showdiv($model, $make, $year, $id, $engine) {
   $objResponse->assign("currentCross", "innerHTML", "");
   $objResponse->assign("count", "value", ($count-1));
   $objResponse->script($effects_script);
+    $pcdb->close();
   return $objResponse;
 }
 
@@ -350,7 +364,7 @@ function getcross($partnumsubmit) {
   if($partnumsubmit == "") {exit();} //Make sure they submitted something
 
   $objResponse = new xajaxResponse();
-  $crossRs = mysql_query("SELECT * FROM oilfiltersonline.crossref_view WHERE C_part like '%".trim($partnumsubmit)."%'");
+  $crossRs = mysql_query("SELECT * FROM oilfiltersonline.crossref_view WHERE C_part LIKE '%".trim($partnumsubmit)."%'");
 
   if (mysql_num_rows($crossRs) > 0){
 
