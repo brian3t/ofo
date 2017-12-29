@@ -1,0 +1,8 @@
+GET https://api.microsofttranslator.com/V2/Http.svc/Translate?text=新規受付&from=ja&to=en
+Accept: */*
+Cache-Control: no-cache
+
+<> 2017-12-28T071527.400.html
+
+###
+

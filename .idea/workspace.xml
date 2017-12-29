@@ -1,0 +1,2171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="54e97d0b-7310-4468-b0a4-823e21bf3dfa" name="Default" comment="Remove error reporting. Fix type pulling from PART pcdb.">
+      <change beforePath="$PROJECT_DIR$/eghdadmin/.htaccess" afterPath="$PROJECT_DIR$/eghdadmin/.htaccess" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.idea/httpRequests/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="aaia_pcdb@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="aaia_vcdb@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="aaia_vcdb@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="oilfiltersonline@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="oilfiltersonline@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="oilfiltersonline@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="oilfiltersonline: schema" type="c314c289:MysqlImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="oilfiltersonline@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="oilfiltersonline: schema" type="c314c289:MysqlImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="oilfiltersonline@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="oilfiltersonline_test_store: schema" type="c314c289:MysqlImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="oilfiltersonline@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="oilfiltersonline_test_store: schema" type="c314c289:MysqlImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="FileColors">
+    <fileColor scope="Non-Project Files (Material Default)" color="2E3C43" />
+    <fileColor scope="Non-Project Files (Material Darker)" color="323232" />
+    <fileColor scope="Non-Project Files (Material Lighter)" color="eae8e8" />
+    <fileColor scope="Non-Project Files (Material Palenight)" color="2f2e43" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="automotive-filters.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/custom/automotive-filters.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1514564294879" expanded="true" signature="1087:1168" ph="SELECT DISTI... ${$current_db}" />
+                <marker date="1514564294879" expanded="true" signature="1377:1459" ph="SELECT DISTI... ${$current_db}" />
+                <marker date="1514564294879" expanded="true" signature="1748:1843" ph="..." />
+                <marker date="1514564294879" expanded="true" signature="1785:1843" ph="..." />
+                <marker date="1514564294879" expanded="true" signature="1823:1828" ph="&amp;amp;" />
+                <marker date="1514564294879" expanded="true" signature="2351:2455" ph="..." />
+                <marker date="1514564294879" expanded="true" signature="2524:2608" ph="..." />
+                <marker date="1514564294879" expanded="true" signature="2675:2758" ph="..." />
+                <marker date="1514564294879" expanded="true" signature="2829:2914" ph="..." />
+                <marker date="1514564294879" expanded="true" signature="2977:3081" ph="..." />
+                <marker date="1514564294879" expanded="true" signature="3142:3225" ph="..." />
+                <marker date="1514564294879" expanded="true" signature="3458:3542" ph="..." />
+                <marker date="1514564294879" expanded="true" signature="3745:3829" ph="..." />
+                <marker date="1514564294879" expanded="true" signature="3916:4001" ph="..." />
+                <marker date="1514564294879" expanded="true" signature="4200:4317" ph="SELECT DISTI... ${$current_db}" />
+                <marker date="1514564294879" expanded="true" signature="5089:5190" ph="SELECT DISTI... ${$current_db}" />
+                <marker date="1514564294879" expanded="true" signature="6117:6216" ph="SELECT DISTI... ${$current_db}" />
+                <marker date="1514564294879" expanded="true" signature="7049:7166" ph="SELECT DISTI... ${$current_db}" />
+                <marker date="1514564294879" expanded="true" signature="7994:8226" ph="SELECT id, c... ${$current_db}" />
+                <marker date="1514564294879" expanded="true" signature="8317:8454" ph="SELECT DISTI... ${$current_db}" />
+                <marker date="1514564294879" expanded="true" signature="9102:9239" ph="SELECT DISTI... ${$current_db}" />
+                <marker date="1514564294879" expanded="true" signature="9883:10020" ph="SELECT DISTI... ${$current_db}" />
+                <marker date="1514564294879" expanded="true" signature="10797:11070" ph="SELECT * FRO... ${$current_view}" />
+                <marker date="1514564294879" expanded="true" signature="11142:11263" ph="SELECT * FRO... ${$current_view}" />
+                <marker date="1514564294879" expanded="true" signature="11516:11600" ph="SELECT PartT... Parts" />
+                <marker date="1514564294879" expanded="true" signature="11516:11608" ph="SELECT PartT... Parts" />
+                <marker date="1514564294879" expanded="true" signature="12134:12349" ph="..." />
+                <marker date="1514564294879" expanded="true" signature="12391:12539" ph="..." />
+                <marker date="1514564294879" expanded="true" signature="12433:12495" ph="..." />
+                <marker date="1514564294879" expanded="true" signature="13164:13275" ph="Select shipp... va_shipping_times" />
+                <marker date="1514564294879" expanded="true" signature="14675:14957" ph="..." />
+                <marker date="1514564294879" expanded="true" signature="15087:15631" ph="..." />
+                <marker date="1514564294879" expanded="true" signature="15136:15483" ph="..." />
+                <marker date="1514564294879" expanded="true" signature="15161:15414" ph="..." />
+                <marker date="1514564294879" expanded="true" signature="15709:16946" ph="..." />
+                <marker date="1514564294879" expanded="true" signature="15758:16307" ph="..." />
+                <marker date="1514564294879" expanded="true" signature="15783:16136" ph="..." />
+                <marker date="1514564294879" expanded="true" signature="15877:16110" ph="..." />
+                <marker date="1514564294879" expanded="true" signature="16350:16921" ph="..." />
+                <marker date="1514564294879" expanded="true" signature="16540:16896" ph="..." />
+                <marker date="1514564294879" expanded="true" signature="18548:18643" ph="SELECT * FRO... crossref_view" />
+                <marker date="1514564294879" expanded="true" signature="18744:19417" ph="..." />
+                <marker date="1514564294879" expanded="true" signature="18784:18995" ph="..." />
+                <marker date="1514564294879" expanded="true" signature="19100:19417" ph="..." />
+                <marker date="1514564294879" expanded="true" signature="19121:19394" ph="..." />
+                <marker date="1514564294879" expanded="true" signature="21116:21245" ph="..." />
+                <marker date="1514564294879" expanded="true" signature="21436:21816" ph="..." />
+                <marker date="1514564294879" expanded="true" signature="21544:21792" ph="..." />
+                <marker date="1514564294879" expanded="true" signature="21698:21704" ph="&amp;nbsp;" />
+                <marker date="1514564294879" expanded="true" signature="21704:21710" ph="&amp;nbsp;" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="98">
+              <caret line="7" column="20" lean-forward="true" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Oil_Filters_Online.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/styles/Oil_Filters_Online.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="146">
+              <caret line="2041" column="15" lean-forward="true" selection-start-line="2041" selection-start-column="15" selection-end-line="2041" selection-end-column="15" />
+              <folding>
+                <marker date="1514564382444" expanded="true" signature="1551:1863" ph="{...}" />
+                <marker date="1514564382444" expanded="true" signature="2689:3001" ph="{...}" />
+                <marker date="1514564382444" expanded="true" signature="3746:4058" ph="{...}" />
+                <marker date="1514564382444" expanded="true" signature="15577:15889" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".htaccess" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/eghdadmin/.htaccess">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="aaia_view" pinned="false" current-in-tab="false">
+        <entry file="das://view:/1c667e89/65a9b7e7-44dd-455d-b4c1-c280c1331971/oilfiltersonline.aaia_view">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" text="thumbnail like '%234-4421.jpg'">
+                <filter text="thumbnail like '%234-4421.jpg'" />
+              </filtering>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/bfd3a5c4-8e1e-46ba-bc58-08caa8b7a1b8/console.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="78" lean-forward="false" selection-start-line="0" selection-start-column="78" selection-end-line="0" selection-end-column="78" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/65a9b7e7-44dd-455d-b4c1-c280c1331971/console.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="28">
+              <caret line="23" column="41" lean-forward="true" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="va_items" pinned="false" current-in-tab="false">
+        <entry file="das://table:/1c667e89/65a9b7e7-44dd-455d-b4c1-c280c1331971/oilfiltersonline_test_store.va_items">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a06f9f38-3659-4b8f-992c-919c0c5fd1a6/console.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="112">
+              <caret line="8" column="64" lean-forward="false" selection-start-line="8" selection-start-column="64" selection-end-line="8" selection-end-column="64" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js</find>
+      <find>http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js</find>
+      <find>script src=&quot;</find>
+      <find>script src=&quot;http://</find>
+      <find>e</find>
+      <find>aaia_view</find>
+      <find>mainTableCellCenter</find>
+      <find>description</find>
+      <find>type</find>
+      <find>&quot;type&quot;</find>
+      <find>PCDB</find>
+      <find>$current_db</find>
+      <find>connect</find>
+      <find>destroySession</find>
+      <find>error_reporting</find>
+      <find>index</find>
+      <find>pcdb</find>
+      <find>'https'</find>
+      <find>image</find>
+      <find>store</find>
+      <find>no_image_tiny</find>
+      <find>$bigimage</find>
+      <find>images/products/big</find>
+      <find>thumbnail</find>
+      <find>$thumbnail</find>
+      <find>big</find>
+      <find>__dir</find>
+      <find>bigimage</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>//ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js</replace>
+      <replace>//ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/includes/var_definition.php" />
+        <option value="$PROJECT_DIR$/includes/products_functions.php" />
+        <option value="$PROJECT_DIR$/js/xajax_core/xajaxPluginManager.inc.php" />
+        <option value="$PROJECT_DIR$/js/xajax_core/xajaxLanguageManager.inc.php" />
+        <option value="$PROJECT_DIR$/js/xajax_core_old/xajaxArgumentManager.inc.php" />
+        <option value="$PROJECT_DIR$/js/xajax_core/xajaxResponseManager.inc.php" />
+        <option value="$PROJECT_DIR$/js/xajax_core/xajaxArgumentManager.inc.php" />
+        <option value="$PROJECT_DIR$/apw/apwsoap.php" />
+        <option value="$PROJECT_DIR$/templates/user/page.html" />
+        <option value="$PROJECT_DIR$/templates/user/index.html" />
+        <option value="$PROJECT_DIR$/templates/oilfiltersonline/index.html" />
+        <option value="$PROJECT_DIR$/includes/common.php" />
+        <option value="$PROJECT_DIR$/apw/readpartsfromxml_aces.php" />
+        <option value="$PROJECT_DIR$/block_products_list.php" />
+        <option value="$PROJECT_DIR$/product_print.php" />
+        <option value="$PROJECT_DIR$/blocks/block_products_list_p.php" />
+        <option value="$PROJECT_DIR$/Automotive-Filters.php" />
+        <option value="$PROJECT_DIR$/blog/wp-content/themes/oilfilters-online/index.php" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/bfd3a5c4-8e1e-46ba-bc58-08caa8b7a1b8/console.sql" />
+        <option value="$PROJECT_DIR$/sessionvars.php" />
+        <option value="$PROJECT_DIR$/bc.php" />
+        <option value="$PROJECT_DIR$/custom/auto-applications.php" />
+        <option value="$PROJECT_DIR$/eghdadmin/.htaccess" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/65a9b7e7-44dd-455d-b4c1-c280c1331971/console.sql" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/a06f9f38-3659-4b8f-992c-919c0c5fd1a6/console.sql" />
+        <option value="$PROJECT_DIR$/custom/automotive-filters.php" />
+        <option value="$PROJECT_DIR$/styles/Oil_Filters_Online.css" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="PhpServers">
+    <servers>
+      <server host="ofo" id="08e823fe-b8b7-40b6-a622-5fc925f2af65" name="ofo" />
+    </servers>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP 5.6" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="1920" />
+    <option name="width" value="1920" />
+    <option name="height" value="1080" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>CoffeeScript</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <OptionsSetting value="false" id="Update" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="Scope" currentSubView="Project Files" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource ProjectPane="true" />
+      <autoscrollFromSource Scope="true" ProjectPane="true" />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="AndroidView" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="ofo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ofo" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <expand>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="ofo" type="cbb8eebc:String" user="ofo" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="ofo" type="cbb8eebc:String" user="ofo" />
+              <item name="apw" type="cbb8eebc:String" user="apw" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="ofo" type="cbb8eebc:String" user="ofo" />
+              <item name="custom" type="cbb8eebc:String" user="custom" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="ofo" type="cbb8eebc:String" user="ofo" />
+              <item name="eghdadmin" type="cbb8eebc:String" user="eghdadmin" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.lastSelected" value="preferences.keymap" />
+    <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="last_opened_file_path" value="/tmp" />
+    <property name="settings.editor.selected.configurable" value="SQL Resolution Scopes" />
+    <property name="android.sdk.path" value="$USER_HOME$/soft/programming/android_sdk" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="SQL Server (Microsoft)&#10;MySQL" />
+    <property name="database.data.extractors.current.id" value="SQL Inserts" />
+  </component>
+  <component name="RestClientSettings">
+    <option name="REQUEST_HISTORY">
+      <list>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="https://api.microsofttranslator.com" />
+          <option name="urlPath" value="/V2/Http.svc/Translate" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parameters">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="text" />
+                <option name="value" value="新規受付" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="from" />
+                <option name="value" value="ja" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="to" />
+                <option name="value" value="en" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+      </list>
+    </option>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="PHP Script.READPART DENSO">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration name="READPART DENSO" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/apw/readpartsfromxml_aces.php" scriptParameters="--file=&quot;$USER_HOME$/tmp/ofo/fram_denzo_man_bos_pentius/denso/DENSO_AllProductLines_Applications_2017-10-18_FULL.xml&quot; --nodepath=&quot;App&quot;" />
+    <configuration name="READPART_aces" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/apw/readpartsfromxml_aces.php" scriptParameters="--file=&quot;file://$USER_HOME$/tmp/ofo/fram_denzo_man_bos_pentius/xml/Mann+Hummel_Mann Filter_2017-11-15_Full.xml&quot; --nodepath=&quot;App&quot;" />
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
+    <configuration name="&lt;template&gt;" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" default="true" selected="false">
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+    </configuration>
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="PHP Script.READPART_aces" />
+      <item index="1" class="java.lang.String" itemvalue="PHP Script.READPART DENSO" />
+    </list>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="54e97d0b-7310-4468-b0a4-823e21bf3dfa" name="Default" comment="" />
+      <created>1513442115631</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1513442115631</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Fix php56. Fixing https to //">
+      <created>1513467284247</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1513467284247</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Check propexist. Save schemas and queries too.">
+      <created>1514413757284</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1514413757284</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Fix description with quotes.">
+      <created>1514475438973</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1514475438973</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Remove error reporting. Fix type pulling from PART pcdb.">
+      <created>1514477278974</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1514477278974</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Upgrade pulling images.">
+      <created>1514565283955</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1514565283955</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1920" y="0" width="1926" height="1084" extended-state="7" />
+    <editor active="true" />
+    <layout>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.61365956" sideWeight="0.5203125" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328125" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.61365956" sideWeight="0.4796875" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13177083" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2015625" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.496875" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.49790043" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.496875" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <MESSAGE value="Fix php56. Fixing https to //" />
+    <MESSAGE value="Check propexist. Save schemas and queries too." />
+    <MESSAGE value="Fix description with quotes." />
+    <MESSAGE value="Remove error reporting. Fix type pulling from PART pcdb." />
+    <MESSAGE value="Upgrade pulling images." />
+    <option name="LAST_COMMIT_MESSAGE" value="Upgrade pulling images." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="8" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/custom/automotive-filters.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3724">
+          <caret line="266" column="15" lean-forward="false" selection-start-line="266" selection-start-column="15" selection-end-line="266" selection-end-column="15" />
+          <folding>
+            <marker date="1514564294879" expanded="true" signature="1087:1168" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="1377:1459" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="1748:1843" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="1785:1843" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="1823:1828" ph="&amp;amp;" />
+            <marker date="1514564294879" expanded="true" signature="2351:2455" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="2524:2608" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="2675:2758" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="2829:2914" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="2977:3081" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="3142:3225" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="3458:3542" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="3745:3829" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="3916:4001" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="4200:4317" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="5089:5190" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="6117:6216" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="7049:7166" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="7994:8226" ph="SELECT id, c... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="8317:8454" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="9102:9239" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="9883:10020" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="10797:11070" ph="SELECT * FRO... ${$current_view}" />
+            <marker date="1514564294879" expanded="true" signature="11142:11263" ph="SELECT * FRO... ${$current_view}" />
+            <marker date="1514564294879" expanded="true" signature="11516:11600" ph="SELECT PartT... Parts" />
+            <marker date="1514564294879" expanded="true" signature="11516:11608" ph="SELECT PartT... Parts" />
+            <marker date="1514564294879" expanded="true" signature="12134:12349" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="12391:12539" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="12433:12495" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="13164:13275" ph="Select shipp... va_shipping_times" />
+            <marker date="1514564294879" expanded="true" signature="14675:14957" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="15087:15631" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="15136:15483" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="15161:15414" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="15709:16946" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="15758:16307" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="15783:16136" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="15877:16110" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="16350:16921" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="16540:16896" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="18548:18643" ph="SELECT * FRO... crossref_view" />
+            <marker date="1514564294879" expanded="true" signature="18744:19417" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="18784:18995" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="19100:19417" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="19121:19394" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="21116:21245" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="21436:21816" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="21544:21792" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="21698:21704" ph="&amp;nbsp;" />
+            <marker date="1514564294879" expanded="true" signature="21704:21710" ph="&amp;nbsp;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://view:/1c667e89/65a9b7e7-44dd-455d-b4c1-c280c1331971/oilfiltersonline.aaia_view">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/bfd3a5c4-8e1e-46ba-bc58-08caa8b7a1b8/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="78" lean-forward="false" selection-start-line="0" selection-start-column="78" selection-end-line="0" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a06f9f38-3659-4b8f-992c-919c0c5fd1a6/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="3" column="33" lean-forward="false" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/65a9b7e7-44dd-455d-b4c1-c280c1331971/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="33" column="51" lean-forward="true" selection-start-line="33" selection-start-column="51" selection-end-line="33" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/1c667e89/bfd3a5c4-8e1e-46ba-bc58-08caa8b7a1b8/aaia_pcdb.Parts">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true">
+            <filter text="PartTerminologyID=6832" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/custom/automotive-filters.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3108">
+          <caret line="222" column="9" lean-forward="false" selection-start-line="222" selection-start-column="9" selection-end-line="222" selection-end-column="9" />
+          <folding>
+            <marker date="1514564294879" expanded="true" signature="1087:1168" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="1377:1459" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="1748:1843" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="1785:1843" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="1823:1828" ph="&amp;amp;" />
+            <marker date="1514564294879" expanded="true" signature="2351:2455" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="2524:2608" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="2675:2758" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="2829:2914" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="2977:3081" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="3142:3225" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="3458:3542" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="3745:3829" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="3916:4001" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="4200:4317" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="5089:5190" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="6117:6216" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="7049:7166" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="7994:8226" ph="SELECT id, c... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="8317:8454" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="9102:9239" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="9883:10020" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="10797:11070" ph="SELECT * FRO... ${$current_view}" />
+            <marker date="1514564294879" expanded="true" signature="11142:11263" ph="SELECT * FRO... ${$current_view}" />
+            <marker date="1514564294879" expanded="true" signature="11516:11600" ph="SELECT PartT... Parts" />
+            <marker date="1514564294879" expanded="true" signature="11516:11608" ph="SELECT PartT... Parts" />
+            <marker date="1514564294879" expanded="true" signature="12134:12349" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="12391:12539" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="12433:12495" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="13164:13275" ph="Select shipp... va_shipping_times" />
+            <marker date="1514564294879" expanded="true" signature="14675:14957" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="15087:15631" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="15136:15483" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="15161:15414" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="15709:16946" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="15758:16307" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="15783:16136" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="15877:16110" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="16350:16921" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="16540:16896" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="18548:18643" ph="SELECT * FRO... crossref_view" />
+            <marker date="1514564294879" expanded="true" signature="18744:19417" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="18784:18995" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="19100:19417" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="19121:19394" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="21116:21245" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="21436:21816" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="21544:21792" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="21698:21704" ph="&amp;nbsp;" />
+            <marker date="1514564294879" expanded="true" signature="21704:21710" ph="&amp;nbsp;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/bfd3a5c4-8e1e-46ba-bc58-08caa8b7a1b8/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="78" lean-forward="false" selection-start-line="0" selection-start-column="78" selection-end-line="0" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a06f9f38-3659-4b8f-992c-919c0c5fd1a6/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="3" column="33" lean-forward="false" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eghdadmin/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="16" column="24" lean-forward="false" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/65a9b7e7-44dd-455d-b4c1-c280c1331971/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="6" column="31" lean-forward="false" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/1c667e89/bfd3a5c4-8e1e-46ba-bc58-08caa8b7a1b8/aaia_pcdb.Parts">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true">
+            <filter text="PartTerminologyID=6832" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/custom/automotive-filters.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3108">
+          <caret line="222" column="9" lean-forward="false" selection-start-line="222" selection-start-column="9" selection-end-line="222" selection-end-column="9" />
+          <folding>
+            <marker date="1514564294879" expanded="true" signature="1087:1168" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="1377:1459" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="1748:1843" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="1785:1843" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="1823:1828" ph="&amp;amp;" />
+            <marker date="1514564294879" expanded="true" signature="2351:2455" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="2524:2608" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="2675:2758" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="2829:2914" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="2977:3081" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="3142:3225" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="3458:3542" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="3745:3829" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="3916:4001" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="4200:4317" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="5089:5190" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="6117:6216" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="7049:7166" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="7994:8226" ph="SELECT id, c... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="8317:8454" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="9102:9239" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="9883:10020" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="10797:11070" ph="SELECT * FRO... ${$current_view}" />
+            <marker date="1514564294879" expanded="true" signature="11142:11263" ph="SELECT * FRO... ${$current_view}" />
+            <marker date="1514564294879" expanded="true" signature="11516:11600" ph="SELECT PartT... Parts" />
+            <marker date="1514564294879" expanded="true" signature="11516:11608" ph="SELECT PartT... Parts" />
+            <marker date="1514564294879" expanded="true" signature="12134:12349" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="12391:12539" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="12433:12495" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="13164:13275" ph="Select shipp... va_shipping_times" />
+            <marker date="1514564294879" expanded="true" signature="14675:14957" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="15087:15631" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="15136:15483" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="15161:15414" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="15709:16946" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="15758:16307" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="15783:16136" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="15877:16110" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="16350:16921" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="16540:16896" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="18548:18643" ph="SELECT * FRO... crossref_view" />
+            <marker date="1514564294879" expanded="true" signature="18744:19417" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="18784:18995" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="19100:19417" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="19121:19394" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="21116:21245" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="21436:21816" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="21544:21792" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="21698:21704" ph="&amp;nbsp;" />
+            <marker date="1514564294879" expanded="true" signature="21704:21710" ph="&amp;nbsp;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/bfd3a5c4-8e1e-46ba-bc58-08caa8b7a1b8/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="78" lean-forward="false" selection-start-line="0" selection-start-column="78" selection-end-line="0" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a06f9f38-3659-4b8f-992c-919c0c5fd1a6/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="3" column="33" lean-forward="false" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eghdadmin/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="16" column="24" lean-forward="false" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/65a9b7e7-44dd-455d-b4c1-c280c1331971/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="6" column="31" lean-forward="false" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apw/readpartsfromxml_aces.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a06f9f38-3659-4b8f-992c-919c0c5fd1a6/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="3" column="67" lean-forward="false" selection-start-line="3" selection-start-column="67" selection-end-line="3" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/65a9b7e7-44dd-455d-b4c1-c280c1331971/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="10" column="81" lean-forward="false" selection-start-line="10" selection-start-column="81" selection-end-line="10" selection-end-column="81" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apw/readpartsfromxml_aces.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a06f9f38-3659-4b8f-992c-919c0c5fd1a6/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="3" column="67" lean-forward="false" selection-start-line="3" selection-start-column="67" selection-end-line="3" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/65a9b7e7-44dd-455d-b4c1-c280c1331971/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="13" column="27" lean-forward="true" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user/block_product_details.cep">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="32" column="27" lean-forward="false" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apw/readpartsfromxml_aces.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5740">
+          <caret line="410" column="5" lean-forward="false" selection-start-line="410" selection-start-column="5" selection-end-line="410" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apw/log_read_parts_12_27_09_04_51.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apw/log_read_parts_12_27_09_06_19.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271838">
+          <caret line="19403" column="0" lean-forward="false" selection-start-line="19403" selection-start-column="0" selection-end-line="19403" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/65a9b7e7-44dd-455d-b4c1-c280c1331971/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a06f9f38-3659-4b8f-992c-919c0c5fd1a6/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="58" lean-forward="false" selection-start-line="0" selection-start-column="58" selection-end-line="0" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/15809acf-ffb5-4a5f-9c34-b6875a6f12db/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a7c84aac-2c77-4d82-bff6-a34bfb031e6c/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/b47add38-4424-41c8-ad84-5a2f12799301/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apw/log_read_parts_12_27_09_04_30.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="5" lean-forward="true" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/common.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/oilfiltersonline/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="18" lean-forward="false" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user/block_product_details.cep">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" column="27" lean-forward="false" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apw/readpartsfromxml_aces.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="49" lean-forward="false" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/52a6b4e0-0a90-4f9f-a5a4-231c71155d79/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/15809acf-ffb5-4a5f-9c34-b6875a6f12db/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a7c84aac-2c77-4d82-bff6-a34bfb031e6c/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/b47add38-4424-41c8-ad84-5a2f12799301/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/common.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/oilfiltersonline/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="18" lean-forward="false" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user/block_product_details.cep">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" column="27" lean-forward="false" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apw/readpartsfromxml_aces.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="26" column="49" lean-forward="false" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/52a6b4e0-0a90-4f9f-a5a4-231c71155d79/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/15809acf-ffb5-4a5f-9c34-b6875a6f12db/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a7c84aac-2c77-4d82-bff6-a34bfb031e6c/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/b47add38-4424-41c8-ad84-5a2f12799301/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/common.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/oilfiltersonline/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="18" lean-forward="false" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user/block_product_details.cep">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" column="27" lean-forward="false" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apw/readpartsfromxml_aces.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="49" lean-forward="false" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/52a6b4e0-0a90-4f9f-a5a4-231c71155d79/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/15809acf-ffb5-4a5f-9c34-b6875a6f12db/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a7c84aac-2c77-4d82-bff6-a34bfb031e6c/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/b47add38-4424-41c8-ad84-5a2f12799301/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/common.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/oilfiltersonline/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="18" lean-forward="false" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user/block_product_details.cep">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" column="27" lean-forward="false" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apw/readpartsfromxml_aces.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="49" lean-forward="false" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/52a6b4e0-0a90-4f9f-a5a4-231c71155d79/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/15809acf-ffb5-4a5f-9c34-b6875a6f12db/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a7c84aac-2c77-4d82-bff6-a34bfb031e6c/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/b47add38-4424-41c8-ad84-5a2f12799301/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/common.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/oilfiltersonline/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="18" lean-forward="false" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user/block_product_details.cep">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="27" lean-forward="false" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apw/readpartsfromxml_aces.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="26" column="49" lean-forward="false" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/52a6b4e0-0a90-4f9f-a5a4-231c71155d79/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/15809acf-ffb5-4a5f-9c34-b6875a6f12db/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a7c84aac-2c77-4d82-bff6-a34bfb031e6c/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/b47add38-4424-41c8-ad84-5a2f12799301/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/common.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/oilfiltersonline/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="18" lean-forward="false" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user/block_product_details.cep">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="27" lean-forward="false" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apw/readpartsfromxml_aces.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="26" column="49" lean-forward="false" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/52a6b4e0-0a90-4f9f-a5a4-231c71155d79/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/15809acf-ffb5-4a5f-9c34-b6875a6f12db/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a7c84aac-2c77-4d82-bff6-a34bfb031e6c/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/b47add38-4424-41c8-ad84-5a2f12799301/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/common.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/oilfiltersonline/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="18" lean-forward="false" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user/block_product_details.cep">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="27" lean-forward="false" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apw/readpartsfromxml_aces.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="26" column="49" lean-forward="false" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/52a6b4e0-0a90-4f9f-a5a4-231c71155d79/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/15809acf-ffb5-4a5f-9c34-b6875a6f12db/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a7c84aac-2c77-4d82-bff6-a34bfb031e6c/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/b47add38-4424-41c8-ad84-5a2f12799301/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/common.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/oilfiltersonline/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="21" column="18" lean-forward="false" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user/block_product_details.cep">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="832">
+          <caret line="32" column="27" lean-forward="false" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apw/readpartsfromxml_aces.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="676">
+          <caret line="26" column="49" lean-forward="false" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/52a6b4e0-0a90-4f9f-a5a4-231c71155d79/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/15809acf-ffb5-4a5f-9c34-b6875a6f12db/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a7c84aac-2c77-4d82-bff6-a34bfb031e6c/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/b47add38-4424-41c8-ad84-5a2f12799301/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/va_functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1352">
+          <caret line="52" column="76" lean-forward="false" selection-start-line="52" selection-start-column="76" selection-end-line="52" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/common.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="16" column="24" lean-forward="true" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/briannote.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/xajax_core/xajaxArgumentManager.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9776">
+          <caret line="385" column="76" lean-forward="true" selection-start-line="385" selection-start-column="76" selection-end-line="385" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/xajax_core/xajax.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6994">
+          <caret line="278" column="64" lean-forward="false" selection-start-line="278" selection-start-column="64" selection-end-line="278" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/xajax_core/xajaxResponseManager.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1586">
+          <caret line="70" column="11" lean-forward="false" selection-start-line="70" selection-start-column="11" selection-end-line="70" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/xajax_core_old/xajaxArgumentManager.inc.php" />
+    <entry file="file://$PROJECT_DIR$/js/xajax_core/xajaxLanguageManager.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2912">
+          <caret line="123" column="11" lean-forward="false" selection-start-line="123" selection-start-column="11" selection-end-line="123" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/xajax_core/xajaxPluginManager.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2184">
+          <caret line="93" column="5" lean-forward="false" selection-start-line="93" selection-start-column="5" selection-end-line="93" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apw/apwsoap.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="19" column="22" lean-forward="true" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/common.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1404">
+          <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/forum.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="22" column="29" lean-forward="false" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/var_definition.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="12" column="31" lean-forward="false" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/va_functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6916">
+          <caret line="266" column="9" lean-forward="true" selection-start-line="266" selection-start-column="9" selection-end-line="266" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/forum.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="12" column="8" lean-forward="true" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/forum.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="22" column="29" lean-forward="false" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/var_definition.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="12" column="31" lean-forward="false" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blocks/block_categories_list.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="266" column="55" lean-forward="false" selection-start-line="266" selection-start-column="55" selection-end-line="266" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blocks/block_offers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="103" column="37" lean-forward="false" selection-start-line="103" selection-start-column="37" selection-end-line="103" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/products_functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="547">
+          <caret line="437" column="24" lean-forward="true" selection-start-line="437" selection-start-column="24" selection-end-line="437" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/xajax_core/xajaxPluginManager.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2184">
+          <caret line="93" column="5" lean-forward="false" selection-start-line="93" selection-start-column="5" selection-end-line="93" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/xajax_core/xajaxLanguageManager.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2912">
+          <caret line="123" column="18" lean-forward="false" selection-start-line="123" selection-start-column="18" selection-end-line="123" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/xajax_core_old/xajaxArgumentManager.inc.php" />
+    <entry file="file://$PROJECT_DIR$/js/xajax_core/xajaxResponseManager.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1586">
+          <caret line="70" column="18" lean-forward="false" selection-start-line="70" selection-start-column="18" selection-end-line="70" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/xajax_core/xajaxArgumentManager.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9776">
+          <caret line="385" column="76" lean-forward="false" selection-start-line="385" selection-start-column="76" selection-end-line="385" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/briannote.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apw/apwsoap.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user/page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="19" column="6" lean-forward="false" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user/product_details.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ads.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="30" column="44" lean-forward="false" selection-start-line="30" selection-start-column="44" selection-end-line="30" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/common.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="37" column="82" lean-forward="false" selection-start-line="37" selection-start-column="82" selection-end-line="37" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/oilfiltersonline/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="18" lean-forward="false" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/52a6b4e0-0a90-4f9f-a5a4-231c71155d79/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user/block_product_details.cep">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="32" column="27" lean-forward="false" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/15809acf-ffb5-4a5f-9c34-b6875a6f12db/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a7c84aac-2c77-4d82-bff6-a34bfb031e6c/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/b47add38-4424-41c8-ad84-5a2f12799301/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apw/log_read_parts_12_27_09_04_30.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="5" lean-forward="false" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apw/log_read_parts_12_27_09_04_51.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="5" lean-forward="false" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apw/log_read_parts_12_27_09_06_19.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="263796" column="25" lean-forward="false" selection-start-line="263796" selection-start-column="25" selection-end-line="263796" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apw/log_read_parts_12_27_11_50_17.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="136064" column="0" lean-forward="true" selection-start-line="136064" selection-start-column="0" selection-end-line="136064" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/1c667e89/bfd3a5c4-8e1e-46ba-bc58-08caa8b7a1b8/aaia_pcdb.Version">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apw/readpartsfromxml_aces.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blog/wp-content/themes/oilfilters-online/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="8" column="2" lean-forward="true" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/1c667e89/bfd3a5c4-8e1e-46ba-bc58-08caa8b7a1b8/aaia_pcdb.PartsDescription">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/1c667e89/bfd3a5c4-8e1e-46ba-bc58-08caa8b7a1b8/aaia_pcdb.PartsToAlias">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" text="PartTerminologyID=6832">
+            <filter text="PartTerminologyID=6832" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/block_products_list.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="503">
+          <caret line="797" column="17" lean-forward="true" selection-start-line="797" selection-start-column="17" selection-end-line="797" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Automotive-Filters.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="783">
+          <caret line="256" column="32" lean-forward="true" selection-start-line="256" selection-start-column="32" selection-end-line="256" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blocks/block_products_list_p.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="461">
+          <caret line="791" column="17" lean-forward="true" selection-start-line="791" selection-start-column="17" selection-end-line="791" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/product_print.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="331" column="63" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="541" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/1c667e89/65a9b7e7-44dd-455d-b4c1-c280c1331971/oilfiltersonline.aaia_parts">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/xajax_core/xajax.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="311" column="6" lean-forward="true" selection-start-line="311" selection-start-column="6" selection-end-line="311" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sessionvars.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/va_functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="13" column="20" lean-forward="false" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/custom/auto-applications.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="11" column="35" lean-forward="false" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/friendly_url.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="28" column="71" lean-forward="false" selection-start-line="28" selection-start-column="71" selection-end-line="28" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-13">
+          <caret line="8" column="24" lean-forward="true" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/1c667e89/bfd3a5c4-8e1e-46ba-bc58-08caa8b7a1b8/aaia_pcdb.Parts">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true">
+            <filter text="PartTerminologyID=6832" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://src:table:/1c667e89/65a9b7e7-44dd-455d-b4c1-c280c1331971/oilfiltersonline.aaia_parts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="8" column="55" lean-forward="true" selection-start-line="8" selection-start-column="55" selection-end-line="8" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apw/updateparts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding>
+            <marker date="1513739246528" expanded="true" signature="126:283" ph="UPDATE oilfiltersonline_test_store.va_items... " />
+            <marker date="1513739246528" expanded="true" signature="311:384" ph="SELECT * fro... apw_view" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apw/getinv.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-210">
+          <caret line="12" column="31" lean-forward="false" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+          <folding>
+            <marker date="1513739246528" expanded="true" signature="1115:1173" ph="INSERT INTO ${$target_table}... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/1c667e89/65a9b7e7-44dd-455d-b4c1-c280c1331971/oilfiltersonline_test_store.va_items">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/65a9b7e7-44dd-455d-b4c1-c280c1331971/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="23" column="41" lean-forward="true" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/bfd3a5c4-8e1e-46ba-bc58-08caa8b7a1b8/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="78" lean-forward="false" selection-start-line="0" selection-start-column="78" selection-end-line="0" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://view:/1c667e89/65a9b7e7-44dd-455d-b4c1-c280c1331971/oilfiltersonline.aaia_view">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" text="thumbnail like '%234-4421.jpg'">
+            <filter text="thumbnail like '%234-4421.jpg'" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a06f9f38-3659-4b8f-992c-919c0c5fd1a6/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="8" column="64" lean-forward="false" selection-start-line="8" selection-start-column="64" selection-end-line="8" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/Oil_Filters_Online.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="2041" column="15" lean-forward="true" selection-start-line="2041" selection-start-column="15" selection-end-line="2041" selection-end-column="15" />
+          <folding>
+            <marker date="1514564382444" expanded="true" signature="1551:1863" ph="{...}" />
+            <marker date="1514564382444" expanded="true" signature="2689:3001" ph="{...}" />
+            <marker date="1514564382444" expanded="true" signature="3746:4058" ph="{...}" />
+            <marker date="1514564382444" expanded="true" signature="15577:15889" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/custom/automotive-filters.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1514564294879" expanded="true" signature="1087:1168" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="1377:1459" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="1748:1843" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="1785:1843" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="1823:1828" ph="&amp;amp;" />
+            <marker date="1514564294879" expanded="true" signature="2351:2455" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="2524:2608" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="2675:2758" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="2829:2914" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="2977:3081" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="3142:3225" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="3458:3542" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="3745:3829" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="3916:4001" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="4200:4317" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="5089:5190" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="6117:6216" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="7049:7166" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="7994:8226" ph="SELECT id, c... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="8317:8454" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="9102:9239" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="9883:10020" ph="SELECT DISTI... ${$current_db}" />
+            <marker date="1514564294879" expanded="true" signature="10797:11070" ph="SELECT * FRO... ${$current_view}" />
+            <marker date="1514564294879" expanded="true" signature="11142:11263" ph="SELECT * FRO... ${$current_view}" />
+            <marker date="1514564294879" expanded="true" signature="11516:11600" ph="SELECT PartT... Parts" />
+            <marker date="1514564294879" expanded="true" signature="11516:11608" ph="SELECT PartT... Parts" />
+            <marker date="1514564294879" expanded="true" signature="12134:12349" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="12391:12539" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="12433:12495" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="13164:13275" ph="Select shipp... va_shipping_times" />
+            <marker date="1514564294879" expanded="true" signature="14675:14957" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="15087:15631" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="15136:15483" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="15161:15414" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="15709:16946" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="15758:16307" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="15783:16136" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="15877:16110" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="16350:16921" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="16540:16896" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="18548:18643" ph="SELECT * FRO... crossref_view" />
+            <marker date="1514564294879" expanded="true" signature="18744:19417" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="18784:18995" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="19100:19417" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="19121:19394" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="21116:21245" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="21436:21816" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="21544:21792" ph="..." />
+            <marker date="1514564294879" expanded="true" signature="21698:21704" ph="&amp;nbsp;" />
+            <marker date="1514564294879" expanded="true" signature="21704:21710" ph="&amp;nbsp;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="7" column="20" lean-forward="true" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eghdadmin/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
