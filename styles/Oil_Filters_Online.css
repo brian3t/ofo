@@ -2047,3 +2047,6 @@ div.block-simple p {
 	padding:0em 2em 1em 1em;
 	
 }
+img.thumbnail{
+	height: 51px;
+}
