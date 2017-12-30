@@ -20,7 +20,7 @@ if (IS_LOCAL){
     $root_pw = "rTrapok)1";
 }
 
-//define('IS_DEBUG', true);
+//define('IS_DEBUG',true);
 define('IS_DEBUG', false);
 
 $con = new mysqli("localhost", "root", $root_pw);
@@ -36,8 +36,8 @@ $makes = array();
 $enginebases = array();
 $fuelDeliveryTypes = array();
 $engineDesignations = array();
-$partTypes = array();
-$results = ['success' => 0, 'insert_fail' => 0, 'lookup_fail' => 0, 'exist' => 0];
+$partTypes_filters_only = array();
+$results = ['not_filter' => 0, 'success' => 0, 'insert_fail' => 0, 'lookup_fail' => 0, 'exist' => 0];
 chdir(dirname(__FILE__));
 $logFile = __DIR__ . '/log_read_parts_' . date("m_d_h_i_s") . ".txt";
 $logFile = fopen($logFile, 'w+');
@@ -47,7 +47,7 @@ $log = "";
 //init vars. Note: make sure $con is ready
 function initVars()
 {
-    global $makes, $enginebases, $fuelDeliveryTypes, $engineDesignations, $partTypes, $log, $con, $logFile;
+    global $makes, $enginebases, $fuelDeliveryTypes, $engineDesignations, $partTypes_filters_only, $log, $con, $logFile;
     if (!$con->select_db(AAIA_VCDB)){
         $log .= "Unable to select AAIA_VCDB: " . mysqli_error($con);
         exit;
@@ -123,7 +123,7 @@ function initVars()
 
     $sql = "SELECT *
 	FROM   Parts
-	WHERE  1";
+	WHERE  PartTerminologyName LIKE '%filter%' ; ";
 
     $result = $con->query($sql);
 
@@ -138,7 +138,7 @@ function initVars()
     }
 
     while ($row = $result->fetch_assoc()) {
-        $partTypes[$row['PartTerminologyID']] = trim($row['PartTerminologyName']);
+        $partTypes_filters_only[$row['PartTerminologyID']] = trim($row['PartTerminologyName']);
     }
     $result->free_result();
     fwrite($logFile, $log);
@@ -241,7 +241,7 @@ function lookupAaia($z)
     }
 
     if ($result->num_rows == 0){
-        foreach (compact('year_id', 'make', 'model', 'cylinders', 'liter') as $key => &$value){
+        foreach (compact('year_id', 'make', 'model', 'cylinders', 'liter') as $key => &$value) {
             if (is_array($value)){
                 $value = array_shift($value);
                 $log .= "$key Value lookup is an array: $value";
@@ -333,6 +333,9 @@ function insertPartToOFO($z)
     $log .= "Inserted part id: " . $con->insert_id . "\r\n";
     $result = true;
     $results['success']++;
+    if (IS_DEBUG && $results['success'] >= 2){
+        exit;
+    }
 
     fwrite($logFile, $log);
     $log = "";
@@ -375,11 +378,12 @@ $z = array();
 $appNodes = $apps->$options['nodepath'];
 $k = 0;
 $num_of_parts = sizeof($appNodes);
-for ($k = 0;$k < $num_of_parts;$k++){
+for ($k = 0;$k < $num_of_parts;$k++) {
 
-    if (IS_DEBUG && $k > 1){
+    /*if(IS_DEBUG && $k > 500)
+    {
         break;
-    }
+    }*/
     $app = $appNodes[$k];
     /*
      * 		<BaseVehicle id="1"/>
@@ -401,6 +405,10 @@ for ($k = 0;$k < $num_of_parts;$k++){
     }
     $z['qty'] = (string)$app->Qty;
     $z['parttype'] = (string)$app->PartType->attributes();
+    if (array_search($z['parttype'], $partTypes_filters_only) == false){
+        $results['not_filter']++;
+        continue;
+    }
     $z['part'] = (string)$app->Part;
 
     $z['type'] = $z['parttype'];
@@ -414,7 +422,7 @@ for ($k = 0;$k < $num_of_parts;$k++){
 }
 
 $con->close();
-unset($makes, $enginebases, $fuelDeliveryTypes, $engineDesignations, $partTypes);
+unset($makes, $enginebases, $fuelDeliveryTypes, $engineDesignations, $partTypes_filters_only);
 fwrite($logFile, $log . "\nStop");
 fwrite($logFile, "Summary: " . json_encode($results));
 echo "Summary: " . json_encode($results);

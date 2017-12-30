@@ -47,7 +47,7 @@ $log = "";
 //init vars. Note: make sure $con is ready
 function initVars()
 {
-    global $makes, $enginebases, $fuelDeliveryTypes, $engineDesignations, $partTypes, $log, $con, $logFile;
+    global $makes, $enginebases, $fuelDeliveryTypes, $engineDesignations, $partTypes_filters_only, $log, $con, $logFile;
     if (! $con->select_db(AAIA_VCDB)) {
         $log .= "Unable to select AAIA_VCDB: " . mysqli_error($con);
         exit;
@@ -138,7 +138,7 @@ function initVars()
     }
 
     while ($row = $result->fetch_assoc()) {
-        $partTypes[$row['PartTerminologyID']] = trim($row['PartTerminologyName']);
+        $partTypes_filters_only[$row['PartTerminologyID']] = trim($row['PartTerminologyName']);
     }
     $result->free_result();
     fwrite($logFile, $log);
