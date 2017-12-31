@@ -138,19 +138,19 @@ function initVars()
     }
 
     while ($row = $result->fetch_assoc()) {
-        $partTypes_filters_only[$row['PartTerminologyID']] = trim($row['PartTerminologyName']);
+        $partTypes_filters_only[] = [$row['PartTerminologyID']];
     }
     $result->free_result();
     fwrite($logFile, $log);
     $log = "";
-
+}
 
 /*
  * Input : 		<BaseVehicle id="1"/>
-		<EngineBase id="13"/>
-		<EngineVIN id="7"/>
-		<Qty>1</Qty>
-		<PartType id="6192"/>
+        <EngineBase id="13"/>
+        <EngineVIN id="7"/>
+        <Qty>1</Qty>
+        <PartType id="6192"/>
  */
 //returns an aaid ; creates an aaia if missing one
 // populates $z with year make model cylinders, liter, engineVIN, parttype
@@ -241,7 +241,7 @@ function lookupAaia($z)
     }
 
     if ($result->num_rows == 0){
-        foreach (compact('year_id', 'make', 'model', 'cylinders', 'liter') as $key => &$value) {
+        foreach (compact('year_id', 'make', 'model', 'cylinders', 'liter') as $key => &$value){
             if (is_array($value)){
                 $value = array_shift($value);
                 $log .= "$key Value lookup is an array: $value";
@@ -276,12 +276,12 @@ function lookupAaia($z)
 /*
 @$z: partInfo:
 
-		<BaseVehicle id="1"/>
-		<EngineBase id="13"/>
-		<EngineVIN id="7"/>
-		<Qty>1</Qty>
-		<PartType id="6192"/>
-		<Part>PAB9588</Part>
+        <BaseVehicle id="1"/>
+        <EngineBase id="13"/>
+        <EngineVIN id="7"/>
+        <Qty>1</Qty>
+        <PartType id="6192"/>
+        <Part>PAB9588</Part>
 
 type
 manufacturer
@@ -378,7 +378,7 @@ $z = array();
 $appNodes = $apps->$options['nodepath'];
 $k = 0;
 $num_of_parts = sizeof($appNodes);
-for ($k = 0;$k < $num_of_parts;$k++) {
+for ($k = 0;$k < $num_of_parts;$k++){
 
     /*if(IS_DEBUG && $k > 500)
     {
@@ -387,11 +387,11 @@ for ($k = 0;$k < $num_of_parts;$k++) {
     $app = $appNodes[$k];
     /*
      * 		<BaseVehicle id="1"/>
-		<EngineBase id="13"/>
-		<EngineVIN id="7"/>
-		<Qty>1</Qty>
-		<PartType id="6192"/>
-		<Part>PAB9588</Part>
+        <EngineBase id="13"/>
+        <EngineVIN id="7"/>
+        <Qty>1</Qty>
+        <PartType id="6192"/>
+        <Part>PAB9588</Part>
      */
     if (!property_exists($app, 'BaseVehicle')){
         $log .= "Basevehicle not exists in XML. App: " . json_encode($app);
