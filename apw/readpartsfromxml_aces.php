@@ -121,7 +121,7 @@ function initVars()
         exit;
     }
 
-    $sql = "SELECT *
+    $sql = "SELECT PartTerminologyID, PartTerminologyName
 	FROM   Parts
 	WHERE  PartTerminologyName LIKE '%filter%' ; ";
 
@@ -143,7 +143,7 @@ function initVars()
     $result->free_result();
     fwrite($logFile, $log);
     $log = "";
-}
+
 
 /*
  * Input : 		<BaseVehicle id="1"/>
@@ -426,5 +426,5 @@ unset($makes, $enginebases, $fuelDeliveryTypes, $engineDesignations, $partTypes_
 fwrite($logFile, $log . "\nStop");
 fwrite($logFile, "Summary: " . json_encode($results));
 echo "Summary: " . json_encode($results);
-fwrite($logFile, '\nDone.');
+fwrite($logFile, "\nDone.");
 fclose($logFile);
