@@ -138,7 +138,7 @@ function initVars()
     }
 
     while ($row = $result->fetch_assoc()) {
-        $partTypes_filters_only[] = [$row['PartTerminologyID']];
+        $partTypes_filters_only[] = $row['PartTerminologyID'];
     }
     $result->free_result();
     fwrite($logFile, $log);
@@ -407,6 +407,7 @@ for ($k = 0;$k < $num_of_parts;$k++){
     $z['parttype'] = (string)$app->PartType->attributes();
     if (array_search($z['parttype'], $partTypes_filters_only) == false){
         $results['not_filter']++;
+//        echo $z['parttype'].' ';
         continue;
     }
     $z['part'] = (string)$app->Part;
