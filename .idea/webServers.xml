@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="fbebd39d-d3bf-4c9f-bc18-d872622f58e5" name="ofo LIVE" url="http://oilfiltersonline.com">
+        <fileTransfer host="oilfiltersonline.com" port="22" privateKey="$USER_HOME$/Dropbox/projects/ofo/APW.pem" rootFolder="/var/www/public_html/oilfiltersonline.com" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
