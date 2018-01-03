@@ -1001,6 +1001,9 @@ class va_record
                 {
                     if ( $parameter[USE_IN_INSERT] )
                     {
+                        if ($parameter[COLUMN_NAME] == 'item_id'){
+                            continue;
+                        }
                         ++$insert_parameters;
                         if ( 1 < $insert_parameters )
                         {
