@@ -6,12 +6,16 @@
  * @property int manufacturer_name
  * @property array $db_record
  */
+require_once "const.php";
 class Product
 {
 
     public function __construct($db_record = null)
     {
         $this->db_record = $db_record;
+        if (!isset($this->db_record['manufacturer_name'])&&isset($this->db_record['manufacturer_id'])){
+            $this->db_record['manufacturer_name'] = MANUFACTURER[$this->db_record['manufacturer_id']];
+        }
     }
 
     /**

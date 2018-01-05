@@ -1172,6 +1172,10 @@ ul.tabs {
 	float: left;
 	margin: 2em;
 }
+img.productImg{
+	max-height: 400px;
+	width: auto;
+}
 #productPricing {
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;

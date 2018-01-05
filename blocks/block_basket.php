@@ -330,7 +330,7 @@ function basket($block_name)
 			$restrict_products_images = get_setting_value($settings, "restrict_products_images", "");
 			product_image_fields($cart_image, $image_type_name, $image_field, $image_alt_field, $watermark, $product_no_image);
 
-			$sql  = " SELECT item_name, friendly_url, item_type_id, item_code, manufacturer_code, short_description, ";
+			$sql  = " SELECT item_name, friendly_url, item_type_id, item_code, manufacturer_code, manufacturer_id, short_description, ";
 			$sql .= " " . $price_field . ", is_price_edit, is_sales, " . $sales_field . ", buying_price, ";
 			$sql .= " is_points_price, points_price, reward_type, reward_amount, credit_reward_type, credit_reward_amount, ";
 			$sql .= " tax_free, stock_level, use_stock_level, hide_out_of_stock, disable_out_of_stock, ";
@@ -386,8 +386,12 @@ function basket($block_name)
 				$image_exists = false;
 				if ($image_field) {
 					$item_image = $db->f($image_field);	
-					$item_image_alt = get_translation($db->f($image_alt_field));	
-					if (!strlen($item_image)) {
+					$item_image_alt = get_translation($db->f($image_alt_field));
+                    $prod = new Product(['item_code'=>$db->f('item_code'), 'manufacturer_id'=>$db->f('manufacturer_id')]);
+                    if (!$item_image){
+                        $item_image = $prod->default_img();
+                    }
+                    if (!strlen($item_image)) {
 						$item_image = $product_no_image;
 					} else {
 						$image_exists = true;
