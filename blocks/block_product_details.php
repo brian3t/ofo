@@ -1,4 +1,5 @@
-<?php                           
+<?php
+require_once dirname(__DIR__)."/common/Product.php";
 
 function product_details($block_name)
 {
@@ -450,6 +451,11 @@ function product_details($block_name)
 		} else {
 			$watermark = $watermark_big_image;
 		}
+		$prod = new Product(['item_code'=>$db->f('item_code'), 'manufacturer_name'=>$db->f('manufacturer_name')]);
+		if (!$big_image){
+		    $big_image = $prod->default_img();
+        }
+
 		if (!$big_image) { 
 			$image_exists = false;
 			$big_image = $product_no_image_large; 
@@ -493,7 +499,7 @@ function product_details($block_name)
 			$t->set_var("big_image", "");
 		}
 
-		$open_large_image = get_setting_value($settings, "open_large_image", 0);
+		/*$open_large_image = get_setting_value($settings, "open_large_image", 0);
 		
 		$super_image = $db->f("super_image");
 		if (strlen($super_image))
@@ -534,7 +540,7 @@ function product_details($block_name)
 		else
 		{
 			$t->set_var("super_image", "");
-		}
+		}*/
 
 		if (strlen($preview_url)) {
 			if (!$preview_width) { $preview_width = 500; }

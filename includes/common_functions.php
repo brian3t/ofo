@@ -1456,7 +1456,7 @@
 		if (preg_match_all("/(<\?php|<\?)(.*)\?>/Uis", $block_body, $matches)) {
 			for ($p = 0; $p < sizeof($matches[0]); $p++) {
 				ob_start();
-				eval($matches[2][$p]);
+				@eval($matches[2][$p]);
 				$output = ob_get_contents();
 				ob_end_clean();
 				$block_body = str_replace($matches[0][$p], $output, $block_body);

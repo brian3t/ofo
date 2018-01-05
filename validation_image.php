@@ -46,7 +46,7 @@
 
 	$width = 120;
 	$height = 40;
-	$image = imagecreate($width, $height);
+	$image = imagecre33ate($width, $height);
 	$bgColor = imagecolorallocate ($image, rand(0,54)+200, rand(0,54)+200, rand(0,54)+200);
 
 	$sm = rand(0,30);
