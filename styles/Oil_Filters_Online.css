@@ -2053,4 +2053,5 @@ div.block-simple p {
 }
 img.thumbnail{
 	height: 51px;
+	width: auto;
 }

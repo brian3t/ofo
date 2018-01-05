@@ -1,5 +1,5 @@
 <?php
-
+require_once dirname(__DIR__) . "/common/Product.php";
 function basket($block_name)
 {
 	global $t, $db, $table_prefix;

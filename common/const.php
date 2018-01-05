@@ -6,4 +6,4 @@
  * Time: 8:58 PM
  */
 
-define('MANUFACTURER',[9=>'Bosch']);
+const MANUFACTURER = [3 => 'Fram', 7 => 'Bosch', 8 => 'DENSO', 14 => 'Mann', 15 => 'Pentius'];
