@@ -23,8 +23,8 @@ foreach ($parts as $part){
 
             $price = number_format(($part["cost"]), 2, '.', '');
         }
-
-        $result = $db->query("UPDATE oilfiltersonline_test_store.va_items SET stock_level = " . $part["apwstock"] . ", shipping_in_stock = 2, shipping_out_stock = 2, use_stock_level = 1, disable_out_of_stock = 0, buying_price = " . $part["cost"] . ",  sales_price = " . $price . ", price = " . $price . " WHERE item_code = '" . $part["item"] . "' AND manufacturer_id = " . $part["manufacturer_id"]);
+        $sql = "UPDATE oilfiltersonline_test_store.va_items SET stock_level = " . $part["apwstock"] . ", shipping_in_stock = 2, shipping_out_stock = 2, use_stock_level = 1, disable_out_of_stock = 0, buying_price = " . $part["cost"] . ",  sales_price = " . $price . ", price = " . $price . " WHERE item_code = '" . $part["item"] . "' AND manufacturer_id = " . $part["manufacturer_id"];
+        $result = $db->query($sql);
 
         //$result = mysql_query("update ".$db.".va_items set stock_level = ".$part["apwstock"].", shipping_in_stock = 2, shipping_out_stock = 2, use_stock_level = 1, disable_out_of_stock = 0, buying_price = " . $part["cost"] . " where item_code = '".$part["item"]."' and manufacturer_id = " . $part["manufacturer_id"]);
     }
