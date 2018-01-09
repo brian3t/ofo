@@ -294,7 +294,7 @@ function showdiv($model, $make, $year, $id, $engine)
             $thumbnail = $rs["thumbnail"];
         } else {
             //try pulling from manufacturer and part number
-            $thumbnail_path = "/images/products/big/" . $rs['manufacturer'] . '/' . $rs['part'] . ".jpg";
+            $thumbnail_path = "/images/products/big/" . strtolower($rs['manufacturer']) . '/' . $rs['part'] . ".jpg";
             if (file_exists(dirname(__DIR__) . $thumbnail_path)){
                 $thumbnail = $thumbnail_path;
             } else {
@@ -304,7 +304,7 @@ function showdiv($model, $make, $year, $id, $engine)
         if ($rs["bigimage"]){
             $bigimage = $rs["bigimage"];
         } else {
-            $thumbnail_path = "/images/products/big/" . $rs['manufacturer'] . '/' . $rs['part'] . ".jpg";
+            $thumbnail_path = "/images/products/big/" . strtolower($rs['manufacturer']) . '/' . $rs['part'] . ".jpg";
             if (file_exists(dirname(__DIR__) . $thumbnail_path)){
                 $bigimage = $thumbnail_path;
             } else {
@@ -418,7 +418,7 @@ function getcross($partnumsubmit)
             if ($rs["thumbnail"]){
                 $thumbnail = $rs["thumbnail"];
             } else {
-                $thumbnail_path = "/images/products/big/" . $rs['manufacturer'] . $rs['part'] . ".jpg";
+                $thumbnail_path = "/images/products/big/" . strtolower($rs['manufacturer']) . $rs['part'] . ".jpg";
                 if (file_exists(dirname(__DIR__) . $thumbnail_path)){
                     $thumbnail = $thumbnail_path;
                 } else {

@@ -23,7 +23,7 @@ class Product
      */
     public function default_img()
     {
-        $path = "images/products/big/" . $this->db_record['manufacturer_name'] . '/' . $this->db_record['item_code'] . '.jpg';
+        $path = "images/products/big/" . strtolower($this->db_record['manufacturer_name']) . '/' . $this->db_record['item_code'] . '.jpg';
 
         if (file_exists(dirname(__DIR__) . '/' . $path)){
             return $path;
