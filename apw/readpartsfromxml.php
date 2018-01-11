@@ -9,13 +9,13 @@ Check log file log_read_parts_.txt in the same folder for inserted records and/o
 
 //error_reporting(4);
 ini_set('max_execution_time', 10800);
-if (php_sapi_name() == 'cli' || strpos('ofo', $_SERVER['SERVER_NAME']) !== false) {
+if (php_sapi_name() == 'cli' || strpos('ofo', $_SERVER['SERVER_NAME']) !== false){
     define('IS_LOCAL', true);
 } else {
     define('IS_LOCAL', false);
 }
 
-if (IS_LOCAL) {
+if (IS_LOCAL){
     $root_pw = "rTrapok)1";
 } else {
     $root_pw = "rTrapok)1";
@@ -26,7 +26,7 @@ define('IS_DEBUG', true);
 
 $con = new mysqli("localhost", "root", $root_pw);
 /* check connection */
-if ($con->connect_errno) {
+if ($con->connect_errno){
     die("Connect failed: %s\n" . $con->connect_error);
 }
 
@@ -48,7 +48,7 @@ $log = "";
 function initVars()
 {
     global $makes, $enginebases, $fuelDeliveryTypes, $engineDesignations, $partTypes_filters_only, $log, $con, $logFile;
-    if (! $con->select_db(AAIA_VCDB)) {
+    if (!$con->select_db(AAIA_VCDB)){
         $log .= "Unable to select AAIA_VCDB: " . mysqli_error($con);
         exit;
     }
@@ -59,12 +59,12 @@ function initVars()
 
     $result = $con->query($sql);
 
-    if (! $result) {
+    if (!$result){
         $log .= "Could not successfully run query ($sql) from DB: " . mysqli_error($con);
         exit;
     }
 
-    if ($result->num_rows == 0) {
+    if ($result->num_rows == 0){
         $log .= "No rows found, nothing to print so exiting";
         exit;
     }
@@ -79,12 +79,12 @@ function initVars()
 
     $result = $con->query($sql);
 
-    if (! $result) {
+    if (!$result){
         $log .= "Could not successfully run query ($sql) from DB: " . mysqli_error($con);
         exit;
     }
 
-    if ($result->num_rows == 0) {
+    if ($result->num_rows == 0){
         $log .= "No rows found, nothing to print so am exiting";
         exit;
     }
@@ -99,12 +99,12 @@ function initVars()
 
     $result = $con->query($sql);
 
-    if (! $result) {
+    if (!$result){
         $log .= "Could not successfully run query ($sql) from DB: " . mysqli_error($con);
         exit;
     }
 
-    if ($result->num_rows == 0) {
+    if ($result->num_rows == 0){
         $log .= "No rows found, nothing to print so am exiting";
         exit;
     }
@@ -116,7 +116,7 @@ function initVars()
     $fuelDeliveryTypes['5'] = "FI";
     $fuelDeliveryTypes['6'] = "CARB";
 
-    if (! $con->select_db(AAIA_PCDB)) {
+    if (!$con->select_db(AAIA_PCDB)){
         $log .= "Unable to select AAIA_PCDB: " . mysqli_error($con);
         exit;
     }
@@ -127,12 +127,12 @@ function initVars()
 
     $result = $con->query($sql);
 
-    if (! $result) {
+    if (!$result){
         $log .= "Could not successfully run query ($sql) from DB: " . mysqli_error($con);
         exit;
     }
 
-    if ($result->num_rows == 0) {
+    if ($result->num_rows == 0){
         $log .= "No rows found, nothing to print so am exiting";
         exit;
     }
@@ -155,7 +155,7 @@ function lookupAaia($app)
     $result = false;
     global $makes, $logFile, $log, $enginebases, $engineDesignations, $fuelDeliveryTypes, $con;
 
-    if (! $con->select_db(VIART_DB)) {
+    if (!$con->select_db(VIART_DB)){
         $log .= "Unable to select VIART_DB: " . mysqli_error($con);
         exit;
     }
@@ -164,21 +164,21 @@ function lookupAaia($app)
         return null;
     }
     $appYear = $app->Years->attributes();
-    $yearFrom = (string) $appYear['from'];
-    $yearTo = (string) $appYear['to'];
+    $yearFrom = (string)$appYear['from'];
+    $yearTo = (string)$appYear['to'];
     $appMake = $app->Make->attributes();
-    $makeName = $makes[(string) $appMake['id']];
+    $makeName = $makes[(string)$appMake['id']];
     $appModel = $app->Model->attributes();
-    $appModelID = (string) $appModel['id'];
+    $appModelID = (string)$appModel['id'];
     $con->select_db(AAIA_VCDB);
-    $sql = "SELECT ModelName FROM Model where modelid = " . $appModelID . ";";
+    $sql = "SELECT ModelName FROM Model WHERE modelid = " . $appModelID . ";";
     $result = $con->query($sql);
-    if ($result->num_rows == 0) {
+    if ($result->num_rows == 0){
         $log .= "Model not found, nothing to print so am exiting";
 
         return false;
     }
-    if ($result->num_rows != 1) {
+    if ($result->num_rows != 1){
         $log .= "More than 1 modelname found";
 
         return false;
@@ -188,12 +188,12 @@ function lookupAaia($app)
 
     //get cylinders, liter from enginebase
     $appEngineBase = (property_exists($app, 'EngineBase') && method_exists($app->EngineBase, 'attributes')) ? $app->EngineBase->attributes() : null;
-    if (isset($appEngineBase['id'])) {
-        $engineBaseId = (string) $appEngineBase['id'];
+    if (isset($appEngineBase['id'])){
+        $engineBaseId = (string)$appEngineBase['id'];
 
-        $sql = "SELECT * FROM EngineBase WHERE EngineBaseID = " . $engineBaseId . " limit 1;";
+        $sql = "SELECT * FROM EngineBase WHERE EngineBaseID = " . $engineBaseId . " LIMIT 1;";
         $result = $con->query($sql);
-        if ($result->num_rows == 0) {
+        if ($result->num_rows == 0){
             $log .= "No enginebase found, ";
 
             return false;
@@ -204,43 +204,43 @@ function lookupAaia($app)
     }
 
     $appEngineDesignation = (property_exists($app, 'EngineDesignation') && method_exists($app->EngineDesignation, 'attributes')) ? $app->EngineDesignation->attributes() : null;
-    if (isset($appEngineDesignation['id'])) {
-        $engineDesignationId = (string) $appEngineDesignation['id'];
+    if (isset($appEngineDesignation['id'])){
+        $engineDesignationId = (string)$appEngineDesignation['id'];
         $engineVIN = trim($engineDesignations[$engineDesignationId]);
     }
     $appFuelDev = (property_exists($app, 'FuelDeliveryType') && method_exists($app->FuelDeliveryType, 'attributes')) ? $app->FuelDeliveryType->attributes() : null;
-    if (isset($appFuelDev['id'])) {
-        $fuelDevId = (string) $appFuelDev['id'];
+    if (isset($appFuelDev['id'])){
+        $fuelDevId = (string)$appFuelDev['id'];
         $injectionType = $fuelDeliveryTypes[$fuelDevId];
     }
 
     $con->select_db(VIART_DB);
 
     $aaiaIds = array();
-    for ($year = $yearFrom;$year <= $yearTo;$year ++) {
+    for ($year = $yearFrom;$year <= $yearTo;$year++){
         $sql = "SELECT id FROM aaia where year = '$year' and make = '$makeName' and model = '$modelName' ";
-        if (! empty($injectionType)) {
+        if (!empty($injectionType)){
             $sql .= "AND injectionType = '$injectionType'  ";
         }
-        if (! empty($cylinders)) {
+        if (!empty($cylinders)){
             $sql .= "AND cylinders = '$cylinders' ";
         }
-        if (! empty($liter)) {
+        if (!empty($liter)){
             $sql .= "AND liters = '$liter' ";
         }
-        if (! empty($engineVIN)) {
+        if (!empty($engineVIN)){
             $sql .= "AND engineVIN = '$engineVIN' ";
         }
         $result = $con->query($sql);
-        if (! $result) {
+        if (!$result){
             $log .= "Could not successfully run query ($sql) from DB: " . mysqli_error($con);
             return false;
         }
 
-        if ($result->num_rows == 0) {
+        if ($result->num_rows == 0){
             $sql = "REPLACE INTO aaia (year,make,model,cylinders,liters,fuelType,injectionType,engineVIN) values('$year', '$makeName', '$modelName', '$cylinders', '$liter','GAS', '$injectionType', '$engineVIN');";
             $result = $con->query($sql);
-            if (! $result) {
+            if (!$result){
                 $log .= "Could not successfully run query ($sql) from DB: " . mysqli_error($con);
                 exit;
             }
@@ -253,7 +253,7 @@ function lookupAaia($app)
         }
     }
 
-    if (is_object($result)) {
+    if (is_object($result)){
         $result->free_result();
     }
     fwrite($logFile, $log);
@@ -297,25 +297,25 @@ function insertPartToOFO($z)
     $result = false;
     global $log, $logFile, $con;
 
-    if (! $con->select_db(VIART_DB)) {
+    if (!$con->select_db(VIART_DB)){
         $log .= "Unable to select VIART_DB: " . mysqli_error($con);
         exit;
     }
-    foreach ($z['aaia'] as $key => $aaiaId) {
+    foreach ($z['aaia'] as $key => $aaiaId){
 
         //check if part already exists
         $sql = "SELECT id FROM aaia_parts WHERE `part` = '$z[part]' and `description` = '$z[description]' " .
-               " AND `notes` = '$z[notes]' AND `aaia` = '$aaiaId' AND `type` = '$z[type]' AND `manufacturer` = '$z[manufacturer]' ;";
-        if (($con->query($sql)->num_rows) > 0) {
+            " AND `notes` = '$z[notes]' AND `aaia` = '$aaiaId' AND `type` = '$z[type]' AND `manufacturer` = '$z[manufacturer]' ;";
+        if (($con->query($sql)->num_rows) > 0){
             continue;
         };
 
         $sql = "REPLACE INTO aaia_parts (`part`, `description`, `notes`, `aaia`, `type`, `manufacturer`) " .
-               "VALUES('$z[part]', '$z[description]', '$z[notes]', '$aaiaId', '$z[type]', '$z[manufacturer]') ; ";
+            "VALUES('$z[part]', '$z[description]', '$z[notes]', '$aaiaId', '$z[type]', '$z[manufacturer]') ; ";
 
         $result = $con->query($sql);
 
-        if (! $result) {
+        if (!$result){
             $log .= "Could not successfully run query ($sql) from DB: " . mysqli_error($con);
             exit;
         }
@@ -340,17 +340,17 @@ $options = getopt(null, $longopts);
 //$options['file']="\\Users\\tri\\bench_mac\\ofo\\fgto.xml";
 //  $options['nodepath'] = "App";
 //END DEBUG
-if (sizeof($options) !== 2) {
+if (sizeof($options) !== 2){
     $log .= ("Needs 2 arguments!!!");
     echo "Needs 2 arguments";
-    die(- 1);
+    die(-1);
 }
 // var_dump($options);
 
 $xml = simplexml_load_file($options['file']);
-if ($xml === false) {
+if ($xml === false){
     echo "Can not read file " . $options['file'] . "\n";
-    die(- 1);
+    die(-1);
 };
 $apps = $xml->children();
 //prepare lookups
@@ -358,32 +358,44 @@ initVars();
 
 $z = array();
 
-$appNodes = $apps->$options['nodepath'];
+$appNodes = $apps->{$options['nodepath']};
 $k = 0;
-for ($k = 0;$k <= sizeof($appNodes);$k ++) {
+for ($k = 0;$k <= sizeof($appNodes);$k++){
 
     if (IS_DEBUG && $k > 1){
         break;
     }
     $app = $appNodes[$k];
-    $z['part'] = (string) $app->Part;
-    $z['description'] = (string) $app->MfrLabel;
+    $z['part'] = (string)$app->Part;
+    $z['description'] = (string)$app->MfrLabel;
     $z['notes'] = "";
-    if (property_exists($app, 'Note')) {
-        foreach ($app->Note as $note) {
-            $z['notes'] .= ". " . (string) $note;
+    if (property_exists($app, 'Note')){
+        foreach ($app->Note as $note){
+            $z['notes'] .= ". " . (string)$note;
         }
     }
-    $z['aaia'] = lookupAaia($app);
-    $appPartType = $app->PartType->attributes();
-    $appPartType = (string) $appPartType['id'];
-    $z['type'] = $partTypes[$appPartType];
-    $z['manufacturer'] = (string) $xml->Header->Company[0];//
-    if ($z['manufacturer'] == "FramGroup") {
-        $z['manufacturer'] = "Fram";
+    if (property_exists($app, 'Years')){
+        $years = $app->Years->attributes();
+        if (!isset($years['from']) || !isset($years['to'])){
+            $log .= "Missing years from or years to \n";
+            continue;
+        }
+    } else {
+        $years['from'] = 9999;
+        $years['to'] = 9999;
     }
-    // var_dump($z);
-    insertPartToOFO($z);
+    for ($year = $years['from'];$year <= $years['to'];$year++){//note if there is no year from year to this is only 1 time loop
+        $z['aaia'] = lookupAaia($app);
+        $appPartType = $app->PartType->attributes();
+        $appPartType = (string)$appPartType['id'];
+        $z['type'] = $partTypes[$appPartType];
+        $z['manufacturer'] = (string)$xml->Header->Company[0];//
+        if ($z['manufacturer'] == "FramGroup"){
+            $z['manufacturer'] = "Fram";
+        }
+        // var_dump($z);
+        insertPartToOFO($z);
+    }
 }
 
 $con->close();

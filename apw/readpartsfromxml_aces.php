@@ -20,7 +20,7 @@ if (IS_LOCAL){
     $root_pw = "rTrapok)1";
 }
 
-//define('IS_DEBUG',true);
+//define('IS_DEBUG', true);
 define('IS_DEBUG', false);
 
 $con = new mysqli("localhost", "root", $root_pw);
@@ -123,7 +123,16 @@ function initVars()
 
     $sql = "SELECT PartTerminologyID, PartTerminologyName
 	FROM   Parts
-	WHERE  PartTerminologyName LIKE '%filter%' ; ";
+	WHERE  PartTerminologyName LIKE '%filter%'  ";
+    //for FRAM full ONLY:
+//    $sql.=" AND PartTerminologyName IN (
+//  'Engine Oil Filter',
+//'Fuel Filter',
+//'Air Filter',
+//  'Cabin Air Filter',
+//  'Automatic Transmission Filter'
+//) ";
+    //END for FRAM full:
 
     $result = $con->query($sql);
 
@@ -166,30 +175,50 @@ function lookupAaia($z)
 
     $con->select_db(AAIA_VCDB);
     $sql = "SELECT YearID, MAKE.MakeName AS make, MODEL.ModelName AS model FROM BaseVehicle AS BV JOIN Make AS MAKE ON BV.MakeID = MAKE.MakeID JOIN Model AS MODEL
-  ON BV.ModelID = MODEL.ModelID
-  WHERE BaseVehicleID = " . $z['basevehicle'] . ";";
+  ON BV.ModelID = MODEL.ModelID";
+    if (isset($z['basevehicle'])){
+        $sql .= "WHERE BaseVehicleID = " . $z['basevehicle'] . " ";
+    } else {
+        if (!isset($z['year'])){
+            return false;
+        }
+        $sql .= " WHERE YearID = " . $z['year'];
+    }
+    $sql .= ";";
     $result = $con->query($sql);
+    if (!is_object($result)){
+        $log .= "Query failed: $sql \n";
+        return false;
+    }
     if ($result->num_rows == 0){
         $log .= "Model not found";
-        $results['lookup_fail']++;
-        return false;
+//        $results['lookup_fail']++;
+//        return false;
     }
     if ($result->num_rows != 1){
-        $log .= "More than 1 basevehicle found";
-        $results['lookup_fail']++;
-        return false;
+        $log .= "More than 1 basevehicle found ";
+//        $results['lookup_fail']++;
+//        return false;
     }
-    $year_make_model = $result->fetch_assoc();
-    $year_id = trim($year_make_model['YearID']);
-    $make = trim($year_make_model['make']);
-    $model = trim($year_make_model['model']);
-
+    if (is_object($result) && $result->num_rows == 1){
+        $year_make_model = $result->fetch_assoc();
+        $year_id = trim($year_make_model['YearID']);
+        $make = trim($year_make_model['make']);
+        $model = trim($year_make_model['model']);
+    } else {
+        $year_id = $z['year'];
+        $make = $z['make'];
+        $model = $z['model'];
+    }
+    if (is_object($result)){
+        $result->close();
+    }
     //get cylinders, liter from enginebase
     if (isset($z['enginebase'])){
         $sql = "SELECT * FROM EngineBase WHERE EngineBaseID = " . $z['enginebase'] . " LIMIT 1;";
         $result = $con->query($sql);
         if (!is_object($result) || $result->num_rows == 0){
-            $log .= "No enginebase found, ";
+            $log .= "No enginebase found, $sql \n";
             $results['lookup_fail']++;
             return false;
         }
@@ -333,7 +362,7 @@ function insertPartToOFO($z)
     $log .= "Inserted part id: " . $con->insert_id . "\r\n";
     $result = true;
     $results['success']++;
-    if (IS_DEBUG && $results['success'] >= 2){
+    if (IS_DEBUG && ($results['success'] >= 2 || count($results) > 100)){
         exit;
     }
 
@@ -375,15 +404,14 @@ initVars();
 
 $z = array();
 
-$appNodes = $apps->$options['nodepath'];
+$appNodes = $apps->{$options['nodepath']};
 $k = 0;
 $num_of_parts = sizeof($appNodes);
 for ($k = 0;$k < $num_of_parts;$k++){
 
-    /*if(IS_DEBUG && $k > 500)
-    {
+    if (IS_DEBUG && $k > 500){
         break;
-    }*/
+    }
     $app = $appNodes[$k];
     /*
      * 		<BaseVehicle id="1"/>
@@ -394,10 +422,11 @@ for ($k = 0;$k < $num_of_parts;$k++){
         <Part>PAB9588</Part>
      */
     if (!property_exists($app, 'BaseVehicle')){
-        $log .= "Basevehicle not exists in XML. App: " . json_encode($app);
-        continue;
+        $log .= "Basevehicle not exists in XML. App: ";
+//        $log .= json_encode($app);
+    } else {
+        $z['basevehicle'] = (string)$app->BaseVehicle->attributes();
     }
-    $z['basevehicle'] = (string)$app->BaseVehicle->attributes();
     $z['enginebase'] = property_exists($app, 'EngineBase') ? (string)$app->EngineBase->attributes() : '';
     $z['enginevin'] = '';
     if (isset($app->EngineVIN) && method_exists($app->EngineVIN, 'attributes')){
@@ -405,11 +434,11 @@ for ($k = 0;$k < $num_of_parts;$k++){
     }
     $z['qty'] = (string)$app->Qty;
     $z['parttype'] = (string)$app->PartType->attributes();
-    if (array_search($z['parttype'], $partTypes_filters_only) == false){
+    /*if (array_search($z['parttype'], $partTypes_filters_only) == false){
         $results['not_filter']++;
 //        echo $z['parttype'].' ';
         continue;
-    }
+    }*/
     $z['part'] = (string)$app->Part;
 
     $z['type'] = $z['parttype'];
@@ -417,15 +446,35 @@ for ($k = 0;$k < $num_of_parts;$k++){
     if ($z['manufacturer'] == "Pentius USA, Inc"){
         $z['manufacturer'] = "Pentius";
     }
-    $z['aaia'] = lookupAaia($z);
-    // var_dump($z);
-    insertPartToOFO($z);
+    if (property_exists($app, 'Years')){
+        $years = $app->Years->attributes();
+        if (!property_exists($years, 'from') || !property_exists($years, 'to')){
+            $log .= "Missing years from or years to \n";
+            continue;
+        }
+    } else {
+        $years['from'] = 9999;
+        $years['to'] = 9999;
+    }
+    if(property_exists($app,'Make')){
+        $z['make'] = (int)$app->Make->attributes()->id;
+    }
+    if(property_exists($app,'Make')){
+        $z['model'] = (int)$app->Model->attributes()->id;
+    }
+    for ($year = (int)$years->from;$year <= (int)$years->to;$year++){//note if there is no year from year to this is only 1 time loop
+        {
+            $z['year'] = $year;
+            $z['aaia'] = lookupAaia($z);
+            // var_dump($z);
+            insertPartToOFO($z);
+        }
+    }
 }
-
 $con->close();
 unset($makes, $enginebases, $fuelDeliveryTypes, $engineDesignations, $partTypes_filters_only);
 fwrite($logFile, $log . "\nStop");
 fwrite($logFile, "Summary: " . json_encode($results));
 echo "Summary: " . json_encode($results);
-fwrite($logFile, "\nDone.");
+fwrite($logFile, "\nDone.\n");
 fclose($logFile);

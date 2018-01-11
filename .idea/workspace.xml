@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="54e97d0b-7310-4468-b0a4-823e21bf3dfa" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/rename_files.sh" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+    <list default="true" id="54e97d0b-7310-4468-b0a4-823e21bf3dfa" name="Default" comment="Lowercase directory name.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/common/Product.php" afterPath="$PROJECT_DIR$/common/Product.php" />
-      <change beforePath="$PROJECT_DIR$/custom/automotive-filters.php" afterPath="$PROJECT_DIR$/custom/automotive-filters.php" />
+      <change beforePath="$PROJECT_DIR$/apw/readpartsfromxml.php" afterPath="$PROJECT_DIR$/apw/readpartsfromxml.php" />
+      <change beforePath="$PROJECT_DIR$/apw/readpartsfromxml_aces.php" afterPath="$PROJECT_DIR$/apw/readpartsfromxml_aces.php" />
+      <change beforePath="$PROJECT_DIR$/eghdadmin/admin_items_list.php" afterPath="$PROJECT_DIR$/eghdadmin/admin_items_list.php" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/httpRequests/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,24 +39,6 @@
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="ofo@LIVE" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="ofo@LIVE" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="oilfiltersonline_test_store: schema" type="c314c289:MysqlImplModel$Schema" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="ofo@LIVE" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="oilfiltersonline_test_store: schema" type="c314c289:MysqlImplModel$Schema" />
-        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="oilfiltersonline@localhost" type="feb32156:DbDataSourceImpl" />
       </path>
       <path>
@@ -77,6 +58,22 @@
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="oilfiltersonline: schema" type="c314c289:MysqlImplModel$Schema" />
         <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="oilfiltersonline@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="oilfiltersonline: schema" type="c314c289:MysqlImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="aaia: table" type="98d5ac3d:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="oilfiltersonline@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="oilfiltersonline: schema" type="c314c289:MysqlImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="aaia_parts: table" type="98d5ac3d:MysqlImplModel$Table" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
@@ -99,109 +96,110 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="console.sql" pinned="false" current-in-tab="true">
+      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
         <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/65a9b7e7-44dd-455d-b4c1-c280c1331971/console.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="57" column="12" lean-forward="true" selection-start-line="57" selection-start-column="12" selection-end-line="57" selection-end-column="12" />
+            <state relative-caret-position="154">
+              <caret line="48" column="17" lean-forward="true" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="block_product_details.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/blocks/block_product_details.php">
+      <file leaf-file-name="admin_items_list.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/eghdadmin/admin_items_list.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="456" column="9" lean-forward="false" selection-start-line="456" selection-start-column="9" selection-end-line="456" selection-end-column="9" />
+            <state relative-caret-position="467">
+              <caret line="87" column="1393" lean-forward="true" selection-start-line="87" selection-start-column="1393" selection-end-line="87" selection-end-column="1393" />
               <folding>
-                <marker date="1515130329124" expanded="true" signature="28680:28745" ph="SELECT COUNT... ${$table_prefix}" />
-                <marker date="1515130329124" expanded="true" signature="40916:40995" ph="SELECT COUNT... ${$table_prefix}" />
-                <marker date="1515130329124" expanded="true" signature="41188:41283" ph="SELECT COUNT... ${$table_prefix}" />
-                <marker date="1515130329124" expanded="true" signature="41450:41548" ph="SELECT SUM(r... ${$table_prefix}" />
-                <marker date="1515130329124" expanded="true" signature="42353:42395" ph="SELECT * FRO... ${$table_prefix}" />
-                <marker date="1515130329124" expanded="true" signature="43751:43793" ph="SELECT * FRO... ${$table_prefix}" />
+                <marker date="1515642172417" expanded="true" signature="20114:20195" ph="SELECT full_... ${$table_prefix}" />
+                <marker date="1515642172417" expanded="true" signature="35709:35782" ph="SELECT site_... ${$table_prefix}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="automotive-filters.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/custom/automotive-filters.php">
+      <file leaf-file-name="shopping_cart.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/shopping_cart.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="423" column="24" lean-forward="false" selection-start-line="423" selection-start-column="24" selection-end-line="423" selection-end-column="24" />
+            <state relative-caret-position="336">
+              <caret line="1686" column="13" lean-forward="false" selection-start-line="1686" selection-start-column="13" selection-end-line="1686" selection-end-column="13" />
               <folding>
-                <marker date="1515479647856" expanded="true" signature="1087:1168" ph="SELECT DISTI... ${$current_db}" />
-                <marker date="1515479647856" expanded="true" signature="1377:1459" ph="SELECT DISTI... ${$current_db}" />
-                <marker date="1515479647856" expanded="true" signature="1748:1843" ph="..." />
-                <marker date="1515479647856" expanded="true" signature="1785:1843" ph="..." />
-                <marker date="1515479647856" expanded="true" signature="1823:1828" ph="&amp;amp;" />
-                <marker date="1515479647856" expanded="true" signature="2351:2455" ph="..." />
-                <marker date="1515479647856" expanded="true" signature="2524:2608" ph="..." />
-                <marker date="1515479647856" expanded="true" signature="2675:2758" ph="..." />
-                <marker date="1515479647856" expanded="true" signature="2829:2914" ph="..." />
-                <marker date="1515479647856" expanded="true" signature="2977:3081" ph="..." />
-                <marker date="1515479647856" expanded="true" signature="3142:3225" ph="..." />
-                <marker date="1515479647856" expanded="true" signature="3458:3542" ph="..." />
-                <marker date="1515479647856" expanded="true" signature="3745:3829" ph="..." />
-                <marker date="1515479647856" expanded="true" signature="3916:4001" ph="..." />
-                <marker date="1515479647856" expanded="true" signature="4200:4317" ph="SELECT DISTI... ${$current_db}" />
-                <marker date="1515479647856" expanded="true" signature="5089:5190" ph="SELECT DISTI... ${$current_db}" />
-                <marker date="1515479647856" expanded="true" signature="6117:6216" ph="SELECT DISTI... ${$current_db}" />
-                <marker date="1515479647856" expanded="true" signature="7049:7166" ph="SELECT DISTI... ${$current_db}" />
-                <marker date="1515479647856" expanded="true" signature="7994:8226" ph="SELECT id, c... ${$current_db}" />
-                <marker date="1515479647856" expanded="true" signature="8317:8454" ph="SELECT DISTI... ${$current_db}" />
-                <marker date="1515479647856" expanded="true" signature="9102:9239" ph="SELECT DISTI... ${$current_db}" />
-                <marker date="1515479647856" expanded="true" signature="9883:10020" ph="SELECT DISTI... ${$current_db}" />
-                <marker date="1515479647856" expanded="true" signature="10797:11070" ph="SELECT * FRO... ${$current_view}" />
-                <marker date="1515479647856" expanded="true" signature="11142:11263" ph="SELECT * FRO... ${$current_view}" />
-                <marker date="1515479647856" expanded="true" signature="11516:11608" ph="SELECT PartT... Parts" />
-                <marker date="1515479647856" expanded="true" signature="12134:12349" ph="..." />
-                <marker date="1515479647856" expanded="true" signature="12391:12539" ph="..." />
-                <marker date="1515479647856" expanded="true" signature="12433:12495" ph="..." />
-                <marker date="1515479647856" expanded="true" signature="13164:13275" ph="SELECT shipp... va_shipping_times" />
-                <marker date="1515479647856" expanded="true" signature="14699:14981" ph="..." />
-                <marker date="1515479647856" expanded="true" signature="15111:15655" ph="..." />
-                <marker date="1515479647856" expanded="true" signature="15160:15507" ph="..." />
-                <marker date="1515479647856" expanded="true" signature="15185:15438" ph="..." />
-                <marker date="1515479647856" expanded="true" signature="15733:16970" ph="..." />
-                <marker date="1515479647856" expanded="true" signature="15782:16331" ph="..." />
-                <marker date="1515479647856" expanded="true" signature="15807:16160" ph="..." />
-                <marker date="1515479647856" expanded="true" signature="15901:16134" ph="..." />
-                <marker date="1515479647856" expanded="true" signature="16374:16945" ph="..." />
-                <marker date="1515479647856" expanded="true" signature="16564:16920" ph="..." />
-                <marker date="1515479647856" expanded="true" signature="18572:18667" ph="SELECT * FRO... crossref_view" />
-                <marker date="1515479647856" expanded="true" signature="18768:19441" ph="..." />
-                <marker date="1515479647856" expanded="true" signature="18808:19019" ph="..." />
-                <marker date="1515479647856" expanded="true" signature="19124:19441" ph="..." />
-                <marker date="1515479647856" expanded="true" signature="19145:19418" ph="..." />
-                <marker date="1515479647856" expanded="true" signature="21152:21281" ph="..." />
-                <marker date="1515479647856" expanded="true" signature="21472:21852" ph="..." />
-                <marker date="1515479647856" expanded="true" signature="21580:21828" ph="..." />
-                <marker date="1515479647856" expanded="true" signature="21734:21740" ph="&amp;nbsp;" />
-                <marker date="1515479647856" expanded="true" signature="21740:21746" ph="&amp;nbsp;" />
+                <marker date="1513400165657" expanded="true" signature="1493:1556" ph="SELECT item_... ${$table_prefix}" />
+                <marker date="1513400165657" expanded="true" signature="1691:1762" ph="SELECT item_... ${$table_prefix}" />
+                <marker date="1513400165657" expanded="true" signature="21151:21255" ph="SELECT prope... ${$table_prefix}" />
+                <marker date="1513400165657" expanded="true" signature="26699:26765" ph="SELECT item_... ${$table_prefix}" />
+                <marker date="1513400165657" expanded="true" signature="27719:27785" ph="SELECT item_... ${$table_prefix}" />
+                <marker date="1513400165657" expanded="true" signature="43077:43123" ph="INSERT INTO ${$table_prefix}saved_items... " />
+                <marker date="1513400165657" expanded="true" signature="44590:44645" ph="INSERT INTO ${$table_prefix}saved_items_properties... " />
+                <marker date="1513400165657" expanded="true" signature="46964:47019" ph="SELECT COUNT... ${$table_prefix}" />
+                <marker date="1513400165657" expanded="true" signature="47213:47275" ph="SELECT subsc... ${$table_prefix}" />
+                <marker date="1513400165657" expanded="true" signature="53492:53614" ph="SELECT site_... ${$table_prefix}" />
+                <marker date="1513400165657" expanded="true" signature="62448:62530" ph="SELECT tax_i... ${$table_prefix}" />
+                <marker date="1513400165657" expanded="true" signature="66672:66797" ph="SELECT prope... ${$table_prefix}" />
+                <marker date="1513400165657" expanded="true" signature="67008:67138" ph="DELETE FROM ${$table_prefix}items_properties_values... " />
+                <marker date="1513400165657" expanded="true" signature="67158:67272" ph="DELETE FROM ${$table_prefix}items_properties... " />
+                <marker date="1513400165657" expanded="true" signature="67355:67480" ph="DELETE FROM ${$table_prefix}items_properties_values... " />
+                <marker date="1513400165657" expanded="true" signature="67499:67617" ph="DELETE FROM ${$table_prefix}items_properties... " />
+                <marker date="1513400165657" expanded="true" signature="67681:67797" ph="SELECT relea... ${$table_prefix}" />
+                <marker date="1513400165657" expanded="true" signature="67999:68119" ph="DELETE FROM ${$table_prefix}release_changes... " />
+                <marker date="1513400165657" expanded="true" signature="68139:68245" ph="DELETE FROM ${$table_prefix}releases... " />
+                <marker date="1513400165657" expanded="true" signature="68299:68408" ph="DELETE FROM ${$table_prefix}items_sites... " />
+                <marker date="1513400165657" expanded="true" signature="68426:68543" ph="DELETE FROM ${$table_prefix}items_subscriptions... " />
+                <marker date="1513400165657" expanded="true" signature="68561:68675" ph="DELETE FROM ${$table_prefix}items_user_types... " />
+                <marker date="1513400165657" expanded="true" signature="68693:68798" ph="DELETE FROM ${$table_prefix}reviews... " />
+                <marker date="1513400165657" expanded="true" signature="68816:68930" ph="DELETE FROM ${$table_prefix}items_categories... " />
+                <marker date="1513400165657" expanded="true" signature="68948:69059" ph="DELETE FROM ${$table_prefix}items_related... " />
+                <marker date="1513400165657" expanded="true" signature="69077:69200" ph="DELETE FROM ${$table_prefix}articles_categories_items... " />
+                <marker date="1513400165657" expanded="true" signature="69218:69338" ph="DELETE FROM ${$table_prefix}articles_items_related... " />
+                <marker date="1513400165657" expanded="true" signature="69356:69462" ph="DELETE FROM ${$table_prefix}features... " />
+                <marker date="1513400165657" expanded="true" signature="69480:69590" ph="DELETE FROM ${$table_prefix}items_images... " />
+                <marker date="1513400165657" expanded="true" signature="69608:69723" ph="DELETE FROM ${$table_prefix}items_accessories... " />
+                <marker date="1513400165657" expanded="true" signature="69741:69864" ph="DELETE FROM ${$table_prefix}items_properties_assigned... " />
+                <marker date="1513400165657" expanded="true" signature="69882:70001" ph="DELETE FROM ${$table_prefix}items_values_assigned... " />
+                <marker date="1513400165657" expanded="true" signature="70019:70122" ph="DELETE FROM ${$table_prefix}items... " />
+                <marker date="1513400165657" expanded="true" signature="70565:70634" ph="SELECT categ... ${$table_prefix}" />
+                <marker date="1513400165657" expanded="true" signature="70963:71018" ph="SELECT categ... ${$table_prefix}" />
+                <marker date="1513400165657" expanded="true" signature="71363:71480" ph="DELETE FROM ${$table_prefix}categories... " />
+                <marker date="1513400165657" expanded="true" signature="71499:71622" ph="DELETE FROM ${$table_prefix}items_categories... " />
+                <marker date="1513400165657" expanded="true" signature="71641:71769" ph="DELETE FROM ${$table_prefix}categories_user_types... " />
+                <marker date="1513400165657" expanded="true" signature="71788:71919" ph="DELETE FROM ${$table_prefix}categories_subscriptions... " />
+                <marker date="1513400165657" expanded="true" signature="71938:72061" ph="DELETE FROM ${$table_prefix}categories_sites... " />
+                <marker date="1513400165657" expanded="true" signature="72142:72192" ph="SELECT i.ite... ${$table_prefix}" />
+                <marker date="1513400165657" expanded="true" signature="76958:77000" ph="SELECT * FRO... ${$table_prefix}" />
+                <marker date="1513400165657" expanded="true" signature="78576:78591" ph="SELECT c.* F... " />
+                <marker date="1513400165657" expanded="true" signature="80053:80100" ph="SELECT c.* F... ${$table_prefix}" />
+                <marker date="1513400165657" expanded="true" signature="81150:81165" ph="SELECT c.* F... " />
+                <marker date="1513400165657" expanded="true" signature="84309:84361" ph="SELECT COUNT... ${$table_prefix}" />
+                <marker date="1513400165657" expanded="true" signature="85256:85317" ph="SELECT SUM(o... ${$table_prefix}" />
+                <marker date="1513400165657" expanded="true" signature="87092:87153" ph="SELECT SUM(o... ${$table_prefix}" />
+                <marker date="1513400165657" expanded="true" signature="95054:95099" ph="SELECT * FRO... ${$table_prefix}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Product.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/Product.php">
+      <file leaf-file-name="readpartsfromxml_aces.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/apw/readpartsfromxml_aces.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="25" column="90" lean-forward="false" selection-start-line="25" selection-start-column="90" selection-end-line="25" selection-end-column="90" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="briannote.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/briannote.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="56">
-              <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-              <folding />
+            <state relative-caret-position="523">
+              <caret line="132" column="0" lean-forward="false" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
+              <folding>
+                <marker date="1515643340095" expanded="true" signature="1712:1743" ph="SELECT * FRO... Make" />
+                <marker date="1515643340095" expanded="true" signature="2162:2199" ph="SELECT * FRO... EngineBase" />
+                <marker date="1515643340095" expanded="true" signature="2589:2633" ph="SELECT * FRO... EngineDesignation" />
+                <marker date="1515643340095" expanded="true" signature="3276:3379" ph="SELECT PartT... Parts" />
+                <marker date="1515643340095" expanded="true" signature="4675:4857" ph="SELECT YearI... BaseVehicle" />
+                <marker date="1515643340095" expanded="true" signature="4675:5102" ph="SELECT YearI... BaseVehicle" />
+                <marker date="1515643340095" expanded="true" signature="4675:5110" ph="SELECT YearI... BaseVehicle" />
+                <marker date="1515643340095" expanded="true" signature="6053:6131" ph="SELECT * FRO... EngineBase" />
+                <marker date="1515643340095" expanded="true" signature="6612:6687" ph="SELECT * FRO... EngineVIN" />
+                <marker date="1515643340095" expanded="true" signature="7057:7143" ph="SELECT * FRO... Parts" />
+                <marker date="1515643340095" expanded="true" signature="7534:7615" ph="SELECT id FR... aaia" />
+                <marker date="1515643340095" expanded="true" signature="8302:8453" ph="REPLACE INTO... aaia" />
+                <marker date="1515643340095" expanded="true" signature="9666:9808" ph="SELECT id FR... aaia_parts" />
+                <marker date="1515643340095" expanded="true" signature="10290:10466" ph="REPLACE INTO... aaia_parts" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -210,50 +208,8 @@
         <entry file="file://$PROJECT_DIR$/rename_files.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="14">
-              <caret line="1" column="128" lean-forward="false" selection-start-line="1" selection-start-column="128" selection-end-line="1" selection-end-column="128" />
+              <caret line="1" column="44" lean-forward="false" selection-start-line="1" selection-start-column="44" selection-end-line="1" selection-end-column="44" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="scratch.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="10" column="51" lean-forward="false" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="va_items" pinned="false" current-in-tab="false">
-        <entry file="das://table:/1c667e89/65a9b7e7-44dd-455d-b4c1-c280c1331971/oilfiltersonline_test_store.va_items">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true">
-                <filter text="item_code='PAB10013'" />
-              </filtering>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="apw_view.sql" pinned="false" current-in-tab="false">
-        <entry file="dbSrc:///1c667e89/65a9b7e7-44dd-455d-b4c1-c280c1331971/schema/oilfiltersonline/view/apw_view.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="12" lean-forward="false" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="apw_view" pinned="false" current-in-tab="false">
-        <entry file="das://view:/1c667e89/65a9b7e7-44dd-455d-b4c1-c280c1331971/oilfiltersonline.apw_view">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true">
-                <filter text="manufacturer_id=15" />
-              </filtering>
             </state>
           </provider>
         </entry>
@@ -262,20 +218,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>we are very sorry</find>
-      <find>item_id</find>
-      <find>$table_prefix . &quot;items</find>
-      <find>. &quot;items</find>
-      <find>insert into</find>
-      <find>POST</find>
-      <find>db_column</find>
-      <find>max_input_vars</find>
-      <find>Invalid SQL</find>
-      <find>$parameters</find>
-      <find>parameters</find>
-      <find>insert</find>
-      <find>&quot;make&quot;</find>
-      <find>Can't find PayPal SSL certificate</find>
       <find>big_im</find>
       <find>bigimag</find>
       <find>`automotive_parts`.</find>
@@ -292,6 +234,20 @@
       <find>no_image</find>
       <find>file_ex</find>
       <find>thumbnail_p</find>
+      <find>MfrLabel</find>
+      <find>IS_DEBUG</find>
+      <find>basevehi</find>
+      <find>more than</find>
+      <find>from</find>
+      <find>lookup_fail</find>
+      <find>9999</find>
+      <find>$yearFrom</find>
+      <find>lookup</find>
+      <find>$make</find>
+      <find>$sql&quot;</find>
+      <find>$sql</find>
+      <find>%filter</find>
+      <find>delete_item</find>
     </findStrings>
     <replaceStrings>
       <replace>//ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js</replace>
@@ -333,13 +289,11 @@
         <option value="$PROJECT_DIR$/eghdadmin/.htaccess" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/a06f9f38-3659-4b8f-992c-919c0c5fd1a6/console.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/bfd3a5c4-8e1e-46ba-bc58-08caa8b7a1b8/console.sql" />
-        <option value="$PROJECT_DIR$/apw/readpartsfromxml_aces.php" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/6667bca5-7bd7-4e8d-b50c-fa8c28b69ac1/console.sql" />
         <option value="$PROJECT_DIR$/friendly_url.php" />
         <option value="$PROJECT_DIR$/blog/wp-content/plugins/smart-youtube/smartyoutube.php" />
         <option value="$PROJECT_DIR$/blog/wp-content/themes/oilfilters-online/index.php" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/4a944f68-d467-49d6-b599-5aa546ade11e/console.sql" />
-        <option value="$PROJECT_DIR$/eghdadmin/admin_items_list.php" />
         <option value="/tmp/bosch_to_import.csv" />
         <option value="$PROJECT_DIR$/block_products_list.php" />
         <option value="$PROJECT_DIR$/eghdadmin/admin_import.php" />
@@ -356,9 +310,12 @@
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.txt" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/rename_files.sh" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/65a9b7e7-44dd-455d-b4c1-c280c1331971/console.sql" />
         <option value="$PROJECT_DIR$/custom/automotive-filters.php" />
         <option value="$PROJECT_DIR$/common/Product.php" />
+        <option value="$PROJECT_DIR$/apw/readpartsfromxml.php" />
+        <option value="$PROJECT_DIR$/eghdadmin/admin_items_list.php" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/65a9b7e7-44dd-455d-b4c1-c280c1331971/console.sql" />
+        <option value="$PROJECT_DIR$/apw/readpartsfromxml_aces.php" />
       </list>
     </option>
   </component>
@@ -368,7 +325,6 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpServers">
     <servers>
       <server host="ofo" id="08e823fe-b8b7-40b6-a622-5fc925f2af65" name="ofo" />
@@ -377,9 +333,9 @@
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP 5.6" />
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="1" />
-    <option name="y" value="1" />
-    <option name="width" value="958" />
-    <option name="height" value="1047" />
+    <option name="y" value="528" />
+    <option name="width" value="1918" />
+    <option name="height" value="520" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -415,13 +371,18 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="ofo" type="b2602c69:ProjectViewProjectNode" />
               <item name="ofo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ofo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ofo" type="462c0819:PsiDirectoryNode" />
+              <item name="apw" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ofo" type="b2602c69:ProjectViewProjectNode" />
@@ -438,12 +399,22 @@
               <item name="ofo" type="462c0819:PsiDirectoryNode" />
               <item name="custom" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ofo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ofo" type="462c0819:PsiDirectoryNode" />
+              <item name="eghdadmin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ofo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ofo" type="462c0819:PsiDirectoryNode" />
+              <item name="includes" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -453,11 +424,11 @@
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="last_opened_file_path" value="/tmp" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="web.server" />
     <property name="android.sdk.path" value="$USER_HOME$/soft/programming/android_sdk" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL&#10;SQL Server (Microsoft)" />
-    <property name="database.data.extractors.current.id" value="Comma-separated (CSV)_id" />
+    <property name="database.data.extractors.current.id" value="ff46c53a-42ed-4e6b-8cd7-4fe4103643d7" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/apw/log_read_parts_12_29_11_32_40.txt" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -665,7 +636,14 @@
       <option name="project" value="LOCAL" />
       <updated>1515346881650</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Lowercase directory name.">
+      <created>1515480975489</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1515480975489</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TodoView">
@@ -678,7 +656,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="1" width="1922" height="1061" extended-state="6" />
+    <frame x="0" y="0" width="1920" height="1054" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925585" sideWeight="0.4977169" order="6" side_tool="false" content_ui="tabs" />
@@ -686,19 +664,19 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5249745" sideWeight="0.5022831" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23125" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26458332" sideWeight="0.459375" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32809225" sideWeight="0.4944553" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.524109" sideWeight="0.7632094" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3081761" sideWeight="0.7632094" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13072917" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2015625" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.496875" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.171875" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3962264" sideWeight="0.478125" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3962264" sideWeight="0.478125" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -707,8 +685,8 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23125" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.49790043" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914045" sideWeight="0.496875" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -759,7 +737,8 @@
     <MESSAGE value="Try fixing blog." />
     <MESSAGE value="FTP deployment." />
     <MESSAGE value="Debug sql." />
-    <option name="LAST_COMMIT_MESSAGE" value="Debug sql." />
+    <MESSAGE value="Lowercase directory name." />
+    <option name="LAST_COMMIT_MESSAGE" value="Lowercase directory name." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -777,7 +756,7 @@
           <option name="timeStamp" value="51" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="53" />
+      <option name="time" value="59" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PhpLocalRunConfigurationType">
@@ -785,6 +764,7 @@
       </configuration>
       <configuration name="readpartsfromxml_aces.php">
         <watch expression="$z['parttype']" />
+        <watch expression="$year" />
       </configuration>
     </watches-manager>
   </component>
@@ -803,125 +783,58 @@
     </expressions>
     <expressions id="evaluateExpression">
       <expression>
-        <expression-string>MANUFACTURER</expression-string>
+        <expression-string>$year</expression-string>
         <language-id>PHP</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>defined('MANUFACTURER')</expression-string>
+        <expression-string>(int)$years-&gt;from</expression-string>
         <language-id>PHP</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>include_once(&quot;const.php&quot;);</expression-string>
+        <expression-string>$years-&gt;from</expression-string>
         <language-id>PHP</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>dirname(__DIR__) . '/' . $path</expression-string>
+        <expression-string>$years</expression-string>
         <language-id>PHP</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>$app-&gt;PartType-&gt;attributes()</expression-string>
+        <expression-string>($years)['from']</expression-string>
         <language-id>PHP</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>$app-&gt;PartType-&gt;attributes</expression-string>
+        <expression-string>($years)['from']-&gt;0</expression-string>
         <language-id>PHP</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>$app-&gt;PartType-&gt;id</expression-string>
+        <expression-string>($years)['from'][0]</expression-string>
         <language-id>PHP</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>$app-&gt;PartType</expression-string>
+        <expression-string>($years)-&gt;attributes()</expression-string>
+        <language-id>PHP</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>($years)</expression-string>
+        <language-id>PHP</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>array($app-&gt;Years-&gt;attributes())</expression-string>
         <language-id>PHP</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a7c84aac-2c77-4d82-bff6-a34bfb031e6c/console.sql" />
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/b47add38-4424-41c8-ad84-5a2f12799301/console.sql" />
-    <entry file="file://$PROJECT_DIR$/includes/common.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/user/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/oilfiltersonline/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="18" lean-forward="false" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/user/block_product_details.cep">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="27" lean-forward="false" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apw/readpartsfromxml_aces.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="26" column="49" lean-forward="false" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/52a6b4e0-0a90-4f9f-a5a4-231c71155d79/console.sql" />
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/15809acf-ffb5-4a5f-9c34-b6875a6f12db/console.sql" />
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a7c84aac-2c77-4d82-bff6-a34bfb031e6c/console.sql" />
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/b47add38-4424-41c8-ad84-5a2f12799301/console.sql" />
-    <entry file="file://$PROJECT_DIR$/includes/common.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/user/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/oilfiltersonline/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="18" lean-forward="false" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/user/block_product_details.cep">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="27" lean-forward="false" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apw/readpartsfromxml_aces.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="49" lean-forward="false" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/52a6b4e0-0a90-4f9f-a5a4-231c71155d79/console.sql" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/15809acf-ffb5-4a5f-9c34-b6875a6f12db/console.sql" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a7c84aac-2c77-4d82-bff6-a34bfb031e6c/console.sql" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/b47add38-4424-41c8-ad84-5a2f12799301/console.sql" />
@@ -1533,13 +1446,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apw/log_read_parts_12_29_01_22_48.txt" />
-    <entry file="file://$PROJECT_DIR$/apw/readpartsfromxml_aces.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="13" column="26" lean-forward="false" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/blog/.htaccess">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -1641,13 +1547,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/includes/shopping_cart.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23618">
-          <caret line="1696" column="53" lean-forward="false" selection-start-line="1696" selection-start-column="53" selection-end-line="1696" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://table:/1c667e89/a06f9f38-3659-4b8f-992c-919c0c5fd1a6/oilfiltersonline_test_store.va_items_sites">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -1687,13 +1586,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="70">
           <caret line="5" column="18" lean-forward="false" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eghdadmin/admin_items_list.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="910">
-          <caret line="74" column="40" lean-forward="false" selection-start-line="74" selection-start-column="40" selection-end-line="74" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -1837,12 +1729,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="28672">
           <caret line="2048" column="20" lean-forward="false" selection-start-line="2048" selection-start-column="20" selection-end-line="2048" selection-end-column="20" />
-          <folding>
-            <marker date="1515182743009" expanded="true" signature="1551:1863" ph="{...}" />
-            <marker date="1515182743009" expanded="true" signature="2689:3001" ph="{...}" />
-            <marker date="1515182743009" expanded="true" signature="3746:4058" ph="{...}" />
-            <marker date="1515182743009" expanded="true" signature="15577:15889" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1859,7 +1745,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
           <caret line="8" column="61" lean-forward="false" selection-start-line="8" selection-start-column="61" selection-end-line="8" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1905,7 +1790,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8442">
           <caret line="603" column="33" lean-forward="false" selection-start-line="603" selection-start-column="33" selection-end-line="603" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1922,14 +1806,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="dbSrc:///1c667e89/65a9b7e7-44dd-455d-b4c1-c280c1331971/schema/oilfiltersonline/view/apw_view.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="12" lean-forward="false" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="dbSrc:///1c667e89/65a9b7e7-44dd-455d-b4c1-c280c1331971/schema/oilfiltersonline/view/apw_view.sql" />
     <entry file="das://view:/1c667e89/65a9b7e7-44dd-455d-b4c1-c280c1331971/oilfiltersonline.apw_view">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -1952,7 +1829,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
           <caret line="10" column="51" lean-forward="false" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1967,88 +1843,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="56">
           <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rename_files.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14">
-          <caret line="1" column="128" lean-forward="false" selection-start-line="1" selection-start-column="128" selection-end-line="1" selection-end-column="128" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/blocks/block_product_details.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
+        <state relative-caret-position="6384">
           <caret line="456" column="9" lean-forward="false" selection-start-line="456" selection-start-column="9" selection-end-line="456" selection-end-column="9" />
-          <folding>
-            <marker date="1515130329124" expanded="true" signature="28680:28745" ph="SELECT COUNT... ${$table_prefix}" />
-            <marker date="1515130329124" expanded="true" signature="40916:40995" ph="SELECT COUNT... ${$table_prefix}" />
-            <marker date="1515130329124" expanded="true" signature="41188:41283" ph="SELECT COUNT... ${$table_prefix}" />
-            <marker date="1515130329124" expanded="true" signature="41450:41548" ph="SELECT SUM(r... ${$table_prefix}" />
-            <marker date="1515130329124" expanded="true" signature="42353:42395" ph="SELECT * FRO... ${$table_prefix}" />
-            <marker date="1515130329124" expanded="true" signature="43751:43793" ph="SELECT * FRO... ${$table_prefix}" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/custom/automotive-filters.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
+        <state relative-caret-position="5922">
           <caret line="423" column="24" lean-forward="false" selection-start-line="423" selection-start-column="24" selection-end-line="423" selection-end-column="24" />
-          <folding>
-            <marker date="1515479647856" expanded="true" signature="1087:1168" ph="SELECT DISTI... ${$current_db}" />
-            <marker date="1515479647856" expanded="true" signature="1377:1459" ph="SELECT DISTI... ${$current_db}" />
-            <marker date="1515479647856" expanded="true" signature="1748:1843" ph="..." />
-            <marker date="1515479647856" expanded="true" signature="1785:1843" ph="..." />
-            <marker date="1515479647856" expanded="true" signature="1823:1828" ph="&amp;amp;" />
-            <marker date="1515479647856" expanded="true" signature="2351:2455" ph="..." />
-            <marker date="1515479647856" expanded="true" signature="2524:2608" ph="..." />
-            <marker date="1515479647856" expanded="true" signature="2675:2758" ph="..." />
-            <marker date="1515479647856" expanded="true" signature="2829:2914" ph="..." />
-            <marker date="1515479647856" expanded="true" signature="2977:3081" ph="..." />
-            <marker date="1515479647856" expanded="true" signature="3142:3225" ph="..." />
-            <marker date="1515479647856" expanded="true" signature="3458:3542" ph="..." />
-            <marker date="1515479647856" expanded="true" signature="3745:3829" ph="..." />
-            <marker date="1515479647856" expanded="true" signature="3916:4001" ph="..." />
-            <marker date="1515479647856" expanded="true" signature="4200:4317" ph="SELECT DISTI... ${$current_db}" />
-            <marker date="1515479647856" expanded="true" signature="5089:5190" ph="SELECT DISTI... ${$current_db}" />
-            <marker date="1515479647856" expanded="true" signature="6117:6216" ph="SELECT DISTI... ${$current_db}" />
-            <marker date="1515479647856" expanded="true" signature="7049:7166" ph="SELECT DISTI... ${$current_db}" />
-            <marker date="1515479647856" expanded="true" signature="7994:8226" ph="SELECT id, c... ${$current_db}" />
-            <marker date="1515479647856" expanded="true" signature="8317:8454" ph="SELECT DISTI... ${$current_db}" />
-            <marker date="1515479647856" expanded="true" signature="9102:9239" ph="SELECT DISTI... ${$current_db}" />
-            <marker date="1515479647856" expanded="true" signature="9883:10020" ph="SELECT DISTI... ${$current_db}" />
-            <marker date="1515479647856" expanded="true" signature="10797:11070" ph="SELECT * FRO... ${$current_view}" />
-            <marker date="1515479647856" expanded="true" signature="11142:11263" ph="SELECT * FRO... ${$current_view}" />
-            <marker date="1515479647856" expanded="true" signature="11516:11608" ph="SELECT PartT... Parts" />
-            <marker date="1515479647856" expanded="true" signature="12134:12349" ph="..." />
-            <marker date="1515479647856" expanded="true" signature="12391:12539" ph="..." />
-            <marker date="1515479647856" expanded="true" signature="12433:12495" ph="..." />
-            <marker date="1515479647856" expanded="true" signature="13164:13275" ph="SELECT shipp... va_shipping_times" />
-            <marker date="1515479647856" expanded="true" signature="14699:14981" ph="..." />
-            <marker date="1515479647856" expanded="true" signature="15111:15655" ph="..." />
-            <marker date="1515479647856" expanded="true" signature="15160:15507" ph="..." />
-            <marker date="1515479647856" expanded="true" signature="15185:15438" ph="..." />
-            <marker date="1515479647856" expanded="true" signature="15733:16970" ph="..." />
-            <marker date="1515479647856" expanded="true" signature="15782:16331" ph="..." />
-            <marker date="1515479647856" expanded="true" signature="15807:16160" ph="..." />
-            <marker date="1515479647856" expanded="true" signature="15901:16134" ph="..." />
-            <marker date="1515479647856" expanded="true" signature="16374:16945" ph="..." />
-            <marker date="1515479647856" expanded="true" signature="16564:16920" ph="..." />
-            <marker date="1515479647856" expanded="true" signature="18572:18667" ph="SELECT * FRO... crossref_view" />
-            <marker date="1515479647856" expanded="true" signature="18768:19441" ph="..." />
-            <marker date="1515479647856" expanded="true" signature="18808:19019" ph="..." />
-            <marker date="1515479647856" expanded="true" signature="19124:19441" ph="..." />
-            <marker date="1515479647856" expanded="true" signature="19145:19418" ph="..." />
-            <marker date="1515479647856" expanded="true" signature="21152:21281" ph="..." />
-            <marker date="1515479647856" expanded="true" signature="21472:21852" ph="..." />
-            <marker date="1515479647856" expanded="true" signature="21580:21828" ph="..." />
-            <marker date="1515479647856" expanded="true" signature="21734:21740" ph="&amp;nbsp;" />
-            <marker date="1515479647856" expanded="true" signature="21740:21746" ph="&amp;nbsp;" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2056,15 +1864,143 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="350">
           <caret line="25" column="90" lean-forward="false" selection-start-line="25" selection-start-column="90" selection-end-line="25" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apw/log_read_parts_01_09_08_56_33.txt" />
+    <entry file="file://$PROJECT_DIR$/apw/log_read_parts_01_09_08_48_25.txt" />
+    <entry file="file://$PROJECT_DIR$/apw/log_read_parts_01_09_09_04_32.txt" />
+    <entry file="file://$PROJECT_DIR$/apw/log_read_parts_01_09_09_14_06.txt" />
+    <entry file="file://$PROJECT_DIR$/apw/log_read_parts_01_09_09_15_02.txt" />
+    <entry file="file://$PROJECT_DIR$/apw/log_read_parts_01_09_09_26_13.txt" />
+    <entry file="file://$PROJECT_DIR$/apw/log_read_parts_01_09_09_26_58.txt" />
+    <entry file="file://$PROJECT_DIR$/apw/log_read_parts_01_09_09_27_48.txt" />
+    <entry file="file://$PROJECT_DIR$/apw/log_read_parts_01_09_09_31_26.txt" />
+    <entry file="das://table:/1c667e89/101618ac-0a96-415a-9bec-f54098c56dac/aaia_vcdb.BaseVehicle">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apw/log_read_parts_01_09_09_43_30.txt" />
+    <entry file="file://$PROJECT_DIR$/apw/log_read_parts_01_09_09_51_23.txt" />
+    <entry file="file://$PROJECT_DIR$/apw/log_read_parts_01_09_09_47_42.txt" />
+    <entry file="file://$PROJECT_DIR$/apw/log_read_parts_01_09_10_01_52.txt" />
+    <entry file="file://$PROJECT_DIR$/apw/readpartsfromxml.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="842">
+          <caret line="219" column="26" lean-forward="false" selection-start-line="219" selection-start-column="26" selection-end-line="219" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apw/log_read_parts_01_09_10_18_02.txt" />
+    <entry file="file://$PROJECT_DIR$/apw/log_read_parts_01_10_12_22_58.txt" />
+    <entry file="file://$PROJECT_DIR$/rename_files.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14">
+          <caret line="1" column="44" lean-forward="false" selection-start-line="1" selection-start-column="44" selection-end-line="1" selection-end-column="44" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/shopping_cart.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="1686" column="13" lean-forward="false" selection-start-line="1686" selection-start-column="13" selection-end-line="1686" selection-end-column="13" />
+          <folding>
+            <marker date="1513400165657" expanded="true" signature="1493:1556" ph="SELECT item_... ${$table_prefix}" />
+            <marker date="1513400165657" expanded="true" signature="1691:1762" ph="SELECT item_... ${$table_prefix}" />
+            <marker date="1513400165657" expanded="true" signature="21151:21255" ph="SELECT prope... ${$table_prefix}" />
+            <marker date="1513400165657" expanded="true" signature="26699:26765" ph="SELECT item_... ${$table_prefix}" />
+            <marker date="1513400165657" expanded="true" signature="27719:27785" ph="SELECT item_... ${$table_prefix}" />
+            <marker date="1513400165657" expanded="true" signature="43077:43123" ph="INSERT INTO ${$table_prefix}saved_items... " />
+            <marker date="1513400165657" expanded="true" signature="44590:44645" ph="INSERT INTO ${$table_prefix}saved_items_properties... " />
+            <marker date="1513400165657" expanded="true" signature="46964:47019" ph="SELECT COUNT... ${$table_prefix}" />
+            <marker date="1513400165657" expanded="true" signature="47213:47275" ph="SELECT subsc... ${$table_prefix}" />
+            <marker date="1513400165657" expanded="true" signature="53492:53614" ph="SELECT site_... ${$table_prefix}" />
+            <marker date="1513400165657" expanded="true" signature="62448:62530" ph="SELECT tax_i... ${$table_prefix}" />
+            <marker date="1513400165657" expanded="true" signature="66672:66797" ph="SELECT prope... ${$table_prefix}" />
+            <marker date="1513400165657" expanded="true" signature="67008:67138" ph="DELETE FROM ${$table_prefix}items_properties_values... " />
+            <marker date="1513400165657" expanded="true" signature="67158:67272" ph="DELETE FROM ${$table_prefix}items_properties... " />
+            <marker date="1513400165657" expanded="true" signature="67355:67480" ph="DELETE FROM ${$table_prefix}items_properties_values... " />
+            <marker date="1513400165657" expanded="true" signature="67499:67617" ph="DELETE FROM ${$table_prefix}items_properties... " />
+            <marker date="1513400165657" expanded="true" signature="67681:67797" ph="SELECT relea... ${$table_prefix}" />
+            <marker date="1513400165657" expanded="true" signature="67999:68119" ph="DELETE FROM ${$table_prefix}release_changes... " />
+            <marker date="1513400165657" expanded="true" signature="68139:68245" ph="DELETE FROM ${$table_prefix}releases... " />
+            <marker date="1513400165657" expanded="true" signature="68299:68408" ph="DELETE FROM ${$table_prefix}items_sites... " />
+            <marker date="1513400165657" expanded="true" signature="68426:68543" ph="DELETE FROM ${$table_prefix}items_subscriptions... " />
+            <marker date="1513400165657" expanded="true" signature="68561:68675" ph="DELETE FROM ${$table_prefix}items_user_types... " />
+            <marker date="1513400165657" expanded="true" signature="68693:68798" ph="DELETE FROM ${$table_prefix}reviews... " />
+            <marker date="1513400165657" expanded="true" signature="68816:68930" ph="DELETE FROM ${$table_prefix}items_categories... " />
+            <marker date="1513400165657" expanded="true" signature="68948:69059" ph="DELETE FROM ${$table_prefix}items_related... " />
+            <marker date="1513400165657" expanded="true" signature="69077:69200" ph="DELETE FROM ${$table_prefix}articles_categories_items... " />
+            <marker date="1513400165657" expanded="true" signature="69218:69338" ph="DELETE FROM ${$table_prefix}articles_items_related... " />
+            <marker date="1513400165657" expanded="true" signature="69356:69462" ph="DELETE FROM ${$table_prefix}features... " />
+            <marker date="1513400165657" expanded="true" signature="69480:69590" ph="DELETE FROM ${$table_prefix}items_images... " />
+            <marker date="1513400165657" expanded="true" signature="69608:69723" ph="DELETE FROM ${$table_prefix}items_accessories... " />
+            <marker date="1513400165657" expanded="true" signature="69741:69864" ph="DELETE FROM ${$table_prefix}items_properties_assigned... " />
+            <marker date="1513400165657" expanded="true" signature="69882:70001" ph="DELETE FROM ${$table_prefix}items_values_assigned... " />
+            <marker date="1513400165657" expanded="true" signature="70019:70122" ph="DELETE FROM ${$table_prefix}items... " />
+            <marker date="1513400165657" expanded="true" signature="70565:70634" ph="SELECT categ... ${$table_prefix}" />
+            <marker date="1513400165657" expanded="true" signature="70963:71018" ph="SELECT categ... ${$table_prefix}" />
+            <marker date="1513400165657" expanded="true" signature="71363:71480" ph="DELETE FROM ${$table_prefix}categories... " />
+            <marker date="1513400165657" expanded="true" signature="71499:71622" ph="DELETE FROM ${$table_prefix}items_categories... " />
+            <marker date="1513400165657" expanded="true" signature="71641:71769" ph="DELETE FROM ${$table_prefix}categories_user_types... " />
+            <marker date="1513400165657" expanded="true" signature="71788:71919" ph="DELETE FROM ${$table_prefix}categories_subscriptions... " />
+            <marker date="1513400165657" expanded="true" signature="71938:72061" ph="DELETE FROM ${$table_prefix}categories_sites... " />
+            <marker date="1513400165657" expanded="true" signature="72142:72192" ph="SELECT i.ite... ${$table_prefix}" />
+            <marker date="1513400165657" expanded="true" signature="76958:77000" ph="SELECT * FRO... ${$table_prefix}" />
+            <marker date="1513400165657" expanded="true" signature="78576:78591" ph="SELECT c.* F... " />
+            <marker date="1513400165657" expanded="true" signature="80053:80100" ph="SELECT c.* F... ${$table_prefix}" />
+            <marker date="1513400165657" expanded="true" signature="81150:81165" ph="SELECT c.* F... " />
+            <marker date="1513400165657" expanded="true" signature="84309:84361" ph="SELECT COUNT... ${$table_prefix}" />
+            <marker date="1513400165657" expanded="true" signature="85256:85317" ph="SELECT SUM(o... ${$table_prefix}" />
+            <marker date="1513400165657" expanded="true" signature="87092:87153" ph="SELECT SUM(o... ${$table_prefix}" />
+            <marker date="1513400165657" expanded="true" signature="95054:95099" ph="SELECT * FRO... ${$table_prefix}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eghdadmin/admin_items_list.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="467">
+          <caret line="87" column="1393" lean-forward="true" selection-start-line="87" selection-start-column="1393" selection-end-line="87" selection-end-column="1393" />
+          <folding>
+            <marker date="1515642172417" expanded="true" signature="20114:20195" ph="SELECT full_... ${$table_prefix}" />
+            <marker date="1515642172417" expanded="true" signature="35709:35782" ph="SELECT site_... ${$table_prefix}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/65a9b7e7-44dd-455d-b4c1-c280c1331971/console.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="57" column="12" lean-forward="true" selection-start-line="57" selection-start-column="12" selection-end-line="57" selection-end-column="12" />
+        <state relative-caret-position="154">
+          <caret line="48" column="17" lean-forward="true" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="17" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apw/readpartsfromxml_aces.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="132" column="0" lean-forward="false" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
+          <folding>
+            <marker date="1515643340095" expanded="true" signature="1712:1743" ph="SELECT * FRO... Make" />
+            <marker date="1515643340095" expanded="true" signature="2162:2199" ph="SELECT * FRO... EngineBase" />
+            <marker date="1515643340095" expanded="true" signature="2589:2633" ph="SELECT * FRO... EngineDesignation" />
+            <marker date="1515643340095" expanded="true" signature="3276:3379" ph="SELECT PartT... Parts" />
+            <marker date="1515643340095" expanded="true" signature="4675:4857" ph="SELECT YearI... BaseVehicle" />
+            <marker date="1515643340095" expanded="true" signature="4675:5102" ph="SELECT YearI... BaseVehicle" />
+            <marker date="1515643340095" expanded="true" signature="4675:5110" ph="SELECT YearI... BaseVehicle" />
+            <marker date="1515643340095" expanded="true" signature="6053:6131" ph="SELECT * FRO... EngineBase" />
+            <marker date="1515643340095" expanded="true" signature="6612:6687" ph="SELECT * FRO... EngineVIN" />
+            <marker date="1515643340095" expanded="true" signature="7057:7143" ph="SELECT * FRO... Parts" />
+            <marker date="1515643340095" expanded="true" signature="7534:7615" ph="SELECT id FR... aaia" />
+            <marker date="1515643340095" expanded="true" signature="8302:8453" ph="REPLACE INTO... aaia" />
+            <marker date="1515643340095" expanded="true" signature="9666:9808" ph="SELECT id FR... aaia_parts" />
+            <marker date="1515643340095" expanded="true" signature="10290:10466" ph="REPLACE INTO... aaia_parts" />
+          </folding>
         </state>
       </provider>
     </entry>
