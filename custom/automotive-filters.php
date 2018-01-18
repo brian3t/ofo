@@ -599,7 +599,7 @@ $xajax->printJavascript("js/");
     </div>
     <div class="clear"></div>
 </div>
-<div id="crossReference">
+<!--<div id="crossReference">
     <h2>Cross Reference</h2>
     <b>Manufacturer Part Number:</b>
     <input name="partnum" id="partnum" type="text">
@@ -608,9 +608,10 @@ $xajax->printJavascript("js/");
         <input id="partinput" name="partinput" type="hidden" value="">
     </form>
     <div id="currentCross">
-        <? if ($_SESSION["search"]){
+        <?php /*if ($_SESSION["search"]){
             echo '<div class="application"><p><img src="images/delete.png" alt="Delete" title="Delete Vehicle" class="deleteVehicle" /><span class="currentVehicle" href="#">' . $_SESSION["search"] . ' </span><button class="showHide button">Show</button></p></div>';
-        } ?>
+        } */?>
     </div>
     <div class="clear"></div>
 </div>
+-->

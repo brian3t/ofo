@@ -34,7 +34,7 @@
 				<a href="http://www.oilfiltersonline.com/page.php?page=links">Links</a>
 			</li>
 		</ul>
-		<ul>
+		<!--<ul>
 			<li class="topCategory">
 				<a href="http://www.oilfiltersonline.com/filters">Filters</a>
 			</li>
@@ -307,7 +307,7 @@
 			<li>
 				<a href="http://www.oilfiltersonline.com/http://www.wizdog.com">Wizdog.com</a>
 			</li>
-		</ul>
+		</ul>-->
 	</div>
 </div>
 

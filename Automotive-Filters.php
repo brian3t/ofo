@@ -387,7 +387,7 @@ $xajax->printJavascript("js/");
 	</div>
 <div class="clear"></div>
 </div>
-<div id="crossReference">
+<!--<div id="crossReference">
 	<h2>Cross Reference</h2>
 	<b>Manufacturer Part Number:</b>
 	<input style="width: 177px;margin-bottom: 8px" name="partnum" id="partnum" type="text" onKeyPress="return disableEnterKey(event)">
@@ -399,10 +399,10 @@ $xajax->printJavascript("js/");
 		<input id="count" name="count" type="hidden" value="">
 	</form>
 	<div id="currentCross">
-	<? if($_SESSION["search"]) {
+	<?/* if($_SESSION["search"]) {
 			echo '<div class="application"><p><strong>Current Cross Reference:</strong></p><a class="currentVehicle" href="#">'. $_SESSION["search"] .' </a></div>';
-		}?>
+		}*/?>
 	</div>
 	<div class="clear"></div>
-</div>
+</div>-->
 
