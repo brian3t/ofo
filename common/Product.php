@@ -28,7 +28,7 @@ class Product
         if (file_exists(dirname(__DIR__) . '/' . $path)){
             return $path;
         } else {
-            return false;
+            return 'images/no_image.gif';
         }
 
     }
