@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="54e97d0b-7310-4468-b0a4-823e21bf3dfa" name="Default" comment="Clean up site menu, categories, banners.">
+    <list default="true" id="54e97d0b-7310-4468-b0a4-823e21bf3dfa" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/blocks/block_products_list.php" afterPath="$PROJECT_DIR$/blocks/block_products_list.php" />
-      <change beforePath="$PROJECT_DIR$/common/Product.php" afterPath="$PROJECT_DIR$/common/Product.php" />
-      <change beforePath="$PROJECT_DIR$/templates/user/block_products_list.html" afterPath="$PROJECT_DIR$/templates/user/block_products_list.html" />
+      <change beforePath="$PROJECT_DIR$/basket.php" afterPath="$PROJECT_DIR$/basket.php" />
       <change beforePath="$PROJECT_DIR$/templates/user/header.html" afterPath="$PROJECT_DIR$/templates/user/header.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/httpRequests/" />
@@ -89,11 +87,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="block_products_list.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="block_products_list.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/blocks/block_products_list.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="783" column="0" lean-forward="true" selection-start-line="783" selection-start-column="0" selection-end-line="783" selection-end-column="0" />
+            <state relative-caret-position="316">
+              <caret line="777" column="77" lean-forward="true" selection-start-line="777" selection-start-column="77" selection-end-line="777" selection-end-column="77" />
               <folding />
             </state>
           </provider>
@@ -121,19 +119,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="footerHome.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/user/footerHome.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="16" column="26" lean-forward="false" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
-              <folding>
-                <element signature="e#232#238#0" expanded="true" />
-                <element signature="e#238#244#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Product.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/common/Product.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -157,8 +142,18 @@
       <file leaf-file-name="header.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/user/header.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="742">
-              <caret line="53" column="100" lean-forward="false" selection-start-line="53" selection-start-column="100" selection-end-line="53" selection-end-column="100" />
+            <state relative-caret-position="602">
+              <caret line="43" column="107" lean-forward="false" selection-start-line="43" selection-start-column="107" selection-end-line="43" selection-end-column="107" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="basket.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/basket.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="341">
+              <caret line="169" column="40" lean-forward="true" selection-start-line="169" selection-start-column="40" selection-end-line="169" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -204,10 +199,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>basevehi</find>
-      <find>more than</find>
-      <find>from</find>
-      <find>lookup_fail</find>
       <find>9999</find>
       <find>$yearFrom</find>
       <find>lookup</find>
@@ -234,6 +225,10 @@
       <find>class=&quot;navigator&quot;</find>
       <find>image</find>
       <find>default_img</find>
+      <find>We accept most credit cards and PayPal</find>
+      <find>accept most credit cards</find>
+      <find>name=&quot;coupon_code&quot;</find>
+      <find>coupon</find>
     </findStrings>
     <replaceStrings>
       <replace>//ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js</replace>
@@ -303,12 +298,13 @@
         <option value="$PROJECT_DIR$/blog/wp-content/themes/oilfilters-online/footer.php" />
         <option value="$PROJECT_DIR$/templates/user/footer.html" />
         <option value="$PROJECT_DIR$/templates/user/footerHome.html" />
-        <option value="$PROJECT_DIR$/templates/user/header.html" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/65a9b7e7-44dd-455d-b4c1-c280c1331971/console.sql" />
         <option value="$PROJECT_DIR$/block_products_list.php" />
         <option value="$PROJECT_DIR$/common/Product.php" />
         <option value="$PROJECT_DIR$/blocks/block_products_list.php" />
         <option value="$PROJECT_DIR$/templates/user/block_products_list.html" />
+        <option value="$PROJECT_DIR$/templates/user/header.html" />
+        <option value="$PROJECT_DIR$/basket.php" />
       </list>
     </option>
   </component>
@@ -639,7 +635,14 @@
       <option name="project" value="LOCAL" />
       <updated>1516307463528</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Product list to display thumbnail using Product class default_img">
+      <created>1516387856890</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1516387856890</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TodoView">
@@ -735,7 +738,8 @@
     <MESSAGE value="Debug sql." />
     <MESSAGE value="Lowercase directory name." />
     <MESSAGE value="Clean up site menu, categories, banners." />
-    <option name="LAST_COMMIT_MESSAGE" value="Clean up site menu, categories, banners." />
+    <MESSAGE value="Product list to display thumbnail using Product class default_img" />
+    <option name="LAST_COMMIT_MESSAGE" value="Product list to display thumbnail using Product class default_img" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -830,7 +834,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/b47add38-4424-41c8-ad84-5a2f12799301/console.sql" />
     <entry file="file://$PROJECT_DIR$/includes/common.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -2046,14 +2049,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/user/header.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="742">
-          <caret line="53" column="100" lean-forward="false" selection-start-line="53" selection-start-column="100" selection-end-line="53" selection-end-column="100" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://table:/1c667e89/65a9b7e7-44dd-455d-b4c1-c280c1331971/oilfiltersonline_test_store.va_categories2">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -2105,8 +2100,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/blocks/block_products_list.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="783" column="0" lean-forward="true" selection-start-line="783" selection-start-column="0" selection-end-line="783" selection-end-column="0" />
+        <state relative-caret-position="316">
+          <caret line="777" column="77" lean-forward="true" selection-start-line="777" selection-start-column="77" selection-end-line="777" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="602">
+          <caret line="43" column="107" lean-forward="false" selection-start-line="43" selection-start-column="107" selection-end-line="43" selection-end-column="107" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/basket.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="169" column="40" lean-forward="true" selection-start-line="169" selection-start-column="40" selection-end-line="169" selection-end-column="40" />
           <folding />
         </state>
       </provider>
