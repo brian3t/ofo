@@ -10,7 +10,7 @@ function small_cart($block_name = "", $block_prefix = "")
 	global $page_settings, $settings;
 
 	// ** EGGHEAD VENTURES ADD
-	if($_SESSION["make"]) {
+	if(isset($_SESSION["make"]) && !empty($_SESSION['make'])) {
 		$t->set_var("ff_search_results", "<div align=\"center\" id=\"cart-search\">Search Results For: <br /><a href=\"/\">".$_SESSION["year"]." ".isset($_SESSION["make"])?$_SESSION["make"]:''." ".$_SESSION["model"]."</a></div>");
 	}
 	// **

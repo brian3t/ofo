@@ -7,7 +7,7 @@ include_once("./messages/" . $language_code . "/cart_messages.php");
 
 function offers($block_name, $page_friendly_url = "", $page_friendly_params = array())
 {
-	global $t, $db, $db_type, $table_prefix;
+	/*global $t, $db, $db_type, $table_prefix;
 	global $settings, $page_settings;
 	global $language_code, $current_page;
 
@@ -436,7 +436,7 @@ function offers($block_name, $page_friendly_url = "", $page_friendly_params = ar
 	}
 
 	$t->parse("block_body", false);
-	$t->parse($block_name, true);
+	$t->parse($block_name, true);*/
 }
 
 ?>
