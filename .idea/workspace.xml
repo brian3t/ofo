@@ -3,13 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="54e97d0b-7310-4468-b0a4-823e21bf3dfa" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/eghdadmin/admin_articles_reviews_sets.php" afterPath="$PROJECT_DIR$/eghdadmin/admin_articles_reviews_sets.php" />
-      <change beforePath="$PROJECT_DIR$/eghdadmin/admin_global_settings.php" afterPath="$PROJECT_DIR$/eghdadmin/admin_global_settings.php" />
-      <change beforePath="$PROJECT_DIR$/eghdadmin/admin_products_reviews_sets.php" afterPath="$PROJECT_DIR$/eghdadmin/admin_products_reviews_sets.php" />
-      <change beforePath="$PROJECT_DIR$/eghdadmin/admin_products_settings.php" afterPath="$PROJECT_DIR$/eghdadmin/admin_products_settings.php" />
-      <change beforePath="$PROJECT_DIR$/messages/en/admin_messages.php" afterPath="$PROJECT_DIR$/messages/en/admin_messages.php" />
-      <change beforePath="$PROJECT_DIR$/messages/en/messages.php" afterPath="$PROJECT_DIR$/messages/en/messages.php" />
-      <change beforePath="$PROJECT_DIR$/templates/user/footer.html" afterPath="$PROJECT_DIR$/templates/user/footer.html" />
+      <change beforePath="$PROJECT_DIR$/blocks/block_cart.php" afterPath="$PROJECT_DIR$/blocks/block_cart.php" />
+      <change beforePath="$PROJECT_DIR$/friendly_url.php" afterPath="$PROJECT_DIR$/friendly_url.php" />
+      <change beforePath="$PROJECT_DIR$/validation_image.php" afterPath="$PROJECT_DIR$/validation_image.php" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/httpRequests/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -120,11 +116,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="footer.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="footer.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/user/footer.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="29" column="16" lean-forward="true" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
+            <state relative-caret-position="370">
+              <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="validation_image.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/validation_image.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="61" column="88" lean-forward="true" selection-start-line="61" selection-start-column="88" selection-end-line="61" selection-end-column="88" />
               <folding />
             </state>
           </provider>
@@ -162,12 +168,47 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="friendly_url.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/friendly_url.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="328">
+              <caret line="38" column="56" lean-forward="true" selection-start-line="38" selection-start-column="56" selection-end-line="38" selection-end-column="56" />
+              <folding>
+                <marker date="1516432053449" expanded="true" signature="3097:3152" ph="SELECT categ... ${$table_prefix}" />
+                <marker date="1516432053449" expanded="true" signature="3482:3528" ph="SELECT item_... ${$table_prefix}" />
+                <marker date="1516432053449" expanded="true" signature="3847:3909" ph="SELECT manuf... ${$table_prefix}" />
+                <marker date="1516432053449" expanded="true" signature="4238:4284" ph="SELECT user_... ${$table_prefix}" />
+                <marker date="1516432053449" expanded="true" signature="4595:4659" ph="SELECT categ... ${$table_prefix}" />
+                <marker date="1516432053449" expanded="true" signature="4989:5041" ph="SELECT artic... ${$table_prefix}" />
+                <marker date="1516432053449" expanded="true" signature="5362:5423" ph="SELECT categ... ${$table_prefix}" />
+                <marker date="1516432053449" expanded="true" signature="5736:5788" ph="SELECT forum... ${$table_prefix}" />
+                <marker date="1516432053449" expanded="true" signature="6094:6142" ph="SELECT threa... ${$table_prefix}" />
+                <marker date="1516432053449" expanded="true" signature="6462:6521" ph="SELECT categ... ${$table_prefix}" />
+                <marker date="1516432053449" expanded="true" signature="6835:6885" ph="SELECT item_... ${$table_prefix}" />
+                <marker date="1516432053449" expanded="true" signature="7193:7241" ph="SELECT page_... ${$table_prefix}" />
+                <marker date="1516432053449" expanded="true" signature="7546:7601" ph="SELECT manua... ${$table_prefix}" />
+                <marker date="1516432053449" expanded="true" signature="7925:7985" ph="SELECT artic... ${$table_prefix}" />
+                <marker date="1516432053449" expanded="true" signature="8323:8386" ph="SELECT categ... ${$table_prefix}" />
+                <marker date="1516432053449" expanded="true" signature="8685:8743" ph="SELECT scrip... ${$table_prefix}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="block_cart.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/blocks/block_cart.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>The Fastest and Easiest Way to Buy Oil</find>
-      <find>=&quot;features&quot;</find>
       <find>features</find>
       <find>jshowoff</find>
       <find>autolite</find>
@@ -196,6 +237,8 @@
       <find>ga.js</find>
       <find>google_tracking_code</find>
       <find>session_unregister</find>
+      <find>imagecre33ate</find>
+      <find>imagecreate</find>
     </findStrings>
     <replaceStrings>
       <replace>//ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js</replace>
@@ -237,14 +280,12 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/a06f9f38-3659-4b8f-992c-919c0c5fd1a6/console.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/bfd3a5c4-8e1e-46ba-bc58-08caa8b7a1b8/console.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/6667bca5-7bd7-4e8d-b50c-fa8c28b69ac1/console.sql" />
-        <option value="$PROJECT_DIR$/friendly_url.php" />
         <option value="$PROJECT_DIR$/blog/wp-content/plugins/smart-youtube/smartyoutube.php" />
         <option value="$PROJECT_DIR$/blog/wp-content/themes/oilfilters-online/index.php" />
         <option value="/tmp/bosch_to_import.csv" />
         <option value="$PROJECT_DIR$/eghdadmin/admin_import.php" />
         <option value="$PROJECT_DIR$/includes/record.php" />
         <option value="$PROJECT_DIR$/includes/common_functions.php" />
-        <option value="$PROJECT_DIR$/validation_image.php" />
         <option value="$PROJECT_DIR$/product_details.php" />
         <option value="$PROJECT_DIR$/blocks/block_product_details.php" />
         <option value="$PROJECT_DIR$/blocks/block_basket.php" />
@@ -280,6 +321,9 @@
         <option value="$PROJECT_DIR$/eghdadmin/admin_products_reviews_sets.php" />
         <option value="$PROJECT_DIR$/eghdadmin/admin_articles_reviews_sets.php" />
         <option value="$PROJECT_DIR$/templates/user/footer.html" />
+        <option value="$PROJECT_DIR$/validation_image.php" />
+        <option value="$PROJECT_DIR$/friendly_url.php" />
+        <option value="$PROJECT_DIR$/blocks/block_cart.php" />
       </list>
     </option>
   </component>
@@ -677,7 +721,14 @@
       <option name="project" value="LOCAL" />
       <updated>1516387856890</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Fix old code php53 to php7. Implement new GA code.">
+      <created>1516431622325</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1516431622325</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TodoView">
@@ -698,6 +749,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5249745" sideWeight="0.5022831" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23125" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26458332" sideWeight="0.459375" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32809225" sideWeight="0.4944553" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -710,7 +762,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914045" sideWeight="0.496875" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.171875" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3951782" sideWeight="0.478125" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3951782" sideWeight="0.478125" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -719,7 +771,6 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23125" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.49790043" order="8" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -774,7 +825,8 @@
     <MESSAGE value="Lowercase directory name." />
     <MESSAGE value="Clean up site menu, categories, banners." />
     <MESSAGE value="Product list to display thumbnail using Product class default_img" />
-    <option name="LAST_COMMIT_MESSAGE" value="Product list to display thumbnail using Product class default_img" />
+    <MESSAGE value="Fix old code php53 to php7. Implement new GA code." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix old code php53 to php7. Implement new GA code." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -874,7 +926,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/15809acf-ffb5-4a5f-9c34-b6875a6f12db/console.sql" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a7c84aac-2c77-4d82-bff6-a34bfb031e6c/console.sql" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/b47add38-4424-41c8-ad84-5a2f12799301/console.sql" />
     <entry file="file://$PROJECT_DIR$/includes/common.php">
@@ -1532,13 +1583,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/validation_image.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="48" column="23" lean-forward="false" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/includes/db_mysql.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
@@ -1833,14 +1877,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2632">
           <caret line="197" column="51" lean-forward="false" selection-start-line="197" selection-start-column="51" selection-end-line="197" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/friendly_url.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1400">
-          <caret line="109" column="28" lean-forward="false" selection-start-line="109" selection-start-column="28" selection-end-line="109" selection-end-column="28" />
           <folding />
         </state>
       </provider>
@@ -2160,8 +2196,49 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/user/footer.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="29" column="16" lean-forward="true" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
+        <state relative-caret-position="370">
+          <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/validation_image.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="61" column="88" lean-forward="true" selection-start-line="61" selection-start-column="88" selection-end-line="61" selection-end-column="88" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/friendly_url.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="38" column="56" lean-forward="true" selection-start-line="38" selection-start-column="56" selection-end-line="38" selection-end-column="56" />
+          <folding>
+            <marker date="1516432053449" expanded="true" signature="3097:3152" ph="SELECT categ... ${$table_prefix}" />
+            <marker date="1516432053449" expanded="true" signature="3482:3528" ph="SELECT item_... ${$table_prefix}" />
+            <marker date="1516432053449" expanded="true" signature="3847:3909" ph="SELECT manuf... ${$table_prefix}" />
+            <marker date="1516432053449" expanded="true" signature="4238:4284" ph="SELECT user_... ${$table_prefix}" />
+            <marker date="1516432053449" expanded="true" signature="4595:4659" ph="SELECT categ... ${$table_prefix}" />
+            <marker date="1516432053449" expanded="true" signature="4989:5041" ph="SELECT artic... ${$table_prefix}" />
+            <marker date="1516432053449" expanded="true" signature="5362:5423" ph="SELECT categ... ${$table_prefix}" />
+            <marker date="1516432053449" expanded="true" signature="5736:5788" ph="SELECT forum... ${$table_prefix}" />
+            <marker date="1516432053449" expanded="true" signature="6094:6142" ph="SELECT threa... ${$table_prefix}" />
+            <marker date="1516432053449" expanded="true" signature="6462:6521" ph="SELECT categ... ${$table_prefix}" />
+            <marker date="1516432053449" expanded="true" signature="6835:6885" ph="SELECT item_... ${$table_prefix}" />
+            <marker date="1516432053449" expanded="true" signature="7193:7241" ph="SELECT page_... ${$table_prefix}" />
+            <marker date="1516432053449" expanded="true" signature="7546:7601" ph="SELECT manua... ${$table_prefix}" />
+            <marker date="1516432053449" expanded="true" signature="7925:7985" ph="SELECT artic... ${$table_prefix}" />
+            <marker date="1516432053449" expanded="true" signature="8323:8386" ph="SELECT categ... ${$table_prefix}" />
+            <marker date="1516432053449" expanded="true" signature="8685:8743" ph="SELECT scrip... ${$table_prefix}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blocks/block_cart.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding />
         </state>
       </provider>
