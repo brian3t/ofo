@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="54e97d0b-7310-4468-b0a4-823e21bf3dfa" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/blocks/block_cart.php" afterPath="$PROJECT_DIR$/blocks/block_cart.php" />
-      <change beforePath="$PROJECT_DIR$/blocks/block_offers.php" afterPath="$PROJECT_DIR$/blocks/block_offers.php" />
-      <change beforePath="$PROJECT_DIR$/templates/user/block_offers.html" afterPath="$PROJECT_DIR$/templates/user/block_offers.html" />
+      <change beforePath="$PROJECT_DIR$/templates/user/footerHome.html" afterPath="$PROJECT_DIR$/templates/user/footerHome.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/httpRequests/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -81,8 +79,8 @@
       <file leaf-file-name="footer.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/user/footer.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+            <state relative-caret-position="364">
+              <caret line="26" column="68" lean-forward="true" selection-start-line="26" selection-start-column="68" selection-end-line="26" selection-end-column="68" />
               <folding />
             </state>
           </provider>
@@ -120,11 +118,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="footerHome.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="footerHome.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/user/footerHome.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="458">
-              <caret line="36" column="77" lean-forward="false" selection-start-line="36" selection-start-column="77" selection-end-line="36" selection-end-column="77" />
+            <state relative-caret-position="266">
+              <caret line="19" column="39" lean-forward="true" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -211,11 +209,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="block_offers.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="block_offers.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/blocks/block_offers.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="579">
-              <caret line="294" column="17" lean-forward="true" selection-start-line="294" selection-start-column="17" selection-end-line="294" selection-end-column="17" />
+            <state relative-caret-position="481">
+              <caret line="287" column="42" lean-forward="false" selection-start-line="287" selection-start-column="42" selection-end-line="287" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -225,7 +223,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>jshowoff</find>
       <find>autolite</find>
       <find>Cross Reference</find>
       <find>crossReference</find>
@@ -255,6 +252,7 @@
       <find>imagecre33ate</find>
       <find>imagecreate</find>
       <find>block-offers</find>
+      <find>var pageTracker = _gat._getTracker</find>
     </findStrings>
     <replaceStrings>
       <replace>//ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js</replace>
@@ -320,7 +318,6 @@
         <option value="$PROJECT_DIR$/Automotive-Filters.php" />
         <option value="$PROJECT_DIR$/custom/automotive-filters.php" />
         <option value="$PROJECT_DIR$/blog/wp-content/themes/oilfilters-online/footer.php" />
-        <option value="$PROJECT_DIR$/templates/user/footerHome.html" />
         <option value="$PROJECT_DIR$/block_products_list.php" />
         <option value="$PROJECT_DIR$/common/Product.php" />
         <option value="$PROJECT_DIR$/blocks/block_products_list.php" />
@@ -342,6 +339,7 @@
         <option value="$PROJECT_DIR$/blocks/block_cart.php" />
         <option value="$PROJECT_DIR$/templates/user/block_offers.html" />
         <option value="$PROJECT_DIR$/blocks/block_offers.php" />
+        <option value="$PROJECT_DIR$/templates/user/footerHome.html" />
       </list>
     </option>
   </component>
@@ -753,7 +751,14 @@
       <option name="project" value="LOCAL" />
       <updated>1516432205129</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Fix 'make' notice. Disable offers_block showing Recommended Products.">
+      <created>1516433108618</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1516433108618</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TodoView">
@@ -852,7 +857,8 @@
     <MESSAGE value="Product list to display thumbnail using Product class default_img" />
     <MESSAGE value="Fix old code php53 to php7. Implement new GA code." />
     <MESSAGE value="Fix old code PHP5.3. Fix warning and notices." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix old code PHP5.3. Fix warning and notices." />
+    <MESSAGE value="Fix 'make' notice. Disable offers_block showing Recommended Products." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix 'make' notice. Disable offers_block showing Recommended Products." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -2093,16 +2099,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="218">
           <caret line="823" column="78" lean-forward="false" selection-start-line="823" selection-start-column="78" selection-end-line="823" selection-end-column="78" />
-          <folding>
-            <marker date="1513400165529" expanded="true" signature="13535:13550" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/user/footerHome.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="36" column="77" lean-forward="false" selection-start-line="36" selection-start-column="77" selection-end-line="36" selection-end-column="77" />
           <folding />
         </state>
       </provider>
@@ -2211,14 +2207,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/user/footer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/validation_image.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="364">
@@ -2302,8 +2290,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/blocks/block_offers.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="579">
-          <caret line="294" column="17" lean-forward="true" selection-start-line="294" selection-start-column="17" selection-end-line="294" selection-end-column="17" />
+        <state relative-caret-position="481">
+          <caret line="287" column="42" lean-forward="false" selection-start-line="287" selection-start-column="42" selection-end-line="287" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user/footer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="26" column="68" lean-forward="true" selection-start-line="26" selection-start-column="68" selection-end-line="26" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user/footerHome.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="19" column="39" lean-forward="true" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
           <folding />
         </state>
       </provider>
