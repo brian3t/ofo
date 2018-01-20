@@ -473,7 +473,7 @@
 	define("EDIT_PROFILE_MSG", "Edit Profile");
 	define("PERSONAL_DETAILS_MSG", "Personal Details");
 	define("DELIVERY_DETAILS_MSG", "Delivery Details");
-	define("SAME_DETAILS_MSG", "If the delivery details are the same as above tick here<br> if not, please complete the details below");
+	define("SAME_DETAILS_MSG", "If the delivery details are the same as above, click here");
 	define("DELIVERY_MSG", "Delivery");
 	define("SUBSCRIBE_CHECKBOX_MSG", "Please tick this checkbox if you want to receive our newsletter.");
 	define("ADDITIONAL_DETAILS_MSG", "Additional Details");

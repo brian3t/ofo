@@ -1388,7 +1388,7 @@
 	define("EDIT_ACTIVATION_MSG", "Edit Activation");
 	define("GENERATION_KEY_MSG", "Generation Key");
 	define("ACTIVATION_KEY_MSG", "Activation Key");
-	define("DELIVERY_DETAILS_SAME_MSG", "If the delivery details are the same as above tick here");
+	define("DELIVERY_DETAILS_SAME_MSG", "If the delivery details are the same as above click here");
 	define("SEND_EMAIL_MESSAGE_MSG", "Send Email Message");
 	define("ADMIN_EMAIL_MESSAGE_MSG", "Email Message");
 	define("MESSAGE_SENT_MSG", "The message has been sent");
@@ -2117,7 +2117,7 @@
 	define("MENU_TARGET_MSG", "Menu Target");
 	define("SHOW_FOR_ALL_USERS_MSG", "Show for all users");
 	define("SHOW_FOR_UNREGISTERED_USERS_MSG", "Show for unregistered users");
-	define("DON’T_MATCH_WITH_ITEM_MSG", "Don't match with this menu item");
+	define("DONï¿½T_MATCH_WITH_ITEM_MSG", "Don't match with this menu item");
 	define("MATCH_PAGE_NAME_ONLY_MSG", "Match the page name only");
 	define("MATCH_PAGE_NAME_PARAMETERS_MSG", "Match the page name and parameters");
 	define("SUBMENU_ORDER_MSG", "Submenu Order");

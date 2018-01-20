@@ -406,7 +406,7 @@
 				}
 			}
 			set_session("session_settings", "");
-			session_unregister("session_settings");
+			unset($_SESSION["session_settings"]);
 
 			// check if user password encrypt option was changed to md5
 			if ($new_password_encrypt == 1 && $new_password_encrypt != $old_password_encrypt) {

@@ -145,7 +145,7 @@
 				$db->query($sql);
 			}
 			set_session("session_settings", "");
-			session_unregister("session_settings");
+			unset($_SESSION["session_settings"]);
 
 			header("Location: " . $return_page);
 			exit;
