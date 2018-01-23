@@ -233,8 +233,9 @@ function showdiv($model, $make, $year, $id, $engine)
     $pcdb = new mysqli('localhost', 'root', 'rTrapok)1', 'aaia_pcdb');
     $objResponse = new myXajaxResponse();
     if ($current_view == "aaia_view"){
-        $partRs = mysql_query(sprintf
-        ("SELECT * FROM oilfiltersonline." . $current_view . " WHERE aaia = '%s' ORDER BY field(type,'Engine Oil Filter','Air Filter','Cabin Air Filter','Brake Pads','Suspension','Fuel Filter','Transmission Filters','Spark Plug','Oxygen Sensors','PCV Valves and Breather'), price ASC ", $id));
+        $sql = sprintf
+        ("SELECT * FROM oilfiltersonline." . $current_view . " WHERE aaia = '%s' ORDER BY type, field(type,'Engine Oil Filter','Air Filter','Cabin Air Filter','Brake Pads','Suspension','Fuel Filter','Transmission Filters','Spark Plug','Oxygen Sensors','PCV Valves and Breather'), price ASC", $id);
+        $partRs = mysql_query($sql);
     } else {
         $partRs = mysql_query(sprintf
         ("SELECT * FROM oilfiltersonline." . $current_view . " WHERE model = '%s' AND make = '%s' AND year = '%s' AND engine = '%s' ", $model, $make, $year, $engine));

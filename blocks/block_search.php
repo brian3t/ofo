@@ -61,5 +61,3 @@ function search_form($block_name = "")
 	}
 
 }
-
-?>
