@@ -1,4 +1,6 @@
-<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"> 
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema"
+                  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types> 
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/"> 
       <s:element name="CheckInventory"> 
@@ -264,10 +266,10 @@
   </wsdl:binding> 
   <wsdl:service name="AutoPOService"> 
     <wsdl:port name="AutoPOServiceSoap" binding="tns:AutoPOServiceSoap"> 
-      <soap:address location="https://apnet2.apwks.com/oilfilterswebservice/webservice.asmx" /> 
+      <soap:address location="https://apnet3.apwks.com/oilfilterswebservice/webservice.asmx" />
     </wsdl:port> 
     <wsdl:port name="AutoPOServiceSoap12" binding="tns:AutoPOServiceSoap12"> 
-      <soap12:address location="https://apnet2.apwks.com/oilfilterswebservice/webservice.asmx" /> 
+      <soap12:address location="https://apnet3.apwks.com/oilfilterswebservice/webservice.asmx" />
     </wsdl:port> 
   </wsdl:service> 
 </wsdl:definitions>
